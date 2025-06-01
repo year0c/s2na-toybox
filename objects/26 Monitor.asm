@@ -80,7 +80,7 @@ loc_AF30:
 		beq.w	loc_AFA0
 		tst.w	obVelY(a1)
 		bmi.s	loc_AF4E
-		cmpi.b	#2,obAnim(a1)
+		cmpi.b	#id_Roll,obAnim(a1)
 		beq.s	loc_AFA0
 
 loc_AF4E:

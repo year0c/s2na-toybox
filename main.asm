@@ -2665,7 +2665,7 @@ LevSel_ChgSnd:
 LevSel_Numb:
 		add.w	d3,d0
 		move.w	d0,(a6)
-		rts	
+		rts
 ; End of function LevSel_ChgSnd
 
 
@@ -2681,14 +2681,14 @@ LevSel_LineLoop:
 		bpl.s	LevSel_CharOk	; branch if valid
 		move.w	#0,(a6)		; use blank character
 		dbf	d2,LevSel_LineLoop
-		rts	
+		rts
 
 
 LevSel_CharOk:
 		add.w	d3,d0		; combine char with VRAM setting
 		move.w	d0,(a6)		; send to VRAM
 		dbf	d2,LevSel_LineLoop
-		rts	
+		rts
 ; End of function LevSel_ChgLine
 
 ; ---------------------------------------------------------------------------
@@ -19582,7 +19582,7 @@ Obj16_InitMove:
 ;		btst	#0,obStatus(a0)
 ;		beq.s	.facingright
 ;		neg.w	obVelX(a0)
-		
+
 ;.facingright:
 		move.w	#$100,obVelY(a0)
 		move.w	#$A0,objoff_34(a0)
@@ -25563,7 +25563,7 @@ APM_None:
 		dc.w 0
 APM_None_End:
 
-APM_Unk:	
+APM_Unk:
 		dc.w $1800-$B80 ; Bug: This should be $1800-$138
 		dc.w bytesToWcnt($138)
 		dc.w make_block_tile($3A0+$1,0,0,2,0),make_block_tile($3A0+$2,0,0,2,0)
@@ -26140,7 +26140,7 @@ loc_1C962:
 		move.l	(a3)+,(a6)
 		dbf	d6,ContScr_Loop	; repeat 1 more	time
 
-		rts	
+		rts
 ; End of function ContScrCounter
 ; ---------------------------------------------------------------------------
 HUD_100000:	dc.l 100000

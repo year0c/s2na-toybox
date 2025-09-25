@@ -68,7 +68,7 @@ align0 macro alignment
 even macro
 	if notZ80(MOMCPU)
 		if (*)&1
-			dc.b 0				;ds.b 1 
+			dc.b 0				;ds.b 1
 		endif
 	else
 		if ($)&1

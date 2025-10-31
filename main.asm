@@ -9,6 +9,7 @@ EnableSRAM	  = 0	; change to 1 to enable SRAM
 BackupSRAM	  = 1
 AddressSRAM	  = 3	; 0 = odd+even; 2 = even only; 3 = odd only
 
+FixBugs	= 0	;	if 1, fixes a handful of bugs in the game
 zeroOffsetOptimization = 0	; if 1, makes a handful of zero-offset instructions smaller
 
 	include	"macrosetup.asm"
@@ -243,8 +244,12 @@ ChecksumLoop:
 		bcc.s	ChecksumLoop
 		movea.l	#Checksum,a1			; read the checksum
 		cmp.w	(a1),d1					; compare correct checksum to one in ROM
+	if 0
+		bne.w	ChecksumError			; if not equal to the one in ROM, checksum error
+	else
 		nop								; and do absolutely nothing with it
 		nop
+	endif
 		lea	(v_crossresetram).w,a6
 		moveq	#0,d7
 		move.w	#bytesToLcnt(v_end-v_crossresetram),d6
@@ -499,7 +504,7 @@ V_Int:
 		move.l	(v_scrposy_vdp).w,(vdp_data_port).l
 		btst	#6,(v_megadrive).w
 		beq.s	.notPAL
-		move.w	#14344/8-1,d0
+		move.w	#17930/10-1,d0
 		dbf	d0,*
 
 .notPAL:
@@ -549,7 +554,7 @@ loc_BA0:
 		move.w	(vdp_control_port).l,d0
 		btst	#6,(v_megadrive).w
 		beq.s	loc_BBE
-		move.w	#14344/8-1,d0
+		move.w	#17930/10-1,d0
 		dbf	d0,*
 
 loc_BBE:
@@ -578,7 +583,7 @@ Vint0_noWater:
 		move.l	(v_scrposy_vdp).w,(vdp_data_port).l
 		btst	#6,(v_megadrive).w
 		beq.s	loc_C66
-		move.w	#14344/8-1,d0
+		move.w	#17930/10-1,d0
 		dbf	d0,*
 
 loc_C66:
@@ -594,9 +599,9 @@ Vint_SEGA:
 		bsr.w	Do_ControllerPal
 ; loc_CAE: VintSub14:
 Vint_PCM:
-		tst.w	(v_demolength).w
+		tst.w	(v_generictimer).w
 		beq.w	.end
-		subq.w	#1,(v_demolength).w
+		subq.w	#1,(v_generictimer).w
 
 .end:
 		rts
@@ -605,9 +610,9 @@ Vint_PCM:
 Vint_Title:
 		bsr.w	Do_ControllerPal
 		bsr.w	ProcessDPLC
-		tst.w	(v_demolength).w
+		tst.w	(v_generictimer).w
 		beq.w	.end
-		subq.w	#1,(v_demolength).w
+		subq.w	#1,(v_generictimer).w
 
 .end:
 		rts
@@ -667,9 +672,9 @@ Do_Updates:
 		bsr.w	LoadTilesAsYouMove
 		jsr	(HudUpdate).l
 		bsr.w	ProcessDPLC2
-		tst.w	(v_demolength).w
+		tst.w	(v_generictimer).w
 		beq.w	.end
-		subq.w	#1,(v_demolength).w
+		subq.w	#1,(v_generictimer).w
 
 .end:
 		rts
@@ -687,9 +692,9 @@ Vint_S1SS:
 		bsr.w	ProcessDMAQueue
 		startZ80
 		bsr.w	PalCycle_S1SS
-		tst.w	(v_demolength).w
+		tst.w	(v_generictimer).w
 		beq.w	.end
-		subq.w	#1,(v_demolength).w
+		subq.w	#1,(v_generictimer).w
 
 .end:
 		rts
@@ -745,9 +750,9 @@ Vint_SSResults:
 		writeVRAM	Sprite_Table,vram_sprites
 		writeVRAM	v_hscrolltablebuffer,vram_hscroll
 		startZ80
-		tst.w	(v_demolength).w
+		tst.w	(v_generictimer).w
 		beq.w	.end
-		subq.w	#1,(v_demolength).w
+		subq.w	#1,(v_generictimer).w
 
 .end:
 		rts
@@ -961,8 +966,13 @@ ClearScreen:
 
 		clr.l	(v_scrposy_vdp).w
 		clr.l	(v_scrposx_vdp).w
+	if FixBugs
+		clearRAM Sprite_Table,Sprite_Table_end
+		clearRAM v_hscrolltablebuffer,v_hscrolltablebuffer_end_padded
+	else
 		clearRAM Sprite_Table,Sprite_Table_end+4 ; Clears too much RAM, clearing the first 4 bytes of v_palette_water.
 		clearRAM v_hscrolltablebuffer,v_hscrolltablebuffer_end_padded+4 ; Clears too much RAM, clearing the first 4 bytes of v_objspace.
+	endif
 		rts
 ; End of function ClearScreen
 
@@ -1187,10 +1197,11 @@ RunPLC_RAM:
 
 loc_16FE:
 		andi.w	#$7FFF,d2
+	if ~~FixBugs
 		; There is a bug here where the game can crash if a race condition occurs with pattern load cues.
-		; To fix this, move this line after 'move.l	d6,(v_plc_shiftvalue).w'.
 		; Read more about this bug at https://info.sonicretro.org/SCHG_How-to:Fix_a_race_condition_with_Pattern_Load_Cues
 		move.w	d2,(v_plc_patternsleft).w
+	endif
 		bsr.w	NemDec_BuildCodeTable
 		move.b	(a0)+,d5
 		asl.w	#8,d5
@@ -1204,6 +1215,9 @@ loc_16FE:
 		move.l	d0,(v_plc_previousrow).w
 		move.l	d5,(v_plc_dataword).w
 		move.l	d6,(v_plc_shiftvalue).w
+	if FixBugs
+		move.w	d2,(v_plc_patternsleft).w
+	endif
 
 locret_1730:
 		rts
@@ -1280,6 +1294,7 @@ loc_17D2:
 		move.l	6(a0),(a0)+
 		dbf	d0,loc_17D2
 
+	if FixBugs
 		; The above code does not properly 'pop' the 16th PLC entry.
 		; Because of this, occupying the 16th slot will cause it to
 		; be repeatedly decompressed infinitely.
@@ -1287,13 +1302,12 @@ loc_17D2:
 		; than a bug: treating the 16th entry as a dummy that
 		; should never be occupied makes this code unnecessary.
 		; Still, the overhead of this code is minimal.
-		; Uncomment the lines below to fix the bug.
-;	if (v_plc_buffer_only_end-v_plc_buffer-6)&2
-;		move.w	6(a0),(a0)
-;	endif
+	if (v_plc_buffer_only_end-v_plc_buffer-6)&2
+		move.w	6(a0),(a0)
+	endif
 
-;		clr.l	(v_plc_buffer_only_end-6).w
-
+		clr.l	(v_plc_buffer_only_end-6).w
+	endif
 		rts
 ; End of function ProcessDPLC
 
@@ -2160,12 +2174,12 @@ Sega_WaitPalette:
 		bsr.w	PlaySound_Special
 		move.b	#VintID_PCM,(v_vbla_routine).w
 		bsr.w	WaitForVint
-		move.w	#30,(v_demolength).w
+		move.w	#30,(v_generictimer).w
 
 Sega_WaitEnd:
 		move.b	#VintID_SEGA,(v_vbla_routine).w
 		bsr.w	WaitForVint
-		tst.w	(v_demolength).w
+		tst.w	(v_generictimer).w
 		beq.s	Sega_GoToTitleScreen
 		andi.b	#btnStart,(v_jpadpress1).w
 		beq.s	Sega_WaitEnd
@@ -2248,7 +2262,7 @@ loc_32C4:
 		bsr.w	PlaySound_Special
 		move.b	#0,(Debug_mode_flag).w
 		move.w	#0,(Two_player_mode).w
-		move.w	#376,(v_demolength).w
+		move.w	#376,(v_generictimer).w
 		clearRAM v_titletails,v_titletails+object_size
 		move.b	#id_Obj0E,(v_titlesonic).w
 		move.b	#id_Obj0E,(v_titletails).w
@@ -2324,7 +2338,7 @@ Title_Cheat_CountC:
 		addq.w	#1,(v_title_ccount).w
 
 Title_Cheat_NoC:
-		tst.w	(v_demolength).w
+		tst.w	(v_generictimer).w
 		beq.w	Demo
 		andi.b	#btnStart,(v_jpadpress1).w
 		beq.w	TitleScreen_Loop
@@ -2465,7 +2479,7 @@ LvlSelCode_US:	dc.b btnUp, btnDn, btnDn, btnDn, btnDn, btnUp, 0, $FF	; up, down,
 ; ---------------------------------------------------------------------------
 
 Demo:
-		move.w	#30,(v_demolength).w
+		move.w	#30,(v_generictimer).w
 
 loc_3630:
 		move.b	#VintID_Title,(v_vbla_routine).w
@@ -2483,7 +2497,7 @@ loc_3630:
 RunDemo:
 		andi.b	#btnStart,(v_jpadpress1).w
 		bne.w	Title_CheckLvlSel
-		tst.w	(v_demolength).w
+		tst.w	(v_generictimer).w
 		bne.w	loc_3630
 		move.b	#bgm_Fade,d0
 		bsr.w	PlaySound_Special
@@ -3048,13 +3062,13 @@ Level_Demo:
 		lea	(Demo_EHZ_2P).l,a1
 		move.b	1(a1),(Demo_press_counter_2P).w
 		subq.b	#1,(Demo_press_counter_2P).w
-		move.w	#1640,(v_demolength).w
+		move.w	#1640,(v_generictimer).w
 		tst.w	(f_demo).w	; is this an ending demo?
 		bpl.s	Level_ChkWaterPal	; if not, branch
-		move.w	#60*9,(v_demolength).w
+		move.w	#60*9,(v_generictimer).w
 		cmpi.w	#4,(v_creditsnum).w
 		bne.s	Level_ChkWaterPal
-		move.w	#510,(v_demolength).w
+		move.w	#510,(v_generictimer).w
 
 Level_ChkWaterPal:
 		tst.b	(Water_flag).w
@@ -3138,7 +3152,7 @@ Level_SkipScroll:
 Level_ChkDemo:
 		tst.w	(Level_Inactive_flag).w
 		bne.s	Level_EndDemo
-		tst.w	(v_demolength).w
+		tst.w	(v_generictimer).w
 		beq.s	Level_EndDemo
 		cmpi.b	#GameModeID_Demo,(v_gamemode).w
 		beq.w	Level_MainLoop
@@ -3155,7 +3169,7 @@ Level_EndDemo:
 		move.b	#GameModeID_S1Credits,(v_gamemode).w
 
 Level_FadeDemo:
-		move.w	#60,(v_demolength).w
+		move.w	#60,(v_generictimer).w
 		move.w	#$3F,(v_pfade_start).w
 		clr.w	(PalChangeSpeed).w
 
@@ -3172,7 +3186,7 @@ Level_FDLoop:
 		bsr.w	Pal_FadeOut
 
 loc_400E:
-		tst.w	(v_demolength).w
+		tst.w	(v_generictimer).w
 		bne.s	Level_FDLoop
 		rts
 
@@ -3354,9 +3368,11 @@ SpecialStage:
 		bsr.w	S1_SSBGLoad
 		moveq	#plcid_SpecialStage,d0
 		bsr.w	QuickPLC
-		; This does not clear the object space!
+	if FixBugs
+		clearRAM v_objspace,v_objend
+	else
+		; This does not clear the object space, resulting in Sonic and Tails on the title screen to remain!
 		; this actually clears some of the collision addresses instead!
-		; Replace this with 'clearRAM v_objspace,v_objend' to fix this bug.
 		lea	(v_objspace+$2000).w,a1
 		moveq	#0,d0
 		move.w	#bytesToLcnt(v_objend-v_objspace),d1
@@ -3364,6 +3380,7 @@ SpecialStage:
 loc_509C:
 		move.l	d0,(a1)+
 		dbf	d1,loc_509C
+	endif
 		clearRAM v_levelvariables,v_levelvariables_end
 		clearRAM v_timingvariables,v_timingvariables_end-$80
 		clearRAM v_ngfx_buffer,v_ngfx_buffer_end
@@ -3390,7 +3407,7 @@ loc_509C:
 		clr.w	(v_rings).w
 		clr.b	(v_lifecount).w
 		move.w	#0,(Debug_placement_mode).w
-		move.w	#60*30,(v_demolength).w
+		move.w	#60*30,(v_generictimer).w
 		tst.b	(f_debugcheat).w
 		beq.s	loc_5158
 		btst	#bitA,(v_jpadhold1).w
@@ -3415,7 +3432,7 @@ loc_516A:
 		bsr.w	S1SS_BgAnimate
 		tst.w	(f_demo).w
 		beq.s	loc_51A6
-		tst.w	(v_demolength).w
+		tst.w	(v_generictimer).w
 		beq.w	loc_52D4
 
 loc_51A6:
@@ -3429,7 +3446,7 @@ loc_51A6:
 		clr.w	(Current_ZoneAndAct).w
 
 loc_51CA:
-		move.w	#60,(v_demolength).w
+		move.w	#60,(v_generictimer).w
 		move.w	#$3F,(v_pfade_start).w
 		clr.w	(PalChangeSpeed).w
 
@@ -3448,7 +3465,7 @@ loc_51DA:
 		bsr.w	Pal_ToWhite
 
 loc_5214:
-		tst.w	(v_demolength).w
+		tst.w	(v_generictimer).w
 		bne.s	loc_51DA
 		move	#$2700,sr
 		lea	(vdp_control_port).l,a6
@@ -3510,6 +3527,7 @@ loc_52DC:
 S1_SSBGLoad:
 		lea	(v_ssbuffer1).l,a1
 		; Bug: The mappings for the birds and fish are not loaded here!
+		; Unfortunantely, they don't exist in ROM either...
 		move.w	#make_art_tile(ArtTile_SS_Background_Fish,2,0),d0
 		bsr.w	EniDec
 		locVRAM	ArtTile_SS_Plane_1*tile_size+plane_size_64x32,d3
@@ -3559,6 +3577,7 @@ loc_5360:
 		dbf	d7,loc_5302
 		lea	(v_ssbuffer1).l,a1
 		; Bug: The mappings for the clouds are not loaded here!
+		; Unfortunantely, they don't exist in ROM either...
 		move.w	#make_art_tile(ArtTile_SS_Background_Clouds,2,0),d0
 		bsr.w	EniDec
 		copyTilemap	v_ssbuffer1,ArtTile_SS_Plane_5*tile_size,64,32
@@ -4760,12 +4779,14 @@ loc_61B2:
 		swap	d3
 		dbf	d1,loc_61B2
 
+	if FixBugs
+		rept 2
+		move.w	d4,(a1)+
+		move.w	d3,(a1)+
+		endm
+	else
 		; Bug: The last 2 pixels of the screen are not covered, resulting in very weird artifacting at the bottom of the screen.
-		; Uncomment the lines below to fix this bug.
-;		rept 2
-;		move.w	d4,(a1)+
-;		move.w	d3,(a1)+
-;		endm
+	endif
 		rts
 ; End of function Deform_TitleScreen
 
@@ -5161,6 +5182,7 @@ locret_6512:
 
 ;sub_6514:
 ScrollHoriz:
+	if ~~FixBugs
 		; The intent of this code is to make the camera briefly lag behind the
 		; player right after releasing a spin dash, however it does this by
 		; simply making the camera use position data from previous frames. This
@@ -5179,22 +5201,22 @@ ScrollHoriz:
 		move.b	Horiz_scroll_delay_val-Camera_Delay(a5),d1	; get delay value
 		lsl.b	#2,d1		; multiply by 4, the size of a position buffer entry
 		addq.b	#4,d1
-
+	else
 		; To prevent the bug that is described above, this caps the position
 		; array index offset so that it does not access position data from
 		; before the spin dash was performed. Note that this required
 		; modifications to 'Sonic_UpdateSpindash' and 'Tails_UpdateSpindash'.
-		; Uncomment the lines below and delete the lines above to fix the bug.
-;		move.b	Horiz_scroll_delay_val-Camera_Delay(a5),d1	; should scrolling be delayed?
-;		beq.s	.scrollNotDelayed				; if not, branch
-;		lsl.b	#2,d1		; multiply by 4, the size of a position buffer entry
-;		subq.b	#1,Horiz_scroll_delay_val-Camera_Delay(a5)	; reduce delay value
-;		move.b	Sonic_Pos_Record_Index+1-Camera_Delay(a5),d0
-;		sub.b	Horiz_scroll_delay_val+1-Camera_Delay(a5),d0
-;		cmp.b	d0,d1
-;		blo.s	.doNotCap
-;		move.b	d0,d1
-;.doNotCap:
+		move.b	Horiz_scroll_delay_val-Camera_Delay(a5),d1	; should scrolling be delayed?
+		beq.s	.scrollNotDelayed				; if not, branch
+		lsl.b	#2,d1		; multiply by 4, the size of a position buffer entry
+		subq.b	#1,Horiz_scroll_delay_val-Camera_Delay(a5)	; reduce delay value
+		move.b	Sonic_Pos_Record_Index+1-Camera_Delay(a5),d0
+		sub.b	Horiz_scroll_delay_val+1-Camera_Delay(a5),d0
+		cmp.b	d0,d1
+		blo.s	.doNotCap
+		move.b	d0,d1
+.doNotCap:
+	endif
 
 		move.w	Sonic_Pos_Record_Index-Camera_Delay(a5),d0
 		sub.b	d1,d0
@@ -6849,8 +6871,12 @@ loc_72C2:
 		bne.s	loc_72F4
 		lea	(v_16x16+$980).w,a1
 		lea	(Map16_HTZ).l,a0
+	if FixBugs
+		move.w	#bytesToWcnt(Map16_HTZ_End-Map16_HTZ),d2
+	else
 		; There is a slight bug here in which 50 bytes are copied from the start of Nem_HTZ, remove the '+$50' to fix this.
 		move.w	#bytesToWcnt(Map16_HTZ_End+$50-Map16_HTZ),d2
+	endif
 
 loc_72D8:
 		move.w	(a0)+,d0
@@ -6869,6 +6895,7 @@ loc_72EE:
 loc_72F4:
 		movea.l	(a2)+,a0
 		; What follows is a very C style check for zones that aren't GHZ, LZ, or 06.
+		; It would be less costly to simply check for those zones rather than anything that isn't those zones.
 		cmpi.b	#id_CPZ,(Current_Zone).w
 		beq.s	loc_7338
 		cmpi.b	#id_EHZ,(Current_Zone).w
@@ -7894,7 +7921,7 @@ loc_7B9C:
 DynResize_S1Ending:
 		rts
 ; ---------------------------------------------------------------------------
-		include	"objects/11 Bridge.asm"
+		include	"obj/11 Bridge.asm"
 ; ---------------------------------------------------------------------------
 ; Sprite mappings - GHZ bridge
 ; ---------------------------------------------------------------------------
@@ -7912,7 +7939,7 @@ Map_obj11:	binclude	"mappings/sprite/obj11.bin"
 ; ===========================================================================
 		nop
 
-		include	"objects/15 Swinging Platforms.asm"
+		include	"obj/15 Swinging Platforms.asm"
 ; ---------------------------------------------------------------------------
 Map_Obj15:	dc.w word_8534-Map_Obj15
 		dc.w word_8546-Map_Obj15
@@ -7973,10 +8000,10 @@ word_8648:	dc.w 4
 ; ---------------------------------------------------------------------------
 		nop
 
-		include	"objects/17 Spiked Pole Helix.asm"
+		include	"obj/17 Spiked Pole Helix.asm"
 Map_Obj17:	include	"mappings/sprite/S1/Spiked Pole Helix.asm"
 
-		include	"objects/18 Platforms.asm"
+		include	"obj/18 Platforms.asm"
 ; ---------------------------------------------------------------------------
 Map_Obj18x:	dc.w word_8ADE-Map_Obj18x
 		dc.w word_8AF0-Map_Obj18x
@@ -8026,8 +8053,8 @@ Map_obj18_EHZ:	binclude	"mappings/sprite/obj18_EHZ.bin"
 ; ---------------------------------------------------------------------------
 		nop
 
-		include	"objects/1A Collapsing Platforms.asm"
-		include	"objects/S1/53 Collapsing Floors.asm"
+		include	"obj/1A Collapsing Platforms.asm"
+		include	"obj/S1/53 Collapsing Floors.asm"
 ; ---------------------------------------------------------------------------
 
 loc_8E58:
@@ -8277,7 +8304,7 @@ word_9340:	dc.w $C
 ; ---------------------------------------------------------------------------
 		nop
 
-		include	"objects/1C Scenery.asm"
+		include	"obj/1C Scenery.asm"
 ; ---------------------------------------------------------------------------
 Ani_Obj1C:	dc.w byte_9494-Ani_Obj1C
 		dc.w byte_949C-Ani_Obj1C
@@ -8288,7 +8315,7 @@ byte_949C:	dc.b   5,  0,  0,  0,  1,  2,  3,  3
 Map_Obj1C_01:	include	"mappings/sprite/obj1C.asm"
 ; ---------------------------------------------------------------------------
 
-		include	"objects/S1/2A SBZ Small Door.asm"
+		include	"obj/S1/2A SBZ Small Door.asm"
 ; ---------------------------------------------------------------------------
 Ani_Obj2A:	dc.w byte_9590-Ani_Obj2A
 		dc.w byte_959C-Ani_Obj2A
@@ -8334,9 +8361,9 @@ word_964A:	dc.w 2
 		dc.w $C007, $800, $800,$FFF8
 		dc.w $2007, $800, $800,$FFF8
 ; ---------------------------------------------------------------------------
-		include	"objects/S1/1E Ball Hog.asm"
-		include	"objects/S1/20 Cannonball.asm"
-		include	"objects/S1/24, 27 & 3F Explosions.asm"
+		include	"obj/S1/1E Ball Hog.asm"
+		include	"obj/S1/20 Cannonball.asm"
+		include	"obj/S1/24, 27 & 3F Explosions.asm"
 ; ---------------------------------------------------------------------------
 Ani_S1Obj1E:	dc.w byte_996C-Ani_S1Obj1E
 byte_996C:	dc.b   9,  0,  0,  2,  2,  3,  2,  0
@@ -8410,8 +8437,8 @@ word_9A9C:	dc.w 1
 ; ---------------------------------------------------------------------------
 		nop
 
-		include	"objects/28 Animals.asm"
-		include	"objects/29 Points.asm"
+		include	"obj/28 Animals.asm"
+		include	"obj/29 Points.asm"
 ; ---------------------------------------------------------------------------
 Map_Obj28a:	dc.w word_A006-Map_Obj28a
 		dc.w word_A010-Map_Obj28a
@@ -8467,7 +8494,7 @@ word_A0BC:	dc.w 2
 ; ===========================================================================
 		nop
 
-		include	"objects/S1/1F Crabmeat.asm"
+		include	"obj/S1/1F Crabmeat.asm"
 ; ===========================================================================
 ; animation script
 Ani_obj1F:	dc.w byte_A30C-Ani_obj1F
@@ -8494,8 +8521,8 @@ byte_A327:	dc.b   1,  5,  6,$FF
 Map_obj1F:	binclude	"mappings/sprite/obj1F.bin"
 		even
 
-		include	"objects/S1/22 Buzz Bomber.asm"
-		include	"objects/S1/23 Buzz Bomber Missile.asm"
+		include	"obj/S1/22 Buzz Bomber.asm"
+		include	"obj/S1/23 Buzz Bomber Missile.asm"
 ; ===========================================================================
 ; animation script
 Ani_obj22:	dc.w byte_A652-Ani_obj22
@@ -8523,9 +8550,9 @@ Map_obj23:	binclude	"mappings/sprite/obj23.bin"
 ; ===========================================================================
 		nop
 
-		include	"objects/25 & 37 Rings.asm"
-		include	"objects/S1/4B Giant Ring.asm"
-		include	"objects/S1/7C Ring Flash.asm"
+		include	"obj/25 & 37 Rings.asm"
+		include	"obj/S1/4B Giant Ring.asm"
+		include	"obj/S1/7C Ring Flash.asm"
 ; ---------------------------------------------------------------------------
 Ani_Obj25:	dc.w byte_ABEC-Ani_Obj25
 byte_ABEC:	dc.b   5,  4,  5,  6,  7,$FC
@@ -8622,8 +8649,8 @@ word_AE34:	dc.w 4
 ; ---------------------------------------------------------------------------
 		nop
 
-		include	"objects/26 Monitor.asm"
-		include	"objects/2E Monitor Content Power-Up.asm"
+		include	"obj/26 Monitor.asm"
+		include	"obj/2E Monitor Content Power-Up.asm"
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -8718,9 +8745,9 @@ byte_B292:	dc.b   2,  0,  1, $B,$FE,  1
 ; sprite mappings
 ; ---------------------------------------------------------------------------
 Map_Obj26:	include	"mappings/sprite/obj26.asm"
-		include	"objects/0E Title Sonic And Tails.asm"
+		include	"obj/0E Title Sonic And Tails.asm"
 
-		include	"objects/0F.asm"
+		include	"obj/0F.asm"
 
 Map_Obj0F:	binclude "mappings/sprite/obj0F.bin"
 		even
@@ -8738,7 +8765,7 @@ Map_Obj0E:	binclude "mappings/sprite/obj0E.bin"
 
 		nop
 
-		include	"objects/S1/2B Chopper.asm"
+		include	"obj/S1/2B Chopper.asm"
 ; ---------------------------------------------------------------------------
 Ani_Obj2B:	dc.w byte_B7BA-Ani_Obj2B
 		dc.w byte_B7BE-Ani_Obj2B
@@ -8755,7 +8782,7 @@ word_B7D4:	dc.w 1
 		dc.w $F00F,  $10,    8,$FFF0
 ; ---------------------------------------------------------------------------
 
-		include	"objects/S1/2C Jaws.asm"
+		include	"obj/S1/2C Jaws.asm"
 ; ---------------------------------------------------------------------------
 Ani_Obj2C:	dc.b   0,  2,  7,  0,  1,  2,  3,$FF
 Map_Obj2C:	dc.w word_B880-Map_Obj2C
@@ -8776,11 +8803,11 @@ word_B8B6:	dc.w 2
 		dc.w $F505,$101C,$100E,	 $10
 ; ---------------------------------------------------------------------------
 
-		include	"objects/S1/34 Title Cards.asm"
-		include	"objects/S1/39 Game Over.asm"
-		include	"objects/S1/3A Got Through Card.asm"
-		include	"objects/S1/7E Special Stage Results.asm"
-		include	"objects/S1/7F SS Result Chaos Emeralds.asm"
+		include	"obj/S1/34 Title Cards.asm"
+		include	"obj/S1/39 Game Over.asm"
+		include	"obj/S1/3A Got Through Card.asm"
+		include	"obj/S1/7E Special Stage Results.asm"
+		include	"obj/S1/7F SS Result Chaos Emeralds.asm"
 ; ---------------------------------------------------------------------------
 Map_Obj34:	dc.w word_BFD8-Map_Obj34
 		dc.w word_C022-Map_Obj34
@@ -8978,16 +9005,16 @@ word_C660:	dc.w 0
 ; ---------------------------------------------------------------------------
 		nop
 
-		include	"objects/36 Spikes.asm"
+		include	"obj/36 Spikes.asm"
 Map_Obj36:	include	"mappings/sprite/obj36.asm"
 
 
-		include	"objects/S1/3B Purple Rock.asm"
+		include	"obj/S1/3B Purple Rock.asm"
 Map_Obj3B:	include	"mappings/sprite/S1/Purple Rock.asm"
 		align 4
 
-		include	"objects/S1/3C Smashable Wall.asm"
-		include	"objects/S1/sub SmashObject.asm"
+		include	"obj/S1/3C Smashable Wall.asm"
+		include	"obj/S1/sub SmashObject.asm"
 ; ---------------------------------------------------------------------------
 Obj3C_FragSpdRight:dc.w	 $400,-$500
 		dc.w  $600,-$100
@@ -10645,7 +10672,7 @@ byte_D7FA:	dc.b   8,  8,  8,  8
 		dc.b $18,$18,$18,$18
 		dc.b $20,$20,$20,$20
 
-		include	"objects/S1/sub ChkObjectVisible.asm"
+		include	"obj/S1/sub ChkObjectVisible.asm"
 ; ---------------------------------------------------------------------------
 		nop
 
@@ -10707,9 +10734,13 @@ loc_D8AE:
 ; RPL_Next:
 RingsManager_Main:
 		lea	(Ring_Positions).w,a1
+	if FixBugs
+		move.w	#255-1,d1			; do 255 rings
+	else
 		; There is a slight bug here.
 		; This does 256 rings, when it should be 255 to keep it consistent with RingsMgr_SortRings.
 		move.w	#256-1,d1			; do 256 rings
+	endif
 
 loc_D8CC:
 		move.b	(a1),d0				; is there a ring in this slot?
@@ -10858,11 +10889,14 @@ loc_D9AE:
 		move.b	obHeight(a0),d5
 		subq.b	#3,d5
 		sub.w	d5,d3
+	if FixBugs
+		cmpi.b	#AniIDSonAni_Duck,obAnim(a0)
+	else
 		; Bug: This does not check either player's ducking frame!
 		; Sonic's ducking frame is $80, and Tails's frame is $5B.
 		; However, this does work for Sonic 1's mapping frames.
-		; To fix this, replace this line with 'cmpi.b	#AniIDSonAni_Duck,obAnim(a0)'.
 		cmpi.b	#$39,obFrame(a0)
+	endif
 		bne.s	loc_D9E0
 		addi.w	#$C,d3
 		moveq	#$A,d5
@@ -11188,20 +11222,24 @@ ObjectsManager_Init:
 		move.l	a0,(Obj_load_addr_left_P2).w
 		lea	(v_objstate).w,a2
 		move.w	#$101,(a2)+
+	if FixBugs
+		move.w	#bytesToLcnt(v_objstate_end-v_objstate-2),d0
+	else
 		; This clears longwords, but the loop counter is measured in words!
 		; This causes $17C bytes to be cleared instead of $BE.
-		; To fix this bug, change 'bytesToWcnt' to 'bytesToLcnt'.
 		move.w	#bytesToWcnt(v_objstate_end-v_objstate-2),d0
+	endif
 
 loc_DC9C:
 		clr.l	(a2)+
 		dbf	d0,loc_DC9C
 
+	if FixBugs
 		; Clear the last word, since the above loop only does longwords.
-		; Uncomment the lines below to fix this bug.
-;	if (v_objstate_end-v_objstate-2)&2
-;		clr.w	(a2)+
-;	endif
+	if (v_objstate_end-v_objstate-2)&2
+		clr.w	(a2)+
+	endif
+	endif
 
 		lea	(v_objstate).w,a2
 		moveq	#0,d2
@@ -11925,7 +11963,7 @@ locret_E1C6:
 		rts
 ; End of function FindFreeObj3
 
-		include	"objects/41 Springs.asm"
+		include	"obj/41 Springs.asm"
 ; ===========================================================================
 ; byte_E934:
 Obj41_SlopeData_DiagUp:
@@ -12059,7 +12097,7 @@ word_EB96:	dc.w 4
 		dc.w $F505,$100C,$1006,$FFF6
 		dc.w $F005,$101C,$100E,$FFF0
 
-		include	"objects/S1/42 Newtron.asm"
+		include	"obj/S1/42 Newtron.asm"
 ; ===========================================================================
 ; animation script
 Ani_obj42:	dc.w byte_ED7C-Ani_obj42
@@ -12080,7 +12118,7 @@ byte_ED8F:	dc.b $13,  0,  1,  1,  2,  1,  1,  0
 Map_obj42:	binclude	"mappings/sprite/obj42.bin"
 		even
 
-		include	"objects/S1/44 GHZ Edge Walls.asm"
+		include	"obj/S1/44 GHZ Edge Walls.asm"
 ; ===========================================================================
 ; ---------------------------------------------------------------------------
 ; Sprite mappings
@@ -12088,7 +12126,7 @@ Map_obj42:	binclude	"mappings/sprite/obj42.bin"
 Map_obj44:	binclude	"mappings/sprite/obj44.bin"
 		even
 
-		include	"objects/0D Signpost.asm"
+		include	"obj/0D Signpost.asm"
 ; ===========================================================================
 ; animation script
 ; off_F18C:
@@ -12111,7 +12149,7 @@ Map_obj0D:	include	"mappings/sprite/obj0D.asm"
 ; ===========================================================================
 		nop
 
-		include	"objects/S1/40 Moto Bug.asm"
+		include	"obj/S1/40 Moto Bug.asm"
 ; ===========================================================================
 ; animation script
 Ani_obj40:	dc.w byte_F386-Ani_obj40
@@ -12997,11 +13035,12 @@ Obj01_ChkInvin:						; Checks if invincibility has expired and (should) disables
 		beq.s	Obj01_ChkShoes
 		tst.w	invtime(a0)
 		beq.s	Obj01_ChkShoes
+	if ~~FixBugs
 		; This branch causes the invincibility timer to be disabled.
 		; Strangely, Tails' version doesn't have this.
-		; Uncomment the line below to fix this bug.
 		bra.s	Obj01_ChkShoes
 ; ===========================================================================
+	endif
 		subq.w	#1,invtime(a0)
 		bne.s	Obj01_ChkShoes
 		tst.b	(f_lockscreen).w
@@ -13484,6 +13523,11 @@ Sonic_TurnLeft:
 
 loc_FF78:
 		move.w	d0,obInertia(a0)
+	if FixBugs
+		move.b	obAngle(a0),d1
+		addi.b	#$20,d1
+		andi.b	#$C0,d1
+	else
 		; These three instructions partially overwrite the inertia value in
 		; 'd0'! This causes the character to trigger their skidding
 		; animation at different speeds depending on whether they're going
@@ -13492,6 +13536,7 @@ loc_FF78:
 		move.b	obAngle(a0),d0
 		addi.b	#$20,d0
 		andi.b	#$C0,d0
+	endif
 		bne.s	locret_FFA6
 		cmpi.w	#$400,d0
 		blt.s	locret_FFA6
@@ -13535,6 +13580,11 @@ Sonic_TurnRight:
 
 loc_FFDE:
 		move.w	d0,obInertia(a0)
+	if FixBugs
+		move.b	obAngle(a0),d1
+		addi.b	#$20,d1
+		andi.b	#$C0,d1
+	else
 		; These three instructions partially overwrite the inertia value in
 		; 'd0'! This causes the character to trigger their skidding
 		; animation at different speeds depending on whether they're going
@@ -13543,6 +13593,7 @@ loc_FFDE:
 		move.b	obAngle(a0),d0
 		addi.b	#$20,d0
 		andi.b	#$C0,d0
+	endif
 		bne.s	locret_1000C
 		cmpi.w	#-$400,d0
 		bgt.s	locret_1000C
@@ -13972,14 +14023,16 @@ Sonic_UpdateSpindash:
 		move.b	#AniIDSonAni_Roll,obAnim(a0)
 		addq.w	#5,obY(a0)			; add the difference between Sonic's rolling and standing heights
 		move.b	#0,spindash_flag(a0)
+	if FixBugs
 		; To fix a bug in 'ScrollHoriz', we need an extra variable, so this
 		; code has been modified to make the delay value only a single byte.
 		; This is used by the fixed 'ScrollHoriz'.
-		; Uncomment these lines and delete 'move.w	#$2000,(Horiz_scroll_delay_val).w' to fix the bug in 'ScrollHoriz'.
-;		move.b	#$20,(Horiz_scroll_delay_val).w
+		move.b	#$20,(Horiz_scroll_delay_val).w
 		; Back up the position array index for later.
-;		move.b	(Sonic_Pos_Record_Index+1).w,(Horiz_scroll_delay_val+1).w
+		move.b	(Sonic_Pos_Record_Index+1).w,(Horiz_scroll_delay_val+1).w
+	else
 		move.w	#$2000,(Horiz_scroll_delay_val).w
+	endif
 		move.w	#$800,obInertia(a0)
 		btst	#0,obStatus(a0)
 		beq.s	loc_103D4
@@ -15365,6 +15418,11 @@ loc_110EA:
 
 loc_110F2:
 		move.w	d0,obInertia(a0)
+	if FixBugs
+		move.b	obAngle(a0),d1
+		addi.b	#$20,d1
+		andi.b	#$C0,d1
+	else
 		; These three instructions partially overwrite the inertia value in
 		; 'd0'! This causes the character to trigger their skidding
 		; animation at different speeds depending on whether they're going
@@ -15373,6 +15431,7 @@ loc_110F2:
 		move.b	obAngle(a0),d0
 		addi.b	#$20,d0
 		andi.b	#$C0,d0
+	endif
 		bne.s	locret_11120
 		cmpi.w	#$400,d0
 		blt.s	locret_11120
@@ -15416,6 +15475,11 @@ loc_11150:
 
 loc_11158:
 		move.w	d0,obInertia(a0)
+	if FixBugs
+		move.b	obAngle(a0),d1
+		addi.b	#$20,d1
+		andi.b	#$C0,d1
+	else
 		; These three instructions partially overwrite the inertia value in
 		; 'd0'! This causes the character to trigger their skidding
 		; animation at different speeds depending on whether they're going
@@ -15424,6 +15488,7 @@ loc_11158:
 		move.b	obAngle(a0),d0
 		addi.b	#$20,d0
 		andi.b	#$C0,d0
+	endif
 		bne.s	locret_11186
 		cmpi.w	#-$400,d0
 		bgt.s	locret_11186
@@ -15766,7 +15831,7 @@ loc_11424:
 		bclr	#5,obStatus(a0)
 		addq.l	#4,sp
 		move.b	#1,objoff_3C(a0)
-		clr.b	$38(a0)
+		clr.b	stick_to_convex(a0)
 		move.w	#sfx_Jump,d0
 		jsr	(PlaySound_Special).l
 		move.b	#$F,obHeight(a0)
@@ -15852,14 +15917,16 @@ loc_11510:
 		move.b	#AniIDSonAni_Roll,obAnim(a0)
 		addq.w	#5,obY(a0)
 		move.b	#0,spindash_flag(a0)
+	if FixBugs
 		; To fix a bug in 'ScrollHoriz', we need an extra variable, so this
 		; code has been modified to make the delay value only a single byte.
 		; This is used by the fixed 'ScrollHoriz'.
-		; Uncomment these lines and delete 'move.w	#$2000,(Horiz_scroll_delay_val).w' to fix the bug in 'ScrollHoriz'.
-;		move.b	#$20,(Horiz_scroll_delay_val).w
+		move.b	#$20,(Horiz_scroll_delay_val).w
 		; Back up the position array index for later.
-;		move.b	(Tails_Pos_Record_Index+1).w,(Horiz_scroll_delay_val+1).w
+		move.b	(Tails_Pos_Record_Index+1).w,(Horiz_scroll_delay_val+1).w
+	else
 		move.w	#$2000,(Horiz_scroll_delay_val).w
+	endif
 		move.w	#$800,obInertia(a0)
 		btst	#0,obStatus(a0)
 		beq.s	loc_1154E
@@ -16821,7 +16888,7 @@ KillTails:
 ; ---------------------------------------------------------------------------
 		align 4
 
-		include	"objects/S1/0A Drowning Countdown.asm"
+		include	"obj/S1/0A Drowning Countdown.asm"
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -16883,9 +16950,9 @@ Map_Obj0A_Countdown:dc.w word_123B0-Map_Obj0A_Countdown
 word_123B0:	dc.w 1
 		dc.w $E80E,    0,    0,$FFF2
 
-		include	"objects/38 Shield and Invincibility.asm"
-		include	"objects/S1/4A Special Stage Entry (Unused).asm"
-		include	"objects/08 Water Splash.asm"
+		include	"obj/38 Shield and Invincibility.asm"
+		include	"obj/S1/4A Special Stage Entry (Unused).asm"
+		include	"obj/08 Water Splash.asm"
 ; ===========================================================================
 ; animation script
 Ani_obj38:	dc.w byte_125C2-Ani_obj38
@@ -17928,7 +17995,7 @@ loc_1328E:
 		move.w	#0,d6
 		bsr.w	FindWall
 		move.w	(sp)+,d0
-		move.b	#$C0,d2
+		move.b	#-$40,d2
 		bra.w	loc_131BE
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -17945,7 +18012,7 @@ loc_132F6:
 		movea.w	#$10,a3
 		move.w	#0,d6
 		bsr.w	FindWall
-		move.b	#$C0,d2
+		move.b	#-$40,d2
 		bra.w	loc_131F6
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -17963,7 +18030,7 @@ ObjHitWallRight:
 		move.b	(Primary_Angle).w,d3
 		btst	#0,d3
 		beq.s	locret_1333E
-		move.b	#$C0,d3
+		move.b	#-$40,d3
 
 locret_1333E:
 		rts
@@ -18118,7 +18185,7 @@ locret_134C4:
 ; ---------------------------------------------------------------------------
 		nop
 
-		include	"objects/79 Lamppost.asm"
+		include	"obj/79 Lamppost.asm"
 ; ---------------------------------------------------------------------------
 Map_Obj79:	dc.w word_1370A-Map_Obj79
 		dc.w word_1372C-Map_Obj79
@@ -18139,7 +18206,7 @@ word_1374E:	dc.w 4
 		dc.w $F803,    6,    3,$FFF8
 		dc.w $F803, $806, $803,	   0
 ; ---------------------------------------------------------------------------
-		include	"objects/S1/7D Hidden Bonuses.asm"
+		include	"obj/S1/7D Hidden Bonuses.asm"
 ; ---------------------------------------------------------------------------
 Map_Obj7D:	dc.w word_13852-Map_Obj7D
 		dc.w word_13854-Map_Obj7D
@@ -18599,7 +18666,7 @@ word_13E28:	dc.w 0
 ; ---------------------------------------------------------------------------
 		nop
 
-		include	"objects/03 Collision Switcher.asm"
+		include	"obj/03 Collision Switcher.asm"
 ; ===========================================================================
 ; ---------------------------------------------------------------------------
 ; sprite mappings
@@ -19117,7 +19184,7 @@ word_1494E:	dc.w 4
 		dc.w $200F,    0,    0,$FFF0		; 8
 		dc.w $400F,    0,    0,$FFF0		; 12
 ; ---------------------------------------------------------------------------
-		include	"objects/06 EHZ Spiral.asm"
+		include	"obj/06 EHZ Spiral.asm"
 ; ---------------------------------------------------------------------------
 Obj06_PlayerAngleArray:dc.b   0,  0,  1,  1		; 0
 		dc.b $16,$16,$16,$16			; 4
@@ -19400,8 +19467,8 @@ loc_14F10:
 		move.w	d1,obY(a0)
 		add.w	objoff_30(a0),d2
 		move.w	d2,obX(a0)
-		clr.w	$E(a0)
-		clr.w	$A(a0)
+		clr.w	obY+2(a0)
+		clr.w	obX+2(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -19532,9 +19599,13 @@ Obj16_Init:
 		move.l	#Map_Obj16,obMap(a0)
 		move.w	#make_art_tile(ArtTile_HtzZipline,2,0),obGfx(a0)
 		bsr.w	Adjust2PArtPointer
+	if FixBugs
+		ori.b	#4,obRender(a0)
+	else
 		; Bug: This does not correctly flip the object.
 		; Change 'move' to 'ori' to fix this bug.
 		move.b	#4,obRender(a0)
+	endif
 		move.b	#$20,obActWid(a0)
 		move.b	#0,obFrame(a0)
 		move.b	#1,obPriority(a0)
@@ -19577,13 +19648,15 @@ Obj16_InitMove:
 		beq.s	locret_151BE
 		addq.b	#1,obSubtype(a0)
 		move.w	#$200,obVelX(a0)
-		; This object does not work when being flipped horizontally.
-		; Uncomment the lines below to fix this issue.
-;		btst	#0,obStatus(a0)
-;		beq.s	.facingright
-;		neg.w	obVelX(a0)
+	if FixBugs
+		btst	#0,obStatus(a0)
+		beq.s	.facingright
+		neg.w	obVelX(a0)
 
-;.facingright:
+.facingright:
+	else
+		; This object does not work when being flipped horizontally.
+	endif
 		move.w	#$100,obVelY(a0)
 		move.w	#$A0,objoff_34(a0)
 
@@ -19859,7 +19932,7 @@ j_ObjectMove_1:
 ; ---------------------------------------------------------------------------
 		align 4
 
-		include	"objects/04 Water Surface.asm"
+		include	"obj/04 Water Surface.asm"
 ; ---------------------------------------------------------------------------
 Obj04_FrameData:dc.b   0,  1,  0,  1,  0,  1,  0,  1,  0,  1,  0,  1,  0,  1,  0,  1
 		dc.b   1,  2,  1,  2,  1,  2,  1,  2,  1,  2,  1,  2,  1,  2,  1,  2 ; 16
@@ -21518,18 +21591,24 @@ Obj4B_ShootProjectile:
 		move.b	#2,obAnim(a1)
 		move.w	obX(a0),obX(a1)
 		move.w	obY(a0),obY(a1)
+	if FixBugs
+		move.w	#13,d0				; absolute horizontal offset for stinger
+	else
 		; Bug: This object is missing an absolute horizontal offset for the stinger.
-		; Uncomment the lines below to fix this bug.
-;		move.w	#13,d0				; absolute horizontal offset for stinger
+	endif
 		move.w	#$180,obVelY(a1)
 		move.w	#-$180,obVelX(a1)
 		btst	#0,obRender(a1)			; is object facing left?
 		beq.s	locret_169D8			; if not, branch
 		neg.w	obVelX(a1)			; move in other direction
-;		neg.w	d0				; make offset negative
+	if FixBugs
+		neg.w	d0				; make offset negative
+	endif
 
 locret_169D8:
-;		add.w	d0,obX(a1)			; align horizontally with stinger
+	if FixBugs
+		add.w	d0,obX(a1)			; align horizontally with stinger
+	endif
 		rts
 ; ===========================================================================
 ; animation script
@@ -21807,9 +21886,12 @@ Obj4C_Index:	dc.w Obj4C_Init-Obj4C_Index
 
 Obj4C_Init:
 		move.l	#Map_Obj4C,obMap(a0)
+	if FixBugs
+		move.w	#make_art_tile(ArtTile_BBat,0,0),obGfx(a0)
+	else
 		; Bug: This uses a very awkward palette line which makes the flames look very yellow.
-		; Change 'make_art_tile(ArtTile_BBat,1,0)' to 'make_art_tile(ArtTile_BBat,0,0)' to fix this bug.
 		move.w	#make_art_tile(ArtTile_BBat,1,0),obGfx(a0)
+	endif
 		ori.b	#4,obRender(a0)
 		move.b	#$A,obColType(a0)
 		move.b	#4,obPriority(a0)
@@ -22358,7 +22440,7 @@ j_ObjectMoveAndFall_4:
 j_ObjectMove_6:
 		jmp	(ObjectMove).l
 
-		include	"objects/53 Masher.asm"
+		include	"obj/53 Masher.asm"
 ; ===========================================================================
 ; animation script
 Ani_obj53:	dc.w byte_17572-Ani_obj53
@@ -23659,9 +23741,12 @@ Obj8A_Init:
 		bne.s	Obj8A_Display			; if not, branch
 
 ; Obj8A_SonicTeam:
+	if FixBugs
+		move.w	#make_art_tile(ArtTile_Sonic_Team_Font,0,0),obGfx(a0)
+	else
 		; Bug: This is using the incorrect address of VRAM!
-		; Change 'ArtTile_Title_Sonic' to 'ArtTile_Sonic_Team_Font' to fix this bug.
 		move.w	#make_art_tile(ArtTile_Title_Sonic,0,0),obGfx(a0)
+	endif
 		bsr.w	j_Adjust2PArtPointer_4
 		move.b	#$A,obFrame(a0)
 		tst.b	(f_creditscheat).w		; is the Sonic 1 hidden credits cheat activated?
@@ -23688,7 +23773,7 @@ j_Adjust2PArtPointer_4:					; JmpTo
 
 		align 4
 
-		include "objects/S1/3D Boss - Green Hill (part 1).asm"
+		include "obj/S1/3D Boss - Green Hill (part 1).asm"
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -23737,8 +23822,8 @@ BossMove:
 		rts
 ; End of function BossMove
 
-		include "objects/S1/3D Boss - Green Hill (part 2).asm"
-		include "objects/S1/48 Eggman's Swinging Ball.asm"
+		include "obj/S1/3D Boss - Green Hill (part 2).asm"
+		include "obj/S1/48 Eggman's Swinging Ball.asm"
 ; ---------------------------------------------------------------------------
 Ani_Eggman:	dc.w byte_192E0-Ani_Eggman
 		dc.w byte_192E3-Ani_Eggman
@@ -24121,11 +24206,14 @@ TouchResponse:
 		move.b	obHeight(a0),d5
 		subq.b	#3,d5
 		sub.w	d5,d3
+	if FixBugs
+		cmpi.b	#AniIDSonAni_Duck,obAnim(a0)
+	else
 		; Bug: This does not check either player's ducking frame!
 		; Sonic's ducking frame is $80, and Tails's frame is $5B.
 		; However, this does work for Sonic 1's mapping frames.
-		; To fix this, replace this line with 'cmpi.b	#AniIDSonAni_Duck,obAnim(a0)'.
 		cmpi.b	#$39,obFrame(a0)
+	endif
 		bne.s	loc_19812
 		addi.w	#$C,d3
 		moveq	#$A,d5
@@ -25062,7 +25150,7 @@ Map_SS_Down:	include	"mappings/sprite/S1/SS DOWN Block.asm"
 ; ===========================================================================
 		nop
 
-		include	"objects/S1/09 Sonic in Special Stage.asm"
+		include	"obj/S1/09 Sonic in Special Stage.asm"
 ; ===========================================================================
 ; ---------------------------------------------------------------------------
 ; Object 10 - Blank, animation test in Sonic 1 prototype
@@ -25469,6 +25557,13 @@ locret_1AD1A:
 ; loc_1AD1C:
 LoadLevelBlocks_2P:
 		move.w	(a0)+,d0
+	if FixBugs
+		move.w	d0,d2
+		andi.w	#nontile_mask,d0	; d0 holds the preserved non-tile data
+		andi.w	#tile_mask,d2		; d2 holds the tile index
+		lsr.w	#1,d2			; half tile index
+		or.w	d2,d0			; put them back together
+	else
 		; Bug: 'd1', the loop counter, is overwritten with VRAM data.
 		; To fix this, change 'd1' to 'd2'.
 		move.w	d0,d1
@@ -25476,6 +25571,7 @@ LoadLevelBlocks_2P:
 		andi.w	#tile_mask,d1		; d1 holds the tile index (overwrites loop counter!)
 		lsr.w	#1,d1			; half tile index
 		or.w	d1,d0			; put them back together
+	endif
 		move.w	d0,(a1)+
 		dbf	d1,LoadLevelBlocks_2P
 		rts
@@ -25754,7 +25850,7 @@ APM_HPZ_End:
 
 		nop
 
-		include	"objects/21 HUD.asm"
+		include	"obj/21 HUD.asm"
 ; ===========================================================================
 ; ---------------------------------------------------------------------------
 ; Sprite mappings - SCORE, TIME, RINGS

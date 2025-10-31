@@ -354,7 +354,7 @@ loc_7EC0:
 loc_7ECE:
 		movea.l	objoff_30(a0),a1
 		lea	$45(a1),a2
-		lea	$15(a1),a1
+		lea	sub2_mapframe(a1),a1
 		moveq	#0,d1
 		move.b	obSubtype(a0),d1
 		subq.b	#1,d1
@@ -408,7 +408,7 @@ loc_7F1E:
 		cmpa.w	a2,a1
 		bne.s	loc_7F30
 		movea.l	objoff_34(a0),a1
-		lea	$15(a1),a1
+		lea	sub2_mapframe(a1),a1
 
 loc_7F30:
 		dbf	d1,loc_7EE4
@@ -441,7 +441,7 @@ loc_7F64:
 		lea	(a4,d3.w),a3
 		movea.l	objoff_30(a0),a1
 		lea	$42(a1),a2
-		lea	obVelY(a1),a1
+		lea	sub2_y_pos(a1),a1
 
 loc_7F7A:
 		moveq	#0,d0
@@ -456,7 +456,7 @@ loc_7F7A:
 		cmpa.w	a2,a1
 		bne.s	loc_7F9A
 		movea.l	objoff_34(a0),a1
-		lea	obVelY(a1),a1
+		lea	sub2_y_pos(a1),a1
 
 loc_7F9A:
 		dbf	d2,loc_7F7A
@@ -488,7 +488,7 @@ loc_7FC0:
 		cmpa.w	a2,a1
 		bne.s	loc_7FE0
 		movea.l	objoff_34(a0),a1
-		lea	obVelY(a1),a1
+		lea	sub2_y_pos(a1),a1
 
 loc_7FE0:
 		dbf	d2,loc_7FC0

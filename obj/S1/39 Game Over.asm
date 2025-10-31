@@ -49,7 +49,12 @@ loc_BAEA:
 loc_BAF2:
 		move.w	#720,obTimeFrame(a0)
 		addq.b	#2,obRoutine(a0)
+	if FixBugs
+		bra.w	DisplaySprite
+	else
+		; Bug: This causes the Game Over text to disappear for a frame.
 		rts
+	endif
 ; ---------------------------------------------------------------------------
 
 loc_BAFE:

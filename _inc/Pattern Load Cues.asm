@@ -265,9 +265,13 @@ PLC_Signpost_End:
 ; --------------------------------------------------------------------------------------
 ; PLC_Invalid:
 PLC_S1SpecialStage:
+	if FixBugs
+		dc.w ((PLC_S1SpecialStage_End-PLC_S1SpecialStage)/6)-1
+	else
 		; Bug: This crashes the game due to trying to decompress invalid entries.
 		; To fix this, change the '+$10' to '-1'.
 		dc.w ((PLC_S1SpecialStage_End-PLC_S1SpecialStage)/6)+$10
+	endif
 PLC_S1SpecialStage_End:
 ; --------------------------------------------------------------------------------------
 ; PATTERN LOAD REQUEST LIST

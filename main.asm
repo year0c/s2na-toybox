@@ -298,9 +298,7 @@ ChecksumError:
 Checksum_Red:
 		move.w	#cRed,(vdp_data_port).l
 		dbf	d7,Checksum_Red
-
-ChecksumFailed_Loop:
-		bra.s	ChecksumFailed_Loop
+		bra.s	*
 ; ===========================================================================
 
 BusError:

@@ -26896,6 +26896,11 @@ Art_BigRing:	binclude	"art/uncompressed/Giant Ring.bin"
 		even
 		binclude	"misc/leftovers/32000.bin"
 		even
+		dc.l	0
+		binclude	"misc/leftovers/mappings/16x16/36004.unc"
+		even
+		binclude	"misc/leftovers/mappings/256x256/364D4.unc"
+		even
 ; --------------------------------------------------------------------------------------
 ; Object layouts
 ; --------------------------------------------------------------------------------------

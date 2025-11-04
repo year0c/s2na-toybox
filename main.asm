@@ -26878,7 +26878,7 @@ Art_BigRing:	binclude	"art/uncompressed/Giant Ring.bin"
 ; level mappings	(16x16 and 256x256)
 ; --------------------------------------------------------------------------------------
 		dc.w	0,$EEEE,$EEEE
-		binclude	"misc/leftovers/art/uncompressed/Big Ring.bin"
+		binclude	"misc/leftovers/art/uncompressed/Giant Ring.bin"
 		even
 		binclude	"misc/leftovers/mappings/16x16/2EB00.unc"
 		even

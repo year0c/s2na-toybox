@@ -175,10 +175,10 @@ VDPInitValues_End:
 
 Z80StartupCodeBegin:
 	; Z80 instructions (not the sound driver; that gets loaded later)
-    if (*)+$26 < $10000
-    save
-    CPU Z80 ; start assembling Z80 code
-    phase 0 ; pretend we're at address 0
+	if (*)+$26 < $10000
+	save
+	CPU Z80 ; start assembling Z80 code
+	phase 0 ; pretend we're at address 0
 	xor	a	; clear a to 0
 	ld	bc,((z80_ram_end-z80_ram)-zStartupCodeEndLoc)-1 ; prepare to loop this many times
 	ld	de,zStartupCodeEndLoc+1	; initial destination address
@@ -205,13 +205,13 @@ Z80StartupCodeBegin:
 	ld	(hl),0E9h ; replace the first instruction with a jump to itself
 	jp	(hl)	  ; jump to the first instruction (to stay there forever)
 zStartupCodeEndLoc:
-    dephase ; stop pretending
+	dephase ; stop pretending
 	restore
-    padding off ; unfortunately our flags got reset so we have to set them again...
-    else ; due to an address range limitation I could work around but don't think is worth doing so:
+	padding off ; unfortunately our flags got reset so we have to set them again...
+	else ; due to an address range limitation I could work around but don't think is worth doing so:
 	message "Warning: using pre-assembled Z80 startup code."
 	dc.w $AF01,$D91F,$1127,$0021,$2600,$F977,$EDB0,$DDE1,$FDE1,$ED47,$ED4F,$D1E1,$F108,$D9C1,$D1E1,$F1F9,$F3ED,$5636,$E9E9
-    endif
+	endif
 Z80StartupCodeEnd:
 
 		dc.w $8104				; VDP display mode
@@ -24130,17 +24130,28 @@ locret_19708:
 ; ---------------------------------------------------------------------------
 
 Obj3E_EndAct:
-		moveq	#id_Obj3E,d0
+	if FixBugs
+		moveq	#(v_lvlobjend-v_lvlobjspace)/object_size-1,d0
+	else
+		moveq	#(v_lvlobjspace+$800-v_player2)/object_size-1,d0
+	endif
 		moveq	#id_Obj28,d1
 		moveq	#object_size,d2
+	if FixBugs
+		lea	(v_lvlobjspace).w,a1
+	else
 		lea	(v_player2).w,a1
+	endif
 
 loc_19714:
-		cmp.b	(a1),d1
+		cmp.b	obID(a1),d1
 		beq.s	locret_1972A
 		adda.w	d2,a1
 		dbf	d0,loc_19714
 		jsr	(Load_EndOfAct).l
+	if FixBugs
+		addq.l	#4,sp	; do not return to caller
+	endif
 		jmp	(DeleteObject).l
 ; ---------------------------------------------------------------------------
 

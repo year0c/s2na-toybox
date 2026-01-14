@@ -82,11 +82,11 @@ __LABEL__ label *
 zoneanimcount := 0
 zoneanimcur := "__LABEL__"
 	dc.w zoneanimcount___LABEL__	; Number of scripts for a zone (-1)
-    endm
+	endm
 
 zoneanimend macro
 zoneanimcount_{"\{zoneanimcur}"} = zoneanimcount-1
-    endm
+	endm
 
 zoneanimdeclanonid := 0
 
@@ -97,7 +97,7 @@ start:
 	dc.w tiles_to_bytes(vramaddr)
 	dc.b numentries, numvramtiles
 zoneanimcount := zoneanimcount + 1
-    endm
+	endm
 
 ; fills a region of 68k RAM with 0
 clearRAM macro startaddr,endaddr

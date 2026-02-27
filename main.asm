@@ -1195,7 +1195,7 @@ RunPLC_RAM:
 
 loc_16FE:
 		andi.w	#$7FFF,d2
-	if ~~FixBugs
+	if FixBugs=0
 		; There is a bug here where the game can crash if a race condition occurs with pattern load cues.
 		; Read more about this bug at https://info.sonicretro.org/SCHG_How-to:Fix_a_race_condition_with_Pattern_Load_Cues
 		move.w	d2,(v_plc_patternsleft).w
@@ -5181,7 +5181,7 @@ locret_6512:
 
 ;sub_6514:
 ScrollHoriz:
-	if ~~FixBugs
+	if FixBugs=0
 		; The intent of this code is to make the camera briefly lag behind the
 		; player right after releasing a spin dash, however it does this by
 		; simply making the camera use position data from previous frames. This
@@ -13034,11 +13034,10 @@ Obj01_ChkInvin:						; Checks if invincibility has expired and (should) disables
 		beq.s	Obj01_ChkShoes
 		tst.w	invtime(a0)
 		beq.s	Obj01_ChkShoes
-	if ~~FixBugs
+	if FixBugs=0
 		; This branch causes the invincibility timer to be disabled.
 		; Strangely, Tails' version doesn't have this.
 		bra.s	Obj01_ChkShoes
-; ===========================================================================
 	endif
 		subq.w	#1,invtime(a0)
 		bne.s	Obj01_ChkShoes

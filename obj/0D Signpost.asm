@@ -123,8 +123,7 @@ loc_F0F6:
 
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
 
-; GotThroughAct:
-Load_EndOfAct:
+GotThroughAct:
 		tst.b	(v_endcard).w
 		bne.s	locret_F15E
 		move.w	(Camera_Max_X_pos).w,(Camera_Min_X_pos).w
@@ -157,7 +156,7 @@ loc_F140:
 
 locret_F15E:
 		rts
-; End of function Load_EndOfAct
+; End of function GotThroughAct
 
 ; ===========================================================================
 ; word_F160:

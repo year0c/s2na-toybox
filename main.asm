@@ -3370,14 +3370,14 @@ SpecialStage:
 		clearRAM v_objspace,v_objend
 	else
 		; This does not clear the object space, resulting in Sonic and Tails on the title screen to remain!
-		; this actually clears some of the collision addresses instead!
-		lea	(v_objspace+$2000).w,a1
+		; This actually clears some of the collision addresses instead!
+		lea	(v_objspace_end).w,a1
 		moveq	#0,d0
 		move.w	#bytesToLcnt(v_objend-v_objspace),d1
 
-loc_509C:
+.loop:
 		move.l	d0,(a1)+
-		dbf	d1,loc_509C
+		dbf	d1,.loop
 	endif
 		clearRAM v_levelvariables,v_levelvariables_end
 		clearRAM v_timingvariables,v_timingvariables_end-$80
@@ -3972,32 +3972,33 @@ loc_590A:
 ; End of function LevelSizeLoad
 
 ; ---------------------------------------------------------------------------
-StartLocArray:	dc.w   $50, $3B0			; GHZ1
-		dc.w   $50,  $FC			; GHZ2
-		dc.w   $50, $3B0			; GHZ3
+StartLocArray:
+		binclude	"startpos/GHZ_1.bin"	; GHZ1
+		binclude	"startpos/GHZ_2.bin"	; GHZ2
+		binclude	"startpos/GHZ_3.bin"	; GHZ3
 		dc.w   $80,  $A8			; GHZ4
-		dc.w   $60,  $6C			; LZ1
-		dc.w   $50,  $EC			; LZ2
-		dc.w   $50, $2EC			; LZ3
-		dc.w   $B80,   0			; LZ4
+		binclude	"startpos/LZ_1.bin"	; LZ1
+		binclude	"startpos/LZ_2.bin"	; LZ2
+		binclude	"startpos/LZ_3.bin"	; LZ3
+		binclude	"startpos/SBZ_3.bin"	; SBZ3 (LZ4)
 		binclude	"startpos/CPZ_1.bin"	; CPZ1
-		dc.w   $30, $266			; CPZ2
-		dc.w   $30, $166			; CPZ3
+		binclude	"startpos/MZ_2.bin"		; CPZ2 (MZ2)
+		binclude	"startpos/MZ_3.bin"		; CPZ3 (MZ3)
 		dc.w   $80,  $A8			; CPZ4
 		binclude	"startpos/EHZ_1.bin"	; EHZ1
 		binclude	"startpos/EHZ_2.bin"	; EHZ2
-		dc.w   $40, $370			; EHZ3
+		binclude	"startpos/EHZ_3.bin"	; EHZ3
 		dc.w   $80,  $A8			; EHZ4
 		binclude	"startpos/HPZ_1.bin"	; HPZ1
-		dc.w   $30, $1BD			; HPZ2
-		dc.w   $30,  $EC			; HPZ3
+		binclude	"startpos/SYZ_2.bin"	; HPZ2 (SYZ2)
+		binclude	"startpos/SYZ_3.bin"	; HPZ3 (SYZ3)
 		dc.w   $80,  $A8			; HPZ4
 		binclude	"startpos/HTZ_1.bin"	; HTZ1
 		binclude	"startpos/HTZ_2.bin"	; HTZ2
-		dc.w $2140, $5AC			; HTZ3
+		binclude	"startpos/FZ.bin"	; HTZ3 (FZ)
 		dc.w   $80,  $A8			; HTZ4
-		dc.w  $620, $16B			; S1 Ending 1
-		dc.w  $EE0, $16C			; S1 Ending 2
+		binclude	"startpos/END_1.bin"	; S1 Ending 1
+		binclude	"startpos/END_2.bin"	; S1 Ending 2
 		dc.w   $80,  $A8			; S1 Ending 3
 		dc.w   $80,  $A8			; S1 Ending 4
 
@@ -23946,230 +23947,20 @@ j_Adjust2PArtPointer2_1:
 j_Adjust2PArtPointer_5:
 		jmp	(Adjust2PArtPointer).l
 ; ---------------------------------------------------------------------------
-;----------------------------------------------------
-; Object 3E - prison capsule
-;----------------------------------------------------
-
-Obj3E:
-		moveq	#0,d0
-		move.b	obRoutine(a0),d0
-		move.w	Obj3E_Index(pc,d0.w),d1
-		jsr	Obj3E_Index(pc,d1.w)
-		out_of_range.s	loc_1950A
-		jmp	(DisplaySprite).l
+		include	"obj/S1/3E Prison Capsule.asm"
 ; ---------------------------------------------------------------------------
-
-loc_1950A:
-		jmp	(DeleteObject).l
-; ---------------------------------------------------------------------------
-Obj3E_Index:	dc.w Obj3E_Init-Obj3E_Index
-		dc.w Obj3E_BodyMain-Obj3E_Index
-		dc.w Obj3E_Switched-Obj3E_Index
-		dc.w Obj3E_Explosion-Obj3E_Index
-		dc.w Obj3E_Explosion-Obj3E_Index
-		dc.w Obj3E_Explosion-Obj3E_Index
-		dc.w Obj3E_Animals-Obj3E_Index
-		dc.w Obj3E_EndAct-Obj3E_Index
-Obj3E_Var:	dc.b   2,$20,  4,  0
-		dc.b   4, $C,  5,  1
-		dc.b   6,$10,  4,  3
-		dc.b   8,$10,  3,  5
-; ---------------------------------------------------------------------------
-
-Obj3E_Init:
-		move.l	#Map_Obj3E,obMap(a0)
-		move.w	#make_art_tile(ArtTile_Prison_Capsule,0,0),obGfx(a0)
-		bsr.w	j_Adjust2PArtPointer_6
-		move.b	#4,obRender(a0)
-		move.w	obY(a0),objoff_30(a0)
-		moveq	#0,d0
-		move.b	obSubtype(a0),d0
-		lsl.w	#2,d0
-		lea	Obj3E_Var(pc,d0.w),a1
-		move.b	(a1)+,obRoutine(a0)
-		move.b	(a1)+,obActWid(a0)
-		move.b	(a1)+,obPriority(a0)
-		move.b	(a1)+,obFrame(a0)
-		cmpi.w	#8,d0
-		bne.s	locret_1957C
-		move.b	#6,obColType(a0)
-		move.b	#8,obColProp(a0)
-
-locret_1957C:
-		rts
-; ---------------------------------------------------------------------------
-
-Obj3E_BodyMain:
-		cmpi.b	#2,(Boss_defeated_flag).w
-		beq.s	loc_1959C
-		move.w	#$2B,d1
-		move.w	#$18,d2
-		move.w	#$18,d3
-		move.w	obX(a0),d4
-		jmp	(SolidObject).l
-; ---------------------------------------------------------------------------
-
-loc_1959C:
-		tst.b	ob2ndRout(a0)
-		beq.s	loc_195B2
-		clr.b	ob2ndRout(a0)
-		bclr	#3,(v_objspace+obStatus).w
-		bset	#1,(v_objspace+obStatus).w
-
-loc_195B2:
-		move.b	#2,obFrame(a0)
-		rts
-; ---------------------------------------------------------------------------
-
-Obj3E_Switched:
-		move.w	#$17,d1
-		move.w	#8,d2
-		move.w	#8,d3
-		move.w	obX(a0),d4
-		jsr	(SolidObject).l
-		lea	(Ani_Obj3E).l,a1
-		jsr	(AnimateSprite).l
-		move.w	objoff_30(a0),obY(a0)
-		move.b	obStatus(a0),d0
-		andi.b	#$18,d0
-		beq.s	locret_19620
-		addq.w	#8,obY(a0)
-		move.b	#$A,obRoutine(a0)
-		move.w	#60,obTimeFrame(a0)
-		clr.b	(f_timecount).w
-		clr.b	(f_lockscreen).w
-		move.b	#1,(f_lockctrl).w
-		move.w	#8<<btnR,(v_jpadhold2).w
-		clr.b	ob2ndRout(a0)
-		bclr	#3,(v_objspace+obStatus).w
-		bset	#1,(v_objspace+obStatus).w
-
-locret_19620:
-		rts
-; ---------------------------------------------------------------------------
-
-Obj3E_Explosion:
-		moveq	#7,d0
-		and.b	(Vint_runcount+3).w,d0
-		bne.s	loc_19660
-		jsr	(FindFreeObj).l
-		bne.s	loc_19660
-		_move.b	#id_Obj3F,obID(a1)
-		move.w	obX(a0),obX(a1)
-		move.w	obY(a0),obY(a1)
-		jsr	(RandomNumber).l
-		moveq	#0,d1
-		move.b	d0,d1
-		lsr.b	#2,d1
-		subi.w	#$20,d1
-		add.w	d1,obX(a1)
-		lsr.w	#8,d0
-		lsr.b	#3,d0
-		add.w	d0,obY(a1)
-
-loc_19660:
-		subq.w	#1,obTimeFrame(a0)
-		beq.s	loc_19668
-		rts
-; ---------------------------------------------------------------------------
-
-loc_19668:
-		move.b	#2,(Boss_defeated_flag).w
-		move.b	#$C,obRoutine(a0)
-		move.b	#6,obFrame(a0)
-		move.w	#150,obTimeFrame(a0)
-		addi.w	#$20,obY(a0)
-		moveq	#7,d6
-		move.w	#$9A,d5
-		moveq	#-$1C,d4
-
-loc_1968E:
-		jsr	(FindFreeObj).l
-		bne.s	locret_196B8
-		_move.b	#id_Obj28,obID(a1)
-		move.w	obX(a0),obX(a1)
-		move.w	obY(a0),obY(a1)
-		add.w	d4,obX(a1)
-		addq.w	#7,d4
-		move.w	d5,objoff_36(a1)
-		subq.w	#8,d5
-		dbf	d6,loc_1968E
-
-locret_196B8:
-		rts
-; ---------------------------------------------------------------------------
-
-Obj3E_Animals:
-		moveq	#7,d0
-		and.b	(Vint_runcount+3).w,d0
-		bne.s	loc_196F8
-		jsr	(FindFreeObj).l
-		bne.s	loc_196F8
-		_move.b	#id_Obj28,obID(a1)
-		move.w	obX(a0),obX(a1)
-		move.w	obY(a0),obY(a1)
-		jsr	(RandomNumber).l
-		andi.w	#$1F,d0
-		subq.w	#6,d0
-		tst.w	d1
-		bpl.s	loc_196EE
-		neg.w	d0
-
-loc_196EE:
-		add.w	d0,obX(a1)
-		move.w	#$C,objoff_36(a1)
-
-loc_196F8:
-		subq.w	#1,obTimeFrame(a0)
-		bne.s	locret_19708
-		addq.b	#2,obRoutine(a0)
-		move.w	#60*3,obTimeFrame(a0)
-
-locret_19708:
-		rts
-; ---------------------------------------------------------------------------
-
-Obj3E_EndAct:
-	if FixBugs
-		moveq	#(v_lvlobjend-v_lvlobjspace)/object_size-1,d0
-	else
-		moveq	#(v_lvlobjspace+$800-v_player2)/object_size-1,d0
-	endif
-		moveq	#id_Obj28,d1
-		moveq	#object_size,d2
-	if FixBugs
-		lea	(v_lvlobjspace).w,a1
-	else
-		lea	(v_player2).w,a1
-	endif
-
-loc_19714:
-		cmp.b	obID(a1),d1
-		beq.s	locret_1972A
-		adda.w	d2,a1
-		dbf	d0,loc_19714
-		jsr	(Load_EndOfAct).l
-	if FixBugs
-		addq.l	#4,sp	; do not return to caller
-	endif
-		jmp	(DeleteObject).l
-; ---------------------------------------------------------------------------
-
-locret_1972A:
-		rts
-; ---------------------------------------------------------------------------
-Ani_Obj3E:	dc.w byte_19730-Ani_Obj3E
-		dc.w byte_19730-Ani_Obj3E
+Ani_Pri:	dc.w byte_19730-Ani_Pri
+		dc.w byte_19730-Ani_Pri
 byte_19730:	dc.b   2,  1,  3,$FF
 		even
 
-Map_Obj3E:	dc.w word_19742-Map_Obj3E
-		dc.w word_1977C-Map_Obj3E
-		dc.w word_19786-Map_Obj3E
-		dc.w word_197B8-Map_Obj3E
-		dc.w word_197C2-Map_Obj3E
-		dc.w word_197D4-Map_Obj3E
-		dc.w word_197DE-Map_Obj3E
+Map_Pri:	dc.w word_19742-Map_Pri
+		dc.w word_1977C-Map_Pri
+		dc.w word_19786-Map_Pri
+		dc.w word_197B8-Map_Pri
+		dc.w word_197C2-Map_Pri
+		dc.w word_197D4-Map_Pri
+		dc.w word_197DE-Map_Pri
 word_19742:	dc.w 7
 		dc.w $E00C,$2000,$2000,$FFF0
 		dc.w $E80D,$2004,$2002,$FFE0

@@ -3973,32 +3973,32 @@ loc_590A:
 
 ; ---------------------------------------------------------------------------
 StartLocArray:
-		binclude	"startpos/GHZ_1.bin"	; GHZ1
-		binclude	"startpos/GHZ_2.bin"	; GHZ2
-		binclude	"startpos/GHZ_3.bin"	; GHZ3
+		binclude	"startpos/S1/ghz1.bin"	; GHZ1
+		binclude	"startpos/S1/ghz2.bin"	; GHZ2
+		binclude	"startpos/S1/ghz3.bin"	; GHZ3
 		dc.w   $80,  $A8			; GHZ4
-		binclude	"startpos/LZ_1.bin"	; LZ1
-		binclude	"startpos/LZ_2.bin"	; LZ2
-		binclude	"startpos/LZ_3.bin"	; LZ3
-		binclude	"startpos/SBZ_3.bin"	; SBZ3 (LZ4)
+		binclude	"startpos/S1/lz1.bin"	; LZ1
+		binclude	"startpos/S1/lz2.bin"	; LZ2
+		binclude	"startpos/S1/lz3.bin"	; LZ3
+		binclude	"startpos/S1/sbz3.bin"	; SBZ3 (LZ4)
 		binclude	"startpos/CPZ_1.bin"	; CPZ1
-		binclude	"startpos/MZ_2.bin"		; CPZ2 (MZ2)
-		binclude	"startpos/MZ_3.bin"		; CPZ3 (MZ3)
+		binclude	"startpos/S1/mz2.bin"		; CPZ2 (MZ2)
+		binclude	"startpos/S1/mz3.bin"		; CPZ3 (MZ3)
 		dc.w   $80,  $A8			; CPZ4
 		binclude	"startpos/EHZ_1.bin"	; EHZ1
 		binclude	"startpos/EHZ_2.bin"	; EHZ2
 		binclude	"startpos/EHZ_3.bin"	; EHZ3
 		dc.w   $80,  $A8			; EHZ4
 		binclude	"startpos/HPZ_1.bin"	; HPZ1
-		binclude	"startpos/SYZ_2.bin"	; HPZ2 (SYZ2)
-		binclude	"startpos/SYZ_3.bin"	; HPZ3 (SYZ3)
+		binclude	"startpos/S1/syz2.bin"	; HPZ2 (SYZ2)
+		binclude	"startpos/S1/syz3.bin"	; HPZ3 (SYZ3)
 		dc.w   $80,  $A8			; HPZ4
 		binclude	"startpos/HTZ_1.bin"	; HTZ1
 		binclude	"startpos/HTZ_2.bin"	; HTZ2
-		binclude	"startpos/FZ.bin"	; HTZ3 (FZ)
+		binclude	"startpos/S1/fz.bin"	; HTZ3 (FZ)
 		dc.w   $80,  $A8			; HTZ4
-		binclude	"startpos/END_1.bin"	; S1 Ending 1
-		binclude	"startpos/END_2.bin"	; S1 Ending 2
+		binclude	"startpos/S1/end1.bin"	; S1 Ending 1
+		binclude	"startpos/S1/end2.bin"	; S1 Ending 2
 		dc.w   $80,  $A8			; S1 Ending 3
 		dc.w   $80,  $A8			; S1 Ending 4
 

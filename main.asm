@@ -3907,8 +3907,15 @@ LevelSizeArray:
 		dc.w	 0,  $2FFF,     0,	$320	; S1 Ending 3
 		dc.w	 0,  $2FFF,     0,	$320	; S1 Ending 4
 ; ===========================================================================
-S1EndingStartLoc:dc.w	$50, $3B0, $EA0, $46C,$1750,  $BD, $A00, $62C
-		dc.w  $BB0,  $4C,$1570,	$16C, $1B0, $72C,$1400,	$2AC
+S1EndingStartLoc:
+		binclude	"startpos/S1/ghz1 (Credits demo 1).bin"
+		binclude	"startpos/S1/mz2 (Credits demo).bin"
+		binclude	"startpos/S1/syz3 (Credits demo).bin"
+		binclude	"startpos/S1/lz3 (Credits demo).bin"
+		binclude	"startpos/S1/slz3 (Credits demo).bin"
+		binclude	"startpos/S1/sbz1 (Credits demo).bin"
+		binclude	"startpos/S1/sbz2 (Credits demo).bin"
+		binclude	"startpos/S1/ghz1 (Credits demo 2).bin"
 ; ===========================================================================
 
 LevelSize_CheckLamp:

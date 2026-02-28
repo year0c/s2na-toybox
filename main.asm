@@ -2848,9 +2848,8 @@ loc_3AFC:
 		rts
 ; End of function UnknownSub_4
 
-; ---------------------------------------------------------------------------
 		nop
-; ---------------------------------------------------------------------------
+
 MusicList:	dc.b bgm_GHZ
 		dc.b bgm_LZ
 		dc.b bgm_MZ
@@ -12985,7 +12984,7 @@ byte_11E48:	dc.b   3,$51,$52,$53,$54,$FF
 byte_11E4E:	dc.b   3,$55,$56,$57,$58,$FF
 byte_11E54:	dc.b   2,$81,$82,$83,$84,$FF
 		even
-; ---------------------------------------------------------------------------
+
 		nop
 
 KillTails:
@@ -13002,7 +13001,7 @@ ResumeMusic:
 		cmpi.w	#12,(v_air).w
 		bhi.s	loc_12310
 		move.w	#bgm_LZ,d0
-		cmpi.w	#id_LZ<<8+3,(Current_ZoneAndAct).w
+		cmpi.w	#(id_LZ<<8)+3,(Current_ZoneAndAct).w
 		bne.s	loc_122F6
 		move.w	#bgm_SBZ,d0
 

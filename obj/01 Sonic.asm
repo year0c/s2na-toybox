@@ -78,8 +78,8 @@ Obj01_ControlsLock:
 		bsr.s	Sonic_Display
 		bsr.w	Sonic_RecordPos
 		bsr.w	Sonic_Water
-		move.b	(Primary_Angle).w,objoff_36(a0)
-		move.b	(Secondary_Angle).w,objoff_37(a0)
+		move.b	(Primary_Angle).w,angleright(a0)
+		move.b	(Secondary_Angle).w,angleleft(a0)
 		tst.b	(f_wtunnelmode).w
 		beq.s	loc_FAFE
 		tst.b	obAnim(a0)
@@ -371,7 +371,7 @@ Sonic_Move:
 		move.w	(Sonic_deceleration).w,d4
 		tst.b	(f_slidemode).w
 		bne.w	Obj01_Traction
-		tst.w	objoff_2E(a0)
+		tst.w	locktime(a0)
 		bne.w	Obj01_UpdateSpeedOnGround
 		btst	#bitL,(v_jpadhold2).w	; is left being pressed?
 		beq.s	loc_FD66			; if not, branch
@@ -422,7 +422,7 @@ Sonic_Balance:
 		jsr	(ChkFloorEdge).l
 		cmpi.w	#$C,d1
 		blt.s	Sonic_LookUp
-		cmpi.b	#3,objoff_36(a0)
+		cmpi.b	#3,angleright(a0)
 		bne.s	loc_FDF8
 
 loc_FDF0:
@@ -431,7 +431,7 @@ loc_FDF0:
 ; ---------------------------------------------------------------------------
 
 loc_FDF8:
-		cmpi.b	#3,objoff_37(a0)
+		cmpi.b	#3,angleleft(a0)
 		bne.s	Sonic_LookUp
 
 loc_FE00:
@@ -713,7 +713,7 @@ Sonic_RollSpeed:
 		asr.w	#2,d4
 		tst.b	(f_slidemode).w
 		bne.w	loc_1008A
-		tst.w	objoff_2E(a0)
+		tst.w	locktime(a0)
 		bne.s	loc_10046
 		btst	#bitL,(v_jpadhold2).w
 		beq.s	loc_1003A
@@ -1025,8 +1025,8 @@ loc_102AA:
 		bset	#1,obStatus(a0)
 		bclr	#5,obStatus(a0)
 		addq.l	#4,sp
-		move.b	#1,objoff_3C(a0)
-		clr.b	objoff_38(a0)
+		move.b	#1,jumping(a0)
+		clr.b	sticktoconvex(a0)
 		move.w	#sfx_Jump,d0
 		jsr	(QueueSound2).l
 		move.b	#$13,obHeight(a0)
@@ -1053,7 +1053,7 @@ loc_1031E:
 
 
 Sonic_JumpHeight:
-		tst.b	objoff_3C(a0)
+		tst.b	jumping(a0)
 		beq.s	loc_10352
 		move.w	#-$400,d1
 		btst	#6,obStatus(a0)
@@ -1221,9 +1221,9 @@ locret_1045E:
 
 Sonic_SlopeRepel:
 		nop
-		tst.b	objoff_38(a0)
+		tst.b	sticktoconvex(a0)
 		bne.s	locret_1049A
-		tst.w	objoff_2E(a0)
+		tst.w	locktime(a0)
 		bne.s	loc_1049C
 		move.b	obAngle(a0),d0
 		addi.b	#$20,d0
@@ -1238,14 +1238,14 @@ loc_10484:
 		bhs.s	locret_1049A
 		clr.w	obInertia(a0)
 		bset	#1,obStatus(a0)
-		move.w	#$1E,objoff_2E(a0)
+		move.w	#30,locktime(a0)
 
 locret_1049A:
 		rts
 ; ---------------------------------------------------------------------------
 
 loc_1049C:
-		subq.w	#1,objoff_2E(a0)
+		subq.w	#1,locktime(a0)
 		rts
 ; End of function Sonic_SlopeRepel
 
@@ -1536,7 +1536,7 @@ loc_10712:
 		subq.w	#5,obY(a0)
 
 loc_10748:
-		move.b	#0,objoff_3C(a0)
+		move.b	#0,jumping(a0)
 		move.w	#0,(v_itembonus).w
 		move.b	#0,objoff_27(a0)
 		rts
@@ -1634,7 +1634,7 @@ Sonic_GameOver:
 		addq.b	#1,(f_lifecount).w
 		subq.b	#1,(v_lives).w
 		bne.s	loc_10888
-		move.w	#0,objoff_3A(a0)
+		move.w	#0,restartime(a0)
 		move.b	#id_Obj39,(v_gameovertext1).w
 		move.b	#id_Obj39,(v_gameovertext2).w
 		move.b	#1,(v_gameovertext2+obFrame).w
@@ -1648,10 +1648,10 @@ loc_10876:
 ; ---------------------------------------------------------------------------
 
 loc_10888:
-		move.w	#60,objoff_3A(a0)
+		move.w	#60,restartime(a0)
 		tst.b	(f_timeover).w
 		beq.s	locret_108B4
-		move.w	#0,objoff_3A(a0)
+		move.w	#0,restartime(a0)
 		move.b	#id_Obj39,(v_gameovertext1).w
 		move.b	#id_Obj39,(v_gameovertext2).w
 		move.b	#2,(v_gameovertext1+obFrame).w
@@ -1666,9 +1666,9 @@ locret_108B4:
 ; ---------------------------------------------------------------------------
 
 Obj01_ResetLevel:
-		tst.w	objoff_3A(a0)
+		tst.w	restartime(a0)
 		beq.s	locret_108C8
-		subq.w	#1,objoff_3A(a0)
+		subq.w	#1,restartime(a0)
 		bne.s	locret_108C8
 		move.w	#1,(Level_Inactive_flag).w
 

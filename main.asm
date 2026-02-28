@@ -13178,7 +13178,7 @@ loc_12AEC:
 ; ---------------------------------------------------------------------------
 
 loc_12AF2:
-		tst.b	stick_to_convex(a0)
+		tst.b	sticktoconvex(a0)
 		bne.s	loc_12AEC
 		bset	#1,obStatus(a0)
 		bclr	#5,obStatus(a0)
@@ -13314,7 +13314,7 @@ loc_12C1A:
 ; ---------------------------------------------------------------------------
 
 loc_12C20:
-		tst.b	stick_to_convex(a0)
+		tst.b	sticktoconvex(a0)
 		bne.s	loc_12C1A
 		bset	#1,obStatus(a0)
 		bclr	#5,obStatus(a0)
@@ -13375,7 +13375,7 @@ loc_12CB8:
 ; ---------------------------------------------------------------------------
 
 loc_12CBE:
-		tst.b	stick_to_convex(a0)
+		tst.b	sticktoconvex(a0)
 		bne.s	loc_12CB8
 		bset	#1,obStatus(a0)
 		bclr	#5,obStatus(a0)
@@ -13436,7 +13436,7 @@ loc_12D56:
 ; ---------------------------------------------------------------------------
 
 loc_12D5C:
-		tst.b	stick_to_convex(a0)
+		tst.b	sticktoconvex(a0)
 		bne.s	loc_12D56
 		bset	#1,obStatus(a0)
 		bclr	#5,obStatus(a0)

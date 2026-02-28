@@ -38,12 +38,17 @@ obTopSolidBit:	equ $3E					; bit to check for top solidity (either $C or $E)
 obLRBSolidBit:	equ $3F					; bit to check for left/right/bottom solidity (either $D or $F)
 
 ; Object variables used by Sonic/Tails
-flashtime:	equ $30					; time between flashes after getting hit
-invtime:	equ $32					; time left for invincibility
-shoetime:	equ $34					; time left for speed shoes
-stick_to_convex:	equ objoff_38
-spindash_flag:	equ $39					; 0 for normal, 1 for charging a spindash or forced rolling
-standonobject:	equ $3D					; object Sonic stands on
+locktime:	equ $2E	; temporary D-Pad control lock timer (2 bytes)
+flashtime:	equ $30	; time between flashes after getting hit (2 bytes)
+invtime:	equ $32	; time left for invincibility (2 bytes)
+shoetime:	equ $34	; time left for speed shoes (2 bytes)
+angleright:	equ $36	; angle of floor on Sonic's right side
+angleleft:	equ $37	; angle of floor on Sonic's left side
+sticktoconvex:	equ $38	; flag set while running on an SBZ gear
+spindash_flag:	equ $39	; 0 for normal, 1 for charging a spindash or forced rolling
+restartime:	equ $3A	; time left before level restarts after dying (2 bytes)
+jumping:	equ $3C	; flag set while Sonic is jumping
+standonobject:	equ $3D	; object index Sonic stands on
 
 ; Miscellaneous object scratch-RAM
 objoff_25:	equ $25

@@ -51,8 +51,8 @@ Obj02_Control:
 Obj02_ControlsLock:
 		bsr.s	Tails_Display
 		bsr.w	RecordTailsMoves
-		move.b	(Primary_Angle).w,objoff_36(a0)
-		move.b	(Secondary_Angle).w,objoff_37(a0)
+		move.b	(Primary_Angle).w,angleright(a0)
+		move.b	(Secondary_Angle).w,angleleft(a0)
 		bsr.w	Tails_Animate
 		tst.b	(f_playerctrl).w
 		bmi.s	loc_10CFC
@@ -303,7 +303,7 @@ Tails_Move:
 		move.w	(Sonic_deceleration).w,d4
 		tst.b	(f_slidemode).w
 		bne.w	loc_11026
-		tst.w	objoff_2E(a0)
+		tst.w	locktime(a0)
 		bne.w	loc_10FFA
 		btst	#bitL,(v_2Pjpadhold1).w
 		beq.s	loc_10F3C
@@ -350,7 +350,7 @@ Tails_Balance:
 		jsr	(ObjHitFloor).l
 		cmpi.w	#$C,d1
 		blt.s	Tails_LookUp
-		cmpi.b	#3,objoff_36(a0)
+		cmpi.b	#3,angleright(a0)
 		bne.s	loc_10FC6
 
 loc_10FBE:
@@ -359,7 +359,7 @@ loc_10FBE:
 ; ---------------------------------------------------------------------------
 
 loc_10FC6:
-		cmpi.b	#3,objoff_37(a0)
+		cmpi.b	#3,angleleft(a0)
 		bne.s	Tails_LookUp
 
 loc_10FCE:
@@ -599,7 +599,7 @@ Tails_RollSpeed:
 		asr.w	#2,d4
 		tst.b	(f_slidemode).w
 		bne.w	loc_11204
-		tst.w	objoff_2E(a0)
+		tst.w	locktime(a0)
 		bne.s	loc_111C0
 		btst	#bitL,(v_2Pjpadhold1).w
 		beq.s	loc_111B4
@@ -915,8 +915,8 @@ loc_11424:
 		bset	#1,obStatus(a0)
 		bclr	#5,obStatus(a0)
 		addq.l	#4,sp
-		move.b	#1,objoff_3C(a0)
-		clr.b	stick_to_convex(a0)
+		move.b	#1,jumping(a0)
+		clr.b	sticktoconvex(a0)
 		move.w	#sfx_Jump,d0
 		jsr	(QueueSound2).l
 		move.b	#$F,obHeight(a0)
@@ -943,7 +943,7 @@ loc_11498:
 
 
 Tails_JumpHeight:
-		tst.b	objoff_3C(a0)
+		tst.b	jumping(a0)
 		beq.s	loc_114CC
 		move.w	#-$400,d1
 		btst	#6,obStatus(a0)
@@ -1106,9 +1106,9 @@ locret_115D8:
 
 Tails_SlopeRepel:
 		nop
-		tst.b	objoff_38(a0)
+		tst.b	sticktoconvex(a0)
 		bne.s	locret_11614
-		tst.w	objoff_2E(a0)
+		tst.w	locktime(a0)
 		bne.s	loc_11616
 		move.b	obAngle(a0),d0
 		addi.b	#$20,d0
@@ -1123,14 +1123,14 @@ loc_115FE:
 		bhs.s	locret_11614
 		clr.w	obInertia(a0)
 		bset	#1,obStatus(a0)
-		move.w	#$1E,objoff_2E(a0)
+		move.w	#30,locktime(a0)
 
 locret_11614:
 		rts
 ; ---------------------------------------------------------------------------
 
 loc_11616:
-		subq.w	#1,objoff_2E(a0)
+		subq.w	#1,locktime(a0)
 		rts
 ; End of function Tails_SlopeRepel
 
@@ -1415,7 +1415,7 @@ loc_11874:
 		subq.w	#1,obY(a0)
 
 loc_118AA:
-		move.b	#0,objoff_3C(a0)
+		move.b	#0,jumping(a0)
 		move.w	#0,(v_itembonus).w
 		move.b	#0,objoff_27(a0)
 		rts
@@ -1496,9 +1496,9 @@ locret_11986:
 ; ---------------------------------------------------------------------------
 
 Obj02_ResetLevel:
-		tst.w	objoff_3A(a0)
+		tst.w	restartime(a0)
 		beq.s	locret_1199A
-		subq.w	#1,objoff_3A(a0)
+		subq.w	#1,restartime(a0)
 		bne.s	locret_1199A
 		move.w	#1,(Level_Inactive_flag).w
 

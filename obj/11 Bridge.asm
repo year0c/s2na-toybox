@@ -26,14 +26,14 @@ loc_7BC6:
 		move.l	#Map_obj11_GHZ,obMap(a0)
 		move.w	#make_art_tile(ArtTile_GHZ_Bridge,2,0),obGfx(a0)
 		move.b	#3,obPriority(a0)
-		cmpi.b	#3,(Current_Zone).w
+		cmpi.b	#id_EHZ,(Current_Zone).w
 		bne.s	loc_7BFA
 		move.l	#Map_obj11,obMap(a0)
 		move.w	#make_art_tile(ArtTile_EHZ_Bridge,2,0),obGfx(a0)
 		move.b	#3,obPriority(a0)
 
 loc_7BFA:
-		cmpi.b	#4,(Current_Zone).w
+		cmpi.b	#id_HPZ,(Current_Zone).w
 		bne.s	loc_7C14
 		addq.b	#4,obRoutine(a0)
 		move.l	#Map_obj11_HPZ,obMap(a0)

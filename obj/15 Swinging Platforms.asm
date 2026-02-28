@@ -28,7 +28,7 @@ loc_821E:
 		move.b	#8,obHeight(a0)
 		move.w	obY(a0),objoff_38(a0)
 		move.w	obX(a0),objoff_3A(a0)
-		cmpi.b	#3,(Current_Zone).w
+		cmpi.b	#id_EHZ,(Current_Zone).w
 		bne.s	loc_8284
 		move.l	#Map_Obj15_EHZ,obMap(a0)
 		move.w	#make_art_tile($3DC,2,0),obGfx(a0)
@@ -38,7 +38,7 @@ loc_821E:
 		move.b	#$99,obColType(a0)
 
 loc_8284:
-		cmpi.b	#2,(Current_Zone).w
+		cmpi.b	#id_CPZ,(Current_Zone).w
 		bne.s	loc_82BE
 		move.l	#Map_Obj15_CPZ,obMap(a0)
 		move.w	#make_art_tile($418,1,0),obGfx(a0)
@@ -118,7 +118,7 @@ loc_8388:
 		move.b	d5,(a2)+
 		move.w	#$4080,obAngle(a0)
 		move.w	#-$200,objoff_3E(a0)
-		cmpi.b	#5,(Current_Zone).w
+		cmpi.b	#id_SBZ,(Current_Zone).w
 		beq.s	loc_83CA
 
 loc_83AA:
@@ -265,7 +265,7 @@ locret_84EC:
 ; ---------------------------------------------------------------------------
 
 loc_84EE:
-		out_of_range.w	loc_8506,$3A(a0)
+		out_of_range.w	loc_8506,objoff_3A(a0)
 		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 

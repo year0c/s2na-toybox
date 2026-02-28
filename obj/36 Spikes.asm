@@ -151,7 +151,7 @@ sub_C7C8:
 		tst.b	obRender(a0)
 		bpl.s	locret_C828
 		move.w	#sfx_SpikesMove,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 		bra.s	locret_C828
 ; ---------------------------------------------------------------------------
 

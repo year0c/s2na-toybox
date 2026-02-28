@@ -199,7 +199,7 @@ DynWater_HPZ3:
 		move.b	#$4B,(v_lvllayout+$206).w
 		move.b	#1,(v_wtr_routine).w
 		move.w	#sfx_Rumbling,d0
-		bsr.w	PlaySound_Special
+		bsr.w	QueueSound2
 
 loc_41E8:
 		move.w	d1,(v_waterpos3).w
@@ -329,7 +329,7 @@ loc_42EE:
 		andi.b	#$3F,d0
 		bne.s	loc_4326
 		move.w	#sfx_Waterfall,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 
 loc_4326:
 		tst.b	(f_wtunnelallow).w
@@ -435,7 +435,7 @@ loc_4430:
 		andi.b	#$1F,d0
 		bne.s	locret_4454
 		move.w	#sfx_Waterfall,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 
 locret_4454:
 		rts

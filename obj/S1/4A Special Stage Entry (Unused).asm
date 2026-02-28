@@ -44,7 +44,7 @@ S1Obj4A_RmvSonic:
 		beq.s	loc_1253E			; if not, branch
 		move.b	#0,(v_player+obID).w		; set Sonic's object ID to 0
 		move.w	#sfx_SSGoal,d0
-		jsr	(PlaySound_Special).l		; play Special Stage entry sound effect
+		jsr	(QueueSound2).l		; play Special Stage entry sound effect
 
 loc_1253E:
 		jmp	(DisplaySprite).l

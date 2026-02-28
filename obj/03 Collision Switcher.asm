@@ -124,7 +124,7 @@ loc_13F92:
 		tst.w	(Debug_mode_flag).w
 		beq.s	loc_13FA2
 		move.w	#sfx_Lamppost,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 
 loc_13FA2:
 		swap	d0
@@ -220,7 +220,7 @@ loc_14094:
 		tst.w	(Debug_mode_flag).w
 		beq.s	loc_140A4
 		move.w	#sfx_Lamppost,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 
 loc_140A4:
 		swap	d0

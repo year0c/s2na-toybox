@@ -118,7 +118,7 @@ loc_A90C:
 		move.w	#bgm_ExtraLife,d0
 
 loc_A918:
-		jmp	(PlaySound_Special).l
+		jmp	(QueueSound2).l
 ; End of function sub_A8DE
 
 ; ---------------------------------------------------------------------------
@@ -201,7 +201,7 @@ loc_A9DE:
 		move.b	#$80,(f_ringcount).w
 		move.b	#0,(v_lifecount).w
 		move.w	#sfx_RingLoss,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 
 loc_A9FA:
 		move.b	(v_ani3_frame).w,obFrame(a0)

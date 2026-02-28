@@ -184,7 +184,7 @@ loc_E3D8:
 
 loc_E3EA:
 		move.w	#sfx_Spring,d0
-		jmp	(PlaySound_Special).l
+		jmp	(QueueSound2).l
 ; End of function sub_E34E
 
 ; ===========================================================================
@@ -298,7 +298,7 @@ loc_E530:
 		bclr	#6,obStatus(a0)
 		bclr	#5,obStatus(a1)
 		move.w	#sfx_Spring,d0
-		jmp	(PlaySound_Special).l
+		jmp	(QueueSound2).l
 ; End of function sub_E474
 
 
@@ -452,7 +452,7 @@ loc_E6D6:
 		bclr	#3,obStatus(a1)
 		move.b	#2,obRoutine(a1)
 		move.w	#sfx_Spring,d0
-		jmp	(PlaySound_Special).l
+		jmp	(QueueSound2).l
 ; End of function sub_E64E
 
 ; ===========================================================================
@@ -557,7 +557,7 @@ loc_E80C:
 
 loc_E81E:
 		move.w	#sfx_Spring,d0
-		jmp	(PlaySound_Special).l
+		jmp	(QueueSound2).l
 ; End of function sub_E73E
 
 ; ===========================================================================
@@ -644,5 +644,5 @@ loc_E918:
 
 loc_E92A:
 		move.w	#sfx_Spring,d0
-		jmp	(PlaySound_Special).l
+		jmp	(QueueSound2).l
 ; End of function sub_E870

@@ -149,9 +149,9 @@ InitValues:	dc.w $8000
 VDPInitValues:						; values for VDP registers
 		dc.b 4			; VDP $80 - 8-colour mode
 		dc.b $14		; VDP $81 - Megadrive mode, DMA enable
-		dc.b ($C000>>10)	; VDP $82 - foreground nametable address
+		dc.b (vram_fg>>10)	; VDP $82 - foreground nametable address
 		dc.b ($F000>>10)	; VDP $83 - window nametable address
-		dc.b ($E000>>13)	; VDP $84 - background nametable address
+		dc.b (vram_bg>>13)	; VDP $84 - background nametable address
 		dc.b ($D800>>9)		; VDP $85 - sprite table address
 		dc.b 0			; VDP $86 - unused
 		dc.b 0			; VDP $87 - background colour
@@ -271,7 +271,7 @@ GameClrRAM:
 		move.l	d7,(a6)+
 		dbf	d6,GameClrRAM
 		bsr.w	VDPSetupGame
-		bsr.w	SoundDriverLoad
+		bsr.w	DACDriverLoad
 		bsr.w	JoypadInit
 		move.b	#GameModeID_SegaScreen,(v_gamemode).w
 
@@ -298,7 +298,9 @@ ChecksumError:
 Checksum_Red:
 		move.w	#cRed,(vdp_data_port).l
 		dbf	d7,Checksum_Red
-		bra.s	*
+
+.loop:
+		bra.s	.loop
 ; ===========================================================================
 
 BusError:
@@ -503,7 +505,9 @@ V_Int:
 		btst	#6,(v_megadrive).w
 		beq.s	.notPAL
 		move.w	#17930/10-1,d0
-		dbf	d0,*
+
+.loop:
+		dbf	d0,.loop
 
 .notPAL:
 		move.b	(v_vbla_routine).w,d0
@@ -982,7 +986,7 @@ ClearScreen:
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
 
 ; loc_380
-SoundDriverLoad:
+DACDriverLoad:
 		nop
 		stopZ80
 		resetZ80
@@ -997,13 +1001,14 @@ SoundDriverLoad:
 		resetZ80
 		startZ80
 		rts
-; End of function SoundDriverLoad
+; End of function DACDriverLoad
 
 
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
 
 
-PlaySound:
+; PlaySound:
+QueueSound1:
 		move.b	d0,(v_snddriver_ram.v_soundqueue0).w
 		rts
 ; End of function PlaySound
@@ -1012,19 +1017,21 @@ PlaySound:
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
 
 
-PlaySound_Special:
+; QueueSound2:
+QueueSound2:
 		move.b	d0,(v_snddriver_ram.v_soundqueue1).w
 		rts
-; End of function PlaySound_Special
+; End of function QueueSound2
 
 
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
 
 
-PlaySound_Unk:
+; PlaySound_Unused:
+QueueSound3:
 		move.b	d0,(v_snddriver_ram.v_soundqueue2).w
 		rts
-; End of functions PlaySound_Unk
+; End of functions QueueSound3
 
 
 		include	"_inc/PauseGame.asm"
@@ -2122,7 +2129,7 @@ AngleData:	binclude "misc/angles.bin"
 
 SegaScreen:
 		move.b	#bgm_Stop,d0
-		bsr.w	PlaySound_Special
+		bsr.w	QueueSound2
 		bsr.w	ClearPLC
 		bsr.w	Pal_FadeToBlack
 		lea	(vdp_control_port).l,a6
@@ -2169,7 +2176,7 @@ Sega_WaitPalette:
 		bne.s	Sega_WaitPalette
 
 		move.b	#sfx_Sega,d0
-		bsr.w	PlaySound_Special
+		bsr.w	QueueSound2
 		move.b	#VintID_PCM,(v_vbla_routine).w
 		bsr.w	WaitForVint
 		move.w	#30,(v_generictimer).w
@@ -2191,11 +2198,11 @@ Sega_GoToTitleScreen:
 
 TitleScreen:
 		move.b	#bgm_Stop,d0
-		bsr.w	PlaySound_Special
+		bsr.w	QueueSound2
 		bsr.w	ClearPLC
 		bsr.w	Pal_FadeToBlack
 		move	#$2700,sr
-		bsr.w	SoundDriverLoad
+		bsr.w	DACDriverLoad
 		lea	(vdp_control_port).l,a6
 		move.w	#$8000+%0100,(a6)
 		move.w	#$8200+(vram_fg>>10),(a6)
@@ -2257,7 +2264,7 @@ loc_32C4:
 		moveq	#palid_Title,d0
 		bsr.w	PalLoad1
 		move.b	#bgm_Title,d0
-		bsr.w	PlaySound_Special
+		bsr.w	QueueSound2
 		move.b	#0,(Debug_mode_flag).w
 		move.w	#0,(Two_player_mode).w
 		move.w	#376,(v_generictimer).w
@@ -2318,7 +2325,7 @@ LevelSelectCheat:
 Title_Cheat_PlayRing:
 		move.b	#1,(a0,d1.w)
 		move.b	#sfx_Ring,d0
-		bsr.w	PlaySound_Special
+		bsr.w	QueueSound2
 		bra.s	Title_Cheat_CountC
 ; ---------------------------------------------------------------------------
 
@@ -2393,7 +2400,7 @@ loc_353A:
 		blo.s	LevelSelect_Loop
 
 loc_3546:
-		bsr.w	PlaySound_Special
+		bsr.w	QueueSound2
 		bra.s	LevelSelect_Loop
 ; ---------------------------------------------------------------------------
 
@@ -2406,7 +2413,7 @@ loc_354C:
 loc_355A:
 		move.b	#GameModeID_S1Credits,(v_gamemode).w
 		move.b	#bgm_Credits,d0
-		bsr.w	PlaySound_Special
+		bsr.w	QueueSound2
 		move.w	#0,(v_creditsnum).w
 		rts
 ; ---------------------------------------------------------------------------
@@ -2469,7 +2476,7 @@ PlayLevel:
 		move.b	d0,(v_continues).w
 		move.l	#5000,(v_scorelife).w
 		move.b	#bgm_Fade,d0
-		bsr.w	PlaySound_Special
+		bsr.w	QueueSound2
 		rts
 ; ---------------------------------------------------------------------------
 LvlSelCode_J:	dc.b btnUp, btnDn, btnDn, btnDn, btnDn, btnUp, 0, $FF	; up, down, down, down, down, up
@@ -2498,7 +2505,7 @@ RunDemo:
 		tst.w	(v_generictimer).w
 		bne.w	loc_3630
 		move.b	#bgm_Fade,d0
-		bsr.w	PlaySound_Special
+		bsr.w	QueueSound2
 		move.w	(v_demonum).w,d0
 		andi.w	#7,d0
 		add.w	d0,d0
@@ -2796,7 +2803,7 @@ loc_3AEC:
 		dbf	d5,loc_3AB8
 
 loc_3AF8:
-		bra.s	*
+		bra.s	loc_3AF8
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -2841,7 +2848,7 @@ Level:
 		tst.w	(f_demo).w	; are we on an ending demo?
 		bmi.s	Level_NoMusicFade	; if so, branch
 		move.b	#bgm_Fade,d0
-		bsr.w	PlaySound_Special
+		bsr.w	QueueSound2
 
 Level_NoMusicFade:
 		bsr.w	ClearPLC
@@ -2949,7 +2956,7 @@ Level_PlayBgm:
 		lea	MusicList(pc),a1
 		nop
 		move.b	(a1,d0.w),d0
-		bsr.w	PlaySound
+		bsr.w	QueueSound1
 		move.b	#id_Obj34,(v_titlecard).w
 
 Level_TtlCardLoop:
@@ -3336,11 +3343,10 @@ Demo_S1GHZ:	binclude	"demodata/S1/Intro - GHZ.bin"
 		even
 Demo_S1SS:	binclude	"demodata/S1/Intro - Special Stage.bin"
 		even
-; ---------------------------------------------------------------------------
 
 j_AniArt_Load:
 		jmp	(AniArt_Load).l
-; ---------------------------------------------------------------------------
+
 		align 4
 
 ; ===========================================================================
@@ -3349,7 +3355,7 @@ j_AniArt_Load:
 ; GameMode10:
 SpecialStage:
 		move.w	#sfx_EnterSS,d0
-		bsr.w	PlaySound_Special
+		bsr.w	QueueSound2
 		bsr.w	Pal_MakeFlash
 		move	#$2700,sr
 		lea	(vdp_control_port).l,a6
@@ -3394,7 +3400,7 @@ SpecialStage:
 		clr.w	(v_ssangle).w
 		move.w	#$40,(v_ssrotate).w
 		move.w	#bgm_SS,d0
-		bsr.w	PlaySound
+		bsr.w	QueueSound1
 		move.w	#0,(Demo_button_index).w
 		lea	(Demo_Index).l,a1
 		moveq	#6,d0
@@ -3488,7 +3494,7 @@ loc_5214:
 		mulu.w	#10,d0
 		move.w	d0,(v_ringbonus).w
 		move.w	#bgm_GotThrough,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 		clearRAM v_objspace,v_objend
 		move.b	#id_Obj7E,(v_endcard).w
 
@@ -3504,7 +3510,7 @@ loc_529C:
 		tst.l	(v_plc_buffer).w
 		bne.s	loc_529C
 		move.w	#sfx_EnterSS,d0
-		bsr.w	PlaySound_Special
+		bsr.w	QueueSound2
 		bsr.w	Pal_MakeFlash
 		rts
 ; ---------------------------------------------------------------------------
@@ -6939,14 +6945,14 @@ loc_7348:
 		move.w	(a2)+,d0
 		move.w	(a2),d0
 		andi.w	#$FF,d0
-		cmpi.w	#id_LZ<<8+3,(Current_ZoneAndAct).w
+		cmpi.w	#(id_LZ<<8)+3,(Current_ZoneAndAct).w
 		bne.s	loc_735E
 		moveq	#palid_SBZ3,d0
 
 loc_735E:
-		cmpi.w	#id_SBZ<<8+1,(Current_ZoneAndAct).w
+		cmpi.w	#(id_SBZ<<8)+1,(Current_ZoneAndAct).w
 		beq.s	loc_736E
-		cmpi.w	#id_SBZ<<8+2,(Current_ZoneAndAct).w
+		cmpi.w	#(id_SBZ<<8)+2,(Current_ZoneAndAct).w
 		bne.s	loc_7370
 
 loc_736E:
@@ -7325,7 +7331,7 @@ loc_7672:
 
 loc_7692:
 		move.w	#bgm_Boss,d0
-		bsr.w	PlaySound
+		bsr.w	QueueSound1
 		move.b	#1,(f_lockscreen).w
 		addq.b	#2,(Dynamic_Resize_Routine).w
 		moveq	#plcid_Boss,d0
@@ -7366,7 +7372,7 @@ DynResize_LZ3:
 		beq.s	loc_76EA
 		move.b	#7,(a1)
 		move.w	#sfx_Rumbling,d0
-		bsr.w	PlaySound_Special
+		bsr.w	QueueSound2
 
 loc_76EA:
 		tst.b	(Dynamic_Resize_Routine).w
@@ -7381,7 +7387,7 @@ loc_76EA:
 
 loc_770C:
 		move.w	#bgm_Boss,d0
-		bsr.w	PlaySound
+		bsr.w	QueueSound1
 		move.b	#1,(f_lockscreen).w
 		addq.b	#2,(Dynamic_Resize_Routine).w
 		moveq	#plcid_Boss,d0
@@ -7618,7 +7624,7 @@ DynResize_EHZ2_01:
 
 loc_7946:
 		move.w	#bgm_Boss,d0
-		bsr.w	PlaySound
+		bsr.w	QueueSound1
 		move.b	#1,(f_lockscreen).w
 		moveq	#plcid_Boss,d0
 		bra.w	LoadPLC
@@ -7683,7 +7689,7 @@ loc_79AA:
 
 loc_79BC:
 		move.w	#bgm_Boss,d0
-		bsr.w	PlaySound
+		bsr.w	QueueSound1
 		move.b	#1,(f_lockscreen).w
 		addq.b	#2,(Dynamic_Resize_Routine).w
 		moveq	#plcid_Boss,d0
@@ -7764,7 +7770,7 @@ loc_7A48:
 
 loc_7A64:
 		move.w	#bgm_Boss,d0
-		bsr.w	PlaySound
+		bsr.w	QueueSound1
 		move.b	#1,(f_lockscreen).w
 		moveq	#plcid_Boss,d0
 		bra.w	LoadPLC
@@ -8114,7 +8120,7 @@ loc_8EE0:
 loc_8EE4:
 		bsr.w	DisplaySprite
 		move.w	#sfx_Collapse,d0
-		jmp	(PlaySound_Special).l
+		jmp	(QueueSound2).l
 ; ---------------------------------------------------------------------------
 byte_8EF2:	dc.b $1C,$18,$14,$10
 		dc.b $1A,$16,$12, $E
@@ -8759,7 +8765,7 @@ Map_Obj0F:	binclude "mappings/sprite/obj0F.bin"
 		even
 Ani_S1Obj0E:	dc.w byte_B51C-Ani_S1Obj0E
 byte_B51C:	dc.b   7,  0,  1,  2,  3,  4,  5,  6
-		dc.b   7,$FE,  2,  0
+		dc.b   7,$FE,  2
 		even
 Ani_S1Obj0F:	dc.w byte_B52A-Ani_S1Obj0F
 byte_B52A:	dc.b $1F,  0,  1,$FF
@@ -8791,6 +8797,7 @@ word_B7D4:	dc.w 1
 		include	"obj/S1/2C Jaws.asm"
 ; ---------------------------------------------------------------------------
 Ani_Obj2C:	dc.b   0,  2,  7,  0,  1,  2,  3,$FF
+		even
 Map_Obj2C:	dc.w word_B880-Map_Obj2C
 		dc.w word_B892-Map_Obj2C
 		dc.w word_B8A4-Map_Obj2C
@@ -12561,7 +12568,7 @@ MvSonicOnPtfm:
 		sub.w	d3,d0
 		bra.s	loc_F71E
 ; ===========================================================================
-		; a couple lines of unused/leftover/dead code from Sonic 1 ; a0=object
+; a couple lines of unused/leftover/dead code from Sonic 1 ; a0=object
 		move.w	obY(a0),d0
 		subi.w	#9,d0
 
@@ -13061,7 +13068,7 @@ Obj01_ChkInvin:						; Checks if invincibility has expired and (should) disables
 loc_FB66:
 		lea	MusicList_Sonic(pc),a1
 		move.b	(a1,d0.w),d0
-		jsr	(PlaySound).l
+		jsr	(QueueSound1).l
 ; loc_FB74:
 Obj01_RmvInvin:
 		move.b	#0,(v_invinc).w
@@ -13078,7 +13085,7 @@ Obj01_ChkShoes:						; Checks if Speed Shoes have expired and disables them if t
 		move.w	#$80,(Sonic_deceleration).w
 		move.b	#0,(v_shoes).w
 		move.w	#bgm_Slowdown,d0
-		jmp	(PlaySound).l
+		jmp	(QueueSound1).l
 ; ---------------------------------------------------------------------------
 ; locret_FBAE:
 Obj01_ExitChk:
@@ -13171,7 +13178,7 @@ Obj01_InWater:
 		beq.s	locret_FC0A
 		move.b	#id_Obj08,(v_splash).w		; splash animation
 		move.w	#sfx_Splash,d0			; splash sound
-		jmp	(PlaySound_Special).l
+		jmp	(QueueSound2).l
 ; ---------------------------------------------------------------------------
 ; Obj01_NotInWater:
 Obj01_OutWater:
@@ -13191,7 +13198,7 @@ Obj01_OutWater:
 
 loc_FC98:
 		move.w	#sfx_Splash,d0			; splash sound
-		jmp	(PlaySound_Special).l
+		jmp	(QueueSound2).l
 ; End of function Sonic_Water
 
 ; ===========================================================================
@@ -13371,7 +13378,7 @@ Sonic_Duck:
 ; loc_FE2C:
 Obj01_UpdateSpeedOnGround:
 		move.b	(v_jpadhold2).w,d0
-		andi.b	#btnL|btnR,d0	; is left/right being pressed?
+		andi.b	#btnL+btnR,d0	; is left/right being pressed?
 		bne.s	Obj01_Traction			; if yes, branch
 		move.w	obInertia(a0),d0
 		beq.s	Obj01_Traction
@@ -13488,7 +13495,7 @@ Sonic_WallRecoil_Right:
 		move.b	#AniIDSonAni_WallRecoil1,obAnim(a0)
 		move.b	#1,ob2ndRout(a0)
 		move.w	#sfx_Death,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 		rts
 ; End of function Sonic_Move
 
@@ -13548,7 +13555,7 @@ loc_FF78:
 		move.b	#AniIDSonAni_Stop,obAnim(a0)
 		bclr	#0,obStatus(a0)
 		move.w	#sfx_Skid,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 
 locret_FFA6:
 		rts
@@ -13605,7 +13612,7 @@ loc_FFDE:
 		move.b	#AniIDSonAni_Stop,obAnim(a0)
 		bset	#0,obStatus(a0)
 		move.w	#sfx_Skid,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 
 locret_1000C:
 		rts
@@ -13872,7 +13879,7 @@ loc_10220:
 		cmpi.w	#$80,d0
 		blo.s	Obj01_NoRoll
 		move.b	(v_jpadhold2).w,d0
-		andi.b	#btnL|btnR,d0
+		andi.b	#btnL+btnR,d0
 		bne.s	Obj01_NoRoll
 		btst	#bitDn,(v_jpadhold2).w
 		bne.s	loc_1023A
@@ -13894,7 +13901,7 @@ Obj01_DoRoll:
 		move.b	#2,obAnim(a0)
 		addq.w	#5,obY(a0)
 		move.w	#sfx_Roll,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 		tst.w	obInertia(a0)
 		bne.s	locret_10276
 		move.w	#$200,obInertia(a0)
@@ -13939,7 +13946,7 @@ loc_102AA:
 		move.b	#1,objoff_3C(a0)
 		clr.b	objoff_38(a0)
 		move.w	#sfx_Jump,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 		move.b	#$13,obHeight(a0)
 		move.b	#9,obWidth(a0)
 		btst	#2,obStatus(a0)
@@ -14009,7 +14016,7 @@ Sonic_CheckSpindash:
 		beq.w	locret_10394
 		move.b	#AniIDSonAni_Spindash,obAnim(a0)
 		move.w	#sfx_Roll,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 		addq.l	#4,sp
 		move.b	#1,spindash_flag(a0)
 
@@ -14553,7 +14560,7 @@ Sonic_GameOver:
 
 loc_10876:
 		move.w	#bgm_GameOver,d0
-		jsr	(PlaySound).l
+		jsr	(QueueSound1).l
 		moveq	#plcid_GameOver,d0
 		jmp	(LoadPLC).l
 ; ---------------------------------------------------------------------------
@@ -15031,7 +15038,7 @@ Obj02_ChkInvinc:
 loc_10D54:
 		lea	MusicList_Tails(pc),a1
 		move.b	(a1,d0.w),d0
-		jsr	(PlaySound).l
+		jsr	(QueueSound1).l
 ; loc_10D62:
 Obj02_RmvInvin:
 		move.b	#0,(v_invinc).w
@@ -15050,7 +15057,7 @@ Obj02_ChkShoes:
 ; Obj02_RmvSpeed:
 		move.b	#0,(v_shoes).w
 		move.w	#bgm_Slowdown,d0		; slow down tempo
-		jmp	(PlaySound).l
+		jmp	(QueueSound1).l
 ; ===========================================================================
 ; locret_10D9C:
 Obj02_ExitChk:
@@ -15443,7 +15450,7 @@ loc_110F2:
 		move.b	#AniIDSonAni_Stop,obAnim(a0)
 		bclr	#0,obStatus(a0)
 		move.w	#sfx_Skid,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 
 locret_11120:
 		rts
@@ -15500,7 +15507,7 @@ loc_11158:
 		move.b	#AniIDSonAni_Stop,obAnim(a0)
 		bset	#0,obStatus(a0)
 		move.w	#sfx_Skid,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 
 locret_11186:
 		rts
@@ -15789,7 +15796,7 @@ loc_113BE:
 		move.b	#AniIDSonAni_Roll,obAnim(a0)
 		addq.w	#5,obY(a0)
 		move.w	#sfx_Roll,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 		tst.w	obInertia(a0)
 		bne.s	locret_113F0
 		move.w	#$200,obInertia(a0)
@@ -15838,7 +15845,7 @@ loc_11424:
 		move.b	#1,objoff_3C(a0)
 		clr.b	stick_to_convex(a0)
 		move.w	#sfx_Jump,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 		move.b	#$F,obHeight(a0)
 		move.b	#9,obWidth(a0)
 		btst	#2,obStatus(a0)
@@ -15905,7 +15912,7 @@ Tails_Spindash:
 		beq.w	locret_1150E
 		move.b	#AniIDSonAni_Spindash,obAnim(a0)
 		move.w	#sfx_Roll,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 		addq.l	#4,sp
 		move.b	#1,spindash_flag(a0)
 
@@ -16890,7 +16897,7 @@ byte_11E54:	dc.b   2,$81,$82,$83,$84,$FF
 
 KillTails:
 		jmp	(KillSonic).l
-; ---------------------------------------------------------------------------
+
 		align 4
 
 		include	"obj/S1/0A Drowning Countdown.asm"
@@ -16917,7 +16924,7 @@ loc_12300:
 		move.w	#bgm_Boss,d0
 
 loc_1230A:
-		jsr	(PlaySound).l
+		jsr	(QueueSound1).l
 
 loc_12310:
 		move.w	#30,(v_air).w
@@ -16991,7 +16998,7 @@ Map_S1obj4A:	binclude	"mappings/sprite/S1/obj4A.bin"
 		even
 ; animation script
 Ani_obj08:	dc.w byte_129C2-Ani_obj08
-byte_129C2:	dc.b   4,  0,  1,  2,$FC,  0
+byte_129C2:	dc.b   4,  0,  1,  2,$FC
 		even
 ; ---------------------------------------------------------------------------
 ; sprite mappings
@@ -17889,7 +17896,7 @@ locret_131D4:
 ; End of function sub_13102
 
 ; ---------------------------------------------------------------------------
-		; unused
+; unused
 		move.w	obY(a0),d2
 		move.w	obX(a0),d3
 
@@ -18009,7 +18016,6 @@ loc_1328E:
 sub_132EE:
 		move.w	obY(a0),d2
 		move.w	obX(a0),d3
-; End of function sub_132EE
 
 loc_132F6:
 		addi.w	#$A,d3
@@ -18081,7 +18087,7 @@ Sonic_DontRunOnWalls:
 ; End of function Sonic_DontRunOnWalls
 
 ; ---------------------------------------------------------------------------
-		; unused
+; unused
 		move.w	obY(a0),d2
 		move.w	obX(a0),d3
 
@@ -18158,7 +18164,6 @@ loc_13408:
 Sonic_HitWall:
 		move.w	obY(a0),d2
 		move.w	obX(a0),d3
-; End of function Sonic_HitWall
 
 loc_13478:
 		subi.w	#$A,d3
@@ -18287,7 +18292,7 @@ S1Obj47_Bump:
 		clr.b	objoff_3C(a1)
 		move.b	#1,obAnim(a0)
 		move.w	#sfx_Bumper,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 		lea	(v_objstate).w,a2
 		moveq	#0,d0
 		move.b	obRespawnNo(a0),d0
@@ -18409,7 +18414,7 @@ loc_13A7E:
 		beq.s	loc_13B0A
 		bsr.w	ResumeMusic
 		move.w	#sfx_Bubble,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 		lea	(v_player).w,a1
 		clr.w	obVelX(a1)
 		clr.w	obVelY(a1)
@@ -18871,8 +18876,9 @@ word_143C8:	dc.w 1
 
 j_CalcSine:
 		jmp	(CalcSine).l
-; ---------------------------------------------------------------------------
+
 		align 4
+
 ;----------------------------------------------------
 ; Object 12 - Master Emerald from HPZ
 ;----------------------------------------------------
@@ -19550,7 +19556,7 @@ sub_14FC4:
 		move.b	#$10,obAnim(a2)
 		move.b	#2,obRoutine(a2)
 		move.w	#sfx_Spring,d0
-		jmp	(PlaySound_Special).l
+		jmp	(QueueSound2).l
 ; End of function sub_14FC4
 
 ; ---------------------------------------------------------------------------
@@ -19582,8 +19588,9 @@ Map_obj14b:	binclude	"mappings/sprite/obj14_b.bin"
 
 j_ObjectMoveAndFall:
 		jmp	(ObjectMoveAndFall).l
-; ---------------------------------------------------------------------------
+
 		align 4
+
 ;----------------------------------------------------
 ; Object 16 - the HTZ platform that goes down diagonally
 ;	      and stops	after a	while (in final, it falls)
@@ -19688,16 +19695,15 @@ Map_Obj16:	include	"mappings/sprite/obj16.asm"
 
 loc_152A4:
 		jmp	(DisplaySprite).l
-; ---------------------------------------------------------------------------
 
 j_DeleteObject:
 		jmp	(DeleteObject).l
-; ---------------------------------------------------------------------------
 
 j_ObjectMove_0:
 		jmp	(ObjectMove).l
-; ---------------------------------------------------------------------------
+
 		align 4
+
 ;----------------------------------------------------
 ; Object 19 - CPZ platforms moving side	to side
 ;----------------------------------------------------
@@ -19922,19 +19928,16 @@ Map_Obj19:	dc.w word_154AE-Map_Obj19
 word_154AE:	dc.w 2
 		dc.w $F00F,    0,    0,$FFE0		; 0
 		dc.w $F00F, $800, $800,	   0		; 4
-; ---------------------------------------------------------------------------
 
 loc_154C0:
 		jmp	(DisplaySprite).l
-; ---------------------------------------------------------------------------
 
 j_DeleteObject_1:
 		jmp	(DeleteObject).l
-; ---------------------------------------------------------------------------
 
 j_ObjectMove_1:
 		jmp	(ObjectMove).l
-; ---------------------------------------------------------------------------
+
 		align 4
 
 		include	"obj/04 Water Surface.asm"
@@ -19982,7 +19985,6 @@ word_1565E:	dc.w 6
 		dc.w $F80D,    8,    4,	   0		; 12
 		dc.w $F80D,  $10,    8,	 $20		; 16
 		dc.w $F80D,    8,    4,	 $40		; 20
-; ---------------------------------------------------------------------------
 ;----------------------------------------------------
 ; Object 49 - EHZ waterfalls
 ;----------------------------------------------------
@@ -20088,20 +20090,18 @@ word_15816:	dc.w $A
 		dc.w $200F,    8,    4,	   0		; 28
 		dc.w $400F,    8,    4,$FFE0		; 32
 		dc.w $400F,    8,    4,	   0		; 36
-; ---------------------------------------------------------------------------
 
 loc_15868:
 		jmp	(DisplaySprite).l
-; ---------------------------------------------------------------------------
 
 j_DeleteObject_2:
 		jmp	(DeleteObject).l
-; ---------------------------------------------------------------------------
 
 j_Adjust2PArtPointer_0:
 		jmp	(Adjust2PArtPointer).l
-; ---------------------------------------------------------------------------
+
 		align 4
+
 ;----------------------------------------------------
 ; Object 4D - Stegway badnik
 ;----------------------------------------------------
@@ -20292,20 +20292,20 @@ word_15B14:	dc.w 4
 		dc.w $F005,    4,    2,	   0		; 4
 		dc.w	 9,  $28,  $14,	   0		; 8
 		dc.w $FB01,  $30,  $18,	 $1A		; 12
+
 		align 4
 
 loc_15B38:
 		jmp	(MarkObjGone).l
-; ---------------------------------------------------------------------------
 
 j_AnimateSprite_0:
 		jmp	(AnimateSprite).l
-; ---------------------------------------------------------------------------
 
 j_ObjectMoveAndFall_0:
 		jmp	(ObjectMoveAndFall).l
-; ---------------------------------------------------------------------------
+
 		align 4
+
 ;----------------------------------------------------
 ; Object 52 - Piranha badnik
 ;----------------------------------------------------
@@ -20484,18 +20484,18 @@ word_15D7A:	dc.w 1
 		dc.w $F00F,  $20,  $10,$FFF0		; 0
 word_15D84:	dc.w 1
 		dc.w $F00F,  $30,  $18,$FFF0		; 0
+
 		align 4
 
 loc_15D90:
 		jmp	(MarkObjGone).l
-; ---------------------------------------------------------------------------
 
 j_AnimateSprite_1:
 		jmp	(AnimateSprite).l
-; ---------------------------------------------------------------------------
 
 j_ObjectMove_2:
 		jmp	(ObjectMove).l
+
 		align 4
 
 ; ===========================================================================
@@ -20603,33 +20603,32 @@ Obj4F_Delete:
 Ani_obj4F:	dc.w byte_15EB8-Ani_obj4F
 		dc.w byte_15EBB-Ani_obj4F
 byte_15EB8:	dc.b   9,  1,$FF
-byte_15EBB:	dc.b   9,  0,  1,  2,  1,$FF,  0
+byte_15EBB:	dc.b   9,  0,  1,  2,  1,$FF
+		even
 ; ---------------------------------------------------------------------------
 ; Sprite mappings - Redz (dinosaur badnik) from HPZ
 ; ---------------------------------------------------------------------------
 Map_obj4F:	binclude	"mappings/sprite/obj4F.bin"
+
 		align 4
 
 loc_15EE8:
 		jmp	(DisplaySprite).l
-; ---------------------------------------------------------------------------
 
 JmpTo_DeleteObject:
 		jmp	(DeleteObject).l
-; ---------------------------------------------------------------------------
 
 j_AnimateSprite_2:
 		jmp	(AnimateSprite).l
-; ---------------------------------------------------------------------------
 
 j_ObjectMoveAndFall_1:
 		jmp	(ObjectMoveAndFall).l
-; ---------------------------------------------------------------------------
 
 j_ObjectMove_3:
 		jmp	(ObjectMove).l
-; ---------------------------------------------------------------------------
+
 		align 4
+
 ;----------------------------------------------------
 ; Object 50 - Aquis badnik from HPZ
 ;----------------------------------------------------
@@ -21148,7 +21147,6 @@ word_164FA:	dc.w 5
 		dc.w $F805,  $1C,   $E,$FFF8		; 8
 		dc.w $F801,  $22,  $11,	   8		; 12
 		dc.w  $805,  $24,  $12,$FFF8		; 16
-; ---------------------------------------------------------------------------
 ;----------------------------------------------------
 ; Object 51 - Aquis badnik from HPZ
 ;----------------------------------------------------
@@ -21375,27 +21373,21 @@ locret_16766:
 
 loc_16768:
 		jmp	(DisplaySprite).l
-; ---------------------------------------------------------------------------
 
 loc_1676E:
 		jmp	(DeleteObject).l
-; ---------------------------------------------------------------------------
 
 j_FindFreeObj:
 		jmp	(FindFreeObj).l
-; ---------------------------------------------------------------------------
 
 loc_1677A:
 		jmp	(MarkObjGone).l
-; ---------------------------------------------------------------------------
 
 j_AnimateSprite_3:
 		jmp	(AnimateSprite).l
-; ---------------------------------------------------------------------------
 
 j_ObjectMoveAndFall_2:
 		jmp	(ObjectMoveAndFall).l
-; ---------------------------------------------------------------------------
 
 j_ObjectMove_4:
 		jmp	(ObjectMove).l
@@ -21625,12 +21617,15 @@ Ani_obj4B:	dc.w byte_169E2-Ani_obj4B
 byte_169E2:	dc.b  $F,  0,$FF
 byte_169E5:	dc.b   2,  3,  4,$FF
 byte_169E9:	dc.b   3,  5,  6,$FF
-byte_169ED:	dc.b   9,  1,  1,  1,  1,  1,$FD,  0,  0
+byte_169ED:	dc.b   9,  1,  1,  1,  1,  1,$FD,  0
+		even
 ; ---------------------------------------------------------------------------
 ; Sprite mappings
 ; ---------------------------------------------------------------------------
 Map_obj4B:	binclude	"mappings/sprite/obj4B.bin"
+
 		align 4
+
 loc_16A74:
 		jmp	(DeleteObject).l
 
@@ -21651,6 +21646,7 @@ j_Adjust2PArtPointer_2:
 
 j_ObjectMove_5:
 		jmp	(ObjectMove).l
+
 		align 4
 
 ; ===========================================================================
@@ -21852,27 +21848,22 @@ word_16D1C:	dc.w 1
 		dc.w $F201,  $36,  $1B,$FFF0		; 0
 word_16D26:	dc.w 1
 		dc.w $F201,  $38,  $1C,$FFF0		; 0
-; ---------------------------------------------------------------------------
 
 loc_16D30:
 		jmp	(DisplaySprite).l
-; ---------------------------------------------------------------------------
 
 loc_16D36:
 		jmp	(DeleteObject).l
-; ---------------------------------------------------------------------------
 
 loc_16D3C:
 		jmp	(MarkObjGone).l
-; ---------------------------------------------------------------------------
 
 j_AnimateSprite_5:
 		jmp	(AnimateSprite).l
-; ---------------------------------------------------------------------------
 
 j_ObjectMoveAndFall_3:
 		jmp	(ObjectMoveAndFall).l
-; ---------------------------------------------------------------------------
+
 		align 4
 ;----------------------------------------------------
 ; Object 4C - BBat badnik from HPZ
@@ -22222,19 +22213,18 @@ word_171A8:	dc.w 3
 		dc.w $F007,  $32,  $19,$FFF8		; 0
 		dc.w $F805, $828, $814,$FFEC		; 4
 		dc.w $F805, $824, $812,	   4		; 8
+
 		align 4
 
 loc_171C4:
 		jmp	(MarkObjGone).l
-; ---------------------------------------------------------------------------
 
 j_AnimateSprite_6:
 		jmp	(AnimateSprite).l
-; ---------------------------------------------------------------------------
 
 j_ObjectMove_8:
 		jmp	(ObjectMove).l
-; ---------------------------------------------------------------------------
+
 		align 4
 ;----------------------------------------------------
 ; Object 4E - Gator badnik from HPZ
@@ -22428,19 +22418,15 @@ word_17496:	dc.w 4
 		dc.w $F805,  $18,   $C,	   4		; 4
 		dc.w	 1,  $1E,   $F,	   4		; 8
 		dc.w	 5,  $28,  $14,	  $C		; 12
-; ---------------------------------------------------------------------------
 
 loc_174B8:
 		jmp	(MarkObjGone).l
-; ---------------------------------------------------------------------------
 
 j_AnimateSprite_7:
 		jmp	(AnimateSprite).l
-; ---------------------------------------------------------------------------
 
 j_ObjectMoveAndFall_4:
 		jmp	(ObjectMoveAndFall).l
-; ---------------------------------------------------------------------------
 
 j_ObjectMove_6:
 		jmp	(ObjectMove).l
@@ -22675,35 +22661,27 @@ Map_obj54:	binclude	"mappings/sprite/obj54.bin"
 
 loc_17854:
 		jmp	(DeleteObject).l
-; ---------------------------------------------------------------------------
 
 j_FindNextFreeObj_1:
 		jmp	(FindNextFreeObj).l
-; ---------------------------------------------------------------------------
 
 j_AnimateSprite_8:
 		jmp	(AnimateSprite).l
-; ---------------------------------------------------------------------------
 
 j_Adjust2PArtPointer2_0:
 		jmp	(Adjust2PArtPointer2).l
-; ---------------------------------------------------------------------------
 
 loc_1786C:
 		jmp	(MarkObjGone_P1).l
-; ---------------------------------------------------------------------------
 
 j_Adjust2PArtPointer_3:
 		jmp	(Adjust2PArtPointer).l
-; ---------------------------------------------------------------------------
 
 j_ObjectMoveAndFall_5:
 		jmp	(ObjectMoveAndFall).l
-; ---------------------------------------------------------------------------
 
 j_ObjectMove_7:
 		jmp	(ObjectMove).l
-; ---------------------------------------------------------------------------
 ;----------------------------------------------------
 ; Object 57 - sub object of the	EHZ boss
 ;----------------------------------------------------
@@ -22906,7 +22884,7 @@ sub_17A8C:
 		bne.s	loc_17AB6
 		move.b	#$20,objoff_3E(a0)
 		move.w	#sfx_HitBoss,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 
 loc_17AB6:
 		lea	(v_palette+$22).w,a1
@@ -23354,6 +23332,7 @@ word_180EE:	dc.w 3
 		dc.w $D805,    4,    2,	   2		; 0
 		dc.w $D80D,   $C,    6,$FFE2		; 4
 		dc.w $D80D,   $C,    6,$FFC2		; 8
+
 Ani_Obj58a:	dc.w byte_1810E-Ani_Obj58a
 		dc.w byte_18113-Ani_Obj58a
 		dc.w byte_18117-Ani_Obj58a
@@ -23393,27 +23372,21 @@ word_1818E:	dc.w 3
 		dc.w $F00F,$8000,$8000,$FFD0		; 0
 		dc.w $F00F,$8010,$8008,$FFF0		; 4
 		dc.w $F00F,$8020,$8010,	 $10		; 8
-; ---------------------------------------------------------------------------
 
 loc_181A8:
 		jmp	(DisplaySprite).l
-; ---------------------------------------------------------------------------
 
 loc_181AE:
 		jmp	(DeleteObject).l
-; ---------------------------------------------------------------------------
 
 loc_181B4:
 		jmp	(MarkObjGone).l
-; ---------------------------------------------------------------------------
 
 j_FindNextFreeObj:
 		jmp	(FindNextFreeObj).l
-; ---------------------------------------------------------------------------
 
 j_AnimateSprite_9:
 		jmp	(AnimateSprite).l
-; ---------------------------------------------------------------------------
 
 j_ObjectMoveAndFall_6:
 		jmp	(ObjectMoveAndFall).l
@@ -23708,7 +23681,6 @@ word_185B0:	dc.w 4
 
 loc_185D4:
 		jmp	(DisplaySprite).l
-; ---------------------------------------------------------------------------
 
 loc_185DA:
 		jmp	(DeleteObject).l
@@ -23829,7 +23801,7 @@ BossMove:
 
 		include "obj/S1/3D Boss - Green Hill (part 2).asm"
 		include "obj/S1/48 Eggman's Swinging Ball.asm"
-; ---------------------------------------------------------------------------
+
 Ani_Eggman:	dc.w byte_192E0-Ani_Eggman
 		dc.w byte_192E3-Ani_Eggman
 		dc.w byte_192E7-Ani_Eggman
@@ -23914,6 +23886,7 @@ word_19424:	dc.w 2
 word_19436:	dc.w 2
 		dc.w $F80B, $12D, $199,	 $22
 		dc.w	 1, $139, $1AB,	 $3A
+
 Map_BossItems:	dc.w word_19458-Map_BossItems
 		dc.w word_19462-Map_BossItems
 		dc.w word_19474-Map_BossItems
@@ -23944,17 +23917,15 @@ word_194B4:	dc.w 2
 word_194C6:	dc.w 2
 		dc.w $1804,  $1C,   $E,	   0
 		dc.w	$B,  $1E,   $F,	 $10
-; ---------------------------------------------------------------------------
 
 j_Adjust2PArtPointer2_1:
 		jmp	(Adjust2PArtPointer2).l
-; ---------------------------------------------------------------------------
 
 j_Adjust2PArtPointer_5:
 		jmp	(Adjust2PArtPointer).l
-; ---------------------------------------------------------------------------
+
 		include	"obj/S1/3E Prison Capsule.asm"
-; ---------------------------------------------------------------------------
+
 Ani_Pri:	dc.w byte_19730-Ani_Pri
 		dc.w byte_19730-Ani_Pri
 byte_19730:	dc.b   2,  1,  3,$FF
@@ -23992,11 +23963,10 @@ word_197C2:	dc.w 2
 word_197D4:	dc.w 1
 		dc.w $F007,$206D,$2036,$FFF8
 word_197DE:	dc.w 0
-; ---------------------------------------------------------------------------
 
 j_Adjust2PArtPointer_6:
 		jmp	(Adjust2PArtPointer).l
-; ---------------------------------------------------------------------------
+
 		align 4
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -24288,7 +24258,7 @@ Hurt_Reverse:
 Hurt_ChkSpikes:
 		move.w	#0,obInertia(a0)
 		move.b	#AniIDSonAni_Hurt,obAnim(a0)
-		move.w	#60*2,flashtime(a0)
+		move.w	#120,flashtime(a0)
 		move.w	#sfx_Death,d0
 		cmpi.b	#id_Obj36,obID(a2)
 		bne.s	loc_19A98
@@ -24297,7 +24267,7 @@ Hurt_ChkSpikes:
 		move.w	#sfx_HitSpikes,d0
 
 loc_19A98:
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 		moveq	#-1,d0
 		rts
 ; ---------------------------------------------------------------------------
@@ -24330,7 +24300,7 @@ KillSonic:
 		move.w	#sfx_HitSpikes,d0
 
 loc_19AF8:
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 
 Kill_NoDeath:
 		moveq	#-1,d0
@@ -24814,7 +24784,7 @@ loc_1A006:
 		clr.l	4(a0)
 		move.b	#4,(v_objspace+obRoutine).w
 		move.w	#sfx_SSGoal,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 
 locret_1A03E:
 		rts
@@ -25690,7 +25660,7 @@ loc_1B214:
 		addq.b	#1,(v_lives).w
 		addq.b	#1,(f_lifecount).w
 		move.w	#bgm_ExtraLife,d0
-		jmp	(PlaySound).l
+		jmp	(QueueSound1).l
 
 locret_1B23C:
 		rts
@@ -26499,11 +26469,9 @@ LoadDebugObjectSprite:
 
 		include	"_inc/DebugList.asm"
 
-; ---------------------------------------------------------------------------
-
 j_Adjust2PArtPointer_1:
 		jmp	(Adjust2PArtPointer).l
-; ---------------------------------------------------------------------------
+
 		align 4
 
 		include	"_inc/LevelHeaders.asm"
@@ -26517,8 +26485,8 @@ AngleMap_GHZ:	binclude	"collision/S1/Angle Map.bin"
 AngleMap_GHZ_End:
 		even
 AngleMap:	binclude	"collision/Curve and resistance mapping.bin"
-		even
 AngleMap_End:
+		even
 ColArray1_GHZ:	binclude	"collision/S1/Collision Array (Normal).bin"
 ColArray1_GHZ_End:
 		even
@@ -27227,7 +27195,7 @@ Nem_EHZ:binclude	"art/nemesis/8x8 - EHZ.nem"
 Map16_HTZ:	binclude	"mappings/16x16/HTZ.unc"
 Map16_HTZ_End:
 		even
-Nem_HTZ:binclude	"art/nemesis/8x8 - HTZ.nem"
+Nem_HTZ:	binclude	"art/nemesis/8x8 - HTZ.nem"
 		even
 Nem_HTZ_AniPlaceholders:	binclude	"art/nemesis/HTZ Ani Placeholders.nem"
 		even
@@ -27243,7 +27211,7 @@ Map128_HPZ:	binclude	"mappings/128x128/HPZ.unc"
 Map16_CPZ:	binclude	"mappings/16x16/CPZ.unc"
 Map16_CPZ_End:
 		even
-Nem_CPZ:binclude	"art/nemesis/8x8 - CPZ.nem"
+Nem_CPZ:	binclude	"art/nemesis/8x8 - CPZ.nem"
 		even
 Nem_CPZ_Buildings:	binclude	"art/nemesis/CPZ Buildings.nem"
 		even
@@ -27252,7 +27220,7 @@ Map128_CPZ:	binclude	"mappings/128x128/CPZ.unc"
 Map16_GHZ:	binclude	"mappings/16x16/GHZ.unc"
 Map16_GHZ_End:
 		even
-Nem_GHZ:binclude	"art/nemesis/8x8 - GHZ.nem"
+Nem_GHZ:	binclude	"art/nemesis/8x8 - GHZ.nem"
 		even
 Nem_GHZ2:	binclude	"art/nemesis/8x8 - GHZ2.nem"
 		even

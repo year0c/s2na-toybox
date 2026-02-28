@@ -225,7 +225,7 @@ Obj09_Jump:
 		move.w	d0,obVelY(a0)
 		bset	#1,obStatus(a0)
 		move.w	#sfx_Jump,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 
 locret_1A5D0:
 		rts
@@ -472,7 +472,7 @@ loc_1A7D8:
 		bne.s	loc_1A7FC
 		addq.b	#1,(v_continues).w
 		move.w	#sfx_Continue,d0
-		jsr	(PlaySound).l
+		jsr	(QueueSound1).l
 
 loc_1A7FC:
 		moveq	#0,d4
@@ -491,7 +491,7 @@ loc_1A814:
 		addq.b	#1,(v_lives).w
 		addq.b	#1,(f_lifecount).w
 		move.w	#bgm_ExtraLife,d0
-		jsr	(PlaySound).l
+		jsr	(QueueSound1).l
 		moveq	#0,d4
 		rts
 ; ---------------------------------------------------------------------------
@@ -518,7 +518,7 @@ loc_1A844:
 
 loc_1A862:
 		move.w	#bgm_Emerald,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 		moveq	#0,d4
 		rts
 ; ---------------------------------------------------------------------------
@@ -619,7 +619,7 @@ loc_1A8E6:
 
 loc_1A954:
 		move.w	#sfx_Bumper,d0
-		jmp	(PlaySound_Special).l
+		jmp	(QueueSound2).l
 ; ---------------------------------------------------------------------------
 
 loc_1A95E:
@@ -627,7 +627,7 @@ loc_1A95E:
 		bne.s	loc_1A974
 		addq.b	#2,obRoutine(a0)
 		move.w	#sfx_SSGoal,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -646,7 +646,7 @@ loc_1A974:
 
 loc_1A99E:
 		move.w	#sfx_SSItem,d0
-		jmp	(PlaySound_Special).l
+		jmp	(QueueSound2).l
 ; ---------------------------------------------------------------------------
 
 loc_1A9A8:
@@ -664,7 +664,7 @@ loc_1A9A8:
 
 loc_1A9D2:
 		move.w	#sfx_SSItem,d0
-		jmp	(PlaySound_Special).l
+		jmp	(QueueSound2).l
 ; ---------------------------------------------------------------------------
 
 loc_1A9DC:
@@ -683,7 +683,7 @@ loc_1A9DC:
 loc_1AA04:
 		neg.w	(v_ssrotate).w
 		move.w	#sfx_SSItem,d0
-		jmp	(PlaySound_Special).l
+		jmp	(QueueSound2).l
 ; ---------------------------------------------------------------------------
 
 loc_1AA12:
@@ -714,7 +714,7 @@ loc_1AA4A:
 
 loc_1AA4E:
 		move.w	#sfx_SSGlass,d0
-		jmp	(PlaySound_Special).l
+		jmp	(QueueSound2).l
 ; ---------------------------------------------------------------------------
 
 locret_1AA58:

@@ -72,7 +72,7 @@ Obj79_HitLamp:
 		cmpi.w	#$68,d0
 		bhs.s	locret_135CA
 		move.w	#sfx_Lamppost,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 		addq.b	#2,obRoutine(a0)
 		bsr.w	Lamppost_StoreInfo
 		lea	(v_objstate).w,a2

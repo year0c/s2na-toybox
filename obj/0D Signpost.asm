@@ -35,7 +35,7 @@ Obj0D_Main:
 		cmpi.w	#32,d0
 		bhs.s	locret_F026
 		move.w	#sfx_Signpost,d0
-		jsr	(PlaySound).l
+		jsr	(QueueSound1).l
 		clr.b	(f_timecount).w
 		move.w	(Camera_Max_X_pos).w,(Camera_Min_X_pos).w
 		addq.b	#2,obRoutine(a0)
@@ -152,7 +152,7 @@ loc_F140:
 		mulu.w	#10,d0
 		move.w	d0,(v_ringbonus).w
 		move.w	#bgm_GotThrough,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 
 locret_F15E:
 		rts

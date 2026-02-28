@@ -46,5 +46,5 @@ loc_CA18:
 
 loc_CA1C:
 		move.w	#sfx_WallSmash,d0
-		jmp	(PlaySound_Special).l
+		jmp	(QueueSound2).l
 ; End of function SmashObject

@@ -185,7 +185,7 @@ Obj0A_Countdown:
 		bhi.s	loc_12170
 		bne.s	loc_12152
 		move.w	#bgm_Drowning,d0
-		jsr	(PlaySound).l
+		jsr	(QueueSound1).l
 
 loc_12152:
 		subq.b	#1,objoff_32(a0)
@@ -197,7 +197,7 @@ loc_12152:
 
 loc_12166:
 		move.w	#sfx_Warning,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 
 loc_12170:
 		subq.w	#1,(v_air).w
@@ -205,7 +205,7 @@ loc_12170:
 		bsr.w	ResumeMusic
 		move.b	#$81,(f_playerctrl).w
 		move.w	#sfx_Drown,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 		move.b	#$A,objoff_34(a0)
 		move.w	#1,objoff_36(a0)
 		move.w	#60*2,objoff_2C(a0)

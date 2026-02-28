@@ -112,12 +112,12 @@ loc_BE6A:
 		andi.b	#3,d0
 		bne.s	locret_BEC2
 		move.w	#sfx_Switch,d0
-		jmp	(PlaySound_Special).l
+		jmp	(QueueSound2).l
 ; ---------------------------------------------------------------------------
 
 loc_BE9C:
 		move.w	#sfx_Cash,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 		addq.b	#2,obRoutine(a0)
 		move.w	#180,obTimeFrame(a0)
 		cmpi.w	#50,(v_rings).w
@@ -138,7 +138,7 @@ loc_BECE:
 		move.b	#4,(v_ssrescontinue+obFrame).w
 		move.b	#$14,(v_ssrescontinue+obRoutine).w
 		move.w	#sfx_Continue,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 		addq.b	#2,obRoutine(a0)
 		move.w	#360,obTimeFrame(a0)
 		bra.w	DisplaySprite

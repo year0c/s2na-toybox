@@ -48,7 +48,7 @@ sub_B098:
 
 loc_B0AC:
 		addq.b	#2,obRoutine(a0)
-		move.w	#30-1,obTimeFrame(a0)
+		move.w	#29,obTimeFrame(a0)
 		moveq	#0,d0
 		move.b	obAnim(a0),d0
 		add.w	d0,d0
@@ -77,14 +77,14 @@ Monitor_SonicLife:
 		addq.b	#1,(v_lives).w
 		addq.b	#1,(f_lifecount).w
 		move.w	#bgm_ExtraLife,d0
-		jmp	(PlaySound).l
+		jmp	(QueueSound1).l
 ; ---------------------------------------------------------------------------
 
 Monitor_TailsLife:					; A complete copy of Monitor_SonicLife
 		addq.b	#1,(v_lives).w
 		addq.b	#1,(f_lifecount).w
 		move.w	#bgm_ExtraLife,d0
-		jmp	(PlaySound).l
+		jmp	(QueueSound1).l
 ; ---------------------------------------------------------------------------
 
 Monitor_Rings:
@@ -101,7 +101,7 @@ Monitor_Rings:
 
 loc_B130:
 		move.w	#sfx_Ring,d0
-		jmp	(PlaySound).l
+		jmp	(QueueSound1).l
 ; ---------------------------------------------------------------------------
 
 Monitor_Shoes:
@@ -111,14 +111,14 @@ Monitor_Shoes:
 		move.w	#$18,(Sonic_acceleration).w
 		move.w	#$80,(Sonic_deceleration).w
 		move.w	#bgm_Speedup,d0
-		jmp	(PlaySound).l
+		jmp	(QueueSound1).l
 ; ---------------------------------------------------------------------------
 
 Monitor_Shield:
 		move.b	#1,(v_shield).w
 		move.b	#id_Obj38,(v_shieldobj).w
 		move.w	#sfx_Shield,d0
-		jmp	(PlaySound).l
+		jmp	(QueueSound1).l
 ; ---------------------------------------------------------------------------
 
 Monitor_Invincibility:
@@ -131,7 +131,7 @@ Monitor_Invincibility:
 		cmpi.w	#12,(v_air).w
 		bls.s	locret_B1A8
 		move.w	#bgm_Invincible,d0
-		jmp	(PlaySound).l
+		jmp	(QueueSound1).l
 ; ---------------------------------------------------------------------------
 
 locret_B1A8:

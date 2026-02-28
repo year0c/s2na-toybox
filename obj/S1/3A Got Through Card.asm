@@ -121,7 +121,7 @@ Obj3A_ChkBonus:
 		tst.w	d0
 		bne.s	Obj3A_AddBonus
 		move.w	#sfx_Cash,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 		addq.b	#2,obRoutine(a0)
 		cmpi.w	#(id_SBZ<<8)+1,(Current_ZoneAndAct).w
 		bne.s	Obj3A_SetDelay
@@ -140,7 +140,7 @@ Obj3A_AddBonus:
 		andi.b	#3,d0
 		bne.s	locret_BC64
 		move.w	#sfx_Switch,d0
-		jmp	(PlaySound_Special).l
+		jmp	(QueueSound2).l
 ; ===========================================================================
 ; loc_BC80:
 Obj3A_NextLevel:
@@ -242,7 +242,7 @@ Obj3A_SBZ2:
 		addq.b	#2,obRoutine(a0)
 		clr.b	(f_lockctrl).w
 		move.w	#bgm_FZ,d0
-		jmp	(PlaySound).l
+		jmp	(QueueSound1).l
 ; ---------------------------------------------------------------------------
 
 ; loc_BD3A:	; Routine $10

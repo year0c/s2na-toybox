@@ -39,9 +39,9 @@ Obj7D_Main:
 		move.b	#0,obPriority(a0)
 		move.b	#$10,obActWid(a0)
 		move.b	obSubtype(a0),obFrame(a0)
-		move.w	#(60*2)-1,objoff_30(a0)
+		move.w	#119,objoff_30(a0)
 		move.w	#sfx_Bonus,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 		moveq	#0,d0
 		move.b	obSubtype(a0),d0
 		add.w	d0,d0

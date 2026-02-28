@@ -57,7 +57,7 @@ loc_AAF4:
 
 loc_AB2C:
 		move.w	#sfx_GiantRing,d0
-		jsr	(PlaySound_Special).l
+		jsr	(QueueSound2).l
 		bra.s	loc_AAD6
 ; ---------------------------------------------------------------------------
 

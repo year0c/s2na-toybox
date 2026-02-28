@@ -13976,7 +13976,7 @@ loc_131BE:
 		cmp.w	d0,d1
 		ble.s	loc_131CC
 		move.b	(Primary_Angle).w,d3
-		exg	d0,d1
+		exg.l	d0,d1
 
 loc_131CC:
 		btst	#0,d3
@@ -14284,7 +14284,7 @@ ObjHitWallLeft:
 
 locret_134C4:
 		rts
-; ---------------------------------------------------------------------------
+
 		nop
 
 		include	"obj/79 Lamppost.asm"
@@ -14346,256 +14346,15 @@ word_139BC:	dc.w 2
 ; ---------------------------------------------------------------------------
 		nop
 
-S1Obj64:
-		moveq	#0,d0
-		move.b	obRoutine(a0),d0
-		move.w	S1Obj64_Index(pc,d0.w),d1
-		jmp	S1Obj64_Index(pc,d1.w)
+		include	"obj/S1/64 Bubbles.asm"
 ; ---------------------------------------------------------------------------
-S1Obj64_Index:	dc.w S1Obj64_Init-S1Obj64_Index
-		dc.w S1Obj64_Animate-S1Obj64_Index
-		dc.w S1Obj64_ChkWater-S1Obj64_Index
-		dc.w S1Obj64_Display-S1Obj64_Index
-		dc.w S1Obj64_Delete-S1Obj64_Index
-		dc.w S1Obj64_BblMaker-S1Obj64_Index
-; ---------------------------------------------------------------------------
-
-S1Obj64_Init:
-		addq.b	#2,obRoutine(a0)
-		move.l	#Map_Obj0A_Bubbles,obMap(a0)
-		move.w	#make_art_tile(ArtTile_LZ_Bubbles,0,1),obGfx(a0)
-		bsr.w	Adjust2PArtPointer
-		move.b	#$84,obRender(a0)
-		move.b	#$10,obActWid(a0)
-		move.b	#1,obPriority(a0)
-		move.b	obSubtype(a0),d0
-		bpl.s	loc_13A32
-		addq.b	#8,obRoutine(a0)
-		andi.w	#$7F,d0
-		move.b	d0,objoff_32(a0)
-		move.b	d0,objoff_33(a0)
-		move.b	#6,obAnim(a0)
-		bra.w	S1Obj64_BblMaker
-; ---------------------------------------------------------------------------
-
-loc_13A32:
-		move.b	d0,obAnim(a0)
-		move.w	obX(a0),objoff_30(a0)
-		move.w	#-$88,obVelY(a0)
-		jsr	(RandomNumber).l
-		move.b	d0,obAngle(a0)
-
-S1Obj64_Animate:
-		lea	(Ani_S1Obj64).l,a1
-		jsr	(AnimateSprite).l
-		cmpi.b	#6,obFrame(a0)
-		bne.s	S1Obj64_ChkWater
-		move.b	#1,objoff_2E(a0)
-
-S1Obj64_ChkWater:
-		move.w	(v_waterpos1).w,d0
-		cmp.w	obY(a0),d0
-		blo.s	loc_13A7E
-
-loc_13A70:
-		move.b	#6,obRoutine(a0)
-		addq.b	#3,obAnim(a0)
-		bra.w	S1Obj64_Display
-; ---------------------------------------------------------------------------
-
-loc_13A7E:
-		move.b	obAngle(a0),d0
-		addq.b	#1,obAngle(a0)
-		andi.w	#$7F,d0
-		lea	(Obj0A_WobbleData).l,a1
-		move.b	(a1,d0.w),d0
-		ext.w	d0
-		add.w	objoff_30(a0),d0
-		move.w	d0,obX(a0)
-		tst.b	objoff_2E(a0)
-		beq.s	loc_13B0A
-		bsr.w	S1Obj64_ChkSonic
-		beq.s	loc_13B0A
-		bsr.w	ResumeMusic
-		move.w	#sfx_Bubble,d0
-		jsr	(QueueSound2).l
-		lea	(v_player).w,a1
-		clr.w	obVelX(a1)
-		clr.w	obVelY(a1)
-		clr.w	obInertia(a1)
-		move.b	#$15,obAnim(a1)
-		move.w	#$23,objoff_2E(a1)
-		move.b	#0,objoff_3C(a1)
-		bclr	#5,obStatus(a1)
-		bclr	#4,obStatus(a1)
-		btst	#2,obStatus(a1)
-		beq.w	loc_13A70
-		bclr	#2,obStatus(a1)
-		move.b	#$13,obHeight(a1)
-		move.b	#9,obWidth(a1)
-		subq.w	#5,obY(a1)
-		bra.w	loc_13A70
-; ---------------------------------------------------------------------------
-
-loc_13B0A:
-		bsr.w	ObjectMove
-		tst.b	obRender(a0)
-		bpl.s	loc_13B1A
-		jmp	(DisplaySprite).l
-; ---------------------------------------------------------------------------
-
-loc_13B1A:
-		jmp	(DeleteObject).l
-; ---------------------------------------------------------------------------
-
-S1Obj64_Display:
-		lea	(Ani_S1Obj64).l,a1
-		jsr	(AnimateSprite).l
-		tst.b	obRender(a0)
-		bpl.s	loc_13B38
-		jmp	(DisplaySprite).l
-; ---------------------------------------------------------------------------
-
-loc_13B38:
-		jmp	(DeleteObject).l
-; ---------------------------------------------------------------------------
-
-S1Obj64_Delete:
-		bra.w	DeleteObject
-; ---------------------------------------------------------------------------
-
-S1Obj64_BblMaker:
-		tst.w	objoff_36(a0)
-		bne.s	loc_13BA4
-		move.w	(v_waterpos1).w,d0
-		cmp.w	obY(a0),d0
-		bhs.w	loc_13C50
-		tst.b	obRender(a0)
-		bpl.w	loc_13C50
-		subq.w	#1,objoff_38(a0)
-		bpl.w	loc_13C44
-		move.w	#1,objoff_36(a0)
-
-loc_13B6A:
-		jsr	(RandomNumber).l
-		move.w	d0,d1
-		andi.w	#7,d0
-		cmpi.w	#6,d0
-		bhs.s	loc_13B6A
-		move.b	d0,objoff_34(a0)
-		andi.w	#$C,d1
-		lea	(S1Obj64_BblTypes).l,a1
-		adda.w	d1,a1
-		move.l	a1,objoff_3C(a0)
-		subq.b	#1,objoff_32(a0)
-		bpl.s	loc_13BA2
-		move.b	objoff_33(a0),objoff_32(a0)
-		bset	#7,objoff_36(a0)
-
-loc_13BA2:
-		bra.s	loc_13BAC
-; ---------------------------------------------------------------------------
-
-loc_13BA4:
-		subq.w	#1,objoff_38(a0)
-		bpl.w	loc_13C44
-
-loc_13BAC:
-		jsr	(RandomNumber).l
-		andi.w	#$1F,d0
-		move.w	d0,objoff_38(a0)
-		bsr.w	FindFreeObj
-		bne.s	loc_13C28
-		_move.b	#id_Obj64,obID(a1)
-		move.w	obX(a0),obX(a1)
-		jsr	(RandomNumber).l
-		andi.w	#$F,d0
-		subq.w	#8,d0
-		add.w	d0,obX(a1)
-		move.w	obY(a0),obY(a1)
-		moveq	#0,d0
-		move.b	objoff_34(a0),d0
-		movea.l	objoff_3C(a0),a2
-		move.b	(a2,d0.w),obSubtype(a1)
-		btst	#7,objoff_36(a0)
-		beq.s	loc_13C28
-		jsr	(RandomNumber).l
-		andi.w	#3,d0
-		bne.s	loc_13C14
-		bset	#6,objoff_36(a0)
-		bne.s	loc_13C28
-		move.b	#2,obSubtype(a1)
-
-loc_13C14:
-		tst.b	objoff_34(a0)
-		bne.s	loc_13C28
-		bset	#6,objoff_36(a0)
-		bne.s	loc_13C28
-		move.b	#2,obSubtype(a1)
-
-loc_13C28:
-		subq.b	#1,objoff_34(a0)
-		bpl.s	loc_13C44
-		jsr	(RandomNumber).l
-		andi.w	#$7F,d0
-		addi.w	#$80,d0
-		add.w	d0,objoff_38(a0)
-		clr.w	objoff_36(a0)
-
-loc_13C44:
-		lea	(Ani_S1Obj64).l,a1
-		jsr	(AnimateSprite).l
-
-loc_13C50:
-		out_of_range.w	DeleteObject
-		move.w	(v_waterpos1).w,d0
-		cmp.w	obY(a0),d0
-		blo.w	DisplaySprite
-		rts
-; ---------------------------------------------------------------------------
-S1Obj64_BblTypes:dc.b	0,  1,	0,  0,	0,  0,	1,  0,	0
-		dc.b   0,  0,  1,  0,  1,  0,  0,  1,  0
-		even
-
-; =============== S U B	R O U T	I N E =======================================
-
-
-S1Obj64_ChkSonic:
-		tst.b	(f_playerctrl).w
-		bmi.s	loc_13CBE
-		lea	(v_player).w,a1
-		move.w	obX(a1),d0
-		move.w	obX(a0),d1
-		subi.w	#$10,d1
-		cmp.w	d0,d1
-		bhs.s	loc_13CBE
-		addi.w	#$20,d1
-		cmp.w	d0,d1
-		blo.s	loc_13CBE
-		move.w	obY(a1),d0
-		move.w	obY(a0),d1
-		cmp.w	d0,d1
-		bhs.s	loc_13CBE
-		addi.w	#$10,d1
-		cmp.w	d0,d1
-		blo.s	loc_13CBE
-		moveq	#1,d0
-		rts
-; ---------------------------------------------------------------------------
-
-loc_13CBE:
-		moveq	#0,d0
-		rts
-; End of function S1Obj64_ChkSonic
-
-; ---------------------------------------------------------------------------
-Ani_S1Obj64:	dc.w byte_13CD0-Ani_S1Obj64
-		dc.w byte_13CD5-Ani_S1Obj64
-		dc.w byte_13CDB-Ani_S1Obj64
-		dc.w byte_13CE2-Ani_S1Obj64
-		dc.w byte_13CE2-Ani_S1Obj64
-		dc.w byte_13CE4-Ani_S1Obj64
-		dc.w byte_13CE9-Ani_S1Obj64
+Ani_Bub:	dc.w byte_13CD0-Ani_Bub
+		dc.w byte_13CD5-Ani_Bub
+		dc.w byte_13CDB-Ani_Bub
+		dc.w byte_13CE2-Ani_Bub
+		dc.w byte_13CE2-Ani_Bub
+		dc.w byte_13CE4-Ani_Bub
+		dc.w byte_13CE9-Ani_Bub
 byte_13CD0:	dc.b  $E,  0,  1,  2,$FC
 byte_13CD5:	dc.b  $E,  1,  2,  3,  4,$FC
 byte_13CDB:	dc.b  $E,  2,  3,  4,  5,  6,$FC
@@ -14603,29 +14362,29 @@ byte_13CE2:	dc.b   4,$FC
 byte_13CE4:	dc.b   4,  6,  7,  8,$FC
 byte_13CE9:	dc.b  $F,$13,$14,$15,$FF
 		even
-Map_Obj0A_Bubbles:dc.w word_13D1C-Map_Obj0A_Bubbles
-		dc.w word_13D26-Map_Obj0A_Bubbles
-		dc.w word_13D30-Map_Obj0A_Bubbles
-		dc.w word_13D3A-Map_Obj0A_Bubbles
-		dc.w word_13D44-Map_Obj0A_Bubbles
-		dc.w word_13D4E-Map_Obj0A_Bubbles
-		dc.w word_13D58-Map_Obj0A_Bubbles
-		dc.w word_13D62-Map_Obj0A_Bubbles
-		dc.w word_13D84-Map_Obj0A_Bubbles
-		dc.w word_13DA6-Map_Obj0A_Bubbles
-		dc.w word_13DB0-Map_Obj0A_Bubbles
-		dc.w word_13DBA-Map_Obj0A_Bubbles
-		dc.w word_13DC4-Map_Obj0A_Bubbles
-		dc.w word_13DCE-Map_Obj0A_Bubbles
-		dc.w word_13DD8-Map_Obj0A_Bubbles
-		dc.w word_13DE2-Map_Obj0A_Bubbles
-		dc.w word_13DEC-Map_Obj0A_Bubbles
-		dc.w word_13DF6-Map_Obj0A_Bubbles
-		dc.w word_13E00-Map_Obj0A_Bubbles
-		dc.w word_13E0A-Map_Obj0A_Bubbles
-		dc.w word_13E14-Map_Obj0A_Bubbles
-		dc.w word_13E1E-Map_Obj0A_Bubbles
-		dc.w word_13E28-Map_Obj0A_Bubbles
+Map_Bub:dc.w word_13D1C-Map_Bub
+		dc.w word_13D26-Map_Bub
+		dc.w word_13D30-Map_Bub
+		dc.w word_13D3A-Map_Bub
+		dc.w word_13D44-Map_Bub
+		dc.w word_13D4E-Map_Bub
+		dc.w word_13D58-Map_Bub
+		dc.w word_13D62-Map_Bub
+		dc.w word_13D84-Map_Bub
+		dc.w word_13DA6-Map_Bub
+		dc.w word_13DB0-Map_Bub
+		dc.w word_13DBA-Map_Bub
+		dc.w word_13DC4-Map_Bub
+		dc.w word_13DCE-Map_Bub
+		dc.w word_13DD8-Map_Bub
+		dc.w word_13DE2-Map_Bub
+		dc.w word_13DEC-Map_Bub
+		dc.w word_13DF6-Map_Bub
+		dc.w word_13E00-Map_Bub
+		dc.w word_13E0A-Map_Bub
+		dc.w word_13E14-Map_Bub
+		dc.w word_13E1E-Map_Bub
+		dc.w word_13E28-Map_Bub
 word_13D1C:	dc.w 1
 		dc.w $FC00,    0,    0,$FFFC		; 0
 word_13D26:	dc.w 1
@@ -14687,83 +14446,7 @@ word_13E28:	dc.w 0
 ; ---------------------------------------------------------------------------
 Map_Obj03:	include	"mappings/sprite/obj03.asm"
 
-; ===========================================================================
-
-Obj0B:
-		moveq	#0,d0
-		move.b	obRoutine(a0),d0
-		move.w	Obj0B_Index(pc,d0.w),d1
-		jmp	Obj0B_Index(pc,d1.w)
-; ---------------------------------------------------------------------------
-Obj0B_Index:	dc.w loc_141C8-Obj0B_Index
-		dc.w loc_1421C-Obj0B_Index
-		dc.w loc_1422A-Obj0B_Index
-; ---------------------------------------------------------------------------
-
-loc_141C8:
-		addq.b	#2,obRoutine(a0)
-		move.l	#Map_Obj0B,obMap(a0)
-		move.w	#make_art_tile(ArtTile_Level,3,1),obGfx(a0)
-		bsr.w	Adjust2PArtPointer
-		ori.b	#4,obRender(a0)
-		move.b	#$10,obActWid(a0)
-		move.b	#4,obPriority(a0)
-		moveq	#0,d0
-		move.b	obSubtype(a0),d0
-		andi.w	#$F0,d0
-		addi.w	#$10,d0
-		move.w	d0,d1
-		subq.w	#1,d0
-		move.w	d0,objoff_30(a0)
-		move.w	d0,objoff_32(a0)
-		moveq	#0,d0
-		move.b	obSubtype(a0),d0
-		andi.w	#$F,d0
-		addq.w	#1,d0
-		lsl.w	#4,d0
-		move.b	d0,objoff_36(a0)
-
-loc_1421C:
-		move.b	(Vint_runcount+3).w,d0
-		add.b	objoff_36(a0),d0
-		bne.s	loc_14254
-		addq.b	#2,obRoutine(a0)
-
-loc_1422A:
-		subq.w	#1,objoff_30(a0)
-		bpl.s	loc_14248
-		move.w	#$7F,objoff_30(a0)
-		tst.b	obAnim(a0)
-		beq.s	loc_14242
-		move.w	objoff_32(a0),objoff_30(a0)
-
-loc_14242:
-		bchg	#0,obAnim(a0)
-
-loc_14248:
-		lea	(off_1428A).l,a1
-		jsr	(AnimateSprite).l
-
-loc_14254:
-		tst.b	obFrame(a0)
-		bne.s	loc_1426E
-		moveq	#0,d1
-		move.b	obActWid(a0),d1
-		moveq	#$11,d3
-		move.w	obX(a0),d4
-		bsr.w	sub_F78A
-		bra.w	MarkObjGone
-; ---------------------------------------------------------------------------
-
-loc_1426E:
-		btst	#3,obStatus(a0)
-		beq.s	loc_14286
-		lea	(v_player).w,a1
-		bclr	#3,obStatus(a1)
-		bclr	#3,obStatus(a0)
-
-loc_14286:
-		bra.w	MarkObjGone
+		include	"obj/0B.asm"
 ; ---------------------------------------------------------------------------
 off_1428A:	dc.w byte_1428E-off_1428A
 		dc.w byte_14296-off_1428A
@@ -14788,89 +14471,7 @@ word_142D0:	dc.w 1
 ; ---------------------------------------------------------------------------
 		nop
 
-Obj0C:
-		moveq	#0,d0
-		move.b	obRoutine(a0),d0
-		move.w	Obj0C_Index(pc,d0.w),d1
-		jmp	Obj0C_Index(pc,d1.w)
-; ---------------------------------------------------------------------------
-Obj0C_Index:	dc.w Obj0C_Init-Obj0C_Index
-		dc.w Obj0C_Main-Obj0C_Index
-; ---------------------------------------------------------------------------
-
-Obj0C_Init:
-		addq.b	#2,obRoutine(a0)
-		move.l	#Map_Obj0C,obMap(a0)
-		move.w	#make_art_tile($418,3,1),obGfx(a0)
-		bsr.w	Adjust2PArtPointer
-		ori.b	#4,obRender(a0)
-		move.b	#$10,obActWid(a0)
-		move.b	#4,obPriority(a0)
-		move.w	obY(a0),d0
-		subi.w	#$10,d0
-		move.w	d0,objoff_3A(a0)
-		moveq	#0,d0
-		move.b	obSubtype(a0),d0
-		andi.w	#$F0,d0
-		addi.w	#$10,d0
-		move.w	d0,d1
-		subq.w	#1,d0
-		move.w	d0,objoff_30(a0)
-		move.w	d0,objoff_32(a0)
-		moveq	#0,d0
-		move.b	obSubtype(a0),d0
-		andi.w	#$F,d0
-		move.b	d0,objoff_3E(a0)
-		move.b	d0,objoff_3F(a0)
-
-Obj0C_Main:
-		move.b	objoff_3C(a0),d0
-		beq.s	loc_1438C
-		cmpi.b	#$80,d0
-		bne.s	loc_1439C
-		move.b	objoff_3D(a0),d1
-		bne.s	loc_1436E
-		subq.b	#1,objoff_3E(a0)
-		bpl.s	loc_1436E
-		move.b	objoff_3F(a0),objoff_3E(a0)
-		bra.s	loc_1439C
-; ---------------------------------------------------------------------------
-
-loc_1436E:
-		addq.b	#1,objoff_3D(a0)
-		move.b	d1,d0
-		bsr.w	j_CalcSine
-		addi.w	#8,d0
-		asr.w	#6,d0
-		subi.w	#$10,d0
-		add.w	objoff_3A(a0),d0
-		move.w	d0,obY(a0)
-		bra.s	loc_143B2
-; ---------------------------------------------------------------------------
-
-loc_1438C:
-		move.w	(Vint_runcount+2).w,d1
-		andi.w	#$3FF,d1
-		bne.s	loc_143A0
-		move.b	#1,objoff_3D(a0)
-
-loc_1439C:
-		addq.b	#1,objoff_3C(a0)
-
-loc_143A0:
-		bsr.w	j_CalcSine
-		addi.w	#8,d1
-		asr.w	#4,d1
-		add.w	objoff_3A(a0),d1
-		move.w	d1,obY(a0)
-
-loc_143B2:
-		moveq	#0,d1
-		move.b	obActWid(a0),d1
-		moveq	#9,d3
-		move.w	obX(a0),d4
-		bsr.w	sub_F78A
-		bra.w	MarkObjGone
+		include	"obj/0C.asm"
 ; ---------------------------------------------------------------------------
 Map_Obj0C:	dc.w word_143C8-Map_Obj0C
 word_143C8:	dc.w 1
@@ -14883,37 +14484,7 @@ j_CalcSine:
 
 		align 4
 
-;----------------------------------------------------
-; Object 12 - Master Emerald from HPZ
-;----------------------------------------------------
-
-Obj12:
-		moveq	#0,d0
-		move.b	obRoutine(a0),d0
-		move.w	Obj12_Index(pc,d0.w),d1
-		jmp	Obj12_Index(pc,d1.w)
-; ---------------------------------------------------------------------------
-Obj12_Index:	dc.w Obj12_Init-Obj12_Index
-		dc.w Obj12_Display-Obj12_Index
-; ---------------------------------------------------------------------------
-
-Obj12_Init:
-		addq.b	#2,obRoutine(a0)
-		move.l	#Map_Obj12,obMap(a0)
-		move.w	#make_art_tile(ArtTile_HPZ_Emerald,3,0),obGfx(a0)
-		bsr.w	Adjust2PArtPointer
-		move.b	#4,obRender(a0)
-		move.b	#$20,obActWid(a0)
-		move.b	#4,obPriority(a0)
-
-Obj12_Display:
-		move.w	#$20,d1
-		move.w	#$10,d2
-		move.w	#$10,d3
-		move.w	obX(a0),d4
-		bsr.w	SolidObject
-		out_of_range.w	DeleteObject
-		bra.w	DisplaySprite
+		include	"obj/12 Master Emerald.asm"
 ; ---------------------------------------------------------------------------
 Map_Obj12:	dc.w word_14444-Map_Obj12
 word_14444:	dc.w 2
@@ -14921,126 +14492,8 @@ word_14444:	dc.w 2
 		dc.w $F00F,  $10,    8,	   0
 ; ---------------------------------------------------------------------------
 		nop
-;----------------------------------------------------
-; Object 13 - HPZ waterfall
-;----------------------------------------------------
 
-Obj13:
-		moveq	#0,d0
-		move.b	obRoutine(a0),d0
-		move.w	Obj13_Index(pc,d0.w),d1
-		jmp	Obj13_Index(pc,d1.w)
-; ---------------------------------------------------------------------------
-Obj13_Index:	dc.w loc_1446C-Obj13_Index
-		dc.w loc_14532-Obj13_Index
-		dc.w loc_145BC-Obj13_Index
-; ---------------------------------------------------------------------------
-
-loc_1446C:
-		addq.b	#2,obRoutine(a0)
-		move.l	#Map_Obj13,obMap(a0)
-		move.w	#make_art_tile(ArtTile_HPZ_Waterfall,3,1),obGfx(a0)
-		bsr.w	Adjust2PArtPointer
-		move.b	#4,obRender(a0)
-		move.b	#$10,obActWid(a0)
-		move.b	#1,obPriority(a0)
-		move.b	#$12,obFrame(a0)
-		bsr.s	sub_144D4
-		move.b	#$A0,obHeight(a1)
-		bset	#4,obRender(a1)
-		move.l	a1,objoff_38(a0)
-		move.w	obY(a0),objoff_34(a0)
-		move.w	obY(a0),objoff_36(a0)
-		cmpi.b	#$10,obSubtype(a0)
-		blo.s	loc_14518
-		bsr.s	sub_144D4
-		move.l	a1,objoff_3C(a0)
-		move.w	obY(a0),obY(a1)
-		addi.w	#$98,obY(a1)
-		bra.s	loc_14518
-
-; =============== S U B	R O U T	I N E =======================================
-
-
-sub_144D4:
-		jsr	(FindNextFreeObj).l
-		bne.s	locret_14516
-		_move.b	#id_Obj13,obID(a1)
-		addq.b	#4,obRoutine(a1)
-		move.w	obX(a0),obX(a1)
-		move.w	obY(a0),obY(a1)
-		move.l	#Map_Obj13,obMap(a1)
-		move.w	#make_art_tile(ArtTile_HPZ_Waterfall,3,1),obGfx(a1)
-		bsr.w	Adjust2PArtPointer2
-		move.b	#4,obRender(a1)
-		move.b	#$10,obActWid(a1)
-		move.b	#1,obPriority(a1)
-
-locret_14516:
-		rts
-; End of function sub_144D4
-
-; ---------------------------------------------------------------------------
-
-loc_14518:
-		moveq	#0,d1
-		move.b	obSubtype(a0),d1
-		move.w	objoff_34(a0),d0
-		subi.w	#$78,d0
-		lsl.w	#4,d1
-		add.w	d1,d0
-		move.w	d0,obY(a0)
-		move.w	d0,objoff_34(a0)
-
-loc_14532:
-		movea.l	objoff_38(a0),a1
-		move.b	#$12,obFrame(a0)
-		move.w	objoff_34(a0),d0
-		move.w	(v_waterpos1).w,d1
-		cmp.w	d0,d1
-		bhs.s	loc_1454A
-		move.w	d1,d0
-
-loc_1454A:
-		move.w	d0,obY(a0)
-		sub.w	objoff_36(a0),d0
-		addi.w	#$80,d0
-		bmi.s	loc_1459C
-		lsr.w	#4,d0
-		move.w	d0,d1
-		cmpi.w	#$F,d0
-		blo.s	loc_14564
-		moveq	#$F,d0
-
-loc_14564:
-		move.b	d0,obFrame(a1)
-		cmpi.b	#$10,obSubtype(a0)
-		blo.s	loc_14584
-		movea.l	objoff_3C(a0),a1
-		subi.w	#$F,d1
-		bhs.s	loc_1457C
-		moveq	#0,d1
-
-loc_1457C:
-		addi.w	#$13,d1
-		move.b	d1,obFrame(a1)
-
-loc_14584:
-		out_of_range.w	DeleteObject
-		bra.w	DisplaySprite
-; ---------------------------------------------------------------------------
-
-loc_1459C:
-		moveq	#$13,d0
-		move.b	d0,obFrame(a0)
-		move.b	d0,obFrame(a1)
-		out_of_range.w	DeleteObject
-		rts
-; ---------------------------------------------------------------------------
-
-loc_145BC:
-		out_of_range.w	DeleteObject
-		bra.w	DisplaySprite
+		include	"obj/13 HPZ Waterfall.asm"
 ; ---------------------------------------------------------------------------
 Map_Obj13:	dc.w word_1460E-Map_Obj13
 		dc.w word_14618-Map_Obj13

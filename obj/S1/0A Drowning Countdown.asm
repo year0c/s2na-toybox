@@ -21,7 +21,7 @@ Obj0A_Index:	dc.w Obj0A_Init-Obj0A_Index
 
 Obj0A_Init:
 		addq.b	#2,obRoutine(a0)
-		move.l	#Map_Obj0A_Bubbles,obMap(a0)
+		move.l	#Map_Bub,obMap(a0)
 		move.w	#make_art_tile(ArtTile_LZ_Bubbles,0,1),obGfx(a0)
 		move.b	#$84,obRender(a0)
 		move.b	#$10,obActWid(a0)

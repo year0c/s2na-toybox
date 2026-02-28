@@ -63,7 +63,7 @@ Checksum:	dc.w $AFC7				; Checksum (patched later if incorrect)
 		dc.b "J               "			; I/O support
 		dc.l StartOfRom				; Start address of ROM
 ROMEndLoc:	dc.l $7FFFF				; End address of ROM (leftover from Sonic 1)
-		dc.l v_start&$FFFFFF			; Start address of RAM
+		dc.l v_ram_start&$FFFFFF			; Start address of RAM
 		dc.l (v_end-1)&$FFFFFF			; End address of RAM
 		if EnableSRAM=1
 		dc.b $52, $41, $A0+(BackupSRAM<<6)+(AddressSRAM<<3), $20 ; Backup RAM ID
@@ -86,16 +86,16 @@ ErrorTrap:
 ; ---------------------------------------------------------------------------
 
 EntryPoint:
-		tst.l	(z80_port_1_control).l		; test Port A Ctrl
+		tst.l	(port_1_control_hi).l		; test Port A Ctrl
 		bne.s	PortA_OK
-		tst.w	(z80_expansion_control).l	; test Port C Ctrl
+		tst.w	(expansion_control_hi).l	; test Port C Ctrl
 
 PortA_OK:
 		bne.s	PortC_OK
 		lea	InitValues(pc),a5
 		movem.w	(a5)+,d5-d7
 		movem.l	(a5)+,a0-a4
-		move.b	z80_version-z80_bus_request(a1),d0			; get hardware version
+		move.b	console_version-z80_bus_request(a1),d0			; get hardware version
 		andi.b	#$F,d0
 		beq.s	SkipSecurity
 		move.l	#"SEGA",security_addr-z80_bus_request(a1)
@@ -247,14 +247,14 @@ PSGInitValues_End:
 
 GameProgram:
 		tst.w	(vdp_control_port).l
-		btst	#6,(HW_Expansion_Control).l
+		btst	#6,(expansion_control).l
 		beq.s	ChecksumTest
 		cmpi.l	#'init',(v_init).w
 		beq.w	GameInit
 
 ChecksumTest:
-		movea.l	#ErrorTrap,a0			; start checking bytes after header ($200)
-		movea.l	#ROMEndLoc,a1			; stop at end of ROM (but not really since it's half of the ROM, leftover from Sonic 1)
+		movea.l	#EndOfHeader,a0		; start checking bytes after header ($200)
+		movea.l	#ROMEndLoc,a1		; stop at end of ROM (but not really since it's half of the ROM, leftover from Sonic 1)
 		move.l	(a1),d0
 		move.l	#$7FFFF,d0
 		moveq	#0,d1
@@ -263,12 +263,12 @@ ChecksumLoop:
 		add.w	(a0)+,d1
 		cmp.l	a0,d0
 		bcc.s	ChecksumLoop
-		movea.l	#Checksum,a1			; read the checksum
-		cmp.w	(a1),d1					; compare correct checksum to one in ROM
+		movea.l	#Checksum,a1		; read the checksum
+		cmp.w	(a1),d1				; compare correct checksum to one in ROM
 	if 0
-		bne.w	ChecksumError			; if not equal to the one in ROM, checksum error
+		bne.w	ChecksumError		; if not equal to the one in ROM, checksum error
 	else
-		nop								; and do absolutely nothing with it
+		nop							; and do absolutely nothing with it
 		nop
 	endif
 		lea	(v_crossresetram).w,a6
@@ -278,15 +278,15 @@ ChecksumLoop:
 loc_350:
 		move.l	d7,(a6)+
 		dbf	d6,loc_350
-		move.b	(HW_Version).l,d0
+		move.b	(console_version).l,d0
 		andi.b	#$C0,d0
 		move.b	d0,(v_megadrive).w
 		move.l	#"init",(v_init).w
 
 GameInit:
-		lea	(v_start&$FFFFFF).l,a6
+		lea	(v_ram_start&$FFFFFF).l,a6
 		moveq	#0,d7
-		move.w	#bytesToLcnt(v_crossresetram-v_start),d6
+		move.w	#bytesToLcnt(v_crossresetram-v_ram_start),d6
 
 GameClrRAM:
 		move.l	d7,(a6)+
@@ -881,9 +881,9 @@ JoypadInit:
 		stopZ80
 		waitZ80
 		moveq	#$40,d0
-		move.b	d0,(HW_Port_1_Control).l
-		move.b	d0,(HW_Port_2_Control).l
-		move.b	d0,(HW_Expansion_Control).l
+		move.b	d0,(port_1_control).l
+		move.b	d0,(port_2_control).l
+		move.b	d0,(expansion_control).l
 		startZ80
 		rts
 ; End of function JoypadInit
@@ -897,7 +897,7 @@ JoypadInit:
 
 ReadJoypads:
 		lea	(v_jpadhold1).w,a0		; address where joypad states are written
-		lea	(HW_Port_1_Data).l,a1		; first joypad port
+		lea	(port_1_data).l,a1		; first joypad port
 		bsr.s	Joypad_Read			; do the first joypad
 		addq.w	#2,a1				; do the second joypad
 
@@ -1055,7 +1055,7 @@ QueueSound3:
 ; End of functions QueueSound3
 
 
-		include	"_inc/PauseGame.asm"
+		include	"_Include/PauseGame.asm"
 
 ; ---------------------------------------------------------------------------
 ; Subroutine to transfer a plane map to VRAM
@@ -1104,8 +1104,8 @@ PlaneMapToVRAM_H40_TileLoop:
 		rts
 ; End of function PlaneMapToVRAM_H40
 
-		include "_inc/DMA Queue.asm"
-		include "_inc/Nemesis Decompression.asm"
+		include "_Include/DMA Queue.asm"
+		include "_Include/Nemesis Decompression.asm"
 
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
 ; ---------------------------------------------------------------------------
@@ -1367,11 +1367,11 @@ loc_17EE:
 		rts
 ; End of function QuickPLC
 
-		include "_inc/Enigma Decompression.asm"
-		include "_inc/Kosinski Decompression.asm"
-		include "_inc/Kid Chameleon Decompression.asm"
+		include "_Include/Enigma Decompression.asm"
+		include "_Include/Kosinski Decompression.asm"
+		include "_Include/Kid Chameleon Decompression.asm"
 
-		include	"_inc/PaletteCycle.asm"
+		include	"_Include/PaletteCycle.asm"
 
 Pal_HTZCyc2:	binclude "palette/Hill Top Lava Delay.bin"
 		even
@@ -1951,7 +1951,7 @@ PalLoad4_Water:
 
 ; ===========================================================================
 
-		include	"_inc/Palette Pointers.asm"
+		include	"_Include/Palette Pointers.asm"
 
 ; ---------------------------------------------------------------------------
 ; Palette data
@@ -2161,7 +2161,7 @@ SegaScreen:
 		move.w	#$8B00,(a6)
 		move.w	#$8C81,(a6)
 		clr.b	(f_wtr_state).w
-		move	#$2700,sr
+		move.w	#$2700,sr
 		move.w	(v_vdp_buffer1).w,d0
 		andi.b	#$BF,d0
 		move.w	d0,(vdp_control_port).l
@@ -2169,15 +2169,15 @@ SegaScreen:
 		locVRAM ArtTile_Sega_Tiles*tile_size
 		lea	(Nem_SegaLogo).l,a0
 		bsr.w	NemDec
-		lea	(v_start).l,a1
+		lea	(v_ram_start).l,a1
 		lea	(Eni_SegaLogo).l,a0
 		move.w	#make_art_tile(ArtTile_Sega_Tiles,0,0),d0
 		bsr.w	EniDec
-		copyTilemap	v_start,vram_bg+$510,24,8
-		copyTilemap	v_start+$180,vram_fg,40,28
+		copyTilemap	v_ram_start,vram_bg+$510,24,8
+		copyTilemap	v_ram_start+$180,vram_fg,40,28
 		tst.b	(v_megadrive).w			; is console Japanese?
 		bmi.s	loc_316A			; if not, branch
-		copyTilemap	v_start+$A40,vram_fg+$53A,3,2 ; hide "TM" with a white rectangle
+		copyTilemap	v_ram_start+$A40,vram_fg+$53A,3,2 ; hide "TM" with a white rectangle
 
 loc_316A:
 		moveq	#palid_SegaBG,d0
@@ -2222,7 +2222,7 @@ TitleScreen:
 		bsr.w	QueueSound2
 		bsr.w	ClearPLC
 		bsr.w	Pal_FadeToBlack
-		move	#$2700,sr
+		move.w	#$2700,sr
 		bsr.w	DACDriverLoad
 		lea	(vdp_control_port).l,a6
 		move.w	#$8000+%0100,(a6)
@@ -2243,7 +2243,7 @@ TitleScreen:
 		moveq	#palid_SonicTails,d0
 		bsr.w	PalLoad1
 		bsr.w	Pal_FadeFromBlack
-		move	#$2700,sr
+		move.w	#$2700,sr
 		locVRAM	ArtTile_Title_Foreground*tile_size
 		lea	(Nem_Title).l,a0
 		bsr.w	NemDec
@@ -2258,6 +2258,7 @@ TitleScreen:
 loc_32C4:
 		move.w	(a5)+,(a6)
 		dbf	d1,loc_32C4
+
 		nop
 		move.b	#0,(v_lastlamp).w
 		move.w	#0,(Debug_placement_mode).w
@@ -2266,22 +2267,22 @@ loc_32C4:
 		move.w	#id_GHZ<<8,(Current_ZoneAndAct).w
 		move.w	#0,(v_pcyc_time).w
 		bsr.w	Pal_FadeToBlack
-		move	#$2700,sr
-		lea	(v_start).l,a1
+		move.w	#$2700,sr
+		lea	(v_ram_start).l,a1
 		lea	(Eni_TitleMap).l,a0
 		move.w	#make_art_tile(ArtTile_Title_Foreground,0,0),d0
 		bsr.w	EniDec
-		copyTilemap	v_start,vram_fg,40,28
-		lea	(v_start).l,a1
+		copyTilemap	v_ram_start,vram_fg,40,28
+		lea	(v_ram_start).l,a1
 		lea	(Eni_TitleBg1).l,a0
 		move.w	#make_art_tile(ArtTile_Title_Foreground,0,0),d0
 		bsr.w	EniDec
-		copyTilemap	v_start,vram_bg,32,28
-		lea	(v_start).l,a1
+		copyTilemap	v_ram_start,vram_bg,32,28
+		lea	(v_ram_start).l,a1
 		lea	(Eni_TitleBg2).l,a0
 		move.w	#make_art_tile(ArtTile_Title_Foreground,0,0),d0
 		bsr.w	EniDec
-		copyTilemap	v_start,vram_bg+64,32,28
+		copyTilemap	v_ram_start,vram_bg+64,32,28
 		moveq	#palid_Title,d0
 		bsr.w	PalLoad1
 		move.b	#bgm_Title,d0
@@ -2376,7 +2377,7 @@ Title_CheckLvlSel:
 		bsr.w	PalLoad2
 		clearRAM v_hscrolltablebuffer,v_hscrolltablebuffer_end
 		move.l	d0,(v_scrposy_vdp).w
-		move	#$2700,sr
+		move.w	#$2700,sr
 		lea	(vdp_data_port).l,a6
 		move.l	#$60000003,(vdp_control_port).l
 		move.w	#bytesToLcnt($1000),d1
@@ -2545,7 +2546,7 @@ loc_3694:
 		move.w	#1,(Two_player_mode).w
 
 loc_36AC:
-		cmpi.w	#id_EndZ<<8,d0
+		cmpi.w	#(id_SS-1)<<8,d0
 		bne.s	loc_36C0
 		move.b	#GameModeID_SpecialStage,(v_gamemode).w
 		clr.w	(Current_ZoneAndAct).w
@@ -2561,18 +2562,18 @@ loc_36C0:
 		rts
 ; ---------------------------------------------------------------------------
 Demo_Levels:
-		dc.w id_CPZ<<8
-		dc.w id_EHZ<<8
-		dc.w id_HPZ<<8
-		dc.w id_HTZ<<8
-		dc.w id_HTZ<<8
-		dc.w id_HTZ<<8
-		dc.w id_HTZ<<8
-		dc.w id_HTZ<<8
-		dc.w id_HPZ<<8
-		dc.w id_HPZ<<8
-		dc.w id_HPZ<<8
-		dc.w id_HPZ<<8
+		dc.b id_CPZ,0
+		dc.b id_EHZ,0
+		dc.b id_HPZ,0
+		dc.b id_HTZ,0
+		dc.b id_HTZ,0
+		dc.b id_HTZ,0
+		dc.b id_HTZ,0
+		dc.b id_HTZ,0
+		dc.b id_HPZ,0
+		dc.b id_HPZ,0
+		dc.b id_HPZ,0
+		dc.b id_HPZ,0
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -2740,7 +2741,7 @@ LevelSelect_Text:
 ; This appears to be potentially related to 16x16 data despite it using the
 ; address for chunk RAM.
 UnknownSub_1:
-		lea	(v_start).l,a1
+		lea	(v_ram_start).l,a1
 		; This contains a size of block data that is 0x5D8 in size.
 		move.w	#bytesToWcnt($5D8),d2
 
@@ -2757,17 +2758,17 @@ loc_3A3A:
 ; ---------------------------------------------------------------------------
 
 UnknownSub_2:
-		lea	(RAM_debug_start&$FFFFFF).l,a1
-		lea	(RAM_debug_start&$FFFFFF+$80).l,a2
-		lea	(v_start).l,a3
+		lea	(RAM_debug_start).l,a1
+		lea	(RAM_debug_start+$80).l,a2
+		lea	(v_ram_start).l,a3
 		move.w	#bytesToWcnt($80),d1
 
 loc_3A68:
 		bsr.w	UnknownSub_4
 		bsr.w	UnknownSub_4
 		dbf	d1,loc_3A68
-		lea	(RAM_debug_start&$FFFFFF).l,a1
-		lea	(v_start&$FFFFFF).l,a2
+		lea	(RAM_debug_start).l,a1
+		lea	(v_ram_start&$FFFFFF).l,a2
 		move.w	#bytesToWcnt($80),d1
 
 loc_3A84:
@@ -2782,19 +2783,19 @@ loc_3A90:
 ; ---------------------------------------------------------------------------
 
 UnknownSub_3:
-		lea	(RAM_debug_start&$FFFFFF).l,a1
-		lea	(v_start).l,a3
+		lea	(RAM_debug_start).l,a1
+		lea	(v_ram_start).l,a3
 		moveq	#bytesToLcnt($80),d0
 
 loc_3AA6:
 		move.l	(a1)+,(a3)+
 		dbf	d0,loc_3AA6
 		moveq	#0,d7
-		lea	(RAM_debug_start&$FFFFFF).l,a1
+		lea	(RAM_debug_start).l,a1
 		move.w	#$100-1,d5
 
 loc_3AB8:
-		lea	(v_start).l,a3
+		lea	(v_ram_start).l,a3
 		move.w	d7,d6
 
 loc_3AC0:
@@ -2876,13 +2877,13 @@ Level_NoMusicFade:
 		bsr.w	Pal_FadeToBlack
 		tst.w	(f_demo).w	; are we on an ending demo?
 		bmi.s	loc_3BB6	; if so, branch
-		move	#$2700,sr
+		move.w	#$2700,sr
 		locVRAM	ArtTile_Title_Card*tile_size
 		lea	(Nem_TitleCard).l,a0
 		bsr.w	NemDec
 		bsr.w	ClearScreen
 		fillVRAM	0, vram_window, vram_window+plane_size_64x32 ; clear window namespace
-		move	#$2300,sr
+		move.w	#$2300,sr
 		moveq	#0,d0
 		move.b	(Current_Zone).w,d0
 		lsl.w	#4,d0
@@ -3044,7 +3045,7 @@ Level_LoadObj:
 		jsr	(RingsManager).l
 		jsr	(ExecuteObjects).l
 		jsr	(BuildSprites).l
-		bsr.w	j_AniArt_Load
+		bsr.w	JmpTo_AniArt_Load
 		moveq	#0,d0
 		tst.b	(v_lastlamp).w
 		bne.s	Level_SkipClr
@@ -3160,7 +3161,7 @@ Level_DoScroll:
 Level_SkipScroll:
 		bsr.w	ChangeWaterSurfacePos
 		jsr	(RingsManager).l
-		bsr.w	j_AniArt_Load
+		bsr.w	JmpTo_AniArt_Load
 		bsr.w	PalCycle_Load
 		bsr.w	RunPLC_RAM
 		bsr.w	OscillateNumDo
@@ -3216,8 +3217,8 @@ loc_400E:
 		bne.s	Level_FDLoop
 		rts
 
-		include	"_inc/WaterFeatures.asm"
-		include "_inc/MoveSonicInDemo.asm"
+		include	"_Include/WaterFeatures.asm"
+		include "_Include/MoveSonicInDemo.asm"
 
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
 
@@ -3274,7 +3275,7 @@ ColS_Index:	dc.l ColS_GHZ			; 0
 		dc.l ColS_EHZ				; 5
 		;dc.l ColS_GHZ				; pointer for Ending is missing by default.
 
-		include	"_inc/Oscillatory Routines.asm"
+		include	"_Include/Oscillatory Routines.asm"
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -3365,7 +3366,7 @@ Demo_S1GHZ:	binclude	"demodata/S1/Intro - GHZ.bin"
 Demo_S1SS:	binclude	"demodata/S1/Intro - Special Stage.bin"
 		even
 
-j_AniArt_Load:
+JmpTo_AniArt_Load:
 		jmp	(AniArt_Load).l
 
 		align 4
@@ -7114,17 +7115,17 @@ loc_7456:
 ; ---------------------------------------------------------------------------
 
 LevelLayout_Convert:					; leftover level layout	converting function (from raw to the way it's stored in the game)
-		lea	(RAM_debug_start&$FFFFFF).l,a1
-		lea	(RAM_debug_start&$FFFFFF+$80).l,a2
-		lea	(v_start).l,a3
+		lea	(RAM_debug_start).l,a1
+		lea	(RAM_debug_start+$80).l,a2
+		lea	(v_ram_start).l,a3
 		move.w	#$40-1,d1
 
 loc_747A:
 		bsr.w	sub_750C
 		bsr.w	sub_750C
 		dbf	d1,loc_747A
-		lea	(RAM_debug_start&$FFFFFF).l,a1
-		lea	(v_start&$FFFFFF).l,a2
+		lea	(RAM_debug_start).l,a1
+		lea	(v_ram_start&$FFFFFF).l,a2
 		move.w	#bytesToWcnt($80),d1
 
 loc_7496:
@@ -7137,19 +7138,19 @@ loc_74A2:
 		dbf	d1,loc_74A2
 		rts
 ; ---------------------------------------------------------------------------
-		lea	(RAM_debug_start&$FFFFFF).l,a1
-		lea	(v_start).l,a3
+		lea	(RAM_debug_start).l,a1
+		lea	(v_ram_start).l,a3
 		moveq	#bytesToLcnt($80),d0
 
 loc_74B8:
 		move.l	(a1)+,(a3)+
 		dbf	d0,loc_74B8
 		moveq	#0,d7
-		lea	(RAM_debug_start&$FFFFFF).l,a1
+		lea	(RAM_debug_start).l,a1
 		move.w	#bytesToWcnt($200),d5
 
 loc_74CA:
-		lea	(v_start).l,a3
+		lea	(v_ram_start).l,a3
 		move.w	d7,d6
 
 loc_74D2:
@@ -20624,7 +20625,8 @@ loc_19D82:
 ; End of function sub_19CC2
 
 ; ---------------------------------------------------------------------------
-S1SS_WaRiVramSet:dc.w $142,$6142,$142,$142,$142,$142,$142,$6142
+S1SS_WaRiVramSet:
+		dc.w $142,$6142,$142,$142,$142,$142,$142,$6142
 		dc.w $142,$6142,$142,$142,$142,$142,$142,$6142
 		dc.w $2142,$142,$2142,$2142,$2142,$2142,$2142,$142
 		dc.w $2142,$142,$2142,$2142,$2142,$2142,$2142,$142
@@ -20675,7 +20677,8 @@ loc_19F1C:
 ; End of function sub_19F02
 
 ; ---------------------------------------------------------------------------
-S1SS_AniIndex:	dc.l loc_19F3A
+S1SS_AniIndex:
+		dc.l loc_19F3A
 		dc.l loc_19F6A
 		dc.l loc_19FA0
 		dc.l loc_19FD0
@@ -20700,7 +20703,7 @@ loc_19F3A:
 locret_19F62:
 		rts
 ; ---------------------------------------------------------------------------
-byte_19F64:	dc.b $42,$43,$44,$45,  0,  0
+byte_19F64:	dc.b $42,$43,$44,$45,0,0
 ; ---------------------------------------------------------------------------
 
 loc_19F6A:
@@ -20725,7 +20728,7 @@ loc_19F96:
 locret_19F98:
 		rts
 ; ---------------------------------------------------------------------------
-byte_19F9A:	dc.b $32,$33,$32,$33,  0,  0
+byte_19F9A:	dc.b $32,$33,$32,$33,0,0
 ; ---------------------------------------------------------------------------
 
 loc_19FA0:
@@ -20745,7 +20748,7 @@ loc_19FA0:
 locret_19FC8:
 		rts
 ; ---------------------------------------------------------------------------
-byte_19FCA:	dc.b $46,$47,$48,$49,  0,  0
+byte_19FCA:	dc.b $46,$47,$48,$49,0,0
 ; ---------------------------------------------------------------------------
 
 loc_19FD0:
@@ -20770,7 +20773,7 @@ loc_19FFC:
 locret_19FFE:
 		rts
 ; ---------------------------------------------------------------------------
-byte_1A000:	dc.b $2B,$31,$2B,$31,  0,  0
+byte_1A000:	dc.b $2B,$31,$2B,$31,0,0
 ; ---------------------------------------------------------------------------
 
 loc_1A006:
@@ -20793,7 +20796,7 @@ loc_1A006:
 locret_1A03E:
 		rts
 ; ---------------------------------------------------------------------------
-byte_1A040:	dc.b $46,$47,$48,$49,  0,  0
+byte_1A040:	dc.b $46,$47,$48,$49,0,0
 ; ---------------------------------------------------------------------------
 
 loc_1A046:
@@ -20814,12 +20817,18 @@ loc_1A046:
 locret_1A072:
 		rts
 ; ---------------------------------------------------------------------------
-byte_1A074:	dc.b $4B,$4C,$4D,$4E,$4B,$4C,$4D,$4E
-		dc.b   0,  0
-S1SS_LayoutIndex:dc.l S1SS_1,S1SS_2
-		dc.l S1SS_3,S1SS_4
-		dc.l S1SS_5,S1SS_6
-S1SS_StartLoc:	dc.w  $3D0, $2E0
+byte_1A074:	dc.b $4B,$4C,$4D,$4E,$4B,$4C,$4D,$4E,0,0
+
+S1SS_LayoutIndex:
+		dc.l S1SS_1
+		dc.l S1SS_2
+		dc.l S1SS_3
+		dc.l S1SS_4
+		dc.l S1SS_5
+		dc.l S1SS_6
+
+S1SS_StartLoc:
+		dc.w  $3D0, $2E0
 		dc.w  $328, $574
 		dc.w  $4E4, $2E0
 		dc.w  $3AD, $2E0
@@ -20903,7 +20912,7 @@ loc_1A162:
 
 ; ---------------------------------------------------------------------------
 S1SS_MapIndex:
-		include	"_inc/Special Stage Mappings & VRAM Pointers.asm"
+		include	"_Include/Special Stage Mappings & VRAM Pointers.asm"
 S1SS_MapIndex_End:
 ; ===========================================================================
 ; Rather humourously, these sprite mappings are stored in the Sonic 1 format
@@ -21256,9 +21265,9 @@ loc_1AC28:
 		bpl.s	locret_1AC26
 		move.b	#7,(byte_F721).w
 		move.b	#1,(byte_F720).w
-		lea	(v_start+$7500).l,a1
+		lea	(v_ram_start+$7500).l,a1
 		bsr.s	sub_1AC58
-		lea	(v_start+$7D00).l,a1
+		lea	(v_ram_start+$7D00).l,a1
 
 sub_1AC58:
 		move.w	#8-1,d1
@@ -21435,12 +21444,10 @@ APM_EHZ:	begin_animpat
 		dc.w make_block_tile(ArtTile_Art_Flowers4+$1,0,0,3,1),make_block_tile(ArtTile_Art_Flowers4+$1,1,0,3,1)
 APM_EHZ_End:
 
-APM_None:
-		dc.w 0
+APM_None:	dc.w 0
 APM_None_End:
 
-APM_Unk:
-		dc.w $1800-$B80 ; Bug: This should be $1800-$138
+APM_Unk:	dc.w $1800-$B80 ; Bug: This should be $1800-$138
 		dc.w bytesToWcnt($138)
 		dc.w make_block_tile($3A0+$1,0,0,2,0),make_block_tile($3A0+$2,0,0,2,0)
 		dc.w make_block_tile($3A0+$3,0,0,2,0),make_block_tile($3A0+$4,0,0,2,0)
@@ -21670,555 +21677,8 @@ locret_1B23C:
 		rts
 ; End of function AddPoints
 
+		include	"_Include/HUD Update.asm"
 
-; =============== S U B	R O U T	I N E =======================================
-
-
-HudUpdate:
-		nop
-		lea	(vdp_data_port).l,a6
-		tst.w	(Debug_mode_flag).w
-		bne.w	loc_1B330
-		tst.b	(f_scorecount).w
-		beq.s	loc_1B266
-		clr.b	(f_scorecount).w
-		locVRAM	(ArtTile_HUD+$1A)*tile_size,d0	; set VRAM address
-		move.l	(v_score).w,d1
-		bsr.w	HUD_Score
-
-loc_1B266:
-		tst.b	(f_ringcount).w
-		beq.s	loc_1B286
-		bpl.s	loc_1B272
-		bsr.w	HUD_LoadZero
-
-loc_1B272:
-		clr.b	(f_ringcount).w
-		locVRAM	(ArtTile_HUD+$30)*tile_size,d0	; set VRAM address
-		moveq	#0,d1
-		move.w	(v_rings).w,d1
-		bsr.w	HUD_Rings
-
-loc_1B286:
-		tst.b	(f_timecount).w
-		beq.s	loc_1B2E2
-		tst.w	(f_pause).w
-		bne.s	loc_1B2E2
-		lea	(v_time).w,a1
-		cmpi.l	#9<<16|59<<8|59,(a1)+		; if the timer has passed 9:59...
-		nop					; ...do nothing since this has been nopped out
-		addq.b	#1,-(a1)
-		cmpi.b	#60,(a1)
-		blo.s	loc_1B2E2
-		move.b	#0,(a1)
-		addq.b	#1,-(a1)
-		cmpi.b	#60,(a1)
-		blo.s	loc_1B2C2
-		move.b	#0,(a1)
-		addq.b	#1,-(a1)
-		cmpi.b	#9,(a1)
-		blo.s	loc_1B2C2
-		move.b	#9,(a1)
-
-loc_1B2C2:
-		locVRAM	(ArtTile_HUD+$28)*tile_size,d0
-		moveq	#0,d1
-		move.b	(v_timemin).w,d1
-		bsr.w	HUD_Mins
-		locVRAM	(ArtTile_HUD+$2C)*tile_size,d0
-		moveq	#0,d1
-		move.b	(v_timesec).w,d1
-		bsr.w	HUD_Secs
-
-loc_1B2E2:
-		tst.b	(f_lifecount).w
-		beq.s	loc_1B2F0
-		clr.b	(f_lifecount).w
-		bsr.w	HUD_Lives
-
-loc_1B2F0:
-		tst.b	(f_endactbonus).w
-		beq.s	locret_1B318
-		clr.b	(f_endactbonus).w
-		locVRAM	ArtTile_Bonuses*tile_size
-		moveq	#0,d1
-		move.w	(v_timebonus).w,d1
-		bsr.w	HUD_TimeRingBonus
-		moveq	#0,d1
-		move.w	(v_ringbonus).w,d1
-		bsr.w	HUD_TimeRingBonus
-
-locret_1B318:
-		rts
-; ===========================================================================
-; kills the player if the time has reached 9:59, except now it's unused due
-; to its "beq" command being noped out above
-S1TimeOver:
-		clr.b	(f_timecount).w
-		lea	(v_player).w,a0
-		movea.l	a0,a2
-		bsr.w	KillSonic
-		move.b	#1,(f_timeover).w
-		rts
-; ---------------------------------------------------------------------------
-
-loc_1B330:
-		bsr.w	HUDDebug_XY
-		tst.b	(f_ringcount).w
-		beq.s	loc_1B354
-		bpl.s	loc_1B340
-		bsr.w	HUD_LoadZero
-
-loc_1B340:
-		clr.b	(f_ringcount).w
-		locVRAM	(ArtTile_HUD+$30)*tile_size,d0	; set VRAM address
-		moveq	#0,d1
-		move.w	(v_rings).w,d1
-		bsr.w	HUD_Rings
-
-loc_1B354:
-		locVRAM	(ArtTile_HUD+$2C)*tile_size,d0	; set VRAM address
-		moveq	#0,d1
-		move.b	(v_spritecount).w,d1
-		bsr.w	HUD_Secs
-		tst.b	(f_lifecount).w
-		beq.s	loc_1B372
-		clr.b	(f_lifecount).w
-		bsr.w	HUD_Lives
-
-loc_1B372:
-		tst.b	(f_endactbonus).w
-		beq.s	locret_1B39A
-		clr.b	(f_endactbonus).w
-		locVRAM	ArtTile_Bonuses*tile_size		; set VRAM address
-		moveq	#0,d1
-		move.w	(v_timebonus).w,d1
-		bsr.w	HUD_TimeRingBonus
-		moveq	#0,d1
-		move.w	(v_ringbonus).w,d1
-		bsr.w	HUD_TimeRingBonus
-
-locret_1B39A:
-		rts
-; End of function HudUpdate
-
-
-; =============== S U B	R O U T	I N E =======================================
-
-
-HUD_LoadZero:
-		locVRAM	(ArtTile_HUD+$30)*tile_size
-		lea	HUD_TilesZero(pc),a2
-		move.w	#3-1,d2
-		bra.s	loc_1B3CC
-; End of function HUD_LoadZero
-
-
-; =============== S U B	R O U T	I N E =======================================
-
-
-HUD_Base:
-		lea	(vdp_data_port).l,a6
-		bsr.w	HUD_Lives
-		locVRAM	(ArtTile_HUD+$18)*tile_size
-		lea	HUD_TilesBase(pc),a2
-		move.w	#$F-1,d2
-
-loc_1B3CC:
-		lea	Art_HUD(pc),a1
-
-loc_1B3D0:
-		move.w	#$10-1,d1
-		move.b	(a2)+,d0
-		bmi.s	loc_1B3EC
-		ext.w	d0
-		lsl.w	#5,d0
-		lea	(a1,d0.w),a3
-
-loc_1B3E0:
-		move.l	(a3)+,(a6)
-		dbf	d1,loc_1B3E0
-
-loc_1B3E6:
-		dbf	d2,loc_1B3D0
-		rts
-; ---------------------------------------------------------------------------
-
-loc_1B3EC:
-		move.l	#0,(a6)
-		dbf	d1,loc_1B3EC
-		bra.s	loc_1B3E6
-; End of function HUD_Base
-
-; ---------------------------------------------------------------------------
-HUD_TilesBase:	dc.b $16,$FF,$FF,$FF,$FF,$FF,$FF,  0,  0,$14,  0,  0
-HUD_TilesZero:	dc.b $FF,$FF,  0,  0
-
-; =============== S U B	R O U T	I N E =======================================
-
-
-HUDDebug_XY:
-		locVRAM	(ArtTile_HUD+$18)*tile_size		; set VRAM address
-		move.w	(Camera_RAM).w,d1
-		swap	d1
-		move.w	(v_player+obX).w,d1
-		bsr.s	HUDDebug_XY2
-		move.w	(Camera_Y_pos).w,d1
-		swap	d1
-		move.w	(v_player+obY).w,d1
-; End of function HUDDebug_XY
-
-
-; =============== S U B	R O U T	I N E =======================================
-
-
-HUDDebug_XY2:
-		moveq	#8-1,d6
-		lea	(Art_Text).l,a1
-
-loc_1B430:
-		rol.w	#4,d1
-		move.w	d1,d2
-		andi.w	#$F,d2
-		cmpi.w	#$A,d2
-		blo.s	loc_1B442
-		addi.w	#7,d2
-
-loc_1B442:
-		lsl.w	#5,d2
-		lea	(a1,d2.w),a3
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		swap	d1
-		dbf	d6,loc_1B430
-		rts
-; End of function HUDDebug_XY2
-
-
-; =============== S U B	R O U T	I N E =======================================
-
-
-HUD_Rings:
-		lea	(HUD_100).l,a2
-		moveq	#3-1,d6
-		bra.s	loc_1B472
-; End of function HUD_Rings
-
-
-; =============== S U B	R O U T	I N E =======================================
-
-
-HUD_Score:
-		lea	(HUD_100000).l,a2
-		moveq	#6-1,d6
-
-loc_1B472:
-		moveq	#0,d4
-		lea	Art_HUD(pc),a1
-
-loc_1B478:
-		moveq	#0,d2
-		move.l	(a2)+,d3
-
-loc_1B47C:
-		sub.l	d3,d1
-		blo.s	loc_1B484
-		addq.w	#1,d2
-		bra.s	loc_1B47C
-; ---------------------------------------------------------------------------
-
-loc_1B484:
-		add.l	d3,d1
-		tst.w	d2
-		beq.s	loc_1B48E
-		move.w	#1,d4
-
-loc_1B48E:
-		tst.w	d4
-		beq.s	loc_1B4BC
-		lsl.w	#6,d2
-		move.l	d0,4(a6)
-		lea	(a1,d2.w),a3
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-
-loc_1B4BC:
-		addi.l	#$400000,d0
-		dbf	d6,loc_1B478
-		rts
-; End of function HUD_Score
-
-; ---------------------------------------------------------------------------
-; Subroutine to	load countdown numbers on the continue screen
-; ---------------------------------------------------------------------------
-
-; ||||||||||||||| S U B	R O U T	I N E |||||||||||||||||||||||||||||||||||||||
-
-
-ContScrCounter:
-		locVRAM	ArtTile_Continue_Number*tile_size
-		lea	(vdp_data_port).l,a6
-		lea	(HUD_10).l,a2
-		moveq	#2-1,d6
-		moveq	#0,d4
-		lea	Art_HUD(pc),a1 ; load numbers patterns
-
-ContScr_Loop:
-		moveq	#0,d2
-		move.l	(a2)+,d3
-
-loc_1C95A:
-		sub.l	d3,d1
-		blo.s	loc_1C962
-		addq.w	#1,d2
-		bra.s	loc_1C95A
-; ===========================================================================
-
-loc_1C962:
-		add.l	d3,d1
-		lsl.w	#6,d2
-		lea	(a1,d2.w),a3
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		dbf	d6,ContScr_Loop	; repeat 1 more	time
-
-		rts
-; End of function ContScrCounter
-; ---------------------------------------------------------------------------
-HUD_100000:	dc.l 100000
-HUD_10000:	dc.l 10000
-HUD_1000:	dc.l 1000
-HUD_100:	dc.l 100
-HUD_10:		dc.l 10
-HUD_1:		dc.l 1
-
-; =============== S U B	R O U T	I N E =======================================
-
-
-HUD_Mins:
-		lea	HUD_1(pc),a2
-		moveq	#1-1,d6
-		bra.s	loc_1B546
-; End of function HUD_Mins
-
-
-; =============== S U B	R O U T	I N E =======================================
-
-
-HUD_Secs:
-		lea	HUD_10(pc),a2
-		moveq	#2-1,d6
-
-loc_1B546:
-		moveq	#0,d4
-
-loc_1B548:
-		lea	Art_HUD(pc),a1
-
-loc_1B54C:
-		moveq	#0,d2
-		move.l	(a2)+,d3
-
-loc_1B550:
-		sub.l	d3,d1
-		blo.s	loc_1B558
-		addq.w	#1,d2
-		bra.s	loc_1B550
-; ---------------------------------------------------------------------------
-
-loc_1B558:
-		add.l	d3,d1
-		tst.w	d2
-		beq.s	loc_1B562
-		move.w	#1,d4
-
-loc_1B562:
-		lsl.w	#6,d2
-		move.l	d0,4(a6)
-		lea	(a1,d2.w),a3
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		addi.l	#$400000,d0
-		dbf	d6,loc_1B54C
-		rts
-; End of function HUD_Secs
-
-
-; =============== S U B	R O U T	I N E =======================================
-
-
-HUD_TimeRingBonus:
-		lea	HUD_1000(pc),a2
-		moveq	#4-1,d6
-		moveq	#0,d4
-		lea	Art_HUD(pc),a1
-
-loc_1B5A4:
-		moveq	#0,d2
-		move.l	(a2)+,d3
-
-loc_1B5A8:
-		sub.l	d3,d1
-		blo.s	loc_1B5B0
-		addq.w	#1,d2
-		bra.s	loc_1B5A8
-; ---------------------------------------------------------------------------
-
-loc_1B5B0:
-		add.l	d3,d1
-		tst.w	d2
-		beq.s	loc_1B5BA
-		move.w	#1,d4
-
-loc_1B5BA:
-		tst.w	d4
-		beq.s	loc_1B5EA
-		lsl.w	#6,d2
-		lea	(a1,d2.w),a3
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-
-loc_1B5E4:
-		dbf	d6,loc_1B5A4
-		rts
-; ---------------------------------------------------------------------------
-
-loc_1B5EA:
-		moveq	#$10-1,d5
-
-loc_1B5EC:
-		move.l	#0,(a6)
-		dbf	d5,loc_1B5EC
-		bra.s	loc_1B5E4
-; End of function HUD_TimeRingBonus
-
-
-; =============== S U B	R O U T	I N E =======================================
-
-
-HUD_Lives:
-		locVRAM	(ArtTile_Lives_Counter+9)*tile_size,d0	; set VRAM address
-		moveq	#0,d1
-		move.b	(v_lives).w,d1
-		lea	HUD_10(pc),a2
-		moveq	#2-1,d6
-		moveq	#0,d4
-		lea	Art_LivesNums(pc),a1
-
-loc_1B610:
-		move.l	d0,4(a6)
-		moveq	#0,d2
-		move.l	(a2)+,d3
-
-loc_1B618:
-		sub.l	d3,d1
-		blo.s	loc_1B620
-		addq.w	#1,d2
-		bra.s	loc_1B618
-; ---------------------------------------------------------------------------
-
-loc_1B620:
-		add.l	d3,d1
-		tst.w	d2
-		beq.s	loc_1B62A
-		move.w	#1,d4
-
-loc_1B62A:
-		tst.w	d4
-		beq.s	loc_1B650
-
-loc_1B62E:
-		lsl.w	#5,d2
-		lea	(a1,d2.w),a3
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-		move.l	(a3)+,(a6)
-
-loc_1B644:
-		addi.l	#$400000,d0
-		dbf	d6,loc_1B610
-		rts
-; ---------------------------------------------------------------------------
-
-loc_1B650:
-		tst.w	d6
-		beq.s	loc_1B62E
-		moveq	#8-1,d5
-
-loc_1B656:
-		move.l	#0,(a6)
-		dbf	d5,loc_1B656
-		bra.s	loc_1B644
-; End of function HUD_Lives
-
-; ---------------------------------------------------------------------------
 Art_HUD:	binclude	"art/uncompressed/HUD Numbers.bin"
 		even
 Art_LivesNums:	binclude	"art/uncompressed/Lives Counter Numbers.bin"
@@ -22471,15 +21931,15 @@ LoadDebugObjectSprite:
 
 ; ===========================================================================
 
-		include	"_inc/DebugList.asm"
+		include	"_Include/DebugList.asm"
 
 j_Adjust2PArtPointer_1:
 		jmp	(Adjust2PArtPointer).l
 
 		align 4
 
-		include	"_inc/LevelHeaders.asm"
-		include	"_inc/Pattern Load Cues.asm"
+		include	"_Include/LevelHeaders.asm"
+		include	"_Include/Pattern Load Cues.asm"
 ; --------------------------------------------------------------------------------------
 ; Leftover art from an unknown game, overwrites the other Sonic 1 PLC entries
 ; --------------------------------------------------------------------------------------

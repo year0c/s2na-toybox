@@ -1,3 +1,65 @@
+; ---------------------------------------------------------------------------
+; Constants
+; ---------------------------------------------------------------------------
+
+Size_of_SegaPCM:	equ $6978
+Size_of_DAC_driver_guess:	equ $1760
+
+; Clocks
+Master_Clock:    equ 53693175
+M68000_Clock:    equ Master_Clock/7
+Z80_Clock:       equ Master_Clock/15
+FM_Sample_Rate:  equ M68000_Clock/(6*6*4)
+PSG_Sample_Rate: equ Z80_Clock/16
+
+; VDP addressses
+vdp_data_port:		equ $C00000
+vdp_control_port:	equ $C00004
+vdp_counter:	equ $C00008
+psg_input:		equ $C00011
+debug_reg:		equ $C0001C
+
+; Z80 addresses
+z80_ram:	equ $A00000			; start of Z80 RAM
+z80_dac_timpani_pitch:	equ z80_ram+zTimpani_Pitch
+z80_dac_status:	equ z80_ram+zDAC_Status
+z80_dac_sample:	equ z80_ram+zDAC_Sample
+z80_ram_end:	equ $A02000			; end of non-reserved Z80 RAM
+ym2612_a0:	equ $A04000
+ym2612_d0:	equ $A04001
+ym2612_a1:	equ $A04002
+ym2612_d1:	equ $A04003
+z80_bus_request:	equ $A11100
+z80_reset:	equ $A11200
+
+; I/O addresses
+console_version:	equ $A10001
+port_1_data_hi:		equ $A10002
+port_1_data:		equ $A10003
+port_2_data_hi:		equ $A10004
+port_2_data:		equ $A10005
+port_1_control_hi:	equ $A10008
+port_1_control:		equ $A10009
+port_2_control_hi:	equ $A1000A
+port_2_control:		equ $A1000B
+expansion_control_hi:	equ $A1000C
+expansion_control:	equ $A1000D
+
+; Misc addresses
+sram_port:		equ $A130F1
+security_addr:	equ $A14000
+
+; VRAM data
+vram_window:	equ $A000				; window namespace
+vram_fg:	equ $C000				; foreground namespace
+vram_bg:	equ $E000				; background namespace
+vram_sprites:	equ $F800				; sprite table
+vram_hscroll:	equ $FC00				; horizontal scroll table
+tile_size:	equ 8*8/2
+plane_size_64x32:	equ 64*32*2
+
+palette_size:	equ $80
+
 ; ===========================================================================
 ; ---------------------------------------------------------------------------
 ; Object Status Table offsets
@@ -212,54 +274,6 @@ AniIDSonAni_1E:			ds.b 1
 	dephase
 	!org 0
 
-Size_of_SegaPCM:	equ $6978
-Size_of_DAC_driver_guess:	equ $1760
-
-; Clocks
-Master_Clock:    equ 53693175
-M68000_Clock:    equ Master_Clock/7
-Z80_Clock:       equ Master_Clock/15
-FM_Sample_Rate:  equ M68000_Clock/(6*6*4)
-PSG_Sample_Rate: equ Z80_Clock/16
-
-; VDP addressses
-vdp_data_port:		equ $C00000
-vdp_control_port:	equ $C00004
-vdp_counter:	equ $C00008
-
-psg_input:		equ $C00011
-
-; Z80 addresses
-z80_ram:	equ $A00000			; start of Z80 RAM
-z80_dac_timpani_pitch:	equ z80_ram+zTimpani_Pitch
-z80_dac_status:	equ z80_ram+zDAC_Status
-z80_dac_sample:	equ z80_ram+zDAC_Sample
-z80_ram_end:	equ $A02000			; end of non-reserved Z80 RAM
-z80_version:	equ $A10001
-z80_port_1_data:	equ $A10002
-z80_port_1_control:	equ $A10008
-z80_port_2_control:	equ $A1000A
-z80_expansion_control:	equ $A1000C
-z80_bus_request:	equ $A11100
-z80_reset:	equ $A11200
-ym2612_a0:	equ $A04000
-ym2612_d0:	equ $A04001
-ym2612_a1:	equ $A04002
-ym2612_d1:	equ $A04003
-
-security_addr:	equ $A14000
-
-; VRAM data
-vram_window:	equ $A000				; window namespace
-vram_fg:	equ $C000				; foreground namespace
-vram_bg:	equ $E000				; background namespace
-vram_sprites:	equ $F800				; sprite table
-vram_hscroll:	equ $FC00				; horizontal scroll table
-tile_size:	equ 8*8/2
-plane_size_64x32:	equ 64*32*2
-
-palette_size:	equ $80
-
 ; ===========================================================================
 ; ---------------------------------------------------------------------------
 ; V-Int routines
@@ -302,11 +316,18 @@ GameModeID_TitleCard:		equ 1<<GameModeFlag_TitleCard ; $80 ; flag mask
 	include "s1.sounddriver.ram.asm"
 
 ; Main RAM
-	phase	ramaddr($FFFE0000)
-RAM_debug_start:	ds.b	$10000
-RAM_debug_end:
+	phase	($FE0000)
+RAM_debug_start:	ds.b	$8000
 
-v_start:
+RAM_debug_demo_record:	ds.b	$4000
+
+RAM_debug_demo_record_2P:	ds.b	$4000
+
+RAM_debug_end:
+	dephase
+
+	phase	ramaddr($FFFF0000)
+v_ram_start:
 RAM_Start:
 
 Chunk_Table:		ds.w	64*$100			; 128x128 tile mappings ($8000 bytes)
@@ -929,14 +950,14 @@ v_end:
 ; Special stage
 v_ssangle		= ramaddr($FFFFF780)
 v_ssrotate		= ramaddr($FFFFF782)
-v_ssbuffer1		= v_128x128
+v_ssbuffer1		= v_ram_start
 v_ssblockbuffer		= v_ssbuffer1+$1020		; ($2000 bytes)
 v_ssblockbuffer_end	= v_ssblockbuffer+$80*$40
-v_ssbuffer2		= v_128x128+$4000
+v_ssbuffer2		= v_ram_start+$4000
 v_ssblocktypes		= v_ssbuffer2
 v_ssitembuffer		= v_ssbuffer2+$400		; ($100 bytes)
 v_ssitembuffer_end	= v_ssitembuffer+$100
-v_ssbuffer3		= v_128x128+$8000
+v_ssbuffer3		= v_ram_start+$8000
 v_ssscroll_buffer	= v_ngfx_buffer+$100
 
 ; Error handler

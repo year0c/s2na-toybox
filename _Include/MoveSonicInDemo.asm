@@ -8,7 +8,7 @@ MoveSonicInDemo:
 ; ---------------------------------------------------------------------------
 
 MoveSonic_DemoRecord:					; unused subroutine for	recording demos
-		lea	($FE8000).l,a1
+		lea	(RAM_debug_demo_record).l,a1
 
 loc_4474:
 		move.w	(Demo_button_index).w,d0
@@ -29,9 +29,9 @@ loc_4490:
 		andi.w	#$3FF,(Demo_button_index).w
 
 loc_44A4:
-		cmpi.b	#3,(Current_Zone).w		; are we on Hidden Palace?
+		cmpi.b	#id_EHZ,(Current_Zone).w		; are we on Emerald Hill?
 		bne.s	locret_44E2			; if not, branch
-		lea	($FEC000).l,a1
+		lea	(RAM_debug_demo_record_2P).l,a1
 		move.w	(Demo_button_index_2P).w,d0
 		adda.w	d0,a1
 		move.b	(v_2Pjpadhold1).w,d0
@@ -87,7 +87,7 @@ loc_450C:
 		addq.w	#2,(Demo_button_index).w
 
 loc_453A:
-		cmpi.b	#3,(Current_Zone).w
+		cmpi.b	#id_EHZ,(Current_Zone).w
 		bne.s	loc_4572
 		lea	(Demo_EHZ_2P).l,a1
 		move.w	(Demo_button_index_2P).w,d0
@@ -114,8 +114,8 @@ loc_4572:
 		rts
 ; End of function MoveSonicInDemo
 
-; ---------------------------------------------------------------------------
-Demo_Index:	dc.l Demo_S1GHZ	; leftover demo	from Sonic 1 GHZ
+Demo_Index:
+		dc.l Demo_S1GHZ	; leftover demo	from Sonic 1 GHZ
 		dc.l Demo_S1GHZ	; leftover demo	from Sonic 1 GHZ
 		dc.l Demo_CPZ
 		dc.l Demo_EHZ
@@ -123,16 +123,18 @@ Demo_Index:	dc.l Demo_S1GHZ	; leftover demo	from Sonic 1 GHZ
 		dc.l Demo_HTZ
 		dc.l Demo_S1SS	; leftover demo	from Sonic 1 Special Stage
 		dc.l Demo_S1SS	; leftover demo	from Sonic 1 Special Stage
-		dc.l $FE8000	; These point to the unused demo recording's offset
-		dc.l $FE8000
-		dc.l $FE8000
-		dc.l $FE8000
-		dc.l $FE8000
-		dc.l $FE8000
-		dc.l $FE8000
-		dc.l $FE8000
-		dc.l $FE8000
-Demo_S1EndIndex:dc.l $8B0837	; garbage, leftover from Sonic 1's ending sequence demos
+		dc.l RAM_debug_demo_record	; These point to the unused demo recording's offset
+		dc.l RAM_debug_demo_record
+		dc.l RAM_debug_demo_record
+		dc.l RAM_debug_demo_record
+		dc.l RAM_debug_demo_record
+		dc.l RAM_debug_demo_record
+		dc.l RAM_debug_demo_record
+		dc.l RAM_debug_demo_record
+		dc.l RAM_debug_demo_record
+
+Demo_S1EndIndex:
+		dc.l $8B0837	; garbage, leftover from Sonic 1's ending sequence demos
 		dc.l $42085C
 		dc.l $6A085F
 		dc.l $2F082C

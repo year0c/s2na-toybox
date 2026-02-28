@@ -3,18 +3,39 @@
 
 ; Updated by Alex Field, Filter, and RepellantMold
 
-	CPU 68000
+; ===========================================================================
+; ASSEMBLY OPTIONS:
 
 EnableSRAM	  = 0	; change to 1 to enable SRAM
 BackupSRAM	  = 1
 AddressSRAM	  = 3	; 0 = odd+even; 2 = even only; 3 = odd only
 
-FixBugs	= 0	;	if 1, fixes a handful of bugs in the game
-zeroOffsetOptimization = 0	; if 1, makes a handful of zero-offset instructions smaller
+FixBugs	= 0
+;	| If 1, enables various bugfixes across the game and sound driver
+;	| See also FixMusicAndSFXDataBugs
 
-	include	"macrosetup.asm"
-	include	"macros.asm"
-	include	"constants.asm"
+AllOptimizations = 0
+;	| If 1, enables all optimizations
+ZeroOffsetOptimization = 0|AllOptimizations
+;	| If 1, makes a handful of zero-offset instructions smaller
+PaddingOptimization = 0|AllOptimizations
+;	| If 1, removes about 125 KB of various superfluous padding
+
+; ===========================================================================
+; AS-specific macros and assembler settings
+	cpu 68000
+	include "MacroSetup.asm"
+
+; ===========================================================================
+; Simplifying macros and functions
+	include "Macros.asm"
+
+; ===========================================================================
+; Equates section - Names for constants
+	include "Constants.asm"
+
+; ===========================================================================
+; start of ROM
 
 StartOfRom:
 Vectors:	dc.l v_systemstack,EntryPoint,BusError,AddressError
@@ -22934,8 +22955,9 @@ RingPos_CPZ1:	binclude	"level/rings/CPZ_1.bin"
 ; ---------------------------------------------------------------------------
 ; This must be aligned to a bank in order to avoid issues with the DMA.
 ; But because all of the art is placed after the sound driver which already aligns
-; with the bank, this fixes itself. Uncomment the line below if you want to ensure DMA safety.
-;	align $8000
+; with the bank, this fixes itself.
+; This has been intentionally aligned to avoid any DMA issues that might occur if the ROM is modified.
+	align $8000
 Art_Sonic:	binclude	"art/uncompressed/Sonic's art.bin"
 		even
 Map_Sonic:	include	"mappings/sprite/Sonic.asm"
@@ -23223,6 +23245,8 @@ Nem_CreditText:	binclude	"art/nemesis/S1/Ending - Credits.nem"
 		even
 Nem_EndStH:	binclude	"art/nemesis/S1/Ending - StH Logo.nem"
 		even
+
+	if PaddingOptimization=0
 ; --------------------------------------------------------------------------------------
 ; ToeJam & Earl REV00 data, likely due to it once occupying the cartridge, best
 ; just to remove it given it takes up ONE TENTH of the cartridge space
@@ -23232,3 +23256,5 @@ Leftover_E1670:	binclude	"misc/leftovers/E1670.bin"
 
 		cnop	-1,2<<lastbit(*-1)
 		even
+	endif
+EndOfRom:

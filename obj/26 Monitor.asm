@@ -28,6 +28,16 @@ loc_AE70:
 		lea	(v_objstate).w,a2
 		moveq	#0,d0
 		move.b	obRespawnNo(a0),d0
+	if FixBugs
+		; If you spawn a monitor in Debug Mode and destroy it, then every
+		; monitor that is spawned with Debug Mode afterwards will be broken.
+		; The cause of the bug is that the spawned monitor does not have a
+		; respawn entry, but this object fails to check for that before
+		; accessing the respawn table.
+		; Knuckles in Sonic 2 contains this half of the bugfix, but not the
+		; other half under 'Obj26_SpawnSmoke'.
+		beq.s	loc_AECA
+	endif
 		bclr	#7,2(a2,d0.w)
 		btst	#0,2(a2,d0.w)
 		beq.s	loc_AECA
@@ -158,6 +168,16 @@ loc_B020:
 		lea	(v_objstate).w,a2
 		moveq	#0,d0
 		move.b	obRespawnNo(a0),d0
+	if FixBugs
+		; If you spawn a monitor in Debug Mode and destroy it, then every
+		; monitor that is spawned with Debug Mode afterwards will be broken.
+		; The cause of the bug is that the spawned monitor does not have a
+		; respawn entry, but this object fails to check for that before
+		; accessing the respawn table.
+		beq.s	.next
+	endif
 		bset	#0,2(a2,d0.w)
+
+.next:
 		move.b	#$A,obAnim(a0)
 		bra.w	DisplaySprite

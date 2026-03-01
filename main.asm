@@ -6954,7 +6954,7 @@ loc_72C2:
 	if FixBugs
 		move.w	#bytesToWcnt(Map16_HTZ_End-Map16_HTZ),d2
 	else
-		; There is a slight bug here in which 50 bytes are copied from the start of Nem_HTZ, remove the '+$50' to fix this.
+		; There is a slight bug here in which 50 bytes are copied from the start of Nem_HTZ.
 		move.w	#bytesToWcnt(Map16_HTZ_End+$50-Map16_HTZ),d2
 	endif
 
@@ -9142,7 +9142,7 @@ word_CAF0:	dc.w 8
 		dc.w $F005,    8,    4,	   0
 		dc.w	 5,    8,    4,	   0
 		dc.w $1005,    8,    4,	   0
-; ---------------------------------------------------------------------------
+
 		nop
 
 ; ===========================================================================
@@ -9155,7 +9155,7 @@ word_CAF0:	dc.w 8
 ; ObjectsLoad:
 ExecuteObjects:
 		lea	(v_objspace).w,a0
-		moveq	#(v_objend-v_objspace)/object_size-1,d7	; run the first $80 objects out of levels
+		moveq	#bytesToXcnt(v_objend-v_objspace,object_size),d7	; run the first $80 objects out of levels
 		moveq	#0,d0
 		cmpi.b	#6,(v_player+obRoutine).w	; is Sonic dead?
 		bhs.s	ExecuteObjectsWhenPlayerIsDead	; if yes, branch
@@ -9184,9 +9184,9 @@ loc_CB54:
 ; this skips certain objects to make enemies and things pause when Sonic dies
 ; loc_CB5E:
 ExecuteObjectsWhenPlayerIsDead:
-		moveq	#(v_lvlobjspace-v_objspace)/object_size-1,d7
+		moveq	#bytesToXcnt(v_lvlobjspace-v_objspace,object_size),d7
 		bsr.s	RunObject
-		moveq	#(v_lvlobjend-v_lvlobjspace)/object_size-1,d7
+		moveq	#bytesToXcnt(v_lvlobjend-v_lvlobjspace,object_size),d7
 
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
 
@@ -9195,7 +9195,7 @@ ExecuteObjectsDisplayOnly:
 		moveq	#0,d0
 		move.b	obID(a0),d0			; get the object's ID
 		beq.s	loc_CB74			; if it's obj00, skip it
-		tst.b	obRender(a0)			; should we render it?
+		tst.b	obRender(a0)		; should we render it?
 		bpl.s	loc_CB74			; if not, skip it
 		bsr.w	DisplaySprite
 

@@ -30,7 +30,16 @@ loc_8C58:
 
 loc_8CB0:
 		move.l	#Obj1A_Conf,objoff_3C(a0)
+	if FixBugs
+		move.b	#$30,obActWid(a0)
+	else
+		; This is too wide, causing the player to teleport downwards when
+		; running off the platform. Sonic 1 used a width of $30 for the
+		; collision and $64 for obActWid, but in Sonic 2 they must be
+		; the same. $64 seems to be overkill, as $30 still results in good
+		; sprite culling.
 		move.b	#$34,obActWid(a0)
+	endif
 		move.b	#$38,obHeight(a0)
 		bset	#4,obRender(a0)
 

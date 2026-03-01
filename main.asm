@@ -117,7 +117,7 @@ Checksum:	dc.w $AFC7				; Checksum (patched later if incorrect)
 		dc.l StartOfRom				; Start address of ROM
 ROMEndLoc:	dc.l $7FFFF				; End address of ROM (leftover from Sonic 1)
 		dc.l v_ram_start&$FFFFFF	; Start address of RAM
-		dc.l (v_end-1)&$FFFFFF		; End address of RAM
+		dc.l (v_ram_end-1)&$FFFFFF	; End address of RAM
 		if EnableSRAM=1
 		dc.b $52, $41, $A0+(BackupSRAM<<6)+(AddressSRAM<<3), $20 ; Backup RAM ID
 		else
@@ -211,7 +211,7 @@ PortC_OK:
 		bra.s	GameProgram
 ; ---------------------------------------------------------------------------
 InitValues:	dc.w $8000
-		dc.w bytesToLcnt($10000)
+		dc.w bytesToLcnt(v_ram_end-v_ram_start)
 		dc.w $100
 
 		dc.l z80_ram				; Z80 RAM start	location
@@ -326,7 +326,7 @@ ChecksumLoop:
 	endif
 		lea	(v_crossresetram).w,a6
 		moveq	#0,d7
-		move.w	#bytesToLcnt(v_end-v_crossresetram),d6
+		move.w	#bytesToLcnt(v_ram_end-v_crossresetram),d6
 
 loc_350:
 		move.l	d7,(a6)+

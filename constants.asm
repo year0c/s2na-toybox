@@ -942,7 +942,7 @@ v_megadrive:		ds.b	1			; Megadrive machine type
 			ds.b	1			; unused
 Debug_mode_flag:	ds.w	1
 v_init:			ds.l	1			; 'init' text string
-v_end:
+v_ram_end:
     if * > 0	; Don't declare more space than the RAM can contain!
 	fatal "The RAM variable declarations are too large by $\{*} bytes."
     endif

@@ -2161,10 +2161,8 @@ SegaScreen:
 		move.w	#$8B00,(a6)
 		move.w	#$8C81,(a6)
 		clr.b	(f_wtr_state).w
-		move.w	#$2700,sr
-		move.w	(v_vdp_buffer1).w,d0
-		andi.b	#$BF,d0
-		move.w	d0,(vdp_control_port).l
+		disable_ints
+		disable_display
 		bsr.w	ClearScreen
 		locVRAM ArtTile_Sega_Tiles*tile_size
 		lea	(Nem_SegaLogo).l,a0
@@ -2186,9 +2184,7 @@ loc_316A:
 		move.w	#0,(v_pcyc_time).w
 		move.w	#0,(v_pal_buffer+$12).w
 		move.w	#0,(v_pal_buffer+$10).w
-		move.w	(v_vdp_buffer1).w,d0
-		ori.b	#$40,d0
-		move.w	d0,(vdp_control_port).l
+		enable_display
 
 Sega_WaitPalette:
 		move.b	#VintID_SEGA,(v_vbla_routine).w
@@ -2222,7 +2218,7 @@ TitleScreen:
 		bsr.w	QueueSound2
 		bsr.w	ClearPLC
 		bsr.w	Pal_FadeToBlack
-		move.w	#$2700,sr
+		disable_ints
 		bsr.w	DACDriverLoad
 		lea	(vdp_control_port).l,a6
 		move.w	#$8000+%0100,(a6)
@@ -2243,7 +2239,7 @@ TitleScreen:
 		moveq	#palid_SonicTails,d0
 		bsr.w	PalLoad1
 		bsr.w	Pal_FadeFromBlack
-		move.w	#$2700,sr
+		disable_ints
 		locVRAM	ArtTile_Title_Foreground*tile_size
 		lea	(Nem_Title).l,a0
 		bsr.w	NemDec
@@ -2267,7 +2263,7 @@ loc_32C4:
 		move.w	#id_GHZ<<8,(Current_ZoneAndAct).w
 		move.w	#0,(v_pcyc_time).w
 		bsr.w	Pal_FadeToBlack
-		move.w	#$2700,sr
+		disable_ints
 		lea	(v_ram_start).l,a1
 		lea	(Eni_TitleMap).l,a0
 		move.w	#make_art_tile(ArtTile_Title_Foreground,0,0),d0
@@ -2303,9 +2299,7 @@ loc_32C4:
 		move.w	#id_EHZ<<8,(Current_ZoneAndAct).w
 		move.w	#4,(Sonic_Pos_Record_Index).w
 		move.w	#0,(Sonic_Pos_Record_Buf).w
-		move.w	(v_vdp_buffer1).w,d0
-		ori.b	#$40,d0
-		move.w	d0,(vdp_control_port).l
+		enable_display
 		bsr.w	Pal_FadeFromBlack
 
 TitleScreen_Loop:
@@ -2377,7 +2371,7 @@ Title_CheckLvlSel:
 		bsr.w	PalLoad2
 		clearRAM v_hscrolltablebuffer,v_hscrolltablebuffer_end
 		move.l	d0,(v_scrposy_vdp).w
-		move.w	#$2700,sr
+		disable_ints
 		lea	(vdp_data_port).l,a6
 		move.l	#$60000003,(vdp_control_port).l
 		move.w	#bytesToLcnt($1000),d1
@@ -2876,13 +2870,13 @@ Level_NoMusicFade:
 		bsr.w	Pal_FadeToBlack
 		tst.w	(f_demo).w	; are we on an ending demo?
 		bmi.s	loc_3BB6	; if so, branch
-		move.w	#$2700,sr
+		disable_ints
 		locVRAM	ArtTile_Title_Card*tile_size
 		lea	(Nem_TitleCard).l,a0
 		bsr.w	NemDec
 		bsr.w	ClearScreen
 		fillVRAM	0, vram_window, vram_window+plane_size_64x32 ; clear window namespace
-		move.w	#$2300,sr
+		enable_ints
 		moveq	#0,d0
 		move.b	(Current_Zone).w,d0
 		lsl.w	#4,d0
@@ -3378,17 +3372,15 @@ SpecialStage:
 		move.w	#sfx_EnterSS,d0
 		bsr.w	QueueSound2
 		bsr.w	Pal_MakeFlash
-		move	#$2700,sr
+		disable_ints
 		lea	(vdp_control_port).l,a6
 		move.w	#$8B00+%0011,(a6)	; set horizontal scrolling single pixel rows mode
 		move.w	#$8000+%0100,(a6)
 		move.w	#$8A00+175,(v_hbla_hreg).w
 		move.w	#$9011,(a6)
-		move.w	(v_vdp_buffer1).w,d0
-		andi.b	#$BF,d0
-		move.w	d0,(vdp_control_port).l
+		disable_display
 		bsr.w	ClearScreen
-		move	#$2300,sr
+		enable_ints
 		fillVRAM	0, ArtTile_SS_Plane_1*tile_size+plane_size_64x32, ArtTile_SS_Plane_5*tile_size
 		bsr.w	S1_SSBGLoad
 		moveq	#plcid_SpecialStage,d0
@@ -3440,9 +3432,7 @@ SpecialStage:
 		move.b	#1,(Debug_mode_flag).w
 
 loc_5158:
-		move.w	(v_vdp_buffer1).w,d0
-		ori.b	#$40,d0
-		move.w	d0,(vdp_control_port).l
+		enable_display
 		bsr.w	Pal_MakeWhite
 
 loc_516A:
@@ -3492,7 +3482,7 @@ loc_51DA:
 loc_5214:
 		tst.w	(v_generictimer).w
 		bne.s	loc_51DA
-		move	#$2700,sr
+		disable_ints
 		lea	(vdp_control_port).l,a6
 		move.w	#$8200+(vram_fg>>10),(a6)
 		move.w	#$8400+(vram_bg>>13),(a6)
@@ -3502,7 +3492,7 @@ loc_5214:
 		lea	(Nem_TitleCard).l,a0
 		bsr.w	NemDec
 		jsr	(HUD_Base).l
-		move	#$2300,sr
+		enable_ints
 		moveq	#palid_SSResult,d0
 		bsr.w	PalLoad2
 		moveq	#plcid_Main,d0
@@ -7599,7 +7589,6 @@ DynResize_CPZ3_BossCheck:
 
 DynResize_CPZ3_Null:
 		rts
-
 ; ---------------------------------------------------------------------------
 
 DynResize_EHZ:
@@ -9985,7 +9974,7 @@ sub_D1B6:
 
 
 sub_D1BA:
-		cmpi.b	#$50,d5
+		cmpi.b	#80,d5
 		bhs.s	locret_D1F6
 		btst	#0,d4
 		bne.s	loc_D1F8
@@ -10248,7 +10237,7 @@ loc_D410:
 		lea	$80(a4),a4
 		dbf	d7,loc_D338
 		move.b	d5,(v_spritecount).w
-		cmpi.b	#$50,d5
+		cmpi.b	#80,d5
 		bhs.s	loc_D42A
 		move.l	#0,(a2)
 		bra.s	loc_D442
@@ -10539,7 +10528,7 @@ sub_D6A2:
 
 
 sub_D6A6:
-		cmpi.b	#$50,d5
+		cmpi.b	#80,d5
 		bhs.s	locret_D6E6
 		btst	#0,d4
 		bne.s	loc_D6F8
@@ -10707,7 +10696,7 @@ byte_D7FA:	dc.b   8,  8,  8,  8
 		dc.b $20,$20,$20,$20
 
 		include	"obj/S1/sub ChkObjectVisible.asm"
-; ---------------------------------------------------------------------------
+
 		nop
 
 ; ============================================================================
@@ -16510,10 +16499,8 @@ locret_1B23C:
 		include	"_Include/HUD Update.asm"
 
 Art_HUD:	binclude	"art/uncompressed/HUD Numbers.bin"
-		even
 Art_LivesNums:	binclude	"art/uncompressed/Lives Counter Numbers.bin"
-		even
-; ---------------------------------------------------------------------------
+
 		nop
 
 j_Adjust2PArtPointer_8:
@@ -16583,35 +16570,20 @@ S1SS_5:	binclude	"sslayout/5 (JP1).eni"
 S1SS_6:	binclude	"sslayout/6 (JP1).eni"
 		even
 Art_Flowers1:	binclude	"art/uncompressed/EHZ and HTZ flowers - 1.bin"
-		even
 Art_Flowers2:	binclude	"art/uncompressed/EHZ and HTZ flowers - 2.bin"
-		even
 Art_Flowers3:	binclude	"art/uncompressed/EHZ and HTZ flowers - 3.bin"
-		even
 Art_Flowers4:	binclude	"art/uncompressed/EHZ and HTZ flowers - 4.bin"
-		even
 Art_EHZPulseBall:	binclude	"art/uncompressed/Pulsing ball against checkered background (EHZ).bin"
-		even
 Art_HPZUnusedBg:	binclude	"art/uncompressed/HPZ unused background.bin"
-		even
 Art_HPZPulseOrb:	binclude	"art/uncompressed/Pulsing orb (HPZ).bin"
-		even
 Art_UnkZone_1:	binclude	"art/uncompressed/Unknown Zone - 1.bin"
-		even
 Art_UnkZone_2:	binclude	"art/uncompressed/Unknown Zone - 2.bin"
-		even
 Art_UnkZone_3:	binclude	"art/uncompressed/Unknown Zone - 3.bin"
-		even
 Art_UnkZone_4:	binclude	"art/uncompressed/Unknown Zone - 4.bin"
-		even
 Art_UnkZone_5:	binclude	"art/uncompressed/Unknown Zone - 5.bin"
-		even
 Art_UnkZone_6:	binclude	"art/uncompressed/Unknown Zone - 6.bin"
-		even
 Art_UnkZone_7:	binclude	"art/uncompressed/Unknown Zone - 7.bin"
-		even
 Art_UnkZone_8:	binclude	"art/uncompressed/Unknown Zone - 8.bin"
-		even
 
 ; ---------------------------------------------------------------------------
 ; Level layouts, three entries per act (although the third one is unused)
@@ -16682,7 +16654,6 @@ Level_HPZBg:	binclude	"level/layout/HPZ_BG.bin"
 Level_Null:	dc.l	0
 
 Art_BigRing:	binclude	"art/uncompressed/Giant Ring.bin"
-		even
 ; --------------------------------------------------------------------------------------
 ; leftover level layouts from a	previous build
 ; --------------------------------------------------------------------------------------
@@ -16704,34 +16675,25 @@ Art_BigRing:	binclude	"art/uncompressed/Giant Ring.bin"
 ; A duplicate copy of the big ring art
 ;----------------------------------------------------
 		binclude	"art/uncompressed/Giant Ring.bin"
-		even
 		dc.w	0,$EEEE,$EEEE
 		binclude	"misc/leftovers/art/uncompressed/Giant Ring.bin"
-		even
 ; --------------------------------------------------------------------------------------
 ; level mappings	(16x16 and 256x256)
 ; --------------------------------------------------------------------------------------
 		binclude	"misc/leftovers/mappings/16x16/2EB00.unc"
-		even
 		binclude	"misc/leftovers/mappings/256x256/2EC00.unc"
-		even
 ; --------------------------------------------------------------------------------------
 ; leftover art - full 128 character ASCII table
 ; --------------------------------------------------------------------------------------
 		binclude	"art/uncompressed/leftovers/128 char ASCII.bin"
-		even
 ; --------------------------------------------------------------------------------------
 ; Leftover level mappings and palettes from a previous build
 ; --------------------------------------------------------------------------------------
 		binclude	"misc/leftovers/mappings/256x256/31000.unc"
-		even
 		binclude	"misc/leftovers/32000.bin"
-		even
 		dc.l	0
 		binclude	"misc/leftovers/mappings/16x16/36004.unc"
-		even
 		binclude	"misc/leftovers/mappings/256x256/364D4.unc"
-		even
 ; --------------------------------------------------------------------------------------
 ; Object layouts
 ; --------------------------------------------------------------------------------------
@@ -17010,17 +16972,14 @@ RingPos_CPZ1:	binclude	"level/rings/CPZ_1.bin"
 ; This has been intentionally aligned to avoid any DMA issues that might occur if the ROM is modified.
 	align $8000
 Art_Sonic:	binclude	"art/uncompressed/Sonic's art.bin"
-		even
 Map_Sonic:	include	"mappings/sprite/Sonic.asm"
 Art_Tails:	binclude	"art/uncompressed/Tails' art.bin"
-		even
 SonicDynPLC:	include	"mappings/spriteDPLC/Sonic.asm"
 Nem_Shield:	binclude	"art/nemesis/Shield.nem"
 		even
 Nem_Stars:	binclude	"art/nemesis/Stars.nem"
 		even
 Art_SplashDust:	binclude	"art/uncompressed/Dust and water splash.bin"
-		even
 Map_Tails:	include	"mappings/sprite/Tails.asm"
 TailsDynPLC:	include	"mappings/spriteDPLC/Tails.asm"
 ; ---------------------------------------------------------------------------
@@ -17245,37 +17204,29 @@ Nem_Squirrel:	binclude	"art/nemesis/S1/Animal Squirrel.nem"
 		even
 Map16_EHZ:	binclude	"mappings/16x16/EHZ.unc"
 Map16_EHZ_End:
-		even
 Nem_EHZ:binclude	"art/nemesis/8x8 - EHZ.nem"
 		even
 Map16_HTZ:	binclude	"mappings/16x16/HTZ.unc"
 Map16_HTZ_End:
-		even
 Nem_HTZ:	binclude	"art/nemesis/8x8 - HTZ.nem"
 		even
 Nem_HTZ_AniPlaceholders:	binclude	"art/nemesis/HTZ Ani Placeholders.nem"
 		even
 Map128_EHZ:	binclude	"mappings/128x128/EHZ_HTZ.unc"
-		even
 Map16_HPZ:	binclude	"mappings/16x16/HPZ.unc"
 Map16_HPZ_End:
-		even
 Nem_HPZ:binclude	"art/nemesis/8x8 - HPZ.nem"
 		even
 Map128_HPZ:	binclude	"mappings/128x128/HPZ.unc"
-		even
 Map16_CPZ:	binclude	"mappings/16x16/CPZ.unc"
 Map16_CPZ_End:
-		even
 Nem_CPZ:	binclude	"art/nemesis/8x8 - CPZ.nem"
 		even
 Nem_CPZ_Buildings:	binclude	"art/nemesis/CPZ Buildings.nem"
 		even
 Map128_CPZ:	binclude	"mappings/128x128/CPZ.unc"
-		even
 Map16_GHZ:	binclude	"mappings/16x16/GHZ.unc"
 Map16_GHZ_End:
-		even
 Nem_GHZ:	binclude	"art/nemesis/8x8 - GHZ.nem"
 		even
 Nem_GHZ2:	binclude	"art/nemesis/8x8 - GHZ2.nem"

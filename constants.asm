@@ -223,20 +223,20 @@ btnABC:	EQU	btnA|btnB|btnC		; $70
 btnStart:	EQU	1<<bitStart		; $80
 ; ---------------------------------------------------------------------------
 ; Art tile stuff
-flip_x              =      (1<<11)
-flip_y              =      (1<<12)
-palette_bit_0       =      5
-palette_bit_1       =      6
-palette_line_0      =      (0<<13)
-palette_line_1      =      (1<<13)
-palette_line_2      =      (2<<13)
-palette_line_3      =      (3<<13)
-high_priority_bit   =      7
-high_priority       =      (1<<15)
-palette_mask        =      $6000
-tile_mask           =      $7FF
-nontile_mask        =      $F800
-drawing_mask        =      $7FFF
+flip_x	=	(1<<11)
+flip_y	=	(1<<12)
+palette_bit_0	=	5
+palette_bit_1	=	6
+palette_line_0	=	(0<<13)
+palette_line_1	=	(1<<13)
+palette_line_2	=	(2<<13)
+palette_line_3	=	(3<<13)
+high_priority_bit	=	7
+high_priority	=	(1<<15)
+palette_mask	=	$6000
+tile_mask	=	$7FF
+nontile_mask	=	$F800
+drawing_mask	=	$7FFF
 
 ; Animation IDs
 	phase 0
@@ -333,35 +333,35 @@ RAM_Start:
 Chunk_Table:		ds.w	64*$100			; 128x128 tile mappings ($8000 bytes)
 Chunk_Table_End:
 
-v_128x128:=	Chunk_Table
-v_128x128_end:=	Chunk_Table_End
+v_128x128	=	Chunk_Table
+v_128x128_end	=	Chunk_Table_End
 
 Level_Layout:		ds.b	$1000			; level layout buffer ($1000 bytes)
 Level_Layout_End:
 
-v_lvllayout:=	Level_Layout
-v_lvllayout_end:=	Level_Layout_End
-v_lvllayoutbg:=	Level_Layout+$80
+v_lvllayout	=	Level_Layout
+v_lvllayout_end	=	Level_Layout_End
+v_lvllayoutbg	=	Level_Layout+$80
 
 Block_Table:		ds.w	4*$300			; 16x16 tile mappings ($1800 bytes)
 Block_Table_End:
 
-v_16x16:=	Block_Table
-v_16x16_end:=	Block_Table_End
+v_16x16	=	Block_Table
+v_16x16_end	=	Block_Table_End
 
 TempArray_LayerDef:	ds.b	$200			; background scroll buffer
 Decomp_Buffer:		ds.b	$200			; Nemesis graphics decompression buffer
 Decomp_Buffer_End:
 
-v_bgscroll_buffer:=	TempArray_LayerDef
-v_ngfx_buffer:=	Decomp_Buffer
-v_ngfx_buffer_end:=	Decomp_Buffer_End
+v_bgscroll_buffer	=	TempArray_LayerDef
+v_ngfx_buffer	=	Decomp_Buffer
+v_ngfx_buffer_end	=	Decomp_Buffer_End
 
 Object_Display_Lists:	ds.b	$400			; sprite display queue, in order of priority
 Object_Display_Lists_End:
 
-v_spritequeue:=	Object_Display_Lists
-v_spritequeue_end:=	Object_Display_Lists_End
+v_spritequeue	=	Object_Display_Lists
+v_spritequeue_end	=	Object_Display_Lists_End
 
 v_objspace:		ds.b	object_size*$80		; object variable space ($40 bytes per object)
 v_objspace_end:
@@ -443,14 +443,14 @@ v_eggmanchaos	= v_objspace+object_size*32		; object variable space for the emera
 Primary_Collision:	ds.b	$600
 Primary_Collision_End:
 
-v_colladdr1:=		Primary_Collision
-v_colladdr1_end:=	Primary_Collision_End
+v_colladdr1	=		Primary_Collision
+v_colladdr1_end	=	Primary_Collision_End
 
 Secondary_Collision:	ds.b	$600
 Secondary_Collision_End:
 
-v_colladdr2:=		Secondary_Collision
-v_colladdr2_end:=	Secondary_Collision_End
+v_colladdr2	=		Secondary_Collision
+v_colladdr2_end	=	Secondary_Collision_End
 
 VDP_Command_Buffer:	ds.w	7*$12			; stores 18 ($12) VDP commands to issue the next time ProcessDMAQueue is called
 VDP_Command_Buffer_Slot:	ds.l	1		; stores the address of the next open slot for a queued VDP command
@@ -485,14 +485,14 @@ Camera_BG3_X_pos:	ds.l	1			; unused (only initialised at beginning of level)?
 Camera_BG3_Y_pos:	ds.l	1			; unused (only initialised at beginning of level)?
 Camera_Positions_End:
 
-v_screenposx:=		Camera_X_pos
-v_screenposy:=		Camera_Y_pos
-v_bgscreenposx:=	Camera_BG_X_pos
-v_bgscreenposy:=	Camera_BG_Y_pos
-v_bg2screenposx:=	Camera_BG2_X_pos
-v_bg2screenposy:=	Camera_BG2_Y_pos
-v_bg3screenposx:=	Camera_BG3_X_pos
-v_bg3screenposy:=	Camera_BG3_Y_pos
+v_screenposx	=	Camera_X_pos
+v_screenposy	=	Camera_Y_pos
+v_bgscreenposx	=	Camera_BG_X_pos
+v_bgscreenposy	=	Camera_BG_Y_pos
+v_bg2screenposx	=	Camera_BG2_X_pos
+v_bg2screenposy	=	Camera_BG2_Y_pos
+v_bg3screenposx	=	Camera_BG3_X_pos
+v_bg3screenposy	=	Camera_BG3_Y_pos
 
 Camera_Positions_P2:
 Camera_X_pos_P2:	ds.l	1
@@ -587,10 +587,10 @@ Camera_Min_Y_pos:	ds.w	1
 Camera_Max_Y_pos:	ds.w	1
 Camera_Boundaries_End:
 
-v_limitleft2:=		Camera_Min_X_pos
-v_limitright2:=		Camera_Max_X_pos
-v_limittop2:=		Camera_Min_Y_pos
-v_limitbtm2:=		Camera_Max_Y_pos
+v_limitleft2	=		Camera_Min_X_pos
+v_limitright2	=		Camera_Max_X_pos
+v_limittop2	=		Camera_Min_Y_pos
+v_limitbtm2	=		Camera_Max_Y_pos
 
 Camera_Delay:
 Horiz_scroll_delay_val:	ds.w	1			; if its value is a, where a != 0, X scrolling will be based on the player's X position a-1 frames ago
@@ -767,7 +767,7 @@ Demo_press_counter:	ds.b	1			; frames remaining until next button press, for pla
 			ds.b	1			; $FFFFF793 ; seems unused
 PalChangeSpeed:		ds.w	1
 Collision_addr:		ds.l	1
-v_collindex:=	Collision_addr
+v_collindex	=	Collision_addr
 v_palss_num:		ds.w	1			; palette cycling in Special Stage - reference number
 v_palss_time:		ds.w	1			; palette cycling in Special Stage - time until next change
 v_palss_index:		ds.w	1			; palette cycling in Special Stage - index into palette cycle 2 (unused?)
@@ -839,7 +839,7 @@ Debug_Speed:		ds.b	1			; (1 byte)
 
 Vint_runcount:		ds.l	1			; (4 bytes)
 
-Current_ZoneAndAct:	= Current_Zone
+Current_ZoneAndAct	= Current_Zone
 Current_Zone:
 v_zone:			ds.b	1			; (1 byte)
 Current_Act:

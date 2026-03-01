@@ -38,33 +38,86 @@ PaddingOptimization = 0|AllOptimizations
 ; start of ROM
 
 StartOfRom:
-Vectors:	dc.l v_systemstack,EntryPoint,BusError,AddressError
-		dc.l IllegalInstr,ZeroDivide,ChkInstr,TrapvInstr
-		dc.l PrivilegeViol,Trace,Line1010Emu,Line1111Emu
-		dc.l ErrorExcept,ErrorExcept,ErrorExcept,ErrorExcept
-		dc.l ErrorExcept,ErrorExcept,ErrorExcept,ErrorExcept
-		dc.l ErrorExcept,ErrorExcept,ErrorExcept,ErrorExcept
-		dc.l ErrorExcept,ErrorTrap,ErrorTrap,ErrorTrap
-		dc.l H_Int,ErrorTrap,V_Int,ErrorTrap
-		dc.l ErrorTrap,ErrorTrap,ErrorTrap,ErrorTrap
-		dc.l ErrorTrap,ErrorTrap,ErrorTrap,ErrorTrap
-		dc.l ErrorTrap,ErrorTrap,ErrorTrap,ErrorTrap
-		dc.l ErrorTrap,ErrorTrap,ErrorTrap,ErrorTrap
-		dc.l ErrorTrap,ErrorTrap,ErrorTrap,ErrorTrap
-		dc.l ErrorTrap,ErrorTrap,ErrorTrap,ErrorTrap
-		dc.l ErrorTrap,ErrorTrap,ErrorTrap,ErrorTrap
-		dc.l ErrorTrap,ErrorTrap,ErrorTrap,ErrorTrap
-		dc.b "SEGA MEGA DRIVE "			; Console name
-		dc.b "(C)SEGA 1991.APR"			; Copyright holder and release year (leftover from Sonic 1)
-		dc.b "SONIC THE             HEDGEHOG 2                " ; Domestic name
-		dc.b "SONIC THE             HEDGEHOG 2                " ; International name
-		dc.b "GM 00004049-01"			; Version (leftover from Sonic 1)
+Vectors:
+		dc.l v_systemstack
+		dc.l EntryPoint
+		dc.l BusError
+		dc.l AddressError
+		dc.l IllegalInstr
+		dc.l ZeroDivide
+		dc.l ChkInstr
+		dc.l TrapvInstr
+		dc.l PrivilegeViol
+		dc.l Trace
+		dc.l Line1010Emu
+		dc.l Line1111Emu
+		dc.l ErrorExcept
+		dc.l ErrorExcept
+		dc.l ErrorExcept
+		dc.l ErrorExcept
+		dc.l ErrorExcept
+		dc.l ErrorExcept
+		dc.l ErrorExcept
+		dc.l ErrorExcept
+		dc.l ErrorExcept
+		dc.l ErrorExcept
+		dc.l ErrorExcept
+		dc.l ErrorExcept
+		dc.l ErrorExcept
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l H_Int
+		dc.l ErrorTrap
+		dc.l V_Int
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.l ErrorTrap
+		dc.b "SEGA MEGA DRIVE "		; Console name
+		dc.b "(C)SEGA 1991.APR"		; Copyright holder and release year (leftover from Sonic 1)
+		dc.b "SONIC THE       " 	; Domestic name
+		dc.b "      HEDGEHOG 2"
+		dc.b "                "
+		dc.b "SONIC THE       "		; International name
+		dc.b "      HEDGEHOG 2"
+		dc.b "                "
+		dc.b "GM 00004049-01"		; Version (leftover from Sonic 1)
 Checksum:	dc.w $AFC7				; Checksum (patched later if incorrect)
-		dc.b "J               "			; I/O support
+		dc.b "J               "		; I/O support
 		dc.l StartOfRom				; Start address of ROM
 ROMEndLoc:	dc.l $7FFFF				; End address of ROM (leftover from Sonic 1)
-		dc.l v_ram_start&$FFFFFF			; Start address of RAM
-		dc.l (v_end-1)&$FFFFFF			; End address of RAM
+		dc.l v_ram_start&$FFFFFF	; Start address of RAM
+		dc.l (v_end-1)&$FFFFFF		; End address of RAM
 		if EnableSRAM=1
 		dc.b $52, $41, $A0+(BackupSRAM<<6)+(AddressSRAM<<3), $20 ; Backup RAM ID
 		else
@@ -74,7 +127,7 @@ ROMEndLoc:	dc.l $7FFFF				; End address of ROM (leftover from Sonic 1)
 		dc.l $20202020				; Backup RAM end address
 		dc.l $20202020				; Modem support
 		dc.b "                                                " ; Notes (unused, anything can be put in this space, but it has to be 48 bytes.)
-		dc.b "JUE             "			; Country code (region)
+		dc.b "JUE             "		; Country code (region)
 EndOfHeader:
 
 ; ---------------------------------------------------------------------------

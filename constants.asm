@@ -767,6 +767,7 @@ Demo_press_counter:	ds.b	1			; frames remaining until next button press, for pla
 			ds.b	1			; $FFFFF793 ; seems unused
 PalChangeSpeed:		ds.w	1
 Collision_addr:		ds.l	1
+v_collindex:=	Collision_addr
 v_palss_num:		ds.w	1			; palette cycling in Special Stage - reference number
 v_palss_time:		ds.w	1			; palette cycling in Special Stage - time until next change
 v_palss_index:		ds.w	1			; palette cycling in Special Stage - index into palette cycle 2 (unused?)

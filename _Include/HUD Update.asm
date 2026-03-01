@@ -32,8 +32,12 @@ loc_1B286:
 		tst.w	(f_pause).w
 		bne.s	loc_1B2E2
 		lea	(v_time).w,a1
-		cmpi.l	#9<<16|59<<8|59,(a1)+		; if the timer has passed 9:59...
-		nop					; ...do nothing since this has been nopped out
+		cmpi.l	#9<<16+59<<8+59,(a1)+		; if the timer has passed 9:59...
+	if 0
+		beq.s	S1TimeOver
+	else
+		nop					; ...do nothing
+	endif
 		addq.b	#1,-(a1)
 		cmpi.b	#60,(a1)
 		blo.s	loc_1B2E2
@@ -84,7 +88,7 @@ S1TimeOver:
 		clr.b	(f_timecount).w
 		lea	(v_player).w,a0
 		movea.l	a0,a2
-		bsr.w	KillSonic
+		bsr.w	KillCharacter
 		move.b	#1,(f_timeover).w
 		rts
 ; ---------------------------------------------------------------------------

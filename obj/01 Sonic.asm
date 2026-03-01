@@ -929,9 +929,9 @@ loc_101C4:
 
 loc_101D4:
 		cmpi.w	#(id_SBZ<<8)+1,(Current_ZoneAndAct).w
-		bne.w	JmpTo_KillSonic
+		bne.w	JmpTo_KillCharacter
 		cmpi.w	#$2000,(v_player+obX).w
-		blo.w	JmpTo_KillSonic
+		blo.w	JmpTo_KillCharacter
 		clr.b	(v_lastlamp).w
 		move.w	#1,(Level_Inactive_flag).w
 		move.w	#(id_LZ<<8)+3,(Current_ZoneAndAct).w
@@ -1568,7 +1568,7 @@ Sonic_HurtStop:
 		move.w	(Camera_Max_Y_pos).w,d0
 		addi.w	#224,d0
 		cmp.w	obY(a0),d0
-		blo.w	JmpTo_KillSonic
+		blo.w	JmpTo_KillCharacter
 		bsr.w	Sonic_DoLevelCollision
 		btst	#1,obStatus(a0)
 		bne.s	locret_107E6
@@ -1598,7 +1598,7 @@ loc_107E8:
 		cmpi.b	#AniIDSonAni_WallRecoil2,obAnim(a0)
 		bne.s	loc_107FA
 		move.b	(v_jpadpress1).w,d0
-		andi.b	#btnUp|btnDn|btnL|btnR|btnABC,d0
+		andi.b	#btnUp+btnDn+btnL+btnR+btnABC,d0
 		beq.s	loc_10804
 
 loc_107FA:

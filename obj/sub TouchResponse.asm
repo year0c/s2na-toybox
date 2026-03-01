@@ -326,7 +326,7 @@ HurtSonic:
 ; =============== S U B	R O U T	I N E =======================================
 
 
-KillSonic:
+KillCharacter:
 		tst.w	(Debug_placement_mode).w
 		bne.s	Kill_NoDeath
 		move.b	#0,(v_invinc).w
@@ -356,7 +356,7 @@ loc_19AF8:
 Kill_NoDeath:
 		moveq	#-1,d0
 		rts
-; End of function KillSonic
+; End of function KillCharacter
 
 ; ---------------------------------------------------------------------------
 

@@ -205,7 +205,7 @@ PSGInitLoop:
 		dbf	d5,PSGInitLoop
 		move.w	d0,(a2)
 		movem.l	(a6),d0-a6
-		move	#$2700,sr
+		disable_ints
 
 PortC_OK:
 		bra.s	GameProgram
@@ -436,7 +436,7 @@ ErrorExcept:
 ; ---------------------------------------------------------------------------
 
 ErrorMsg_TwoAddresses:
-		move	#$2700,sr
+		disable_ints
 		addq.w	#2,sp
 		move.l	(sp)+,(v_spbuffer).w
 		addq.w	#2,sp
@@ -450,7 +450,7 @@ ErrorMsg_TwoAddresses:
 ; ---------------------------------------------------------------------------
 
 ErrorMessage:
-		move	#$2700,sr
+		disable_ints
 		movem.l	d0-sp,(v_regbuffer).w
 		bsr.w	ShowErrorMsg
 		move.l	2(sp),d0
@@ -459,7 +459,7 @@ ErrorMessage:
 ErrorMsg_Wait:
 		bsr.w	ErrorWaitForC
 		movem.l	(v_regbuffer).w,d0-sp
-		move	#$2300,sr
+		enable_ints
 		rte
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -897,7 +897,7 @@ locret_1184:
 ; ---------------------------------------------------------------------------
 ; loc_1188:
 PalToCRAM:
-		move	#$2700,sr
+		disable_ints
 		move.w	#0,(f_hbla_pal).w
 		movem.l	a0-a1,-(sp)
 		lea	(vdp_data_port).l,a1
@@ -922,7 +922,6 @@ Hint_SoundDriver:
 		rte
 
 ; ===========================================================================
-; game code
 ; ---------------------------------------------------------------------------
 ; Subroutine to initialize joypads
 ; ---------------------------------------------------------------------------
@@ -1091,7 +1090,6 @@ QueueSound1:
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
 
 
-; QueueSound2:
 QueueSound2:
 		move.b	d0,(v_snddriver_ram.v_soundqueue1).w
 		rts
@@ -2057,7 +2055,7 @@ Pal_S1Ending:	binclude	"palette/S1 Ending.bin"
 
 ; DelayProgram:
 WaitForVint:
-		move	#$2300,sr
+		enable_ints
 
 loc_2C88:
 		tst.b	(v_vbla_routine).w
@@ -2194,8 +2192,9 @@ CalcAngle_Zero:
 ; ===========================================================================
 AngleData:	binclude "misc/angles.bin"
 		even
-; ===========================================================================
+
 		nop
+
 ; ===========================================================================
 ; ---------------------------------------------------------------------------
 ; Sega logo, exact same as Sonic 1's
@@ -2262,8 +2261,9 @@ Sega_WaitEnd:
 Sega_GoToTitleScreen:
 		move.b	#GameModeID_TitleScreen,(v_gamemode).w
 		rts
-; ===========================================================================
+
 		align 4
+
 ; ===========================================================================
 
 TitleScreen:
@@ -6130,7 +6130,11 @@ loc_6C4E:
 loc_6C62:
 		lea	byte_6BCA(pc),a0
 		move.w	(Camera_BG_Y_pos).w,d0
+	if FixBugs
+		andi.w	#$3F0,d0
+	else
 		andi.w	#$7F0,d0
+	endif
 		lsr.w	#4,d0
 		lea	(a0,d0.w),a0
 		bra.w	loc_6C80
@@ -6780,9 +6784,9 @@ loc_7144:
 		move.w	d1,d4
 		moveq	#0,d5
 		moveq	#(512/16)-1,d6
-		move	#$2700,sr
+		disable_ints
 		bsr.w	DrawBlocks_LR_2
-		move	#$2300,sr
+		enable_ints
 		movem.l	(sp)+,d4-d6
 		addi.w	#16,d4
 		dbf	d6,loc_7144
@@ -6805,9 +6809,9 @@ loc_7174:
 		move.w	d1,d4
 		moveq	#0,d5
 		moveq	#(512/16)-1,d6
-		move	#$2700,sr
+		disable_ints
 		bsr.w	DrawBlocks_LR_2
-		move	#$2300,sr
+		enable_ints
 		movem.l	(sp)+,d4-d6
 		addi.w	#16,d4
 		dbf	d6,loc_7174
@@ -6883,9 +6887,9 @@ sub_7232:
 		movem.l	d4-d5,-(sp)
 		bsr.w	Calc_VRAM_Pos
 		movem.l	(sp)+,d4-d5
-		move	#$2700,sr
+		disable_ints
 		bsr.w	DrawBlocks_LR
-		move	#$2300,sr
+		enable_ints
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -11977,7 +11981,7 @@ locret_E180:
 ; loc_E182: SingleObjectLoad:
 FindFreeObj:
 		lea	(v_lvlobjspace).w,a1		; a1=object
-		move.w	#(v_lvlobjend-v_lvlobjspace)/object_size-1,d0	; search to end of table
+		move.w	#bytesToXcnt(v_lvlobjend-v_lvlobjspace,object_size),d0	; search to end of table
 
 loc_E18A:
 		tst.b	obID(a1)			; is object RAM slot empty?
@@ -12528,7 +12532,7 @@ loc_F634:
 ; ===========================================================================
 
 loc_F65A:
-		bsr.s	sub_F678
+		bsr.s	Solid_NotPushing
 		move.w	d6,d4
 		addi.b	#$D,d4
 		bset	d4,d6				; This sets bits 0 (Sonic) or 1 (Tails) of high word of d6
@@ -12541,9 +12545,22 @@ SolidObject_TestClearPush:
 		addq.b	#2,d4
 		btst	d4,obStatus(a0)
 		beq.s	loc_F680
+	if FixBugs
+		; Prevent Sonic or Tails from entering their running animation when
+		; stood next to solid objects while charging a Spin Dash, dying,
+		; drowning, or rolling.
+		cmpi.b	#AniIDSonAni_Roll,obAnim(a1)
+		beq.s	Solid_NotPushing
+		cmpi.b	#AniIDSonAni_Spindash,obAnim(a1)
+		beq.s	Solid_NotPushing
+		cmpi.b	#AniIDSonAni_Death,obAnim(a1)
+		beq.s	Solid_NotPushing
+		cmpi.b	#AniIDSonAni_Drown,obAnim(a1)
+		beq.s	Solid_NotPushing
+	endif
 		move.w	#AniIDSonAni_Run,obAnim(a1)
 
-sub_F678:
+Solid_NotPushing:
 		move.l	d6,d4
 		addq.b	#2,d4
 		bclr	d4,obStatus(a0)
@@ -12567,10 +12584,22 @@ loc_F690:
 		bpl.s	loc_F6A6
 		tst.w	d3
 		bpl.s	loc_F6A6
+	if FixBugs=0
+		; This is in the wrong place: Sonic will not be pushed out of objects
+		; from above if he's not moving upwards against it!
+		; This is much more noticable when playing as Knuckles, as he'll be
+		; able to phase through objects when climbing up walls.
+		; 'Knuckles in Sonic 2' and 'Sonic 3 & Knuckles' tried to fix this,
+		; but didn't do it very well.
 		sub.w	d3,obY(a1)
+	endif
 		move.w	#0,obVelY(a1)
 
 loc_F6A6:
+	if FixBugs
+		; See above.
+		sub.w	d3,obY(a1)		; Push Sonic out of the object.
+	endif
 		move.w	d6,d4
 		addi.b	#$F,d4
 		bset	d4,d6				; This sets bits 2 (Sonic) or 3 (Tails) of high word of d6
@@ -12582,8 +12611,13 @@ loc_F6B2:
 		btst	#1,obStatus(a1)
 		bne.s	loc_F6A6
 		move.l	a0,-(sp)
+	if FixBugs
+		; a2 needs to be set here, otherwise KillCharacter
+		; will access a dangling pointer!
+		movea.l	a0,a2
+	endif
 		movea.l	a1,a0
-		jsr	(KillSonic).l
+		jsr	(KillCharacter).l
 		movea.l	(sp)+,a0			; load obj address
 		move.w	d6,d4
 		addi.b	#$F,d4
@@ -12983,8 +13017,8 @@ locret_F9FA:
 ; ===========================================================================
 		nop
 
-JmpTo_KillSonic:
-		jmp	(KillSonic).l
+JmpTo_KillCharacter:
+		jmp	(KillCharacter).l
 
 		align 4
 
@@ -13030,7 +13064,7 @@ byte_11E54:	dc.b   2,$81,$82,$83,$84,$FF
 		nop
 
 KillTails:
-		jmp	(KillSonic).l
+		jmp	(KillCharacter).l
 
 		align 4
 

@@ -2420,6 +2420,14 @@ Title_Cheat_NoC:
 Title_CheckLvlSel:
 		tst.b	(f_levselcheat).w
 		beq.w	PlayLevel
+
+	if FixBugs
+		; Fix the level selects graphics bug
+		; https://info.sonicretro.org/SCHG_How-to:Fix_the_Level_Select_graphics_bug
+		move.b	#VintID_Title,(v_vbla_routine).w	; set routine 4 in V-Int
+		bsr.w	WaitForVBla		; run V-Blank one extra frame to prevent graphical glitches
+	endif
+
 		moveq	#palid_LevelSel,d0
 		bsr.w	PalLoad2
 		clearRAM v_hscrolltablebuffer,v_hscrolltablebuffer_end
@@ -2432,17 +2440,21 @@ Title_CheckLvlSel:
 LevelSelect_ClearVRAM:
 		move.l	d0,(a6)
 		dbf	d1,LevelSelect_ClearVRAM
-		bsr.w	LevelSelect_TextLoad
+		bsr.w	LevSelTextLoad
 
-LevelSelect_Loop:
+; ---------------------------------------------------------------------------
+; Level Select main loop
+; ---------------------------------------------------------------------------
+
+LevelSelect:
 		move.b	#VintID_Title,(v_vbla_routine).w
 		bsr.w	WaitForVint
 		bsr.w	LevelSelect_Controls
 		bsr.w	RunPLC_RAM
 		tst.l	(v_plc_buffer).w
-		bne.s	LevelSelect_Loop
+		bne.s	LevelSelect
 		andi.b	#btnABC+btnStart,(v_jpadpress1).w
-		beq.s	LevelSelect_Loop
+		beq.s	LevelSelect
 		move.w	#0,(Two_player_mode).w	; disable 2P mode
 		btst	#bitB,(v_jpadhold1).w	; is button B held?
 		beq.s	loc_3516	; if not, branch
@@ -2462,15 +2474,18 @@ loc_3516:
 		beq.s	loc_355A
 
 loc_353A:
-		; Bug fix here
-		cmpi.w	#bgm__Last+1,d0
-		blo.s	loc_3546
-		cmpi.w	#sfx__First,d0
-		blo.s	LevelSelect_Loop
+	if FixBugs=0
+		; This is a workaround for a bug; see PlaySoundID for more.
+		cmpi.w	#bgm__Last+1,d0		; is sound $80-$93 being played?
+		blo.s	LevSel_PlaySnd		; if yes, branch
+		cmpi.w	#sfx__First,d0		; is sound $94-$9F being played?
+		blo.s	LevelSelect		; if yes, branch
+LevSel_PlaySnd:
+	endif
 
 loc_3546:
 		bsr.w	QueueSound2
-		bra.s	LevelSelect_Loop
+		bra.s	LevelSelect
 ; ---------------------------------------------------------------------------
 
 loc_354C:
@@ -2489,8 +2504,8 @@ loc_355A:
 
 loc_3570:
 		add.w	d0,d0
-		move.w	LevelSelect_LevelOrder(pc,d0.w),d0
-		bmi.w	LevelSelect_Loop
+		move.w	LevSel_Ptrs(pc,d0.w),d0
+		bmi.w	LevelSelect
 		cmpi.w	#id_SS<<8,d0
 		bne.s	LevelSelect_Level
 		move.b	#GameModeID_SpecialStage,(v_gamemode).w
@@ -2503,7 +2518,7 @@ loc_3570:
 		move.l	#5000,(v_scorelife).w
 		rts
 ; ---------------------------------------------------------------------------
-LevelSelect_LevelOrder:
+LevSel_Ptrs:
 		dc.b id_GHZ,0
 		dc.b id_GHZ,1
 		dc.b id_GHZ,2
@@ -2654,7 +2669,7 @@ loc_3726:
 
 loc_3736:
 		move.w	d0,(v_levselitem).w
-		bsr.w	LevelSelect_TextLoad
+		bsr.w	LevSelTextLoad
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -2681,17 +2696,18 @@ loc_3762:
 
 loc_3772:
 		move.w	d0,(v_levselsound).w
-		bsr.w	LevelSelect_TextLoad
+		bsr.w	LevSelTextLoad
 
 locret_377A:
 		rts
 ; End of function LevelSelect_Controls
 
+; ===========================================================================
+; ---------------------------------------------------------------------------
+; Subroutine to load level select text
+; ---------------------------------------------------------------------------
 
-; =============== S U B	R O U T	I N E =======================================
-
-
-LevelSelect_TextLoad:
+LevSelTextLoad:
 
 textpos:	= ($40000000+(($E210&$3FFF)<<16)+(($E210&$C000)>>14))
 					; $E210 is a VRAM address
@@ -2780,8 +2796,41 @@ LevSel_CharOk:
 ; End of function LevSel_ChgLine
 
 ; ---------------------------------------------------------------------------
+
 LevelSelect_Text:
-		binclude	"mappings/misc/Level select text.bin"
+		charset ' ', $FF
+		charset '0','9',$00
+		charset '$', $0A
+		charset '-', $0B
+		charset '=', $0C
+		charset '>', $0D
+		;charset '>', $0E ; there are two right arrows in the font for some reason
+		charset 'Y','Z',$0F ; Y and Z come before A-X
+		charset 'A','X',$11
+
+		dc.b "GREEN HILL ZONE  STAGE 1"
+		dc.b "                 STAGE 2"
+		dc.b "                 STAGE 3"
+		dc.b "MARBLE ZONE      STAGE 1"
+		dc.b "                 STAGE 2"
+		dc.b "                 STAGE 3"
+		dc.b "SPRING YARD ZONE STAGE 1"
+		dc.b "                 STAGE 2"
+		dc.b "                 STAGE 3"
+		dc.b "LABYRINTH ZONE   STAGE 1"
+		dc.b "                 STAGE 2"
+		dc.b "                 STAGE 3"
+		dc.b "STAR LIGHT ZONE  STAGE 1"
+		dc.b "                 STAGE 2"
+		dc.b "                 STAGE 3"
+		dc.b "SCRAP BRAIN ZONE STAGE 1"
+		dc.b "                 STAGE 2"
+		dc.b "                 STAGE 3"
+		dc.b "FINAL ZONE              "
+		dc.b "SPECIAL STAGE           "
+		dc.b "SOUND SELECT            "
+
+		charset
 		even
 ; ---------------------------------------------------------------------------
 

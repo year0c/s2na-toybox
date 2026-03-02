@@ -254,9 +254,9 @@ Obj01_InWater:
 		move.w	#$300,(Sonic_top_speed).w
 		move.w	#6,(Sonic_acceleration).w
 		move.w	#$40,(Sonic_deceleration).w
-		asr	obVelX(a0)
-		asr	obVelY(a0)			; memory oprands can only be shifted one at a time
-		asr	obVelY(a0)
+		asr.w	obVelX(a0)
+		asr.w	obVelY(a0)			; memory oprands can only be shifted one at a time
+		asr.w	obVelY(a0)
 		beq.s	locret_FC0A
 		move.b	#id_Obj08,(v_splash).w		; splash animation
 		move.w	#sfx_Splash,d0			; splash sound
@@ -271,7 +271,7 @@ Obj01_OutWater:
 		move.w	#$600,(Sonic_top_speed).w
 		move.w	#$C,(Sonic_acceleration).w
 		move.w	#$80,(Sonic_deceleration).w
-		asl	obVelY(a0)
+		asl.w	obVelY(a0)
 		beq.w	locret_FC0A
 		move.b	#id_Obj08,(v_splash).w		; splash animation
 		cmpi.w	#-$1000,obVelY(a0)
@@ -1367,7 +1367,7 @@ loc_10582:
 		addi.b	#$10,d0
 		andi.b	#$20,d0
 		beq.s	loc_105B2
-		asr	obVelY(a0)
+		asr.w	obVelY(a0)
 		bra.s	loc_105D4
 ; ---------------------------------------------------------------------------
 
@@ -1977,7 +1977,7 @@ LoadSonicDynPLC:
 		move.w	(a2)+,d5
 		subq.w	#1,d5
 		bmi.s	locret_10C34
-		move.w	#ArtTile_Sonic*tile_size,d4
+		move.w	#tiles_to_bytes(ArtTile_Sonic),d4
 ; loc_10C08:
 SPLC_ReadEntry:
 		moveq	#0,d1

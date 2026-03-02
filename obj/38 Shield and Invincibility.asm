@@ -33,7 +33,11 @@ loc_12406:
 
 loc_1240C:
 		addq.b	#2,obRoutine(a0)
+	if FixBugs
+		move.l	#Map_obj38,obMap(a0)
+	else
 		move.l	#Map_Sonic,obMap(a0)	; apparently use Sonic's mappings?
+	endif
 		move.w	#make_art_tile(ArtTile_Invincibility,0,0),obGfx(a0)
 		bsr.w	Adjust2PArtPointer
 		move.b	#2,obPriority(a0)

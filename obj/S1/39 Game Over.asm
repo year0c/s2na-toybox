@@ -38,7 +38,7 @@ loc_BADC:
 		moveq	#$10,d1
 		cmpi.w	#$120,obX(a0)
 		beq.s	loc_BAF2
-		bcs.s	loc_BAEA
+		blo.s	loc_BAEA
 		neg.w	d1
 
 loc_BAEA:

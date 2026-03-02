@@ -82,10 +82,9 @@ loc_B98E:
 		move.w	obX(a0),d0
 		bmi.s	Obj34_NoDisplay
 		cmpi.w	#$200,d0
-		bcc.s	Obj34_NoDisplay
+		bhs.s	Obj34_NoDisplay
 ; remove the rts below to restore the display code from Sonic 1.
 		rts
-; ---------------------------------------------------------------------------
 		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 
@@ -99,7 +98,6 @@ Obj34_Wait:
 		subq.w	#1,obTimeFrame(a0)
 ; remove the rts below to restore the display code from Sonic 1.
 		rts
-; ---------------------------------------------------------------------------
 		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 
@@ -118,10 +116,9 @@ Obj34_Move2:
 		move.w	obX(a0),d0
 		bmi.s	Obj34_NoDisplay2
 		cmpi.w	#$200,d0
-		bcc.s	Obj34_NoDisplay2
+		bhs.s	Obj34_NoDisplay2
 ; remove the rts below to restore the display code from Sonic 1.
 		rts
-; ---------------------------------------------------------------------------
 		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 

@@ -32,7 +32,7 @@ Obj53_Main:
 		addi.w	#$18,obVelY(a0)
 		move.w	objoff_30(a0),d0
 		cmp.w	obY(a0),d0
-		bcc.s	loc_17548
+		bhs.s	loc_17548
 		move.w	d0,obY(a0)
 		move.w	#-$500,obVelY(a0)
 
@@ -40,7 +40,7 @@ loc_17548:
 		move.b	#1,obAnim(a0)
 		subi.w	#$C0,d0
 		cmp.w	obY(a0),d0
-		bcc.s	locret_1756A
+		bhs.s	locret_1756A
 		move.b	#0,obAnim(a0)
 		tst.w	obVelY(a0)
 		bmi.s	locret_1756A

@@ -77,10 +77,10 @@ Obj22_LoadMissile:
 loc_A4D8:
 		add.w	d0,obX(a1)
 		move.b	obStatus(a0),obStatus(a1)
-		move.w	#15-1,obj22_time(a1)
+		move.w	#14,obj22_time(a1)
 		move.l	a0,obj22_parent(a1)
 		move.b	#1,obj22_status(a0)
-		move.w	#60-1,obj22_time(a0)
+		move.w	#59,obj22_time(a0)
 		move.b	#2,obAnim(a0)
 
 locret_A4FE:
@@ -100,7 +100,7 @@ Obj22_NearSonic:
 
 loc_A51C:
 		cmpi.w	#$60,d0				; is Buzz Bomber within $60 pixels of Sonic?
-		bcc.s	locret_A558			; if not, branch
+		bhs.s	locret_A558			; if not, branch
 		tst.b	obRender(a0)
 		bpl.s	locret_A558
 		move.b	#2,obj22_status(a0)

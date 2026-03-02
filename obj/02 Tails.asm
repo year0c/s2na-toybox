@@ -142,7 +142,7 @@ Obj02_ExitChk:
 
 
 Tails_Control:
-		move.b	(v_2Pjpadhold1).w,d0
+		move.b	(v_2Pjpadhold).w,d0
 		andi.b	#btnUp+btnDn+btnL+btnR+btnABC,d0
 		beq.s	TailsC_NoKeysPressed
 		move.w	#0,(word_F700).w
@@ -223,7 +223,7 @@ loc_10E40:
 		move.w	(Sonic_Pos_Record_Index).w,d0
 		sub.b	d1,d0
 		lea	(Sonic_Stat_Record_Buf).w,a1
-		move.w	(a1,d0.w),(v_2Pjpadhold1).w
+		move.w	(a1,d0.w),(v_2Pjpadhold).w
 		rts
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -305,12 +305,12 @@ Tails_Move:
 		bne.w	loc_11026
 		tst.w	locktime(a0)
 		bne.w	loc_10FFA
-		btst	#bitL,(v_2Pjpadhold1).w
+		btst	#bitL,(v_2Pjpadhold).w
 		beq.s	loc_10F3C
 		bsr.w	Tails_MoveLeft
 
 loc_10F3C:
-		btst	#bitR,(v_2Pjpadhold1).w
+		btst	#bitR,(v_2Pjpadhold).w
 		beq.s	loc_10F48
 		bsr.w	Tails_MoveRight
 
@@ -371,19 +371,19 @@ loc_10FD4:
 ; ---------------------------------------------------------------------------
 
 Tails_LookUp:
-		btst	#bitUp,(v_2Pjpadhold1).w
+		btst	#bitUp,(v_2Pjpadhold).w
 		beq.s	Tails_Duck
 		move.b	#AniIDSonAni_LookUp,obAnim(a0)
 		bra.s	loc_10FFA
 ; ---------------------------------------------------------------------------
 
 Tails_Duck:
-		btst	#bitDn,(v_2Pjpadhold1).w
+		btst	#bitDn,(v_2Pjpadhold).w
 		beq.s	loc_10FFA
 		move.b	#AniIDSonAni_Duck,obAnim(a0)
 
 loc_10FFA:
-		move.b	(v_2Pjpadhold1).w,d0
+		move.b	(v_2Pjpadhold).w,d0
 		andi.b	#btnL+btnR,d0
 		bne.s	loc_11026
 		move.w	obInertia(a0),d0
@@ -601,12 +601,12 @@ Tails_RollSpeed:
 		bne.w	loc_11204
 		tst.w	locktime(a0)
 		bne.s	loc_111C0
-		btst	#bitL,(v_2Pjpadhold1).w
+		btst	#bitL,(v_2Pjpadhold).w
 		beq.s	loc_111B4
 		bsr.w	Tails_RollLeft
 
 loc_111B4:
-		btst	#bitR,(v_2Pjpadhold1).w
+		btst	#bitR,(v_2Pjpadhold).w
 		beq.s	loc_111C0
 		bsr.w	Tails_RollRight
 
@@ -720,7 +720,7 @@ Tails_ChgJumpDir:
 		btst	#4,obStatus(a0)
 		bne.s	loc_112CA
 		move.w	obVelX(a0),d0
-		btst	#bitL,(v_2Pjpadhold1).w
+		btst	#bitL,(v_2Pjpadhold).w
 		beq.s	loc_112B0
 		bset	#0,obStatus(a0)
 		sub.w	d5,d0
@@ -731,7 +731,7 @@ Tails_ChgJumpDir:
 		move.w	d1,d0
 
 loc_112B0:
-		btst	#bitR,(v_2Pjpadhold1).w
+		btst	#bitR,(v_2Pjpadhold).w
 		beq.s	loc_112C6
 		bclr	#0,obStatus(a0)
 		add.w	d5,d0
@@ -846,10 +846,10 @@ Tails_Roll:
 loc_1139A:
 		cmpi.w	#$80,d0
 		blo.s	locret_113B2
-		move.b	(v_2Pjpadhold1).w,d0
+		move.b	(v_2Pjpadhold).w,d0
 		andi.b	#btnL+btnR,d0
 		bne.s	locret_113B2
-		btst	#bitDn,(v_2Pjpadhold1).w
+		btst	#bitDn,(v_2Pjpadhold).w
 		bne.s	loc_113B4
 
 locret_113B2:
@@ -883,16 +883,12 @@ locret_113F0:
 
 
 Tails_Jump:
-		move.b	(v_2Pjpadpress1).w,d0
+		move.b	(v_2Pjpadpress).w,d0
 		andi.b	#btnABC,d0
 		beq.w	locret_11496
 		moveq	#0,d0
 		move.b	obAngle(a0),d0
-
-loc_11404:
 		addi.b	#$80,d0
-
-loc_11408:
 		bsr.w	sub_13102
 		cmpi.w	#6,d1
 		blt.w	locret_11496
@@ -953,7 +949,7 @@ Tails_JumpHeight:
 loc_114B6:
 		cmp.w	obVelY(a0),d1
 		ble.s	locret_114CA
-		move.b	(v_2Pjpadhold1).w,d0
+		move.b	(v_2Pjpadhold).w,d0
 		andi.b	#btnABC,d0
 		bne.s	locret_114CA
 		move.w	d1,obVelY(a0)
@@ -980,7 +976,7 @@ Tails_Spindash:
 		bne.s	loc_11510
 		cmpi.b	#AniIDSonAni_Duck,obAnim(a0)
 		bne.s	locret_1150E
-		move.b	(v_2Pjpadpress1).w,d0
+		move.b	(v_2Pjpadpress).w,d0
 		andi.b	#btnABC,d0
 		beq.w	locret_1150E
 		move.b	#AniIDSonAni_Spindash,obAnim(a0)
@@ -994,7 +990,7 @@ locret_1150E:
 ; ---------------------------------------------------------------------------
 
 loc_11510:
-		move.b	(v_2Pjpadhold1).w,d0
+		move.b	(v_2Pjpadhold).w,d0
 		btst	#bitDn,d0
 		bne.s	loc_11556
 		move.b	#$E,obHeight(a0)
@@ -1023,7 +1019,7 @@ loc_1154E:
 ; ---------------------------------------------------------------------------
 
 loc_11556:
-		move.b	(v_2Pjpadpress1).w,d0
+		move.b	(v_2Pjpadpress).w,d0
 		andi.b	#btnABC,d0
 		beq.w	loc_11564
 		nop
@@ -1246,7 +1242,7 @@ loc_116E4:
 		addi.b	#$10,d0
 		andi.b	#$20,d0
 		beq.s	loc_11714
-		asr	obVelY(a0)
+		asr.w	obVelY(a0)
 		bra.s	loc_11736
 ; ---------------------------------------------------------------------------
 
@@ -1842,7 +1838,7 @@ LoadTailsTailsDynPLC:
 		move.w	(a2)+,d5
 		subq.w	#1,d5
 		bmi.s	locret_11D7C
-		move.w	#ArtTile_TailsTails*tile_size,d4
+		move.w	#tiles_to_bytes(ArtTile_TailsTails),d4
 		bra.s	TPLC_ReadEntry
 ; End of function LoadTailsTailsDynPLC
 
@@ -1865,7 +1861,7 @@ LoadTailsDynPLC:
 		move.w	(a2)+,d5
 		subq.w	#1,d5
 		bmi.s	locret_11D7C
-		move.w	#ArtTile_Tails*tile_size,d4
+		move.w	#tiles_to_bytes(ArtTile_Tails),d4
 ; loc_11D50:
 TPLC_ReadEntry:
 		moveq	#0,d1

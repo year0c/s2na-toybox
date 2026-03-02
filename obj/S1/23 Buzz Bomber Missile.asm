@@ -75,7 +75,7 @@ Obj23_Move:
 		move.w	(Camera_Max_Y_pos).w,d0
 		addi.w	#224,d0
 		cmp.w	obY(a0),d0
-		bcs.s	Obj23_Delete
+		blo.s	Obj23_Delete
 		bra.w	DisplaySprite
 ; ===========================================================================
 ; loc_A620:

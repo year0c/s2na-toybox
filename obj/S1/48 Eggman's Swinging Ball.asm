@@ -119,7 +119,7 @@ GBall_Display2:	; Routine 4
 sub_19236:
 		movea.l	objoff_34(a0),a1
 		addi.b	#$20,obAniFrame(a0)
-		bcc.s	loc_19248
+		bhs.s	loc_19248
 		bchg	#0,obFrame(a0)
 
 loc_19248:

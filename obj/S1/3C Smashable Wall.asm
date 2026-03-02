@@ -48,13 +48,13 @@ loc_C92E:
 
 loc_C942:
 		cmpi.w	#$480,d0
-		bcs.s	locret_C92C
+		blo.s	locret_C92C
 		move.w	objoff_30(a0),obVelX(a1)
 		addq.w	#4,obX(a1)
 		lea	(Obj3C_FragSpdRight).l,a4
 		move.w	obX(a0),d0
 		cmp.w	obX(a1),d0
-		bcs.s	loc_C96E
+		blo.s	loc_C96E
 		subi.w	#8,obX(a1)
 		lea	(Obj3C_FragSpdLeft).l,a4
 

@@ -20,7 +20,7 @@ Obj15_Index:	dc.w loc_821E-Obj15_Index
 loc_821E:
 		addq.b	#2,obRoutine(a0)
 		move.l	#Map_Obj15,obMap(a0)
-		move.w	#make_art_tile($4D0,2,0),obGfx(a0)
+		move.w	#make_art_tile(ArtTile_GHZ_Swing,2,0),obGfx(a0)
 		bsr.w	Adjust2PArtPointer
 		move.b	#4,obRender(a0)
 		move.b	#3,obPriority(a0)
@@ -31,7 +31,7 @@ loc_821E:
 		cmpi.b	#id_EHZ,(Current_Zone).w
 		bne.s	loc_8284
 		move.l	#Map_Obj15_EHZ,obMap(a0)
-		move.w	#make_art_tile($3DC,2,0),obGfx(a0)
+		move.w	#make_art_tile(ArtTile_SLZ_Swing,2,0),obGfx(a0)
 		bsr.w	Adjust2PArtPointer
 		move.b	#$20,obActWid(a0)
 		move.b	#$10,obHeight(a0)
@@ -104,7 +104,7 @@ loc_835C:
 		btst	#4,d1
 		beq.s	loc_8388
 		move.l	#Map_Obj48,obMap(a0)
-		move.w	#make_art_tile($3AA,2,0),obGfx(a0)
+		move.w	#make_art_tile(ArtTile_GHZ_Giant_Ball,2,0),obGfx(a0)
 		bsr.w	Adjust2PArtPointer
 		move.b	#1,obFrame(a0)
 		move.b	#2,obPriority(a0)

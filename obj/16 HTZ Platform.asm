@@ -21,7 +21,6 @@ Obj16_Init:
 		ori.b	#4,obRender(a0)
 	else
 		; Bug: This does not correctly flip the object.
-		; Change 'move' to 'ori' to fix this bug.
 		move.b	#4,obRender(a0)
 	endif
 		move.b	#$20,obActWid(a0)

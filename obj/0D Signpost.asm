@@ -99,15 +99,28 @@ Obj0D_RingSparklePositions:
 Obj0D_EndLevel:
 		tst.w	(Debug_placement_mode).w
 		bne.w	locret_F15E
+	if FixBugs
+		; This function's checks are a mess, creating an edgecase where it's
+		; possible for the player to avoid having their controls locked by
+		; jumping at the right side of the screen just as the score tally
+		; appears.
+		tst.b	(v_player+obID).w
+		beq.s	loc_F0F6
+		btst	#1,(v_player+obStatus).w
+		bne.w	locret_F15E
+	else
 		btst	#1,(v_player+obStatus).w
 		bne.s	loc_F0E0
+	endif
 		move.b	#1,(f_lockctrl).w
 		move.w	#8<<btnR,(v_jpadhold2).w
 
+	if FixBugs=0
 loc_F0E0:
 		; This check here is for S1's Big Ring, which would set Sonic's Object ID to 0
 		tst.b	(v_player).w
 		beq.s	loc_F0F6
+	endif
 		move.w	(v_player+obX).w,d0
 		move.w	(Camera_Max_X_pos).w,d1
 		addi.w	#320-24,d1
@@ -140,7 +153,7 @@ GotThroughAct:
 		move.b	(v_timesec).w,d1
 		add.w	d1,d0
 		divu.w	#15,d0
-		moveq	#$14,d1
+		moveq	#(TimeBonuses_End-TimeBonuses)/2-1,d1
 		cmp.w	d1,d0
 		blo.s	loc_F140
 		move.w	d1,d0
@@ -159,13 +172,13 @@ locret_F15E:
 ; End of function GotThroughAct
 
 ; ===========================================================================
-; word_F160:
 TimeBonuses:	dc.w  5000, 5000, 1000,	 500
 		dc.w   400,  400,  300,	 300
 		dc.w   200,  200,  200,	 200
 		dc.w   100,  100,  100,	 100
 		dc.w	50,   50,   50,	  50
 		dc.w	0
+TimeBonuses_End:
 ; ===========================================================================
 
 locret_F18A:

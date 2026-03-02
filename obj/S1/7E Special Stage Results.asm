@@ -76,7 +76,7 @@ loc_BE32:
 		move.w	obX(a0),d0
 		bmi.s	locret_BE42
 		cmpi.w	#$200,d0
-		bcc.s	locret_BE42
+		bhs.s	locret_BE42
 		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 
@@ -121,7 +121,7 @@ loc_BE9C:
 		addq.b	#2,obRoutine(a0)
 		move.w	#180,obTimeFrame(a0)
 		cmpi.w	#50,(v_rings).w
-		bcs.s	locret_BEC2
+		blo.s	locret_BEC2
 		move.w	#60,obTimeFrame(a0)
 		addq.b	#4,obRoutine(a0)
 

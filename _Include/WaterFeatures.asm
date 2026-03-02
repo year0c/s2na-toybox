@@ -95,14 +95,14 @@ DynWater_Index:	dc.w DynWater_HPZ1-DynWater_Index
 ; ---------------------------------------------------------------------------
 
 DynWater_HPZ1:						; This uses the 2nd controller to make the water level move up or down
-		btst	#bitUp,(v_2Pjpadhold1).w
+		btst	#bitUp,(v_2Pjpadhold).w
 		beq.s	loc_40E2
 		tst.w	(v_waterpos3).w
 		beq.s	loc_40E2
 		subq.w	#1,(v_waterpos3).w
 
 loc_40E2:
-		btst	#bitDn,(v_2Pjpadhold1).w
+		btst	#bitDn,(v_2Pjpadhold).w
 		beq.s	locret_40F6
 		cmpi.w	#$700,(v_waterpos3).w
 		beq.s	locret_40F6

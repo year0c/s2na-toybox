@@ -104,11 +104,11 @@ sub_A8DE:
 		ori.b	#1,(f_ringcount).w
 		move.w	#sfx_Ring,d0
 		cmpi.w	#100,(v_rings).w
-		bcs.s	loc_A918
+		blo.s	loc_A918
 		bset	#1,(v_lifecount).w
 		beq.s	loc_A90C
 		cmpi.w	#200,(v_rings).w
-		bcs.s	loc_A918
+		blo.s	loc_A918
 		bset	#2,(v_lifecount).w
 		bne.s	loc_A918
 
@@ -227,7 +227,7 @@ loc_AA34:
 		move.w	(Camera_Max_Y_pos).w,d0
 		addi.w	#224,d0
 		cmp.w	obY(a0),d0
-		bcs.s	loc_AA6E
+		blo.s	loc_AA6E
 		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 

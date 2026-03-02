@@ -17,7 +17,7 @@ loc_9742:
 		addq.b	#2,obRoutine(a0)
 		move.b	#7,obHeight(a0)
 		move.l	#Map_S1Obj1E,obMap(a0)
-		move.w	#make_art_tile($302,1,0),obGfx(a0)
+		move.w	#make_art_tile(ArtTile_Ball_Hog,1,0),obGfx(a0)
 		bsr.w	Adjust2PArtPointer
 		move.b	#4,obRender(a0)
 		move.b	#3,obPriority(a0)
@@ -69,7 +69,7 @@ loc_97E2:
 
 loc_97F4:
 		move.w	(Camera_Max_Y_pos).w,d0
-		addi.w	#$E0,d0
+		addi.w	#224,d0
 		cmp.w	obY(a0),d0
-		bcs.w	DeleteObject
+		blo.w	DeleteObject
 		bra.w	DisplaySprite

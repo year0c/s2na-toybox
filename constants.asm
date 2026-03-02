@@ -642,8 +642,8 @@ v_jpadhold2:		ds.b	1			; joypad input - held, duplicate
 v_jpadpress2:		ds.b	1			; joypad input - pressed, duplicate
 v_jpadhold1:		ds.b	1			; joypad input - held
 v_jpadpress1:		ds.b	1			; joypad input - pressed
-v_2Pjpadhold1:		ds.b	1			; joypad input - held
-v_2Pjpadpress1:		ds.b	1			; joypad input - pressed
+v_2Pjpadhold:		ds.b	1			; joypad input - held
+v_2Pjpadpress:		ds.b	1			; joypad input - pressed
 			ds.b	4			; unused
 v_vdp_buffer1:		ds.w	1			; VDP instruction buffer
 			ds.b	6			; unused
@@ -1125,6 +1125,7 @@ boss_fz_end:	equ boss_fz_x+$2B0
 
 ; Shared
 ArtTile_GHZ_MZ_Swing:		equ $380
+ArtTile_GHZ_Swing:	equ $4D0
 ArtTile_MZ_SYZ_Caterkiller:	equ $4FF
 ArtTile_GHZ_SLZ_Smashable_Wall:	equ $50F
 
@@ -1377,6 +1378,7 @@ ArtTile_HPZ_Bridge:		equ $300
 ArtTile_HPZ_Waterfall:		equ $315
 ArtTile_HPZ_Platform:		equ $34A
 ArtTile_HPZ_Orb:		equ $35A
+ArtTile_HPZ_Various:		equ $37C
 ArtTile_HPZ_Emerald:		equ $392
 
 ; ---------------------------------------------------------------------------
@@ -1400,6 +1402,12 @@ ArtTile_ArtNem_EggChoppers:	equ $540
 
 ; CPZ
 ArtTile_CPZ_Platform:		equ $400
+
+; CPZ boss
+ArtTile_ArtNem_EggpodJets_1:	equ $418
+ArtTile_ArtNem_Eggpod_3:	equ $420
+ArtTile_ArtNem_CPZBoss:	equ $500
+ArtTile_ArtNem_BossSmoke_1:	equ $570
 
 ; HPZ
 ArtTile_Redz:			equ $500

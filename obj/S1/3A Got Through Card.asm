@@ -67,10 +67,9 @@ loc_BBCC:
 		move.w	obX(a0),d0
 		bmi.s	locret_BBDE
 		cmpi.w	#$200,d0
-		bcc.s	locret_BBDE
+		bhs.s	locret_BBDE
 ; remove the rts below to restore the display code from Sonic 1.
 		rts
-; ---------------------------------------------------------------------------
 		bra.w	DisplaySprite
 ; ===========================================================================
 
@@ -99,7 +98,6 @@ Obj3A_Wait:
 locret_BC0E:
 ; remove the rts below to restore the display code from Sonic 1.
 		rts
-; ---------------------------------------------------------------------------
 		bra.w	DisplaySprite
 ; ===========================================================================
 ; Obj3A_TimeBonus:
@@ -173,7 +171,6 @@ loc_BCBC:
 locret_BCC2:
 ; remove the rts below to restore the display code from Sonic 1.
 		rts
-; ---------------------------------------------------------------------------
 		bra.w	DisplaySprite
 ; ===========================================================================
 LevelOrder:
@@ -228,7 +225,7 @@ Obj3A_ChgPos2:
 		move.w	obX(a0),d0
 		bmi.s	locret_BD1C
 		cmpi.w	#$200,d0
-		bcc.s	locret_BD1C
+		bhs.s	locret_BD1C
 		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 

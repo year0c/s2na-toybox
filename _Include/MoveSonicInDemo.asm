@@ -34,7 +34,7 @@ loc_44A4:
 		lea	(RAM_debug_demo_record_2P).l,a1
 		move.w	(Demo_button_index_2P).w,d0
 		adda.w	d0,a1
-		move.b	(v_2Pjpadhold1).w,d0
+		move.b	(v_2Pjpadhold).w,d0
 		cmp.b	(a1),d0
 		bne.s	loc_44CE
 		addq.b	#1,1(a1)
@@ -93,7 +93,7 @@ loc_453A:
 		move.w	(Demo_button_index_2P).w,d0
 		adda.w	d0,a1
 		move.b	(a1),d0
-		lea	(v_2Pjpadhold1).w,a0
+		lea	(v_2Pjpadhold).w,a0
 		move.b	d0,d1
 		moveq	#0,d2
 		eor.b	d2,d0
@@ -110,7 +110,7 @@ locret_4570:
 ; ---------------------------------------------------------------------------
 
 loc_4572:
-		move.w	#0,(v_2Pjpadhold1).w
+		move.w	#0,(v_2Pjpadhold).w
 		rts
 ; End of function MoveSonicInDemo
 

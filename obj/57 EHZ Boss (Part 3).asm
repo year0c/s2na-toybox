@@ -121,7 +121,7 @@ loc_179AE:
 		_move.b	#id_Obj58,obID(a1)
 		move.l	a0,objoff_34(a1)
 		move.l	#Map_Obj58,obMap(a1)
-		move.w	#make_art_tile($540,1,0),obGfx(a1)
+		move.w	#make_art_tile(ArtTile_ArtNem_EggChoppers,1,0),obGfx(a1)
 		move.b	#4,obRender(a1)
 		move.b	#$20,obActWid(a1)
 		move.b	#4,obPriority(a1)

@@ -617,7 +617,7 @@ Vint_TitleCard2_ptr:	dc.w Vint_TitleCard-Vint_SwitchTbl
 ; ===========================================================================
 ; loc_B86: VintSub0:
 Vint_Lag:
-		cmpi.b	#GameModeID_TitleCard|GameModeID_Level,(v_gamemode).w
+		cmpi.b	#GameModeID_TitleCard+GameModeID_Level,(v_gamemode).w
 		beq.s	loc_BA0
 		cmpi.b	#GameModeID_Demo,(v_gamemode).w
 		beq.s	loc_BA0
@@ -13860,7 +13860,7 @@ j_CalcSine:
 
 		align 4
 
-		include	"obj/12 Master Emerald.asm"
+		include	"obj/12 HPZ Emerald.asm"
 ; ---------------------------------------------------------------------------
 Map_Obj12:	dc.w word_14444-Map_Obj12
 word_14444:	dc.w 2
@@ -14334,23 +14334,23 @@ Ani_Obj52:	dc.w byte_15D4E-Ani_Obj52
 		dc.w byte_15D52-Ani_Obj52
 		dc.w byte_15D56-Ani_Obj52
 		dc.w byte_15D5A-Ani_Obj52
-byte_15D4E:	dc.b  $E,  0,  1,$FF			; 0
-byte_15D52:	dc.b   3,  0,  1,$FF			; 0
-byte_15D56:	dc.b  $E,  2,  3,$FF			; 0
-byte_15D5A:	dc.b   3,  2,  3,$FF			; 0
+byte_15D4E:	dc.b  $E,  0,  1,$FF
+byte_15D52:	dc.b   3,  0,  1,$FF
+byte_15D56:	dc.b  $E,  2,  3,$FF
+byte_15D5A:	dc.b   3,  2,  3,$FF
 		even
 Map_Obj52:	dc.w word_15D66-Map_Obj52
 		dc.w word_15D70-Map_Obj52
 		dc.w word_15D7A-Map_Obj52
 		dc.w word_15D84-Map_Obj52
 word_15D66:	dc.w 1
-		dc.w $F00F,    0,    0,$FFF0		; 0
+		dc.w $F00F,    0,    0,$FFF0
 word_15D70:	dc.w 1
-		dc.w $F00F,  $10,    8,$FFF0		; 0
+		dc.w $F00F,  $10,    8,$FFF0
 word_15D7A:	dc.w 1
-		dc.w $F00F,  $20,  $10,$FFF0		; 0
+		dc.w $F00F,  $20,  $10,$FFF0
 word_15D84:	dc.w 1
-		dc.w $F00F,  $30,  $18,$FFF0		; 0
+		dc.w $F00F,  $30,  $18,$FFF0
 
 		align 4
 
@@ -14552,9 +14552,9 @@ j_ObjectMove_5:
 Ani_Obj4A:	dc.w byte_16C98-Ani_Obj4A
 		dc.w byte_16C9B-Ani_Obj4A
 		dc.w byte_16CA0-Ani_Obj4A
-byte_16C98:	dc.b  $F,  0,$FF			; 0
-byte_16C9B:	dc.b   3,  1,  2,  3,$FF		; 0
-byte_16CA0:	dc.b   2,  5,  6,$FF			; 0
+byte_16C98:	dc.b  $F,  0,$FF
+byte_16C9B:	dc.b   3,  1,  2,  3,$FF
+byte_16CA0:	dc.b   2,  5,  6,$FF
 		even
 
 Map_Obj4A:	dc.w word_16CB2-Map_Obj4A
@@ -14718,7 +14718,7 @@ Ani_Obj4E:	dc.w byte_172F4-Ani_Obj4E
 		dc.w byte_172FF-Ani_Obj4E
 byte_172F4:	dc.b   3,  0,  4,  2,  3,  1,  5,$FF
 byte_172FC:	dc.b  $F,  0,$FF
-byte_172FF:	dc.b   3,  6, $A,  8,  9,  7, $B,$FF,  0
+byte_172FF:	dc.b   3,  6, $A,  8,  9,  7, $B,$FF
 		even
 
 Map_Obj4E:	dc.w word_17320-Map_Obj4E
@@ -14878,11 +14878,11 @@ j_ObjectMove_7:
 Ani_Obj58:	dc.w byte_18000-Ani_Obj58
 		dc.w byte_18004-Ani_Obj58
 		dc.w byte_1801A-Ani_Obj58
-byte_18000:	dc.b   1,  5,  6,$FF			; 0
+byte_18000:	dc.b   1,  5,  6,$FF
 byte_18004:	dc.b   1,  1,  1,  1,  2,  2,  2,  3,  3,  3,  4,  4,  4,  0,  0,  0
-		dc.b   0,  0,  0,  0,  0,$FF		; 16
+		dc.b   0,  0,  0,  0,  0,$FF
 byte_1801A:	dc.b   1,  0,  0,  0,  0,  0,  0,  0,  0,  4,  4,  4,  3,  3,  3,  2
-		dc.b   2,  2,  1,  1,  1,  5,  6,$FE,  2,  0 ; 16
+		dc.b   2,  2,  1,  1,  1,  5,  6,$FE,  2
 		even
 
 Map_Obj58:	dc.w word_18042-Map_Obj58

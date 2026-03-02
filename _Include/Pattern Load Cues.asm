@@ -65,7 +65,7 @@ ptr_PLC_FZBoss:		dc.w $1C320-ArtLoadCues
 
 plcm:	macro gfx,vram
 	dc.l gfx
-	dc.w (vram<<5)
+	dc.w tiles_to_bytes(vram)
 	endm
 ; --------------------------------------------------------------------------------------
 ; PATTERN LOAD REQUEST LIST
@@ -112,7 +112,7 @@ PLC_GHZ:	dc.w ((PLC_GHZ_End-PLC_GHZ)/6)-1
 		plcm	Nem_HSpring, ArtTile_S1_Spring_Horizontal
 		plcm	Nem_VSpring, ArtTile_S1_Spring_Vertical
 		plcm	Nem_GHZ_Bridge, ArtTile_GHZ_Bridge
-		plcm	Nem_SwingPlatform, $4D0
+		plcm	Nem_SwingPlatform, ArtTile_GHZ_Swing
 		plcm	Nem_Motobug, ArtTile_Moto_Bug
 		plcm	Nem_GHZ_Rock, ArtTile_GHZ_Purple_Rock
 PLC_GHZ_End:
@@ -163,7 +163,8 @@ PLC_EHZ_End:
 ; --------------------------------------------------------------------------------------
 PLC_EHZ2:	dc.w ((PLC_EHZ2_End-PLC_EHZ2)/6)-1
 		plcm	Nem_Shield, ArtTile_EHZ_Shield
-		plcm	Nem_Points, $4AC
+		; Redundant PLC entry
+		plcm	Nem_Points, ArtTile_Points
 		plcm	Nem_Buzzer, ArtTile_Buzzer
 		plcm	Nem_Snail, ArtTile_Snail
 		plcm	Nem_Masher, ArtTile_Masher
@@ -178,7 +179,7 @@ PLC_HPZ:	dc.w ((PLC_HPZ_End-PLC_HPZ)/6)-1
 		plcm	Nem_HPZ_Waterfall, ArtTile_HPZ_Waterfall
 		plcm	Nem_HPZ_Platform, ArtTile_HPZ_Platform
 		plcm	Nem_HPZ_PulsingBall, ArtTile_HPZ_Orb
-		plcm	Nem_HPZ_Various, $37C
+		plcm	Nem_HPZ_Various, ArtTile_HPZ_Various
 		plcm	Nem_HPZ_Emerald, ArtTile_HPZ_Emerald
 		plcm	Nem_WaterSurface, ArtTile_Water_Surface
 PLC_HPZ_End:
@@ -243,8 +244,8 @@ PLC_Boss:	dc.w ((PLC_Boss_End-PLC_Boss)/6)-1
 		plcm	Nem_EHZ_Boss, ArtTile_ArtNem_EHZBoss
 		plcm	Nem_EHZ_Boss_Blades, ArtTile_ArtNem_EggChoppers
 PLC_Boss_End:
-		; unused PLR entries
-		plcm	Nem_BossShip, ArtTile_Eggman
+; unused PLC entries
+		plcm	Nem_BossShip, $400
 		plcm	Nem_CPZ_ProtoBoss, $460
 		plcm	Nem_BossShipBoost, $4D0
 		plcm	Nem_Smoke, $4D8
@@ -269,7 +270,6 @@ PLC_S1SpecialStage:
 		dc.w ((PLC_S1SpecialStage_End-PLC_S1SpecialStage)/6)-1
 	else
 		; Bug: This crashes the game due to trying to decompress invalid entries.
-		; To fix this, change the '+$10' to '-1'.
 		dc.w ((PLC_S1SpecialStage_End-PLC_S1SpecialStage)/6)+$10
 	endif
 PLC_S1SpecialStage_End:

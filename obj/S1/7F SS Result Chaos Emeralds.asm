@@ -25,7 +25,7 @@ loc_BF4C:
 		moveq	#0,d1
 		move.b	(v_emeralds).w,d1
 		subq.b	#1,d1
-		bcs.w	DeleteObject
+		blo.w	DeleteObject
 
 loc_BF60:
 		_move.b	#id_Obj7F,obID(a1)

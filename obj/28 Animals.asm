@@ -50,17 +50,17 @@ off_9B50:	dc.l Map_Obj28,Map_Obj28
 		dc.l Map_Obj28b,Map_Obj28
 		dc.l Map_Obj28b
 word_9B7C:
-		dc.w make_art_tile($5A5,0,0)
-		dc.w make_art_tile($5A5,0,0)
-		dc.w make_art_tile($5A5,0,0)
-		dc.w make_art_tile($553,0,0)
-		dc.w make_art_tile($553,0,0)
-		dc.w make_art_tile($573,0,0)
-		dc.w make_art_tile($573,0,0)
-		dc.w make_art_tile($585,0,0)
-		dc.w make_art_tile($593,0,0)
-		dc.w make_art_tile($565,0,0)
-		dc.w make_art_tile($5B3,0,0)
+		dc.w make_art_tile(ArtTile_Ending_Flicky,0,0)
+		dc.w make_art_tile(ArtTile_Ending_Flicky,0,0)
+		dc.w make_art_tile(ArtTile_Ending_Flicky,0,0)
+		dc.w make_art_tile(ArtTile_Ending_Rabbit,0,0)
+		dc.w make_art_tile(ArtTile_Ending_Rabbit,0,0)
+		dc.w make_art_tile(ArtTile_Ending_Penguin,0,0)
+		dc.w make_art_tile(ArtTile_Ending_Penguin,0,0)
+		dc.w make_art_tile(ArtTile_Ending_Seal,0,0)
+		dc.w make_art_tile(ArtTile_Ending_Pig,0,0)
+		dc.w make_art_tile(ArtTile_Ending_Chicken,0,0)
+		dc.w make_art_tile(ArtTile_Ending_Squirrel,0,0)
 ; ---------------------------------------------------------------------------
 
 loc_9B92:
@@ -106,10 +106,10 @@ loc_9C00:
 		move.w	(a1)+,objoff_32(a0)
 		move.w	(a1)+,objoff_34(a0)
 		move.l	(a1)+,obMap(a0)
-		move.w	#make_art_tile($580,0,0),obGfx(a0)
+		move.w	#make_art_tile(ArtTile_Animal_1,0,0),obGfx(a0)
 		btst	#0,objoff_30(a0)
 		beq.s	loc_9C4A
-		move.w	#make_art_tile($592,0,0),obGfx(a0)
+		move.w	#make_art_tile(ArtTile_Animal_2,0,0),obGfx(a0)
 
 loc_9C4A:
 		bsr.w	Adjust2PArtPointer

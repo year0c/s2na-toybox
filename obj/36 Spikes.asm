@@ -10,12 +10,13 @@ Obj36:
 ; ---------------------------------------------------------------------------
 Obj36_Index:	dc.w loc_C682-Obj36_Index
 		dc.w loc_C6CE-Obj36_Index
-Obj36_Conf:	dc.b   0,$10
-		dc.b   0,$10
-		dc.b   0,$10
-		dc.b   0,$10
-		dc.b   0,$10
-		dc.b   0,$10
+Obj36_Conf:
+		dc.b 0,$10
+		dc.b 0,$10
+		dc.b 0,$10
+		dc.b 0,$10
+		dc.b 0,$10
+		dc.b 0,$10
 ; ---------------------------------------------------------------------------
 
 loc_C682:
@@ -80,7 +81,7 @@ loc_C736:
 		movea.l	a0,a2
 		lea	(v_player).w,a0
 		cmpi.b	#4,obRoutine(a0)
-		bcc.s	loc_C764
+		bhs.s	loc_C764
 		move.l	obY(a0),d3
 		move.w	obVelY(a0),d0
 		ext.l	d0
@@ -159,7 +160,7 @@ loc_C7E6:
 		tst.w	objoff_36(a0)
 		beq.s	loc_C808
 		subi.w	#$800,objoff_34(a0)
-		bcc.s	locret_C828
+		bhs.s	locret_C828
 		move.w	#0,objoff_34(a0)
 		move.w	#0,objoff_36(a0)
 		move.w	#60,objoff_38(a0)

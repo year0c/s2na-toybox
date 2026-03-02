@@ -26,7 +26,15 @@ Obj04_Main:
 		move.w	d1,obY(a0)
 		tst.b	objoff_32(a0)
 		bne.s	loc_15530
-		btst	#bitStart,(v_jpadpress1).w
+	if FixBugs
+		move.b	(v_jpadpress1).w,d0 ; is Start button pressed?
+		or.b	(v_2Pjpadpress).w,d0 ; (either player)
+		andi.b	#btnStart,d0
+	else
+		; This only checks player 1, causing the water to look weird if
+		; player 2 pauses the game instead.
+		btst	#bitStart,(v_jpadpress1).w	; is Start button pressed?
+	endif
 		beq.s	loc_15540
 		addq.b	#3,obFrame(a0)
 		move.b	#1,objoff_32(a0)
@@ -39,11 +47,18 @@ loc_15530:
 		move.b	#0,objoff_32(a0)
 		subq.b	#3,obFrame(a0)
 
+	if FixBugs=0
 loc_15540:
+		; This code should be skipped when the game is paused, but is isn't.
+		; This causes the wrong sprite to display when the game is paused.
+	endif
 		lea	(Obj04_FrameData).l,a1
 		moveq	#0,d1
 		move.b	obAniFrame(a0),d1
 		move.b	(a1,d1.w),obFrame(a0)
 		addq.b	#1,obAniFrame(a0)
 		andi.b	#$3F,obAniFrame(a0)
+	if FixBugs
+loc_15540:
+	endif
 		bra.w	loc_15868

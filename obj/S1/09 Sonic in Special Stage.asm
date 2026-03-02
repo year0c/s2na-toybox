@@ -100,7 +100,7 @@ loc_1A4B0:
 		beq.s	loc_1A4E0
 		bmi.s	loc_1A4D2
 		subi.w	#$C,d0
-		bcc.s	loc_1A4CC
+		bhs.s	loc_1A4CC
 		move.w	#0,d0
 
 loc_1A4CC:
@@ -110,7 +110,7 @@ loc_1A4CC:
 
 loc_1A4D2:
 		addi.w	#$C,d0
-		bcc.s	loc_1A4DC
+		bhs.s	loc_1A4DC
 		move.w	#0,d0
 
 loc_1A4DC:
@@ -259,14 +259,14 @@ S1SS_FixCamera:
 		move.w	obX(a0),d3
 		move.w	(Camera_RAM).w,d0
 		subi.w	#$A0,d3
-		bcs.s	loc_1A606
+		blo.s	loc_1A606
 		sub.w	d3,d0
 		sub.w	d0,(Camera_RAM).w
 
 loc_1A606:
 		move.w	(Camera_Y_pos).w,d0
 		subi.w	#$70,d2
-		bcs.s	locret_1A616
+		blo.s	locret_1A616
 		sub.w	d2,d0
 		sub.w	d0,(Camera_Y_pos).w
 
@@ -288,7 +288,7 @@ loc_1A62C:
 		move.w	#0,(v_ssrotate).w
 		move.w	#$4000,(v_ssangle).w
 		addq.b	#2,obRoutine(a0)
-		move.w	#$3C,objoff_38(a0)
+		move.w	#60,objoff_38(a0)
 
 loc_1A64A:
 		move.w	(v_ssangle).w,d0
@@ -467,7 +467,7 @@ loc_1A7C4:
 loc_1A7D8:
 		jsr	(sub_A8DE).l
 		cmpi.w	#50,(v_rings).w
-		bcs.s	loc_1A7FC
+		blo.s	loc_1A7FC
 		bset	#0,(v_lifecount).w
 		bne.s	loc_1A7FC
 		addq.b	#1,(v_continues).w
@@ -544,10 +544,10 @@ loc_1A894:
 		cmpi.b	#2,objoff_3A(a0)
 		bne.s	loc_1A8BE
 		lea	(v_ssblockbuffer).l,a1
-		moveq	#(v_ssblockbuffer_end-v_ssblockbuffer)/$80-1,d1
+		moveq	#bytesToXcnt(v_ssblockbuffer_end-v_ssblockbuffer,$80),d1
 
 loc_1A8A4:
-		moveq	#(v_ssblockbuffer_end-v_ssblockbuffer)/$80-1,d2
+		moveq	#bytesToXcnt(v_ssblockbuffer_end-v_ssblockbuffer,$80),d2
 
 loc_1A8A6:
 		cmpi.b	#$41,(a1)
@@ -639,7 +639,7 @@ loc_1A974:
 		move.b	#$1E,objoff_36(a0)
 		btst	#6,(v_ssrotate+1).w
 		beq.s	loc_1A99E
-		asl	(v_ssrotate).w
+		asl.w	(v_ssrotate).w
 		movea.l	objoff_32(a0),a1
 		subq.l	#1,a1
 		move.b	#$2A,(a1)
@@ -657,7 +657,7 @@ loc_1A9A8:
 		move.b	#$1E,objoff_36(a0)
 		btst	#6,(v_ssrotate+1).w
 		bne.s	loc_1A9D2
-		asr	(v_ssrotate).w
+		asr.w	(v_ssrotate).w
 		movea.l	objoff_32(a0),a1
 		subq.l	#1,a1
 		move.b	#$29,(a1)

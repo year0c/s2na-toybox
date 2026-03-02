@@ -315,7 +315,7 @@ ChecksumTest:
 ChecksumLoop:
 		add.w	(a0)+,d1
 		cmp.l	a0,d0
-		bcc.s	ChecksumLoop
+		bhs.s	ChecksumLoop
 		movea.l	#Checksum,a1		; read the checksum
 		cmp.w	(a1),d1				; compare correct checksum to one in ROM
 	if 0
@@ -732,7 +732,7 @@ loc_D48:
 		movem.l	d0-d3,(Scroll_flags_copy).w
 		move.l	(v_bg3scrposy_vdp).w,(Camera_X_pos_copy).w
 		cmpi.b	#92,(v_hbla_line).w
-		bcc.s	Do_Updates
+		bhs.s	Do_Updates
 		move.b	#1,(f_doupdatesinhblank).w
 		addq.l	#4,sp
 		bra.w	VintRet
@@ -1855,7 +1855,7 @@ loc_23C4:
 
 loc_23CE:
 		cmpi.w	#$60,d0
-		bcc.s	loc_23D8
+		bhs.s	loc_23D8
 		move.w	(a0)+,(a1,d0.w)
 
 loc_23D8:
@@ -2152,7 +2152,7 @@ loc_2F68:
 
 loc_2F70:
 		cmp.w	d3,d4
-		bcc.w	loc_2F82
+		bhs.w	loc_2F82
 		lsl.l	#8,d4
 		divu.w	d3,d4
 		moveq	#0,d0
@@ -4059,8 +4059,8 @@ StartLocArray:
 		binclude	"startpos/S1/lz3.bin"	; LZ3
 		binclude	"startpos/S1/sbz3.bin"	; SBZ3 (LZ4)
 		binclude	"startpos/CPZ_1.bin"	; CPZ1
-		binclude	"startpos/S1/mz2.bin"		; CPZ2 (MZ2)
-		binclude	"startpos/S1/mz3.bin"		; CPZ3 (MZ3)
+		binclude	"startpos/S1/mz2.bin"	; CPZ2 (MZ2)
+		binclude	"startpos/S1/mz3.bin"	; CPZ3 (MZ3)
 		dc.w   $80,  $A8			; CPZ4
 		binclude	"startpos/EHZ_1.bin"	; EHZ1
 		binclude	"startpos/EHZ_2.bin"	; EHZ2

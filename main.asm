@@ -341,9 +341,9 @@ GameInit:
 		moveq	#0,d7
 		move.w	#bytesToLcnt(v_crossresetram-v_ram_start),d6
 
-GameClrRAM:
+.clrRAM:
 		move.l	d7,(a6)+
-		dbf	d6,GameClrRAM
+		dbf	d6,.clrRAM
 		bsr.w	VDPSetupGame
 		bsr.w	DACDriverLoad
 		bsr.w	JoypadInit
@@ -493,14 +493,14 @@ ShowErrorMsg:
 
 ; ---------------------------------------------------------------------------
 ErrorText:
-		dc.w .exception-ErrorText	; $00
-		dc.w .bus-ErrorText		; $02
-		dc.w .address-ErrorText		; $04
-		dc.w .illinstruct-ErrorText	; $06
-		dc.w .zerodivide-ErrorText	; $08
-		dc.w .chkinstruct-ErrorText	; $0A
-		dc.w .trapv-ErrorText		; $0C
-		dc.w .privilege-ErrorText	; $0E
+		dc.w .exception-ErrorText	; 0
+		dc.w .bus-ErrorText		; 2
+		dc.w .address-ErrorText		; 4
+		dc.w .illinstruct-ErrorText	; 6
+		dc.w .zerodivide-ErrorText	; 8
+		dc.w .chkinstruct-ErrorText	; $A
+		dc.w .trapv-ErrorText		; $C
+		dc.w .privilege-ErrorText	; $E
 		dc.w .trace-ErrorText		; $10
 		dc.w .line1010-ErrorText	; $12
 		dc.w .line1111-ErrorText	; $14

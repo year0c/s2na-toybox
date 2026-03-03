@@ -2425,7 +2425,7 @@ Title_CheckLvlSel:
 		; Fix the level selects graphics bug
 		; https://info.sonicretro.org/SCHG_How-to:Fix_the_Level_Select_graphics_bug
 		move.b	#VintID_Title,(v_vbla_routine).w	; set routine 4 in V-Int
-		bsr.w	WaitForVBla		; run V-Blank one extra frame to prevent graphical glitches
+		bsr.w	WaitForVint		; run V-Blank one extra frame to prevent graphical glitches
 	endif
 
 		moveq	#palid_LevelSel,d0

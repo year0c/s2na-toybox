@@ -14110,6 +14110,7 @@ Art_BigRing:	binclude	"art/uncompressed/Giant Ring.bin"
 ; A duplicate copy of the big ring art
 ;----------------------------------------------------
 		binclude	"art/uncompressed/Giant Ring.bin"
+		; cut-off piece of uncompressed giant ring art
 		dc.w	0,$EEEE,$EEEE
 		binclude	"misc/leftovers/art/uncompressed/Giant Ring.bin"
 ; --------------------------------------------------------------------------------------
@@ -14402,8 +14403,8 @@ RingPos_CPZ1:	binclude	"level/rings/CPZ_1.bin"
 ; Primary object assets (players and common objects)
 ; ---------------------------------------------------------------------------
 ; This must be aligned to a bank in order to avoid issues with the DMA.
-; But because all of the art is placed after the sound driver which already aligns
-; with the bank, this fixes itself.
+; But because all of the art is placed after the sound driver which already aligns with the bank,
+; this fixes itself.
 ; This has been intentionally aligned to avoid any DMA issues that might occur if the ROM is modified.
 	align $8000
 Art_Sonic:	binclude	"art/uncompressed/Sonic's art.bin"

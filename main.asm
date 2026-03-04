@@ -876,7 +876,7 @@ loc_110E:
 		move.w	(v_vdp_buffer1).w,d0
 		andi.b	#$BF,d0
 		move.w	d0,(vdp_control_port).l
-		move.w	#$8200+(vram_window>>10),(vdp_control_port).l
+		move.w	#$8200+(vram_fg_2p>>10),(vdp_control_port).l
 		move.l	#$40000010,(vdp_control_port).l
 		move.l	(Camera_X_pos_copy).w,(vdp_data_port).l
 		writeVRAM	Sprite_Table_2P,vram_sprites
@@ -2207,8 +2207,8 @@ SegaScreen:
 		bsr.w	Pal_FadeToBlack
 		lea	(vdp_control_port).l,a6
 		move.w	#$8004,(a6)
-		move.w	#$8230,(a6)
-		move.w	#$8407,(a6)
+		move.w	#$8200+(vram_fg>>10),(a6)
+		move.w	#$8400+(vram_bg>>13),(a6)
 		move.w	#$8700,(a6)
 		move.w	#$8B00,(a6)
 		move.w	#$8C81,(a6)
@@ -2977,7 +2977,7 @@ Level_NoMusicFade:
 		lea	(Nem_TitleCard).l,a0
 		bsr.w	NemDec
 		bsr.w	ClearScreen
-		fillVRAM	0, vram_window, vram_window+plane_size_64x32 ; clear window namespace
+		fillVRAM	0, vram_fg_2p, vram_fg_2p+plane_size_64x32 ; clear 2 player foreground namespace
 		enable_ints
 		moveq	#0,d0
 		move.b	(Current_Zone).w,d0

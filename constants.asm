@@ -53,6 +53,8 @@ security_addr:	equ $A14000
 vram_window:	equ $A000				; window namespace
 vram_fg:	equ $C000				; foreground namespace
 vram_bg:	equ $E000				; background namespace
+vram_fg_2p:	equ $A000				; foreground namespace
+vram_bg_2p:	equ $8000				; background namespace
 vram_sprites:	equ $F800				; sprite table
 vram_hscroll:	equ $FC00				; horizontal scroll table
 tile_size:	equ 8*8/2

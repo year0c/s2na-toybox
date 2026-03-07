@@ -14683,8 +14683,10 @@ Nem_GHZ2:	binclude	"art/nemesis/8x8 - GHZ2.nem"
 ; Maybe this could be from slightly after KCC was finalized? Who knows!
 Map128_GHZ:	binclude	"mappings/128x128/GHZ.kcc"
 		even
+	if PaddingOptimization=0
 ; duplicate chunk end data from the above
 		dc.w 0, $7F00, $BFA, 0, 0
+	endif
 Nem_TryAgain:	binclude	"art/nemesis/S1/cut-off/Ending - Try Again.nem"
 		even
 Kos_EndFlowers:	binclude	"art/kosinski/S1/Flowers at Ending.kos"

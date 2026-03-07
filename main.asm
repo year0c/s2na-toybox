@@ -4322,8 +4322,20 @@ loc_72EE:
 
 loc_72F4:
 		movea.l	(a2)+,a0
-		; What follows is a very C style check for zones that aren't GHZ, LZ, or 06.
-		; It would be less costly to simply check for those zones rather than anything that isn't those zones.
+		; What follows is a very C style compare code for zones that aren't GHZ, LZ, or EndZ.
+		; This works well in-game, except for LZ which uses the same data as CPZ.
+		; What this could point to is that at some point, LZ used compressed chunks similar to that of GHZ.
+		; However, instead it tries to decompress chunks that are already uncompressed to begin with.
+
+		; This could also be entirely rewritten so that EndZ is compared first, and if equal, then branch to the decompression routine.
+		; Then it could follow up with a check to see if the zone is greater than or equal to CPZ, simplifying the following compares into
+		; just two compares.
+
+	if FixBugs
+		; Fixes the bug described above, resulting in a graphical mess for LZ.
+		cmpi.b	#id_LZ,(Current_Zone).w
+		beq.s	loc_7338
+	endif
 		cmpi.b	#id_CPZ,(Current_Zone).w
 		beq.s	loc_7338
 		cmpi.b	#id_EHZ,(Current_Zone).w

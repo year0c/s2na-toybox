@@ -7239,7 +7239,7 @@ loc_D034:
 		moveq	#0,d0
 		move.b	obHeight(a0),d0
 		move.w	obY(a0),d2
-		sub.w	obMap(a1),d2
+		sub.w	4(a1),d2
 		move.w	d2,d1
 		add.w	d0,d1
 		bmi.s	loc_D0FA
@@ -7259,7 +7259,7 @@ loc_D0B2:
 
 loc_D0BC:
 		move.w	obY(a0),d2
-		sub.w	obMap(a1),d2
+		sub.w	4(a1),d2
 		addi.w	#128,d2
 		cmpi.w	#$60,d2
 		blo.s	loc_D0FA
@@ -7585,7 +7585,7 @@ loc_D342:
 		moveq	#0,d0
 		move.b	obHeight(a0),d0
 		move.w	obY(a0),d2
-		sub.w	obMap(a1),d2
+		sub.w	4(a1),d2
 		move.w	d2,d1
 		add.w	d0,d1
 		bmi.s	loc_D406
@@ -7606,7 +7606,7 @@ loc_D3B6:
 
 loc_D3C4:
 		move.w	obY(a0),d2
-		sub.w	obMap(a1),d2
+		sub.w	4(a1),d2
 		addi.w	#128,d2
 		cmpi.w	#$60,d2
 		blo.s	loc_D406
@@ -7703,7 +7703,7 @@ loc_D462:
 		moveq	#0,d0
 		move.b	obHeight(a0),d0
 		move.w	obY(a0),d2
-		sub.w	obMap(a1),d2
+		sub.w	4(a1),d2
 		move.w	d2,d1
 		add.w	d0,d1
 		bmi.s	loc_D520
@@ -7724,7 +7724,7 @@ loc_D4D0:
 
 loc_D4DE:
 		move.w	obY(a0),d2
-		sub.w	obMap(a1),d2
+		sub.w	4(a1),d2
 		addi.w	#128,d2
 		cmpi.w	#$60,d2
 		blo.s	loc_D520

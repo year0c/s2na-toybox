@@ -504,4 +504,3 @@ DPLC_Tails_internal_03E6:	dc.w 2
 DPLC_Tails_internal_03EC:	dc.w 2
 		dc.w $759C
 		dc.w $35A4
-		even

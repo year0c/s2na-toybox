@@ -672,4 +672,3 @@ DPLC_Sonic_internal_0534:	dc.w 3
 DPLC_Sonic_internal_053C:	dc.w 2
 		dc.w $3892
 		dc.w $F896
-		even

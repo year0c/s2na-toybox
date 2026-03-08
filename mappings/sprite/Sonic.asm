@@ -780,4 +780,3 @@ Map_Sonic_internal_1060:	dc.w 3
 Map_Sonic_internal_107A:	dc.w 2
 		dc.w $E105, 0, 0, $FFF0
 		dc.w $F10F, 4, 2, $FFF0
-		even

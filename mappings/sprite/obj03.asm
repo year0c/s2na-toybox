@@ -37,4 +37,3 @@ Map_Obj03_internal_00BA:	dc.w 4
 		dc.w $F805, 0, 0, $FFE0
 		dc.w $F805, 0, 0, 0
 		dc.w $F805, 0, 0, $70
-		even

@@ -47,4 +47,3 @@ Map_Obj21_internal_00FE:	dc.w $A
 		dc.w $A009, $A030, $A018, $30
 		dc.w $4005, $810A, $8085, 0
 		dc.w $400D, $A10E, $A087, $10
-		even

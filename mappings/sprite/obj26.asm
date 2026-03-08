@@ -45,4 +45,3 @@ Map_Obj26_internal_00C4:	dc.w 2
 		dc.w $EF0F, 0, 0, $FFF0
 Map_Obj26_internal_00D6:	dc.w 1
 		dc.w $FF0D, $10, 8, $FFF0
-		even

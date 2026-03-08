@@ -82,4 +82,3 @@ Map_Obj7E_internal_01A8:	dc.w $F
 		dc.w $F805, 0, 0, $58
 		dc.w $F805, $26, $13, $68
 		dc.w $F805, $26, $13, $78
-		even

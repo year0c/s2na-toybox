@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using SonicRetro.SonLVL.API;
 
-namespace S2ObjectDefinitions.EHZ
+namespace S2ObjectDefinitions.HPZ
 {
 	class Bridge : ObjectDefinition
 	{
@@ -12,8 +12,8 @@ namespace S2ObjectDefinitions.EHZ
 
 		public override void Init(ObjectData data)
 		{
-			byte[] artfile = ObjectHelper.OpenArtFile("../art/nemesis/EHZ bridge.nem", CompressionType.Nemesis);
-			img = ObjectHelper.MapASMToBmp(artfile, "../mappings/sprite/obj11_EHZ.asm", 0, 2);
+			byte[] artfile = ObjectHelper.OpenArtFile("../art/nemesis/HPZ bridge.nem", CompressionType.Nemesis);
+			img = ObjectHelper.MapASMToBmp(artfile, "../mappings/sprite/obj11_HPZ.asm", 0, 2);
 		}
 
 		public override ReadOnlyCollection<byte> Subtypes

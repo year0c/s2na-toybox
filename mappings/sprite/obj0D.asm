@@ -26,4 +26,3 @@ Map_obj0D_internal_006C:	dc.w 2
 Map_obj0D_internal_007E:	dc.w 2
 		dc.w $F00F, $824, $812, $FFF0
 		dc.w $1001, $38, $1C, $FFFC
-		even

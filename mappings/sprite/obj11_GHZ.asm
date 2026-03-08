@@ -9,4 +9,3 @@ Map_Obj11GHZ_internal_0010:	dc.w 2
 		dc.w $C, 6, 3, $FFF0
 Map_Obj11GHZ_internal_0022:	dc.w 1
 		dc.w $FC04, 8, 4, $FFF8
-		even

@@ -25,4 +25,3 @@ byte_7E26:	dc.w 1
 byte_7E2C:	dc.w 1
 		dc.w $F400, $11, 8, $FFFD ; 45 degree
 word_880A:	dc.w 0
-		even

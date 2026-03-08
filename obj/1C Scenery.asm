@@ -9,12 +9,17 @@ Obj1C_Index:	dc.w loc_93F4-Obj1C_Index
 		dc.w loc_9464-Obj1C_Index
 Obj1C_Conf:
 		dc.l Map_obj11_HPZ
+	if FixBugs
+		dc.w make_art_tile(ArtTile_HPZ_Bridge,2,0)
+	else
+		; This uses the incorrect palette line, making the art use part of the waterfall's palette cycle!
 		dc.w make_art_tile(ArtTile_HPZ_Bridge,3,0)
+	endif
 		dc.b   3,  4,  1,  0
 		dc.l Map_Obj1C_01
 		dc.w make_art_tile(ArtTile_HPZ_Orb,3,1)
 		dc.b   0,$10,  1,  0
-		dc.l Map_obj11
+		dc.l Map_obj11_EHZ
 		dc.w make_art_tile(ArtTile_EHZ_Bridge,2,0)
 		dc.b   1,  4,  1,  0
 		dc.l Map_obj11_GHZ

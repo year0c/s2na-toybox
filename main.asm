@@ -5368,13 +5368,11 @@ Map_obj11_GHZ:	include	"mappings/sprite/obj11_GHZ.asm"
 ; ---------------------------------------------------------------------------
 ; Sprite mappings - HPZ bridge
 ; ---------------------------------------------------------------------------
-Map_obj11_HPZ:	binclude	"mappings/sprite/obj11_HPZ.bin"
-		even
+Map_obj11_HPZ:	include	"mappings/sprite/obj11_HPZ.asm"
 ; ---------------------------------------------------------------------------
 ; Sprite mappings - EHZ bridge
 ; ---------------------------------------------------------------------------
-Map_obj11:	binclude	"mappings/sprite/obj11.bin"
-		even
+Map_obj11_EHZ:	include	"mappings/sprite/obj11_EHZ.asm"
 ; ===========================================================================
 		nop
 
@@ -5715,31 +5713,7 @@ Obj1A_Conf_HPZ:	dc.b $10,$10,$10,$10
 		dc.b $10,$10,$10,$10
 		even
 
-Map_Obj1A_HPZ:	dc.w word_92FE-Map_Obj1A_HPZ
-		dc.w word_9340-Map_Obj1A_HPZ
-		dc.w word_9340-Map_Obj1A_HPZ
-word_92FE:	dc.w 8
-		dc.w $F00D,    0,    0,$FFD0
-		dc.w	$D,    8,    4,$FFD0
-		dc.w $F005,    4,    2,$FFF0
-		dc.w $F005, $804, $802,	   0
-		dc.w	 5,   $C,    6,$FFF0
-		dc.w	 5, $80C, $806,	   0
-		dc.w $F00D, $800, $800,	 $10
-		dc.w	$D, $808, $804,	 $10
-word_9340:	dc.w $C
-		dc.w $F005,    0,    0,$FFD0
-		dc.w $F005,    4,    2,$FFE0
-		dc.w $F005,    4,    2,$FFF0
-		dc.w $F005, $804, $802,	   0
-		dc.w $F005, $804, $802,	 $10
-		dc.w $F005, $800, $800,	 $20
-		dc.w	 5,    8,    4,$FFD0
-		dc.w	 5,   $C,    6,$FFE0
-		dc.w	 5,   $C,    6,$FFF0
-		dc.w	 5, $80C, $806,	   0
-		dc.w	 5, $80C, $806,	 $10
-		dc.w	 5, $808, $804,	 $20
+Map_Obj1A_HPZ:	include	"mappings/sprite/obj1A_HPZ.asm"
 ; ---------------------------------------------------------------------------
 		nop
 
@@ -5957,8 +5931,7 @@ byte_A327:	dc.b   1,  5,  6,$FF
 ; ---------------------------------------------------------------------------
 ; Sprite mappings
 ; ---------------------------------------------------------------------------
-Map_obj1F:	binclude	"mappings/sprite/obj1F.bin"
-		even
+Map_obj1F:	include	"mappings/sprite/obj1F.asm"
 
 		include	"obj/S1/22 Buzz Bomber.asm"
 		include	"obj/S1/23 Buzz Bomber Missile.asm"
@@ -6188,8 +6161,7 @@ Map_Obj26:	include	"mappings/sprite/obj26.asm"
 
 		include	"obj/0F.asm"
 
-Map_Obj0F:	binclude "mappings/sprite/obj0F.bin"
-		even
+Map_Obj0F:	include "mappings/sprite/obj0F.asm"
 Ani_S1Obj0E:	dc.w byte_B51C-Ani_S1Obj0E
 byte_B51C:	dc.b   7,  0,  1,  2,  3,  4,  5,  6
 		dc.b   7,$FE,  2
@@ -6197,10 +6169,8 @@ byte_B51C:	dc.b   7,  0,  1,  2,  3,  4,  5,  6
 Ani_S1Obj0F:	dc.w byte_B52A-Ani_S1Obj0F
 byte_B52A:	dc.b $1F,  0,  1,$FF
 		even
-Map_S1Obj0F:	binclude "mappings/sprite/S1/obj0F.bin"
-		even
-Map_Obj0E:	binclude "mappings/sprite/obj0E.bin"
-		even
+Map_S1Obj0F:	include "mappings/sprite/S1/obj0F.asm"
+Map_Obj0E:	include "mappings/sprite/obj0E.asm"
 
 		nop
 
@@ -10522,8 +10492,7 @@ byte_1278C:	dc.b   5,  0,  1,  0,  1,  0,  7,  1,  7,  2,  7,  3,  7,  4,  7,  5
 ; ---------------------------------------------------------------------------
 ; sprite mappings
 ; ---------------------------------------------------------------------------
-Map_S1obj4A:	binclude	"mappings/sprite/S1/obj4A.bin"
-		even
+Map_S1obj4A:	include	"mappings/sprite/S1/obj4A.asm"
 ; animation script
 Ani_obj08:	dc.w byte_129C2-Ani_obj08
 byte_129C2:	dc.b   4,  0,  1,  2,$FC
@@ -11209,9 +11178,7 @@ word_142D0:	dc.w 1
 
 		include	"obj/0C.asm"
 ; ---------------------------------------------------------------------------
-Map_Obj0C:	dc.w word_143C8-Map_Obj0C
-word_143C8:	dc.w 1
-		dc.w $F80D,    0,    0,$FFF0
+Map_Obj0C:	include	"mappings/sprite/obj0C.asm"
 ; ---------------------------------------------------------------------------
 		nop
 
@@ -11222,171 +11189,13 @@ j_CalcSine:
 
 		include	"obj/12 HPZ Emerald.asm"
 ; ---------------------------------------------------------------------------
-Map_Obj12:	dc.w word_14444-Map_Obj12
-word_14444:	dc.w 2
-		dc.w $F00F,    0,    0,$FFE0
-		dc.w $F00F,  $10,    8,	   0
+Map_Obj12:	include	"mappings/sprite/obj12.asm"
 ; ---------------------------------------------------------------------------
 		nop
 
 		include	"obj/13 HPZ Waterfall.asm"
 ; ---------------------------------------------------------------------------
-Map_Obj13:	dc.w word_1460E-Map_Obj13
-		dc.w word_14618-Map_Obj13
-		dc.w word_1462A-Map_Obj13
-		dc.w word_1463C-Map_Obj13
-		dc.w word_14656-Map_Obj13
-		dc.w word_14670-Map_Obj13
-		dc.w word_14692-Map_Obj13
-		dc.w word_146B4-Map_Obj13
-		dc.w word_146DE-Map_Obj13
-		dc.w word_14708-Map_Obj13
-		dc.w word_1473A-Map_Obj13
-		dc.w word_1476C-Map_Obj13
-		dc.w word_147A6-Map_Obj13
-		dc.w word_147E0-Map_Obj13
-		dc.w word_14822-Map_Obj13
-		dc.w word_14864-Map_Obj13
-		dc.w word_148AE-Map_Obj13
-		dc.w word_148AE-Map_Obj13
-		dc.w word_148AE-Map_Obj13
-		dc.w word_1460C-Map_Obj13
-		dc.w word_148C0-Map_Obj13
-		dc.w word_148CA-Map_Obj13
-		dc.w word_148D4-Map_Obj13
-		dc.w word_148E6-Map_Obj13
-		dc.w word_148F8-Map_Obj13
-		dc.w word_14912-Map_Obj13
-		dc.w word_1492C-Map_Obj13
-		dc.w word_1494E-Map_Obj13
-word_1460C:	dc.w 0
-word_1460E:	dc.w 1
-		dc.w $800C,  $10,    8,$FFF0		; 0
-word_14618:	dc.w 2
-		dc.w $800C,  $10,    8,$FFF0		; 0
-		dc.w $880D,  $2D,  $16,$FFF0		; 4
-word_1462A:	dc.w 2
-		dc.w $800C,  $10,    8,$FFF0		; 0
-		dc.w $880F,    0,    0,$FFF0		; 4
-word_1463C:	dc.w 3
-		dc.w $800C,  $10,    8,$FFF0		; 0
-		dc.w $880F,    0,    0,$FFF0		; 4
-		dc.w $A80D,  $2D,  $16,$FFF0		; 8
-word_14656:	dc.w 3
-		dc.w $800C,  $10,    8,$FFF0		; 0
-		dc.w $880F,    0,    0,$FFF0		; 4
-		dc.w $A80F,    0,    0,$FFF0		; 8
-word_14670:	dc.w 4
-		dc.w $800C,  $10,    8,$FFF0		; 0
-		dc.w $880F,    0,    0,$FFF0		; 4
-		dc.w $A80F,    0,    0,$FFF0		; 8
-		dc.w $C80D,  $2D,  $16,$FFF0		; 12
-word_14692:	dc.w 4
-		dc.w $800C,  $10,    8,$FFF0		; 0
-		dc.w $880F,    0,    0,$FFF0		; 4
-		dc.w $A80F,    0,    0,$FFF0		; 8
-		dc.w $C80F,    0,    0,$FFF0		; 12
-word_146B4:	dc.w 5
-		dc.w $800C,  $10,    8,$FFF0		; 0
-		dc.w $880F,    0,    0,$FFF0		; 4
-		dc.w $A80F,    0,    0,$FFF0		; 8
-		dc.w $C80F,    0,    0,$FFF0		; 12
-		dc.w $E80D,  $2D,  $16,$FFF0		; 16
-word_146DE:	dc.w 5
-		dc.w $800C,  $10,    8,$FFF0		; 0
-		dc.w $880F,    0,    0,$FFF0		; 4
-		dc.w $A80F,    0,    0,$FFF0		; 8
-		dc.w $C80F,    0,    0,$FFF0		; 12
-		dc.w $E80F,    0,    0,$FFF0		; 16
-word_14708:	dc.w 6
-		dc.w $800C,  $10,    8,$FFF0		; 0
-		dc.w $880F,    0,    0,$FFF0		; 4
-		dc.w $A80F,    0,    0,$FFF0		; 8
-		dc.w $C80F,    0,    0,$FFF0		; 12
-		dc.w $E80F,    0,    0,$FFF0		; 16
-		dc.w  $80D,  $2D,  $16,$FFF0		; 20
-word_1473A:	dc.w 6
-		dc.w $800C,  $10,    8,$FFF0		; 0
-		dc.w $880F,    0,    0,$FFF0		; 4
-		dc.w $A80F,    0,    0,$FFF0		; 8
-		dc.w $C80F,    0,    0,$FFF0		; 12
-		dc.w $E80F,    0,    0,$FFF0		; 16
-		dc.w  $80F,    0,    0,$FFF0		; 20
-word_1476C:	dc.w 7
-		dc.w $800C,  $10,    8,$FFF0		; 0
-		dc.w $880F,    0,    0,$FFF0		; 4
-		dc.w $A80F,    0,    0,$FFF0		; 8
-		dc.w $C80F,    0,    0,$FFF0		; 12
-		dc.w $E80F,    0,    0,$FFF0		; 16
-		dc.w  $80F,    0,    0,$FFF0		; 20
-		dc.w $280D,  $2D,  $16,$FFF0		; 24
-word_147A6:	dc.w 7
-		dc.w $800C,  $10,    8,$FFF0		; 0
-		dc.w $880F,    0,    0,$FFF0		; 4
-		dc.w $A80F,    0,    0,$FFF0		; 8
-		dc.w $C80F,    0,    0,$FFF0		; 12
-		dc.w $E80F,    0,    0,$FFF0		; 16
-		dc.w  $80F,    0,    0,$FFF0		; 20
-		dc.w $280F,    0,    0,$FFF0		; 24
-word_147E0:	dc.w 8
-		dc.w $800C,  $10,    8,$FFF0		; 0
-		dc.w $880F,    0,    0,$FFF0		; 4
-		dc.w $A80F,    0,    0,$FFF0		; 8
-		dc.w $C80F,    0,    0,$FFF0		; 12
-		dc.w $E80F,    0,    0,$FFF0		; 16
-		dc.w  $80F,    0,    0,$FFF0		; 20
-		dc.w $280F,    0,    0,$FFF0		; 24
-		dc.w $480D,  $2D,  $16,$FFF0		; 28
-word_14822:	dc.w 8
-		dc.w $800C,  $10,    8,$FFF0		; 0
-		dc.w $880F,    0,    0,$FFF0		; 4
-		dc.w $A80F,    0,    0,$FFF0		; 8
-		dc.w $C80F,    0,    0,$FFF0		; 12
-		dc.w $E80F,    0,    0,$FFF0		; 16
-		dc.w  $80F,    0,    0,$FFF0		; 20
-		dc.w $280F,    0,    0,$FFF0		; 24
-		dc.w $480F,    0,    0,$FFF0		; 28
-word_14864:	dc.w 9
-		dc.w $800C,  $10,    8,$FFF0		; 0
-		dc.w $880F,    0,    0,$FFF0		; 4
-		dc.w $A80F,    0,    0,$FFF0		; 8
-		dc.w $C80F,    0,    0,$FFF0		; 12
-		dc.w $E80F,    0,    0,$FFF0		; 16
-		dc.w  $80F,    0,    0,$FFF0		; 20
-		dc.w $280F,    0,    0,$FFF0		; 24
-		dc.w $480F,    0,    0,$FFF0		; 28
-		dc.w $680D,  $2D,  $16,$FFF0		; 32
-word_148AE:	dc.w 2
-		dc.w $F00A,  $18,   $C,$FFE8		; 0
-		dc.w $F00A, $818, $80C,	   0		; 4
-word_148C0:	dc.w 1
-		dc.w $E00D,  $2D,  $16,$FFF0		; 0
-word_148CA:	dc.w 1
-		dc.w $E00F,    0,    0,$FFF0		; 0
-word_148D4:	dc.w 2
-		dc.w $E00F,    0,    0,$FFF0		; 0
-		dc.w	$D,  $2D,  $16,$FFF0		; 4
-word_148E6:	dc.w 2
-		dc.w $E00F,    0,    0,$FFF0		; 0
-		dc.w	$F,    0,    0,$FFF0		; 4
-word_148F8:	dc.w 3
-		dc.w $E00F,    0,    0,$FFF0		; 0
-		dc.w	$F,    0,    0,$FFF0		; 4
-		dc.w $200D,  $2D,  $16,$FFF0		; 8
-word_14912:	dc.w 3
-		dc.w $E00F,    0,    0,$FFF0		; 0
-		dc.w	$F,    0,    0,$FFF0		; 4
-		dc.w $200F,    0,    0,$FFF0		; 8
-word_1492C:	dc.w 4
-		dc.w $E00F,    0,    0,$FFF0		; 0
-		dc.w	$F,    0,    0,$FFF0		; 4
-		dc.w $200F,    0,    0,$FFF0		; 8
-		dc.w $400D,  $2D,  $16,$FFF0		; 12
-word_1494E:	dc.w 4
-		dc.w $E00F,    0,    0,$FFF0		; 0
-		dc.w	$F,    0,    0,$FFF0		; 4
-		dc.w $200F,    0,    0,$FFF0		; 8
-		dc.w $400F,    0,    0,$FFF0		; 12
+Map_Obj13:	include	"mappings/sprite/obj13.asm"
 ; ---------------------------------------------------------------------------
 		include	"obj/06 EHZ Spiral.asm"
 ; ---------------------------------------------------------------------------
@@ -11490,10 +11299,7 @@ j_ObjectMove_0:
 
 		include	"obj/19 CPZ Platform.asm"
 ; ---------------------------------------------------------------------------
-Map_Obj19:	dc.w word_154AE-Map_Obj19
-word_154AE:	dc.w 2
-		dc.w $F00F,    0,    0,$FFE0		; 0
-		dc.w $F00F, $800, $800,	   0		; 4
+Map_Obj19:	include	"mappings/sprite/obj19.asm"
 
 loc_154C0:
 		jmp	(DisplaySprite).l
@@ -11976,87 +11782,7 @@ byte_16FD5:	dc.b   1,  1,  6,  1,  6,  2,  7,  3,  8,  4,  9,  4,  9,  3,  8,$FE
 byte_16FE6:	dc.b   3, $A, $B, $C, $D, $E,$FF
 		even
 
-Map_Obj4C:	dc.w word_1700C-Map_Obj4C
-		dc.w word_1702E-Map_Obj4C
-		dc.w word_17050-Map_Obj4C
-		dc.w word_17072-Map_Obj4C
-		dc.w word_17094-Map_Obj4C
-		dc.w word_170AE-Map_Obj4C
-		dc.w word_170D0-Map_Obj4C
-		dc.w word_170F2-Map_Obj4C
-		dc.w word_17114-Map_Obj4C
-		dc.w word_17136-Map_Obj4C
-		dc.w word_17150-Map_Obj4C
-		dc.w word_1716A-Map_Obj4C
-		dc.w word_17184-Map_Obj4C
-		dc.w word_17196-Map_Obj4C
-		dc.w word_171A8-Map_Obj4C
-word_1700C:	dc.w 4
-		dc.w $F005,    0,    0,$FFF8		; 0
-		dc.w	 5,    4,    2,$FFF8		; 4
-		dc.w $F00B,    8,    4,	   5		; 8
-		dc.w $F00B, $808, $804,$FFE3		; 12
-word_1702E:	dc.w 4
-		dc.w $F005,    0,    0,$FFF8		; 0
-		dc.w	 5,    4,    2,$FFF8		; 4
-		dc.w $F60D,  $14,   $A,	   5		; 8
-		dc.w $F60D, $814, $80A,$FFDB		; 12
-word_17050:	dc.w 4
-		dc.w $F005,    0,    0,$FFF8		; 0
-		dc.w	 5,    4,    2,$FFF8		; 4
-		dc.w $F80D,  $1C,   $E,	   4		; 8
-		dc.w $F80D, $81C, $80E,$FFDC		; 12
-word_17072:	dc.w 4
-		dc.w $F005,    0,    0,$FFF8		; 0
-		dc.w	 5,    4,    2,$FFF8		; 4
-		dc.w $F805,  $24,  $12,$FFEC		; 8
-		dc.w $F805,  $28,  $14,	   4		; 12
-word_17094:	dc.w 3
-		dc.w $F801,  $2C,  $16,	   0		; 0
-		dc.w $F005,    0,    0,$FFF8		; 4
-		dc.w	 5,    4,    2,$FFF8		; 8
-word_170AE:	dc.w 4
-		dc.w $F005,    0,    0,$FFF8		; 0
-		dc.w	 5,  $2E,  $17,$FFF8		; 4
-		dc.w $F00B,    8,    4,	   5		; 8
-		dc.w $F00B, $808, $804,$FFE3		; 12
-word_170D0:	dc.w 4
-		dc.w $F005,    0,    0,$FFF8		; 0
-		dc.w	 5,  $2E,  $17,$FFF8		; 4
-		dc.w $F60D,  $14,   $A,	   5		; 8
-		dc.w $F60D, $814, $80A,$FFDB		; 12
-word_170F2:	dc.w 4
-		dc.w $F005,    0,    0,$FFF8		; 0
-		dc.w	 5,  $2E,  $17,$FFF8		; 4
-		dc.w $F80D,  $1C,   $E,	   4		; 8
-		dc.w $F80D, $81C, $80E,$FFDC		; 12
-word_17114:	dc.w 4
-		dc.w $F005,    0,    0,$FFF8		; 0
-		dc.w	 5,  $2E,  $17,$FFF8		; 4
-		dc.w $F805,  $28,  $14,	   4		; 8
-		dc.w $F805,  $24,  $12,$FFEC		; 12
-word_17136:	dc.w 3
-		dc.w $F801,  $2C,  $16,	   0		; 0
-		dc.w $F005,    0,    0,$FFF8		; 4
-		dc.w	 5,  $2E,  $17,$FFF8		; 8
-word_17150:	dc.w 3
-		dc.w $F007,  $32,  $19,$FFF8		; 0
-		dc.w $F80D,  $1C,   $E,	   4		; 4
-		dc.w $F80D, $81C, $80E,$FFDC		; 8
-word_1716A:	dc.w 3
-		dc.w $F007,  $32,  $19,$FFF8		; 0
-		dc.w $F805,  $28,  $14,	   4		; 4
-		dc.w $F805,  $24,  $12,$FFEC		; 8
-word_17184:	dc.w 2
-		dc.w $F801,  $2C,  $16,	   0		; 0
-		dc.w $F007,  $32,  $19,$FFF8		; 4
-word_17196:	dc.w 2
-		dc.w $F801, $82C, $816,$FFF8		; 0
-		dc.w $F007,  $32,  $19,$FFF8		; 4
-word_171A8:	dc.w 3
-		dc.w $F007,  $32,  $19,$FFF8		; 0
-		dc.w $F805, $828, $814,$FFEC		; 4
-		dc.w $F805, $824, $812,	   4		; 8
+Map_Obj4C:	include	"mappings/sprite/obj4C.asm"
 
 		align 4
 

@@ -524,4 +524,3 @@ Map_Tails_internal_0A1E:	dc.w 1
 		dc.w $F809, 0, 0, $FFE0
 Map_Tails_internal_0A28:	dc.w 1
 		dc.w $F809, 0, 0, $FFE0
-		even

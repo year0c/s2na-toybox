@@ -28,7 +28,7 @@ loc_7BC6:
 		move.b	#3,obPriority(a0)
 		cmpi.b	#id_EHZ,(Current_Zone).w
 		bne.s	loc_7BFA
-		move.l	#Map_obj11,obMap(a0)
+		move.l	#Map_obj11_EHZ,obMap(a0)
 		move.w	#make_art_tile(ArtTile_EHZ_Bridge,2,0),obGfx(a0)
 		move.b	#3,obPriority(a0)
 

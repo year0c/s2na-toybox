@@ -15,4 +15,3 @@ Map_Ring_internal:
 .frame6:	dc.w $F805, $180A, $1805, $FFF8
 .frame7:	dc.w $F805, $80A, $805, $FFF8
 .frame8:	dc.w $F805, $100A, $1005, $FFF8
-		even

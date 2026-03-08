@@ -10,4 +10,3 @@ Map_Obj08_internal_0018:	dc.w 2
 		dc.w $EA0E, $74, $3A, $FFF0
 Map_Obj08_internal_002A:	dc.w 1
 		dc.w $E20F, $80, $40, $FFF0
-		even

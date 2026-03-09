@@ -6559,7 +6559,7 @@ id_Obj03:	objptr	Obj03				; Collision plane/layer switcher
 id_Obj04:	objptr	Obj04				; Surface of the water
 id_Obj05:	objptr	Obj05				; Tails' tails
 id_Obj06:	objptr	Obj06				; Twisting spiral pathway in EHZ
-id_Obj07:	objptr	ObjNull
+id_Obj07:	objptr	NullObject
 id_Obj08:	objptr	Obj08				; Water splash in HPZ
 id_Obj09:	objptr	Obj09				; (S1) Sonic in the Special Stage
 id_Obj0A:	objptr	Obj0A				; Small bubbles from Sonic's face while underwater
@@ -6579,12 +6579,12 @@ id_Obj17:	objptr	Obj17				; (S1) GHZ rotating log helix spikes
 id_Obj18:	objptr	Obj18				; Stationary/moving platforms from GHZ and EHZ
 id_Obj19:	objptr	Obj19				; Platform from CPZ
 id_Obj1A:	objptr	Obj1A				; Collapsing platform from GHZ and HPZ
-id_Obj1B:	objptr	ObjNull
+id_Obj1B:	objptr	NullObject
 id_Obj1C:	objptr	Obj1C				; Stage decorations in GHZ, EHZ, HTZ and HPZ
-id_Obj1D:	objptr	ObjNull
-id_Obj1E:	objptr	ObjNull
+id_Obj1D:	objptr	NullObject
+id_Obj1E:	objptr	NullObject
 id_Obj1F:	objptr	Obj1F				; (S1) Crabmeat from GHZ
-id_Obj20:	objptr	ObjNull
+id_Obj20:	objptr	NullObject
 id_Obj21:	objptr	Obj21				; Score/Rings/Time display (HUD)
 id_Obj22:	objptr	Obj22				; (S1) Buzz Bomber from GHZ
 id_Obj23:	objptr	Obj23				; (S1) Buzz Bomber/Newtron missile
@@ -6597,15 +6597,15 @@ id_Obj29:	objptr	Obj29				; "100 points" text
 id_Obj2A:	objptr	Obj2A				; (S1) Small door from SBZ
 id_Obj2B:	objptr	Obj2B				; (S1) Chopper from GHZ
 id_Obj2C:	objptr	Obj2C				; (S1) Jaws from LZ
-id_Obj2D:	objptr	ObjNull
+id_Obj2D:	objptr	NullObject
 id_Obj2E:	objptr	Obj2E				; Monitor contents (code for power-up behavior and rising image)
-id_Obj2F:	objptr	ObjNull
-id_Obj30:	objptr	ObjNull
-id_Obj31:	objptr	ObjNull
-id_Obj32:	objptr	ObjNull
-id_Obj33:	objptr	ObjNull
+id_Obj2F:	objptr	NullObject
+id_Obj30:	objptr	NullObject
+id_Obj31:	objptr	NullObject
+id_Obj32:	objptr	NullObject
+id_Obj33:	objptr	NullObject
 id_Obj34:	objptr	Obj34				; (S1) Level title card
-id_Obj35:	objptr	ObjNull
+id_Obj35:	objptr	NullObject
 id_Obj36:	objptr	Obj36				; Vertical spikes
 id_Obj37:	objptr	Obj37				; Scattering rings (generated when Sonic or Tails are hurt and has rings)
 id_Obj38:	objptr	Obj38				; Shield
@@ -6619,11 +6619,11 @@ id_Obj3F:	objptr	Obj3F				; Boss explosion
 id_Obj40:	objptr	Obj40				; (S1) Motobug from GHZ
 id_Obj41:	objptr	Obj41				; Spring
 id_Obj42:	objptr	Obj42				; (S1) Newtron from GHZ
-id_Obj43:	objptr	ObjNull
+id_Obj43:	objptr	NullObject
 id_Obj44:	objptr	Obj44				; (S1) Breakable wall
-id_Obj45:	objptr	ObjNull
-id_Obj46:	objptr	ObjNull
-id_Obj47:	objptr	ObjNull
+id_Obj45:	objptr	NullObject
+id_Obj46:	objptr	NullObject
+id_Obj47:	objptr	NullObject
 id_Obj48:	objptr	Obj48				; (S1) Eggman's wrecking ball
 id_Obj49:	objptr	Obj49				; Waterfall sound effect
 id_Obj4A:	objptr	Obj4A				; Octus from HPZ
@@ -6641,63 +6641,63 @@ id_Obj55:	objptr	Obj55				; EHZ boss
 id_Obj56:	objptr	Obj56				; EHZ boss part 2
 id_Obj57:	objptr	Obj57				; EHZ boss part 3
 id_Obj58:	objptr	Obj58				; EHZ boss part 4
-id_Obj59:	objptr	ObjNull
-id_Obj5A:	objptr	ObjNull
-id_Obj5B:	objptr	ObjNull
-id_Obj5C:	objptr	ObjNull
-id_Obj5D:	objptr	ObjNull
-id_Obj5E:	objptr	ObjNull
-id_Obj5F:	objptr	ObjNull
-id_Obj60:	objptr	ObjNull
-id_Obj61:	objptr	ObjNull
-id_Obj62:	objptr	ObjNull
-id_Obj63:	objptr	ObjNull
-id_Obj64:	objptr	ObjNull
-id_Obj65:	objptr	ObjNull
-id_Obj66:	objptr	ObjNull
-id_Obj67:	objptr	ObjNull
-id_Obj68:	objptr	ObjNull
-id_Obj69:	objptr	ObjNull
-id_Obj6A:	objptr	ObjNull
-id_Obj6B:	objptr	ObjNull
-id_Obj6C:	objptr	ObjNull
-id_Obj6D:	objptr	ObjNull
-id_Obj6E:	objptr	ObjNull
-id_Obj6F:	objptr	ObjNull
-id_Obj70:	objptr	ObjNull
-id_Obj71:	objptr	ObjNull
-id_Obj72:	objptr	ObjNull
-id_Obj73:	objptr	ObjNull
-id_Obj74:	objptr	ObjNull
-id_Obj75:	objptr	ObjNull
-id_Obj76:	objptr	ObjNull
-id_Obj77:	objptr	ObjNull
-id_Obj78:	objptr	ObjNull
+id_Obj59:	objptr	NullObject
+id_Obj5A:	objptr	NullObject
+id_Obj5B:	objptr	NullObject
+id_Obj5C:	objptr	NullObject
+id_Obj5D:	objptr	NullObject
+id_Obj5E:	objptr	NullObject
+id_Obj5F:	objptr	NullObject
+id_Obj60:	objptr	NullObject
+id_Obj61:	objptr	NullObject
+id_Obj62:	objptr	NullObject
+id_Obj63:	objptr	NullObject
+id_Obj64:	objptr	NullObject
+id_Obj65:	objptr	NullObject
+id_Obj66:	objptr	NullObject
+id_Obj67:	objptr	NullObject
+id_Obj68:	objptr	NullObject
+id_Obj69:	objptr	NullObject
+id_Obj6A:	objptr	NullObject
+id_Obj6B:	objptr	NullObject
+id_Obj6C:	objptr	NullObject
+id_Obj6D:	objptr	NullObject
+id_Obj6E:	objptr	NullObject
+id_Obj6F:	objptr	NullObject
+id_Obj70:	objptr	NullObject
+id_Obj71:	objptr	NullObject
+id_Obj72:	objptr	NullObject
+id_Obj73:	objptr	NullObject
+id_Obj74:	objptr	NullObject
+id_Obj75:	objptr	NullObject
+id_Obj76:	objptr	NullObject
+id_Obj77:	objptr	NullObject
+id_Obj78:	objptr	NullObject
 id_Obj79:	objptr	Obj79				; Checkpoint
-id_Obj7A:	objptr	ObjNull
-id_Obj7B:	objptr	ObjNull
-id_Obj7C:	objptr	ObjNull
+id_Obj7A:	objptr	NullObject
+id_Obj7B:	objptr	NullObject
+id_Obj7C:	objptr	NullObject
 id_Obj7D:	objptr	Obj7D				; (S1) Hidden points at end of stage
-id_Obj7E:	objptr	ObjNull			; (S1) Special Stage Results (unreferenced, but can be found as S1Obj7E, also contains a leftover PLC pointer in mappings)
-id_Obj7F:	objptr	ObjNull			; (S1) SS Result Chaos Emeralds (unreferenced, but can be found as S1Obj7F)
-id_Obj80:	objptr	ObjNull			; Was originally Continue Screen Elements, but was completely stripped out
-id_Obj81:	objptr	ObjNull			; Was originally Continue Screen Sonic, but was completely stripped out
-id_Obj82:	objptr	ObjNull			; Was originally Eggman - Scrap Brain 2, but was completely stripped out
-id_Obj83:	objptr	ObjNull			; Was originally SBZ Eggman's Crumbling Floor, but was completely stripped out
-id_Obj84:	objptr	ObjNull			; Was originally FZ Eggman's Cylinders, but was completely stripped out
-id_Obj85:	objptr	ObjNull			; Was originally Boss - Final, but was completely stripped out
-id_Obj86:	objptr	ObjNull			; Was originally FZ Plasma Ball Launcher, but was completely stripped out
-id_Obj87:	objptr	ObjNull			; Was originally Ending Sequence Sonic, but was completely stripped out
-id_Obj88:	objptr	ObjNull			; Was originally Ending Sequence Emeralds, but was completely stripped out
-id_Obj89:	objptr	ObjNull			; Was originally Ending Sequence STH, but was completely stripped out
+id_Obj7E:	objptr	NullObject			; (S1) Special Stage Results (unreferenced, but can be found as S1Obj7E, also contains a leftover PLC pointer in mappings)
+id_Obj7F:	objptr	NullObject			; (S1) SS Result Chaos Emeralds (unreferenced, but can be found as S1Obj7F)
+id_Obj80:	objptr	NullObject			; Was originally Continue Screen Elements, but was completely stripped out
+id_Obj81:	objptr	NullObject			; Was originally Continue Screen Sonic, but was completely stripped out
+id_Obj82:	objptr	NullObject			; Was originally Eggman - Scrap Brain 2, but was completely stripped out
+id_Obj83:	objptr	NullObject			; Was originally SBZ Eggman's Crumbling Floor, but was completely stripped out
+id_Obj84:	objptr	NullObject			; Was originally FZ Eggman's Cylinders, but was completely stripped out
+id_Obj85:	objptr	NullObject			; Was originally Boss - Final, but was completely stripped out
+id_Obj86:	objptr	NullObject			; Was originally FZ Plasma Ball Launcher, but was completely stripped out
+id_Obj87:	objptr	NullObject			; Was originally Ending Sequence Sonic, but was completely stripped out
+id_Obj88:	objptr	NullObject			; Was originally Ending Sequence Emeralds, but was completely stripped out
+id_Obj89:	objptr	NullObject			; Was originally Ending Sequence STH, but was completely stripped out
 id_Obj8A:	objptr	Obj8A				; (S1) "SONIC TEAM PRESENTS" screen and credits
-id_Obj8B:	objptr	ObjNull			; Was originally Try Again & End Eggman, but was completely stripped out
-id_Obj8C:	objptr	ObjNull			; Was originally Try Again Emeralds, but was completely stripped out
+id_Obj8B:	objptr	NullObject			; Was originally Try Again & End Eggman, but was completely stripped out
+id_Obj8C:	objptr	NullObject			; Was originally Try Again Emeralds, but was completely stripped out
 
 ; ===========================================================================
 ; blank object, allocates its array
 ; jmp_DeleteObject:
-ObjNull:
+NullObject:
 		bra.w	DeleteObject
 
 ; ---------------------------------------------------------------------------

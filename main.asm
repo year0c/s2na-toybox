@@ -10521,7 +10521,7 @@ Map_obj08:	include	"mappings/sprite/obj08.asm"
 ApplySonic1Collision:
 		rts
 ; ---------------------------------------------------------------------------
-		lea	(CollArray1_GHZ).l,a1
+		lea	(CollArray1_S1).l,a1
 		tst.b	(Current_Zone).w
 		beq.s	loc_13038
 		lea	(CollArray1).l,a1
@@ -10539,7 +10539,7 @@ loc_13042:
 loc_13052:
 		move.w	(a1)+,(a2)+
 		dbf	d1,loc_13052
-		lea	(AngleMap_GHZ).l,a1
+		lea	(AngleMap_S1).l,a1
 		tst.b	(Current_Zone).w
 		beq.s	loc_1306A
 		lea	(AngleMap).l,a1
@@ -13384,7 +13384,7 @@ AnimPatMaps:
 begin_animpat macro {INTLABEL}
 __LABEL__ label *
 __LABEL___Len := __LABEL___End - __LABEL___Blocks
-	dc.w $1800 - __LABEL___Len
+	dc.w Block_Table_End-Block_Table - __LABEL___Len
 	dc.w bytesToWcnt(__LABEL___Len)
 __LABEL___Blocks:
     endm
@@ -13439,84 +13439,123 @@ APM_EHZ_End:
 APM_None:	dc.w 0
 APM_None_End:
 
-APM_Unk:	dc.w $1800-$B80 ; Bug: This should be $1800-$138
+APM_Unk:
+		dc.w (Block_Table_End-Block_Table)-$B80 ; Bug: This should be (Block_Table_End-Block_Table)-$138
 		dc.w bytesToWcnt($138)
 		dc.w make_block_tile($3A0+$1,0,0,2,0),make_block_tile($3A0+$2,0,0,2,0)
 		dc.w make_block_tile($3A0+$3,0,0,2,0),make_block_tile($3A0+$4,0,0,2,0)
+
 		dc.w make_block_tile($3A0+$5,0,0,2,0),make_block_tile($3A0+$6,0,0,2,0)
 		dc.w make_block_tile($3A0+$7,0,0,2,0),make_block_tile($3A0+$8,0,0,2,0)
+
 		dc.w make_block_tile($3A0+$9,0,0,2,0),make_block_tile($3A0+$A,0,0,2,0)
 		dc.w make_block_tile($3A0+$B,0,0,2,0),make_block_tile($3A0+$C,0,0,2,0)
+
 		dc.w make_block_tile($3A0+$D,0,0,2,0),make_block_tile($3A0+$E,0,0,2,0)
 		dc.w make_block_tile($3A0+$F,0,0,2,0),make_block_tile($3A0+$10,0,0,2,0)
+
 		dc.w make_block_tile($3A0+$11,0,0,2,0),make_block_tile($3A0+$12,0,0,2,0)
 		dc.w make_block_tile($3A0+$13,0,0,2,0),make_block_tile($3A0+$14,0,0,2,0)
+
 		dc.w make_block_tile($3A0+$15,0,0,2,0),make_block_tile($3A0+$16,0,0,2,0)
 		dc.w make_block_tile($3A0+$17,0,0,2,0),make_block_tile($3A0+$18,0,0,2,0)
+
 		dc.w make_block_tile($3A0+$19,0,0,2,0),make_block_tile($3A0+$1A,0,0,2,0)
 		dc.w make_block_tile($3A0+$1B,0,0,2,0),make_block_tile($3A0+$1C,0,0,2,0)
+
 		dc.w make_block_tile($3A0+$1D,0,0,2,0),make_block_tile($3A0+$1E,0,0,2,0)
 		dc.w make_block_tile($3A0+$1F,0,0,2,0),make_block_tile($3A0+$20,0,0,2,0)
+
 		dc.w make_block_tile($3A0+$21,0,0,2,0),make_block_tile($3A0+$22,0,0,2,0)
 		dc.w make_block_tile($3A0+$23,0,0,2,0),make_block_tile($3A0+$24,0,0,2,0)
+
 		dc.w make_block_tile($3A0+$0,0,0,3,0),make_block_tile($3A0+$0,0,0,3,0)
 		dc.w make_block_tile($3A0+$0,0,0,3,0),make_block_tile($3A0+$0,0,0,3,0)
+
 		dc.w make_block_tile($3A0+$0,0,0,3,0),make_block_tile($3A0+$0,0,0,3,0)
 		dc.w make_block_tile($3A0+$0,0,0,3,0),make_block_tile($3A0+$0,0,0,3,0)
-		dc.w make_block_tile(0+$0,0,0,0,0),make_block_tile(0+$0,0,0,0,0)
+
+		dc.w make_block_tile(ArtTile_Level+$0,0,0,0,0),make_block_tile(ArtTile_Level+$0,0,0,0,0)
 		dc.w make_block_tile($340+$0,0,0,3,0),make_block_tile($340+$4,0,0,3,0)
-		dc.w make_block_tile(0+$0,0,0,0,0),make_block_tile(0+$0,0,0,0,0)
+
+		dc.w make_block_tile(ArtTile_Level+$0,0,0,0,0),make_block_tile(ArtTile_Level+$0,0,0,0,0)
 		dc.w make_block_tile($340+$8,0,0,3,0),make_block_tile($340+$C,0,0,3,0)
+
 		dc.w make_block_tile($340+$1,0,0,3,0),make_block_tile($340+$5,0,0,3,0)
 		dc.w make_block_tile($340+$2,0,0,3,0),make_block_tile($340+$6,0,0,3,0)
+
 		dc.w make_block_tile($340+$9,0,0,3,0),make_block_tile($340+$D,0,0,3,0)
 		dc.w make_block_tile($340+$A,0,0,3,0),make_block_tile($340+$E,0,0,3,0)
+
 		dc.w make_block_tile($340+$3,0,0,3,0),make_block_tile($340+$7,0,0,3,0)
 		dc.w make_block_tile($340+$18,0,0,2,0),make_block_tile($340+$19,0,0,2,0)
+
 		dc.w make_block_tile($340+$B,0,0,3,0),make_block_tile($340+$F,0,0,3,0)
 		dc.w make_block_tile($340+$1A,0,0,2,0),make_block_tile($340+$1B,0,0,2,0)
+
 		dc.w make_block_tile($380+$0,0,0,3,0),make_block_tile($380+$4,0,0,3,0)
 		dc.w make_block_tile($380+$1,0,0,3,0),make_block_tile($380+$5,0,0,3,0)
+
 		dc.w make_block_tile($380+$8,0,0,3,0),make_block_tile($380+$C,0,0,3,0)
 		dc.w make_block_tile($380+$9,0,0,3,0),make_block_tile($380+$D,0,0,3,0)
+
 		dc.w make_block_tile($380+$2,0,0,3,0),make_block_tile($380+$6,0,0,3,0)
 		dc.w make_block_tile($380+$3,0,0,3,0),make_block_tile($380+$7,0,0,3,0)
+
 		dc.w make_block_tile($380+$A,0,0,3,0),make_block_tile($380+$E,0,0,3,0)
 		dc.w make_block_tile($380+$B,0,0,3,0),make_block_tile($380+$F,0,0,3,0)
+
 		dc.w make_block_tile($390+$0,0,0,3,0),make_block_tile($390+$4,0,0,3,0)
 		dc.w make_block_tile($390+$1,0,0,3,0),make_block_tile($390+$5,0,0,3,0)
+
 		dc.w make_block_tile($390+$8,0,0,3,0),make_block_tile($390+$C,0,0,3,0)
 		dc.w make_block_tile($390+$9,0,0,3,0),make_block_tile($390+$D,0,0,3,0)
+
 		dc.w make_block_tile($390+$2,0,0,3,0),make_block_tile($390+$6,0,0,3,0)
 		dc.w make_block_tile($390+$3,0,0,3,0),make_block_tile($390+$7,0,0,3,0)
+
 		dc.w make_block_tile($390+$A,0,0,3,0),make_block_tile($390+$E,0,0,3,0)
 		dc.w make_block_tile($390+$B,0,0,3,0),make_block_tile($390+$F,0,0,3,0)
+
 		dc.w make_block_tile($370+$8,0,0,2,0),make_block_tile($370+$9,0,0,2,0)
 		dc.w make_block_tile($370+$A,0,0,2,0),make_block_tile($370+$B,0,0,2,0)
+
 		dc.w make_block_tile($370+$C,0,0,2,0),make_block_tile($370+$D,0,0,2,0)
 		dc.w make_block_tile($370+$E,0,0,2,0),make_block_tile($370+$F,0,0,2,0)
+
 		dc.w make_block_tile($350+$C,0,0,1,0),make_block_tile($350+$D,0,0,1,0)
 		dc.w make_block_tile($350+$E,0,0,1,0),make_block_tile($350+$F,0,0,1,0)
+
 		dc.w make_block_tile($350+$10,0,0,1,0),make_block_tile($350+$11,0,0,1,0)
 		dc.w make_block_tile($350+$12,0,0,1,0),make_block_tile($350+$13,0,0,1,0)
+
 		dc.w make_block_tile($350+$14,0,0,1,0),make_block_tile($350+$15,0,0,1,0)
 		dc.w make_block_tile($350+$16,0,0,1,0),make_block_tile($350+$17,0,0,1,0)
+
 		dc.w make_block_tile($350+$18,0,0,1,0),make_block_tile($350+$19,0,0,1,0)
 		dc.w make_block_tile($350+$1A,0,0,1,0),make_block_tile($350+$1B,0,0,1,0)
-		dc.w make_block_tile(0+$0,0,0,0,0),make_block_tile(0+$0,0,0,0,0)
+
+		dc.w make_block_tile(ArtTile_Level+$0,0,0,0,0),make_block_tile(ArtTile_Level+$0,0,0,0,0)
 		dc.w make_block_tile($360+$C,0,0,3,0),make_block_tile($360+$D,0,0,3,0)
-		dc.w make_block_tile(0+$0,0,0,0,0),make_block_tile(0+$0,0,0,0,0)
-		dc.w make_block_tile($360+$E,0,0,3,0),make_block_tile(0+$0,0,0,0,0)
+
+		dc.w make_block_tile(ArtTile_Level+$0,0,0,0,0),make_block_tile(ArtTile_Level+$0,0,0,0,0)
+		dc.w make_block_tile($360+$E,0,0,3,0),make_block_tile(ArtTile_Level+$0,0,0,0,0)
+
 		dc.w make_block_tile($360+$F,0,0,3,0),make_block_tile($360+$10,0,0,3,0)
 		dc.w make_block_tile($360+$11,0,0,3,0),make_block_tile($360+$12,0,0,3,0)
-		dc.w make_block_tile($360+$13,0,0,3,0),make_block_tile(0+$0,0,0,0,0)
-		dc.w make_block_tile($360+$14,0,0,3,0),make_block_tile(0+$0,0,0,0,0)
+
+		dc.w make_block_tile($360+$13,0,0,3,0),make_block_tile(ArtTile_Level+$0,0,0,0,0)
+		dc.w make_block_tile($360+$14,0,0,3,0),make_block_tile(ArtTile_Level+$0,0,0,0,0)
+
 		dc.w make_block_tile($360+$15,0,0,3,0),make_block_tile($360+$16,0,0,3,0)
 		dc.w make_block_tile($350+$8,0,0,2,0),make_block_tile($350+$9,0,0,2,0)
-		dc.w make_block_tile($360+$17,0,0,3,0),make_block_tile(0+$0,0,0,0,0)
+
+		dc.w make_block_tile($360+$17,0,0,3,0),make_block_tile(ArtTile_Level+$0,0,0,0,0)
 		dc.w make_block_tile($350+$A,0,0,2,0),make_block_tile($350+$B,0,0,2,0)
+
 		dc.w make_block_tile($370+$8,0,0,2,1),make_block_tile($370+$9,0,0,2,1)
 		dc.w make_block_tile($370+$A,0,0,2,1),make_block_tile($370+$B,0,0,2,1)
+
 		dc.w make_block_tile($370+$C,0,0,2,1),make_block_tile($370+$D,0,0,2,1)
 		dc.w make_block_tile($370+$E,0,0,2,1),make_block_tile($370+$F,0,0,2,1)
 APM_Unk_End:
@@ -13691,22 +13730,27 @@ j_Adjust2PArtPointer_1:
 
 		include	"_Include/LevelHeaders.asm"
 		include	"_Include/Pattern Load Cues.asm"
+
 ; --------------------------------------------------------------------------------------
 ; Leftover art from an unknown game, overwrites the other Sonic 1 PLC entries
 ; --------------------------------------------------------------------------------------
 		binclude	"art/uncompressed/leftovers/1C318.bin"
 		even
-AngleMap_GHZ:	binclude	"collision/S1/Angle Map.bin"
-AngleMap_GHZ_End:
+
+; ---------------------------------------------------------------------------
+; Collision data
+; ---------------------------------------------------------------------------
+AngleMap_S1:	binclude	"collision/S1/Angle Map.bin"
+AngleMap_S1_End:
 		even
 AngleMap:	binclude	"collision/Curve and resistance mapping.bin"
 AngleMap_End:
 		even
-CollArray1_GHZ:	binclude	"collision/S1/Collision Array (Normal).bin"
-CollArray1_GHZ_End:
+CollArray1_S1:	binclude	"collision/S1/Collision Array (Normal).bin"
+CollArray1_S1_End:
 		even
-CollArray2_GHZ:	binclude	"collision/S1/Collision Array (Rotated).bin"
-CollArray2_GHZ_End:
+CollArray2_S1:	binclude	"collision/S1/Collision Array (Rotated).bin"
+CollArray2_S1_End:
 		even
 CollArray1:	binclude	"collision/Collision array 1.bin"
 CollArray1_End:
@@ -13730,6 +13774,10 @@ ColP_HPZ:	binclude	"collision/HPZ primary 16x16 collision index.bin"
 		even
 ColS_HPZ:	binclude	"collision/HPZ secondary 16x16 collision index.bin"
 		even
+
+; ---------------------------------------------------------------------------
+; Special Stage layouts
+; ---------------------------------------------------------------------------
 S1SS_1:	binclude	"sslayout/1.eni"
 		even
 S1SS_2:	binclude	"sslayout/2.eni"
@@ -13742,6 +13790,10 @@ S1SS_5:	binclude	"sslayout/5 (JP1).eni"
 		even
 S1SS_6:	binclude	"sslayout/6 (JP1).eni"
 		even
+
+; ---------------------------------------------------------------------------
+; Animated uncompressed graphics
+; ---------------------------------------------------------------------------
 Art_Flowers1:	binclude	"art/uncompressed/EHZ and HTZ flowers - 1.bin"
 Art_Flowers2:	binclude	"art/uncompressed/EHZ and HTZ flowers - 2.bin"
 Art_Flowers3:	binclude	"art/uncompressed/EHZ and HTZ flowers - 3.bin"
@@ -13759,7 +13811,8 @@ Art_UnkZone_7:	binclude	"art/uncompressed/Unknown Zone - 7.bin"
 Art_UnkZone_8:	binclude	"art/uncompressed/Unknown Zone - 8.bin"
 
 ; ---------------------------------------------------------------------------
-; Level layouts, three entries per act (although the third one is unused)
+; Level layout index
+; Format: foreground, background, leftover/unused
 ; ---------------------------------------------------------------------------
 Level_Index:	dc.w Level_GHZ1-Level_Index,Level_GHZBg-Level_Index,Level_Null-Level_Index
 		dc.w Level_GHZ2-Level_Index,Level_GHZBg-Level_Index,Level_Null-Level_Index
@@ -13827,10 +13880,11 @@ Level_HPZBg:	binclude	"level/layout/HPZ_BG.bin"
 Level_Null:	dc.l	0
 
 Art_BigRing:	binclude	"art/uncompressed/Giant Ring.bin"
+		align 4
+
 ; --------------------------------------------------------------------------------------
 ; leftover level layouts from a	previous build
 ; --------------------------------------------------------------------------------------
-		dc.w	0
 		binclude	"misc/leftovers/level/layout/HTZ_2.bin"
 		even
 		binclude	"level/layout/HTZ_BG.bin"
@@ -13844,22 +13898,27 @@ Art_BigRing:	binclude	"art/uncompressed/Giant Ring.bin"
 		binclude	"level/layout/HPZ_BG.bin"
 		even
 		dc.l	0
+
 ;----------------------------------------------------
 ; A duplicate copy of the big ring art
 ;----------------------------------------------------
 		binclude	"art/uncompressed/Giant Ring.bin"
+		align 4
 		; cut-off piece of uncompressed giant ring art
-		dc.w	0,$EEEE,$EEEE
+		dc.w	$EEEE,$EEEE
 		binclude	"misc/leftovers/art/uncompressed/Giant Ring.bin"
+
 ; --------------------------------------------------------------------------------------
 ; level mappings	(16x16 and 256x256)
 ; --------------------------------------------------------------------------------------
 		binclude	"misc/leftovers/mappings/16x16/2EB00.unc"
 		binclude	"misc/leftovers/mappings/256x256/2EC00.unc"
+
 ; --------------------------------------------------------------------------------------
 ; leftover art - full 128 character ASCII table
 ; --------------------------------------------------------------------------------------
 		binclude	"art/uncompressed/leftovers/128 char ASCII.bin"
+
 ; --------------------------------------------------------------------------------------
 ; Leftover level mappings and palettes from a previous build
 ; --------------------------------------------------------------------------------------
@@ -13868,9 +13927,10 @@ Art_BigRing:	binclude	"art/uncompressed/Giant Ring.bin"
 		dc.l	0
 		binclude	"misc/leftovers/mappings/16x16/36004.unc"
 		binclude	"misc/leftovers/mappings/256x256/364D4.unc"
-; --------------------------------------------------------------------------------------
-; Object layouts
-; --------------------------------------------------------------------------------------
+
+; ---------------------------------------------------------------------------
+; Sprite locations index
+; ---------------------------------------------------------------------------
 ObjPos_Index:	dc.w ObjPos_GHZ1-ObjPos_Index,ObjPos_Null-ObjPos_Index
 		dc.w ObjPos_GHZ2-ObjPos_Index,ObjPos_Null-ObjPos_Index
 		dc.w ObjPos_GHZ3-ObjPos_Index,ObjPos_Null-ObjPos_Index

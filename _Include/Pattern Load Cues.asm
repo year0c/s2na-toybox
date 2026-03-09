@@ -55,13 +55,22 @@ ptr_PLC_EHZAnimals:	dc.w PLC_EHZAnimals-ArtLoadCues
 ptr_PLC_HPZAnimals:	dc.w PLC_HPZAnimals-ArtLoadCues
 ptr_PLC_HTZAnimals:	dc.w PLC_HTZAnimals-ArtLoadCues
 
+	if FixBugs
+ptr_PLC_SSResult:	dc.w PLC_S1SpecialStage-ArtLoadCues
+ptr_PLC_Ending:		dc.w PLC_S1SpecialStage-ArtLoadCues
+ptr_PLC_TryAgain:	dc.w PLC_S1SpecialStage-ArtLoadCues
+ptr_PLC_EggmanSBZ2:	dc.w PLC_S1SpecialStage-ArtLoadCues
+ptr_PLC_FZBoss:		dc.w PLC_S1SpecialStage-ArtLoadCues
+	else
 ; Bug: These are pointing to an invalid location.
-; To fix this, either restore the original PLC or make these use PLC_S1SpecialStage.
+; To fix this, you can restore the original PLCs or make these use PLC_S1SpecialStage.
+; These also appear to be pointers for an earlier version of Sonic 2, however, even in the leftovers we have, it points to invalid data.
 ptr_PLC_SSResult:	dc.w $1C318-ArtLoadCues
 ptr_PLC_Ending:		dc.w $1C31A-ArtLoadCues
 ptr_PLC_TryAgain:	dc.w $1C31C-ArtLoadCues
 ptr_PLC_EggmanSBZ2:	dc.w $1C31E-ArtLoadCues
 ptr_PLC_FZBoss:		dc.w $1C320-ArtLoadCues
+	endif
 
 plcm:	macro gfx,vram
 	dc.l gfx
@@ -163,8 +172,7 @@ PLC_EHZ_End:
 ; --------------------------------------------------------------------------------------
 PLC_EHZ2:	dc.w ((PLC_EHZ2_End-PLC_EHZ2)/6)-1
 		plcm	Nem_Shield, ArtTile_EHZ_Shield
-		; Redundant PLC entry
-		plcm	Nem_Points, ArtTile_Points
+		plcm	Nem_Points, ArtTile_Points	; Redundant PLC entry
 		plcm	Nem_Buzzer, ArtTile_Buzzer
 		plcm	Nem_Snail, ArtTile_Snail
 		plcm	Nem_Masher, ArtTile_Masher

@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace SonicRetro.SonLVL.API.S2NA
 {
 	public class Layout : LayoutFormatSeparate

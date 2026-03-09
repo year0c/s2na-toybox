@@ -6542,287 +6542,158 @@ loc_CB74:
 ; This array contains the pointers to all the objects used in the game.
 ; ---------------------------------------------------------------------------
 Obj_Index:
-ptr_Obj01:	dc.l Obj01				; Sonic
-ptr_Obj02:	dc.l Obj02				; Tails
-ptr_Obj03:	dc.l Obj03				; Collision plane/layer switcher
-ptr_Obj04:	dc.l Obj04				; Surface of the water
-ptr_Obj05:	dc.l Obj05				; Tails' tails
-ptr_Obj06:	dc.l Obj06				; Twisting spiral pathway in EHZ
-ptr_Obj07:	dc.l ObjNull
-ptr_Obj08:	dc.l Obj08				; Water splash in HPZ
-ptr_Obj09:	dc.l Obj09				; (S1) Sonic in the Special Stage
-ptr_Obj0A:	dc.l Obj0A				; Small bubbles from Sonic's face while underwater
-ptr_Obj0B:	dc.l Obj0B				; (S1) Pole that breaks in LZ
-ptr_Obj0C:	dc.l Obj0C				; Strange floating/falling platform object from CPZ
-ptr_Obj0D:	dc.l Obj0D				; End of level signpost
-ptr_Obj0E:	dc.l Obj0E				; Sonic and Tails from the title screen
-ptr_Obj0F:	dc.l Obj0F				; Mappings test?
-ptr_Obj10:	dc.l Obj10				; (S1) Blank, animation test in prototype
-ptr_Obj11:	dc.l Obj11				; Bridges in GHZ, EHZ and HPZ
-ptr_Obj12:	dc.l Obj12				; Emerald from Hidden Palace Zone
-ptr_Obj13:	dc.l Obj13				; Waterfall from Hidden Palace Zone
-ptr_Obj14:	dc.l Obj14				; Seesaw from Hill Top Zone
-ptr_Obj15:	dc.l Obj15				; Swinging platforms in GHZ, CPZ and EHZ
-ptr_Obj16:	dc.l Obj16				; Diagonally moving lift from HTZ
-ptr_Obj17:	dc.l Obj17				; (S1) GHZ rotating log helix spikes
-ptr_Obj18:	dc.l Obj18				; Stationary/moving platforms from GHZ and EHZ
-ptr_Obj19:	dc.l Obj19				; Platform from CPZ
-ptr_Obj1A:	dc.l Obj1A				; Collapsing platform from GHZ and HPZ
-ptr_Obj1B:	dc.l ObjNull
-ptr_Obj1C:	dc.l Obj1C				; Stage decorations in GHZ, EHZ, HTZ and HPZ
-ptr_Obj1D:	dc.l ObjNull
-ptr_Obj1E:	dc.l ObjNull
-ptr_Obj1F:	dc.l Obj1F				; (S1) Crabmeat from GHZ
-ptr_Obj20:	dc.l ObjNull
-ptr_Obj21:	dc.l Obj21				; Score/Rings/Time display (HUD)
-ptr_Obj22:	dc.l Obj22				; (S1) Buzz Bomber from GHZ
-ptr_Obj23:	dc.l Obj23				; (S1) Buzz Bomber/Newtron missile
-ptr_Obj24:	dc.l Obj24				; (S1) Unused Buzz Bomber missile explosion
-ptr_Obj25:	dc.l Obj25				; A ring
-ptr_Obj26:	dc.l Obj26				; Monitor
-ptr_Obj27:	dc.l Obj27				; An explosion, giving off an animal and 100 points
-ptr_Obj28:	dc.l Obj28				; Animal and the 100 points from a badnik
-ptr_Obj29:	dc.l Obj29				; "100 points" text
-ptr_Obj2A:	dc.l Obj2A				; (S1) Small door from SBZ
-ptr_Obj2B:	dc.l Obj2B				; (S1) Chopper from GHZ
-ptr_Obj2C:	dc.l Obj2C				; (S1) Jaws from LZ
-ptr_Obj2D:	dc.l ObjNull
-ptr_Obj2E:	dc.l Obj2E				; Monitor contents (code for power-up behavior and rising image)
-ptr_Obj2F:	dc.l ObjNull
-ptr_Obj30:	dc.l ObjNull
-ptr_Obj31:	dc.l ObjNull
-ptr_Obj32:	dc.l ObjNull
-ptr_Obj33:	dc.l ObjNull
-ptr_Obj34:	dc.l Obj34				; (S1) Level title card
-ptr_Obj35:	dc.l ObjNull
-ptr_Obj36:	dc.l Obj36				; Vertical spikes
-ptr_Obj37:	dc.l Obj37				; Scattering rings (generated when Sonic or Tails are hurt and has rings)
-ptr_Obj38:	dc.l Obj38				; Shield
-ptr_Obj39:	dc.l Obj39				; Game Over/Time Over text
-ptr_Obj3A:	dc.l Obj3A				; (S1) End of level results screen
-ptr_Obj3B:	dc.l Obj3B				; (S1) Purple rock from GHZ
-ptr_Obj3C:	dc.l Obj3C				; (S1) Breakable wall
-ptr_Obj3D:	dc.l Obj3D				; (S1) GHZ boss
-ptr_Obj3E:	dc.l Obj3E				; Egg prison
-ptr_Obj3F:	dc.l Obj3F				; Boss explosion
-ptr_Obj40:	dc.l Obj40				; (S1) Motobug from GHZ
-ptr_Obj41:	dc.l Obj41				; Spring
-ptr_Obj42:	dc.l Obj42				; (S1) Newtron from GHZ
-ptr_Obj43:	dc.l ObjNull
-ptr_Obj44:	dc.l Obj44				; (S1) Breakable wall
-ptr_Obj45:	dc.l ObjNull
-ptr_Obj46:	dc.l ObjNull
-ptr_Obj47:	dc.l ObjNull
-ptr_Obj48:	dc.l Obj48				; (S1) Eggman's wrecking ball
-ptr_Obj49:	dc.l Obj49				; Waterfall sound effect
-ptr_Obj4A:	dc.l Obj4A				; Octus from HPZ
-ptr_Obj4B:	dc.l Obj4B				; Buzzer from EHZ
-ptr_Obj4C:	dc.l Obj4C				; BBat from HPZ
-ptr_Obj4D:	dc.l Obj4D				; Stego/Stegway from HPZ
-ptr_Obj4E:	dc.l Obj4E				; Gator from HPZ
-ptr_Obj4F:	dc.l Obj4F				; Redz (dinosaur badnik) from HPZ
-ptr_Obj50:	dc.l Obj50				; Seahorse/Aquis from HPZ
-ptr_Obj51:	dc.l Obj51				; Skyhorse from HPZ
-ptr_Obj52:	dc.l Obj52				; BFish from HPZ
-ptr_Obj53:	dc.l Obj53				; Masher from EHZ
-ptr_Obj54:	dc.l Obj54				; Snail badnik from EHZ
-ptr_Obj55:	dc.l Obj55				; EHZ boss
-ptr_Obj56:	dc.l Obj56				; EHZ boss part 2
-ptr_Obj57:	dc.l Obj57				; EHZ boss part 3
-ptr_Obj58:	dc.l Obj58				; EHZ boss part 4
-ptr_Obj59:	dc.l ObjNull
-ptr_Obj5A:	dc.l ObjNull
-ptr_Obj5B:	dc.l ObjNull
-ptr_Obj5C:	dc.l ObjNull
-ptr_Obj5D:	dc.l ObjNull
-ptr_Obj5E:	dc.l ObjNull
-ptr_Obj5F:	dc.l ObjNull
-ptr_Obj60:	dc.l ObjNull
-ptr_Obj61:	dc.l ObjNull
-ptr_Obj62:	dc.l ObjNull
-ptr_Obj63:	dc.l ObjNull
-ptr_Obj64:	dc.l ObjNull
-ptr_Obj65:	dc.l ObjNull
-ptr_Obj66:	dc.l ObjNull
-ptr_Obj67:	dc.l ObjNull
-ptr_Obj68:	dc.l ObjNull
-ptr_Obj69:	dc.l ObjNull
-ptr_Obj6A:	dc.l ObjNull
-ptr_Obj6B:	dc.l ObjNull
-ptr_Obj6C:	dc.l ObjNull
-ptr_Obj6D:	dc.l ObjNull
-ptr_Obj6E:	dc.l ObjNull
-ptr_Obj6F:	dc.l ObjNull
-ptr_Obj70:	dc.l ObjNull
-ptr_Obj71:	dc.l ObjNull
-ptr_Obj72:	dc.l ObjNull
-ptr_Obj73:	dc.l ObjNull
-ptr_Obj74:	dc.l ObjNull
-ptr_Obj75:	dc.l ObjNull
-ptr_Obj76:	dc.l ObjNull
-ptr_Obj77:	dc.l ObjNull
-ptr_Obj78:	dc.l ObjNull
-ptr_Obj79:	dc.l Obj79				; Checkpoint
-ptr_Obj7A:	dc.l ObjNull
-ptr_Obj7B:	dc.l ObjNull
-ptr_Obj7C:	dc.l ObjNull
-ptr_Obj7D:	dc.l Obj7D				; (S1) Hidden points at end of stage
-ptr_Obj7E:	dc.l ObjNull			; (S1) Special Stage Results (unreferenced, but can be found as S1Obj7E, also contains a leftover PLC pointer in mappings)
-ptr_Obj7F:	dc.l ObjNull			; (S1) SS Result Chaos Emeralds (unreferenced, but can be found as S1Obj7F)
-ptr_Obj80:	dc.l ObjNull			; Was originally Continue Screen Elements, but was completely stripped out
-ptr_Obj81:	dc.l ObjNull			; Was originally Continue Screen Sonic, but was completely stripped out
-ptr_Obj82:	dc.l ObjNull			; Was originally Eggman - Scrap Brain 2, but was completely stripped out
-ptr_Obj83:	dc.l ObjNull			; Was originally SBZ Eggman's Crumbling Floor, but was completely stripped out
-ptr_Obj84:	dc.l ObjNull			; Was originally FZ Eggman's Cylinders, but was completely stripped out
-ptr_Obj85:	dc.l ObjNull			; Was originally Boss - Final, but was completely stripped out
-ptr_Obj86:	dc.l ObjNull			; Was originally FZ Plasma Ball Launcher, but was completely stripped out
-ptr_Obj87:	dc.l ObjNull			; Was originally Ending Sequence Sonic, but was completely stripped out
-ptr_Obj88:	dc.l ObjNull			; Was originally Ending Sequence Emeralds, but was completely stripped out
-ptr_Obj89:	dc.l ObjNull			; Was originally Ending Sequence STH, but was completely stripped out
-ptr_Obj8A:	dc.l Obj8A				; (S1) "SONIC TEAM PRESENTS" screen and credits
-ptr_Obj8B:	dc.l ObjNull			; Was originally Try Again & End Eggman, but was completely stripped out
-ptr_Obj8C:	dc.l ObjNull			; Was originally Try Again Emeralds, but was completely stripped out
 
-id_Obj01:	equ ((ptr_Obj01-Obj_Index)/4)+1
-id_Obj02:	equ ((ptr_Obj02-Obj_Index)/4)+1
-id_Obj03:	equ ((ptr_Obj03-Obj_Index)/4)+1
-id_Obj04:	equ ((ptr_Obj04-Obj_Index)/4)+1
-id_Obj05:	equ ((ptr_Obj05-Obj_Index)/4)+1
-id_Obj06:	equ ((ptr_Obj06-Obj_Index)/4)+1
-id_Obj07:	equ ((ptr_Obj07-Obj_Index)/4)+1
-id_Obj08:	equ ((ptr_Obj08-Obj_Index)/4)+1
-id_Obj09:	equ ((ptr_Obj09-Obj_Index)/4)+1
-id_Obj0A:	equ ((ptr_Obj0A-Obj_Index)/4)+1
-id_Obj0B:	equ ((ptr_Obj0B-Obj_Index)/4)+1
-id_Obj0C:	equ ((ptr_Obj0C-Obj_Index)/4)+1
-id_Obj0D:	equ ((ptr_Obj0D-Obj_Index)/4)+1
-id_Obj0E:	equ ((ptr_Obj0E-Obj_Index)/4)+1
-id_Obj0F:	equ ((ptr_Obj0F-Obj_Index)/4)+1
-id_Obj10:	equ ((ptr_Obj10-Obj_Index)/4)+1
-id_Obj11:	equ ((ptr_Obj11-Obj_Index)/4)+1
-id_Obj12:	equ ((ptr_Obj12-Obj_Index)/4)+1
-id_Obj13:	equ ((ptr_Obj13-Obj_Index)/4)+1
-id_Obj14:	equ ((ptr_Obj14-Obj_Index)/4)+1
-id_Obj15:	equ ((ptr_Obj15-Obj_Index)/4)+1
-id_Obj16:	equ ((ptr_Obj16-Obj_Index)/4)+1
-id_Obj17:	equ ((ptr_Obj17-Obj_Index)/4)+1
-id_Obj18:	equ ((ptr_Obj18-Obj_Index)/4)+1
-id_Obj19:	equ ((ptr_Obj19-Obj_Index)/4)+1
-id_Obj1A:	equ ((ptr_Obj1A-Obj_Index)/4)+1
-id_Obj1B:	equ ((ptr_Obj1B-Obj_Index)/4)+1
-id_Obj1C:	equ ((ptr_Obj1C-Obj_Index)/4)+1
-id_Obj1D:	equ ((ptr_Obj1D-Obj_Index)/4)+1
-id_Obj1E:	equ ((ptr_Obj1E-Obj_Index)/4)+1
-id_Obj1F:	equ ((ptr_Obj1F-Obj_Index)/4)+1
-id_Obj20:	equ ((ptr_Obj20-Obj_Index)/4)+1
-id_Obj21:	equ ((ptr_Obj21-Obj_Index)/4)+1
-id_Obj22:	equ ((ptr_Obj22-Obj_Index)/4)+1
-id_Obj23:	equ ((ptr_Obj23-Obj_Index)/4)+1
-id_Obj24:	equ ((ptr_Obj24-Obj_Index)/4)+1
-id_Obj25:	equ ((ptr_Obj25-Obj_Index)/4)+1
-id_Obj26:	equ ((ptr_Obj26-Obj_Index)/4)+1
-id_Obj27:	equ ((ptr_Obj27-Obj_Index)/4)+1
-id_Obj28:	equ ((ptr_Obj28-Obj_Index)/4)+1
-id_Obj29:	equ ((ptr_Obj29-Obj_Index)/4)+1
-id_Obj2A:	equ ((ptr_Obj2A-Obj_Index)/4)+1
-id_Obj2B:	equ ((ptr_Obj2B-Obj_Index)/4)+1
-id_Obj2C:	equ ((ptr_Obj2C-Obj_Index)/4)+1
-id_Obj2D:	equ ((ptr_Obj2D-Obj_Index)/4)+1
-id_Obj2E:	equ ((ptr_Obj2E-Obj_Index)/4)+1
-id_Obj2F:	equ ((ptr_Obj2F-Obj_Index)/4)+1
-id_Obj30:	equ ((ptr_Obj30-Obj_Index)/4)+1
-id_Obj31:	equ ((ptr_Obj31-Obj_Index)/4)+1
-id_Obj32:	equ ((ptr_Obj32-Obj_Index)/4)+1
-id_Obj33:	equ ((ptr_Obj33-Obj_Index)/4)+1
-id_Obj34:	equ ((ptr_Obj34-Obj_Index)/4)+1
-id_Obj35:	equ ((ptr_Obj35-Obj_Index)/4)+1
-id_Obj36:	equ ((ptr_Obj36-Obj_Index)/4)+1
-id_Obj37:	equ ((ptr_Obj37-Obj_Index)/4)+1
-id_Obj38:	equ ((ptr_Obj38-Obj_Index)/4)+1
-id_Obj39:	equ ((ptr_Obj39-Obj_Index)/4)+1
-id_Obj3A:	equ ((ptr_Obj3A-Obj_Index)/4)+1
-id_Obj3B:	equ ((ptr_Obj3B-Obj_Index)/4)+1
-id_Obj3C:	equ ((ptr_Obj3C-Obj_Index)/4)+1
-id_Obj3D:	equ ((ptr_Obj3D-Obj_Index)/4)+1
-id_Obj3E:	equ ((ptr_Obj3E-Obj_Index)/4)+1
-id_Obj3F:	equ ((ptr_Obj3F-Obj_Index)/4)+1
-id_Obj40:	equ ((ptr_Obj40-Obj_Index)/4)+1
-id_Obj41:	equ ((ptr_Obj41-Obj_Index)/4)+1
-id_Obj42:	equ ((ptr_Obj42-Obj_Index)/4)+1
-id_Obj43:	equ ((ptr_Obj43-Obj_Index)/4)+1
-id_Obj44:	equ ((ptr_Obj44-Obj_Index)/4)+1
-id_Obj45:	equ ((ptr_Obj45-Obj_Index)/4)+1
-id_Obj46:	equ ((ptr_Obj46-Obj_Index)/4)+1
-id_Obj47:	equ ((ptr_Obj47-Obj_Index)/4)+1
-id_Obj48:	equ ((ptr_Obj48-Obj_Index)/4)+1
-id_Obj49:	equ ((ptr_Obj49-Obj_Index)/4)+1
-id_Obj4A:	equ ((ptr_Obj4A-Obj_Index)/4)+1
-id_Obj4B:	equ ((ptr_Obj4B-Obj_Index)/4)+1
-id_Obj4C:	equ ((ptr_Obj4C-Obj_Index)/4)+1
-id_Obj4D:	equ ((ptr_Obj4D-Obj_Index)/4)+1
-id_Obj4E:	equ ((ptr_Obj4E-Obj_Index)/4)+1
-id_Obj4F:	equ ((ptr_Obj4F-Obj_Index)/4)+1
-id_Obj50:	equ ((ptr_Obj50-Obj_Index)/4)+1
-id_Obj51:	equ ((ptr_Obj51-Obj_Index)/4)+1
-id_Obj52:	equ ((ptr_Obj52-Obj_Index)/4)+1
-id_Obj53:	equ ((ptr_Obj53-Obj_Index)/4)+1
-id_Obj54:	equ ((ptr_Obj54-Obj_Index)/4)+1
-id_Obj55:	equ ((ptr_Obj55-Obj_Index)/4)+1
-id_Obj56:	equ ((ptr_Obj56-Obj_Index)/4)+1
-id_Obj57:	equ ((ptr_Obj57-Obj_Index)/4)+1
-id_Obj58:	equ ((ptr_Obj58-Obj_Index)/4)+1
-id_Obj59:	equ ((ptr_Obj59-Obj_Index)/4)+1
-id_Obj5A:	equ ((ptr_Obj5A-Obj_Index)/4)+1
-id_Obj5B:	equ ((ptr_Obj5B-Obj_Index)/4)+1
-id_Obj5C:	equ ((ptr_Obj5C-Obj_Index)/4)+1
-id_Obj5D:	equ ((ptr_Obj5D-Obj_Index)/4)+1
-id_Obj5E:	equ ((ptr_Obj5E-Obj_Index)/4)+1
-id_Obj5F:	equ ((ptr_Obj5F-Obj_Index)/4)+1
-id_Obj60:	equ ((ptr_Obj60-Obj_Index)/4)+1
-id_Obj61:	equ ((ptr_Obj61-Obj_Index)/4)+1
-id_Obj62:	equ ((ptr_Obj62-Obj_Index)/4)+1
-id_Obj63:	equ ((ptr_Obj63-Obj_Index)/4)+1
-id_Obj64:	equ ((ptr_Obj64-Obj_Index)/4)+1
-id_Obj65:	equ ((ptr_Obj65-Obj_Index)/4)+1
-id_Obj66:	equ ((ptr_Obj66-Obj_Index)/4)+1
-id_Obj67:	equ ((ptr_Obj67-Obj_Index)/4)+1
-id_Obj68:	equ ((ptr_Obj68-Obj_Index)/4)+1
-id_Obj69:	equ ((ptr_Obj69-Obj_Index)/4)+1
-id_Obj6A:	equ ((ptr_Obj6A-Obj_Index)/4)+1
-id_Obj6B:	equ ((ptr_Obj6B-Obj_Index)/4)+1
-id_Obj6C:	equ ((ptr_Obj6C-Obj_Index)/4)+1
-id_Obj6D:	equ ((ptr_Obj6D-Obj_Index)/4)+1
-id_Obj6E:	equ ((ptr_Obj6E-Obj_Index)/4)+1
-id_Obj6F:	equ ((ptr_Obj6F-Obj_Index)/4)+1
-id_Obj70:	equ ((ptr_Obj70-Obj_Index)/4)+1
-id_Obj71:	equ ((ptr_Obj71-Obj_Index)/4)+1
-id_Obj72:	equ ((ptr_Obj72-Obj_Index)/4)+1
-id_Obj73:	equ ((ptr_Obj73-Obj_Index)/4)+1
-id_Obj74:	equ ((ptr_Obj74-Obj_Index)/4)+1
-id_Obj75:	equ ((ptr_Obj75-Obj_Index)/4)+1
-id_Obj76:	equ ((ptr_Obj76-Obj_Index)/4)+1
-id_Obj77:	equ ((ptr_Obj77-Obj_Index)/4)+1
-id_Obj78:	equ ((ptr_Obj78-Obj_Index)/4)+1
-id_Obj79:	equ ((ptr_Obj79-Obj_Index)/4)+1
-id_Obj7A:	equ ((ptr_Obj7A-Obj_Index)/4)+1
-id_Obj7B:	equ ((ptr_Obj7B-Obj_Index)/4)+1
-id_Obj7C:	equ ((ptr_Obj7C-Obj_Index)/4)+1
-id_Obj7D:	equ ((ptr_Obj7D-Obj_Index)/4)+1
-id_Obj7E:	equ ((ptr_Obj7E-Obj_Index)/4)+1
-id_Obj7F:	equ ((ptr_Obj7F-Obj_Index)/4)+1
-id_Obj80:	equ ((ptr_Obj80-Obj_Index)/4)+1
-id_Obj81:	equ ((ptr_Obj81-Obj_Index)/4)+1
-id_Obj82:	equ ((ptr_Obj82-Obj_Index)/4)+1
-id_Obj83:	equ ((ptr_Obj83-Obj_Index)/4)+1
-id_Obj84:	equ ((ptr_Obj84-Obj_Index)/4)+1
-id_Obj85:	equ ((ptr_Obj85-Obj_Index)/4)+1
-id_Obj86:	equ ((ptr_Obj86-Obj_Index)/4)+1
-id_Obj87:	equ ((ptr_Obj87-Obj_Index)/4)+1
-id_Obj88:	equ ((ptr_Obj88-Obj_Index)/4)+1
-id_Obj89:	equ ((ptr_Obj89-Obj_Index)/4)+1
-id_Obj8A:	equ ((ptr_Obj8A-Obj_Index)/4)+1
-id_Obj8B:	equ ((ptr_Obj8B-Obj_Index)/4)+1
-id_Obj8C:	equ ((ptr_Obj8C-Obj_Index)/4)+1
+objptr:	macro objectpointer,{INTLABEL},{GLOBALSYMBOLS}
+__LABEL__: = ((*-Obj_Index)/4)+1
+	dc.l	objectpointer
+	endm
+
+; ---------------------------------------------------------------------------
+; ID label:	non-zero index byte (see ID value)
+; Object label:	main label to the actual object source
+
+; ID label			Object label		  ID value
+id_Obj01:	objptr	Obj01				; Sonic
+id_Obj02:	objptr	Obj02				; Tails
+id_Obj03:	objptr	Obj03				; Collision plane/layer switcher
+id_Obj04:	objptr	Obj04				; Surface of the water
+id_Obj05:	objptr	Obj05				; Tails' tails
+id_Obj06:	objptr	Obj06				; Twisting spiral pathway in EHZ
+id_Obj07:	objptr	ObjNull
+id_Obj08:	objptr	Obj08				; Water splash in HPZ
+id_Obj09:	objptr	Obj09				; (S1) Sonic in the Special Stage
+id_Obj0A:	objptr	Obj0A				; Small bubbles from Sonic's face while underwater
+id_Obj0B:	objptr	Obj0B				; (S1) Pole that breaks in LZ
+id_Obj0C:	objptr	Obj0C				; Strange floating/falling platform object from CPZ
+id_Obj0D:	objptr	Obj0D				; End of level signpost
+id_Obj0E:	objptr	Obj0E				; Sonic and Tails from the title screen
+id_Obj0F:	objptr	Obj0F				; Mappings test?
+id_Obj10:	objptr	Obj10				; (S1) Blank, animation test in prototype
+id_Obj11:	objptr	Obj11				; Bridges in GHZ, EHZ and HPZ
+id_Obj12:	objptr	Obj12				; Emerald from Hidden Palace Zone
+id_Obj13:	objptr	Obj13				; Waterfall from Hidden Palace Zone
+id_Obj14:	objptr	Obj14				; Seesaw from Hill Top Zone
+id_Obj15:	objptr	Obj15				; Swinging platforms in GHZ, CPZ and EHZ
+id_Obj16:	objptr	Obj16				; Diagonally moving lift from HTZ
+id_Obj17:	objptr	Obj17				; (S1) GHZ rotating log helix spikes
+id_Obj18:	objptr	Obj18				; Stationary/moving platforms from GHZ and EHZ
+id_Obj19:	objptr	Obj19				; Platform from CPZ
+id_Obj1A:	objptr	Obj1A				; Collapsing platform from GHZ and HPZ
+id_Obj1B:	objptr	ObjNull
+id_Obj1C:	objptr	Obj1C				; Stage decorations in GHZ, EHZ, HTZ and HPZ
+id_Obj1D:	objptr	ObjNull
+id_Obj1E:	objptr	ObjNull
+id_Obj1F:	objptr	Obj1F				; (S1) Crabmeat from GHZ
+id_Obj20:	objptr	ObjNull
+id_Obj21:	objptr	Obj21				; Score/Rings/Time display (HUD)
+id_Obj22:	objptr	Obj22				; (S1) Buzz Bomber from GHZ
+id_Obj23:	objptr	Obj23				; (S1) Buzz Bomber/Newtron missile
+id_Obj24:	objptr	Obj24				; (S1) Unused Buzz Bomber missile explosion
+id_Obj25:	objptr	Obj25				; A ring
+id_Obj26:	objptr	Obj26				; Monitor
+id_Obj27:	objptr	Obj27				; An explosion, giving off an animal and 100 points
+id_Obj28:	objptr	Obj28				; Animal and the 100 points from a badnik
+id_Obj29:	objptr	Obj29				; "100 points" text
+id_Obj2A:	objptr	Obj2A				; (S1) Small door from SBZ
+id_Obj2B:	objptr	Obj2B				; (S1) Chopper from GHZ
+id_Obj2C:	objptr	Obj2C				; (S1) Jaws from LZ
+id_Obj2D:	objptr	ObjNull
+id_Obj2E:	objptr	Obj2E				; Monitor contents (code for power-up behavior and rising image)
+id_Obj2F:	objptr	ObjNull
+id_Obj30:	objptr	ObjNull
+id_Obj31:	objptr	ObjNull
+id_Obj32:	objptr	ObjNull
+id_Obj33:	objptr	ObjNull
+id_Obj34:	objptr	Obj34				; (S1) Level title card
+id_Obj35:	objptr	ObjNull
+id_Obj36:	objptr	Obj36				; Vertical spikes
+id_Obj37:	objptr	Obj37				; Scattering rings (generated when Sonic or Tails are hurt and has rings)
+id_Obj38:	objptr	Obj38				; Shield
+id_Obj39:	objptr	Obj39				; Game Over/Time Over text
+id_Obj3A:	objptr	Obj3A				; (S1) End of level results screen
+id_Obj3B:	objptr	Obj3B				; (S1) Purple rock from GHZ
+id_Obj3C:	objptr	Obj3C				; (S1) Breakable wall
+id_Obj3D:	objptr	Obj3D				; (S1) GHZ boss
+id_Obj3E:	objptr	Obj3E				; Egg prison
+id_Obj3F:	objptr	Obj3F				; Boss explosion
+id_Obj40:	objptr	Obj40				; (S1) Motobug from GHZ
+id_Obj41:	objptr	Obj41				; Spring
+id_Obj42:	objptr	Obj42				; (S1) Newtron from GHZ
+id_Obj43:	objptr	ObjNull
+id_Obj44:	objptr	Obj44				; (S1) Breakable wall
+id_Obj45:	objptr	ObjNull
+id_Obj46:	objptr	ObjNull
+id_Obj47:	objptr	ObjNull
+id_Obj48:	objptr	Obj48				; (S1) Eggman's wrecking ball
+id_Obj49:	objptr	Obj49				; Waterfall sound effect
+id_Obj4A:	objptr	Obj4A				; Octus from HPZ
+id_Obj4B:	objptr	Obj4B				; Buzzer from EHZ
+id_Obj4C:	objptr	Obj4C				; BBat from HPZ
+id_Obj4D:	objptr	Obj4D				; Stego/Stegway from HPZ
+id_Obj4E:	objptr	Obj4E				; Gator from HPZ
+id_Obj4F:	objptr	Obj4F				; Redz (dinosaur badnik) from HPZ
+id_Obj50:	objptr	Obj50				; Seahorse/Aquis from HPZ
+id_Obj51:	objptr	Obj51				; Skyhorse from HPZ
+id_Obj52:	objptr	Obj52				; BFish from HPZ
+id_Obj53:	objptr	Obj53				; Masher from EHZ
+id_Obj54:	objptr	Obj54				; Snail badnik from EHZ
+id_Obj55:	objptr	Obj55				; EHZ boss
+id_Obj56:	objptr	Obj56				; EHZ boss part 2
+id_Obj57:	objptr	Obj57				; EHZ boss part 3
+id_Obj58:	objptr	Obj58				; EHZ boss part 4
+id_Obj59:	objptr	ObjNull
+id_Obj5A:	objptr	ObjNull
+id_Obj5B:	objptr	ObjNull
+id_Obj5C:	objptr	ObjNull
+id_Obj5D:	objptr	ObjNull
+id_Obj5E:	objptr	ObjNull
+id_Obj5F:	objptr	ObjNull
+id_Obj60:	objptr	ObjNull
+id_Obj61:	objptr	ObjNull
+id_Obj62:	objptr	ObjNull
+id_Obj63:	objptr	ObjNull
+id_Obj64:	objptr	ObjNull
+id_Obj65:	objptr	ObjNull
+id_Obj66:	objptr	ObjNull
+id_Obj67:	objptr	ObjNull
+id_Obj68:	objptr	ObjNull
+id_Obj69:	objptr	ObjNull
+id_Obj6A:	objptr	ObjNull
+id_Obj6B:	objptr	ObjNull
+id_Obj6C:	objptr	ObjNull
+id_Obj6D:	objptr	ObjNull
+id_Obj6E:	objptr	ObjNull
+id_Obj6F:	objptr	ObjNull
+id_Obj70:	objptr	ObjNull
+id_Obj71:	objptr	ObjNull
+id_Obj72:	objptr	ObjNull
+id_Obj73:	objptr	ObjNull
+id_Obj74:	objptr	ObjNull
+id_Obj75:	objptr	ObjNull
+id_Obj76:	objptr	ObjNull
+id_Obj77:	objptr	ObjNull
+id_Obj78:	objptr	ObjNull
+id_Obj79:	objptr	Obj79				; Checkpoint
+id_Obj7A:	objptr	ObjNull
+id_Obj7B:	objptr	ObjNull
+id_Obj7C:	objptr	ObjNull
+id_Obj7D:	objptr	Obj7D				; (S1) Hidden points at end of stage
+id_Obj7E:	objptr	ObjNull			; (S1) Special Stage Results (unreferenced, but can be found as S1Obj7E, also contains a leftover PLC pointer in mappings)
+id_Obj7F:	objptr	ObjNull			; (S1) SS Result Chaos Emeralds (unreferenced, but can be found as S1Obj7F)
+id_Obj80:	objptr	ObjNull			; Was originally Continue Screen Elements, but was completely stripped out
+id_Obj81:	objptr	ObjNull			; Was originally Continue Screen Sonic, but was completely stripped out
+id_Obj82:	objptr	ObjNull			; Was originally Eggman - Scrap Brain 2, but was completely stripped out
+id_Obj83:	objptr	ObjNull			; Was originally SBZ Eggman's Crumbling Floor, but was completely stripped out
+id_Obj84:	objptr	ObjNull			; Was originally FZ Eggman's Cylinders, but was completely stripped out
+id_Obj85:	objptr	ObjNull			; Was originally Boss - Final, but was completely stripped out
+id_Obj86:	objptr	ObjNull			; Was originally FZ Plasma Ball Launcher, but was completely stripped out
+id_Obj87:	objptr	ObjNull			; Was originally Ending Sequence Sonic, but was completely stripped out
+id_Obj88:	objptr	ObjNull			; Was originally Ending Sequence Emeralds, but was completely stripped out
+id_Obj89:	objptr	ObjNull			; Was originally Ending Sequence STH, but was completely stripped out
+id_Obj8A:	objptr	Obj8A				; (S1) "SONIC TEAM PRESENTS" screen and credits
+id_Obj8B:	objptr	ObjNull			; Was originally Try Again & End Eggman, but was completely stripped out
+id_Obj8C:	objptr	ObjNull			; Was originally Try Again Emeralds, but was completely stripped out
+
 ; ===========================================================================
 ; blank object, allocates its array
 ; jmp_DeleteObject:

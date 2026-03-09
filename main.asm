@@ -7044,7 +7044,7 @@ BldSpr_ScrPos:	dc.l 0
 
 BuildSprites:
 		tst.w	(Two_player_mode).w
-		bne.w	BuildSprites_2p
+		bne.w	BuildSprites_2P
 		lea	(Sprite_Table).w,a2
 		moveq	#0,d5
 		moveq	#0,d4
@@ -7146,7 +7146,7 @@ loc_D102:
 		lea	$80(a4),a4
 		dbf	d7,loc_D02C
 		move.b	d5,(v_spritecount).w
-		cmpi.b	#$50,d5
+		cmpi.b	#80,d5
 		beq.s	loc_D11C
 		move.l	#0,(a2)
 		rts
@@ -7232,14 +7232,31 @@ sub_D1B6:
 
 
 sub_D1BA:
+	if FixBugs=0
 		cmpi.b	#80,d5
 		bhs.s	locret_D1F6
+	endif
 		btst	#0,d4
 		bne.s	loc_D1F8
 		btst	#1,d4
 		bne.w	loc_D258
 
 loc_D1CE:
+	if FixBugs
+		; In a rather overzealous optimisation, this game doesn't check if
+		; the sprite limit has been reached every time it processes a sprite
+		; piece. Naturally, this leads to the 'Sprite_Table' buffer being
+		; overflowed if too many sprites are processed. To mitigate this, the
+		; developers placed an $80 byte large spill buffer after
+		; 'Sprite_Table', to 'catch' the overflow. Unfortunately, this spill
+		; buffer is not big enough to catch all overflow: this oversight is
+		; responsible for the famous 'Ashua' bug. To fix this, we'll just
+		; undo this optimistaion. Sonic 3 & Knuckles undid this optimistaion
+		; too, but heavily optimised the rest of 'BuildSprites' to make up
+		; for it.
+		cmpi.b	#80,d5
+		bhs.s	locret_D1F6
+	endif
 		move.b	(a1)+,d0
 		ext.w	d0
 		add.w	d2,d0
@@ -7270,6 +7287,10 @@ loc_D1F8:
 		bne.w	loc_D2A0
 
 loc_D200:
+	if FixBugs
+		cmpi.b	#80,d5
+		bhs.s	locret_D1F6
+	endif
 		move.b	(a1)+,d0
 		ext.w	d0
 		add.w	d2,d0
@@ -7301,6 +7322,7 @@ byte_D238:	dc.b   8,  8,  8,  8
 		dc.b $10,$10,$10,$10
 		dc.b $18,$18,$18,$18
 		dc.b $20,$20,$20,$20
+; ---------------------------------------------------------------------------
 byte_D248:	dc.b   8,$10,$18,$20
 		dc.b   8,$10,$18,$20
 		dc.b   8,$10,$18,$20
@@ -7308,6 +7330,10 @@ byte_D248:	dc.b   8,$10,$18,$20
 ; ---------------------------------------------------------------------------
 
 loc_D258:
+	if FixBugs
+		cmpi.b	#80,d5
+		bhs.s	locret_D288
+	endif
 		move.b	(a1)+,d0
 		move.b	(a1),d4
 		ext.w	d0
@@ -7333,6 +7359,8 @@ loc_D258:
 loc_D288:
 		move.w	d0,(a2)+
 		dbf	d1,loc_D258
+
+locret_D288:
 		rts
 ; ---------------------------------------------------------------------------
 byte_D290:	dc.b   8,$10,$18,$20
@@ -7342,6 +7370,10 @@ byte_D290:	dc.b   8,$10,$18,$20
 ; ---------------------------------------------------------------------------
 
 loc_D2A0:
+	if FixBugs
+		cmpi.b	#80,d5
+		bhs.s	locret_D288
+	endif
 		move.b	(a1)+,d0
 		move.b	(a1),d4
 		ext.w	d0
@@ -7379,15 +7411,18 @@ byte_D2E2:	dc.b   8,  8,  8,  8
 		dc.b $10,$10,$10,$10
 		dc.b $18,$18,$18,$18
 		dc.b $20,$20,$20,$20
-BldSpr_ScrPos_2p:dc.l 0
+; ---------------------------------------------------------------------------
+
+BldSpr_ScrPos_2P:
+		dc.l 0
 		dc.l Camera_RAM
 		dc.l Camera_BG_X_pos
 		dc.l Camera_BG3_X_pos
 ; ---------------------------------------------------------------------------
 
-BuildSprites_2p:
+BuildSprites_2P:
 		tst.w	(f_hbla_pal).w
-		bne.s	BuildSprites_2p
+		bne.s	BuildSprites_2P
 		lea	(Sprite_Table).w,a2
 		moveq	#2,d5
 		moveq	#0,d4
@@ -7420,7 +7455,7 @@ loc_D342:
 		bne.w	loc_D54A
 		andi.w	#$C,d0
 		beq.s	loc_D3B6
-		movea.l	BldSpr_ScrPos_2p(pc,d0.w),a1
+		movea.l	BldSpr_ScrPos_2P(pc,d0.w),a1
 		moveq	#0,d0
 		move.b	obActWid(a0),d0
 		move.w	obX(a0),d3
@@ -7505,7 +7540,8 @@ loc_D42A:
 		move.b	#0,-5(a2)
 		bra.s	loc_D442
 ; ---------------------------------------------------------------------------
-dword_D432:	dc.l 0
+dword_D432:
+		dc.l 0
 		dc.l Camera_X_pos_P2
 		dc.l Camera_BG_X_pos_P2
 		dc.l Camera_BG3_X_pos_P2
@@ -7612,7 +7648,7 @@ loc_D528:
 		lea	$80(a4),a4
 		dbf	d7,loc_D45A
 		move.b	d5,(v_spritecount).w
-		cmpi.b	#$50,d5
+		cmpi.b	#80,d5
 		beq.s	loc_D542
 		move.l	#0,(a2)
 		rts
@@ -7786,14 +7822,20 @@ sub_D6A2:
 
 
 sub_D6A6:
+	if FixBugs=0
 		cmpi.b	#80,d5
 		bhs.s	locret_D6E6
+	endif
 		btst	#0,d4
 		bne.s	loc_D6F8
 		btst	#1,d4
 		bne.w	loc_D75A
 
 loc_D6BA:
+	if FixBugs
+		cmpi.b	#80,d5
+		bhs.s	locret_D6E6
+	endif
 		move.b	(a1)+,d0
 		ext.w	d0
 		add.w	d2,d0
@@ -7834,6 +7876,10 @@ loc_D6F8:
 		bne.w	loc_D7B6
 
 loc_D700:
+	if FixBugs
+		cmpi.b	#80,d5
+		bhs.s	locret_D6E6
+	endif
 		move.b	(a1)+,d0
 		ext.w	d0
 		add.w	d2,d0
@@ -7869,6 +7915,7 @@ byte_D73A:	dc.b   8,  8
 		dc.b $18,$18
 		dc.b $20,$20
 		dc.b $20,$20
+; ---------------------------------------------------------------------------
 byte_D74A:	dc.b   8,$10,$18,$20
 		dc.b   8,$10,$18,$20
 		dc.b   8,$10,$18,$20
@@ -7876,6 +7923,10 @@ byte_D74A:	dc.b   8,$10,$18,$20
 ; ---------------------------------------------------------------------------
 
 loc_D75A:
+	if FixBugs
+		cmpi.b	#80,d5
+		bhs.s	locret_D78E
+	endif
 		move.b	(a1)+,d0
 		move.b	(a1),d4
 		ext.w	d0
@@ -7902,12 +7953,15 @@ loc_D75A:
 loc_D78E:
 		move.w	d0,(a2)+
 		dbf	d1,loc_D75A
+
+locret_D78E:
 		rts
 ; ---------------------------------------------------------------------------
 byte_D796:	dc.b   0,  0,  1,  1
 		dc.b   4,  4,  5,  5
 		dc.b   8,  8,  9,  9
 		dc.b  $C, $C, $D, $D
+; ---------------------------------------------------------------------------
 byte_D7A6:	dc.b   8,$10,$18,$20
 		dc.b   8,$10,$18,$20
 		dc.b   8,$10,$18,$20
@@ -7915,6 +7969,10 @@ byte_D7A6:	dc.b   8,$10,$18,$20
 ; ---------------------------------------------------------------------------
 
 loc_D7B6:
+	if FixBugs
+		cmpi.b	#80,d5
+		bhs.s	locret_D78E
+	endif
 		move.b	(a1)+,d0
 		move.b	(a1),d4
 		ext.w	d0

@@ -37,8 +37,13 @@ Obj16_Main:
 		move.w	#-$28,d3
 		move.w	(sp)+,d4
 		bsr.w	sub_F78A
+	if FixBugs
+		out_of_range.w	j_DeleteObject,objoff_30(a0)
+	else
+		; d0 gets overwritten with the x position
 		move.w	objoff_30(a0),d0
 		out_of_range.w	j_DeleteObject
+	endif
 		bra.w	loc_152A4
 
 ; =============== S U B	R O U T	I N E =======================================

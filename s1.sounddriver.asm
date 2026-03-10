@@ -921,12 +921,20 @@ Sound_PlayBGM:
 		adda.w	d6,a1
 		dbf	d7,.sfxstoploop
 
+	if FixBugs
+		tst.b	SMPS_RAM.v_spcsfx_fm4_track.PlaybackControl(a6)		; Is special SFX being played?
+	else
 		tst.w	SMPS_RAM.v_spcsfx_fm4_track.PlaybackControl(a6)		; Is special SFX being played?
+	endif
 		bpl.s	.checkspecialpsg					; Branch if not
 		bset	#2,SMPS_RAM.v_music_fm4_track.PlaybackControl(a6)	; Set 'SFX is overriding' bit
 ; loc_7218E:
 .checkspecialpsg:
+	if FixBugs
+		tst.b	SMPS_RAM.v_spcsfx_psg3_track.PlaybackControl(a6)	; Is special SFX being played?
+	else
 		tst.w	SMPS_RAM.v_spcsfx_psg3_track.PlaybackControl(a6)	; Is special SFX being played?
+	endif
 		bpl.s	.sendfmnoteoff						; Branch if not
 		bset	#2,SMPS_RAM.v_music_psg3_track.PlaybackControl(a6)	; Set 'SFX is overriding' bit
 ; loc_7219A:

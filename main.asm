@@ -14137,15 +14137,13 @@ RingPos_CPZ1:	binclude	"level/rings/CPZ_1.bin"
 ; This must be aligned to a bank in order to avoid issues with the DMA.
 ; But because all of the art is placed after the sound driver which already aligns with the bank,
 ; this fixes itself.
-; The exact location in ROM that this is located at is 0x50000.
-; This has been intentionally aligned to avoid any DMA issues that might occur if the ROM is modified.
-	align $8000
-Art_Sonic:	binclude	"art/uncompressed/Sonic's art.bin"
-Map_Sonic:	include	"mappings/sprite/Sonic.asm"
-	if FixBugs
-; Ensure that Tails's art is also properly aligned.
+; The exact location in ROM that this is located at is 0x80000.
+	if FixBugs=0
+	; Ensure properly art alignment, unnessesary if the DMA bug fix is enabled for 128kb boundaries.
 	align $8000
 	endif
+Art_Sonic:	binclude	"art/uncompressed/Sonic's art.bin"
+Map_Sonic:	include	"mappings/sprite/Sonic.asm"
 Art_Tails:	binclude	"art/uncompressed/Tails' art.bin"
 SonicDynPLC:	include	"mappings/spriteDPLC/Sonic.asm"
 Nem_Shield:	binclude	"art/nemesis/Shield.nem"

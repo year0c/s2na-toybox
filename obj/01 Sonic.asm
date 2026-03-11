@@ -15,11 +15,11 @@ Obj01_Normal:
 		move.w	Obj01_Index(pc,d0.w),d1
 		jmp	Obj01_Index(pc,d1.w)
 ; ===========================================================================
-Obj01_Index:	dc.w Obj01_Init-Obj01_Index		; 0
-		dc.w Obj01_Control-Obj01_Index		; 2
-		dc.w Obj01_Hurt-Obj01_Index		; 4
-		dc.w Obj01_Dead-Obj01_Index		; 6
-		dc.w Obj01_ResetLevel-Obj01_Index	; 8
+Obj01_Index:	dc.w Obj01_Init-Obj01_Index
+		dc.w Obj01_Control-Obj01_Index
+		dc.w Obj01_Hurt-Obj01_Index
+		dc.w Obj01_Dead-Obj01_Index
+		dc.w Obj01_ResetLevel-Obj01_Index
 ; ===========================================================================
 ; Obj01_Main:
 Obj01_Init:
@@ -921,6 +921,17 @@ loc_101C0:
 
 loc_101C4:
 		move.w	(Camera_Max_Y_pos).w,d0
+	if FixBugs
+		; The original code does not consider that the camera boundary
+		; may be in the middle of lowering itself, which is why going
+		; down the S-tunnel in Green Hill Zone Act 1 fast enough can
+		; kill Sonic.
+		move.w	(Camera_Max_Y_pos_target).w,d1
+		cmp.w	d0,d1
+		blo.s	.skip
+		move.w	d1,d0
+.skip:
+	endif
 		addi.w	#224,d0
 		cmp.w	obY(a0),d0
 		blt.s	loc_101D4
@@ -928,6 +939,11 @@ loc_101C4:
 ; ---------------------------------------------------------------------------
 
 loc_101D4:
+	if FixBugs
+		; a2 needs to be set here, otherwise KillCharacter
+		; will access a dangling pointer!
+		movea.l	a0,a2
+	endif
 		cmpi.w	#(id_SBZ<<8)+1,(Current_ZoneAndAct).w
 		bne.w	JmpTo_KillCharacter
 		cmpi.w	#$2000,(v_player+obX).w
@@ -1546,7 +1562,7 @@ loc_10748:
 
 Obj01_Hurt:
 		tst.b	ob2ndRout(a0)
-		bmi.w	loc_107E8
+		bmi.w	Sonic_HurtInstantRecover
 		jsr	(ObjectMove).l
 		addi.w	#$30,obVelY(a0)
 		btst	#6,obStatus(a0)
@@ -1565,7 +1581,23 @@ loc_1077E:
 
 
 Sonic_HurtStop:
+	if FixBugs
+		; a2 needs to be set here, otherwise KillCharacter
+		; will access a dangling pointer!
+		movea.l	a0,a2
+	endif
 		move.w	(Camera_Max_Y_pos).w,d0
+	if FixBugs
+		; The original code does not consider that the camera boundary
+		; may be in the middle of lowering itself, which is why going
+		; down the S-tunnel in Green Hill Zone Act 1 fast enough can
+		; kill Sonic.
+		move.w	(Camera_Max_Y_pos_target).w,d1
+		cmp.w	d0,d1
+		blo.s	.skip
+		move.w	d1,d0
+.skip:
+	endif
 		addi.w	#224,d0
 		cmp.w	obY(a0),d0
 		blo.w	JmpTo_KillCharacter
@@ -1594,7 +1626,7 @@ locret_107E6:
 
 ; ---------------------------------------------------------------------------
 
-loc_107E8:
+Sonic_HurtInstantRecover:
 		cmpi.b	#AniIDSonAni_WallRecoil2,obAnim(a0)
 		bne.s	loc_107FA
 		move.b	(v_jpadpress1).w,d0
@@ -1627,7 +1659,11 @@ Sonic_GameOver:
 		move.w	(Camera_Max_Y_pos).w,d0
 		addi.w	#$100,d0
 		cmp.w	obY(a0),d0
+	if FixBugs
+		bge.w	locret_108B4
+	else
 		bhs.w	locret_108B4
+	endif
 		move.w	#-$38,obVelY(a0)
 		addq.b	#2,obRoutine(a0)
 		clr.b	(f_timecount).w

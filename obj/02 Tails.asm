@@ -807,6 +807,17 @@ loc_1133A:
 
 loc_1133E:
 		move.w	(Camera_Max_Y_pos).w,d0
+	if FixBugs
+		; The original code does not consider that the camera boundary
+		; may be in the middle of lowering itself, which is why going
+		; down the S-tunnel in Green Hill Zone Act 1 fast enough can
+		; kill Sonic.
+		move.w	(Camera_Max_Y_pos_target).w,d1
+		cmp.w	d0,d1
+		blo.s	.skip
+		move.w	d1,d0
+.skip:
+	endif
 		addi.w	#224,d0
 		cmp.w	obY(a0),d0
 		blt.s	loc_1134E
@@ -814,6 +825,11 @@ loc_1133E:
 ; ---------------------------------------------------------------------------
 
 loc_1134E:
+	if FixBugs
+		; a2 needs to be set here, otherwise KillCharacter
+		; will access a dangling pointer!
+		movea.l	a0,a2
+	endif
 		cmpi.w	#(id_SBZ<<8)+1,(Current_ZoneAndAct).w
 		bne.w	KillTails
 		cmpi.w	#$2000,obX(a0)
@@ -1447,7 +1463,23 @@ loc_118D8:
 
 
 Tails_HurtStop:
+	if FixBugs
+		; a2 needs to be set here, otherwise KillCharacter
+		; will access a dangling pointer!
+		movea.l	a0,a2
+	endif
 		move.w	(Camera_Max_Y_pos).w,d0
+	if FixBugs
+		; The original code does not consider that the camera boundary
+		; may be in the middle of lowering itself, which is why going
+		; down the S-tunnel in Green Hill Zone Act 1 fast enough can
+		; kill Sonic.
+		move.w	(Camera_Max_Y_pos_target).w,d1
+		cmp.w	d0,d1
+		blo.s	.skip
+		move.w	d1,d0
+.skip:
+	endif
 		addi.w	#224,d0
 		cmp.w	obY(a0),d0
 		blo.w	KillTails
@@ -1482,7 +1514,11 @@ Tails_GameOver:
 		move.w	(Camera_Max_Y_pos).w,d0
 		addi.w	#$100,d0
 		cmp.w	obY(a0),d0
+	if FixBugs
+		bge.w	locret_11986
+	else
 		bhs.w	locret_11986
+	endif
 		move.w	(v_player+obX).w,d0
 		subi.w	#$40,d0
 		move.w	d0,obX(a0)

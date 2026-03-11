@@ -18,7 +18,7 @@ Obj4C_Init:
 	if FixBugs
 		move.w	#make_art_tile(ArtTile_BBat,0,0),obGfx(a0)
 	else
-		; Bug: This uses a very awkward palette line which makes the flames look very yellow.
+		; Bug: This uses the level's palette line which makes the flames look yellow.
 		move.w	#make_art_tile(ArtTile_BBat,1,0),obGfx(a0)
 	endif
 		ori.b	#4,obRender(a0)

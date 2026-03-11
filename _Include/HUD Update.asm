@@ -139,8 +139,8 @@ locret_1B39A:
 
 HUD_LoadZero:
 		locVRAM	(ArtTile_HUD+$30)*tile_size
-		lea	HUD_TilesZero(pc),a2
-		move.w	#3-1,d2
+		lea	HUD_TilesRings(pc),a2
+		move.w	#(HUD_TilesBase_End-HUD_TilesRings)-1,d2
 		bra.s	loc_1B3CC
 ; End of function HUD_LoadZero
 
@@ -153,7 +153,7 @@ HUD_Base:
 		bsr.w	HUD_Lives
 		locVRAM	(ArtTile_HUD+$18)*tile_size
 		lea	HUD_TilesBase(pc),a2
-		move.w	#$F-1,d2
+		move.w	#(HUD_TilesBase_End-HUD_TilesBase)-1,d2
 
 loc_1B3CC:
 		lea	Art_HUD(pc),a1
@@ -182,8 +182,29 @@ loc_1B3EC:
 ; End of function HUD_Base
 
 ; ---------------------------------------------------------------------------
-HUD_TilesBase:	dc.b $16,$FF,$FF,$FF,$FF,$FF,$FF,  0,  0,$14,  0,  0
-HUD_TilesZero:	dc.b $FF,$FF,  0,  0
+		charset	' ',$FF
+		charset	'0',0
+		charset	'1',2
+		charset	'2',4
+		charset	'3',6
+		charset	'4',8
+		charset	'5',$A
+		charset	'6',$C
+		charset	'7',$E
+		charset	'8',$10
+		charset	'9',$12
+		charset	':',$14
+		charset	'E',$16
+
+HUD_TilesBase:
+		dc.b "E      0"
+		dc.b "0:00"
+HUD_TilesRings:
+		dc.b "  0"
+HUD_TilesBase_End:
+		even
+
+		charset
 
 ; =============== S U B	R O U T	I N E =======================================
 

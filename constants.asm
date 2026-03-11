@@ -936,8 +936,8 @@ v_title_ccount:		ds.w	1			; number of times C is pressed on title screen
 Two_player_mode:	ds.w	1
 unk_FFE9	= Two_player_mode+1
 word_FFEA:		ds.w	1
-word_FFEC:		ds.w	1
-word_FFEE:		ds.w	1
+v_objstate_copy:	ds.w	1			; a word copy of v_objstate
+Obj_respawn_index_P2_copy:	ds.w	1	; a word copy of Obj_respawn_index_P2
 
 f_demo:			ds.w	1			; demo mode flag (0 = no; 1 = yes; $8001 = ending)
 v_demonum:		ds.w	1			; demo level number (not the same as the level number)

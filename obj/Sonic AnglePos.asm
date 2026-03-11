@@ -3,12 +3,12 @@
 ; Sonic_AnglePos:
 AnglePos:
 		move.l	#v_colladdr1,(Collision_addr).w
-		cmpi.b	#$C,obTopSolidBit(a0)
+		cmpi.b	#$C,top_solid_bit(a0)
 		beq.s	loc_12A14
 		move.l	#v_colladdr2,(Collision_addr).w
 
 loc_12A14:
-		move.b	obTopSolidBit(a0),d5
+		move.b	top_solid_bit(a0),d5
 		btst	#3,obStatus(a0)
 		beq.s	loc_12A2C
 		moveq	#0,d0

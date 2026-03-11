@@ -35,8 +35,8 @@ Obj01_Init:
 		move.w	#$600,(Sonic_top_speed).w	; set Sonic's top speed
 		move.w	#$C,(Sonic_acceleration).w	; set Sonic's acceleration
 		move.w	#$80,(Sonic_deceleration).w	; set Sonic's deceleration
-		move.b	#$C,obTopSolidBit(a0)
-		move.b	#$D,obLRBSolidBit(a0)
+		move.b	#$C,top_solid_bit(a0)
+		move.b	#$D,lrb_solid_bit(a0)
 		move.b	#0,objoff_2C(a0)
 		move.b	#4,objoff_2D(a0)
 		move.w	#0,(Sonic_Pos_Record_Index).w
@@ -1312,12 +1312,12 @@ locret_104FA:
 ; Sonic_Floor:
 Sonic_DoLevelCollision:
 		move.l	#v_colladdr1,(Collision_addr).w
-		cmpi.b	#$C,obTopSolidBit(a0)
+		cmpi.b	#$C,top_solid_bit(a0)
 		beq.s	loc_10514
 		move.l	#v_colladdr2,(Collision_addr).w
 
 loc_10514:
-		move.b	obLRBSolidBit(a0),d5
+		move.b	lrb_solid_bit(a0),d5
 		move.w	obVelX(a0),d1
 		move.w	obVelY(a0),d2
 		jsr	(CalcAngle).l

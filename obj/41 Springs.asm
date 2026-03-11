@@ -29,11 +29,11 @@ Obj41_Init:
 		move.l	#Map_obj41_GHZ,obMap(a0)
 		move.w	#make_art_tile(ArtTile_S1_Spring_Horizontal,0,0),obGfx(a0)
 		tst.b	(Current_Zone).w
-		beq.s	loc_E22A
+		beq.s	.isGHZ
 		move.l	#Map_obj41,obMap(a0)
 		move.w	#make_art_tile(ArtTile_Spring_Vertical,0,0),obGfx(a0)
 
-loc_E22A:
+.isGHZ:
 		ori.b	#4,obRender(a0)
 		move.b	#$10,obActWid(a0)
 		move.b	#4,obPriority(a0)
@@ -57,10 +57,10 @@ Obj41_Init_Horizontal:
 		move.b	#3,obFrame(a0)
 		move.w	#make_art_tile(ArtTile_S1_Spring_Vertical,0,0),obGfx(a0)
 		tst.b	(Current_Zone).w
-		beq.s	loc_E27C
+		beq.s	.isGHZ
 		move.w	#make_art_tile(ArtTile_Spring_Horizontal,0,0),obGfx(a0)
 
-loc_E27C:
+.isGHZ:
 		move.b	#8,obActWid(a0)
 		bra.s	Obj41_Init_Common
 ; ===========================================================================
@@ -173,14 +173,14 @@ loc_E3C2:
 		andi.b	#$C,d0
 		cmpi.b	#4,d0
 		bne.s	loc_E3D8
-		move.b	#$C,obTopSolidBit(a1)
-		move.b	#$D,obLRBSolidBit(a1)
+		move.b	#$C,top_solid_bit(a1)
+		move.b	#$D,lrb_solid_bit(a1)
 
 loc_E3D8:
 		cmpi.b	#8,d0
 		bne.s	loc_E3EA
-		move.b	#$E,obTopSolidBit(a1)
-		move.b	#$F,obLRBSolidBit(a1)
+		move.b	#$E,top_solid_bit(a1)
+		move.b	#$F,lrb_solid_bit(a1)
 
 loc_E3EA:
 		move.w	#sfx_Spring,d0
@@ -284,14 +284,14 @@ loc_E508:
 		andi.b	#$C,d0
 		cmpi.b	#4,d0
 		bne.s	loc_E51E
-		move.b	#$C,obTopSolidBit(a1)
-		move.b	#$D,obLRBSolidBit(a1)
+		move.b	#$C,top_solid_bit(a1)
+		move.b	#$D,lrb_solid_bit(a1)
 
 loc_E51E:
 		cmpi.b	#8,d0
 		bne.s	loc_E530
-		move.b	#$E,obTopSolidBit(a1)
-		move.b	#$F,obLRBSolidBit(a1)
+		move.b	#$E,top_solid_bit(a1)
+		move.b	#$F,lrb_solid_bit(a1)
 
 loc_E530:
 		bclr	#5,obStatus(a0)
@@ -438,14 +438,14 @@ loc_E6AE:
 		andi.b	#$C,d0
 		cmpi.b	#4,d0
 		bne.s	loc_E6C4
-		move.b	#$C,obTopSolidBit(a1)
-		move.b	#$D,obLRBSolidBit(a1)
+		move.b	#$C,top_solid_bit(a1)
+		move.b	#$D,lrb_solid_bit(a1)
 
 loc_E6C4:
 		cmpi.b	#8,d0
 		bne.s	loc_E6D6
-		move.b	#$E,obTopSolidBit(a1)
-		move.b	#$F,obLRBSolidBit(a1)
+		move.b	#$E,top_solid_bit(a1)
+		move.b	#$F,lrb_solid_bit(a1)
 
 loc_E6D6:
 		bset	#1,obStatus(a1)
@@ -546,14 +546,14 @@ loc_E7F6:
 		andi.b	#$C,d0
 		cmpi.b	#4,d0
 		bne.s	loc_E80C
-		move.b	#$C,obTopSolidBit(a1)
-		move.b	#$D,obLRBSolidBit(a1)
+		move.b	#$C,top_solid_bit(a1)
+		move.b	#$D,lrb_solid_bit(a1)
 
 loc_E80C:
 		cmpi.b	#8,d0
 		bne.s	loc_E81E
-		move.b	#$E,obTopSolidBit(a1)
-		move.b	#$F,obLRBSolidBit(a1)
+		move.b	#$E,top_solid_bit(a1)
+		move.b	#$F,lrb_solid_bit(a1)
 
 loc_E81E:
 		move.w	#sfx_Spring,d0
@@ -633,14 +633,14 @@ loc_E902:
 		andi.b	#$C,d0
 		cmpi.b	#4,d0
 		bne.s	loc_E918
-		move.b	#$C,obTopSolidBit(a1)
-		move.b	#$D,obLRBSolidBit(a1)
+		move.b	#$C,top_solid_bit(a1)
+		move.b	#$D,lrb_solid_bit(a1)
 
 loc_E918:
 		cmpi.b	#8,d0
 		bne.s	loc_E92A
-		move.b	#$E,obTopSolidBit(a1)
-		move.b	#$F,obLRBSolidBit(a1)
+		move.b	#$E,top_solid_bit(a1)
+		move.b	#$F,lrb_solid_bit(a1)
 
 loc_E92A:
 		move.w	#sfx_Spring,d0

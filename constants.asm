@@ -98,6 +98,9 @@ obAngle:	equ $26					; angle
 obSubtype:	equ $28					; object subtype
 obSolid:	equ ob2ndRout				; solid status flag
 
+top_solid_bit:	equ	$3E 			; the bit to check for top solidity (either $C or $E)
+lrb_solid_bit:	equ	$3F 			; the bit to check for left/right/bottom solidity (either $D or $F)
+
 obTopSolidBit:	equ $3E					; bit to check for top solidity (either $C or $E)
 obLRBSolidBit:	equ $3F					; bit to check for left/right/bottom solidity (either $D or $F)
 

@@ -29,8 +29,8 @@ Obj02_Init:
 		move.w	#$600,(Sonic_top_speed).w
 		move.w	#$C,(Sonic_acceleration).w
 		move.w	#$80,(Sonic_deceleration).w
-		move.b	#$C,obTopSolidBit(a0)
-		move.b	#$D,obLRBSolidBit(a0)
+		move.b	#$C,top_solid_bit(a0)
+		move.b	#$D,lrb_solid_bit(a0)
 		move.b	#0,objoff_2C(a0)
 		move.b	#4,objoff_2D(a0)
 		move.b	#id_Obj05,(v_player2tails).w		; load Tails' tails at $B1C0
@@ -1192,7 +1192,17 @@ locret_11674:
 
 
 Tails_Floor:
-		move.b	obLRBSolidBit(a0),d5
+	if FixBugs
+		; The original code fails to initate this check.
+		; This bug fix was applied to Sonic 2 as of August 21st, 1992.
+		move.l	#v_colladdr1,(Collision_addr).w
+		cmpi.b	#$C,top_solid_bit(a0)
+		beq.s	.col1
+		move.l	#v_colladdr2,(Collision_addr).w
+
+.col1:
+	endif
+		move.b	lrb_solid_bit(a0),d5
 		move.w	obVelX(a0),d1
 		move.w	obVelY(a0),d2
 		jsr	(CalcAngle).l
@@ -1481,8 +1491,8 @@ Tails_GameOver:
 		move.w	d0,obY(a0)
 		move.b	#2,obRoutine(a0)
 		andi.w	#$7FFF,obGfx(a0)
-		move.b	#$C,obTopSolidBit(a0)
-		move.b	#$D,obLRBSolidBit(a0)
+		move.b	#$C,top_solid_bit(a0)
+		move.b	#$D,lrb_solid_bit(a0)
 		nop
 
 locret_11986:
@@ -1515,6 +1525,9 @@ Tails_Animate2:
 		move.b	d0,obPrevAni(a0)
 		move.b	#0,obAniFrame(a0)
 		move.b	#0,obTimeFrame(a0)
+	if FixBugs
+		bclr	#5,obStatus(a0)
+	endif
 
 loc_119BE:
 		add.w	d0,d0
@@ -1602,6 +1615,10 @@ loc_11A5E:
 		andi.b	#$FC,obRender(a0)
 		eor.b	d1,d2
 		or.b	d2,obRender(a0)
+	if FixBugs
+		btst	#5,obStatus(a0)
+		bne.w	loc_11B52
+	endif
 		lsr.b	#4,d0
 		andi.b	#6,d0
 		move.w	obInertia(a0),d2
@@ -1668,7 +1685,11 @@ loc_11AE8:
 
 loc_11B0E:
 		addq.b	#1,d0
+	if FixBugs
+		bne.s	loc_11B88
+	else
 		bne.s	loc_11B52
+	endif
 		move.w	obInertia(a0),d2
 		bpl.s	loc_11B1A
 		neg.w	d2
@@ -1696,8 +1717,10 @@ loc_11B36:
 ; ---------------------------------------------------------------------------
 
 loc_11B52:
+	if FixBugs=0
 		addq.b	#1,d0
 		bne.s	loc_11B88
+	endif
 		move.w	obInertia(a0),d2
 		bmi.s	loc_11B5E
 		neg.w	d2
@@ -1710,7 +1733,7 @@ loc_11B5E:
 loc_11B66:
 		lsr.w	#6,d2
 		move.b	d2,obTimeFrame(a0)
-		lea	(TailsAni_Push_NoArt).l,a1
+		lea	(TailsAni_Push).l,a1
 		move.b	obStatus(a0),d1
 		andi.b	#1,d1
 		andi.b	#$FC,obRender(a0)
@@ -1755,9 +1778,9 @@ TailsAniData:	dc.w TailsAni_Walk-TailsAniData
 		dc.w TailsAni_Run-TailsAniData
 		dc.w TailsAni_Roll-TailsAniData
 		dc.w TailsAni_Roll2-TailsAniData
-		dc.w TailsAni_Push_NoArt-TailsAniData
+		dc.w TailsAni_Push-TailsAniData
 		dc.w TailsAni_Wait-TailsAniData
-		dc.w TailsAni_Balance_NoArt-TailsAniData
+		dc.w TailsAni_Balance-TailsAniData
 		dc.w TailsAni_LookUp-TailsAniData
 		dc.w TailsAni_Duck-TailsAniData
 		dc.w TailsAni_Spindash-TailsAniData
@@ -1785,20 +1808,36 @@ TailsAniData:	dc.w TailsAni_Walk-TailsAniData
 TailsAni_Walk:	dc.b $FF,$10,$11,$12,$13,$14,$15, $E, $F,$FF
 TailsAni_Run:	dc.b $FF,$2E,$2F,$30,$31,$FF,$FF,$FF,$FF,$FF
 TailsAni_Roll:	dc.b   1,$48,$47,$46,$FF
+; The animation data below does the same thing as above.
 TailsAni_Roll2:	dc.b   1,$48,$47,$46,$FF
-TailsAni_Push_NoArt:dc.b $FD,  9, $A, $B, $C, $D, $E,$FF
+	if FixBugs
+TailsAni_Push:dc.b $FD,$63,$64,$65,$66,$FF,$FF,$FF
+	else
+; Oddly, this doesn't use Tails's pushing frames.
+TailsAni_Push:dc.b $FD,  9, $A, $B, $C, $D, $E,$FF
+	endif
 TailsAni_Wait:	dc.b   7,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  3,  2,  1,  1,  1
 		dc.b   1,  1,  1,  1,  1,  3,  2,  1,  1,  1,  1,  1,  1,  1,  1,  1
 		dc.b   5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5,  5
 		dc.b   6,  7,  8,  7,  8,  7,  8,  7,  8,  7,  8,  6,$FE,$1C
-TailsAni_Balance_NoArt:dc.b $1F,  1,  2,  3,  4,  5,  6,  7,  8,$FF
+	if FixBugs
+TailsAni_Balance:dc.b $1F,$69,$6A,$FF,$FF,$FF,$FF,$FF,$FF,$FF
+	else
+; Oddly, this doesn't use Tails's balancing frames.
+TailsAni_Balance:dc.b $1F,  1,  2,  3,  4,  5,  6,  7,  8,$FF
+	endif
 TailsAni_LookUp:dc.b $3F,  4,$FF
 TailsAni_Duck:	dc.b $3F,$5B,$FF
 TailsAni_Spindash:dc.b	 0,$60,$61,$62,$FF
 TailsAni_0A:	dc.b $3F,$82,$FF
 TailsAni_0B:	dc.b   7,  8,  8,  9,$FD,  5
 TailsAni_0C:	dc.b   7,  9,$FD,  5
+	if FixBugs
+TailsAni_Stop:	dc.b   7,$67,$68,$FF
+	else
+; Oddly, this doesn't use Tails's stopping frames.
 TailsAni_Stop:	dc.b   7,  1,  2,$FF
+	endif
 TailsAni_Fly:	dc.b   7,$5E,$5F,$FF
 TailsAni_0F:	dc.b   7,  1,  2,  3,  4,  5,$FF
 TailsAni_Jump:	dc.b   3,$59,$5A,$59,$5A,$59,$5A,$59,$5A,$59,$5A,$59,$5A,$FD,  0
@@ -1815,6 +1854,7 @@ TailsAni_1A:	dc.b   3,$5C,$FF
 TailsAni_1B:	dc.b   7,  1,  1,$FF
 TailsAni_1C:	dc.b $77,  0,$FD,  0
 TailsAni_1D:	dc.b   3,  1,  2,  3,  4,  5,  6,  7,  8,$FF
+; The animation data below does the same thing as above.
 TailsAni_1E:	dc.b   3,  1,  2,  3,  4,  5,  6,  7,  8,$FF
 		even
 

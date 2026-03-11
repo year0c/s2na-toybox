@@ -10285,21 +10285,40 @@ JmpTo_KillCharacter:
 		include	"obj/05 Tails' Tails.asm"
 ; ---------------------------------------------------------------------------
 Obj05_Animations:
-		dc.b   0,  0
-		dc.b   3,  3
-		dc.b   0,  1
-		dc.b   0,  2
-		dc.b   1,  7
-		dc.b   0,  0
-		dc.b   0,  0
-		dc.b   0,  0
-		dc.b   0,  0
-		dc.b   0,  0
-		dc.b   0,  0
-		dc.b   0,  0
-		dc.b   0,  0
-		dc.b   0,  0
-		dc.b   0,  0
+		dc.b	0,0	; TailsAni_Walk, TailsAni_Run
+		dc.b	3	; TailsAni_Roll
+		dc.b	3	; TailsAni_Roll2
+		; There are no animations for Tails's Tails when he is stopping.
+		dc.b	0	; TailsAni_Push
+		dc.b	1	; TailsAni_Wait
+		dc.b	0	; TailsAni_Balance
+		dc.b	2	; TailsAni_LookUp
+		dc.b	1	; TailsAni_Duck
+		dc.b	7	; TailsAni_Spindash
+		dc.b	0	; TailsAni_0A
+		dc.b	0	; TailsAni_0B
+		dc.b	0	; TailsAni_0C
+		; There are no animations for Tails's Tails when he is stopping.
+		dc.b	0	; TailsAni_Stop
+		dc.b	0	; TailsAni_Fly
+		dc.b	0	; TailsAni_0F
+		dc.b	0	; TailsAni_Jump
+		dc.b	0	; TailsAni_11
+		dc.b	0	; TailsAni_12
+		dc.b	0	; TailsAni_13
+		dc.b	0	; TailsAni_14
+		dc.b	0	; TailsAni_15
+		dc.b	0	; TailsAni_Death1
+		dc.b	0	; TailsAni_UnusedDrown
+		dc.b	0	; TailsAni_Death2
+		dc.b	0	; TailsAni_19
+		dc.b	0	; TailsAni_1A
+		dc.b	0	; TailsAni_1B
+		dc.b	0	; TailsAni_1C
+		dc.b	0	; TailsAni_1D
+	if FixBugs
+		dc.b	0	; TailsAni_1E
+	endif
 		even
 
 Obj05_AniData:	dc.w byte_11E2A-Obj05_AniData
@@ -10489,12 +10508,12 @@ loc_13074:
 ; Sonic_WalkSpeed:
 CalcRoomInFront:
 		move.l	#v_colladdr1,(Collision_addr).w
-		cmpi.b	#$C,obTopSolidBit(a0)
+		cmpi.b	#$C,top_solid_bit(a0)
 		beq.s	loc_13094
 		move.l	#v_colladdr2,(Collision_addr).w
 
 loc_13094:
-		move.b	obLRBSolidBit(a0),d5
+		move.b	lrb_solid_bit(a0),d5
 		move.l	obX(a0),d3
 		move.l	obY(a0),d2
 		move.w	obVelX(a0),d1
@@ -10550,12 +10569,12 @@ loc_130F6:
 
 sub_13102:
 		move.l	#v_colladdr1,(Collision_addr).w
-		cmpi.b	#$C,obTopSolidBit(a0)
+		cmpi.b	#$C,top_solid_bit(a0)
 		beq.s	loc_1311A
 		move.l	#v_colladdr2,(Collision_addr).w
 
 loc_1311A:
-		move.b	obLRBSolidBit(a0),d5
+		move.b	lrb_solid_bit(a0),d5
 		move.b	d0,(Primary_Angle).w
 		move.b	d0,(Secondary_Angle).w
 		addi.b	#$20,d0
@@ -10569,12 +10588,12 @@ loc_1311A:
 
 loc_13146:
 		move.l	#v_colladdr1,(Collision_addr).w
-		cmpi.b	#$C,obTopSolidBit(a0)
+		cmpi.b	#$C,top_solid_bit(a0)
 		beq.s	loc_1315E
 		move.l	#v_colladdr2,(Collision_addr).w
 
 loc_1315E:
-		move.b	obTopSolidBit(a0),d5
+		move.b	top_solid_bit(a0),d5
 		move.w	obY(a0),d2
 		move.w	obX(a0),d3
 		moveq	#0,d0
@@ -10654,7 +10673,7 @@ ChkFloorEdge:
 		ext.w	d0
 		add.w	d0,d2
 		move.l	#v_colladdr1,(Collision_addr).w
-		cmpi.b	#$C,obTopSolidBit(a0)
+		cmpi.b	#$C,top_solid_bit(a0)
 		beq.s	loc_1322E
 		move.l	#v_colladdr2,(Collision_addr).w
 
@@ -10663,7 +10682,7 @@ loc_1322E:
 		move.b	#0,(a4)
 		movea.w	#$10,a3
 		move.w	#0,d6
-		move.b	obTopSolidBit(a0),d5
+		move.b	top_solid_bit(a0),d5
 		bsr.w	FindFloor
 		move.b	(Primary_Angle).w,d3
 		btst	#0,d3

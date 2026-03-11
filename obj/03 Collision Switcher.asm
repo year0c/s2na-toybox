@@ -91,12 +91,12 @@ loc_13F26:
 		move.w	obX(a1),d4
 		cmp.w	obX(a0),d4
 		blo.s	loc_13F62
-		move.b	#$C,obTopSolidBit(a1)
-		move.b	#$D,obLRBSolidBit(a1)
+		move.b	#$C,top_solid_bit(a1)
+		move.b	#$D,lrb_solid_bit(a1)
 		btst	#3,d0
 		beq.s	loc_13F4E
-		move.b	#$E,obTopSolidBit(a1)
-		move.b	#$F,obLRBSolidBit(a1)
+		move.b	#$E,top_solid_bit(a1)
+		move.b	#$F,lrb_solid_bit(a1)
 
 loc_13F4E:
 		bclr	#7,obGfx(a1)
@@ -107,12 +107,12 @@ loc_13F4E:
 ; ---------------------------------------------------------------------------
 
 loc_13F62:
-		move.b	#$C,obTopSolidBit(a1)
-		move.b	#$D,obLRBSolidBit(a1)
+		move.b	#$C,top_solid_bit(a1)
+		move.b	#$D,lrb_solid_bit(a1)
 		btst	#4,d0
 		beq.s	loc_13F80
-		move.b	#$E,obTopSolidBit(a1)
-		move.b	#$F,obLRBSolidBit(a1)
+		move.b	#$E,top_solid_bit(a1)
+		move.b	#$F,lrb_solid_bit(a1)
 
 loc_13F80:
 		bclr	#7,obGfx(a1)
@@ -187,12 +187,12 @@ loc_14028:
 		move.w	obY(a1),d4
 		cmp.w	obY(a0),d4
 		blo.s	loc_14064
-		move.b	#$C,obTopSolidBit(a1)
-		move.b	#$D,obLRBSolidBit(a1)
+		move.b	#$C,top_solid_bit(a1)
+		move.b	#$D,lrb_solid_bit(a1)
 		btst	#3,d0
 		beq.s	loc_14050
-		move.b	#$E,obTopSolidBit(a1)
-		move.b	#$F,obLRBSolidBit(a1)
+		move.b	#$E,top_solid_bit(a1)
+		move.b	#$F,lrb_solid_bit(a1)
 
 loc_14050:
 		bclr	#7,obGfx(a1)
@@ -203,12 +203,12 @@ loc_14050:
 ; ---------------------------------------------------------------------------
 
 loc_14064:
-		move.b	#$C,obTopSolidBit(a1)
-		move.b	#$D,obLRBSolidBit(a1)
+		move.b	#$C,top_solid_bit(a1)
+		move.b	#$D,lrb_solid_bit(a1)
 		btst	#4,d0
 		beq.s	loc_14082
-		move.b	#$E,obTopSolidBit(a1)
-		move.b	#$F,obLRBSolidBit(a1)
+		move.b	#$E,top_solid_bit(a1)
+		move.b	#$F,lrb_solid_bit(a1)
 
 loc_14082:
 		bclr	#7,obGfx(a1)
@@ -235,7 +235,8 @@ loc_140AA:
 locret_140B6:
 		rts
 ; ---------------------------------------------------------------------------
-dword_140B8:	dc.l v_player
+dword_140B8:
+		dc.l v_player
 		dc.l v_player2
 		dc.l 0
 		dc.l 0

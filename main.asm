@@ -5442,50 +5442,12 @@ Map_Obj17:	include	"mappings/sprite/S1/Spiked Pole Helix.asm"
 
 		include	"obj/18 Platforms.asm"
 ; ---------------------------------------------------------------------------
-Map_Obj18x:	dc.w word_8ADE-Map_Obj18x
-		dc.w word_8AF0-Map_Obj18x
-word_8ADE:	dc.w 2
-		dc.w $F40B,  $3C,  $1E,$FFE8
-		dc.w $F40B,  $48,  $24,	   0
-word_8AF0:	dc.w $A
-		dc.w $F40F,  $CA,  $65,$FFE0
-		dc.w  $40F,  $DA,  $6D,$FFE0
-		dc.w $240F,  $DA,  $6D,$FFE0
-		dc.w $440F,  $DA,  $6D,$FFE0
-		dc.w $640F,  $DA,  $6D,$FFE0
-		dc.w $F40F, $8CA, $865,	   0
-		dc.w  $40F, $8DA, $86D,	   0
-		dc.w $240F, $8DA, $86D,	   0
-		dc.w $440F, $8DA, $86D,	   0
-		dc.w $640F, $8DA, $86D,	   0
-Map_Obj18:	dc.w word_8B46-Map_Obj18
-		dc.w word_8B68-Map_Obj18
-word_8B46:	dc.w 4
-		dc.w $F40B,  $3B,  $1D,$FFE0
-		dc.w $F407,  $3F,  $1F,$FFF8
-		dc.w $F407,  $3F,  $1F,	   8
-		dc.w $F403,  $47,  $23,	 $18
-word_8B68:	dc.w $A
-		dc.w $F40F,  $C5,  $62,$FFE0
-		dc.w  $40F,  $D5,  $6A,$FFE0
-		dc.w $240F,  $D5,  $6A,$FFE0
-		dc.w $440F,  $D5,  $6A,$FFE0
-		dc.w $640F,  $D5,  $6A,$FFE0
-		dc.w $F40F, $8C5, $862,	   0
-		dc.w  $40F, $8D5, $86A,	   0
-		dc.w $240F, $8D5, $86A,	   0
-		dc.w $440F, $8D5, $86A,	   0
-		dc.w $640F, $8D5, $86A,	   0
-		dc.w	 2,    3,$F60B,	 $49
-		dc.w   $24,$FFE0,$F607,	 $51
-		dc.w   $28,$FFF8,$F60B,	 $55
-		dc.w   $2A,    8,    2,	   2
-		dc.w $F80F,  $21,  $10,$FFE0
-		dc.w $F80F,  $21,  $10,	   0
+Map_Obj18x:	include	"mappings/sprite/obj18 (Unused).asm"
+Map_Obj18_GHZ:	include	"mappings/sprite/obj18_GHZ.asm"
 ; ---------------------------------------------------------------------------
 ; Sprite mappings - EHZ platforms
 ; ---------------------------------------------------------------------------
-Map_obj18_EHZ:	binclude	"mappings/sprite/obj18_EHZ.bin"
+Map_Obj18_EHZ:	binclude	"mappings/sprite/obj18_EHZ.bin"
 		even
 ; ---------------------------------------------------------------------------
 		jmpTos	; Empty

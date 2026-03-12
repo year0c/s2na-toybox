@@ -1836,7 +1836,7 @@ loc_23A0:
 PalCycle_Sega:
 		tst.b	(v_pcyc_time+1).w
 		bne.s	loc_2404
-		lea	(v_palette+$20).w,a1
+		lea	(v_palette_line_2).w,a1
 		lea	(Pal_Sega1).l,a0
 		moveq	#5,d1
 		move.w	(v_pcyc_num).w,d0
@@ -1898,11 +1898,11 @@ loc_2422:
 		move.w	d0,(v_pcyc_num).w
 		lea	(Pal_Sega2).l,a0
 		lea	(a0,d0.w),a0
-		lea	(v_palette+4).w,a1
+		lea	(v_palette_line_1+4).w,a1
 		move.l	(a0)+,(a1)+
 		move.l	(a0)+,(a1)+
 		move.w	(a0)+,(a1)
-		lea	(v_palette+$20).w,a1
+		lea	(v_palette_line_2).w,a1
 		moveq	#0,d0
 		moveq	#$2C,d1
 
@@ -3743,7 +3743,7 @@ loc_53D0:
 		bmi.s	loc_5426
 		lea	(Pal_S1SSCyc1).l,a1
 		adda.w	d0,a1
-		lea	(v_palette+$4E).w,a2
+		lea	(v_palette_line_3+$E).w,a2
 		move.l	(a1)+,(a2)+
 		move.l	(a1)+,(a2)+
 		move.l	(a1)+,(a2)+
@@ -3765,18 +3765,18 @@ loc_5432:
 		andi.w	#$7F,d0
 		bclr	#0,d0
 		beq.s	loc_5456
-		lea	(v_palette+$6E).w,a2
+		lea	(v_palette_line_4+$E).w,a2
 		move.l	(a1),(a2)+
 		move.l	4(a1),(a2)+
 		move.l	8(a1),(a2)+
 
 loc_5456:
 		adda.w	#$C,a1
-		lea	(v_palette+$5A).w,a2
+		lea	(v_palette_line_3+$1A).w,a2
 		cmpi.w	#$A,d0
 		blo.s	loc_546C
 		subi.w	#$A,d0
-		lea	(v_palette+$7A).w,a2
+		lea	(v_palette_line_4+$1A).w,a2
 
 loc_546C:
 		move.w	d0,d1

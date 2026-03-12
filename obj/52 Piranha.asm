@@ -58,24 +58,27 @@ loc_15BE4:
 
 loc_15C06:
 		lea	(Ani_Obj52).l,a1
-		bsr.w	j_AnimateSprite_1
-		bsr.w	j_ObjectMove_2
+		jsrto	JmpTo2_AnimateSprite
+		jsrto	JmpTo3_ObjectMove
 		tst.w	objoff_3A(a0)
-		bgt.w	loc_15D90
+		bgt.w	JmpTo2_MarkObjGone
 		cmpi.w	#-1,objoff_3A(a0)
-		beq.w	loc_15D90
+		beq.w	JmpTo2_MarkObjGone
 		move.l	#-$48000,objoff_36(a0)
 		addq.b	#2,obRoutine(a0)
 		move.w	#-1,objoff_3A(a0)
 		move.b	#2,obAnim(a0)
 		move.w	#1,objoff_3E(a0)
-		bra.w	loc_15D90
+	if RemoveJmpTos
+JmpTo2_MarkObjGone	; JmpTo
+	endif
+		jmpto	JmpTo2_MarkObjGone
 ; ---------------------------------------------------------------------------
 
 loc_15C48:
 		move.w	#$390,(v_waterpos1).w
 		lea	(Ani_Obj52).l,a1
-		bsr.w	j_AnimateSprite_1
+		jsrto	JmpTo2_AnimateSprite
 		move.w	objoff_3E(a0),d0
 		sub.w	d0,objoff_30(a0)
 		bsr.w	sub_15CF8
@@ -83,17 +86,17 @@ loc_15C48:
 		bpl.s	loc_15CA0
 		move.w	obY(a0),d0
 		cmp.w	(v_waterpos1).w,d0
-		bgt.w	loc_15D90
+		bgt.w	JmpTo2_MarkObjGone
 		move.b	#3,obAnim(a0)
 		bclr	#6,obStatus(a0)
 		tst.b	objoff_2A(a0)
-		bne.w	loc_15D90
+		bne.w	JmpTo2_MarkObjGone
 		move.w	obVelX(a0),d0
 		asl.w	#1,d0
 		move.w	d0,obVelX(a0)
 		addq.w	#1,objoff_3E(a0)
 		st	objoff_2A(a0)
-		bra.w	loc_15D90
+		jmpto	JmpTo2_MarkObjGone
 ; ---------------------------------------------------------------------------
 
 loc_15CA0:
@@ -101,7 +104,7 @@ loc_15CA0:
 		cmp.w	(v_waterpos1).w,d0
 		bgt.s	loc_15CB4
 		move.b	#1,obAnim(a0)
-		bra.w	loc_15D90
+		jmpto	JmpTo2_MarkObjGone
 ; ---------------------------------------------------------------------------
 
 loc_15CB4:
@@ -116,15 +119,15 @@ loc_15CB4:
 loc_15CCE:
 		move.w	objoff_34(a0),d0
 		cmp.w	obY(a0),d0
-		bgt.w	loc_15D90
+		bgt.w	JmpTo2_MarkObjGone
 		subq.b	#2,obRoutine(a0)
 		tst.b	objoff_2A(a0)
-		beq.w	loc_15D90
+		beq.w	JmpTo2_MarkObjGone
 		move.w	obVelX(a0),d0
 		asr.w	#1,d0
 		move.w	d0,obVelX(a0)
 		sf	objoff_2A(a0)
-		bra.w	loc_15D90
+		jmpto	JmpTo2_MarkObjGone
 
 ; =============== S U B	R O U T	I N E =======================================
 

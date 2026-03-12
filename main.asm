@@ -18,6 +18,8 @@ AllOptimizations = 0
 ;	| If 1, enables all optimizations
 ZeroOffsetOptimization = 0|AllOptimizations
 ;	| If 1, makes a handful of zero-offset instructions smaller
+RemoveJmpTos = 0|AllOptimizations
+;	| If 1, many unnecessary JmpTos are removed, improving performance
 PaddingOptimization = 0|AllOptimizations
 ;	| If 1, removes about 125 KB of various superfluous padding
 
@@ -2044,7 +2046,7 @@ Pal_S1Continue:	binclude	"palette/S1 Continue Screen.bin"
 Pal_S1Ending:	binclude	"palette/S1 Ending.bin"
 		even
 
-		nop
+		jmpTos	; Empty
 
 ; ===========================================================================
 ; ---------------------------------------------------------------------------
@@ -2193,7 +2195,7 @@ CalcAngle_Zero:
 AngleData:	binclude "misc/angles.bin"
 		even
 
-		nop
+		jmpTos	; Empty
 
 ; ===========================================================================
 ; ---------------------------------------------------------------------------
@@ -2262,7 +2264,7 @@ Sega_GoToTitleScreen:
 		move.b	#GameModeID_TitleScreen,(v_gamemode).w
 		rts
 
-		align 4
+		jmpTos0	; Empty
 
 ; ===========================================================================
 
@@ -2944,7 +2946,7 @@ loc_3AFC:
 		rts
 ; End of function UnknownSub_4
 
-		nop
+		jmpTos	; Empty
 
 MusicList:	dc.b bgm_GHZ
 		dc.b bgm_LZ
@@ -3140,7 +3142,7 @@ Level_LoadObj:
 		jsr	(RingsManager).l
 		jsr	(ExecuteObjects).l
 		jsr	(BuildSprites).l
-		bsr.w	JmpTo_AniArt_Load
+		jsrto	JmpTo_AniArt_Load
 		moveq	#0,d0
 		tst.b	(v_lastlamp).w
 		bne.s	Level_SkipClr
@@ -3256,7 +3258,7 @@ Level_DoScroll:
 Level_SkipScroll:
 		bsr.w	ChangeWaterSurfacePos
 		jsr	(RingsManager).l
-		bsr.w	JmpTo_AniArt_Load
+		jsrto	JmpTo_AniArt_Load
 		bsr.w	PalCycle_Load
 		bsr.w	RunPLC_RAM
 		bsr.w	OscillateNumDo
@@ -3461,10 +3463,7 @@ Demo_S1GHZ:	binclude	"demodata/S1/Intro - GHZ.bin"
 Demo_S1SS:	binclude	"demodata/S1/Intro - Special Stage.bin"
 		even
 
-JmpTo_AniArt_Load:
-		jmp	(AniArt_Load).l
-
-		align 4
+		jmpTos	JmpTo_AniArt_Load
 
 ; ===========================================================================
 ; Sonic 1 Special Stage; crashes due to bad PLCs and missing pointers, but
@@ -3957,7 +3956,7 @@ byte_5709:	dc.b   8,  2,  4,$FF,  2,  3,  8,$FF,  4,  2,  2,  3,  8,$FD,  4,  2
 		dc.b   2,  3,  2,$FF
 		even
 
-		nop
+		jmpTos	; Empty
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -5374,7 +5373,7 @@ Map_obj11_HPZ:	include	"mappings/sprite/obj11_HPZ.asm"
 ; ---------------------------------------------------------------------------
 Map_obj11_EHZ:	include	"mappings/sprite/obj11_EHZ.asm"
 ; ===========================================================================
-		nop
+		jmpTos	; Empty
 
 		include	"obj/15 Swinging Platforms.asm"
 ; ---------------------------------------------------------------------------
@@ -5435,7 +5434,7 @@ word_8648:	dc.w 4
 		dc.w	$A,$1012,$1009,$FFE8
 		dc.w	$A,$101B,$100D,	   0
 ; ---------------------------------------------------------------------------
-		nop
+		jmpTos	; Empty
 
 		include	"obj/S1/17 Spiked Pole Helix.asm"
 Map_Obj17:	include	"mappings/sprite/S1/Spiked Pole Helix.asm"
@@ -5488,7 +5487,7 @@ word_8B68:	dc.w $A
 Map_obj18_EHZ:	binclude	"mappings/sprite/obj18_EHZ.bin"
 		even
 ; ---------------------------------------------------------------------------
-		nop
+		jmpTos	; Empty
 
 		include	"obj/1A Collapsing Platforms.asm"
 		include	"obj/S1/53 Collapsing Floors.asm"
@@ -5715,7 +5714,7 @@ Obj1A_Conf_HPZ:	dc.b $10,$10,$10,$10
 
 Map_Obj1A_HPZ:	include	"mappings/sprite/obj1A_HPZ.asm"
 
-		nop
+		jmpTos	; Empty
 
 		include	"obj/1C Scenery.asm"
 
@@ -5847,7 +5846,7 @@ word_9A92:	dc.w 1
 word_9A9C:	dc.w 1
 		dc.w $F00F,  $50,  $28,$FFF0
 
-		nop
+		jmpTos	; Empty
 
 		include	"obj/28 Animals.asm"
 		include	"obj/29 Points.asm"
@@ -5904,7 +5903,7 @@ word_A0BC:	dc.w 2
 		dc.w $F805,   $A,    5,$FFF0
 		dc.w $F805,   $E,    7,	   0
 
-		nop
+		jmpTos	; Empty
 
 		include	"obj/S1/1F Crabmeat.asm"
 ; ===========================================================================
@@ -5959,7 +5958,7 @@ Map_obj22:	binclude	"mappings/sprite/obj22.bin"
 Map_obj23:	binclude	"mappings/sprite/obj23.bin"
 		even
 
-		nop
+		jmpTos	; Empty
 
 		include	"obj/25 & 37 Rings.asm"
 		include	"obj/S1/4B Giant Ring.asm"
@@ -6058,7 +6057,7 @@ word_AE34:	dc.w 4
 		dc.w	$F,$1044,$1022,$FFE0
 		dc.w	$F,$1844,$1822,	   0
 
-		nop
+		jmpTos	; Empty
 
 		include	"obj/26 Monitor.asm"
 		include	"obj/2E Monitor Content Power-Up.asm"
@@ -6171,7 +6170,7 @@ byte_B52A:	dc.b $1F,  0,  1,$FF
 Map_S1Obj0F:	include "mappings/sprite/S1/obj0F.asm"
 Map_Obj0E:	include "mappings/sprite/obj0E.asm"
 
-		nop
+		jmpTos	; Empty
 
 		include	"obj/S1/2B Chopper.asm"
 
@@ -6410,7 +6409,7 @@ word_C656:	dc.w 1
 		dc.w $F805,$200C,$2006,$FFF8
 word_C660:	dc.w 0
 
-		nop
+		jmpTos	; Empty
 
 		include	"obj/36 Spikes.asm"
 Map_Obj36:	include	"mappings/sprite/obj36.asm"
@@ -6418,7 +6417,7 @@ Map_Obj36:	include	"mappings/sprite/obj36.asm"
 
 		include	"obj/S1/3B Purple Rock.asm"
 Map_Obj3B:	include	"mappings/sprite/S1/Purple Rock.asm"
-		align 4
+		jmpTos0	; Empty
 
 		include	"obj/S1/3C Smashable Wall.asm"
 		include	"obj/S1/sub SmashObject.asm"
@@ -6470,7 +6469,7 @@ word_CAF0:	dc.w 8
 		dc.w	 5,    8,    4,	   0
 		dc.w $1005,    8,    4,	   0
 
-		nop
+		jmpTos	; Empty
 
 ; ===========================================================================
 ; ---------------------------------------------------------------------------
@@ -8011,7 +8010,7 @@ byte_D7FA:	dc.b   8,  8,  8,  8
 
 		include	"obj/S1/sub ChkObjectVisible.asm"
 
-		nop
+		jmpTos	; Empty
 
 ; ============================================================================
 ; ----------------------------------------------------------------------------
@@ -9484,7 +9483,7 @@ byte_F1B3:	dc.b  $F,  0,$FF
 ; ---------------------------------------------------------------------------
 Map_obj0D:	include	"mappings/sprite/obj0D.asm"
 ; ===========================================================================
-		nop
+		jmpTos	; Empty
 
 		include	"obj/S1/40 Moto Bug.asm"
 ; ===========================================================================
@@ -10272,12 +10271,8 @@ locret_F9FA:
 
 		include	"obj/01 Sonic.asm"
 ; ===========================================================================
-		nop
 
-JmpTo_KillCharacter:
-		jmp	(KillCharacter).l
-
-		align 4
+		jmpTos	JmpTo_KillCharacter
 
 		include	"obj/02 Tails.asm"
 		include	"obj/05 Tails' Tails.asm"
@@ -10337,12 +10332,7 @@ byte_11E4E:	dc.b   3,$55,$56,$57,$58,$FF
 byte_11E54:	dc.b   2,$81,$82,$83,$84,$FF
 		even
 
-		nop
-
-KillTails:
-		jmp	(KillCharacter).l
-
-		align 4
+		jmpTos	JmpTo2_KillCharacter
 
 		include	"obj/S1/0A Drowning Countdown.asm"
 
@@ -10936,7 +10926,7 @@ ObjHitWallLeft:
 locret_134C4:
 		rts
 
-		nop
+		jmpTos	; Empty
 
 		include	"obj/79 Lamppost.asm"
 ; ---------------------------------------------------------------------------
@@ -10973,7 +10963,7 @@ word_1385E:	dc.w 1
 word_13868:	dc.w 1
 		dc.w $F40E,  $18,   $C,$FFF0
 ; ---------------------------------------------------------------------------
-		nop
+		jmpTos	; Empty
 
 		include	"obj/S1/47 Bumper.asm"
 ; ---------------------------------------------------------------------------
@@ -10995,7 +10985,7 @@ word_139BC:	dc.w 2
 		dc.w $F007,   $E,    7,$FFF0
 		dc.w $F007, $80E, $807,	   0
 ; ---------------------------------------------------------------------------
-		nop
+		jmpTos	; Empty
 
 		include	"obj/S1/64 Bubbles.asm"
 ; ---------------------------------------------------------------------------
@@ -11088,7 +11078,7 @@ word_13E1E:	dc.w 1
 		dc.w $F805,  $70,  $38,$FFF8
 word_13E28:	dc.w 0
 
-		nop
+		jmpTos	; Empty
 
 		include	"obj/03 Collision Switcher.asm"
 ; ===========================================================================
@@ -11121,22 +11111,17 @@ word_142C6:	dc.w 1
 word_142D0:	dc.w 1
 		dc.w $100C,$1011,$1008,$FFF0
 
-		nop
+		jmpTos	; Empty
 
 		include	"obj/0C.asm"
 Map_Obj0C:	include	"mappings/sprite/obj0C.asm"
 
-		nop
-
-j_CalcSine:
-		jmp	(CalcSine).l
-
-		align 4
+		jmpTos	JmpTo_CalcSine
 
 		include	"obj/12 HPZ Emerald.asm"
 Map_Obj12:	include	"mappings/sprite/obj12.asm"
 
-		nop
+		jmpTos	; Empty
 
 		include	"obj/13 HPZ Waterfall.asm"
 Map_Obj13:	include	"mappings/sprite/obj13.asm"
@@ -11187,7 +11172,7 @@ Obj06_PlayerDeltaYArray:
 		dc.b  $1F, $1F,	$20, $20, $20, $20, $20, $20, $20, $20,	$20, $20, $20, $20, $20, $20
 		dc.b  $20, $20,	$20, $20, $20, $20, $20, $20, $20, $20,	$20, $20, $20, $20, $20, $20
 
-		nop
+		jmpTos	; Empty
 
 		include	"obj/14 HTZ Seesaw.asm"
 
@@ -11219,42 +11204,17 @@ Map_obj14:	binclude	"mappings/sprite/obj14_a.bin"
 ; -------------------------------------------------------------------------------
 Map_obj14b:	binclude	"mappings/sprite/obj14_b.bin"
 
-		nop
-
-j_ObjectMoveAndFall:
-		jmp	(ObjectMoveAndFall).l
-
-		align 4
+		jmpTos	JmpTo_ObjectMoveAndFall
 
 		include	"obj/16 HTZ Platform.asm"
 Map_Obj16:	include	"mappings/sprite/obj16.asm"
 
-		nop
-
-loc_152A4:
-		jmp	(DisplaySprite).l
-
-j_DeleteObject:
-		jmp	(DeleteObject).l
-
-j_ObjectMove_0:
-		jmp	(ObjectMove).l
-
-		align 4
+		jmpTos	JmpTo_DisplaySprite,JmpTo_DeleteObject,JmpTo_ObjectMove
 
 		include	"obj/19 CPZ Platform.asm"
 Map_Obj19:	include	"mappings/sprite/obj19.asm"
 
-loc_154C0:
-		jmp	(DisplaySprite).l
-
-j_DeleteObject_1:
-		jmp	(DeleteObject).l
-
-j_ObjectMove_1:
-		jmp	(ObjectMove).l
-
-		align 4
+		jmpTos0	JmpTo2_DisplaySprite,JmpTo2_DeleteObject,JmpTo2_ObjectMove
 
 		include	"obj/04 Water Surface.asm"
 
@@ -11352,16 +11312,7 @@ word_15816:	dc.w $A
 		dc.w $400F,    8,    4,$FFE0		; 32
 		dc.w $400F,    8,    4,	   0		; 36
 
-loc_15868:
-		jmp	(DisplaySprite).l
-
-j_DeleteObject_2:
-		jmp	(DeleteObject).l
-
-j_Adjust2PArtPointer_0:
-		jmp	(Adjust2PArtPointer).l
-
-		align 4
+		jmpTos0	JmpTo3_DisplaySprite,JmpTo3_DeleteObject,JmpTo_Adjust2PArtPointer
 
 		include	"obj/4D Stegway.asm"
 
@@ -11429,16 +11380,7 @@ word_15B14:	dc.w 4
 
 		align 4
 
-loc_15B38:
-		jmp	(MarkObjGone).l
-
-j_AnimateSprite_0:
-		jmp	(AnimateSprite).l
-
-j_ObjectMoveAndFall_0:
-		jmp	(ObjectMoveAndFall).l
-
-		align 4
+		jmpTos0	JmpTo_MarkObjGone,JmpTo_AnimateSprite,JmpTo2_ObjectMoveAndFall
 
 		include	"obj/52 Piranha.asm"
 
@@ -11466,16 +11408,7 @@ word_15D84:	dc.w 1
 
 		align 4
 
-loc_15D90:
-		jmp	(MarkObjGone).l
-
-j_AnimateSprite_1:
-		jmp	(AnimateSprite).l
-
-j_ObjectMove_2:
-		jmp	(ObjectMove).l
-
-		align 4
+		jmpTos0	JmpTo2_MarkObjGone,JmpTo2_AnimateSprite,JmpTo3_ObjectMove
 
 		include	"obj/4F Redz.asm"
 ; ===========================================================================
@@ -11492,22 +11425,7 @@ Map_obj4F:	binclude	"mappings/sprite/obj4F.bin"
 
 		align 4
 
-loc_15EE8:
-		jmp	(DisplaySprite).l
-
-JmpTo_DeleteObject:
-		jmp	(DeleteObject).l
-
-j_AnimateSprite_2:
-		jmp	(AnimateSprite).l
-
-j_ObjectMoveAndFall_1:
-		jmp	(ObjectMoveAndFall).l
-
-j_ObjectMove_3:
-		jmp	(ObjectMove).l
-
-		align 4
+		jmpTos0	JmpTo4_DisplaySprite,JmpTo4_DeleteObject,JmpTo3_AnimateSprite,JmpTo3_ObjectMoveAndFall,JmpTo4_ObjectMove
 
 		include	"obj/50 Aquis.asm"
 
@@ -11592,28 +11510,7 @@ word_164FA:	dc.w 5
 
 		include	"obj/51 Aquis Child.asm"
 
-loc_16768:
-		jmp	(DisplaySprite).l
-
-loc_1676E:
-		jmp	(DeleteObject).l
-
-j_FindFreeObj:
-		jmp	(FindFreeObj).l
-
-loc_1677A:
-		jmp	(MarkObjGone).l
-
-j_AnimateSprite_3:
-		jmp	(AnimateSprite).l
-
-j_ObjectMoveAndFall_2:
-		jmp	(ObjectMoveAndFall).l
-
-j_ObjectMove_4:
-		jmp	(ObjectMove).l
-
-		align 4
+		jmpTos0	JmpTo5_DisplaySprite,JmpTo5_DeleteObject,JmpTo_FindFreeObj,JmpTo3_MarkObjGone,JmpTo4_AnimateSprite,JmpTo4_ObjectMoveAndFall,JmpTo5_ObjectMove
 
 		include	"obj/4B Buzzer.asm"
 ; ===========================================================================
@@ -11635,28 +11532,7 @@ Map_obj4B:	binclude	"mappings/sprite/obj4B.bin"
 
 		align 4
 
-loc_16A74:
-		jmp	(DeleteObject).l
-
-j_FindNextFreeObj_0:
-		jmp	(FindNextFreeObj).l
-
-j_AnimateSprite_4:
-		jmp	(AnimateSprite).l
-
-j_Adjust2PArtPointer2:
-		jmp	(Adjust2PArtPointer2).l
-
-loc_16A8C:
-		jmp	(MarkObjGone_P1).l
-
-j_Adjust2PArtPointer_2:
-		jmp	(Adjust2PArtPointer).l
-
-j_ObjectMove_5:
-		jmp	(ObjectMove).l
-
-		align 4
+		jmpTos0	JmpTo6_DeleteObject,JmpTo_FindNextFreeObj,JmpTo5_AnimateSprite,JmpTo_Adjust2PArtPointer2,JmpTo_MarkObjGone_P1,JmpTo2_Adjust2PArtPointer,JmpTo6_ObjectMove
 
 		include	"obj/4A Octus.asm"
 
@@ -11697,22 +11573,7 @@ word_16D1C:	dc.w 1
 word_16D26:	dc.w 1
 		dc.w $F201,  $38,  $1C,$FFF0
 
-loc_16D30:
-		jmp	(DisplaySprite).l
-
-loc_16D36:
-		jmp	(DeleteObject).l
-
-loc_16D3C:
-		jmp	(MarkObjGone).l
-
-j_AnimateSprite_5:
-		jmp	(AnimateSprite).l
-
-j_ObjectMoveAndFall_3:
-		jmp	(ObjectMoveAndFall).l
-
-		align 4
+		jmpTos0	JmpTo6_DisplaySprite,JmpTo7_DeleteObject,JmpTo4_MarkObjGone,JmpTo6_AnimateSprite,JmpTo5_ObjectMoveAndFall
 
 		include	"obj/4C BBat.asm"
 
@@ -11731,16 +11592,7 @@ Map_Obj4C:	include	"mappings/sprite/obj4C.asm"
 
 		align 4
 
-loc_171C4:
-		jmp	(MarkObjGone).l
-
-j_AnimateSprite_6:
-		jmp	(AnimateSprite).l
-
-j_ObjectMove_8:
-		jmp	(ObjectMove).l
-
-		align 4
+		jmpTos0	JmpTo5_MarkObjGone,JmpTo7_AnimateSprite,JmpTo7_ObjectMove
 
 		include	"obj/4E Gator.asm"
 
@@ -11825,17 +11677,7 @@ word_17496:	dc.w 4
 		dc.w	 1,  $1E,   $F,	   4		; 8
 		dc.w	 5,  $28,  $14,	  $C		; 12
 
-loc_174B8:
-		jmp	(MarkObjGone).l
-
-j_AnimateSprite_7:
-		jmp	(AnimateSprite).l
-
-j_ObjectMoveAndFall_4:
-		jmp	(ObjectMoveAndFall).l
-
-j_ObjectMove_6:
-		jmp	(ObjectMove).l
+		jmpTos0	JmpTo6_MarkObjGone,JmpTo8_AnimateSprite,JmpTo6_ObjectMoveAndFall,JmpTo8_ObjectMove
 
 		include	"obj/53 Masher.asm"
 ; ===========================================================================
@@ -11853,17 +11695,7 @@ byte_1757A:	dc.b   7,  0,$FF
 Map_obj53:	binclude	"mappings/sprite/obj53.bin"
 		align 4
 
-loc_175B8:
-		jmp	(MarkObjGone).l
-
-j_AnimateSprite:
-		jmp	(AnimateSprite).l
-
-j_Adjust2PArtPointer:
-		jmp	(Adjust2PArtPointer).l
-
-j_ObjectMove:
-		jmp	(ObjectMove).l
+		jmpTos0	JmpTo7_MarkObjGone,JmpTo9_AnimateSprite,JmpTo3_Adjust2PArtPointer,JmpTo9_ObjectMove
 
 		include	"obj/54 Snail.asm"
 ; ---------------------------------------------------------------------------
@@ -11877,29 +11709,7 @@ byte_1781C:	dc.b   1,  0,  1,$FF
 ; ---------------------------------------------------------------------------
 Map_obj54:	binclude	"mappings/sprite/obj54.bin"
 
-loc_17854:
-		jmp	(DeleteObject).l
-
-j_FindNextFreeObj_1:
-		jmp	(FindNextFreeObj).l
-
-j_AnimateSprite_8:
-		jmp	(AnimateSprite).l
-
-j_Adjust2PArtPointer2_0:
-		jmp	(Adjust2PArtPointer2).l
-
-loc_1786C:
-		jmp	(MarkObjGone_P1).l
-
-j_Adjust2PArtPointer_3:
-		jmp	(Adjust2PArtPointer).l
-
-j_ObjectMoveAndFall_5:
-		jmp	(ObjectMoveAndFall).l
-
-j_ObjectMove_7:
-		jmp	(ObjectMove).l
+		jmpTos0	JmpTo8_DeleteObject,JmpTo2_FindNextFreeObj,JmpTo10_AnimateSprite,JmpTo2_Adjust2PArtPointer2,JmpTo2_MarkObjGone_P1,JmpTo4_Adjust2PArtPointer,JmpTo7_ObjectMoveAndFall,JmpTo10_ObjectMove
 
 		include	"obj/57 EHZ Boss (Part 3).asm"
 		include	"obj/58 EHZ Boss (Part 4).asm"
@@ -11992,23 +11802,7 @@ word_1818E:	dc.w 3
 		dc.w $F00F,$8010,$8008,$FFF0		; 4
 		dc.w $F00F,$8020,$8010,	 $10		; 8
 
-loc_181A8:
-		jmp	(DisplaySprite).l
-
-loc_181AE:
-		jmp	(DeleteObject).l
-
-loc_181B4:
-		jmp	(MarkObjGone).l
-
-j_FindNextFreeObj:
-		jmp	(FindNextFreeObj).l
-
-j_AnimateSprite_9:
-		jmp	(AnimateSprite).l
-
-j_ObjectMoveAndFall_6:
-		jmp	(ObjectMoveAndFall).l
+		jmpTos0	JmpTo7_DisplaySprite,JmpTo9_DeleteObject,JmpTo8_MarkObjGone,JmpTo3_FindNextFreeObj,JmpTo11_AnimateSprite,JmpTo8_ObjectMoveAndFall
 
 		include	"obj/55 EHZ Boss (Part 1).asm"
 		include	"obj/56 EHZ Boss (Part 2).asm"
@@ -12077,13 +11871,7 @@ word_185B0:	dc.w 4
 		dc.w $E805,  $24,  $12,	 $10		; 8
 		dc.w $D805,  $20,  $10,	   2		; 12
 ; ---------------------------------------------------------------------------
-		nop
-
-loc_185D4:
-		jmp	(DisplaySprite).l
-
-loc_185DA:
-		jmp	(DeleteObject).l
+		jmpTos	JmpTo8_DisplaySprite,JmpTo10_DeleteObject
 
 		include	"obj/S1/8A Credits.asm"
 ; ===========================================================================
@@ -12092,12 +11880,7 @@ loc_185DA:
 ; ---------------------------------------------------------------------------
 Map_Cred:	binclude	"mappings/sprite/obj8A.bin"
 ; ===========================================================================
-		nop
-
-j_Adjust2PArtPointer_4:					; JmpTo
-		jmp	(Adjust2PArtPointer).l
-
-		align 4
+		jmpTos	JmpTo5_Adjust2PArtPointer
 
 		include "obj/S1/3D Boss - Green Hill (part 1).asm"
 
@@ -12267,11 +12050,7 @@ word_194C6:	dc.w 2
 		dc.w $1804,  $1C,   $E,	   0
 		dc.w	$B,  $1E,   $F,	 $10
 
-j_Adjust2PArtPointer2_1:
-		jmp	(Adjust2PArtPointer2).l
-
-j_Adjust2PArtPointer_5:
-		jmp	(Adjust2PArtPointer).l
+		jmpTos0	JmpTo3_Adjust2PArtPointer2,JmpTo6_Adjust2PArtPointer
 
 		include	"obj/S1/3E Prison Capsule.asm"
 
@@ -12313,20 +12092,11 @@ word_197D4:	dc.w 1
 		dc.w $F007,$206D,$2036,$FFF8
 word_197DE:	dc.w 0
 
-j_Adjust2PArtPointer_6:
-		jmp	(Adjust2PArtPointer).l
-
-		align 4
+		jmpTos0	JmpTo7_Adjust2PArtPointer
 
 		include	"obj/sub TouchResponse.asm"
 
-		nop
-
-j_Sonic_ResetOnFloor:
-		jmp	(Sonic_ResetOnFloor).l
-
-j_Touch_Rings:
-		jmp	(Touch_Rings).l
+		jmpTos	JmpTo_Sonic_ResetOnFloor,JmpTo_Touch_Rings
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -12878,16 +12648,13 @@ Map_SS_Down:	include	"mappings/sprite/S1/SS DOWN Block.asm"
 ; ---------------------------------------------------------------------------
 		include	"mappings/sprite/S1/SS Chaos Emeralds.asm"
 ; ===========================================================================
-		nop
+		jmpTos	; Empty
 
 		include	"obj/S1/09 Sonic in Special Stage.asm"
 		include	"obj/10.asm"
 ; ===========================================================================
 
-j_Adjust2PArtPointer_7:					; JmpTo
-		jmp	(Adjust2PArtPointer).l
-
-		align 4
+		jmpTos0	JmpTo8_Adjust2PArtPointer
 
 ; ===========================================================================
 ; ---------------------------------------------------------------------------
@@ -13609,7 +13376,7 @@ APM_HPZ:	begin_animpat
 		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_3+$7,0,0,2,0),make_block_tile(ArtTile_Level+$0,0,0,0,0)
 APM_HPZ_End:
 
-		nop
+		jmpTos	; Empty
 
 		include	"obj/21 HUD.asm"
 ; ===========================================================================
@@ -13656,20 +13423,12 @@ locret_1B23C:
 Art_HUD:	binclude	"art/uncompressed/HUD Numbers.bin"
 Art_LivesNums:	binclude	"art/uncompressed/Lives Counter Numbers.bin"
 
-		nop
-
-j_Adjust2PArtPointer_8:
-		jmp	(Adjust2PArtPointer).l
-
-		align 4
+		jmpTos	JmpTo9_Adjust2PArtPointer
 
 		include	"obj/DebugMode.asm"
 		include	"_Include/DebugList.asm"
 
-j_Adjust2PArtPointer_1:
-		jmp	(Adjust2PArtPointer).l
-
-		align 4
+		jmpTos0	JmpTo10_Adjust2PArtPointer
 
 		include	"_Include/LevelHeaders.asm"
 		include	"_Include/Pattern Load Cues.asm"

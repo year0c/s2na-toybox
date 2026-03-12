@@ -21,16 +21,21 @@ loc_16AB6:
 ; ---------------------------------------------------------------------------
 
 loc_16AC0:
-		bsr.w	j_ObjectMoveAndFall_3
+		jsrto	JmpTo5_ObjectMoveAndFall
 		lea	(Ani_Obj4A).l,a1
-		bsr.w	j_AnimateSprite_5
-		bra.w	loc_16D3C
+		jsrto	JmpTo6_AnimateSprite
+		jmpto	JmpTo4_MarkObjGone
 ; ---------------------------------------------------------------------------
 
 loc_16AD2:
 		subq.w	#1,objoff_2C(a0)
-		beq.w	loc_16D36
-		bra.w	loc_16D30
+		beq.w	JmpTo7_DeleteObject
+		jmpto	JmpTo6_DisplaySprite
+
+	if RemoveJmpTos
+JmpTo7_DeleteObject	; JmpTo
+		jmp	(DeleteObject).l
+	endif
 ; ---------------------------------------------------------------------------
 
 loc_16ADE:
@@ -42,7 +47,7 @@ loc_16ADE:
 		move.b	#$10,obActWid(a0)
 		move.b	#$10,obHeight(a0)
 		move.b	#8,obWidth(a0)
-		bsr.w	j_ObjectMoveAndFall_3
+		jsrto	JmpTo5_ObjectMoveAndFall
 		jsr	(ObjHitFloor).l
 		tst.w	d1
 		bpl.s	loc_16B3C
@@ -65,8 +70,8 @@ loc_16B44:
 		move.w	Obj4A_SubIndex(pc,d0.w),d1
 		jsr	Obj4A_SubIndex(pc,d1.w)
 		lea	(Ani_Obj4A).l,a1
-		bsr.w	j_AnimateSprite_5
-		bra.w	loc_16D3C
+		jsrto	JmpTo6_AnimateSprite
+		jmpto	JmpTo4_MarkObjGone
 ; ---------------------------------------------------------------------------
 Obj4A_SubIndex:	dc.w Obj4A_Init-Obj4A_SubIndex
 		dc.w Obj4A_Main-Obj4A_SubIndex
@@ -158,4 +163,4 @@ loc_16C7C:
 
 loc_16C8A:
 		add.w	d0,obX(a0)
-		bra.w	loc_16D3C
+		jmpto	JmpTo4_MarkObjGone

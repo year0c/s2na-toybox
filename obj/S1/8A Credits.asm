@@ -18,7 +18,7 @@ Cred_Main:	; Routine 0
 		move.w	#$F0,obScreenY(a0)
 		move.l	#Map_Cred,obMap(a0)
 		move.w	#make_art_tile(ArtTile_Credits_Font,0,0),obGfx(a0)
-		bsr.w	j_Adjust2PArtPointer_4
+		jsrto	JmpTo5_Adjust2PArtPointer
 		move.w	(v_creditsnum).w,d0 ; load credits index number
 		move.b	d0,obFrame(a0)	; display appropriate sprite
 		move.b	#0,obRender(a0)
@@ -33,7 +33,7 @@ Cred_Main:	; Routine 0
 		; Bug: This is using the incorrect address of VRAM!
 		move.w	#make_art_tile(ArtTile_Title_Sonic,0,0),obGfx(a0)
 	endif
-		bsr.w	j_Adjust2PArtPointer_4
+		jsrto	JmpTo5_Adjust2PArtPointer
 		move.b	#$A,obFrame(a0)	; display "SONIC TEAM PRESENTS"
 		tst.b	(f_creditscheat).w ; is hidden credits cheat on?
 		beq.s	Cred_Display	; if not, branch

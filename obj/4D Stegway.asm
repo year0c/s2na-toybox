@@ -21,7 +21,7 @@ Obj4D_Init:
 		move.b	#$18,obActWid(a0)
 		move.b	#$10,obHeight(a0)
 		move.b	#$18,obWidth(a0)
-		bsr.w	j_ObjectMoveAndFall_0
+		jsrto	JmpTo2_ObjectMoveAndFall
 		jsr	(ObjHitFloor).l
 		tst.w	d1
 		bpl.s	locret_158DC
@@ -39,8 +39,8 @@ Obj4D_Main:
 		move.w	Obj4D_SubIndex(pc,d0.w),d1
 		jsr	Obj4D_SubIndex(pc,d1.w)
 		lea	(Ani_Obj4D).l,a1
-		bsr.w	j_AnimateSprite_0
-		bra.w	loc_15B38
+		jsrto	JmpTo_AnimateSprite
+		jmpto	JmpTo_MarkObjGone
 ; ---------------------------------------------------------------------------
 Obj4D_SubIndex:	dc.w loc_158FE-Obj4D_SubIndex
 		dc.w loc_15922-Obj4D_SubIndex
@@ -62,7 +62,7 @@ locret_15920:
 
 loc_15922:
 		bsr.w	sub_1596C
-		bsr.w	j_ObjectMoveAndFall_0
+		jsrto	JmpTo2_ObjectMoveAndFall
 		jsr	(ObjHitFloor).l
 		cmpi.w	#-8,d1
 		blt.s	loc_15948

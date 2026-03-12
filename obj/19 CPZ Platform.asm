@@ -44,8 +44,13 @@ Obj19_Main:
 		move.w	#$10,d3
 		move.w	(sp)+,d4
 		bsr.w	sub_F78A
-		out_of_range.w	j_DeleteObject_1,objoff_30(a0)
-		bra.w	loc_154C0
+		out_of_range.w	JmpTo2_DeleteObject,objoff_30(a0)
+		jmpto	JmpTo2_DisplaySprite
+
+	if RemoveJmpTos
+JmpTo2_DeleteObject	; JmpTo
+		jmp	(DeleteObject).l
+	endif
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -135,7 +140,7 @@ loc_153E6:
 ; ---------------------------------------------------------------------------
 
 loc_153EC:
-		bsr.w	j_ObjectMove_1
+		jsrto	JmpTo2_ObjectMove
 		addi.w	#$18,obVelY(a0)
 		bsr.w	ObjHitFloor
 		tst.w	d1
@@ -155,7 +160,7 @@ loc_1540E:
 
 loc_15418:
 		addq.l	#6,sp
-		out_of_range.w	j_DeleteObject_1,objoff_30(a0)
+		out_of_range.w	JmpTo2_DeleteObject,objoff_30(a0)
 		rts
 ; ---------------------------------------------------------------------------
 

@@ -53,7 +53,7 @@ Obj0C_Main:
 loc_1436E:
 		addq.b	#1,objoff_3D(a0)
 		move.b	d1,d0
-		bsr.w	j_CalcSine
+		jsrto	JmpTo_CalcSine
 		addi.w	#8,d0
 		asr.w	#6,d0
 		subi.w	#$10,d0
@@ -72,7 +72,7 @@ loc_1439C:
 		addq.b	#1,objoff_3C(a0)
 
 loc_143A0:
-		bsr.w	j_CalcSine
+		jsrto	JmpTo_CalcSine
 		addi.w	#8,d1
 		asr.w	#4,d1
 		add.w	objoff_3A(a0),d1

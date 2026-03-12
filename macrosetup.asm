@@ -1,4 +1,7 @@
 	padding off					; we don't want AS padding out dc.b instructions
+	;listing off				; We don't need to generate anything for a listing file
+	;listing on					; Want full listing file
+	;listing noskipped				; Want listing file, but only the non-skipped part of conditional assembly
 	listing purecode				; Want listing file, but only the final code in expanded macros
 	page	0					; Don't want form feeds
 	supmode on					; we don't need warnings about privileged instructions
@@ -204,6 +207,66 @@ _tst	macro
 	endm
 
 	endif
+
+; Discard everything before the first underscore.
+; This expects that every JmpTo label start with 'JmpTo_'.
+extractJmpToName function name,val(substr(name, strstr(name, "_") + 1, strlen(name)))
+
+    ; depending on if RemoveJmpTos is set or not, these macros will create a jump directly
+    ; to the destination, or create a branch to a JmpTo
+jsrto macro indirectaddr
+	if RemoveJmpTos
+		!jsr (extractJmpToName("indirectaddr")).l	; jump directly to address
+	else
+		!bsr.w indirectaddr	; otherwise, branch to an indirect JmpTo
+	endif
+    endm
+
+jmpto macro indirectaddr
+	if RemoveJmpTos
+		!jmp (extractJmpToName("indirectaddr")).l	; jump directly to address
+	else
+		!bra.w indirectaddr	; otherwise, branch to an indirect JmpTo
+	endif
+    endm
+
+jmpTosInternal2 macro
+	if ARGCOUNT>0
+	irp op,ALLARGS
+op label *
+	jmp	(extractJmpToName("op")).l
+	endm
+	endif
+    endm
+
+jmpTosInternal macro UseNop
+	if RemoveJmpTos=0
+		if (*)&2
+			; I wish I understood what really controls this.
+			if UseNop
+				nop
+			else
+				align 4
+			endif
+		endif
+
+		shift
+
+		jmpTosInternal2 ALLARGS
+
+		align 4
+	endif
+    endm
+
+	; Output list of JmpTos, pad start with a NOP instuction.
+jmpTos macro
+	jmpTosInternal TRUE,ALLARGS
+	endm
+
+	; Output list of JmpTos, pad start with zeroes.
+jmpTos0 macro
+	jmpTosInternal FALSE,ALLARGS
+	endm
 
 roundFloatToInteger function float,INT(float+0.5)
 min function a,b,b!((a!b)&(-(a<b)))

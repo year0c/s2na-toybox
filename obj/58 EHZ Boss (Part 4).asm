@@ -18,11 +18,11 @@ off_17AFC:	dc.w loc_17B2A-off_17AFC
 loc_17B06:
 		subi.w	#1,obY(a0)
 		subi.w	#1,objoff_2A(a0)
-		bpl.w	loc_181A8
+		bpl.w	JmpTo7_DisplaySprite
 		move.b	#0,obRoutine(a0)
 		lea	(Ani_Obj58).l,a1
-		bsr.w	j_AnimateSprite_9
-		bra.w	loc_181A8
+		jsrto	JmpTo11_AnimateSprite
+		jmpto	JmpTo7_DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_17B2A:
@@ -38,7 +38,7 @@ off_17B38:	dc.w loc_17B3C-off_17B38
 loc_17B3C:
 		movea.l	objoff_34(a0),a1
 		cmpi.b	#id_Obj55,obID(a1)
-		bne.w	loc_181AE
+		bne.w	JmpTo9_DeleteObject
 		btst	#0,objoff_2D(a1)
 		beq.s	loc_17B60
 		move.b	#1,obAnim(a0)
@@ -51,31 +51,31 @@ loc_17B60:
 		move.b	obStatus(a1),obStatus(a0)
 		move.b	obRender(a1),obRender(a0)
 		lea	(Ani_Obj58).l,a1
-		bsr.w	j_AnimateSprite_9
-		bra.w	loc_181A8
+		jsrto	JmpTo11_AnimateSprite
+		jmpto	JmpTo7_DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_17B86:
 		subi.w	#1,objoff_2A(a0)
 		bpl.s	loc_17BA2
 		cmpi.w	#-$10,objoff_2A(a0)
-		ble.w	loc_181AE
+		ble.w	JmpTo9_DeleteObject
 		addi.w	#1,obY(a0)
-		bra.w	loc_181A8
+		jmpto	JmpTo7_DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_17BA2:
 		lea	(Ani_Obj58).l,a1
-		bsr.w	j_AnimateSprite_9
-		bra.w	loc_181A8
+		jsrto	JmpTo11_AnimateSprite
+		jmpto	JmpTo7_DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_17BB0:
 		movea.l	objoff_34(a0),a1
 		cmpi.b	#id_Obj55,obID(a1)
-		bne.w	loc_181AE
+		bne.w	JmpTo9_DeleteObject
 		btst	#1,objoff_2D(a1)
-		beq.w	loc_181A8
+		beq.w	JmpTo7_DisplaySprite
 		btst	#2,objoff_2D(a1)
 		bne.w	loc_17BF2
 		move.w	obX(a1),obX(a0)
@@ -83,13 +83,13 @@ loc_17BB0:
 		addi.w	#8,obY(a0)
 		move.b	obStatus(a1),obStatus(a0)
 		move.b	obRender(a1),obRender(a0)
-		bra.w	loc_181A8
+		jmpto	JmpTo7_DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_17BF2:
 		move.b	#8,obFrame(a0)
 		move.b	#0,obPriority(a0)
-		bra.w	loc_181A8
+		jmpto	JmpTo7_DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_17C02:
@@ -107,17 +107,17 @@ off_17C10:	dc.w loc_17C18-off_17C10
 loc_17C18:
 		movea.l	objoff_34(a0),a1
 		cmpi.b	#id_Obj55,obID(a1)
-		bne.w	loc_181AE
+		bne.w	JmpTo9_DeleteObject
 		btst	#1,objoff_2D(a1)
-		beq.w	loc_181A8
+		beq.w	JmpTo7_DisplaySprite
 		addq.b	#2,ob2ndRout(a0)
-		bra.w	loc_181A8
+		jmpto	JmpTo7_DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_17C36:
 		movea.l	objoff_34(a0),a1
 		cmpi.b	#id_Obj55,obID(a1)
-		bne.w	loc_181AE
+		bne.w	JmpTo9_DeleteObject
 		move.b	obStatus(a1),obStatus(a0)
 		move.b	obRender(a1),obRender(a0)
 		tst.b	obStatus(a0)
@@ -126,7 +126,7 @@ loc_17C36:
 
 loc_17C58:
 		bsr.w	sub_17A6A
-		bsr.w	j_ObjectMoveAndFall_6
+		jsrto	JmpTo8_ObjectMoveAndFall
 		jsr	(ObjHitFloor).l
 		tst.w	d1
 		bpl.s	loc_17C6E
@@ -142,26 +142,26 @@ loc_17C6E:
 
 loc_17C88:
 		lea	(Ani_Obj58a).l,a1
-		bsr.w	j_AnimateSprite_9
-		bra.w	loc_181A8
+		jsrto	JmpTo11_AnimateSprite
+		jmpto	JmpTo7_DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_17C96:
 		subi.w	#1,objoff_2A(a0)
-		bpl.w	loc_181A8
+		bpl.w	JmpTo7_DisplaySprite
 		addq.b	#2,ob2ndRout(a0)
 		move.w	#$A,objoff_2A(a0)
 		move.w	#-$300,obVelY(a0)
 		cmpi.b	#1,obPriority(a0)
-		beq.w	loc_181A8
+		beq.w	JmpTo7_DisplaySprite
 		neg.w	obVelX(a0)
-		bra.w	loc_181A8
+		jmpto	JmpTo7_DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_17CC2:
 		subq.w	#1,objoff_2A(a0)
-		bpl.w	loc_181A8
-		bsr.w	j_ObjectMoveAndFall_6
+		bpl.w	JmpTo7_DisplaySprite
+		jsrto	JmpTo8_ObjectMoveAndFall
 		bsr.w	ObjHitFloor
 		tst.w	d1
 		bpl.s	loc_17CE0
@@ -169,18 +169,18 @@ loc_17CC2:
 		add.w	d1,obY(a0)
 
 loc_17CE0:
-		bra.w	loc_181B4
+		jmpto	JmpTo8_MarkObjGone
 ; ---------------------------------------------------------------------------
 
 loc_17CE4:
 		movea.l	objoff_34(a0),a1
 		cmpi.b	#id_Obj55,obID(a1)
-		bne.w	loc_181AE
+		bne.w	JmpTo9_DeleteObject
 		btst	#3,objoff_2D(a1)
 		bne.s	loc_17D4A
 		bsr.w	sub_17D6A
 		btst	#1,objoff_2D(a1)
-		beq.w	loc_181A8
+		beq.w	JmpTo7_DisplaySprite
 		move.b	#$8B,obColType(a0)
 		move.w	obX(a1),obX(a0)
 		move.w	obY(a1),obY(a0)
@@ -195,8 +195,13 @@ loc_17CE4:
 loc_17D38:
 		add.w	d0,obX(a0)
 		lea	(Ani_Obj58a).l,a1
-		bsr.w	j_AnimateSprite_9
-		bra.w	loc_181A8
+		jsrto	JmpTo11_AnimateSprite
+		jmpto	JmpTo7_DisplaySprite
+
+	if RemoveJmpTos
+JmpTo9_DeleteObject	; JmpTo
+		jmp	(DeleteObject).l
+	endif
 ; ---------------------------------------------------------------------------
 
 loc_17D4A:
@@ -208,8 +213,8 @@ loc_17D4A:
 loc_17D58:
 		add.w	d0,obX(a0)
 		lea	(Ani_Obj58a).l,a1
-		bsr.w	j_AnimateSprite_9
-		bra.w	loc_181A8
+		jsrto	JmpTo11_AnimateSprite
+		jmpto	JmpTo7_DisplaySprite
 
 ; =============== S U B	R O U T	I N E =======================================
 

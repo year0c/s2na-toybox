@@ -7,7 +7,7 @@
 
 TouchResponse:
 		nop
-		bsr.w	j_Touch_Rings
+		jsrto	JmpTo_Touch_Rings
 		move.w	obX(a0),d2
 		move.w	obY(a0),d3
 		subi.w	#8,d2
@@ -274,7 +274,7 @@ HurtSonic:
 .hasshield:
 		move.b	#0,(v_shield).w
 		move.b	#4,obRoutine(a0)
-		bsr.w	j_Sonic_ResetOnFloor
+		jsrto	JmpTo_Sonic_ResetOnFloor
 		bset	#1,obStatus(a0)
 		move.w	#-$400,obVelY(a0)
 		move.w	#-$200,obVelX(a0)
@@ -331,7 +331,7 @@ KillCharacter:
 		bne.s	Kill_NoDeath
 		move.b	#0,(v_invinc).w
 		move.b	#6,obRoutine(a0)
-		bsr.w	j_Sonic_ResetOnFloor
+		jsrto	JmpTo_Sonic_ResetOnFloor
 		bset	#1,obStatus(a0)
 		move.w	#-$700,obVelY(a0)
 		move.w	#0,obVelX(a0)

@@ -39,13 +39,13 @@ loc_1653E:
 
 loc_1659C:
 		lea	Ani_Obj50(pc),a1
-		bsr.w	j_AnimateSprite_3
+		jsrto	JmpTo4_AnimateSprite
 		move.w	#$39C,(v_waterpos1).w
 		moveq	#0,d0
 		move.b	ob2ndRout(a0),d0
 		move.w	off_165BC(pc,d0.w),d1
 		jsr	off_165BC(pc,d1.w)
-		bra.w	loc_1677A
+		jmpto	JmpTo3_MarkObjGone
 ; ---------------------------------------------------------------------------
 off_165BC:	dc.w loc_165D4-off_165BC
 		dc.w loc_165EA-off_165BC
@@ -53,14 +53,14 @@ off_165BC:	dc.w loc_165D4-off_165BC
 
 loc_165C0:
 		bsr.w	loc_162FC
-		bsr.w	j_ObjectMove_4
+		jsrto	JmpTo5_ObjectMove
 		lea	Ani_Obj50(pc),a1
-		bsr.w	j_AnimateSprite_3
-		bra.w	loc_1677A
+		jsrto	JmpTo4_AnimateSprite
+		jmpto	JmpTo3_MarkObjGone
 ; ---------------------------------------------------------------------------
 
 loc_165D4:
-		bsr.w	j_ObjectMove_4
+		jsrto	JmpTo5_ObjectMove
 		bsr.w	sub_162DE
 		bsr.w	loc_16626
 		bsr.w	loc_16708
@@ -69,7 +69,7 @@ loc_165D4:
 ; ---------------------------------------------------------------------------
 
 loc_165EA:
-		bsr.w	j_ObjectMove_4
+		jsrto	JmpTo5_ObjectMove
 		bsr.w	sub_162DE
 		bsr.w	loc_16626
 		bsr.w	loc_16708
@@ -147,7 +147,7 @@ locret_1669C:
 ; ---------------------------------------------------------------------------
 
 loc_1669E:
-		bsr.w	j_FindFreeObj
+		jsrto	JmpTo_FindFreeObj
 		bne.s	locret_16706
 		_move.b	#id_Obj51,obID(a1)
 		move.b	#4,obRoutine(a1)

@@ -231,6 +231,6 @@ LoadDebugObjectSprite:
 		move.w	6(a2,d0.w),obGfx(a0)
 		move.b	5(a2,d0.w),obFrame(a0)
 		;move.b	4(a2,d0.w),obSubtype(a0)	; this does... something with the object's subtype
-		bsr.w	j_Adjust2PArtPointer_1
+		jsrto	JmpTo10_Adjust2PArtPointer
 		rts
 ; End of function Debug_ShowItem

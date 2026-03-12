@@ -831,9 +831,9 @@ loc_1134E:
 		movea.l	a0,a2
 	endif
 		cmpi.w	#(id_SBZ<<8)+1,(Current_ZoneAndAct).w
-		bne.w	KillTails
+		bne.w	JmpTo2_KillCharacter
 		cmpi.w	#$2000,obX(a0)
-		blo.w	KillTails
+		blo.w	JmpTo2_KillCharacter
 		clr.b	(v_lastlamp).w
 		move.w	#1,(Level_Inactive_flag).w
 		move.w	#(id_LZ<<8)+3,(Current_ZoneAndAct).w
@@ -1482,7 +1482,7 @@ Tails_HurtStop:
 	endif
 		addi.w	#224,d0
 		cmp.w	obY(a0),d0
-		blo.w	KillTails
+		blo.w	JmpTo2_KillCharacter
 		bsr.w	Tails_Floor
 		btst	#1,obStatus(a0)
 		bne.s	locret_1192A
@@ -1497,6 +1497,11 @@ Tails_HurtStop:
 locret_1192A:
 		rts
 ; End of function Tails_HurtStop
+
+	if RemoveJmpTos
+JmpTo2_KillCharacter ; JmpTo
+		jmp	(KillCharacter).l
+	endif
 
 ; ---------------------------------------------------------------------------
 

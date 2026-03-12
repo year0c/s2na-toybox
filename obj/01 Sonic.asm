@@ -1624,6 +1624,11 @@ locret_107E6:
 		rts
 ; End of function Sonic_HurtStop
 
+	if RemoveJmpTos
+JmpTo_KillCharacter ; JmpTo
+		jmp	(KillCharacter).l
+	endif
+
 ; ---------------------------------------------------------------------------
 
 Sonic_HurtInstantRecover:

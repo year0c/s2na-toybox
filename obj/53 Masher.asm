@@ -7,7 +7,7 @@ Obj53:
 		move.b	obRoutine(a0),d0
 		move.w	Obj53_Index(pc,d0.w),d1
 		jsr	Obj53_Index(pc,d1.w)
-		bra.w	loc_175B8
+		jmpto	JmpTo7_MarkObjGone
 ; ===========================================================================
 Obj53_Index:	dc.w Obj53_Init-Obj53_Index
 		dc.w Obj53_Main-Obj53_Index
@@ -17,7 +17,7 @@ Obj53_Init:
 		addq.b	#2,obRoutine(a0)
 		move.l	#Map_obj53,obMap(a0)
 		move.w	#make_art_tile(ArtTile_Masher,0,0),obGfx(a0)
-		bsr.w	j_Adjust2PArtPointer
+		jsrto	JmpTo3_Adjust2PArtPointer
 		move.b	#4,obRender(a0)
 		move.b	#4,obPriority(a0)
 		move.b	#9,obColType(a0)
@@ -27,8 +27,8 @@ Obj53_Init:
 
 Obj53_Main:
 		lea	(Ani_obj53).l,a1
-		bsr.w	j_AnimateSprite
-		bsr.w	j_ObjectMove
+		jsrto	JmpTo9_AnimateSprite
+		jsrto	JmpTo9_ObjectMove
 		addi.w	#$18,obVelY(a0)
 		move.w	objoff_30(a0),d0
 		cmp.w	obY(a0),d0

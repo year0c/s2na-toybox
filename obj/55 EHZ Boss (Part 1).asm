@@ -141,7 +141,7 @@ loc_183B0:
 
 loc_183BA:
 		cmpi.b	#$FF,obFrame(a0)
-		bne.w	loc_185D4
+		bne.w	JmpTo8_DisplaySprite
 		rts
 ; ===========================================================================
 
@@ -176,11 +176,14 @@ loc_18410:
 		move.b	#0,obFrame(a0)
 		movea.l	objoff_34(a0),a1
 		move.b	(a1),d0
-		beq.w	loc_185DA
+		beq.w	JmpTo10_DeleteObject
 		move.w	obX(a1),obX(a0)
 		move.w	obY(a1),obY(a0)
 		addi.w	#4,obY(a0)
 		subi.w	#$28,obX(a0)
 
 loc_18452:
-		bra.w	loc_185D4
+	if RemoveJmpTos
+JmpTo8_DisplaySprite	; JmpTo
+	endif
+		jmpto	JmpTo8_DisplaySprite

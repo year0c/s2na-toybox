@@ -41,8 +41,13 @@ Obj16_Main:
 		; Redundant line of code.
 		move.w	objoff_30(a0),d0
 	endif
-		out_of_range.w	j_DeleteObject
-		bra.w	loc_152A4
+		out_of_range.w	JmpTo_DeleteObject
+		jmpto	JmpTo_DisplaySprite
+
+	if RemoveJmpTos
+JmpTo_DeleteObject	; JmpTo
+		jmp	(DeleteObject).l
+	endif
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -85,7 +90,7 @@ locret_151BE:
 ; ---------------------------------------------------------------------------
 
 Obj16_Move:
-		bsr.w	j_ObjectMove_0
+		jsrto	JmpTo_ObjectMove
 		subq.w	#1,objoff_34(a0)
 		bne.s	locret_151CE
 		addq.b	#1,obSubtype(a0)

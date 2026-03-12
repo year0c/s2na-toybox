@@ -21,17 +21,17 @@ Obj4B_Index:	dc.w Obj4B_Init-Obj4B_Index
 ; ===========================================================================
 ; loc_167AA:
 Obj4B_Projectile:
-		bsr.w	j_ObjectMove_5
+		jsrto	JmpTo6_ObjectMove
 		lea	(Ani_obj4B).l,a1
-		bsr.w	j_AnimateSprite_4
-		bra.w	loc_16A8C
+		jsrto	JmpTo5_AnimateSprite
+		jmpto	JmpTo_MarkObjGone_P1
 ; ===========================================================================
 ; loc_167BC:
 Obj4B_Flame:
 		movea.l	Obj4B_parent(a0),a1
 	if FixBugs
 		cmpi.b	#id_Obj4B,(a1)
-		bne.w	loc_16A74
+		bne.w	JmpTo6_DeleteObject
 	else
 		; This check doesn't really work: it's possible for an object to be
 		; loaded into the parent's slot before this object can check if the
@@ -40,11 +40,16 @@ Obj4B_Flame:
 		; while after the Buzzer is destroyed. A better way to do this check
 		; would be to check if the ID is equal to 'id_Obj4B'.
 		tst.b	(a1)
-		beq.w	loc_16A74
+		beq.w	JmpTo6_DeleteObject
 	endif
 		tst.w	Obj4B_turn_delay(a1)
 		bmi.s	loc_167CE
 		rts
+
+	if RemoveJmpTos
+JmpTo6_DeleteObject	; JmpTo
+		jmp	(DeleteObject).l
+	endif
 ; ---------------------------------------------------------------------------
 
 loc_167CE:
@@ -53,14 +58,14 @@ loc_167CE:
 		move.b	obStatus(a1),obStatus(a0)
 		move.b	obRender(a1),obRender(a0)
 		lea	(Ani_obj4B).l,a1
-		bsr.w	j_AnimateSprite_4
-		bra.w	loc_16A8C
+		jsrto	JmpTo5_AnimateSprite
+		jmpto	JmpTo_MarkObjGone_P1
 ; ===========================================================================
 
 Obj4B_Init:
 		move.l	#Map_obj4B,obMap(a0)
 		move.w	#make_art_tile(ArtTile_Buzzer,0,0),obGfx(a0)
-		bsr.w	j_Adjust2PArtPointer_2
+		jsrto	JmpTo2_Adjust2PArtPointer
 		ori.b	#4,obRender(a0)
 		move.b	#$A,obColType(a0)
 		move.b	#4,obPriority(a0)
@@ -71,14 +76,14 @@ Obj4B_Init:
 		addq.b	#2,obRoutine(a0)		; => Obj4B_Main
 
 		; load exhaust flame object
-		bsr.w	j_FindNextFreeObj_0
+		jsrto	JmpTo_FindNextFreeObj
 		bne.s	locret_1689E
 
 		_move.b	#id_Obj4B,obID(a1)			; load obj4B
 		move.b	#4,obRoutine(a1)		; => Obj4B_Flame
 		move.l	#Map_obj4B,obMap(a1)
 		move.w	#make_art_tile(ArtTile_Buzzer,0,0),obGfx(a1)
-		bsr.w	j_Adjust2PArtPointer2
+		jsrto	JmpTo_Adjust2PArtPointer2
 		move.b	#4,obPriority(a1)
 		move.b	#$10,obActWid(a1)
 		move.b	obStatus(a0),obStatus(a1)
@@ -103,8 +108,8 @@ Obj4B_Main:
 		move.w	Obj4B_Main_Index(pc,d0.w),d1
 		jsr	Obj4B_Main_Index(pc,d1.w)
 		lea	(Ani_obj4B).l,a1
-		bsr.w	j_AnimateSprite_4
-		bra.w	loc_16A8C
+		jsrto	JmpTo5_AnimateSprite
+		jmpto	JmpTo_MarkObjGone_P1
 ; ===========================================================================
 Obj4B_Main_Index:	dc.w Obj4B_Roaming-Obj4B_Main_Index
 		dc.w Obj4B_Shooting-Obj4B_Main_Index
@@ -119,11 +124,16 @@ Obj4B_Roaming:
 		tst.w	d0
 		bpl.s	locret_168E4
 		subq.w	#1,Obj4B_move_timer(a0)
-		bgt.w	j_ObjectMove_5
+		bgt.w	JmpTo6_ObjectMove
 		move.w	#30,Obj4B_turn_delay(a0)
 
 locret_168E4:
 		rts
+
+	if RemoveJmpTos
+JmpTo6_ObjectMove	; JmpTo
+		jmp	(ObjectMove).l
+	endif
 ; ---------------------------------------------------------------------------
 ; loc_168E6:
 Obj4B_TurnAround:
@@ -199,7 +209,7 @@ Obj4B_ShootProjectile:
 		move.b	#6,obRoutine(a1)		; => Obj4B_Projectile
 		move.l	#Map_obj4B,obMap(a1)
 		move.w	#make_art_tile(ArtTile_Buzzer,0,0),obGfx(a1)
-		bsr.w	j_Adjust2PArtPointer2
+		jsrto	JmpTo_Adjust2PArtPointer2
 		move.b	#4,obPriority(a1)
 		move.b	#$98,obColType(a1)
 		move.b	#$10,obActWid(a1)

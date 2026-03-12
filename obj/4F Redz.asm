@@ -22,7 +22,7 @@ Obj4F_Init:
 		move.b	#$10,obHeight(a0)
 		move.b	#6,obWidth(a0)
 		move.b	#$C,obColType(a0)
-		bsr.w	j_ObjectMoveAndFall_1
+		jsrto	JmpTo3_ObjectMoveAndFall
 		jsr	(ObjHitFloor).l
 		tst.w	d1
 		bpl.s	locret_15E0C
@@ -43,9 +43,9 @@ Obj4F_Main:
 		move.w	Obj4F_SubIndex(pc,d0.w),d1
 		jsr	Obj4F_SubIndex(pc,d1.w)
 		lea	(Ani_obj4F).l,a1
-		bsr.w	j_AnimateSprite_2
+		jsrto	JmpTo3_AnimateSprite
 		out_of_range.w	loc_15E3E
-		bra.w	loc_15EE8
+		jmpto	JmpTo4_DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_15E3E:
@@ -56,7 +56,7 @@ loc_15E3E:
 		bclr	#7,2(a2,d0.w)
 
 loc_15E50:
-		bra.w	JmpTo_DeleteObject
+		jmpto	JmpTo4_DeleteObject
 ; ===========================================================================
 Obj4F_SubIndex:	dc.w Obj4F_MoveLeft-Obj4F_SubIndex
 		dc.w Obj4F_ChkFloor-Obj4F_SubIndex
@@ -77,7 +77,7 @@ locret_15E7A:
 ; ===========================================================================
 ; loc_15E7C:
 Obj4F_ChkFloor:
-		bsr.w	j_ObjectMove_3
+		jsrto	JmpTo4_ObjectMove
 		jsr	(ObjHitFloor).l
 		cmpi.w	#-8,d1
 		blt.s	Obj4F_StopMoving
@@ -96,4 +96,4 @@ Obj4F_StopMoving:
 ; ===========================================================================
 
 Obj4F_Delete:
-		bra.w	JmpTo_DeleteObject
+		jmpto	JmpTo4_DeleteObject

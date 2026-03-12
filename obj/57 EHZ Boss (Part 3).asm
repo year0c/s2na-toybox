@@ -21,13 +21,13 @@ loc_1789E:
 		cmpi.w	#$29D0,obX(a0)
 		ble.s	loc_178B6
 		subi.w	#1,obX(a0)
-		bra.w	loc_181A8
+		jmpto	JmpTo7_DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_178B6:
 		move.w	#$29D0,obX(a0)
 		addq.b	#2,ob2ndRout(a0)
-		bra.w	loc_181A8
+		jmpto	JmpTo7_DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_178C4:
@@ -44,24 +44,28 @@ loc_178D6:
 		cmpi.w	#$41E,obY(a0)
 		bge.s	loc_178E8
 		addi.w	#1,obY(a0)
-		bra.w	loc_181A8
+		jmpto	JmpTo7_DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_178E8:
 		addq.b	#2,objoff_2C(a0)
 		bset	#0,objoff_2D(a0)
 		move.w	#$3C,objoff_2A(a0)
-		bra.w	loc_181A8
+		jmpto	JmpTo7_DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_178FC:
 		subi.w	#1,objoff_2A(a0)
-		bpl.w	loc_181A8
+		bpl.w	JmpTo7_DisplaySprite
 		move.w	#-$200,obVelX(a0)
 		addq.b	#2,ob2ndRout(a0)
 		move.b	#$F,obColType(a0)
 		bset	#1,objoff_2D(a0)
-		bra.w	loc_181A8
+
+	if RemoveJmpTos
+JmpTo7_DisplaySprite	; JmpTo
+	endif
+		jmpto	JmpTo7_DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_17920:
@@ -78,7 +82,7 @@ loc_17920:
 		asl.l	#8,d0
 		add.l	d0,d2
 		move.l	d2,obX(a0)
-		bra.w	loc_181A8
+		jmpto	JmpTo7_DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_17952:
@@ -96,10 +100,10 @@ loc_17952:
 loc_1797C:
 		addq.w	#1,obY(a0)
 		subq.w	#1,objoff_2A(a0)
-		bpl.w	loc_181A8
+		bpl.w	JmpTo7_DisplaySprite
 		addq.b	#2,ob2ndRout(a0)
 		move.b	#0,objoff_2C(a0)
-		bra.w	loc_181A8
+		jmpto	JmpTo7_DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_17996:
@@ -107,7 +111,7 @@ loc_17996:
 		move.b	objoff_2C(a0),d0
 		move.w	off_179A8(pc,d0.w),d1
 		jsr	off_179A8(pc,d1.w)
-		bra.w	loc_181A8
+		jmpto	JmpTo7_DisplaySprite
 ; ---------------------------------------------------------------------------
 off_179A8:	dc.w loc_179AE-off_179A8
 		dc.w loc_17A22-off_179A8
@@ -116,8 +120,8 @@ off_179A8:	dc.w loc_179AE-off_179A8
 
 loc_179AE:
 		bclr	#0,objoff_2D(a0)
-		bsr.w	j_FindNextFreeObj
-		bne.w	loc_181A8
+		jsrto	JmpTo3_FindNextFreeObj
+		bne.w	JmpTo7_DisplaySprite
 		_move.b	#id_Obj58,obID(a1)
 		move.l	a0,objoff_34(a1)
 		move.l	#Map_Obj58,obMap(a1)
@@ -160,7 +164,7 @@ loc_17A3C:
 		tst.b	(Boss_defeated_flag).w
 		bne.s	locret_17A68
 		move.b	#1,(Boss_defeated_flag).w
-		bra.w	loc_181AE
+		jmpto	JmpTo9_DeleteObject
 ; ---------------------------------------------------------------------------
 
 locret_17A68:

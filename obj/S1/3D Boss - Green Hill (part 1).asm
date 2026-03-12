@@ -36,7 +36,7 @@ BGHZ_LoadBoss:
 		move.w	obY(a0),obY(a1)
 		move.l	#Map_Eggman,obMap(a1)
 		move.w	#make_art_tile(ArtTile_Eggman,0,0),obGfx(a1)
-		bsr.w	j_Adjust2PArtPointer2_1
+		jsrto	JmpTo3_Adjust2PArtPointer2
 		move.b	#4,obRender(a1)
 		move.b	#$20,obActWid(a1)
 		move.b	#3,obPriority(a1)

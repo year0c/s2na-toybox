@@ -244,19 +244,19 @@ loc_14F10:
 loc_14F30:
 		tst.w	obVelY(a0)
 		bpl.s	loc_14F4E
-		bsr.w	j_ObjectMoveAndFall
+		jsrto	JmpTo_ObjectMoveAndFall
 		move.w	objoff_34(a0),d0
 		subi.w	#$2F,d0
 		cmp.w	obY(a0),d0
 		bgt.s	locret_14F4C
-		bsr.w	j_ObjectMoveAndFall
+		jsrto	JmpTo_ObjectMoveAndFall
 
 locret_14F4C:
 		rts
 ; ---------------------------------------------------------------------------
 
 loc_14F4E:
-		bsr.w	j_ObjectMoveAndFall
+		jsrto	JmpTo_ObjectMoveAndFall
 		movea.l	objoff_3C(a0),a1
 		lea	(word_14FF4).l,a2
 		moveq	#0,d0

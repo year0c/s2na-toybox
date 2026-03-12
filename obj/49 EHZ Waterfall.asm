@@ -16,7 +16,7 @@ Obj49_Init:
 		addq.b	#2,obRoutine(a0)
 		move.l	#Map_Obj49,obMap(a0)
 		move.w	#make_art_tile(ArtTile_Waterfall,1,0),obGfx(a0)
-		bsr.w	j_Adjust2PArtPointer_0
+		jsrto	JmpTo_Adjust2PArtPointer
 		move.b	#4,obRender(a0)
 		move.b	#$20,obActWid(a0)
 		move.w	obX(a0),objoff_30(a0)
@@ -27,7 +27,7 @@ Obj49_Init:
 Obj49_Main:
 		tst.w	(Two_player_mode).w
 		bne.s	loc_156F6
-		out_of_range.w	j_DeleteObject_2
+		out_of_range.w	JmpTo3_DeleteObject
 
 loc_156F6:
 		move.w	obX(a0),d1
@@ -43,7 +43,7 @@ loc_156F6:
 		bhs.s	loc_15728
 		move.b	#1,obFrame(a0)
 		add.b	d3,obFrame(a0)
-		bra.w	loc_15868
+		jmpto	JmpTo3_DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_15728:
@@ -56,4 +56,9 @@ loc_15728:
 
 loc_1573A:
 		add.b	d3,obFrame(a0)
-		bra.w	loc_15868
+		jmpto	JmpTo3_DisplaySprite
+
+	if RemoveJmpTos
+JmpTo3_DeleteObject	; JmpTo
+		jmp	(DeleteObject).l
+	endif

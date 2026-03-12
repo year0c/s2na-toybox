@@ -37,7 +37,7 @@ Obj50_Init:
 		move.w	d0,objoff_32(a0)
 		move.w	d0,objoff_34(a0)
 		move.w	obY(a0),objoff_2A(a0)
-		bsr.w	j_FindFreeObj
+		jsrto	JmpTo_FindFreeObj
 		bne.s	loc_15FDA
 		_move.b	#id_Obj50,obID(a1)
 		move.b	#4,obRoutine(a1)
@@ -57,14 +57,14 @@ Obj50_Init:
 
 loc_15FDA:
 		lea	(Ani_Obj50).l,a1
-		bsr.w	j_AnimateSprite_3
+		jsrto	JmpTo4_AnimateSprite
 		move.w	#$39C,(v_waterpos1).w
 		moveq	#0,d0
 		move.b	ob2ndRout(a0),d0
 		move.w	Obj50_SubIndex(pc,d0.w),d1
 		jsr	Obj50_SubIndex(pc,d1.w)
 		bsr.w	sub_161D8
-		bra.w	loc_1677A
+		jmpto	JmpTo3_MarkObjGone
 ; ---------------------------------------------------------------------------
 Obj50_SubIndex:	dc.w loc_16046-Obj50_SubIndex
 		dc.w loc_16058-Obj50_SubIndex
@@ -75,26 +75,26 @@ loc_16006:
 		movea.l	objoff_36(a0),a1
 		; This check is made redundant by the one after it.
 		tst.b	obID(a1)
-		beq.w	loc_1676E
+		beq.w	JmpTo5_DeleteObject
 		cmpi.b	#id_Obj50,obID(a1)
-		bne.w	loc_1676E
+		bne.w	JmpTo5_DeleteObject
 		btst	#7,obStatus(a1)
-		bne.w	loc_1676E
+		bne.w	JmpTo5_DeleteObject
 		lea	(Ani_Obj50).l,a1
-		bsr.w	j_AnimateSprite_3
-		bra.w	loc_16768
+		jsrto	JmpTo4_AnimateSprite
+		jmpto	JmpTo5_DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_16030:
 		bsr.w	loc_162FC
-		bsr.w	j_ObjectMove_4
+		jsrto	JmpTo5_ObjectMove
 		lea	(Ani_Obj50).l,a1
-		bsr.w	j_AnimateSprite_3
-		bra.w	loc_1677A
+		jsrto	JmpTo4_AnimateSprite
+		jmpto	JmpTo3_MarkObjGone
 ; ---------------------------------------------------------------------------
 
 loc_16046:
-		bsr.w	j_ObjectMove_4
+		jsrto	JmpTo5_ObjectMove
 		bsr.w	sub_162DE
 		bsr.w	sub_16184
 		bsr.w	sub_1611C
@@ -102,14 +102,14 @@ loc_16046:
 ; ---------------------------------------------------------------------------
 
 loc_16058:
-		bsr.w	j_ObjectMove_4
+		jsrto	JmpTo5_ObjectMove
 		bsr.w	sub_162DE
 		bsr.w	sub_161A6
 		rts
 ; ---------------------------------------------------------------------------
 
 loc_16066:
-		bsr.w	j_ObjectMoveAndFall_2
+		jsrto	JmpTo4_ObjectMoveAndFall
 		bsr.w	sub_162DE
 		bsr.w	sub_16078
 		bsr.w	sub_160F4
@@ -130,7 +130,7 @@ locret_16084:
 
 loc_16086:
 		st	objoff_2D(a0)
-		bsr.w	j_FindFreeObj
+		jsrto	JmpTo_FindFreeObj
 		bne.s	locret_160F2
 		_move.b	#id_Obj50,obID(a1)
 		move.b	#6,obRoutine(a1)
@@ -296,11 +296,11 @@ loc_16208:
 ; ---------------------------------------------------------------------------
 
 Obj50_Routine08:
-		bsr.w	j_ObjectMoveAndFall_2
+		jsrto	JmpTo4_ObjectMoveAndFall
 		bsr.w	sub_16228
 		lea	(Ani_Obj50).l,a1
-		bsr.w	j_AnimateSprite_3
-		bra.w	loc_1677A
+		jsrto	JmpTo4_AnimateSprite
+		jmpto	JmpTo3_MarkObjGone
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -317,7 +317,7 @@ sub_16228:
 
 loc_16242:
 		subi.b	#1,obColProp(a0)
-		beq.w	loc_1676E
+		beq.w	JmpTo5_DeleteObject
 		rts
 ; End of function sub_16228
 
@@ -328,7 +328,7 @@ Obj50_Routine0A:
 		tst.b	ob2ndRout(a0)
 		beq.s	locret_1628E
 		subi.w	#1,objoff_2C(a0)
-		beq.w	loc_1676E
+		beq.w	JmpTo5_DeleteObject
 		move.w	(v_player+obX).w,obX(a0)
 		move.w	(v_player+obY).w,obY(a0)
 		addi.w	#$C,obY(a0)
@@ -344,8 +344,8 @@ locret_1628E:
 
 loc_16290:
 		lea	(Ani_Obj50).l,a1
-		bsr.w	j_AnimateSprite_3
-		bra.w	loc_16768
+		jsrto	JmpTo4_AnimateSprite
+		jmpto	JmpTo5_DisplaySprite
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -393,7 +393,7 @@ loc_162FC:
 		moveq	#2,d3
 
 loc_16306:
-		bsr.w	j_FindFreeObj
+		jsrto	JmpTo_FindFreeObj
 		bne.s	loc_16378
 		_move.b	obID(a0),obID(a1)
 		move.b	#8,obRoutine(a1)
@@ -425,7 +425,7 @@ loc_16372:
 
 loc_16378:
 		dbf	d3,loc_16306
-		bsr.w	j_FindFreeObj
+		jsrto	JmpTo_FindFreeObj
 		bne.s	loc_1639A
 		_move.b	obID(a0),obID(a1)
 		move.b	#$A,obRoutine(a1)
@@ -433,7 +433,10 @@ loc_16378:
 		move.w	#make_art_tile(ArtTile_Aquis_Child,1,0),obGfx(a1)
 
 loc_1639A:
-		bra.w	loc_1676E
+	if RemoveJmpTos
+JmpTo5_DeleteObject	; JmpTo
+	endif
+		jmpto	JmpTo5_DeleteObject
 ; ---------------------------------------------------------------------------
 
 locret_1639E:

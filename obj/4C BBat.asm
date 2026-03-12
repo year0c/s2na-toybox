@@ -39,8 +39,8 @@ loc_16DA2:
 		jsr	Obj4C_SubIndex(pc,d1.w)
 		bsr.w	sub_16DC8
 		lea	(Ani_Obj4C).l,a1
-		bsr.w	j_AnimateSprite_6
-		bra.w	loc_171C4
+		jsrto	JmpTo7_AnimateSprite
+		jmpto	JmpTo5_MarkObjGone
 ; ---------------------------------------------------------------------------
 Obj4C_SubIndex:	dc.w loc_16F2E-Obj4C_SubIndex
 		dc.w loc_16F66-Obj4C_SubIndex
@@ -85,10 +85,10 @@ loc_16E10:
 		bsr.w	sub_16F0E
 		bsr.w	sub_16EB0
 		bsr.w	sub_16E30
-		bsr.w	j_ObjectMove_8
+		jsrto	JmpTo7_ObjectMove
 		lea	(Ani_Obj4C).l,a1
-		bsr.w	j_AnimateSprite_6
-		bra.w	loc_171C4
+		jsrto	JmpTo7_AnimateSprite
+		jmpto	JmpTo5_MarkObjGone
 ; ---------------------------------------------------------------------------
 		rts
 

@@ -31,7 +31,12 @@ Obj56_Animate:
 		move.b	#7,obTimeFrame(a0)
 		addq.b	#1,obFrame(a0)
 		cmpi.b	#7,obFrame(a0)
-		beq.w	loc_185DA
+		beq.w	JmpTo10_DeleteObject
 
 loc_184BA:
-		bra.w	loc_185D4
+		jmpto	JmpTo8_DisplaySprite
+
+	if RemoveJmpTos
+JmpTo10_DeleteObject	; JmpTo
+		jmp	(DeleteObject).l
+	endif

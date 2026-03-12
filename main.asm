@@ -2263,6 +2263,7 @@ Sega_WaitEnd:
 Sega_GoToTitleScreen:
 		move.b	#GameModeID_TitleScreen,(v_gamemode).w
 		rts
+; ===========================================================================
 
 		jmpTos0	; Empty
 
@@ -2290,7 +2291,7 @@ TitleScreen:
 		clearRAM v_objspace,v_objend
 		clearRAM v_levelvariables,v_levelvariables_end
 		clearRAM Camera_RAM,Camera_RAM_End
-		clearRAM v_palette_fading,v_palette_fading+16*4*2
+		clearRAM v_palette_fading,v_palette_fading_end
 		moveq	#palid_SonicTails,d0
 		bsr.w	PalLoad1
 		bsr.w	Pal_FadeFromBlack

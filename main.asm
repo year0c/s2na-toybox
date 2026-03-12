@@ -2686,13 +2686,13 @@ loc_3740:
 		beq.s	loc_3762
 		subq.w	#1,d0
 		bhs.s	loc_3762
-		moveq	#$4F,d0
+		moveq	#sfx__Last-$80,d0
 
 loc_3762:
 		btst	#bitR,d1
 		beq.s	loc_3772
 		addq.w	#1,d0
-		cmpi.w	#$50,d0
+		cmpi.w	#spec__First-$80,d0
 		blo.s	loc_3772
 		moveq	#0,d0
 

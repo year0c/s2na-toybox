@@ -15,8 +15,15 @@ off_9AB6:	dc.w loc_9B92-off_9AB6,loc_9CB8-off_9AB6,loc_9D12-off_9AB6
 		dc.w loc_9E0E-off_9AB6,loc_9E48-off_9AB6,loc_9EA2-off_9AB6
 		dc.w loc_9EC0-off_9AB6,loc_9EA2-off_9AB6,loc_9EC0-off_9AB6
 		dc.w loc_9EA2-off_9AB6,loc_9EFE-off_9AB6,loc_9E64-off_9AB6
-byte_9AE0:	dc.b   0,  5,  2,  3,  6,  3,  4,  5,  4,  1,  0,  1
-word_9AEC:	dc.w -$200
+byte_9AE0:
+		dc.b 0, 5
+		dc.b 2, 3
+		dc.b 6, 3
+		dc.b 4, 5
+		dc.b 4, 1
+		dc.b 0, 1
+word_9AEC:
+		dc.w -$200
 		dc.w -$400
 		dc.l Map_Obj28a
 		dc.w -$200
@@ -37,17 +44,29 @@ word_9AEC:	dc.w -$200
 		dc.w $FD80
 		dc.w $FC80
 		dc.l Map_Obj28b
-word_9B24:	dc.w $FBC0,$FC00,$FBC0,$FC00
-		dc.w $FBC0,$FC00,$FD00,$FC00
-		dc.w $FD00,$FC00,$FE80,$FD00
-		dc.w $FE80,$FD00,$FEC0,$FE80
-		dc.w $FE40,$FD00,$FE00,$FD00
-		dc.w $FD80,$FC80
-off_9B50:	dc.l Map_Obj28,Map_Obj28
-		dc.l Map_Obj28,Map_Obj28a
-		dc.l Map_Obj28a,Map_Obj28a
-		dc.l Map_Obj28a,Map_Obj28
-		dc.l Map_Obj28b,Map_Obj28
+word_9B24:
+		dc.w $FBC0, -$400
+		dc.w $FBC0, -$400
+		dc.w $FBC0, -$400
+		dc.w -$300, -$400
+		dc.w -$300, -$400
+		dc.w $FE80, -$300
+		dc.w $FE80, -$300
+		dc.w $FEC0, $FE80
+		dc.w $FE40, -$300
+		dc.w -$200, -$300
+		dc.w $FD80, $FC80
+off_9B50:
+		dc.l Map_Obj28
+		dc.l Map_Obj28
+		dc.l Map_Obj28
+		dc.l Map_Obj28a
+		dc.l Map_Obj28a
+		dc.l Map_Obj28a
+		dc.l Map_Obj28a
+		dc.l Map_Obj28
+		dc.l Map_Obj28b
+		dc.l Map_Obj28
 		dc.l Map_Obj28b
 word_9B7C:
 		dc.w make_art_tile(ArtTile_Ending_Flicky,0,0)

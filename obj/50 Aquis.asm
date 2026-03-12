@@ -73,6 +73,7 @@ Obj50_SubIndex:	dc.w loc_16046-Obj50_SubIndex
 
 loc_16006:
 		movea.l	objoff_36(a0),a1
+		; This check is made redundant by the one after it.
 		tst.b	obID(a1)
 		beq.w	loc_1676E
 		cmpi.b	#id_Obj50,obID(a1)

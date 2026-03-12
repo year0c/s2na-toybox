@@ -62,7 +62,7 @@ loc_18294:
 
 loc_182AC:
 		move.l	#Map_Obj55a,obMap(a1)
-		move.w	#make_art_tile($4D0,0,0),obGfx(a1)
+		move.w	#make_art_tile(ArtTile_ArtNem_EHZBoss+$10,0,0),obGfx(a1)
 		move.b	#1,obTimeFrame(a0)
 
 loc_182C0:
@@ -155,7 +155,7 @@ loc_183C6:
 loc_183D4:
 		addq.b	#2,obRoutine(a0)
 		move.l	#Map_Obj55b,obMap(a0)
-		move.w	#make_art_tile($4D8,0,0),obGfx(a0)
+		move.w	#make_art_tile(ArtTile_ArtNem_EHZBoss+$18,0,0),obGfx(a0)
 		move.b	#0,obFrame(a0)
 		move.b	#5,obTimeFrame(a0)
 		movea.l	objoff_34(a0),a1

@@ -106,7 +106,7 @@ loc_B130:
 
 Monitor_Shoes:
 		move.b	#1,(v_shoes).w
-		move.w	#60*20,(v_player+shoetime).w
+		move.w	#1200,(v_player+shoetime).w
 		move.w	#$C00,(Sonic_top_speed).w
 		move.w	#$18,(Sonic_acceleration).w
 		move.w	#$80,(Sonic_deceleration).w
@@ -123,7 +123,7 @@ Monitor_Shield:
 
 Monitor_Invincibility:
 		move.b	#1,(v_invinc).w
-		move.w	#60*20,(v_player+invtime).w
+		move.w	#1200,(v_player+invtime).w
 		move.b	#id_Obj38,(v_starsobj1).w
 		move.b	#1,(v_starsobj1+obAnim).w
 		tst.b	(f_lockscreen).w

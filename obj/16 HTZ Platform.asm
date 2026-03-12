@@ -78,7 +78,7 @@ Obj16_InitMove:
 		; This object does not work when being flipped horizontally.
 	endif
 		move.w	#$100,obVelY(a0)
-		move.w	#$A0,objoff_34(a0)
+		move.w	#160,objoff_34(a0)	; set wait time to 5.3 seconds
 
 locret_151BE:
 		rts

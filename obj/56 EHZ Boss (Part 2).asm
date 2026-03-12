@@ -15,7 +15,7 @@ Obj56_Index:	dc.w Obj56_Init-Obj56_Index
 Obj56_Init:
 		addq.b	#2,obRoutine(a0)
 		move.l	#Map_Obj56,obMap(a0)
-		move.w	#make_art_tile($5A0,0,0),obGfx(a0)
+		move.w	#make_art_tile(ArtTile_ArtNem_EggChoppers+$60,0,0),obGfx(a0)
 		move.b	#4,obRender(a0)
 		move.b	#1,obPriority(a0)
 		move.b	#0,obColType(a0)

@@ -1,6 +1,12 @@
 ; ---------------------------------------------------------------------------
 ; Object 4B - Buzzer from EHZ
 ; ---------------------------------------------------------------------------
+; OST Variables:
+Obj4B_parent		= objoff_2A	; long
+Obj4B_move_timer	= objoff_2E	; word
+Obj4B_turn_delay	= objoff_30	; word
+Obj4B_shooting_flag	= objoff_32	; byte
+Obj4B_shot_timer	= objoff_34	; word
 
 Obj4B:
 		moveq	#0,d0
@@ -22,10 +28,21 @@ Obj4B_Projectile:
 ; ===========================================================================
 ; loc_167BC:
 Obj4B_Flame:
-		movea.l	objoff_2A(a0),a1
+		movea.l	Obj4B_parent(a0),a1
+	if FixBugs
+		cmpi.b	#id_Obj4B,(a1)
+		bne.w	loc_16A74
+	else
+		; This check doesn't really work: it's possible for an object to be
+		; loaded into the parent's slot before this object can check if the
+		; slot is empty. In fact, it will always be immediately occupied by
+		; the explosion object. This defect causes the flame to linger for a
+		; while after the Buzzer is destroyed. A better way to do this check
+		; would be to check if the ID is equal to 'id_Obj4B'.
 		tst.b	(a1)
 		beq.w	loc_16A74
-		tst.w	objoff_30(a1)
+	endif
+		tst.w	Obj4B_turn_delay(a1)
 		bmi.s	loc_167CE
 		rts
 ; ---------------------------------------------------------------------------
@@ -67,10 +84,10 @@ Obj4B_Init:
 		move.b	obStatus(a0),obStatus(a1)
 		move.b	obRender(a0),obRender(a1)
 		move.b	#1,obAnim(a1)
-		move.l	a0,objoff_2A(a1)
+		move.l	a0,Obj4B_parent(a1)
 		move.w	obX(a0),obX(a1)
 		move.w	obY(a0),obY(a1)
-		move.w	#$100,objoff_2E(a0)
+		move.w	#$100,Obj4B_move_timer(a0)
 		move.w	#-$100,obVelX(a0)
 		btst	#0,obRender(a0)
 		beq.s	locret_1689E
@@ -95,33 +112,33 @@ Obj4B_Main_Index:	dc.w Obj4B_Roaming-Obj4B_Main_Index
 ; loc_168C0:
 Obj4B_Roaming:
 		bsr.w	Obj4B_ChkPlayers
-		subq.w	#1,objoff_30(a0)
-		move.w	objoff_30(a0),d0
+		subq.w	#1,Obj4B_turn_delay(a0)
+		move.w	Obj4B_turn_delay(a0),d0
 		cmpi.w	#15,d0
 		beq.s	Obj4B_TurnAround
 		tst.w	d0
 		bpl.s	locret_168E4
-		subq.w	#1,objoff_2E(a0)
+		subq.w	#1,Obj4B_move_timer(a0)
 		bgt.w	j_ObjectMove_5
-		move.w	#30,objoff_30(a0)
+		move.w	#30,Obj4B_turn_delay(a0)
 
 locret_168E4:
 		rts
 ; ---------------------------------------------------------------------------
 ; loc_168E6:
 Obj4B_TurnAround:
-		sf	objoff_32(a0)			; reenable shooting
+		sf	Obj4B_shooting_flag(a0)			; reenable shooting
 		neg.w	obVelX(a0)			; reverse movement direction
 		bchg	#0,obRender(a0)
 		bchg	#0,obStatus(a0)
-		move.w	#$100,objoff_2E(a0)
+		move.w	#$100,Obj4B_move_timer(a0)
 		rts
 
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
 
 ; sub_16902:
 Obj4B_ChkPlayers:
-		tst.b	objoff_32(a0)
+		tst.b	Obj4B_shooting_flag(a0)
 		bne.w	locret_1694E			; branch, if shooting is disabled
 		move.w	obX(a0),d0
 		sub.w	(v_player+obX).w,d0		; a1=character
@@ -148,10 +165,10 @@ Obj4B_PlayerIsLeft:
 		bne.s	locret_1694E			; branch, if object is facing left
 ; loc_1693A:
 Obj4B_ReadyToShoot:
-		st	objoff_32(a0)			; disable shooting
+		st	Obj4B_shooting_flag(a0)			; disable shooting
 		addq.b	#2,ob2ndRout(a0)		; => Obj4B_Shooting
 		move.b	#3,obAnim(a0)			; play shooting animation
-		move.w	#$32,objoff_34(a0)
+		move.w	#$32,Obj4B_shot_timer(a0)
 
 locret_1694E:
 		rts
@@ -160,10 +177,10 @@ locret_1694E:
 ; ===========================================================================
 ; loc_16950:
 Obj4B_Shooting:
-		move.w	objoff_34(a0),d0		; get timer value
+		move.w	Obj4B_shot_timer(a0),d0		; get timer value
 		subq.w	#1,d0				; decrement
 		blt.s	Obj4B_DoneShooting		; branch, if timer has expired
-		move.w	d0,objoff_34(a0)		; update timer value
+		move.w	d0,Obj4B_shot_timer(a0)		; update timer value
 		cmpi.w	#$14,d0				; has timer reached a certain value?
 		beq.s	Obj4B_ShootProjectile		; if yes, branch
 		rts

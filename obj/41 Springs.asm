@@ -16,12 +16,12 @@ loc_E1E0:
 		out_of_range.w	DeleteObject
 		bra.w	DisplaySprite
 ; ===========================================================================
-Obj41_Index:	dc.w Obj41_Init-Obj41_Index		; 0
-		dc.w Obj41_Up-Obj41_Index		; 2
-		dc.w Obj41_Horizontal-Obj41_Index	; 4
-		dc.w Obj41_Down-Obj41_Index		; 6
-		dc.w Obj41_DiagonallyUp-Obj41_Index	; 8
-		dc.w Obj41_DiagonallyDown-Obj41_Index	; $A
+Obj41_Index:	dc.w Obj41_Init-Obj41_Index
+		dc.w Obj41_Up-Obj41_Index
+		dc.w Obj41_Horizontal-Obj41_Index
+		dc.w Obj41_Down-Obj41_Index
+		dc.w Obj41_DiagonallyUp-Obj41_Index
+		dc.w Obj41_DiagonallyDown-Obj41_Index
 ; ============================================================================
 ; loc_E204:
 Obj41_Init:

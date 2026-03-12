@@ -1932,7 +1932,7 @@ Pal_Sega2:	binclude "palette/Sega2.bin"
 
 
 PalLoad1:
-		lea	(PalPointers).l,a1
+		lea	(Pal_Index).l,a1
 		lsl.w	#3,d0
 		adda.w	d0,a1
 		movea.l	(a1)+,a2
@@ -1951,7 +1951,7 @@ PalLoad1:
 
 
 PalLoad2:
-		lea	(PalPointers).l,a1
+		lea	(Pal_Index).l,a1
 		lsl.w	#3,d0
 		adda.w	d0,a1
 		movea.l	(a1)+,a2
@@ -1969,7 +1969,7 @@ PalLoad2:
 
 
 PalLoad3_Water:
-		lea	(PalPointers).l,a1
+		lea	(Pal_Index).l,a1
 		lsl.w	#3,d0
 		adda.w	d0,a1
 		movea.l	(a1)+,a2
@@ -1988,7 +1988,7 @@ PalLoad3_Water:
 
 
 PalLoad4_Water:
-		lea	(PalPointers).l,a1
+		lea	(Pal_Index).l,a1
 		lsl.w	#3,d0
 		adda.w	d0,a1
 		movea.l	(a1)+,a2
@@ -2004,7 +2004,7 @@ PalLoad4_Water:
 
 ; ===========================================================================
 
-		include	"_Include/Palette Pointers.asm"
+		include	"_Include/Palette Index.asm"
 
 ; ---------------------------------------------------------------------------
 ; Palette data

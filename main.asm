@@ -5437,7 +5437,7 @@ word_8648:	dc.w 4
 ; ---------------------------------------------------------------------------
 		nop
 
-		include	"obj/17 Spiked Pole Helix.asm"
+		include	"obj/S1/17 Spiked Pole Helix.asm"
 Map_Obj17:	include	"mappings/sprite/S1/Spiked Pole Helix.asm"
 
 		include	"obj/18 Platforms.asm"

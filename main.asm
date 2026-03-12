@@ -11378,8 +11378,6 @@ word_15B14:	dc.w 4
 		dc.w	 9,  $28,  $14,	   0		; 8
 		dc.w $FB01,  $30,  $18,	 $1A		; 12
 
-		align 4
-
 		jmpTos0	JmpTo_MarkObjGone,JmpTo_AnimateSprite,JmpTo2_ObjectMoveAndFall
 
 		include	"obj/52 Piranha.asm"
@@ -11406,8 +11404,6 @@ word_15D7A:	dc.w 1
 word_15D84:	dc.w 1
 		dc.w $F00F,  $30,  $18,$FFF0
 
-		align 4
-
 		jmpTos0	JmpTo2_MarkObjGone,JmpTo2_AnimateSprite,JmpTo3_ObjectMove
 
 		include	"obj/4F Redz.asm"
@@ -11422,8 +11418,6 @@ byte_15EBB:	dc.b   9,  0,  1,  2,  1,$FF
 ; Sprite mappings - Redz (dinosaur badnik) from HPZ
 ; ---------------------------------------------------------------------------
 Map_obj4F:	binclude	"mappings/sprite/obj4F.bin"
-
-		align 4
 
 		jmpTos0	JmpTo4_DisplaySprite,JmpTo4_DeleteObject,JmpTo3_AnimateSprite,JmpTo3_ObjectMoveAndFall,JmpTo4_ObjectMove
 
@@ -11530,8 +11524,6 @@ byte_169ED:	dc.b   9,  1,  1,  1,  1,  1,$FD,  0
 ; ---------------------------------------------------------------------------
 Map_obj4B:	binclude	"mappings/sprite/obj4B.bin"
 
-		align 4
-
 		jmpTos0	JmpTo6_DeleteObject,JmpTo_FindNextFreeObj,JmpTo5_AnimateSprite,JmpTo_Adjust2PArtPointer2,JmpTo_MarkObjGone_P1,JmpTo2_Adjust2PArtPointer,JmpTo6_ObjectMove
 
 		include	"obj/4A Octus.asm"
@@ -11589,8 +11581,6 @@ byte_16FE6:	dc.b   3, $A, $B, $C, $D, $E,$FF
 		even
 
 Map_Obj4C:	include	"mappings/sprite/obj4C.asm"
-
-		align 4
 
 		jmpTos0	JmpTo5_MarkObjGone,JmpTo7_AnimateSprite,JmpTo7_ObjectMove
 
@@ -11693,7 +11683,6 @@ byte_1757A:	dc.b   7,  0,$FF
 ; Sprite mappings
 ; ---------------------------------------------------------------------------
 Map_obj53:	binclude	"mappings/sprite/obj53.bin"
-		align 4
 
 		jmpTos0	JmpTo7_MarkObjGone,JmpTo9_AnimateSprite,JmpTo3_Adjust2PArtPointer,JmpTo9_ObjectMove
 

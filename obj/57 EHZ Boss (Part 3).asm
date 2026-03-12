@@ -207,7 +207,7 @@ sub_17A8C:
 		jsr	(QueueSound2).l
 
 loc_17AB6:
-		lea	(v_palette+$22).w,a1
+		lea	(v_palette_line_2+2).w,a1
 		moveq	#0,d0
 		tst.w	(a1)
 		bne.s	loc_17AC4

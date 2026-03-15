@@ -25,13 +25,13 @@ TouchResponse:
 	endif
 		bne.s	loc_19812
 		addi.w	#$C,d3
-		moveq	#$A,d5
+		moveq	#10,d5
 
 loc_19812:
-		move.w	#$10,d4
+		move.w	#16,d4
 		add.w	d5,d5
 		lea	(v_lvlobjspace).w,a1
-		move.w	#(v_lvlobjend-v_lvlobjspace)/object_size-1,d6
+		move.w	#bytesToXcnt(v_lvlobjend-v_lvlobjspace,object_size),d6
 
 loc_19820:
 		move.b	obColType(a1),d0
@@ -45,7 +45,8 @@ loc_19826:
 locret_19830:
 		rts
 ; ---------------------------------------------------------------------------
-Touch_Sizes:	dc.b $14,$14
+Touch_Sizes:
+		dc.b $14,$14
 		dc.b  $C,$14
 		dc.b $14, $C
 		dc.b   4,$10

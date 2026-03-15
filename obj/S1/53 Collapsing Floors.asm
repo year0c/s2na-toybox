@@ -29,7 +29,7 @@ loc_8D9C:
 		ori.b	#4,obRender(a0)
 		move.b	#4,obPriority(a0)
 		move.b	#7,objoff_38(a0)
-		move.b	#$44,obActWid(a0)
+		move.b	#68,obActWid(a0)
 
 loc_8DB4:
 		tst.b	objoff_3A(a0)
@@ -48,7 +48,7 @@ loc_8DC6:
 
 
 sub_8DD6:
-		move.w	#$20,d1
+		move.w	#32,d1
 		move.w	#8,d3
 		move.w	obX(a0),d4
 		bsr.w	sub_F78A

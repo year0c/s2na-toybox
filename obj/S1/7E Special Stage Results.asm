@@ -32,7 +32,7 @@ loc_BDAE:
 		lea	(S1Obj7E_Conf).l,a2
 		moveq	#3,d1
 		cmpi.w	#50,(v_rings).w
-		bcs.s	loc_BDC2
+		blo.s	loc_BDC2
 		addq.w	#1,d1
 
 loc_BDC2:

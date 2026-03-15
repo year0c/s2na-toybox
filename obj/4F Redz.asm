@@ -18,8 +18,8 @@ Obj4F_Init:
 		move.w	#make_art_tile(ArtTile_Redz,0,0),obGfx(a0)
 		move.b	#4,obRender(a0)
 		move.b	#4,obPriority(a0)
-		move.b	#$10,obActWid(a0)
-		move.b	#$10,obHeight(a0)
+		move.b	#16,obActWid(a0)
+		move.b	#16,obHeight(a0)
 		move.b	#6,obWidth(a0)
 		move.b	#$C,obColType(a0)
 		jsrto	JmpTo3_ObjectMoveAndFall

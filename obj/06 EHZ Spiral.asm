@@ -26,7 +26,7 @@ Obj06_Index:	dc.w Obj06_Init-Obj06_Index
 
 Obj06_Init:
 		addq.b	#2,obRoutine(a0)
-		move.b	#$D0,obActWid(a0)
+		move.b	#208,obActWid(a0)
 
 Obj06_Main:
 		lea	(v_player).w,a1
@@ -67,7 +67,7 @@ loc_149FE:
 		sub.w	obY(a0),d1
 		subi.w	#$10,d1
 		cmpi.w	#$30,d1
-		bcc.s	locret_14A54
+		bhs.s	locret_14A54
 		bsr.w	RideObject_SetRide
 		rts
 ; ---------------------------------------------------------------------------
@@ -95,7 +95,7 @@ loc_14A3E:
 		sub.w	obY(a0),d1
 		subi.w	#$10,d1
 		cmpi.w	#$30,d1
-		bcc.s	locret_14A54
+		bhs.s	locret_14A54
 		bsr.w	RideObject_SetRide
 
 locret_14A54:
@@ -109,7 +109,7 @@ loc_14A56:
 
 loc_14A5E:
 		cmpi.w	#$600,d0
-		bcs.s	loc_14A80
+		blo.s	loc_14A80
 		btst	#1,obStatus(a1)
 		bne.s	loc_14A80
 		move.w	obX(a1),d0
@@ -117,13 +117,13 @@ loc_14A5E:
 		addi.w	#$D0,d0
 		bmi.s	loc_14A80
 		cmpi.w	#$1A0,d0
-		bcs.s	loc_14A98
+		blo.s	loc_14A98
 
 loc_14A80:
 		bclr	#3,obStatus(a1)
 		bclr	d6,obStatus(a0)
-		move.b	#0,objoff_2C(a1)
-		move.b	#4,objoff_2D(a1)
+		move.b	#0,flips_remaining(a1)
+		move.b	#4,flip_speed(a1)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -141,6 +141,6 @@ loc_14A98:
 		move.w	d2,obY(a1)
 		lsr.w	#3,d0
 		andi.w	#$3F,d0
-		move.b	Obj06_PlayerAngleArray(pc,d0.w),objoff_27(a1)
+		move.b	Obj06_PlayerAngleArray(pc,d0.w),flip_angle(a1)
 		rts
 ; End of function sub_149BC

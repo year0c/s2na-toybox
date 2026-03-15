@@ -23,7 +23,7 @@ Obj16_Init:
 		; Bug: This does not correctly flip the object.
 		move.b	#4,obRender(a0)
 	endif
-		move.b	#$20,obActWid(a0)
+		move.b	#32,obActWid(a0)
 		move.b	#0,obFrame(a0)
 		move.b	#1,obPriority(a0)
 		move.w	obX(a0),objoff_30(a0)

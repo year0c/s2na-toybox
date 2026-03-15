@@ -19,7 +19,7 @@ Obj55_Init:
 		move.l	#Map_Obj55,obMap(a0)
 		move.w	#make_art_tile($400,1,0),obGfx(a0)
 		ori.b	#4,obRender(a0)
-		move.b	#$20,obActWid(a0)
+		move.b	#32,obActWid(a0)
 		move.b	#3,obPriority(a0)
 		move.b	#$F,obColType(a0)
 		move.b	#8,obColProp(a0)
@@ -40,7 +40,7 @@ loc_18230:
 		move.l	#Map_Obj55,obMap(a1)
 		move.w	#make_art_tile($400,0,0),obGfx(a1)
 		move.b	#4,obRender(a1)
-		move.b	#$20,obActWid(a1)
+		move.b	#32,obActWid(a1)
 		move.b	#3,obPriority(a1)
 		move.l	obX(a0),obX(a1)
 		move.l	obY(a0),obY(a1)
@@ -67,7 +67,7 @@ loc_182AC:
 
 loc_182C0:
 		move.b	#4,obRender(a1)
-		move.b	#$20,obActWid(a1)
+		move.b	#32,obActWid(a1)
 		move.b	#3,obPriority(a1)
 		move.l	obX(a0),obX(a1)
 		move.l	obY(a0),obY(a1)

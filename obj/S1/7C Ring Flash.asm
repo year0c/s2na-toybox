@@ -38,7 +38,7 @@ sub_AB98:
 		move.b	#1,obTimeFrame(a0)
 		addq.b	#1,obFrame(a0)
 		cmpi.b	#8,obFrame(a0)
-		bcc.s	loc_ABD8
+		bhs.s	loc_ABD8
 		cmpi.b	#3,obFrame(a0)
 		bne.s	locret_ABD6
 		movea.l	objoff_3C(a0),a1

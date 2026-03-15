@@ -1,7 +1,7 @@
 {
     "Flex": 2,
     "name": "Sonic 2 Nick Arcade",
-    "node": "5fb1ac1a-8426-4474-9f3e-823315616291",
+    "node": "2fc68e48-4170-4567-acb2-661fdb837f61",
     "objects": [
         {
             "name": "Common",
@@ -55,11 +55,148 @@
                         "label": ""
                     },
                     "uuid": "da472ab9-f363-45e6-8ee3-a83fd70d6d9c"
+                },
+                {
+                    "format": "Sonic 2.js",
+                    "name": "Collision Swapper",
+                    "palettes": [
+                        {
+                            "path": "palette\\EHZ.bin",
+                            "length": 1
+                        }
+                    ],
+                    "art": {
+                        "path": "art\\nemesis\\Ring.nem",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "mappings\\sprite\\obj03.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "c74e1acd-2fc6-4e48-8170-e567ecb2661f"
+                },
+                {
+                    "name": "Spikes",
+                    "palettes": [
+                        {
+                            "path": "palette\\EHZ.bin",
+                            "length": 1
+                        }
+                    ],
+                    "format": "Sonic 2.js",
+                    "art": {
+                        "path": "art\\nemesis\\Spikes.nem",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "mappings\\sprite\\obj36.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "e1fc295d-c1c7-4e1a-8d2f-c68e484170e5"
+                },
+                {
+                    "format": "Sonic 2.js",
+                    "name": "Signpost",
+                    "palettes": [
+                        {
+                            "path": "palette\\Sonic and Tails.bin",
+                            "length": 1
+                        }
+                    ],
+                    "art": {
+                        "path": "art\\nemesis\\Signpost.nem",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "mappings\\sprite\\obj0D.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "4e1acd2f-c68e-4841-b0e5-67ecb2661fdb"
+                },
+                {
+                    "format": "Sonic 2.js",
+                    "name": "Monitor",
+                    "palettes": [
+                        {
+                            "path": "palette\\Sonic and Tails.bin",
+                            "length": 1
+                        },
+                        {
+                            "path": "palette\\EHZ.bin",
+                            "length": 1
+                        }
+                    ],
+                    "art": {
+                        "path": "art\\nemesis\\Monitor and contents.nem",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "mappings\\sprite\\obj26.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "1acd2fc6-8e48-4170-a567-ecb2661fdb83"
                 }
             ],
             "isDirectory": true,
             "expanded": true,
             "uuid": "14da472a-b9f3-4355-a6ce-e3a83fd70d6d"
+        },
+        {
+            "name": "Emerald Hill Zone",
+            "children": [
+                {
+                    "format": "Sonic 2.js",
+                    "name": "Snail Enemy",
+                    "palettes": [
+                        {
+                            "path": "palette\\Sonic and Tails.bin",
+                            "length": 1
+                        }
+                    ],
+                    "art": {
+                        "path": "art\\nemesis\\Snail badnik from EHZ.nem",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "mappings\\sprite\\obj54.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "2fc68e48-4170-4567-acb2-661fdb837f61"
+                }
+            ],
+            "isDirectory": true,
+            "expanded": true,
+            "uuid": "47a9f390-7a49-4c62-8b74-9227f2274944"
         }
     ]
 }

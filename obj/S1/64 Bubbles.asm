@@ -27,7 +27,7 @@ Bub_Main:	; Routine 0
 		move.w	#make_art_tile(ArtTile_LZ_Bubbles,0,1),obGfx(a0)
 		bsr.w	Adjust2PArtPointer
 		move.b	#$84,obRender(a0)
-		move.b	#$10,obActWid(a0)
+		move.b	#16,obActWid(a0)
 		move.b	#1,obPriority(a0)
 		move.b	obSubtype(a0),d0 ; get bubble type
 		bpl.s	.bubble		; if type is $0-$7F, branch
@@ -95,7 +95,7 @@ Bub_ChkWater:	; Routine 4
 		btst	#2,obStatus(a1)
 		beq.w	.burst
 		bclr	#2,obStatus(a1)
-		move.b	#$13,obHeight(a1)
+		move.b	#19,obHeight(a1)
 		move.b	#9,obWidth(a1)
 		subq.w	#5,obY(a1)
 		bra.w	.burst

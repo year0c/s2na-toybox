@@ -105,6 +105,9 @@ obTopSolidBit:	equ $3E					; bit to check for top solidity (either $C or $E)
 obLRBSolidBit:	equ $3F					; bit to check for left/right/bottom solidity (either $D or $F)
 
 ; Object variables used by Sonic/Tails
+flip_angle:	equ $27 ; angle about the x axis (360 degrees = 256) (twist/tumble)
+flips_remaining: equ $2C ; number of flip revolutions remaining
+flip_speed:	equ $2D ; number of flip revolutions per frame / 256
 locktime:	equ $2E	; temporary D-Pad control lock timer (2 bytes)
 flashtime:	equ $30	; time between flashes after getting hit (2 bytes)
 invtime:	equ $32	; time left for invincibility (2 bytes)

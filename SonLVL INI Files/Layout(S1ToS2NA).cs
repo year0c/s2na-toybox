@@ -4,8 +4,8 @@ namespace SonicRetro.SonLVL.API.S2NA
 	{
 		private void ReadLayoutInternal(byte[] rawdata, ref ushort[,] layout)
 		{
-			int w = rawdata[0] * 4 + 1;
-			int h = rawdata[1] * 4 + 1;
+			int w = rawdata[0] + 1;
+			int h = rawdata[1] + 1;
 			layout = new ushort[w, h];
 			for (int lr = 0; lr < h; lr++)
 				for (int lc = 0; lc < w; lc++)

@@ -23,7 +23,7 @@ loc_1653E:
 		ori.b	#4,obRender(a0)
 		move.b	#$A,obColType(a0)
 		move.b	#4,obPriority(a0)
-		move.b	#$10,obActWid(a0)
+		move.b	#16,obActWid(a0)
 		move.b	#6,obAnim(a0)
 		move.b	obSubtype(a0),d0
 		andi.w	#$F,d0

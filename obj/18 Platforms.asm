@@ -10,11 +10,12 @@ Obj18_Index:	dc.w loc_882C-Obj18_Index
 		dc.w loc_88A2-Obj18_Index
 		dc.w loc_8908-Obj18_Index
 		dc.w loc_88E0-Obj18_Index
-Obj18_Conf:	dc.b $20, 0
-		dc.b $20, 1
-		dc.b $20, 2
-		dc.b $40, 3
-		dc.b $30, 4
+Obj18_Conf:
+		dc.b 32, 0
+		dc.b 32, 1
+		dc.b 32, 2
+		dc.b 64, 3
+		dc.b 48, 4
 ; ---------------------------------------------------------------------------
 
 loc_882C:
@@ -200,7 +201,7 @@ loc_89C6:
 		bne.s	loc_89DC
 		btst	#3,obStatus(a0)
 		beq.s	locret_89DA
-		move.w	#$1E,objoff_3A(a0)
+		move.w	#30,objoff_3A(a0)
 
 locret_89DA:
 		rts
@@ -209,7 +210,7 @@ locret_89DA:
 loc_89DC:
 		subq.w	#1,objoff_3A(a0)
 		bne.s	locret_89DA
-		move.w	#$20,objoff_3A(a0)
+		move.w	#32,objoff_3A(a0)
 		addq.b	#1,obSubtype(a0)
 		rts
 ; ---------------------------------------------------------------------------
@@ -259,7 +260,7 @@ loc_8A5C:
 		lsr.w	#4,d0
 		tst.b	(a2,d0.w)
 		beq.s	locret_8A7A
-		move.w	#$3C,objoff_3A(a0)
+		move.w	#60,objoff_3A(a0)
 
 locret_8A7A:
 		rts

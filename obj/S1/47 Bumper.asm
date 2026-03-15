@@ -18,7 +18,7 @@ Bump_Main:	; Routine 0
 		move.w	#make_art_tile(ArtTile_SYZ_Bumper,0,0),obGfx(a0)
 		bsr.w	Adjust2PArtPointer
 		move.b	#4,obRender(a0)
-		move.b	#$10,obActWid(a0)
+		move.b	#16,obActWid(a0)
 		move.b	#1,obPriority(a0)
 		move.b	#$D7,obColType(a0)
 

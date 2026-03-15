@@ -21,10 +21,10 @@ Obj40_Init:
 		bsr.w	Adjust2PArtPointer
 		move.b	#4,obRender(a0)
 		move.b	#4,obPriority(a0)
-		move.b	#$14,obActWid(a0)
+		move.b	#20,obActWid(a0)
 		tst.b	obAnim(a0)
 		bne.s	Obj40_Smoke
-		move.b	#$E,obHeight(a0)
+		move.b	#14,obHeight(a0)
 		move.b	#8,obWidth(a0)
 		move.b	#$C,obColType(a0)
 		bsr.w	ObjectMoveAndFall
@@ -98,7 +98,7 @@ locret_F354:
 ; loc_F356:
 Obj40_StopMoving:
 		subq.b	#2,ob2ndRout(a0)
-		move.w	#59,objoff_30(a0)
+		move.w	#60-1,objoff_30(a0)
 		move.w	#0,obVelX(a0)
 		move.b	#0,obAnim(a0)
 		rts

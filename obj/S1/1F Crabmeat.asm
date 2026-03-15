@@ -26,7 +26,7 @@ crab_mode = objoff_32
 ; ===========================================================================
 
 Crab_Main:	; Routine 0
-		move.b	#$10,obHeight(a0)
+		move.b	#16,obHeight(a0)
 		move.b	#8,obWidth(a0)
 		move.l	#Map_obj1F,obMap(a0)
 		move.w	#make_art_tile(ArtTile_Crabmeat,0,0),obGfx(a0)
@@ -34,7 +34,7 @@ Crab_Main:	; Routine 0
 		move.b	#4,obRender(a0)
 		move.b	#3,obPriority(a0)
 		move.b	#6,obColType(a0)
-		move.b	#$15,obActWid(a0)
+		move.b	#21,obActWid(a0)
 		bsr.w	ObjectMoveAndFall
 		jsr	(ObjHitFloor).l	; find floor
 		tst.w	d1
@@ -71,7 +71,7 @@ Crab_Action:	; Routine 2
 
 .movecrab:
 		addq.b	#2,ob2ndRout(a0)
-		move.w	#127,crab_timedelay(a0) ; set time delay to approx 2 seconds
+		move.w	#128-1,crab_timedelay(a0) ; set time delay to approx 2 seconds
 		move.w	#$80,obVelX(a0)	; move Crabmeat	to the right
 		bsr.w	Crab_SetAni
 		addq.b	#3,d0
@@ -86,7 +86,7 @@ Crab_Action:	; Routine 2
 ; ===========================================================================
 
 .fire:
-		move.w	#59,crab_timedelay(a0)
+		move.w	#60-1,crab_timedelay(a0)
 		move.b	#6,obAnim(a0)	; use firing animation
 		bsr.w	FindFreeObj
 		bne.s	.failleft
@@ -144,7 +144,7 @@ loc_9654:
 
 loc_966E:
 		subq.b	#2,ob2ndRout(a0)
-		move.w	#59,crab_timedelay(a0)
+		move.w	#60-1,crab_timedelay(a0)
 		move.w	#0,obVelX(a0)
 		bsr.w	Crab_SetAni
 		move.b	d0,obAnim(a0)

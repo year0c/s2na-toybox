@@ -24,23 +24,23 @@ Obj01_Index:	dc.w Obj01_Init-Obj01_Index
 ; Obj01_Main:
 Obj01_Init:
 		addq.b	#2,obRoutine(a0)		; => Obj01_Control
-		move.b	#$13,obHeight(a0)		; this sets Sonic's collision height (2*pixels)
+		move.b	#19,obHeight(a0)		; this sets Sonic's collision height (2*pixels)
 		move.b	#9,obWidth(a0)
 		move.l	#Map_Sonic,obMap(a0)
 		move.w	#make_art_tile(ArtTile_Sonic,0,0),obGfx(a0)
 		bsr.w	Adjust2PArtPointer
 		move.b	#2,obPriority(a0)
-		move.b	#$18,obActWid(a0)
+		move.b	#24,obActWid(a0)
 		move.b	#4,obRender(a0)
 		move.w	#$600,(Sonic_top_speed).w	; set Sonic's top speed
 		move.w	#$C,(Sonic_acceleration).w	; set Sonic's acceleration
 		move.w	#$80,(Sonic_deceleration).w	; set Sonic's deceleration
 		move.b	#$C,top_solid_bit(a0)
 		move.b	#$D,lrb_solid_bit(a0)
-		move.b	#0,objoff_2C(a0)
-		move.b	#4,objoff_2D(a0)
+		move.b	#0,flips_remaining(a0)
+		move.b	#4,flip_speed(a0)
 		move.w	#0,(Sonic_Pos_Record_Index).w
-		move.w	#$40-1,d2
+		move.w	#bytesToWcnt($80),d2
 
 loc_FA88:
 		bsr.w	Sonic_RecordPos
@@ -994,7 +994,7 @@ loc_1023A:
 
 Obj01_DoRoll:
 		bset	#2,obStatus(a0)
-		move.b	#$E,obHeight(a0)
+		move.b	#14,obHeight(a0)
 		move.b	#7,obWidth(a0)
 		move.b	#2,obAnim(a0)
 		addq.w	#5,obY(a0)
@@ -1045,11 +1045,11 @@ loc_102AA:
 		clr.b	sticktoconvex(a0)
 		move.w	#sfx_Jump,d0
 		jsr	(QueueSound2).l
-		move.b	#$13,obHeight(a0)
+		move.b	#19,obHeight(a0)
 		move.b	#9,obWidth(a0)
 		btst	#2,obStatus(a0)
 		bne.s	loc_1031E
-		move.b	#$E,obHeight(a0)
+		move.b	#14,obHeight(a0)
 		move.b	#7,obWidth(a0)
 		move.b	#AniIDSonAni_Roll,obAnim(a0)
 		bset	#2,obStatus(a0)
@@ -1128,7 +1128,7 @@ Sonic_UpdateSpindash:
 		bne.s	Sonic_ChargingSpindash
 
 		; unleash the charged spindash and start rolling quickly:
-		move.b	#$E,obHeight(a0)
+		move.b	#14,obHeight(a0)
 		move.b	#7,obWidth(a0)
 		move.b	#AniIDSonAni_Roll,obAnim(a0)
 		addq.w	#5,obY(a0)			; add the difference between Sonic's rolling and standing heights
@@ -1290,16 +1290,16 @@ loc_104B8:
 		move.b	d0,obAngle(a0)
 
 loc_104BC:
-		move.b	objoff_27(a0),d0
+		move.b	flip_angle(a0),d0
 		beq.s	locret_104FA
 		tst.w	obInertia(a0)
 		bmi.s	loc_104E0
-		move.b	objoff_2D(a0),d1
+		move.b	flip_speed(a0),d1
 		add.b	d1,d0
 		bhs.s	loc_104DE
-		subq.b	#1,objoff_2C(a0)
+		subq.b	#1,flips_remaining(a0)
 		bhs.s	loc_104DE
-		move.b	#0,objoff_2C(a0)
+		move.b	#0,flips_remaining(a0)
 		moveq	#0,d0
 
 loc_104DE:
@@ -1307,16 +1307,16 @@ loc_104DE:
 ; ---------------------------------------------------------------------------
 
 loc_104E0:
-		move.b	objoff_2D(a0),d1
+		move.b	flip_speed(a0),d1
 		sub.b	d1,d0
 		bhs.s	loc_104F6
-		subq.b	#1,objoff_2C(a0)
+		subq.b	#1,flips_remaining(a0)
 		bhs.s	loc_104F6
-		move.b	#0,objoff_2C(a0)
+		move.b	#0,flips_remaining(a0)
 		moveq	#0,d0
 
 loc_104F6:
-		move.b	d0,objoff_27(a0)
+		move.b	d0,flip_angle(a0)
 
 locret_104FA:
 		rts
@@ -1546,7 +1546,7 @@ loc_10712:
 		btst	#2,obStatus(a0)
 		beq.s	loc_10748
 		bclr	#2,obStatus(a0)
-		move.b	#$13,obHeight(a0)
+		move.b	#19,obHeight(a0)
 		move.b	#9,obWidth(a0)
 		move.b	#AniIDSonAni_Walk,obAnim(a0)
 		subq.w	#5,obY(a0)
@@ -1554,7 +1554,7 @@ loc_10712:
 loc_10748:
 		move.b	#0,jumping(a0)
 		move.w	#0,(v_itembonus).w
-		move.b	#0,objoff_27(a0)
+		move.b	#0,flip_angle(a0)
 		rts
 ; End of function Sonic_ResetOnFloor
 
@@ -1797,7 +1797,7 @@ loc_1095C:
 		addq.b	#1,d0
 		bne.w	loc_10A44
 		moveq	#0,d0
-		move.b	objoff_27(a0),d0
+		move.b	flip_angle(a0),d0
 		bne.w	loc_109EA
 		moveq	#0,d1
 		move.b	obAngle(a0),d0
@@ -1851,7 +1851,7 @@ loc_109D8:
 ; ---------------------------------------------------------------------------
 
 loc_109EA:
-		move.b	objoff_27(a0),d0
+		move.b	flip_angle(a0),d0
 		moveq	#0,d1
 		move.b	obStatus(a0),d2
 		andi.b	#1,d2

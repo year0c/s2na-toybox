@@ -11,12 +11,12 @@ Obj36:
 Obj36_Index:	dc.w loc_C682-Obj36_Index
 		dc.w loc_C6CE-Obj36_Index
 Obj36_Conf:
-		dc.b 0,$10
-		dc.b 0,$10
-		dc.b 0,$10
-		dc.b 0,$10
-		dc.b 0,$10
-		dc.b 0,$10
+		dc.b 0,16	; 0
+		dc.b 0,16	; 1
+		dc.b 0,16	; 2
+		dc.b 0,16	; 3
+		dc.b 0,16	; 4
+		dc.b 0,16	; 5
 ; ---------------------------------------------------------------------------
 
 loc_C682:
@@ -41,26 +41,26 @@ loc_C6CE:
 		bsr.w	sub_C788
 		move.w	#4,d2
 		cmpi.b	#5,obFrame(a0)
-		beq.s	loc_C6EA
+		beq.s	Spik_SideWays
 		cmpi.b	#1,obFrame(a0)
-		bne.s	loc_C70C
+		bne.s	Spik_Upright
 		move.w	#$14,d2
 
-loc_C6EA:
+Spik_SideWays:
 		move.w	#$1B,d1
 		move.w	d2,d3
 		addq.w	#1,d3
 		move.w	obX(a0),d4
 		bsr.w	SolidObject
 		btst	#3,obStatus(a0)
-		bne.s	loc_C766
+		bne.s	Spik_Display
 		swap	d6
 		andi.w	#3,d6
 		bne.s	loc_C736
-		bra.s	loc_C766
+		bra.s	Spik_Display
 ; ---------------------------------------------------------------------------
 
-loc_C70C:
+Spik_Upright:
 		moveq	#0,d1
 		move.b	obActWid(a0),d1
 		addi.w	#$B,d1
@@ -70,13 +70,30 @@ loc_C70C:
 		bsr.w	SolidObject
 		btst	#3,obStatus(a0)
 		bne.s	loc_C736
+	if FixBugs
+		; Spikes that are upside-down normally do not work as intended.
+		btst	#1,obRender(a0)	; are spikes upside-down?
+		beq.s	.upright	; if not, branch
+		swap	d6
+		andi.w	#$C,d6
+		beq.s	Spik_Display
+		bra.s	loc_C736
+
+.upright:
+	endif
 		swap	d6
 		andi.w	#$C0,d6
-		beq.s	loc_C766
+		beq.s	Spik_Display
 
 loc_C736:
 		tst.b	(v_invinc).w
-		bne.s	loc_C766
+		bne.s	Spik_Display
+	if FixBugs
+		; (Proper) Spike Bug Fix
+		; https://info.sonicretro.org/SCHG_How-to:Change_Spike_behavior_in_Sonic_1
+		tst.w	(v_player+flashtime).w	; is Sonic invulnerable?
+		bne.s	Spik_Display		; if yes, branch
+	endif
 		move.l	a0,-(sp)
 		movea.l	a0,a2
 		lea	(v_player).w,a0
@@ -93,7 +110,7 @@ loc_C736:
 loc_C764:
 		movea.l	(sp)+,a0
 
-loc_C766:
+Spik_Display:
 		tst.w	(Two_player_mode).w
 		beq.s	loc_C770
 		bra.w	DisplaySprite

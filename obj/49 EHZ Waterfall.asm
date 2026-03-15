@@ -18,10 +18,10 @@ Obj49_Init:
 		move.w	#make_art_tile(ArtTile_Waterfall,1,0),obGfx(a0)
 		jsrto	JmpTo_Adjust2PArtPointer
 		move.b	#4,obRender(a0)
-		move.b	#$20,obActWid(a0)
+		move.b	#32,obActWid(a0)
 		move.w	obX(a0),objoff_30(a0)
 		move.b	#0,obPriority(a0)
-		move.b	#$80,obHeight(a0)
+		move.b	#128,obHeight(a0)
 		bset	#4,obRender(a0)
 
 Obj49_Main:

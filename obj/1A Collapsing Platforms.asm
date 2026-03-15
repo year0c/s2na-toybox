@@ -23,7 +23,7 @@ loc_8C58:
 		move.l	#Map_Obj1A_HPZ,obMap(a0)
 		move.w	#$434A,obGfx(a0)
 		bsr.w	Adjust2PArtPointer
-		move.b	#$30,obActWid(a0)
+		move.b	#48,obActWid(a0)
 		move.l	#Obj1A_Conf_HPZ,objoff_3C(a0)
 		bra.s	loc_8CCA
 ; ---------------------------------------------------------------------------
@@ -31,16 +31,16 @@ loc_8C58:
 loc_8CB0:
 		move.l	#Obj1A_Conf,objoff_3C(a0)
 	if FixBugs
-		move.b	#$30,obActWid(a0)
+		move.b	#48,obActWid(a0)
 	else
 		; This is too wide, causing the player to teleport downwards when
-		; running off the platform. Sonic 1 used a width of $30 for the
-		; collision and $64 for obActWid, but in Sonic 2 they must be
-		; the same. $64 seems to be overkill, as $30 still results in good
+		; running off the platform. Sonic 1 used a width of 48 for the
+		; collision and 100 for obActWid, but in Sonic 2 they must be
+		; the same. 100 seems to be overkill, as 48 still results in good
 		; sprite culling.
-		move.b	#$34,obActWid(a0)
+		move.b	#52,obActWid(a0)
 	endif
-		move.b	#$38,obHeight(a0)
+		move.b	#56,obHeight(a0)
 		bset	#4,obRender(a0)
 
 loc_8CCA:

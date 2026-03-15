@@ -68,7 +68,11 @@ Obj22_LoadMissile:
 		addi.w	#$1C,obY(a1)
 		move.w	#$200,obVelY(a1)
 		move.w	#$200,obVelX(a1)
+	if FixBugs
+		move.w	#$14,d0
+	else
 		move.w	#$18,d0
+	endif
 		btst	#0,obStatus(a0)
 		bne.s	loc_A4D8
 		neg.w	d0

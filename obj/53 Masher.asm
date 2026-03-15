@@ -21,7 +21,7 @@ Obj53_Init:
 		move.b	#4,obRender(a0)
 		move.b	#4,obPriority(a0)
 		move.b	#9,obColType(a0)
-		move.b	#$10,obActWid(a0)
+		move.b	#16,obActWid(a0)
 		move.w	#-$400,obVelY(a0)
 		move.w	obY(a0),objoff_30(a0)
 

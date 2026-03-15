@@ -17,14 +17,14 @@ Obj26_Index:	dc.w loc_AE70-Obj26_Index
 
 loc_AE70:
 		addq.b	#2,obRoutine(a0)
-		move.b	#$E,obHeight(a0)
-		move.b	#$E,obWidth(a0)
+		move.b	#14,obHeight(a0)
+		move.b	#14,obWidth(a0)
 		move.l	#Map_Obj26,obMap(a0)
 		move.w	#make_art_tile(ArtTile_Monitor,0,0),obGfx(a0)
 		bsr.w	Adjust2PArtPointer
 		move.b	#4,obRender(a0)
 		move.b	#3,obPriority(a0)
-		move.b	#$F,obActWid(a0)
+		move.b	#15,obActWid(a0)
 		lea	(v_objstate).w,a2
 		moveq	#0,d0
 		move.b	obRespawnNo(a0),d0

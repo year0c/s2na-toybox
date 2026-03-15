@@ -25,7 +25,7 @@ loc_AA88:
 		cmpi.b	#6,(v_emeralds).w
 		beq.w	loc_AB38
 		cmpi.w	#50,(v_rings).w
-		bcc.s	loc_AAC0
+		bhs.s	loc_AAC0
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -52,7 +52,7 @@ loc_AAF4:
 		move.l	a0,objoff_3C(a1)
 		move.w	(v_player+obX).w,d0
 		cmp.w	obX(a0),d0
-		bcs.s	loc_AB2C
+		blo.s	loc_AB2C
 		bset	#0,obRender(a1)
 
 loc_AB2C:

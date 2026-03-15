@@ -18,7 +18,7 @@ Obj38_Init:
 		move.l	#Map_obj38,obMap(a0)
 		move.b	#4,obRender(a0)
 		move.b	#1,obPriority(a0)
-		move.b	#$18,obActWid(a0)
+		move.b	#24,obActWid(a0)
 		tst.b	obAnim(a0)			; is this the shield?
 		bne.s	loc_1240C			; if not, branch
 		move.w	#make_art_tile(ArtTile_Shield,0,0),obGfx(a0)

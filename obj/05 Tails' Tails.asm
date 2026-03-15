@@ -19,7 +19,7 @@ Obj05_Init:
 		move.w	#make_art_tile(ArtTile_TailsTails,0,0),obGfx(a0)
 		bsr.w	Adjust2PArtPointer
 		move.b	#2,obPriority(a0)
-		move.b	#$18,obActWid(a0)
+		move.b	#24,obActWid(a0)
 		move.b	#4,obRender(a0)
 
 Obj05_Main:

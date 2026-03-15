@@ -11,11 +11,11 @@ Obj19:
 Obj19_Index:	dc.w Obj19_Init-Obj19_Index
 		dc.w Obj19_Main-Obj19_Index
 Obj19_WidthArray:
-		dc.b $20,0
-		dc.b $20,1
-		dc.b $20,2
-		dc.b $40,3
-		dc.b $30,4
+		dc.b 32,0
+		dc.b 32,1
+		dc.b 32,2
+		dc.b 64,3
+		dc.b 48,4
 ; ---------------------------------------------------------------------------
 
 Obj19_Init:

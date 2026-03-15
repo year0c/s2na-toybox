@@ -44,8 +44,8 @@ loc_16ADE:
 		ori.b	#4,obRender(a0)
 		move.b	#$A,obColType(a0)
 		move.b	#4,obPriority(a0)
-		move.b	#$10,obActWid(a0)
-		move.b	#$10,obHeight(a0)
+		move.b	#16,obActWid(a0)
+		move.b	#16,obHeight(a0)
 		move.b	#8,obWidth(a0)
 		jsrto	JmpTo5_ObjectMoveAndFall
 		jsr	(ObjHitFloor).l
@@ -119,7 +119,7 @@ loc_16BAA:
 		move.b	#4,obFrame(a1)
 		move.w	#make_art_tile(ArtTile_Octus_Child,1,0),obGfx(a1)
 		move.b	#3,obPriority(a1)
-		move.b	#$10,obActWid(a1)
+		move.b	#16,obActWid(a1)
 		move.w	obX(a0),obX(a1)
 		move.w	obY(a0),obY(a1)
 		move.w	#$1E,objoff_2C(a1)
@@ -134,7 +134,7 @@ loc_16C10:
 		move.l	#Map_Obj4A,obMap(a1)
 		move.w	#make_art_tile(ArtTile_Octus_Child,1,0),obGfx(a1)
 		move.b	#4,obPriority(a1)
-		move.b	#$10,obActWid(a1)
+		move.b	#16,obActWid(a1)
 		move.w	obX(a0),obX(a1)
 		move.w	obY(a0),obY(a1)
 		move.w	#$F,objoff_2C(a1)

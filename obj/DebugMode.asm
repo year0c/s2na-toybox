@@ -77,10 +77,10 @@ Debug_Control:
 		moveq	#0,d4
 		move.w	#1,d1
 		move.b	(v_jpadpress1).w,d4
-		andi.w	#btnUp|btnDn|btnL|btnR,d4
+		andi.w	#btnUp+btnDn+btnL+btnR,d4
 		bne.s	Debug_Move
 		move.b	(v_jpadhold1).w,d0
-		andi.w	#btnUp|btnDn|btnL|btnR,d0
+		andi.w	#btnUp+btnDn+btnL+btnR,d0
 		bne.s	Debug_ContinueMoving
 		move.b	#$C,(Debug_Accel_Timer).w
 		move.b	#$F,(Debug_Speed).w

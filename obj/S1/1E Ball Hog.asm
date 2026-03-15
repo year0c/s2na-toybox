@@ -15,7 +15,7 @@ hog_launchflag = objoff_32		; 0 to launch a cannonball
 ; ===========================================================================
 
 Hog_Main:	; Routine 0
-		move.b	#$13,obHeight(a0)
+		move.b	#19,obHeight(a0)
 		move.b	#8,obWidth(a0)
 		move.l	#Map_S1Obj1E,obMap(a0)
 		move.w	#make_art_tile(ArtTile_Ball_Hog,1,0),obGfx(a0)
@@ -23,7 +23,7 @@ Hog_Main:	; Routine 0
 		move.b	#4,obRender(a0)
 		move.b	#4,obPriority(a0)
 		move.b	#5,obColType(a0)
-		move.b	#$C,obActWid(a0)
+		move.b	#12,obActWid(a0)
 		bsr.w	ObjectMoveAndFall
 		jsr	(ObjHitFloor).l	; find floor
 		tst.w	d1

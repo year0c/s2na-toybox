@@ -69,9 +69,9 @@ Obj4B_Init:
 		ori.b	#4,obRender(a0)
 		move.b	#$A,obColType(a0)
 		move.b	#4,obPriority(a0)
-		move.b	#$10,obActWid(a0)
-		move.b	#$10,obHeight(a0)
-		move.b	#$18,obWidth(a0)
+		move.b	#16,obActWid(a0)
+		move.b	#16,obHeight(a0)
+		move.b	#24,obWidth(a0)
 		move.b	#3,obPriority(a0)
 		addq.b	#2,obRoutine(a0)		; => Obj4B_Main
 
@@ -85,7 +85,7 @@ Obj4B_Init:
 		move.w	#make_art_tile(ArtTile_Buzzer,0,0),obGfx(a1)
 		jsrto	JmpTo_Adjust2PArtPointer2
 		move.b	#4,obPriority(a1)
-		move.b	#$10,obActWid(a1)
+		move.b	#16,obActWid(a1)
 		move.b	obStatus(a0),obStatus(a1)
 		move.b	obRender(a0),obRender(a1)
 		move.b	#1,obAnim(a1)
@@ -141,7 +141,7 @@ Obj4B_TurnAround:
 		neg.w	obVelX(a0)			; reverse movement direction
 		bchg	#0,obRender(a0)
 		bchg	#0,obStatus(a0)
-		move.w	#$100,Obj4B_move_timer(a0)
+		move.w	#256,Obj4B_move_timer(a0)
 		rts
 
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
@@ -178,7 +178,7 @@ Obj4B_ReadyToShoot:
 		st	Obj4B_shooting_flag(a0)			; disable shooting
 		addq.b	#2,ob2ndRout(a0)		; => Obj4B_Shooting
 		move.b	#3,obAnim(a0)			; play shooting animation
-		move.w	#$32,Obj4B_shot_timer(a0)
+		move.w	#50,Obj4B_shot_timer(a0)
 
 locret_1694E:
 		rts
@@ -212,7 +212,7 @@ Obj4B_ShootProjectile:
 		jsrto	JmpTo_Adjust2PArtPointer2
 		move.b	#4,obPriority(a1)
 		move.b	#$98,obColType(a1)
-		move.b	#$10,obActWid(a1)
+		move.b	#16,obActWid(a1)
 		move.b	obStatus(a0),obStatus(a1)
 		move.b	obRender(a0),obRender(a1)
 		move.b	#2,obAnim(a1)

@@ -5687,6 +5687,7 @@ byte_9494:	dc.b   8,  3,  3,  4,  5,  5,  4,$FF
 byte_949C:	dc.b   5,  0,  0,  0,  1,  2,  3,  3
 		dc.b   2,  1,  2,  3,  3,  1,$FF
 		even
+
 Map_Obj1C_01:	include	"mappings/sprite/obj1C.asm"
 
 		include	"obj/S1/2A SBZ Small Door.asm"
@@ -6380,6 +6381,7 @@ Map_Obj36:	include	"mappings/sprite/obj36.asm"
 
 		include	"obj/S1/3B Purple Rock.asm"
 Map_Obj3B:	include	"mappings/sprite/S1/Purple Rock.asm"
+
 		jmpTos0	; Empty
 
 		include	"obj/S1/3C Smashable Wall.asm"
@@ -6888,7 +6890,7 @@ loc_CF36:
 DeleteObject:
 		movea.l	a0,a1
 ; sub_CF3C:
-DeleteObject2:
+DeleteChild:
 		moveq	#0,d1
 		moveq	#bytesToLcnt(object_size),d0	; we want to clear up to the next object
 		; delete the object by setting all of its bytes to 0
@@ -10156,7 +10158,7 @@ loc_F916:
 ; ===========================================================================
 
 loc_F954:
-		jsr	(Tails_ResetTailsOnFloor).l
+		jsr	(Tails_ResetOnFloor).l
 
 loc_F95A:
 		movea.l	(sp)+,a0
@@ -11659,7 +11661,7 @@ byte_1781C:	dc.b   1,  0,  1,$FF
 ; ---------------------------------------------------------------------------
 ; Sprite mappings
 ; ---------------------------------------------------------------------------
-Map_obj54:	binclude	"mappings/sprite/obj54.bin"
+Map_obj54:	include	"mappings/sprite/obj54.asm"
 
 		jmpTos0	JmpTo8_DeleteObject,JmpTo2_FindNextFreeObj,JmpTo10_AnimateSprite,JmpTo2_Adjust2PArtPointer2,JmpTo2_MarkObjGone_P1,JmpTo4_Adjust2PArtPointer,JmpTo7_ObjectMoveAndFall,JmpTo10_ObjectMove
 
@@ -11687,32 +11689,32 @@ word_18042:	dc.w 1
 		dc.w $D805,    0,    0,	   2
 word_1804C:	dc.w 5
 		dc.w $D805,    4,    2,	   2
-		dc.w $D80D,   $C,    6,	 $12		; 4
-		dc.w $D80D,   $C,    6,	 $32		; 8
-		dc.w $D80D,   $C,    6,$FFE2		; 12
-		dc.w $D80D,   $C,    6,$FFC2		; 16
+		dc.w $D80D,   $C,    6,	 $12
+		dc.w $D80D,   $C,    6,	 $32
+		dc.w $D80D,   $C,    6,$FFE2
+		dc.w $D80D,   $C,    6,$FFC2
 word_18076:	dc.w 5
 		dc.w $D805,    4,    2,	   2
-		dc.w $D80D,   $C,    6,	 $12		; 4
-		dc.w $D805,    8,    4,	 $32		; 8
-		dc.w $D80D,   $C,    6,$FFE2		; 12
-		dc.w $D805,    8,    4,$FFD2		; 16
+		dc.w $D80D,   $C,    6,	 $12
+		dc.w $D805,    8,    4,	 $32
+		dc.w $D80D,   $C,    6,$FFE2
+		dc.w $D805,    8,    4,$FFD2
 word_180A0:	dc.w 3
 		dc.w $D805,    4,    2,	   2
-		dc.w $D80D,   $C,    6,	 $12		; 4
-		dc.w $D80D,   $C,    6,$FFE2		; 8
+		dc.w $D80D,   $C,    6,	 $12
+		dc.w $D80D,   $C,    6,$FFE2
 word_180BA:	dc.w 3
 		dc.w $D805,    4,    2,	   2
-		dc.w $D805,    8,    4,	 $12		; 4
-		dc.w $D805,    8,    4,$FFF2		; 8
+		dc.w $D805,    8,    4,	 $12
+		dc.w $D805,    8,    4,$FFF2
 word_180D4:	dc.w 3
 		dc.w $D805,    0,    0,	   2
-		dc.w $D80D,   $C,    6,	 $12		; 4
-		dc.w $D80D,   $C,    6,	 $32		; 8
+		dc.w $D80D,   $C,    6,	 $12
+		dc.w $D80D,   $C,    6,	 $32
 word_180EE:	dc.w 3
 		dc.w $D805,    4,    2,	   2
-		dc.w $D80D,   $C,    6,$FFE2		; 4
-		dc.w $D80D,   $C,    6,$FFC2		; 8
+		dc.w $D80D,   $C,    6,$FFE2
+		dc.w $D80D,   $C,    6,$FFC2
 
 Ani_Obj58a:	dc.w byte_1810E-Ani_Obj58a
 		dc.w byte_18113-Ani_Obj58a
@@ -11733,8 +11735,8 @@ Map_Obj58a:	dc.w word_1812E-Map_Obj58a
 		dc.w word_1818E-Map_Obj58a
 word_1812E:	dc.w 3
 		dc.w $F00F,    0,    0,$FFD0
-		dc.w $F00F,  $10,    8,$FFF0		; 4
-		dc.w $F00F,  $20,  $10,	 $10		; 8
+		dc.w $F00F,  $10,    8,$FFF0
+		dc.w $F00F,  $20,  $10,	 $10
 word_18148:	dc.w 1
 		dc.w $F00F,  $30,  $18,$FFF0
 word_18152:	dc.w 1
@@ -11751,8 +11753,8 @@ word_18184:	dc.w 1
 		dc.w $F00F,$1070,$1038,$FFF0
 word_1818E:	dc.w 3
 		dc.w $F00F,$8000,$8000,$FFD0
-		dc.w $F00F,$8010,$8008,$FFF0		; 4
-		dc.w $F00F,$8020,$8010,	 $10		; 8
+		dc.w $F00F,$8010,$8008,$FFF0
+		dc.w $F00F,$8020,$8010,	 $10
 
 		jmpTos0	JmpTo7_DisplaySprite,JmpTo9_DeleteObject,JmpTo8_MarkObjGone,JmpTo3_FindNextFreeObj,JmpTo11_AnimateSprite,JmpTo8_ObjectMoveAndFall
 
@@ -11809,19 +11811,19 @@ Map_Obj55:	dc.w word_1856C-Map_Obj55
 		dc.w word_185B0-Map_Obj55
 word_1856C:	dc.w 4
 		dc.w $F805,    0,    0,$FFE0
-		dc.w  $805,    4,    2,$FFE0		; 4
-		dc.w $F80F,    8,    4,$FFF0		; 8
-		dc.w $F807,  $18,   $C,	 $10		; 12
+		dc.w  $805,    4,    2,$FFE0
+		dc.w $F80F,    8,    4,$FFF0
+		dc.w $F807,  $18,   $C,	 $10
 word_1858E:	dc.w 4
 		dc.w $E805,  $28,  $14,$FFE0
-		dc.w $E80D,  $30,  $18,$FFF0		; 4
-		dc.w $E805,  $24,  $12,	 $10		; 8
-		dc.w $D805,  $20,  $10,	   2		; 12
+		dc.w $E80D,  $30,  $18,$FFF0
+		dc.w $E805,  $24,  $12,	 $10
+		dc.w $D805,  $20,  $10,	   2
 word_185B0:	dc.w 4
 		dc.w $E805,  $28,  $14,$FFE0
-		dc.w $E80D,  $38,  $1C,$FFF0		; 4
-		dc.w $E805,  $24,  $12,	 $10		; 8
-		dc.w $D805,  $20,  $10,	   2		; 12
+		dc.w $E80D,  $38,  $1C,$FFF0
+		dc.w $E805,  $24,  $12,	 $10
+		dc.w $D805,  $20,  $10,	   2
 ; ---------------------------------------------------------------------------
 		jmpTos	JmpTo8_DisplaySprite,JmpTo10_DeleteObject
 

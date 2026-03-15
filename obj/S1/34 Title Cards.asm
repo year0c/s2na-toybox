@@ -60,7 +60,7 @@ Obj34_MakeSprite:
 		move.l	#Map_Obj34,obMap(a1)
 		move.w	#make_art_tile(ArtTile_Title_Card,0,1),obGfx(a1)
 		bsr.w	Adjust2PArtPointer2
-		move.b	#$78,obActWid(a1)
+		move.b	#120,obActWid(a1)
 		move.b	#0,obRender(a1)
 		move.b	#0,obPriority(a1)
 		move.w	#60,obTimeFrame(a1)
@@ -139,7 +139,8 @@ Obj34_ChangeArt:
 Obj34_Delete:
 		bra.w	DeleteObject
 ; ---------------------------------------------------------------------------
-Obj34_ItemData:	dc.w $D0
+Obj34_ItemData:
+		dc.w $D0
 		dc.b   2,  0
 		dc.w $E4
 		dc.b   2,  6
@@ -147,7 +148,8 @@ Obj34_ItemData:	dc.w $D0
 		dc.b   2,  7
 		dc.w $E0
 		dc.b   2, $A
-Obj34_Config:	dc.w	 0, $120,$FEFC,	$13C, $414, $154, $214,	$154
+Obj34_Config:
+		dc.w	 0, $120,$FEFC,	$13C, $414, $154, $214,	$154
 		dc.w	 0, $120,$FEF4,	$134, $40C, $14C, $20C,	$14C
 		dc.w	 0, $120,$FEE0,	$120, $3F8, $138, $1F8,	$138
 		dc.w	 0, $120,$FEFC,	$13C, $414, $154, $214,	$154

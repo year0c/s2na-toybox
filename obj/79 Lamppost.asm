@@ -25,6 +25,9 @@ Obj79_Init:
 		lea	(v_objstate).w,a2
 		moveq	#0,d0
 		move.b	obRespawnNo(a0),d0
+	if FixBugs
+		beq.s	Obj79_Main
+	endif
 		bclr	#7,2(a2,d0.w)
 		btst	#0,2(a2,d0.w)
 		bne.s	loc_13536

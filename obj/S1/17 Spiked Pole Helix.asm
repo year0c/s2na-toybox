@@ -78,7 +78,7 @@ loc_8766:
 		lea	obSubtype(a0),a2
 		move.b	(a2)+,d2
 		subq.b	#2,d2
-		bcs.s	loc_8788
+		blo.s	loc_8788
 
 loc_8772:
 		moveq	#0,d0
@@ -86,7 +86,7 @@ loc_8772:
 		lsl.w	#object_size_bits,d0
 		addi.l	#v_objspace,d0
 		movea.l	d0,a1
-		bsr.w	DeleteObject2
+		bsr.w	DeleteChild
 		dbf	d2,loc_8772
 
 loc_8788:

@@ -24,7 +24,7 @@ Obj09_Index:	dc.w loc_1A3DC-Obj09_Index
 
 loc_1A3DC:
 		addq.b	#2,obRoutine(a0)
-		move.b	#$E,obHeight(a0)
+		move.b	#14,obHeight(a0)
 		move.b	#7,obWidth(a0)
 		move.l	#Map_Sonic,obMap(a0)
 		move.w	#make_art_tile(ArtTile_Sonic,0,0),obGfx(a0)

@@ -18,13 +18,13 @@ Obj12_Init:
 		move.w	#make_art_tile(ArtTile_HPZ_Emerald,3,0),obGfx(a0)
 		bsr.w	Adjust2PArtPointer
 		move.b	#4,obRender(a0)
-		move.b	#$20,obActWid(a0)
+		move.b	#32,obActWid(a0)
 		move.b	#4,obPriority(a0)
 
 Obj12_Display:
-		move.w	#$20,d1
-		move.w	#$10,d2
-		move.w	#$10,d3
+		move.w	#32,d1
+		move.w	#16,d2
+		move.w	#16,d3
 		move.w	obX(a0),d4
 		bsr.w	SolidObject
 		out_of_range.w	DeleteObject

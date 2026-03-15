@@ -24,7 +24,7 @@ loc_821E:
 		bsr.w	Adjust2PArtPointer
 		move.b	#4,obRender(a0)
 		move.b	#3,obPriority(a0)
-		move.b	#$18,obActWid(a0)
+		move.b	#24,obActWid(a0)
 		move.b	#8,obHeight(a0)
 		move.w	obY(a0),objoff_38(a0)
 		move.w	obX(a0),objoff_3A(a0)
@@ -33,8 +33,8 @@ loc_821E:
 		move.l	#Map_Obj15_EHZ,obMap(a0)
 		move.w	#make_art_tile(ArtTile_SLZ_Swing,2,0),obGfx(a0)
 		bsr.w	Adjust2PArtPointer
-		move.b	#$20,obActWid(a0)
-		move.b	#$10,obHeight(a0)
+		move.b	#32,obActWid(a0)
+		move.b	#16,obHeight(a0)
 		move.b	#$99,obColType(a0)
 
 loc_8284:
@@ -43,8 +43,8 @@ loc_8284:
 		move.l	#Map_Obj15_CPZ,obMap(a0)
 		move.w	#make_art_tile($418,1,0),obGfx(a0)
 		bsr.w	Adjust2PArtPointer
-		move.b	#$20,obActWid(a0)
-		move.b	#$10,obHeight(a0)
+		move.b	#32,obActWid(a0)
+		move.b	#16,obHeight(a0)
 		lea	obSubtype(a0),a2
 		move.b	(a2),d0
 		lsl.w	#4,d0
@@ -280,7 +280,7 @@ loc_850E:
 		lsl.w	#object_size_bits,d0
 		addi.l	#v_objspace,d0
 		movea.l	d0,a1
-		bsr.w	DeleteObject2
+		bsr.w	DeleteChild
 		dbf	d2,loc_850E
 		rts
 ; ---------------------------------------------------------------------------

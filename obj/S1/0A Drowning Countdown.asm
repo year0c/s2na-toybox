@@ -24,7 +24,7 @@ Obj0A_Init:
 		move.l	#Map_Bub,obMap(a0)
 		move.w	#make_art_tile(ArtTile_LZ_Bubbles,0,1),obGfx(a0)
 		move.b	#$84,obRender(a0)
-		move.b	#$10,obActWid(a0)
+		move.b	#16,obActWid(a0)
 		move.b	#1,obPriority(a0)
 		move.b	obSubtype(a0),d0
 		bpl.s	loc_11ECC
@@ -94,7 +94,7 @@ Obj0A_Delete:
 ; ---------------------------------------------------------------------------
 
 Obj0A_AirLeft:
-		cmpi.w	#$C,(v_air).w
+		cmpi.w	#12,(v_air).w
 		bhi.s	loc_11F9A
 		subq.w	#1,objoff_38(a0)
 		bne.s	loc_11F82
@@ -128,7 +128,7 @@ Obj0A_ShowNumber:
 		clr.w	obVelY(a0)
 		move.b	#$80,obRender(a0)
 		move.w	obX(a0),d0
-		sub.w	(Camera_RAM).w,d0
+		sub.w	(Camera_X_pos).w,d0
 		addi.w	#$80,d0
 		move.w	d0,obX(a0)
 		move.w	obY(a0),d0
@@ -142,7 +142,8 @@ locret_11FEA:
 ; End of function Obj0A_ShowNumber
 
 ; ---------------------------------------------------------------------------
-Obj0A_WobbleData:dc.b	 0,   0,   0,	0,   0,	  0,   1,   1,	 1,   1,   1,	2,   2,	  2,   2,   2
+Obj0A_WobbleData:
+		dc.b	 0,   0,   0,	0,   0,	  0,   1,   1,	 1,   1,   1,	2,   2,	  2,   2,   2
 		dc.b	2,   2,	  3,   3,   3,	 3,   3,   3,	3,   3,	  3,   3,   3,	 3,   3,   3
 		dc.b	3,   3,	  3,   3,   3,	 3,   3,   3,	3,   3,	  3,   3,   3,	 3,   3,   2
 		dc.b	2,   2,	  2,   2,   2,	 2,   1,   1,	1,   1,	  1,   0,   0,	 0,   0,   0
@@ -208,11 +209,11 @@ loc_12170:
 		jsr	(QueueSound2).l
 		move.b	#$A,objoff_34(a0)
 		move.w	#1,objoff_36(a0)
-		move.w	#60*2,objoff_2C(a0)
+		move.w	#120,objoff_2C(a0)
 		move.l	a0,-(sp)
 		lea	(v_player).w,a0
 		bsr.w	Sonic_ResetOnFloor
-		move.b	#$17,obAnim(a0)
+		move.b	#AniIDSonAni_Drown,obAnim(a0)
 		bset	#1,obStatus(a0)
 		bset	#7,obGfx(a0)
 		move.w	#0,obVelY(a0)

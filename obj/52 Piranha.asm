@@ -20,7 +20,7 @@ Obj52_Init:
 		ori.b	#4,obRender(a0)
 		move.b	#$A,obColType(a0)
 		move.b	#4,obPriority(a0)
-		move.b	#$10,obActWid(a0)
+		move.b	#16,obActWid(a0)
 		moveq	#0,d0
 		move.b	obSubtype(a0),d0
 		move.b	d0,d1

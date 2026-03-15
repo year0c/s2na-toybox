@@ -19,7 +19,7 @@ loc_1446C:
 		move.w	#make_art_tile(ArtTile_HPZ_Waterfall,3,1),obGfx(a0)
 		bsr.w	Adjust2PArtPointer
 		move.b	#4,obRender(a0)
-		move.b	#$10,obActWid(a0)
+		move.b	#16,obActWid(a0)
 		move.b	#1,obPriority(a0)
 		move.b	#$12,obFrame(a0)
 		bsr.s	sub_144D4
@@ -50,7 +50,7 @@ sub_144D4:
 		move.w	#make_art_tile(ArtTile_HPZ_Waterfall,3,1),obGfx(a1)
 		bsr.w	Adjust2PArtPointer2
 		move.b	#4,obRender(a1)
-		move.b	#$10,obActWid(a1)
+		move.b	#16,obActWid(a1)
 		move.b	#1,obPriority(a1)
 
 locret_14516:

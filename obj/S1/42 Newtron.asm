@@ -20,8 +20,8 @@ Obj42_Init:
 		bsr.w	Adjust2PArtPointer
 		move.b	#4,obRender(a0)
 		move.b	#4,obPriority(a0)
-		move.b	#$14,obActWid(a0)
-		move.b	#$10,obHeight(a0)
+		move.b	#20,obActWid(a0)
+		move.b	#16,obHeight(a0)
 		move.b	#8,obWidth(a0)
 ; loc_EC00:
 Obj42_Main
@@ -147,7 +147,7 @@ Obj42_FireMissile:
 		move.w	obY(a0),obY(a1)
 		subq.w	#8,obY(a1)
 		move.w	#$200,obVelX(a1)
-		move.w	#20,d0
+		move.w	#$14,d0
 		btst	#0,obStatus(a0)
 		bne.s	loc_ED5C
 		neg.w	d0

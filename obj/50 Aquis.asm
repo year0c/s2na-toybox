@@ -23,7 +23,7 @@ Obj50_Init:
 		ori.b	#4,obRender(a0)
 		move.b	#$A,obColType(a0)
 		move.b	#4,obPriority(a0)
-		move.b	#$10,obActWid(a0)
+		move.b	#16,obActWid(a0)
 		move.w	#-$100,obVelX(a0)
 		move.b	obSubtype(a0),d0
 		move.b	d0,d1
@@ -362,7 +362,7 @@ sub_1629E:
 		move.b	#1,obPriority(a0)
 		move.b	#5,obAnim(a0)
 		st	ob2ndRout(a0)
-		move.w	#$12C,objoff_2C(a0)
+		move.w	#300,objoff_2C(a0)
 		move.b	#3,objoff_2A(a0)
 
 locret_162DC:

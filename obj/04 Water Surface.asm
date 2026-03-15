@@ -18,7 +18,7 @@ Obj04_Init:
 		move.w	#make_art_tile(ArtTile_Water_Surface,0,1),obGfx(a0)
 		jsrto	JmpTo_Adjust2PArtPointer
 		move.b	#4,obRender(a0)
-		move.b	#$80,obActWid(a0)
+		move.b	#128,obActWid(a0)
 		move.w	obX(a0),objoff_30(a0)
 
 Obj04_Main:

@@ -18,8 +18,8 @@ Obj4E_Init:
 		ori.b	#4,obRender(a0)
 		move.b	#$A,obColType(a0)
 		move.b	#4,obPriority(a0)
-		move.b	#$10,obActWid(a0)
-		move.b	#$10,obHeight(a0)
+		move.b	#16,obActWid(a0)
+		move.b	#16,obHeight(a0)
 		move.b	#8,obWidth(a0)
 		jsrto	JmpTo6_ObjectMoveAndFall
 		jsr	(ObjHitFloor).l

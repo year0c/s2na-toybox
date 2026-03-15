@@ -22,9 +22,9 @@ Obj54_Init:
 		ori.b	#4,obRender(a0)
 		move.b	#$A,obColType(a0)
 		move.b	#4,obPriority(a0)
-		move.b	#$10,obActWid(a0)
-		move.b	#$10,obHeight(a0)
-		move.b	#$E,obWidth(a0)
+		move.b	#16,obActWid(a0)
+		move.b	#16,obHeight(a0)
+		move.b	#14,obWidth(a0)
 		jsrto	JmpTo2_FindNextFreeObj
 		bne.s	loc_17670
 		_move.b	#id_Obj54,obID(a1)
@@ -33,7 +33,7 @@ Obj54_Init:
 		move.w	#make_art_tile(ArtTile_Snail,1,0),obGfx(a1)
 		jsrto	JmpTo2_Adjust2PArtPointer2
 		move.b	#3,obPriority(a1)
-		move.b	#$10,obActWid(a1)
+		move.b	#16,obActWid(a1)
 		move.b	obStatus(a0),obStatus(a1)
 		move.b	obRender(a0),obRender(a1)
 		move.l	a0,objoff_2A(a1)
@@ -122,7 +122,7 @@ sub_17714:
 		move.w	#make_art_tile(ArtTile_Buzzer,0,0),obGfx(a1)
 		jsrto	JmpTo2_Adjust2PArtPointer2
 		move.b	#4,obPriority(a1)
-		move.b	#$10,obActWid(a1)
+		move.b	#16,obActWid(a1)
 		move.b	obStatus(a0),obStatus(a1)
 		move.b	obRender(a0),obRender(a1)
 		move.l	a0,objoff_2A(a1)

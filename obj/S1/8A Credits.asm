@@ -39,8 +39,8 @@ Cred_Main:	; Routine 0
 		beq.s	Cred_Display	; if not, branch
 		cmpi.b	#btnABC+btnDn,(v_jpadhold1).w ; is A+B+C+Down being pressed? ($72)
 		bne.s	Cred_Display	; if not, branch
-		move.w	#cWhite,(v_palette+$C0).w ; 3rd palette, 1st entry = white
-		move.w	#$880,(v_palette+$C2).w ; 3rd palette, 2nd entry = cyan
+		move.w	#cWhite,(v_palette_fading_line_3).w ; 3rd palette, 1st entry = white
+		move.w	#$880,(v_palette_fading_line_3+2).w ; 3rd palette, 2nd entry = cyan
 		jmp	(DeleteObject).l
 ; ===========================================================================
 

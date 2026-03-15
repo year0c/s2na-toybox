@@ -25,7 +25,7 @@ loc_14CD2:
 		bsr.w	Adjust2PArtPointer
 		ori.b	#4,obRender(a0)
 		move.b	#4,obPriority(a0)
-		move.b	#$30,obActWid(a0)
+		move.b	#48,obActWid(a0)
 		move.w	obX(a0),objoff_30(a0)
 		tst.b	obSubtype(a0)
 		bne.s	loc_14D2C
@@ -173,7 +173,7 @@ loc_14E3C:
 		ori.b	#4,obRender(a0)
 		move.b	#4,obPriority(a0)
 		move.b	#$8B,obColType(a0)
-		move.b	#$C,obActWid(a0)
+		move.b	#12,obActWid(a0)
 		move.w	obX(a0),objoff_30(a0)
 		addi.w	#$28,obX(a0)
 		addi.w	#$10,obY(a0)

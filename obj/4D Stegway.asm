@@ -18,9 +18,9 @@ Obj4D_Init:
 		ori.b	#4,obRender(a0)
 		move.b	#$A,obColType(a0)
 		move.b	#4,obPriority(a0)
-		move.b	#$18,obActWid(a0)
-		move.b	#$10,obHeight(a0)
-		move.b	#$18,obWidth(a0)
+		move.b	#24,obActWid(a0)
+		move.b	#16,obHeight(a0)
+		move.b	#24,obWidth(a0)
 		jsrto	JmpTo2_ObjectMoveAndFall
 		jsr	(ObjHitFloor).l
 		tst.w	d1
@@ -77,7 +77,7 @@ locret_15946:
 
 loc_15948:
 		subq.b	#2,ob2ndRout(a0)
-		move.w	#59,objoff_30(a0)
+		move.w	#60-1,objoff_30(a0)
 		move.w	obVelX(a0),d0
 		ext.l	d0
 		asl.l	#8,d0

@@ -19,7 +19,7 @@ loc_141C8:
 		move.w	#make_art_tile(ArtTile_Level,3,1),obGfx(a0)
 		bsr.w	Adjust2PArtPointer
 		ori.b	#4,obRender(a0)
-		move.b	#$10,obActWid(a0)
+		move.b	#16,obActWid(a0)
 		move.b	#4,obPriority(a0)
 		moveq	#0,d0
 		move.b	obSubtype(a0),d0

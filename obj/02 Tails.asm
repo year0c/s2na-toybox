@@ -18,21 +18,21 @@ Obj02_Index:	dc.w Obj02_Init-Obj02_Index
 ; Obj02_Main:
 Obj02_Init:
 		addq.b	#2,obRoutine(a0)
-		move.b	#$F,obHeight(a0)
+		move.b	#15,obHeight(a0)
 		move.b	#9,obWidth(a0)
 		move.l	#Map_Tails,obMap(a0)
 		move.w	#make_art_tile(ArtTile_Tails,0,0),obGfx(a0)
 		bsr.w	Adjust2PArtPointer
 		move.b	#2,obPriority(a0)
-		move.b	#$18,obActWid(a0)
+		move.b	#24,obActWid(a0)
 		move.b	#$84,obRender(a0)
 		move.w	#$600,(Sonic_top_speed).w
 		move.w	#$C,(Sonic_acceleration).w
 		move.w	#$80,(Sonic_deceleration).w
 		move.b	#$C,top_solid_bit(a0)
 		move.b	#$D,lrb_solid_bit(a0)
-		move.b	#0,objoff_2C(a0)
-		move.b	#4,objoff_2D(a0)
+		move.b	#0,flips_remaining(a0)
+		move.b	#4,flip_speed(a0)
 		move.b	#id_Obj05,(v_player2tails).w		; load Tails' tails at $B1C0
 
 ; ---------------------------------------------------------------------------
@@ -146,7 +146,7 @@ Tails_Control:
 		andi.b	#btnUp+btnDn+btnL+btnR+btnABC,d0
 		beq.s	TailsC_NoKeysPressed
 		move.w	#0,(word_F700).w
-		move.w	#$12C,(Tails_control_counter).w
+		move.w	#300,(Tails_control_counter).w
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -931,11 +931,11 @@ loc_11424:
 		clr.b	sticktoconvex(a0)
 		move.w	#sfx_Jump,d0
 		jsr	(QueueSound2).l
-		move.b	#$F,obHeight(a0)
+		move.b	#15,obHeight(a0)
 		move.b	#9,obWidth(a0)
 		btst	#2,obStatus(a0)
 		bne.s	loc_11498
-		move.b	#$E,obHeight(a0)
+		move.b	#14,obHeight(a0)
 		move.b	#7,obWidth(a0)
 		move.b	#AniIDSonAni_Roll,obAnim(a0)
 		bset	#2,obStatus(a0)
@@ -1009,7 +1009,7 @@ loc_11510:
 		move.b	(v_2Pjpadhold).w,d0
 		btst	#bitDn,d0
 		bne.s	loc_11556
-		move.b	#$E,obHeight(a0)
+		move.b	#14,obHeight(a0)
 		move.b	#7,obWidth(a0)
 		move.b	#AniIDSonAni_Roll,obAnim(a0)
 		addq.w	#5,obY(a0)
@@ -1171,16 +1171,16 @@ loc_11632:
 		move.b	d0,obAngle(a0)
 
 loc_11636:
-		move.b	objoff_27(a0),d0
+		move.b	flip_angle(a0),d0
 		beq.s	locret_11674
 		tst.w	obInertia(a0)
 		bmi.s	loc_1165A
-		move.b	objoff_2D(a0),d1
+		move.b	flip_speed(a0),d1
 		add.b	d1,d0
 		bhs.s	loc_11658
-		subq.b	#1,objoff_2C(a0)
+		subq.b	#1,flips_remaining(a0)
 		bhs.s	loc_11658
-		move.b	#0,objoff_2C(a0)
+		move.b	#0,flips_remaining(a0)
 		moveq	#0,d0
 
 loc_11658:
@@ -1188,16 +1188,16 @@ loc_11658:
 ; ---------------------------------------------------------------------------
 
 loc_1165A:
-		move.b	objoff_2D(a0),d1
+		move.b	flip_speed(a0),d1
 		sub.b	d1,d0
 		bhs.s	loc_11670
-		subq.b	#1,objoff_2C(a0)
+		subq.b	#1,flips_remaining(a0)
 		bhs.s	loc_11670
-		move.b	#0,objoff_2C(a0)
+		move.b	#0,flips_remaining(a0)
 		moveq	#0,d0
 
 loc_11670:
-		move.b	d0,objoff_27(a0)
+		move.b	d0,flip_angle(a0)
 
 locret_11674:
 		rts
@@ -1258,7 +1258,7 @@ loc_116CC:
 loc_116E4:
 		add.w	d1,obY(a0)
 		move.b	d3,obAngle(a0)
-		bsr.w	Tails_ResetTailsOnFloor
+		bsr.w	Tails_ResetOnFloor
 		move.b	#AniIDSonAni_Walk,obAnim(a0)
 		move.b	d3,d0
 		addi.b	#$20,d0
@@ -1325,7 +1325,7 @@ loc_1177A:
 		bpl.s	locret_117A6
 		add.w	d1,obY(a0)
 		move.b	d3,obAngle(a0)
-		bsr.w	Tails_ResetTailsOnFloor
+		bsr.w	Tails_ResetOnFloor
 		move.b	#AniIDSonAni_Walk,obAnim(a0)
 		move.w	#0,obVelY(a0)
 		move.w	obVelX(a0),obInertia(a0)
@@ -1363,7 +1363,7 @@ loc_117CC:
 
 loc_117EC:
 		move.b	d3,obAngle(a0)
-		bsr.w	Tails_ResetTailsOnFloor
+		bsr.w	Tails_ResetOnFloor
 		move.w	obVelY(a0),obInertia(a0)
 		tst.b	d3
 		bpl.s	locret_11802
@@ -1404,7 +1404,7 @@ loc_11838:
 		bpl.s	locret_11864
 		add.w	d1,obY(a0)
 		move.b	d3,obAngle(a0)
-		bsr.w	Tails_ResetTailsOnFloor
+		bsr.w	Tails_ResetOnFloor
 		move.b	#AniIDSonAni_Walk,obAnim(a0)
 		move.w	#0,obVelY(a0)
 		move.w	obVelX(a0),obInertia(a0)
@@ -1417,7 +1417,7 @@ locret_11864:
 ; =============== S U B	R O U T	I N E =======================================
 
 
-Tails_ResetTailsOnFloor:
+Tails_ResetOnFloor:
 		btst	#4,obStatus(a0)
 		beq.s	loc_11874
 		nop
@@ -1431,7 +1431,7 @@ loc_11874:
 		btst	#2,obStatus(a0)
 		beq.s	loc_118AA
 		bclr	#2,obStatus(a0)
-		move.b	#$F,obHeight(a0)
+		move.b	#15,obHeight(a0)
 		move.b	#9,obWidth(a0)
 		move.b	#AniIDSonAni_Walk,obAnim(a0)
 		subq.w	#1,obY(a0)
@@ -1439,9 +1439,9 @@ loc_11874:
 loc_118AA:
 		move.b	#0,jumping(a0)
 		move.w	#0,(v_itembonus).w
-		move.b	#0,objoff_27(a0)
+		move.b	#0,flip_angle(a0)
 		rts
-; End of function Tails_ResetTailsOnFloor
+; End of function Tails_ResetOnFloor
 
 ; ---------------------------------------------------------------------------
 
@@ -1526,11 +1526,11 @@ Tails_GameOver:
 	endif
 		move.w	(v_player+obX).w,d0
 		subi.w	#$40,d0
-		move.w	d0,obX(a0)
+		move.w	d0,obX(a0)	; get respawn x position
 		move.w	(v_player+obY).w,d0
 		subi.w	#$80,d0
-		move.w	d0,obY(a0)
-		move.b	#2,obRoutine(a0)
+		move.w	d0,obY(a0)	; get respawn y position
+		move.b	#2,obRoutine(a0)	; run Obj02_Control
 		andi.w	#$7FFF,obGfx(a0)
 		move.b	#$C,top_solid_bit(a0)
 		move.b	#$D,lrb_solid_bit(a0)
@@ -1638,7 +1638,7 @@ loc_11A2E:
 		addq.b	#1,d0
 		bne.w	loc_11B0E
 		moveq	#0,d0
-		move.b	objoff_27(a0),d0
+		move.b	flip_angle(a0),d0
 		bne.w	loc_11AB4
 		moveq	#0,d1
 		move.b	obAngle(a0),d0
@@ -1695,7 +1695,7 @@ loc_11AA4:
 ; ---------------------------------------------------------------------------
 
 loc_11AB4:
-		move.b	objoff_27(a0),d0
+		move.b	flip_angle(a0),d0
 		moveq	#0,d1
 		move.b	obStatus(a0),d2
 		andi.b	#1,d2

@@ -19,7 +19,7 @@ Obj56_Init:
 		move.b	#4,obRender(a0)
 		move.b	#1,obPriority(a0)
 		move.b	#0,obColType(a0)
-		move.b	#$C,obActWid(a0)
+		move.b	#12,obActWid(a0)
 		move.b	#7,obTimeFrame(a0)
 		move.b	#0,obFrame(a0)
 		rts

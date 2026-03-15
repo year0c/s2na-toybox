@@ -35,7 +35,7 @@ Obj41_Init:
 
 .isGHZ:
 		ori.b	#4,obRender(a0)
-		move.b	#$10,obActWid(a0)
+		move.b	#16,obActWid(a0)
 		move.b	#4,obPriority(a0)
 		move.b	obSubtype(a0),d0
 		lsr.w	#3,d0
@@ -90,7 +90,7 @@ Obj41_Init_DiagonallyDown:
 Obj41_Init_Common:
 		move.b	obSubtype(a0),d0
 		andi.w	#2,d0
-		move.w	Obj41_Strengths(pc,d0.w),$30(a0)
+		move.w	Obj41_Strengths(pc,d0.w),objoff_30(a0)
 		btst	#1,d0
 		beq.s	loc_E2F8
 		bset	#5,obGfx(a0)
@@ -155,18 +155,18 @@ loc_E382:
 		btst	#0,d0
 		beq.s	loc_E3C2
 		move.w	#1,obInertia(a1)
-		move.b	#1,objoff_27(a1)
+		move.b	#1,flip_angle(a1)
 		move.b	#0,obAnim(a1)
-		move.b	#0,objoff_2C(a1)
-		move.b	#4,objoff_2D(a1)
+		move.b	#0,flips_remaining(a1)
+		move.b	#4,flip_speed(a1)
 		btst	#1,d0
 		bne.s	loc_E3B2
-		move.b	#1,objoff_2C(a1)
+		move.b	#1,flips_remaining(a1)
 
 loc_E3B2:
 		btst	#0,obStatus(a1)
 		beq.s	loc_E3C2
-		neg.b	objoff_27(a1)
+		neg.b	flip_angle(a1)
 		neg.w	obInertia(a1)
 
 loc_E3C2:
@@ -266,18 +266,18 @@ loc_E4C8:
 		btst	#0,d0
 		beq.s	loc_E508
 		move.w	#1,obInertia(a1)
-		move.b	#1,objoff_27(a1)
+		move.b	#1,flip_angle(a1)
 		move.b	#0,obAnim(a1)
-		move.b	#1,objoff_2C(a1)
-		move.b	#8,objoff_2D(a1)
+		move.b	#1,flips_remaining(a1)
+		move.b	#8,flip_speed(a1)
 		btst	#1,d0
 		bne.s	loc_E4F8
-		move.b	#3,objoff_2C(a1)
+		move.b	#3,flips_remaining(a1)
 
 loc_E4F8:
 		btst	#0,obStatus(a1)
 		beq.s	loc_E508
-		neg.b	objoff_27(a1)
+		neg.b	flip_angle(a1)
 		neg.w	obInertia(a1)
 
 loc_E508:
@@ -420,18 +420,18 @@ loc_E66E:
 		btst	#0,d0
 		beq.s	loc_E6AE
 		move.w	#1,obInertia(a1)
-		move.b	#1,objoff_27(a1)
+		move.b	#1,flip_angle(a1)
 		move.b	#0,obAnim(a1)
-		move.b	#0,objoff_2C(a1)
-		move.b	#4,objoff_2D(a1)
+		move.b	#0,flips_remaining(a1)
+		move.b	#4,flip_speed(a1)
 		btst	#1,d0
 		bne.s	loc_E69E
-		move.b	#1,objoff_2C(a1)
+		move.b	#1,flips_remaining(a1)
 
 loc_E69E:
 		btst	#0,obStatus(a1)
 		beq.s	loc_E6AE
-		neg.b	objoff_27(a1)
+		neg.b	flip_angle(a1)
 		neg.w	obInertia(a1)
 
 loc_E6AE:
@@ -528,18 +528,18 @@ loc_E79A:
 		btst	#0,d0
 		beq.s	loc_E7F6
 		move.w	#1,obInertia(a1)
-		move.b	#1,objoff_27(a1)
+		move.b	#1,flip_angle(a1)
 		move.b	#0,obAnim(a1)
-		move.b	#1,objoff_2C(a1)
-		move.b	#8,objoff_2D(a1)
+		move.b	#1,flips_remaining(a1)
+		move.b	#8,flip_speed(a1)
 		btst	#1,d0
 		bne.s	loc_E7E6
-		move.b	#3,objoff_2C(a1)
+		move.b	#3,flips_remaining(a1)
 
 loc_E7E6:
 		btst	#0,obStatus(a1)
 		beq.s	loc_E7F6
-		neg.b	objoff_27(a1)
+		neg.b	flip_angle(a1)
 		neg.w	obInertia(a1)
 
 loc_E7F6:
@@ -615,18 +615,18 @@ loc_E8AC:
 		btst	#0,d0
 		beq.s	loc_E902
 		move.w	#1,obInertia(a1)
-		move.b	#1,objoff_27(a1)
+		move.b	#1,flip_angle(a1)
 		move.b	#0,obAnim(a1)
-		move.b	#1,objoff_2C(a1)
-		move.b	#8,objoff_2D(a1)
+		move.b	#1,flips_remaining(a1)
+		move.b	#8,flip_speed(a1)
 		btst	#1,d0
 		bne.s	loc_E8F2
-		move.b	#3,objoff_2C(a1)
+		move.b	#3,flips_remaining(a1)
 
 loc_E8F2:
 		btst	#0,obStatus(a1)
 		beq.s	loc_E902
-		neg.b	objoff_27(a1)
+		neg.b	flip_angle(a1)
 		neg.w	obInertia(a1)
 
 loc_E902:

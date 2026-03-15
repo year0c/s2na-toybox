@@ -127,7 +127,7 @@ loc_179AE:
 		move.l	#Map_Obj58,obMap(a1)
 		move.w	#make_art_tile(ArtTile_ArtNem_EggChoppers,1,0),obGfx(a1)
 		move.b	#4,obRender(a1)
-		move.b	#$20,obActWid(a1)
+		move.b	#32,obActWid(a1)
 		move.b	#4,obPriority(a1)
 		move.l	obX(a0),obX(a1)
 		move.l	obY(a0),obY(a1)

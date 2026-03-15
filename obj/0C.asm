@@ -18,7 +18,7 @@ Obj0C_Init:
 		move.w	#make_art_tile($418,3,1),obGfx(a0)
 		bsr.w	Adjust2PArtPointer
 		ori.b	#4,obRender(a0)
-		move.b	#$10,obActWid(a0)
+		move.b	#16,obActWid(a0)
 		move.b	#4,obPriority(a0)
 		move.w	obY(a0),d0
 		subi.w	#$10,d0

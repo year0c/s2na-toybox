@@ -18,7 +18,7 @@ Obj08_Init:
 		move.l	#Map_obj08,obMap(a0)
 		ori.b	#4,obRender(a0)
 		move.b	#1,obPriority(a0)
-		move.b	#$10,obActWid(a0)
+		move.b	#16,obActWid(a0)
 		move.w	#make_art_tile(ArtTile_LZ_Splash,2,0),obGfx(a0)
 		bsr.w	Adjust2PArtPointer
 		move.w	(v_player+obX).w,obX(a0)

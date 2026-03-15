@@ -25,7 +25,7 @@ Obj0D_Init:
 		move.w	#make_art_tile(ArtTile_Signpost,0,0),obGfx(a0)
 		bsr.w	Adjust2PArtPointer
 		move.b	#4,obRender(a0)
-		move.b	#$18,obActWid(a0)
+		move.b	#24,obActWid(a0)
 		move.b	#4,obPriority(a0)
 ; loc_EFFE:
 Obj0D_Main:

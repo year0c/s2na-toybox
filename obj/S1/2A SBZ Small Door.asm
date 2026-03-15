@@ -52,8 +52,8 @@ ADoor_Animate:
 		bsr.w	AnimateSprite
 		tst.b	obFrame(a0)	; is the door open?
 		bne.s	.remember	; if yes, branch
-		move.w	#$11,d1
-		move.w	#$20,d2
+		move.w	#17,d1
+		move.w	#32,d2
 		move.w	d2,d3
 		addq.w	#1,d3
 		move.w	obX(a0),d4

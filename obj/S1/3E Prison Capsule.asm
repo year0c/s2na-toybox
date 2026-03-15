@@ -24,10 +24,11 @@ Pri_Index:	dc.w Pri_Main-Pri_Index
 
 pri_origY = objoff_30		; original y-axis position
 
-Pri_Var:	dc.b 2,	$20, 4,	0	; routine, width, priority, frame
-		dc.b 4,	$C, 5, 1
-		dc.b 6,	$10, 4,	3
-		dc.b 8,	$10, 3,	5
+Pri_Var:
+		dc.b 2,	32, 4,	0	; routine, width, priority, frame
+		dc.b 4,	12, 5, 1
+		dc.b 6,	16, 4,	3
+		dc.b 8,	16, 3,	5
 ; ===========================================================================
 
 Pri_Main:	; Routine 0
@@ -57,9 +58,9 @@ Pri_Main:	; Routine 0
 Pri_BodyMain:	; Routine 2
 		cmpi.b	#2,(v_bossstatus).w
 		beq.s	.chkopened
-		move.w	#$2B,d1
-		move.w	#$18,d2
-		move.w	#$18,d3
+		move.w	#43,d1
+		move.w	#24,d2
+		move.w	#24,d3
 		move.w	obX(a0),d4
 		jmp	(SolidObject).l
 ; ===========================================================================
@@ -77,7 +78,7 @@ Pri_BodyMain:	; Routine 2
 ; ===========================================================================
 
 Pri_Switched:	; Routine 4
-		move.w	#$17,d1
+		move.w	#23,d1
 		move.w	#8,d2
 		move.w	#8,d3
 		move.w	obX(a0),d4

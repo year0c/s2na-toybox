@@ -29,8 +29,8 @@ Edge_Main:	; Routine 0
 ; ===========================================================================
 
 Edge_Solid:	; Routine 2
-		move.w	#$13,d1
-		move.w	#$28,d2
+		move.w	#19,d1
+		move.w	#40,d2
 		move.w	d2,d3
 		addq.w	#1,d3
 		move.w	obX(a0),d4

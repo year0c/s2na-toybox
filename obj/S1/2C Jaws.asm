@@ -23,7 +23,7 @@ Jaws_Main:	; Routine 0
 		ori.b	#4,obRender(a0)
 		move.b	#$A,obColType(a0)
 		move.b	#4,obPriority(a0)
-		move.b	#$10,obActWid(a0)
+		move.b	#16,obActWid(a0)
 		moveq	#0,d0
 		move.b	obSubtype(a0),d0 ; load object subtype number
 		lsl.w	#6,d0		; multiply d0 by 64

@@ -113,7 +113,7 @@ Obj0D_EndLevel:
 		bne.s	loc_F0E0
 	endif
 		move.b	#1,(f_lockctrl).w
-		move.w	#8<<btnR,(v_jpadhold2).w
+		move.w	#btnR<<8,(v_jpadhold2).w
 
 	if FixBugs=0
 loc_F0E0:

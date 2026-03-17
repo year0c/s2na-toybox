@@ -373,12 +373,12 @@ loc_4354:
 		move.w	#0,obVelY(a1)
 		move.b	#AniIDSonAni_Float2,obAnim(a1)
 		bset	#1,obStatus(a1)
-		btst	#0,(v_jpadhold1).w
+		btst	#bitUp,(v_jpadhold1).w
 		beq.s	loc_437E
 		subq.w	#1,obY(a1)
 
 loc_437E:
-		btst	#1,(v_jpadhold1).w
+		btst	#bitDn,(v_jpadhold1).w
 		beq.s	locret_438A
 		addq.w	#1,obY(a1)
 
@@ -433,7 +433,7 @@ loc_43F8:
 loc_4400:
 		tst.b	(f_slidemode).w
 		beq.s	locret_4410
-		move.w	#5,$2E(a1)
+		move.w	#5,locktime(a1)
 		clr.b	(f_slidemode).w
 
 locret_4410:

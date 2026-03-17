@@ -15,7 +15,7 @@ QueueDMATransfer:
 		move.w	d3,d0
 		neg.w	d0
 		sub.w	d1,d0
-		bcc.s	.transfer
+		bhs.s	.transfer
 		; Do first transfer
 		movem.l	d1-d3,-(sp)
 		add.w	d0,d3		; d3 = words remaining in 128KB "bank"

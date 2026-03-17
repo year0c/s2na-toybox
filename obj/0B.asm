@@ -62,7 +62,7 @@ loc_14254:
 		bne.s	loc_1426E
 		moveq	#0,d1
 		move.b	obActWid(a0),d1
-		moveq	#$11,d3
+		moveq	#17,d3
 		move.w	obX(a0),d4
 		bsr.w	sub_F78A
 		bra.w	MarkObjGone

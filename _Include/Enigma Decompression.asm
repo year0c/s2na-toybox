@@ -131,7 +131,7 @@ EniDec_Done:
 .notnewbyte:
 		move.w	a0,d0
 		lsr.w	#1,d0				; are we on an odd byte?
-		bcc.s	.evenbyte			; if not, branch
+		bhs.s	.evenbyte			; if not, branch
 		addq.w	#1,a0				; ensure we're on an even byte
 ; loc_17D6:
 .evenbyte:
@@ -150,7 +150,7 @@ EniDec_FetchInlineValue:
 		move.w	a3,d3				; copy starting art tile
 		move.b	d4,d1				; copy PCCVH bitfield
 		add.b	d1,d1				; is the priority bit set?
-		bcc.s	.skippriority			; if not, branch
+		bhs.s	.skippriority			; if not, branch
 		subq.w	#1,d6
 		btst	d6,d5				; is the priority bit set in the inline render flags?
 		beq.s	.skippriority			; if not, branch
@@ -158,7 +158,7 @@ EniDec_FetchInlineValue:
 ; loc_17EE:
 .skippriority:
 		add.b	d1,d1				; is the high palette line bit set?
-		bcc.s	.skiphighpal			; if not, branch
+		bhs.s	.skiphighpal			; if not, branch
 		subq.w	#1,d6
 		btst	d6,d5
 		beq.s	.skiphighpal
@@ -166,7 +166,7 @@ EniDec_FetchInlineValue:
 ; loc_17FC:
 .skiphighpal:
 		add.b	d1,d1				; is the low palette line bit set?
-		bcc.s	.skiplowpal			; if not, branch
+		bhs.s	.skiplowpal			; if not, branch
 		subq.w	#1,d6
 		btst	d6,d5
 		beq.s	.skiplowpal
@@ -174,7 +174,7 @@ EniDec_FetchInlineValue:
 ; loc_180A:
 .skiplowpal:
 		add.b	d1,d1				; is the vertical flip flag set?
-		bcc.s	.skipyflip			; if not, branch
+		bhs.s	.skipyflip			; if not, branch
 		subq.w	#1,d6
 		btst	d6,d5
 		beq.s	.skipyflip
@@ -182,7 +182,7 @@ EniDec_FetchInlineValue:
 ; loc_1818:
 .skipyflip:
 		add.b	d1,d1				; is the horizontal flip flag set?
-		bcc.s	.skipxflip			; if not, branch
+		bhs.s	.skipxflip			; if not, branch
 		subq.w	#1,d6
 		btst	d6,d5
 		beq.s	.skipxflip
@@ -192,7 +192,7 @@ EniDec_FetchInlineValue:
 		move.w	d5,d1
 		move.w	d6,d7
 		sub.w	a5,d7				; subtract length in bits of inline copy value
-		bcc.s	.enoughbits			; branch if a new word doesn't need to be read
+		bhs.s	.enoughbits			; branch if a new word doesn't need to be read
 		move.w	d7,d6
 		addi.w	#16,d6
 		neg.w	d7				; calculate bit deficit

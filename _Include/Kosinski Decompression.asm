@@ -32,7 +32,7 @@ Kos_Loop:
 
 	.chkbit:
 		move.w	d6,ccr				; was the bit set?
-		bcc.s	Kos_RLE				; if not, branch
+		bhs.s	Kos_RLE				; if not, branch
 
 		move.b	(a0)+,(a1)+			; copy byte as-is
 		bra.s	Kos_Loop
@@ -50,7 +50,7 @@ Kos_RLE:
 
 	.chkbit:
 		move.w	d6,ccr				; was the bit set?
-		bcs.s	Kos_SeparateRLE			; if yes, branch
+		blo.s	Kos_SeparateRLE			; if yes, branch
 
 		lsr.w	#1,d5				; shift bit into the x flag
 		dbf	d4,.loop1

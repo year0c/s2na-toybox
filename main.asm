@@ -3645,6 +3645,7 @@ S1_SSBGLoad:
 		lea	(v_ssbuffer1).l,a1
 		; Bug: The mappings for the birds and fish are not loaded here!
 		; Unfortunantely, they don't exist in ROM either...
+;		lea	(Eni_SSBg1).l,a0 ; load mappings for the birds and fish
 		move.w	#make_art_tile(ArtTile_SS_Background_Fish,2,0),d0
 		bsr.w	EniDec
 		locVRAM	ArtTile_SS_Plane_1*tile_size+plane_size_64x32,d3
@@ -3695,6 +3696,7 @@ loc_5360:
 		lea	(v_ssbuffer1).l,a1
 		; Bug: The mappings for the clouds are not loaded here!
 		; Unfortunantely, they don't exist in ROM either...
+;		lea	(Eni_SSBg2).l,a0 ; load mappings for the clouds
 		move.w	#make_art_tile(ArtTile_SS_Background_Clouds,2,0),d0
 		bsr.w	EniDec
 		copyTilemap	v_ssbuffer1,ArtTile_SS_Plane_5*tile_size,64,32
@@ -5361,20 +5363,12 @@ DynResize_S1Ending:
 		rts
 ; ---------------------------------------------------------------------------
 		include	"obj/11 Bridge.asm"
-; ---------------------------------------------------------------------------
-; Sprite mappings - GHZ bridge
-; ---------------------------------------------------------------------------
 Map_obj11_GHZ:	include	"mappings/sprite/obj11_GHZ.asm"
-; ---------------------------------------------------------------------------
-; Sprite mappings - HPZ bridge
-; ---------------------------------------------------------------------------
 Map_obj11_HPZ:	include	"mappings/sprite/obj11_HPZ.asm"
-; ---------------------------------------------------------------------------
-; Sprite mappings - EHZ bridge
-; ---------------------------------------------------------------------------
 Map_obj11_EHZ:	include	"mappings/sprite/obj11_EHZ.asm"
-; ===========================================================================
+
 		jmpTos	; Empty
+; ===========================================================================
 
 		include	"obj/15 Swinging Platforms.asm"
 ; ---------------------------------------------------------------------------
@@ -5434,22 +5428,20 @@ word_8648:	dc.w 4
 		dc.w $E80A, $812, $809,	   0
 		dc.w	$A,$1012,$1009,$FFE8
 		dc.w	$A,$101B,$100D,	   0
-; ---------------------------------------------------------------------------
+
 		jmpTos	; Empty
+; ===========================================================================
 
 		include	"obj/S1/17 Spiked Pole Helix.asm"
 Map_Obj17:	include	"mappings/sprite/S1/Spiked Pole Helix.asm"
 
 		include	"obj/18 Platforms.asm"
-; ---------------------------------------------------------------------------
 Map_Obj18x:	include	"mappings/sprite/obj18 (Unused).asm"
 Map_Obj18_GHZ:	include	"mappings/sprite/obj18_GHZ.asm"
-; ---------------------------------------------------------------------------
-; Sprite mappings - EHZ platforms
-; ---------------------------------------------------------------------------
 Map_Obj18_EHZ:	include	"mappings/sprite/obj18_EHZ.asm"
-; ---------------------------------------------------------------------------
+
 		jmpTos	; Empty
+; ===========================================================================
 
 		include	"obj/1A Collapsing Platforms.asm"
 		include	"obj/S1/53 Collapsing Floors.asm"
@@ -5677,6 +5669,7 @@ Obj1A_Conf_HPZ:	dc.b $10,$10,$10,$10
 Map_Obj1A_HPZ:	include	"mappings/sprite/obj1A_HPZ.asm"
 
 		jmpTos	; Empty
+; ===========================================================================
 
 		include	"obj/1C Scenery.asm"
 
@@ -5810,6 +5803,7 @@ word_9A9C:	dc.w 1
 		dc.w $F00F,  $50,  $28,$FFF0
 
 		jmpTos	; Empty
+; ===========================================================================
 
 		include	"obj/28 Animals.asm"
 		include	"obj/29 Points.asm"
@@ -5867,6 +5861,7 @@ word_A0BC:	dc.w 2
 		dc.w $F805,   $E,    7,	   0
 
 		jmpTos	; Empty
+; ===========================================================================
 
 		include	"obj/S1/1F Crabmeat.asm"
 ; ===========================================================================
@@ -5922,6 +5917,7 @@ Map_obj23:	binclude	"mappings/sprite/S1/obj23.bin"
 		even
 
 		jmpTos	; Empty
+; ===========================================================================
 
 		include	"obj/25 & 37 Rings.asm"
 		include	"obj/S1/4B Giant Ring.asm"
@@ -6020,6 +6016,7 @@ word_AE34:	dc.w 4
 		dc.w	$F,$1844,$1822,	   0
 
 		jmpTos	; Empty
+; ===========================================================================
 
 		include	"obj/26 Monitor.asm"
 		include	"obj/2E Monitor Content Power-Up.asm"
@@ -6133,6 +6130,7 @@ Map_S1Obj0F:	include "mappings/sprite/S1/obj0F.asm"
 Map_Obj0E:	include "mappings/sprite/obj0E.asm"
 
 		jmpTos	; Empty
+; ===========================================================================
 
 		include	"obj/S1/2B Chopper.asm"
 
@@ -6372,6 +6370,7 @@ word_C656:	dc.w 1
 word_C660:	dc.w 0
 
 		jmpTos	; Empty
+; ===========================================================================
 
 		include	"obj/36 Spikes.asm"
 Map_Obj36:	include	"mappings/sprite/obj36.asm"
@@ -6381,6 +6380,7 @@ Map_Obj36:	include	"mappings/sprite/obj36.asm"
 Map_Obj3B:	include	"mappings/sprite/S1/Purple Rock.asm"
 
 		jmpTos0	; Empty
+; ===========================================================================
 
 		include	"obj/S1/3C Smashable Wall.asm"
 		include	"obj/S1/sub SmashObject.asm"
@@ -7970,6 +7970,7 @@ byte_D7FA:	dc.b   8,  8,  8,  8
 		dc.b $10,$10,$10,$10
 		dc.b $18,$18,$18,$18
 		dc.b $20,$20,$20,$20
+; ===========================================================================
 
 		include	"obj/S1/sub ChkObjectVisible.asm"
 
@@ -9463,6 +9464,7 @@ byte_F1B3:	dc.b  $F,  0,$FF
 Map_obj0D:	include	"mappings/sprite/obj0D.asm"
 ; ===========================================================================
 		jmpTos	; Empty
+; ===========================================================================
 
 		include	"obj/S1/40 Moto Bug.asm"
 ; ===========================================================================
@@ -10249,9 +10251,9 @@ locret_F9FA:
 ; End of function sub_F9C8
 
 		include	"obj/01 Sonic.asm"
-; ===========================================================================
 
 		jmpTos	JmpTo_KillCharacter
+; ===========================================================================
 
 		include	"obj/02 Tails.asm"
 		include	"obj/05 Tails' Tails.asm"
@@ -10312,6 +10314,7 @@ byte_11E54:	dc.b   2,$81,$82,$83,$84,$FF
 		even
 
 		jmpTos	JmpTo2_KillCharacter
+; ===========================================================================
 
 		include	"obj/S1/0A Drowning Countdown.asm"
 
@@ -10906,6 +10909,7 @@ locret_134C4:
 		rts
 
 		jmpTos	; Empty
+; ===========================================================================
 
 		include	"obj/79 Lamppost.asm"
 ; ---------------------------------------------------------------------------
@@ -10943,6 +10947,7 @@ word_13868:	dc.w 1
 		dc.w $F40E,  $18,   $C,$FFF0
 ; ---------------------------------------------------------------------------
 		jmpTos	; Empty
+; ===========================================================================
 
 		include	"obj/S1/47 Bumper.asm"
 ; ---------------------------------------------------------------------------
@@ -10965,6 +10970,7 @@ word_139BC:	dc.w 2
 		dc.w $F007, $80E, $807,	   0
 ; ---------------------------------------------------------------------------
 		jmpTos	; Empty
+; ===========================================================================
 
 		include	"obj/S1/64 Bubbles.asm"
 ; ---------------------------------------------------------------------------
@@ -11058,6 +11064,7 @@ word_13E1E:	dc.w 1
 word_13E28:	dc.w 0
 
 		jmpTos	; Empty
+; ===========================================================================
 
 		include	"obj/03 Collision Switcher.asm"
 ; ===========================================================================
@@ -11091,16 +11098,19 @@ word_142D0:	dc.w 1
 		dc.w $100C,$1011,$1008,$FFF0
 
 		jmpTos	; Empty
+; ===========================================================================
 
 		include	"obj/0C.asm"
 Map_Obj0C:	include	"mappings/sprite/obj0C.asm"
 
 		jmpTos	JmpTo_CalcSine
+; ===========================================================================
 
 		include	"obj/12 HPZ Emerald.asm"
 Map_Obj12:	include	"mappings/sprite/obj12.asm"
 
 		jmpTos	; Empty
+; ===========================================================================
 
 		include	"obj/13 HPZ Waterfall.asm"
 Map_Obj13:	include	"mappings/sprite/obj13.asm"
@@ -11150,8 +11160,10 @@ Obj06_PlayerDeltaYArray:
 		dc.b  $1D, $1E,	$1E, $1E, $1E, $1E, $1E, $1E, $1F, $1F,	$1F, $1F, $1F, $1F, $1F, $1F
 		dc.b  $1F, $1F,	$20, $20, $20, $20, $20, $20, $20, $20,	$20, $20, $20, $20, $20, $20
 		dc.b  $20, $20,	$20, $20, $20, $20, $20, $20, $20, $20,	$20, $20, $20, $20, $20, $20
+		even
 
 		jmpTos	; Empty
+; ===========================================================================
 
 		include	"obj/14 HTZ Seesaw.asm"
 
@@ -11184,16 +11196,19 @@ Map_obj14:	binclude	"mappings/sprite/obj14_a.bin"
 Map_obj14b:	binclude	"mappings/sprite/obj14_b.bin"
 
 		jmpTos	JmpTo_ObjectMoveAndFall
+; ===========================================================================
 
 		include	"obj/16 HTZ Platform.asm"
 Map_Obj16:	include	"mappings/sprite/obj16.asm"
 
 		jmpTos	JmpTo_DisplaySprite,JmpTo_DeleteObject,JmpTo_ObjectMove
+; ===========================================================================
 
 		include	"obj/19 CPZ Platform.asm"
 Map_Obj19:	include	"mappings/sprite/obj19.asm"
 
 		jmpTos0	JmpTo2_DisplaySprite,JmpTo2_DeleteObject,JmpTo2_ObjectMove
+; ===========================================================================
 
 		include	"obj/04 Water Surface.asm"
 
@@ -11247,6 +11262,7 @@ word_1565E:	dc.w 6
 Map_Obj49:	include	"mappings/sprite/obj49.asm"
 
 		jmpTos0	JmpTo3_DisplaySprite,JmpTo3_DeleteObject,JmpTo_Adjust2PArtPointer
+; ===========================================================================
 
 		include	"obj/4D Stegway.asm"
 
@@ -11313,6 +11329,7 @@ word_15B14:	dc.w 4
 		dc.w $FB01,  $30,  $18,	 $1A		; 12
 
 		jmpTos0	JmpTo_MarkObjGone,JmpTo_AnimateSprite,JmpTo2_ObjectMoveAndFall
+; ===========================================================================
 
 		include	"obj/52 Piranha.asm"
 
@@ -11339,6 +11356,7 @@ word_15D84:	dc.w 1
 		dc.w $F00F,  $30,  $18,$FFF0
 
 		jmpTos0	JmpTo2_MarkObjGone,JmpTo2_AnimateSprite,JmpTo3_ObjectMove
+; ===========================================================================
 
 		include	"obj/4F Redz.asm"
 ; ===========================================================================
@@ -11354,6 +11372,7 @@ byte_15EBB:	dc.b   9,  0,  1,  2,  1,$FF
 Map_obj4F:	binclude	"mappings/sprite/obj4F.bin"
 
 		jmpTos0	JmpTo4_DisplaySprite,JmpTo4_DeleteObject,JmpTo3_AnimateSprite,JmpTo3_ObjectMoveAndFall,JmpTo4_ObjectMove
+; ===========================================================================
 
 		include	"obj/50 Aquis.asm"
 
@@ -11439,6 +11458,7 @@ word_164FA:	dc.w 5
 		include	"obj/51 Aquis Child.asm"
 
 		jmpTos0	JmpTo5_DisplaySprite,JmpTo5_DeleteObject,JmpTo_FindFreeObj,JmpTo3_MarkObjGone,JmpTo4_AnimateSprite,JmpTo4_ObjectMoveAndFall,JmpTo5_ObjectMove
+; ===========================================================================
 
 		include	"obj/4B Buzzer.asm"
 ; ===========================================================================
@@ -11459,6 +11479,7 @@ byte_169ED:	dc.b   9,  1,  1,  1,  1,  1,$FD,  0
 Map_obj4B:	binclude	"mappings/sprite/obj4B.bin"
 
 		jmpTos0	JmpTo6_DeleteObject,JmpTo_FindNextFreeObj,JmpTo5_AnimateSprite,JmpTo_Adjust2PArtPointer2,JmpTo_MarkObjGone_P1,JmpTo2_Adjust2PArtPointer,JmpTo6_ObjectMove
+; ===========================================================================
 
 		include	"obj/4A Octus.asm"
 
@@ -11500,6 +11521,7 @@ word_16D26:	dc.w 1
 		dc.w $F201,  $38,  $1C,$FFF0
 
 		jmpTos0	JmpTo6_DisplaySprite,JmpTo7_DeleteObject,JmpTo4_MarkObjGone,JmpTo6_AnimateSprite,JmpTo5_ObjectMoveAndFall
+; ===========================================================================
 
 		include	"obj/4C BBat.asm"
 
@@ -11517,6 +11539,7 @@ byte_16FE6:	dc.b   3, $A, $B, $C, $D, $E,$FF
 Map_Obj4C:	include	"mappings/sprite/obj4C.asm"
 
 		jmpTos0	JmpTo5_MarkObjGone,JmpTo7_AnimateSprite,JmpTo7_ObjectMove
+; ===========================================================================
 
 		include	"obj/4E Gator.asm"
 
@@ -11602,6 +11625,7 @@ word_17496:	dc.w 4
 		dc.w	 5,  $28,  $14,	  $C		; 12
 
 		jmpTos0	JmpTo6_MarkObjGone,JmpTo8_AnimateSprite,JmpTo6_ObjectMoveAndFall,JmpTo8_ObjectMove
+; ===========================================================================
 
 		include	"obj/53 Masher.asm"
 ; ===========================================================================
@@ -11619,6 +11643,7 @@ byte_1757A:	dc.b   7,  0,$FF
 Map_obj53:	binclude	"mappings/sprite/obj53.bin"
 
 		jmpTos0	JmpTo7_MarkObjGone,JmpTo9_AnimateSprite,JmpTo3_Adjust2PArtPointer,JmpTo9_ObjectMove
+; ===========================================================================
 
 		include	"obj/54 Snail.asm"
 ; ---------------------------------------------------------------------------
@@ -11633,6 +11658,7 @@ byte_1781C:	dc.b   1,  0,  1,$FF
 Map_obj54:	include	"mappings/sprite/obj54.asm"
 
 		jmpTos0	JmpTo8_DeleteObject,JmpTo2_FindNextFreeObj,JmpTo10_AnimateSprite,JmpTo2_Adjust2PArtPointer2,JmpTo2_MarkObjGone_P1,JmpTo4_Adjust2PArtPointer,JmpTo7_ObjectMoveAndFall,JmpTo10_ObjectMove
+; ===========================================================================
 
 		include	"obj/57 EHZ Boss (Part 3).asm"
 		include	"obj/58 EHZ Boss (Part 4).asm"
@@ -11726,6 +11752,7 @@ word_1818E:	dc.w 3
 		dc.w $F00F,$8020,$8010,	 $10
 
 		jmpTos0	JmpTo7_DisplaySprite,JmpTo9_DeleteObject,JmpTo8_MarkObjGone,JmpTo3_FindNextFreeObj,JmpTo11_AnimateSprite,JmpTo8_ObjectMoveAndFall
+; ===========================================================================
 
 		include	"obj/55 EHZ Boss (Part 1).asm"
 		include	"obj/56 EHZ Boss (Part 2).asm"
@@ -11795,6 +11822,7 @@ word_185B0:	dc.w 4
 		dc.w $D805,  $20,  $10,	   2
 ; ---------------------------------------------------------------------------
 		jmpTos	JmpTo8_DisplaySprite,JmpTo10_DeleteObject
+; ===========================================================================
 
 		include	"obj/S1/8A Credits.asm"
 ; ===========================================================================
@@ -11804,6 +11832,7 @@ word_185B0:	dc.w 4
 Map_Cred:	include	"mappings/sprite/S1/obj8A.asm"
 ; ===========================================================================
 		jmpTos	JmpTo5_Adjust2PArtPointer
+; ===========================================================================
 
 		include "obj/S1/3D Boss - Green Hill (part 1).asm"
 
@@ -11974,6 +12003,7 @@ word_194C6:	dc.w 2
 		dc.w	$B,  $1E,   $F,	 $10
 
 		jmpTos0	JmpTo3_Adjust2PArtPointer2,JmpTo6_Adjust2PArtPointer
+; ===========================================================================
 
 		include	"obj/S1/3E Prison Capsule.asm"
 
@@ -12016,6 +12046,7 @@ word_197D4:	dc.w 1
 word_197DE:	dc.w 0
 
 		jmpTos0	JmpTo7_Adjust2PArtPointer
+; ===========================================================================
 
 		include	"obj/sub TouchResponse.asm"
 
@@ -12570,12 +12601,12 @@ Map_SS_Down:	include	"mappings/sprite/S1/SS DOWN Block.asm"
 ; Sprite mappings - Chaos Emeralds
 ; ---------------------------------------------------------------------------
 		include	"mappings/sprite/S1/SS Chaos Emeralds.asm"
-; ===========================================================================
+
 		jmpTos	; Empty
+; ===========================================================================
 
 		include	"obj/S1/09 Sonic in Special Stage.asm"
 		include	"obj/10.asm"
-; ===========================================================================
 
 		jmpTos0	JmpTo8_Adjust2PArtPointer
 
@@ -12612,36 +12643,36 @@ AniArt_Load:
 ; ---------------------------------------------------------------------------
 DynArtCue_Index:
 		dc.w Dynamic_NullGHZ-DynArtCue_Index	; GHZ
-		dc.w AnimCue_EHZ-DynArtCue_Index	; GHZ
-		dc.w Dynamic_Null-DynArtCue_Index	; LZ
+		dc.w AnimCue_EHZ-DynArtCue_Index		; GHZ
+		dc.w Dynamic_Null-DynArtCue_Index		; LZ
 		dc.w AnimCue_CPZ_Boss-DynArtCue_Index	; LZ
-		dc.w Dynamic_Null-DynArtCue_Index	; CPZ
+		dc.w Dynamic_Null-DynArtCue_Index		; CPZ
 		dc.w AnimCue_CPZ_Boss-DynArtCue_Index	; CPZ
-		dc.w Dynamic_Normal-DynArtCue_Index	; EHZ
-		dc.w AnimCue_EHZ-DynArtCue_Index	; EHZ
-		dc.w Dynamic_Normal-DynArtCue_Index	; HPZ
-		dc.w AnimCue_HPZ-DynArtCue_Index	; HPZ
-		dc.w Dynamic_Normal-DynArtCue_Index	; HTZ
-		dc.w AnimCue_EHZ-DynArtCue_Index	; HTZ
-		dc.w Dynamic_Null-DynArtCue_Index	; 06
+		dc.w Dynamic_Normal-DynArtCue_Index		; EHZ
+		dc.w AnimCue_EHZ-DynArtCue_Index		; EHZ
+		dc.w Dynamic_Normal-DynArtCue_Index		; HPZ
+		dc.w AnimCue_HPZ-DynArtCue_Index		; HPZ
+		dc.w Dynamic_Normal-DynArtCue_Index		; HTZ
+		dc.w AnimCue_EHZ-DynArtCue_Index		; HTZ
+		dc.w Dynamic_Null-DynArtCue_Index		; 06
 		dc.w AnimCue_CPZ_Boss-DynArtCue_Index	; 06
-		dc.w Dynamic_Null-DynArtCue_Index	; 07
+		dc.w Dynamic_Null-DynArtCue_Index		; 07
 		dc.w AnimCue_CPZ_Boss-DynArtCue_Index	; 07
-		dc.w Dynamic_Normal-DynArtCue_Index	; 08
-		dc.w AnimCue_HPZ-DynArtCue_Index	; 08
-		dc.w Dynamic_Null-DynArtCue_Index	; 09
+		dc.w Dynamic_Normal-DynArtCue_Index		; 08
+		dc.w AnimCue_HPZ-DynArtCue_Index		; 08
+		dc.w Dynamic_Null-DynArtCue_Index		; 09
 		dc.w AnimCue_CPZ_Boss-DynArtCue_Index	; 09
-		dc.w Dynamic_Null-DynArtCue_Index	; 0A
+		dc.w Dynamic_Null-DynArtCue_Index		; 0A
 		dc.w AnimCue_CPZ_Boss-DynArtCue_Index	; 0A
-		dc.w Dynamic_Null-DynArtCue_Index	; 0B
+		dc.w Dynamic_Null-DynArtCue_Index		; 0B
 		dc.w AnimCue_CPZ_Boss-DynArtCue_Index	; 0B
-		dc.w Dynamic_Null-DynArtCue_Index	; 0C
+		dc.w Dynamic_Null-DynArtCue_Index		; 0C
 		dc.w AnimCue_CPZ_Boss-DynArtCue_Index	; 0C
-		dc.w Dynamic_Null-DynArtCue_Index	; 0D
+		dc.w Dynamic_Null-DynArtCue_Index		; 0D
 		dc.w AnimCue_CPZ_Boss-DynArtCue_Index	; 0D
-		dc.w Dynamic_Null-DynArtCue_Index	; 0E
+		dc.w Dynamic_Null-DynArtCue_Index		; 0E
 		dc.w AnimCue_CPZ_Boss-DynArtCue_Index	; 0E
-		dc.w Dynamic_Null-DynArtCue_Index	; 0F
+		dc.w Dynamic_Null-DynArtCue_Index		; 0F
 		dc.w AnimCue_CPZ_Boss-DynArtCue_Index	; 0F
 ; ===========================================================================
 
@@ -13322,24 +13353,25 @@ AddPoints:
 		add.l	d0,(a3)
 		move.l	#999999,d1
 		cmp.l	(a3),d1
-		bhi.s	loc_1B214
+		bhi.s	.belowmax
 		move.l	d1,(a3)
 
-loc_1B214:
+.belowmax:
 		move.l	(a3),d0
 		cmp.l	(v_scorelife).w,d0
-		blo.s	locret_1B23C
+		blo.s	.noextralife
 		addi.l	#5000,(v_scorelife).w
 		tst.b	(v_megadrive).w			; is this a Japanese console?
-		bmi.s	locret_1B23C			; if not, branch
+		bmi.s	.noextralife			; if not, branch
 		addq.b	#1,(v_lives).w
 		addq.b	#1,(f_lifecount).w
 		move.w	#bgm_ExtraLife,d0
 		jmp	(QueueSound1).l
 
-locret_1B23C:
+.noextralife:
 		rts
 ; End of function AddPoints
+; ===========================================================================
 
 		include	"_Include/HUD Update.asm"
 
@@ -13347,11 +13379,13 @@ Art_HUD:	binclude	"art/uncompressed/HUD Numbers.bin"
 Art_LivesNums:	binclude	"art/uncompressed/Lives Counter Numbers.bin"
 
 		jmpTos	JmpTo9_Adjust2PArtPointer
+; ===========================================================================
 
 		include	"obj/DebugMode.asm"
 		include	"_Include/DebugList.asm"
 
 		jmpTos0	JmpTo10_Adjust2PArtPointer
+; ===========================================================================
 
 		include	"_Include/LevelHeaders.asm"
 		include	"_Include/Pattern Load Cues.asm"
@@ -13600,17 +13634,17 @@ ObjPos_Index:	dc.w ObjPos_GHZ1-ObjPos_Index,ObjPos_Null-ObjPos_Index
 		dc.w ObjPos_S1SBZ1pf3-ObjPos_Index,ObjPos_S1SBZ1pf4-ObjPos_Index
 		dc.w ObjPos_S1SBZ1pf5-ObjPos_Index,ObjPos_S1SBZ1pf6-ObjPos_Index
 		dc.w ObjPos_S1SBZ1pf1-ObjPos_Index,ObjPos_S1SBZ1pf2-ObjPos_Index
+		dc.w $FFFF,	0,	0
 
-		dc.w $FFFF,    0,    0
 ObjPos_GHZ1:	binclude	"level/objects/GHZ_1.bin"
 		even
 ObjPos_GHZ2:	binclude	"level/objects/GHZ_2.bin"
 		even
 ObjPos_GHZ3:	binclude	"level/objects/GHZ_3.bin"
 		even
-ObjPos_LZ1:	dc.w $FFFF,    0,    0
-ObjPos_LZ2:	dc.w $FFFF,    0,    0
-ObjPos_LZ3:	dc.w $FFFF,    0,    0
+ObjPos_LZ1:	dc.w $FFFF,	0,	0
+ObjPos_LZ2:	dc.w $FFFF,	0,	0
+ObjPos_LZ3:	dc.w $FFFF,	0,	0
 ObjPos_S1LZ1pf1:
 		binclude	"level/objects/S1/lz1pf1.bin"
 		even
@@ -13631,20 +13665,20 @@ ObjPos_S1LZ3pf2:
 		even
 ObjPos_CPZ1:	binclude	"level/objects/CPZ_1.bin"
 		even
-ObjPos_CPZ2:	dc.w $FFFF,    0,    0
-ObjPos_CPZ3:	dc.w $FFFF,    0,    0
+ObjPos_CPZ2:	dc.w $FFFF,	0,	0
+ObjPos_CPZ3:	dc.w $FFFF,	0,	0
 ObjPos_EHZ1:	binclude	"level/objects/EHZ_1.bin"
 		even
 ObjPos_EHZ2:	binclude	"level/objects/EHZ_2.bin"
 		even
-ObjPos_EHZ3:	dc.w $FFFF,    0,    0
+ObjPos_EHZ3:	dc.w $FFFF,	0,	0
 ObjPos_HPZ1:	binclude	"level/objects/HPZ_1.bin"
 		even
-ObjPos_HPZ2:	dc.w $FFFF,    0,    0
-ObjPos_HPZ3:	dc.w $FFFF,    0,    0
+ObjPos_HPZ2:	dc.w $FFFF,	0,	0
+ObjPos_HPZ3:	dc.w $FFFF,	0,	0
 ObjPos_HTZ1:	binclude	"level/objects/HTZ_1.bin"
 		even
-ObjPos_HTZ2:	dc.w $FFFF,    0,    0
+ObjPos_HTZ2:	dc.w $FFFF,	0,	0
 ObjPos_HTZ3:	binclude	"level/objects/HTZ_3.bin"
 		even
 ObjPos_S1SBZ1pf1:
@@ -13668,7 +13702,8 @@ ObjPos_S1SBZ1pf6:
 ObjPos_S1Ending:
 		binclude	"level/objects/S1/ending.bin"
 		even
-ObjPos_Null:	dc.w $FFFF,    0,    0
+ObjPos_Null:	dc.w $FFFF,	0,	0
+
 ; ---------------------------------------------------------------------------
 ; Leftover symbol tables due to compiler weirdness; these are formatted
 ; with a Unix ($0A) line break instead of a DOS ($0D0A) line break and it's
@@ -13691,6 +13726,7 @@ ObjPos_Null:	dc.w $FFFF,    0,    0
 		even
 		binclude	"misc/leftovers/4FB08.bin"
 		even
+
 ; ---------------------------------------------------------------------------
 ; Ring layouts; one entry per act, four entries per zone
 ; ---------------------------------------------------------------------------
@@ -13793,7 +13829,6 @@ RingPos_CPZ1:	binclude	"level/rings/CPZ_1.bin"
 ; ---------------------------------------------------------------------------
 ; Start of leftover code.
 ; ---------------------------------------------------------------------------
-
 		binclude	"misc/leftovers/s2proto_code.txt"
 		binclude	"misc/leftovers/tilemaps/Title Emblem.eni"
 		binclude	"misc/leftovers/tilemaps/Title Background.eni"
@@ -13828,7 +13863,7 @@ RingPos_CPZ1:	binclude	"level/rings/CPZ_1.bin"
 ; ---------------------------------------------------------------------------
 		include	"s1.sounddriver.asm"
 ; ---------------------------------------------------------------------------
-; Primary object assets (players and common objects)
+; Uncompressed graphics - Sonic and Tails
 ; ---------------------------------------------------------------------------
 ; This must be aligned to a bank in order to avoid issues with the DMA.
 ; But because all of the art is placed after the sound driver which already aligns with the bank,
@@ -13850,7 +13885,7 @@ Art_SplashDust:	binclude	"art/uncompressed/Dust and water splash.bin"
 Map_Tails:	include	"mappings/sprite/Tails.asm"
 TailsDynPLC:	include	"mappings/spriteDPLC/Tails.asm"
 ; ---------------------------------------------------------------------------
-; Sega and title screen assets
+; Compressed graphics - sega and title screen stuff
 ; ---------------------------------------------------------------------------
 Nem_SegaLogo:	binclude	"art/nemesis/S1/Sega Logo (JP1).nem"
 		even
@@ -13866,8 +13901,9 @@ Nem_Title:	binclude	"art/nemesis/8x8 - Title.nem"
 		even
 Nem_TitleSonicTails:	binclude	"art/nemesis/Title Sonic and Tails.nem"
 		even
+
 ; ---------------------------------------------------------------------------
-; Green Hill Zone stage assets
+; Compressed graphics - GHZ stuff
 ; ---------------------------------------------------------------------------
 S1Nem_GHZFlowerBits:	binclude	"art/nemesis/S1/GHZ Flower Stalk.nem"
 		even
@@ -13889,8 +13925,9 @@ S1Nem_GHZBreakableWall:	binclude	"art/nemesis/S1/GHZ Breakable Wall.nem"
 		even
 S1Nem_GHZWall:	binclude	"art/nemesis/S1/GHZ Edge Wall.nem"
 		even
+
 ; ---------------------------------------------------------------------------
-; Emerald Hill Zone stage assets
+; Compressed graphics - EHZ stuff
 ; ---------------------------------------------------------------------------
 Nem_EHZ_Fireball:	binclude	"art/nemesis/Fireball 1.nem"
 		even
@@ -13902,8 +13939,9 @@ Nem_HTZ_Fireball:	binclude	"art/nemesis/Fireball 2.nem"
 		even
 Nem_EHZ_Bridge:	binclude	"art/nemesis/EHZ bridge.nem"
 		even
+
 ; ---------------------------------------------------------------------------
-; Hill Top Zone stage assets
+; Compressed graphics - HTZ stuff
 ; ---------------------------------------------------------------------------
 Nem_HTZ_Lift:	binclude	"art/nemesis/HTZ zip-line platform.nem"
 		even
@@ -13912,8 +13950,9 @@ Nem_HTZ_AutomaticDoor:
 		even
 Nem_HTZ_Seesaw:	binclude	"art/nemesis/See-saw in HTZ.nem"
 		even
+
 ; ---------------------------------------------------------------------------
-; Hidden Palace Zone stage assets
+; Compressed graphics - HPZ stuff
 ; ---------------------------------------------------------------------------
 Nem_HPZ_Bridge:	binclude	"art/nemesis/HPZ bridge.nem"
 		even
@@ -13929,13 +13968,15 @@ Nem_HPZ_Various:	binclude	"art/nemesis/HPZ Various.nem"
 		even
 Nem_UnusedDust:	binclude	"art/nemesis/Unused - Dust.nem"
 		even
+
 ; ---------------------------------------------------------------------------
-; Chemical Plant Zone stage assets
+; Compressed graphics - CPZ stuff
 ; ---------------------------------------------------------------------------
 Nem_CPZ_FloatingPlatform:	binclude	"art/nemesis/CPZ Floating Platform.nem"
 		even
+
 ; ---------------------------------------------------------------------------
-; Primary object assets (common objects)
+; Compressed graphics - various
 ; ---------------------------------------------------------------------------
 Nem_WaterSurface:	binclude	"art/nemesis/Water Surface.nem"
 		even
@@ -13963,6 +14004,10 @@ Nem_Lamppost:	binclude	"art/nemesis/Lamppost.nem"
 		even
 Nem_Signpost:	binclude	"art/nemesis/Signpost.nem"
 		even
+
+; ---------------------------------------------------------------------------
+; Compressed graphics - enemies
+; ---------------------------------------------------------------------------
 Nem_Gator:	binclude	"art/nemesis/Gator.nem"
 		even
 Nem_Buzzer:	binclude	"art/nemesis/Buzzer.nem"
@@ -13991,6 +14036,10 @@ Nem_Crawl:	binclude	"art/nemesis/Crawl badnik.nem"
 		even
 Nem_Masher:	binclude	"art/nemesis/Masher.nem"
 		even
+
+; ---------------------------------------------------------------------------
+; Compressed graphics - bosses
+; ---------------------------------------------------------------------------
 Nem_BossShip:	binclude	"art/nemesis/Boss Ship.nem"
 		even
 Nem_CPZ_ProtoBoss:	binclude	"art/nemesis/CPZ boss.nem"
@@ -14005,7 +14054,11 @@ Nem_EHZ_Boss:	binclude	"art/nemesis/EHZ boss.nem"
 		even
 Nem_EHZ_Boss_Blades:	binclude	"art/nemesis/Chopper blades for EHZ boss.nem"
 		even
-Nem_Ballhog:	binclude	"art/nemesis/S1/Enemy Ball Hog.nem"
+
+; ---------------------------------------------------------------------------
+; Compressed graphics - enemies (S1)
+; ---------------------------------------------------------------------------
+Nem_BallHog:	binclude	"art/nemesis/S1/Enemy Ball Hog.nem"
 		even
 Nem_Crabmeat:	binclude	"art/nemesis/S1/Enemy Crabmeat.nem"
 		even
@@ -14037,6 +14090,10 @@ Nem_Orbinaut:	binclude	"art/nemesis/S1/Enemy Orbinaut.nem"
 		even
 Nem_Caterkiller:	binclude	"art/nemesis/S1/Enemy Caterkiller.nem"
 		even
+
+; ---------------------------------------------------------------------------
+; Compressed graphics - various (S1)
+; ---------------------------------------------------------------------------
 Nem_TitleCard:	binclude	"art/nemesis/S1/Title Cards.nem"
 		even
 Nem_Explosion:	binclude	"art/nemesis/S1/Explosion.nem"
@@ -14051,10 +14108,18 @@ Nem_BigFlash:	binclude	"art/nemesis/S1/Giant Ring Flash.nem"
 		even
 Nem_BonusPoints:	binclude	"art/nemesis/S1/Hidden Bonuses.nem"
 		even
+
+; ---------------------------------------------------------------------------
+; Compressed graphics - continue screen
+; ---------------------------------------------------------------------------
 Nem_SonicContinue:	binclude	"art/nemesis/S1/Continue Screen Sonic.nem"
 		even
 Nem_MiniSonic:	binclude	"art/nemesis/S1/Continue Screen Stuff.nem"
 		even
+
+; ---------------------------------------------------------------------------
+; Compressed graphics - animals
+; ---------------------------------------------------------------------------
 Nem_Bunny:	binclude	"art/nemesis/S1/Animal Rabbit.nem"
 		even
 Nem_Chicken:	binclude	"art/nemesis/S1/Animal Chicken.nem"
@@ -14069,6 +14134,10 @@ Nem_Flicky:	binclude	"art/nemesis/S1/Animal Flicky.nem"
 		even
 Nem_Squirrel:	binclude	"art/nemesis/S1/Animal Squirrel.nem"
 		even
+
+; ---------------------------------------------------------------------------
+; Level Data
+; ---------------------------------------------------------------------------
 Map16_EHZ:	binclude	"mappings/16x16/EHZ.unc"
 Map16_EHZ_End:
 Nem_EHZ:binclude	"art/nemesis/8x8 - EHZ.nem"
@@ -14106,6 +14175,10 @@ Map128_GHZ:	binclude	"mappings/128x128/GHZ.kcc"
 ; duplicate chunk end data from the above
 		dc.w 0, $7F00, $BFA, 0, 0
 	endif
+
+; ---------------------------------------------------------------------------
+; Compressed graphics - bosses and ending sequence
+; ---------------------------------------------------------------------------
 Nem_TryAgain:	binclude	"art/nemesis/S1/cut-off/Ending - Try Again.nem"
 		even
 Kos_EndFlowers:	binclude	"art/kosinski/S1/Flowers at Ending.kos"

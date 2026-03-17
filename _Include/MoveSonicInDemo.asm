@@ -82,7 +82,7 @@ loc_450C:
 		and.b	d1,d0
 		move.b	d0,(a0)+
 		subq.b	#1,(Demo_press_counter).w
-		bcc.s	loc_453A
+		bhs.s	loc_453A
 		move.b	3(a1),(Demo_press_counter).w
 		addq.w	#2,(Demo_button_index).w
 
@@ -101,7 +101,7 @@ loc_453A:
 		and.b	d1,d0
 		move.b	d0,(a0)+
 		subq.b	#1,(Demo_press_counter_2P).w
-		bcc.s	locret_4570
+		bhs.s	locret_4570
 		move.b	3(a1),(Demo_press_counter_2P).w
 		addq.w	#2,(Demo_button_index_2P).w
 

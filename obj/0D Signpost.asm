@@ -75,7 +75,12 @@ Obj0D_Sparkle:
 		add.w	obY(a0),d0
 		move.w	d0,obY(a1)
 		move.l	#Map_Ring,obMap(a1)
+	if FixBugs
+		move.w	#make_art_tile(ArtTile_Ring,1,0),obGfx(a1)
+	else
+		; The sparkles when you spin a signpost don't appear!
 		move.w	#make_art_tile(ArtTile_S1_Ring,1,0),obGfx(a1)
+	endif
 		bsr.w	Adjust2PArtPointer2
 		move.b	#4,obRender(a1)
 		move.b	#2,obPriority(a1)
@@ -125,7 +130,7 @@ loc_F0E0:
 		move.w	(Camera_Max_X_pos).w,d1
 		addi.w	#320-24,d1
 		cmp.w	d1,d0
-		bcs.s	locret_F15E
+		blo.s	locret_F15E
 
 loc_F0F6:
 		addq.b	#2,obRoutine(a0)

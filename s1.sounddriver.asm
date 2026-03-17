@@ -645,7 +645,7 @@ CycleSoundQueue:
 		move.b	d0,d1
 		clr.b	(a1)+				; Clear entry
 		subi.b	#bgm__First,d0			; Make it into 0-based index
-		bcs.s	.nextinput			; If negative (i.e., it was $80 or lower), branch
+		blo.s	.nextinput			; If negative (i.e., it was $80 or lower), branch
 		cmpi.b	#$80,SMPS_RAM.v_sound_id(a6)	; Is v_sound_id a $80 (silence/empty)?
 		beq.s	.havesound			; If yes, branch
 		move.b	d1,SMPS_RAM.v_soundqueue0(a6)	; Put sound into v_soundqueue0
@@ -1870,7 +1870,7 @@ PSGDoNext:
 ; sub_728AC:
 PSGSetFreq:
 		subi.b	#$81,d5				; Convert to 0-based index
-		bcs.s	.restpsg			; If $80, put track at rest
+		blo.s	.restpsg			; If $80, put track at rest
 		add.b	SMPS_Track.Transpose(a5),d5	; Add in channel transposition
 		andi.w	#$7F,d5				; Clear high byte and sign bit
 		lsl.w	#1,d5
@@ -2363,7 +2363,7 @@ SetVoice:
 		move.b	(a2)+,d0
 		move.b	(a1)+,d1
 		lsr.b	#1,d4	; Is bit set for this operator in the mask?
-		bcc.s	.sendtl	; Branch if not
+		bhs.s	.sendtl	; Branch if not
 		add.b	d3,d1	; Include additional attenuation
 ; loc_72C96:
 .sendtl:
@@ -2428,9 +2428,9 @@ SendVoiceTL:
 		move.b	(a2)+,d0
 		move.b	(a1)+,d1
 		lsr.b	#1,d4		; Is bit set for this operator in the mask?
-		bcc.s	.senttl		; Branch if not
+		bhs.s	.senttl		; Branch if not
 		add.b	d3,d1		; Include additional attenuation
-		bcs.s	.senttl		; Branch on overflow
+		blo.s	.senttl		; Branch on overflow
 		jsr	WriteFMIorII(pc)
 ; loc_72D12:
 .senttl:

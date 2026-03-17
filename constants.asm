@@ -327,9 +327,9 @@ GameModeID_TitleCard:		equ 1<<GameModeFlag_TitleCard ; $80 ; flag mask
 	phase	($FE0000)
 RAM_debug_start:	ds.b	$8000
 
-RAM_debug_demo_record:	ds.b	$4000
+RAM_debug_demo_record:	ds.w	$2000
 
-RAM_debug_demo_record_2P:	ds.b	$4000
+RAM_debug_demo_record_2P:	ds.w	$2000
 
 RAM_debug_end:
 	dephase

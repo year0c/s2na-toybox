@@ -38,10 +38,10 @@ KC_Dec:
 loc_1A62:
 		move.b	(a0)+,d1
 		add.b	d1,d1
-		bcs.s	loc_1ADC
+		blo.s	loc_1ADC
 		movea.l	a2,a6
 		add.b	d1,d1
-		bcs.s	loc_1A84
+		blo.s	loc_1A84
 		move.b	(a1)+,d5
 		suba.l	d5,a6
 		add.b	d1,d1
@@ -63,9 +63,9 @@ loc_1A84:
 		move.b	(a1)+,d6
 		suba.l	d6,a6
 		add.b	d1,d1
-		bcs.s	loc_1A98
+		blo.s	loc_1A98
 		add.b	d1,d1
-		bcs.s	loc_1AAE
+		blo.s	loc_1AAE
 		bra.s	loc_1AB0
 ; ---------------------------------------------------------------------------
 
@@ -126,10 +126,10 @@ loc_1ADC:
 loc_1ADE:
 
 		add.b	d1,d1
-		bcs.s	loc_1B56
+		blo.s	loc_1B56
 		movea.l	a2,a6
 		add.b	d1,d1
-		bcs.s	loc_1AFE
+		blo.s	loc_1AFE
 		move.b	(a1)+,d5
 		suba.l	d5,a6
 		add.b	d1,d1
@@ -151,9 +151,9 @@ loc_1AFE:
 		move.b	(a1)+,d6
 		suba.l	d6,a6
 		add.b	d1,d1
-		bcs.s	loc_1B12
+		blo.s	loc_1B12
 		add.b	d1,d1
-		bcs.s	loc_1B28
+		blo.s	loc_1B28
 		bra.s	loc_1B2A
 ; ---------------------------------------------------------------------------
 
@@ -214,10 +214,10 @@ loc_1B56:
 loc_1B58:
 
 		add.b	d1,d1
-		bcs.s	loc_1BD4
+		blo.s	loc_1BD4
 		movea.l	a2,a6
 		add.b	d1,d1
-		bcs.s	loc_1B78
+		blo.s	loc_1B78
 		move.b	(a1)+,d5
 		suba.l	d5,a6
 		add.b	d1,d1
@@ -239,10 +239,10 @@ loc_1B78:
 		move.b	(a1)+,d6
 		suba.l	d6,a6
 		add.b	d1,d1
-		bcs.s	loc_1B8E
+		blo.s	loc_1B8E
 		move.b	(a0)+,d1
 		add.b	d1,d1
-		bcs.s	loc_1BA6
+		blo.s	loc_1BA6
 		bra.s	loc_1BA8
 ; ---------------------------------------------------------------------------
 
@@ -304,10 +304,10 @@ loc_1BD4:
 loc_1BD6:
 
 		add.b	d1,d1
-		bcs.s	loc_1C50
+		blo.s	loc_1C50
 		movea.l	a2,a6
 		add.b	d1,d1
-		bcs.s	loc_1BF6
+		blo.s	loc_1BF6
 		move.b	(a1)+,d5
 		suba.l	d5,a6
 		add.b	d1,d1
@@ -330,9 +330,9 @@ loc_1BF6:
 		move.b	(a1)+,d6
 		suba.l	d6,a6
 		add.b	d1,d1
-		bcs.s	loc_1C0C
+		blo.s	loc_1C0C
 		add.b	d1,d1
-		bcs.s	loc_1C22
+		blo.s	loc_1C22
 		bra.s	loc_1C24
 ; ---------------------------------------------------------------------------
 
@@ -392,10 +392,10 @@ loc_1C50:
 
 loc_1C52:
 		add.b	d1,d1
-		bcs.s	loc_1CCE
+		blo.s	loc_1CCE
 		movea.l	a2,a6
 		add.b	d1,d1
-		bcs.s	loc_1C72
+		blo.s	loc_1C72
 		move.b	(a1)+,d5
 		suba.l	d5,a6
 		add.b	d1,d1
@@ -419,9 +419,9 @@ loc_1C72:
 		move.b	(a1)+,d6
 		suba.l	d6,a6
 		add.b	d1,d1
-		bcs.s	loc_1C8A
+		blo.s	loc_1C8A
 		add.b	d1,d1
-		bcs.s	loc_1CA0
+		blo.s	loc_1CA0
 		bra.s	loc_1CA2
 ; ---------------------------------------------------------------------------
 
@@ -482,10 +482,10 @@ loc_1CCE:
 loc_1CD0:
 
 		add.b	d1,d1
-		bcs.s	loc_1D4C
+		blo.s	loc_1D4C
 		movea.l	a2,a6
 		add.b	d1,d1
-		bcs.s	loc_1CF0
+		blo.s	loc_1CF0
 		move.b	(a1)+,d5
 		suba.l	d5,a6
 		add.b	d1,d1
@@ -509,9 +509,9 @@ loc_1CF0:
 		move.b	(a1)+,d6
 		suba.l	d6,a6
 		add.b	d1,d1
-		bcs.s	loc_1D08
+		blo.s	loc_1D08
 		add.b	d1,d1
-		bcs.s	loc_1D1E
+		blo.s	loc_1D1E
 		bra.s	loc_1D20
 ; ---------------------------------------------------------------------------
 
@@ -572,10 +572,10 @@ loc_1D4C:
 loc_1D4E:
 
 		add.b	d1,d1
-		bcs.s	loc_1DCA
+		blo.s	loc_1DCA
 		movea.l	a2,a6
 		add.b	d1,d1
-		bcs.s	loc_1D70
+		blo.s	loc_1D70
 		move.b	(a0)+,d1
 		move.b	(a1)+,d5
 		suba.l	d5,a6
@@ -599,9 +599,9 @@ loc_1D70:
 		move.b	(a1)+,d6
 		suba.l	d6,a6
 		add.b	d1,d1
-		bcs.s	loc_1D86
+		blo.s	loc_1D86
 		add.b	d1,d1
-		bcs.s	loc_1D9C
+		blo.s	loc_1D9C
 		bra.s	loc_1D9E
 ; ---------------------------------------------------------------------------
 
@@ -661,11 +661,11 @@ loc_1DCA:
 
 loc_1DCC:
 		add.b	d1,d1
-		bcs.s	loc_1E46
+		blo.s	loc_1E46
 		move.b	(a0)+,d1
 		movea.l	a2,a6
 		add.b	d1,d1
-		bcs.s	loc_1DEE
+		blo.s	loc_1DEE
 		move.b	(a1)+,d5
 		suba.l	d5,a6
 		add.b	d1,d1
@@ -687,9 +687,9 @@ loc_1DEE:
 		move.b	(a1)+,d6
 		suba.l	d6,a6
 		add.b	d1,d1
-		bcs.s	loc_1E02
+		blo.s	loc_1E02
 		add.b	d1,d1
-		bcs.s	loc_1E18
+		blo.s	loc_1E18
 		bra.s	loc_1E1A
 ; ---------------------------------------------------------------------------
 

@@ -5447,8 +5447,7 @@ Map_Obj18_GHZ:	include	"mappings/sprite/obj18_GHZ.asm"
 ; ---------------------------------------------------------------------------
 ; Sprite mappings - EHZ platforms
 ; ---------------------------------------------------------------------------
-Map_Obj18_EHZ:	binclude	"mappings/sprite/obj18_EHZ.bin"
-		even
+Map_Obj18_EHZ:	include	"mappings/sprite/obj18_EHZ.asm"
 ; ---------------------------------------------------------------------------
 		jmpTos	; Empty
 
@@ -5893,7 +5892,7 @@ byte_A327:	dc.b   1,  5,  6,$FF
 ; ---------------------------------------------------------------------------
 ; Sprite mappings
 ; ---------------------------------------------------------------------------
-Map_obj1F:	include	"mappings/sprite/obj1F.asm"
+Map_obj1F:	include	"mappings/sprite/S1/obj1F.asm"
 
 		include	"obj/S1/22 Buzz Bomber.asm"
 		include	"obj/S1/23 Buzz Bomber Missile.asm"
@@ -5914,12 +5913,12 @@ byte_A666:	dc.b   1,  2,  3,$FF
 ; ---------------------------------------------------------------------------
 ; sprite mappings - Buzz Bomber
 ; ---------------------------------------------------------------------------
-Map_obj22:	binclude	"mappings/sprite/obj22.bin"
+Map_obj22:	binclude	"mappings/sprite/S1/obj22.bin"
 		even
 ; ---------------------------------------------------------------------------
 ; sprite mappings - Buzz Bomber missile
 ; ---------------------------------------------------------------------------
-Map_obj23:	binclude	"mappings/sprite/obj23.bin"
+Map_obj23:	binclude	"mappings/sprite/S1/obj23.bin"
 		even
 
 		jmpTos	; Empty
@@ -5935,8 +5934,7 @@ byte_ABEC:	dc.b   5,  4,  5,  6,  7,$FC
 ; ---------------------------------------------------------------------------
 ; sprite mappings
 ; ---------------------------------------------------------------------------
-Map_Ring:	binclude	"mappings/sprite/obj37_a.bin"
-		even
+Map_Ring:	include	"mappings/sprite/Rings.asm"
 
 Map_S1Obj4B:	dc.w word_AC5E-Map_S1Obj4B
 		dc.w word_ACB0-Map_S1Obj4B
@@ -8473,7 +8471,23 @@ loc_DBF2:
 ; End of function RingsManager_Setup
 
 ; ---------------------------------------------------------------------------
-off_DC04:	include	"mappings/sprite/Rings.asm"
+off_DC04:
+		dc.w .frame1-off_DC04
+		dc.w .frame2-off_DC04
+		dc.w .frame3-off_DC04
+		dc.w .frame4-off_DC04
+		dc.w .frame5-off_DC04
+		dc.w .frame6-off_DC04
+		dc.w .frame7-off_DC04
+		dc.w .frame8-off_DC04
+.frame1:	dc.w $F805, 0, 0, $FFF8
+.frame2:	dc.w $F805, 4, 2, $FFF8
+.frame3:	dc.w $F801, 8, 4, $FFFC
+.frame4:	dc.w $F805, $804, $802, $FFF8
+.frame5:	dc.w $F805, $A, 5, $FFF8
+.frame6:	dc.w $F805, $180A, $1805, $FFF8
+.frame7:	dc.w $F805, $80A, $805, $FFF8
+.frame8:	dc.w $F805, $100A, $1005, $FFF8
 
 ; ===========================================================================
 ; ---------------------------------------------------------------------------
@@ -9416,7 +9430,7 @@ byte_ED8F:	dc.b $13,  0,  1,  1,  2,  1,  1,  0
 ; ---------------------------------------------------------------------------
 ; Sprite mappings
 ; ---------------------------------------------------------------------------
-Map_obj42:	binclude	"mappings/sprite/obj42.bin"
+Map_obj42:	binclude	"mappings/sprite/S1/obj42.bin"
 		even
 
 		include	"obj/S1/44 GHZ Edge Walls.asm"
@@ -9424,7 +9438,7 @@ Map_obj42:	binclude	"mappings/sprite/obj42.bin"
 ; ---------------------------------------------------------------------------
 ; Sprite mappings
 ; ---------------------------------------------------------------------------
-Map_obj44:	binclude	"mappings/sprite/obj44.bin"
+Map_obj44:	binclude	"mappings/sprite/S1/obj44.bin"
 		even
 
 		include	"obj/0D Signpost.asm"
@@ -9465,7 +9479,7 @@ byte_F38F:	dc.b   1,  3,  6,  3,  6,  4,  6,  4
 ; ---------------------------------------------------------------------------
 ; sprite mappings
 ; ---------------------------------------------------------------------------
-Map_obj40:	binclude	"mappings/sprite/obj40.bin"
+Map_obj40:	binclude	"mappings/sprite/S1/obj40.bin"
 		even
 
 ; ===========================================================================
@@ -11230,52 +11244,7 @@ word_1565E:	dc.w 6
 		dc.w $F80D,    8,    4,	 $40		; 20
 
 		include	"obj/49 EHZ Waterfall.asm"
-
-Map_Obj49:	dc.w word_1574E-Map_Obj49
-		dc.w word_15760-Map_Obj49
-		dc.w word_157F2-Map_Obj49
-		dc.w word_157F4-Map_Obj49
-		dc.w word_157F2-Map_Obj49
-		dc.w word_15816-Map_Obj49
-word_1574E:	dc.w 2
-		dc.w $800D,    0,    0,$FFE0
-		dc.w $800D,    0,    0,	   0		; 4
-word_15760:	dc.w $12
-		dc.w $800D,    0,    0,$FFE0
-		dc.w $800D,    0,    0,	   0		; 4
-		dc.w $800F,    8,    4,$FFE0		; 8
-		dc.w $800F,    8,    4,	   0		; 12
-		dc.w $A00F,    8,    4,$FFE0		; 16
-		dc.w $A00F,    8,    4,	   0		; 20
-		dc.w $C00F,    8,    4,$FFE0		; 24
-		dc.w $C00F,    8,    4,	   0		; 28
-		dc.w $E00F,    8,    4,$FFE0		; 32
-		dc.w $E00F,    8,    4,	   0		; 36
-		dc.w	$F,    8,    4,$FFE0		; 40
-		dc.w	$F,    8,    4,	   0		; 44
-		dc.w $200F,    8,    4,$FFE0		; 48
-		dc.w $200F,    8,    4,	   0		; 52
-		dc.w $400F,    8,    4,$FFE0		; 56
-		dc.w $400F,    8,    4,	   0		; 60
-		dc.w $600F,    8,    4,$FFE0		; 64
-		dc.w $600F,    8,    4,	   0		; 68
-word_157F2:	dc.w 0
-word_157F4:	dc.w 4
-		dc.w $E00F,    8,    4,$FFE0
-		dc.w $E00F,    8,    4,	   0		; 4
-		dc.w	$F,    8,    4,$FFE0		; 8
-		dc.w	$F,    8,    4,	   0		; 12
-word_15816:	dc.w $A
-		dc.w $C00F,    8,    4,$FFE0
-		dc.w $C00F,    8,    4,	   0		; 4
-		dc.w $E00F,    8,    4,$FFE0		; 8
-		dc.w $E00F,    8,    4,	   0		; 12
-		dc.w	$F,    8,    4,$FFE0		; 16
-		dc.w	$F,    8,    4,	   0		; 20
-		dc.w $200F,    8,    4,$FFE0		; 24
-		dc.w $200F,    8,    4,	   0		; 28
-		dc.w $400F,    8,    4,$FFE0		; 32
-		dc.w $400F,    8,    4,	   0		; 36
+Map_Obj49:	include	"mappings/sprite/obj49.asm"
 
 		jmpTos0	JmpTo3_DisplaySprite,JmpTo3_DeleteObject,JmpTo_Adjust2PArtPointer
 
@@ -11832,7 +11801,7 @@ word_185B0:	dc.w 4
 ; ---------------------------------------------------------------------------
 ; Sprite mappings
 ; ---------------------------------------------------------------------------
-Map_Cred:	binclude	"mappings/sprite/obj8A.bin"
+Map_Cred:	include	"mappings/sprite/S1/obj8A.asm"
 ; ===========================================================================
 		jmpTos	JmpTo5_Adjust2PArtPointer
 

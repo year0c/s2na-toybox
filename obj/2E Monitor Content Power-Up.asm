@@ -91,11 +91,11 @@ Monitor_Rings:
 		addi.w	#10,(v_rings).w
 		ori.b	#1,(f_ringcount).w
 		cmpi.w	#100,(v_rings).w
-		bcs.s	loc_B130
+		blo.s	loc_B130
 		bset	#1,(v_lifecount).w
 		beq.w	Monitor_SonicLife
 		cmpi.w	#200,(v_rings).w
-		bcs.s	loc_B130
+		blo.s	loc_B130
 		bset	#2,(v_lifecount).w
 		beq.w	Monitor_SonicLife
 

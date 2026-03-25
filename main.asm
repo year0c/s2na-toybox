@@ -482,7 +482,7 @@ ShowErrorMsg:
 		move.w	ErrorText(pc,d0.w),d0
 		lea	ErrorText(pc,d0.w),a0
 		locVRAM	vram_fg+$604
-		moveq	#$13-1,d1
+		moveq	#19-1,d1
 
 .showchars:
 		moveq	#0,d0
@@ -907,7 +907,7 @@ PalToCRAM:
 		move.l	#$C0000000,4(a1)		; set VDP to write to CRAM address $00
 	rept (v_palette_water_end-v_palette_water)/4
 		move.l	(a0)+,(a1)			; move palette to CRAM (all 64 colors at once)
-	endm
+	endr
 		move.w	#$8A00+224-1,4(a1)		; write %1101 %1111 to register 10 (interrupt every 224th line)
 		movem.l	(sp)+,a0-a1
 		tst.b	(f_doupdatesinhblank).w
@@ -2282,16 +2282,18 @@ TitleScreen:
 		move.w	#$8400+(vram_bg>>13),(a6)
 		move.w	#$9001,(a6)
 		move.w	#$9200,(a6)
-		move.w	#$8B03,(a6)
+		move.w	#$8B00+%0011,(a6)
 		move.w	#$8720,(a6)
 		clr.b	(f_wtr_state).w
 		move.w	#$8C00+%10000001,(a6)
 		bsr.w	ClearScreen
+
 		clearRAM v_spritequeue,v_spritequeue_end
 		clearRAM v_objspace,v_objend
 		clearRAM v_levelvariables,v_levelvariables_end
 		clearRAM Camera_RAM,Camera_RAM_End
 		clearRAM v_palette_fading,v_palette_fading_end
+
 		moveq	#palid_SonicTails,d0
 		bsr.w	PalLoad1
 		bsr.w	Pal_FadeFromBlack
@@ -2324,17 +2326,23 @@ loc_32C4:
 		lea	(Eni_TitleMap).l,a0
 		move.w	#make_art_tile(ArtTile_Title_Foreground,0,0),d0
 		bsr.w	EniDec
+
 		copyTilemap	v_ram_start,vram_fg,40,28
+
 		lea	(v_ram_start).l,a1
 		lea	(Eni_TitleBg1).l,a0
 		move.w	#make_art_tile(ArtTile_Title_Foreground,0,0),d0
 		bsr.w	EniDec
+
 		copyTilemap	v_ram_start,vram_bg,32,28
+
 		lea	(v_ram_start).l,a1
 		lea	(Eni_TitleBg2).l,a0
 		move.w	#make_art_tile(ArtTile_Title_Foreground,0,0),d0
 		bsr.w	EniDec
+
 		copyTilemap	v_ram_start,vram_bg+64,32,28
+
 		moveq	#palid_Title,d0
 		bsr.w	PalLoad1
 		move.b	#bgm_Title,d0
@@ -2342,7 +2350,9 @@ loc_32C4:
 		move.b	#0,(Debug_mode_flag).w
 		move.w	#0,(Two_player_mode).w
 		move.w	#376,(v_generictimer).w
+
 		clearRAM v_titletails,v_titletails+object_size
+
 		move.b	#id_Obj0E,(v_titlesonic).w
 		move.b	#id_Obj0E,(v_titletails).w
 		move.b	#1,(v_titletails+obFrame).w
@@ -2378,7 +2388,7 @@ LevelSelectCheat:
 		move.w	(v_title_dcount).w,d0
 		adda.w	d0,a0
 		move.b	(v_jpadpress1).w,d0
-		andi.b	#$F,d0
+		andi.b	#btnUp+btnDn+btnL+btnR,d0
 		cmp.b	(a0),d0
 		bne.s	Title_Cheat_NoMatch
 		addq.w	#1,(v_title_dcount).w
@@ -2719,7 +2729,7 @@ textpos:	= ($40000000+(($E210&$3FFF)<<16)+(($E210&$C000)>>14))
 		lea	(vdp_data_port).l,a6
 		move.l	#textpos,d4
 		move.w	#$8680,d3
-		moveq	#$15-1,d1
+		moveq	#21-1,d1
 
 loc_3794:
 		move.l	d4,4(a6)
@@ -2780,7 +2790,7 @@ LevSel_Numb:
 
 
 LevSel_ChgLine:
-		moveq	#$18-1,d2		; number of characters per line
+		moveq	#24-1,d2		; number of characters per line
 
 LevSel_LineLoop:
 		moveq	#0,d0
@@ -2949,7 +2959,8 @@ loc_3AFC:
 
 		jmpTos	; Empty
 
-MusicList:	dc.b bgm_GHZ
+MusicList:
+		dc.b bgm_GHZ
 		dc.b bgm_LZ
 		dc.b bgm_MZ
 		dc.b bgm_SLZ

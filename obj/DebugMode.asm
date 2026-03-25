@@ -23,7 +23,7 @@ Debug_Init:
 		andi.w	#$7FF,(Camera_Y_pos).w
 		andi.w	#$3FF,(Camera_BG_Y_pos).w
 		move.b	#0,obFrame(a0)
-		move.b	#0,obAnim(a0)
+		move.b	#AniIDSonAni_Walk,obAnim(a0)
 
 ; Debug_CheckSS:
 		cmpi.b	#GameModeID_SpecialStage,(v_gamemode).w ; is this the Special Stage?
@@ -47,7 +47,7 @@ loc_1BB0A:
 
 loc_1BB24:
 		bsr.w	LoadDebugObjectSprite
-		move.b	#$C,(Debug_Accel_Timer).w
+		move.b	#12,(Debug_Accel_Timer).w
 		move.b	#1,(Debug_Speed).w
 
 Debug_Main:

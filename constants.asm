@@ -227,7 +227,7 @@ btnR:	EQU	1<<bitR			; $08
 btnB:	EQU	1<<bitB			; $10
 btnC:	EQU	1<<bitC			; $20
 btnA:	EQU	1<<bitA			; $40
-btnABC:	EQU	btnA|btnB|btnC		; $70
+btnABC:	EQU	btnA+btnB+btnC		; $70
 btnStart:	EQU	1<<bitStart		; $80
 ; ---------------------------------------------------------------------------
 ; Art tile stuff

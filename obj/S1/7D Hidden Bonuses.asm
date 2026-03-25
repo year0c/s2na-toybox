@@ -37,7 +37,7 @@ Obj7D_Main:
 		bsr.w	Adjust2PArtPointer
 		ori.b	#4,obRender(a0)
 		move.b	#0,obPriority(a0)
-		move.b	#$10,obActWid(a0)
+		move.b	#16,obActWid(a0)
 		move.b	obSubtype(a0),obFrame(a0)
 		move.w	#119,objoff_30(a0)
 		move.w	#sfx_Bonus,d0

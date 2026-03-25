@@ -17,6 +17,7 @@ Obj36_Conf:
 		dc.b 0,16	; 3
 		dc.b 0,16	; 4
 		dc.b 0,16	; 5
+		even
 ; ---------------------------------------------------------------------------
 
 loc_C682:
@@ -44,10 +45,10 @@ loc_C6CE:
 		beq.s	Spik_SideWays
 		cmpi.b	#1,obFrame(a0)
 		bne.s	Spik_Upright
-		move.w	#$14,d2
+		move.w	#20,d2
 
 Spik_SideWays:
-		move.w	#$1B,d1
+		move.w	#27,d1
 		move.w	d2,d3
 		addq.w	#1,d3
 		move.w	obX(a0),d4
@@ -63,9 +64,9 @@ Spik_SideWays:
 Spik_Upright:
 		moveq	#0,d1
 		move.b	obActWid(a0),d1
-		addi.w	#$B,d1
-		move.w	#$10,d2
-		move.w	#$11,d3
+		addi.w	#11,d1
+		move.w	#16,d2
+		move.w	#17,d3
 		move.w	obX(a0),d4
 		bsr.w	SolidObject
 		btst	#3,obStatus(a0)
@@ -187,7 +188,7 @@ loc_C7E6:
 loc_C808:
 		addi.w	#$800,objoff_34(a0)
 		cmpi.w	#$2000,objoff_34(a0)
-		bcs.s	locret_C828
+		blo.s	locret_C828
 		move.w	#$2000,objoff_34(a0)
 		move.w	#1,objoff_36(a0)
 		move.w	#60,objoff_38(a0)

@@ -13,9 +13,11 @@ BGHZ_Index:	dc.w BGHZ_Main-BGHZ_Index
 		dc.w BGHZ_FaceMain-BGHZ_Index
 		dc.w BGHZ_FlameMain-BGHZ_Index
 
-BGHZ_ObjData:	dc.b 2,	0		; routine counter, animation
+BGHZ_ObjData:
+		dc.b 2,	0		; routine counter, animation
 		dc.b 4,	1
 		dc.b 6,	7
+		even
 ; ===========================================================================
 
 BGHZ_Main:	; Routine 0

@@ -28,9 +28,6 @@ Debug_Init:
 ; Debug_CheckSS:
 		cmpi.b	#GameModeID_SpecialStage,(v_gamemode).w ; is this the Special Stage?
 		bne.s	loc_1BB04			; if not, branch
-		;move.b	#7-1,(Current_Zone).w		; sets the debug object list and resets Special Stage rotation
-		;move.w	#0,(v_ssrotate).w
-		;move.w	#0,(v_ssangle).w
 		moveq	#6,d0				; force zone 6's debug object list (was the ending in S1)
 		bra.s	loc_1BB0A
 ; ===========================================================================
@@ -67,7 +64,6 @@ loc_1BB44:
 		adda.w	(a2,d0.w),a2
 		move.w	(a2)+,d6
 		bsr.w	Debug_Control
-		;bsr.w	dirsprset			; I have no idea what this branches to, it can't be found within the symbol tables
 		jmp	(DisplaySprite).l
 
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
@@ -82,8 +78,8 @@ Debug_Control:
 		move.b	(v_jpadhold1).w,d0
 		andi.w	#btnUp+btnDn+btnL+btnR,d0
 		bne.s	Debug_ContinueMoving
-		move.b	#$C,(Debug_Accel_Timer).w
-		move.b	#$F,(Debug_Speed).w
+		move.b	#12,(Debug_Accel_Timer).w
+		move.b	#15,(Debug_Speed).w
 		bra.w	Debug_ControlObjects
 ; ===========================================================================
 ; loc_1BB86:
@@ -92,7 +88,6 @@ Debug_ContinueMoving:
 		bne.s	Debug_TimerNotOver
 		move.b	#1,(Debug_Accel_Timer).w
 		addq.b	#1,(Debug_Speed).w
-		;cmpi.b	#-1,(Debug_Speed).w		; this effectively resets the Debug movement speed when it reaches 255
 		bne.s	Debug_Move
 		move.b	#-1,(Debug_Speed).w
 ; loc_1BB9E:
@@ -206,11 +201,6 @@ loc_1BC98:
 		cmpi.b	#GameModeID_SpecialStage,(v_gamemode).w ; is this the Special Stage?
 		bne.s	locret_1BCCA			; if not, branch
 
-		;clr.w	(v_ssangle).w			; again, this resets the Special Stage rotation
-		;move.w	#$40,(v_ssrotate).w		; and Sonic's art for whatever reason
-		;move.l	#Map_Sonic,(v_player+obMap).w
-		;move.w	#make_art_tile(ArtTile_Sonic,0,0),(v_player+obGfx).w
-
 		move.b	#AniIDSonAni_Roll,(v_player+obAnim).w
 		bset	#2,(v_player+obStatus).w
 		bset	#1,(v_player+obStatus).w
@@ -222,7 +212,7 @@ locret_1BCCA:
 
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
 
-; loc_1bhsC: Debug_ShowItem:
+; loc_1BCCC: Debug_ShowItem:
 LoadDebugObjectSprite:
 		moveq	#0,d0
 		move.b	(Debug_object).w,d0
@@ -230,7 +220,6 @@ LoadDebugObjectSprite:
 		move.l	(a2,d0.w),obMap(a0)
 		move.w	6(a2,d0.w),obGfx(a0)
 		move.b	5(a2,d0.w),obFrame(a0)
-		;move.b	4(a2,d0.w),obSubtype(a0)	; this does... something with the object's subtype
 		jsrto	JmpTo10_Adjust2PArtPointer
 		rts
 ; End of function Debug_ShowItem

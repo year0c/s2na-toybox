@@ -57,7 +57,7 @@ loc_AED6:
 		bne.s	loc_AF10
 		moveq	#0,d1
 		move.b	obActWid(a0),d1
-		addi.w	#$B,d1
+		addi.w	#11,d1
 		bsr.w	sub_F9C8
 		btst	#3,obStatus(a1)
 		bne.w	loc_AF00
@@ -66,7 +66,7 @@ loc_AED6:
 ; ---------------------------------------------------------------------------
 
 loc_AF00:
-		move.w	#$10,d3
+		move.w	#16,d3
 		move.w	obX(a0),d2
 		bsr.w	MvSonicOnPtfm
 		bra.w	loc_AFBA
@@ -84,8 +84,8 @@ loc_AF10:
 ; ---------------------------------------------------------------------------
 
 loc_AF30:
-		move.w	#$1A,d1
-		move.w	#$F,d2
+		move.w	#26,d1
+		move.w	#15,d2
 		bsr.w	Obj26_SolidSides
 		beq.w	loc_AFA0
 		tst.w	obVelY(a1)
@@ -131,7 +131,7 @@ loc_AF8A:
 loc_AFA0:
 		btst	#5,obStatus(a0)
 		beq.s	loc_AFBA
-		move.w	#1,obAnim(a1)
+		move.w	#(AniIDSonAni_Walk)<<8+AniIDSonAni_Run,obAnim(a1)	; and obPrevAni
 
 loc_AFAE:
 		bclr	#5,obStatus(a0)

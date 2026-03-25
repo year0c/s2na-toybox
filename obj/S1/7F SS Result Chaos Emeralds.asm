@@ -10,7 +10,9 @@ S1Obj7F:
 ; ---------------------------------------------------------------------------
 S1Obj7F_Index:	dc.w loc_BF4C-S1Obj7F_Index
 		dc.w loc_BFA6-S1Obj7F_Index
-word_BF40:	dc.w $110
+
+word_BF40:
+		dc.w $110
 		dc.w $128
 		dc.w $F8
 		dc.w $140

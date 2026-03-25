@@ -21,7 +21,7 @@ loc_AB50:
 		bsr.w	Adjust2PArtPointer
 		ori.b	#4,obRender(a0)
 		move.b	#0,obPriority(a0)
-		move.b	#$20,obActWid(a0)
+		move.b	#32,obActWid(a0)
 		move.b	#$FF,obFrame(a0)
 
 loc_AB7E:
@@ -43,7 +43,7 @@ sub_AB98:
 		bne.s	locret_ABD6
 		movea.l	objoff_3C(a0),a1
 		move.b	#6,obRoutine(a1)
-		move.b	#$1C,(v_player+obAnim).w
+		move.b	#AniIDSonAni_Blank,(v_player+obAnim).w
 		move.b	#1,(f_bigring).w
 		clr.b	(v_invinc).w
 		clr.b	(v_shield).w
@@ -54,7 +54,7 @@ locret_ABD6:
 
 loc_ABD8:
 		addq.b	#2,obRoutine(a0)
-		move.w	#0,(v_player).w
+		move.w	#0,(v_player+obID).w	; and obRender
 		addq.l	#4,sp
 		rts
 ; End of function sub_AB98

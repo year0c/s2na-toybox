@@ -149,6 +149,7 @@ loc_966E:
 		bsr.w	Crab_SetAni
 		move.b	d0,obAnim(a0)
 		rts
+
 ; ---------------------------------------------------------------------------
 ; Subroutine to	set the	correct	animation for a	Crabmeat
 ; ---------------------------------------------------------------------------

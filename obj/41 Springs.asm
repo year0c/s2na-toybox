@@ -109,9 +109,9 @@ Obj41_Strengths:
 ; ===========================================================================
 ; loc_E302:
 Obj41_Up:
-		move.w	#$1B,d1
+		move.w	#27,d1
 		move.w	#8,d2
-		move.w	#$10,d3
+		move.w	#16,d3
 		move.w	obX(a0),d4
 		lea	(v_player).w,a1
 		moveq	#3,d6
@@ -190,9 +190,9 @@ loc_E3EA:
 ; ===========================================================================
 ; loc_E3F4:
 Obj41_Horizontal:
-		move.w	#$13,d1
-		move.w	#$E,d2
-		move.w	#$F,d3
+		move.w	#19,d1
+		move.w	#14,d2
+		move.w	#15,d3
 		move.w	obX(a0),d4
 		lea	(v_player).w,a1
 		moveq	#3,d6
@@ -334,14 +334,14 @@ loc_E596:
 		bmi.s	loc_E5C2
 		move.w	obX(a1),d4
 		cmp.w	d0,d4
-		bcs.w	loc_E5C2
+		blo.w	loc_E5C2
 		cmp.w	d1,d4
-		bcc.w	loc_E5C2
+		bhs.w	loc_E5C2
 		move.w	obY(a1),d4
 		cmp.w	d2,d4
-		bcs.w	loc_E5C2
+		blo.w	loc_E5C2
 		cmp.w	d3,d4
-		bcc.w	loc_E5C2
+		bhs.w	loc_E5C2
 		move.w	d0,-(sp)
 		bsr.w	sub_E474
 		move.w	(sp)+,d0
@@ -360,14 +360,14 @@ loc_E5DC:
 		bmi.s	locret_E604
 		move.w	obX(a1),d4
 		cmp.w	d0,d4
-		bcs.w	locret_E604
+		blo.w	locret_E604
 		cmp.w	d1,d4
-		bcc.w	locret_E604
+		bhs.w	locret_E604
 		move.w	obY(a1),d4
 		cmp.w	d2,d4
-		bcs.w	locret_E604
+		blo.w	locret_E604
 		cmp.w	d3,d4
-		bcc.w	locret_E604
+		bhs.w	locret_E604
 		bsr.w	sub_E474
 
 locret_E604:
@@ -377,9 +377,9 @@ locret_E604:
 ; ===========================================================================
 ; loc_E606:
 Obj41_Down:
-		move.w	#$1B,d1
+		move.w	#27,d1
 		move.w	#8,d2
-		move.w	#$10,d3
+		move.w	#16,d3
 		move.w	obX(a0),d4
 		lea	(v_player).w,a1
 		moveq	#3,d6
@@ -458,8 +458,8 @@ loc_E6D6:
 ; ===========================================================================
 ; loc_E6F2:
 Obj41_DiagonallyUp:
-		move.w	#$1B,d1
-		move.w	#$10,d2
+		move.w	#27,d1
+		move.w	#16,d2
 		move.w	obX(a0),d4
 		lea	Obj41_SlopeData_DiagUp(pc),a2
 		lea	(v_player).w,a1
@@ -494,7 +494,7 @@ sub_E73E:
 		move.w	obX(a0),d0
 		subq.w	#4,d0
 		cmp.w	obX(a1),d0
-		bcs.s	loc_E762
+		blo.s	loc_E762
 		rts
 ; ===========================================================================
 
@@ -502,7 +502,7 @@ loc_E754:
 		move.w	obX(a0),d0
 		addq.w	#4,d0
 		cmp.w	obX(a1),d0
-		bcc.s	loc_E762
+		bhs.s	loc_E762
 		rts
 ; ===========================================================================
 
@@ -563,8 +563,8 @@ loc_E81E:
 ; ===========================================================================
 ; loc_E828:
 Obj41_DiagonallyDown:
-		move.w	#$1B,d1
-		move.w	#$10,d2
+		move.w	#27,d1
+		move.w	#16,d2
 		move.w	obX(a0),d4
 		lea	Obj41_SlopeData_DiagDown(pc),a2
 		lea	(v_player).w,a1

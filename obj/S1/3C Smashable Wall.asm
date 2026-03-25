@@ -20,15 +20,15 @@ loc_C8DC:
 		move.w	#make_art_tile($590,2,0),obGfx(a0)
 		bsr.w	Adjust2PArtPointer
 		move.b	#4,obRender(a0)
-		move.b	#$10,obActWid(a0)
+		move.b	#16,obActWid(a0)
 		move.b	#4,obPriority(a0)
 		move.b	obSubtype(a0),obFrame(a0)
 
 loc_C90A:
 		move.w	(v_player+obVelX).w,objoff_30(a0)
-		move.w	#$1B,d1
-		move.w	#$20,d2
-		move.w	#$20,d3
+		move.w	#27,d1
+		move.w	#32,d2
+		move.w	#32,d3
 		move.w	obX(a0),d4
 		bsr.w	SolidObject
 		btst	#5,obStatus(a0)

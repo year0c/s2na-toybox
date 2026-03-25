@@ -148,6 +148,8 @@ Obj34_ItemData:
 		dc.b   2,  7
 		dc.w $E0
 		dc.b   2, $A
+		even
+
 Obj34_Config:
 		dc.w	 0, $120,$FEFC,	$13C, $414, $154, $214,	$154
 		dc.w	 0, $120,$FEF4,	$134, $40C, $14C, $20C,	$14C

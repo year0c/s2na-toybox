@@ -9795,7 +9795,7 @@ SolidObject_TestClearPush:
 		cmpi.b	#AniIDSonAni_Drown,obAnim(a1)
 		beq.s	Solid_NotPushing
 	endif
-		move.w	#AniIDSonAni_Run,obAnim(a1)
+		move.w	#(AniIDSonAni_Walk)<<8+AniIDSonAni_Run,obAnim(a1)	; and obPrevAni
 
 Solid_NotPushing:
 		move.l	d6,d4

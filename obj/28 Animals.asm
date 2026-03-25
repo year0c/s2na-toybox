@@ -22,6 +22,7 @@ byte_9AE0:
 		dc.b 4, 5
 		dc.b 4, 1
 		dc.b 0, 1
+		even
 word_9AEC:
 		dc.w -$200
 		dc.w -$400
@@ -29,33 +30,33 @@ word_9AEC:
 		dc.w -$200
 		dc.w -$300
 		dc.l Map_Obj28
-		dc.w $FE80
+		dc.w -$180
 		dc.w -$300
 		dc.l Map_Obj28a
-		dc.w $FEC0
-		dc.w $FE80
+		dc.w -$140
+		dc.w -$180
 		dc.l Map_Obj28
-		dc.w $FE40
+		dc.w -$1C0
 		dc.w -$300
 		dc.l Map_Obj28b
 		dc.w -$300
 		dc.w -$400
 		dc.l Map_Obj28
-		dc.w $FD80
-		dc.w $FC80
+		dc.w -$280
+		dc.w -$380
 		dc.l Map_Obj28b
 word_9B24:
-		dc.w $FBC0, -$400
-		dc.w $FBC0, -$400
-		dc.w $FBC0, -$400
+		dc.w -$440, -$400
+		dc.w -$440, -$400
+		dc.w -$440, -$400
 		dc.w -$300, -$400
 		dc.w -$300, -$400
-		dc.w $FE80, -$300
-		dc.w $FE80, -$300
-		dc.w $FEC0, $FE80
-		dc.w $FE40, -$300
+		dc.w -$180, -$300
+		dc.w -$180, -$300
+		dc.w -$140, -$180
+		dc.w -$1C0, -$300
 		dc.w -$200, -$300
-		dc.w $FD80, $FC80
+		dc.w -$280, -$380
 off_9B50:
 		dc.l Map_Obj28
 		dc.l Map_Obj28
@@ -99,7 +100,7 @@ loc_9B92:
 		move.w	2(a1,d0.w),objoff_34(a0)
 		move.w	2(a1,d0.w),obVelY(a0)
 		bsr.w	Adjust2PArtPointer
-		move.b	#$C,obHeight(a0)
+		move.b	#12,obHeight(a0)
 		move.b	#4,obRender(a0)
 		bset	#0,obRender(a0)
 		move.b	#6,obPriority(a0)
@@ -132,7 +133,7 @@ loc_9C00:
 
 loc_9C4A:
 		bsr.w	Adjust2PArtPointer
-		move.b	#$C,obHeight(a0)
+		move.b	#12,obHeight(a0)
 		move.b	#4,obRender(a0)
 		bset	#0,obRender(a0)
 		move.b	#6,obPriority(a0)
@@ -244,7 +245,7 @@ loc_9DA0:
 loc_9DB2:
 		move.w	obX(a0),d0
 		sub.w	(v_player+obX).w,d0
-		bcs.s	loc_9DCA
+		blo.s	loc_9DCA
 		subi.w	#$180,d0
 		bpl.s	loc_9DCA
 		tst.b	obRender(a0)
@@ -268,7 +269,7 @@ loc_9DEA:
 
 loc_9DEE:
 		bsr.w	sub_9F92
-		bcc.s	loc_9E0A
+		bhs.s	loc_9E0A
 		move.w	objoff_32(a0),obVelX(a0)
 		move.w	objoff_34(a0),obVelY(a0)
 		move.b	#$E,obRoutine(a0)
@@ -417,7 +418,7 @@ sub_9F7A:
 		bset	#0,obRender(a0)
 		move.w	obX(a0),d0
 		sub.w	(v_player+obX).w,d0
-		bcc.s	locret_9F90
+		bhs.s	locret_9F90
 		bclr	#0,obRender(a0)
 
 locret_9F90:

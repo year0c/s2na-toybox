@@ -19,7 +19,7 @@ loc_AA88:
 		move.w	#make_art_tile(ArtTile_Giant_Ring,1,0),obGfx(a0)
 		bsr.w	Adjust2PArtPointer
 		ori.b	#4,obRender(a0)
-		move.b	#$40,obActWid(a0)
+		move.b	#64,obActWid(a0)
 		tst.b	obRender(a0)
 		bpl.s	loc_AAD6
 		cmpi.b	#6,(v_emeralds).w

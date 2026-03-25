@@ -166,7 +166,7 @@ loc_1A54C:
 
 loc_1A552:
 		subi.w	#$40,d0
-		bcc.s	loc_1A55A
+		bhs.s	loc_1A55A
 		nop
 
 loc_1A55A:
@@ -194,7 +194,7 @@ loc_1A57A:
 
 loc_1A580:
 		addi.w	#$40,d0
-		bcc.s	loc_1A588
+		bhs.s	loc_1A588
 		nop
 
 loc_1A588:
@@ -416,17 +416,17 @@ sub_1A768:
 		cmpi.b	#$28,d4
 		beq.s	locret_1A77C
 		cmpi.b	#$3A,d4
-		bcs.s	loc_1A77E
+		blo.s	loc_1A77E
 		cmpi.b	#$4B,d4
-		bcc.s	loc_1A77E
+		bhs.s	loc_1A77E
 
 locret_1A77C:
 		rts
 ; ---------------------------------------------------------------------------
 
 loc_1A77E:
-		move.b	d4,$30(a0)
-		move.l	a1,$32(a0)
+		move.b	d4,objoff_30(a0)
+		move.l	a1,objoff_32(a0)
 		moveq	#-1,d5
 		rts
 ; End of function sub_1A768
@@ -498,7 +498,7 @@ loc_1A814:
 
 loc_1A82A:
 		cmpi.b	#$3B,d4
-		bcs.s	loc_1A870
+		blo.s	loc_1A870
 		cmpi.b	#$40,d4
 		bhi.s	loc_1A870
 		bsr.w	sub_19EEC
@@ -589,7 +589,7 @@ locret_1A8E4:
 loc_1A8E6:
 		cmpi.b	#$25,d0
 		bne.s	loc_1A95E
-		move.l	$32(a0),d1
+		move.l	objoff_32(a0),d1
 		subi.l	#$FFFF0001,d1
 		move.w	d1,d2
 		andi.w	#$7F,d1
@@ -636,7 +636,7 @@ loc_1A974:
 		bne.s	loc_1A9A8
 		tst.b	objoff_36(a0)
 		bne.w	locret_1AA58
-		move.b	#$1E,objoff_36(a0)
+		move.b	#30,objoff_36(a0)
 		btst	#6,(v_ssrotate+1).w
 		beq.s	loc_1A99E
 		asl.w	(v_ssrotate).w
@@ -654,7 +654,7 @@ loc_1A9A8:
 		bne.s	loc_1A9DC
 		tst.b	objoff_36(a0)
 		bne.w	locret_1AA58
-		move.b	#$1E,objoff_36(a0)
+		move.b	#30,objoff_36(a0)
 		btst	#6,(v_ssrotate+1).w
 		bne.s	loc_1A9D2
 		asr.w	(v_ssrotate).w

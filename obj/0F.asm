@@ -25,14 +25,14 @@ Obj0F_Init:
 Obj0F_Cycle:
 		move.b	(v_jpadpress1).w,d0
 		btst	#bitC,d0			; has C been pressed?
-		beq.s	Obj0F_Toggle			; if not, branch
-		addq.b	#1,obFrame(a0)			; increment mappings
-		andi.b	#$F,obFrame(a0)			; if above $F, reset
+		beq.s	Obj0F_Toggle		; if not, branch
+		addq.b	#1,obFrame(a0)		; increment mappings
+		andi.b	#$F,obFrame(a0)		; if above $F, reset
 
 Obj0F_Toggle:
 		btst	#bitB,d0			; has B been pressed?
 		beq.s	.donothing			; if not, branch
-		bchg	#0,(unk_FFE9).w			; try turning on two player mode which will not work...
+		bchg	#0,(unk_FFE9).w		; try turning on two player mode which will not work...
 
 .donothing:
 		rts

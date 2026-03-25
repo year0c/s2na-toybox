@@ -10,6 +10,8 @@ This prototype was once referred to simply as the "**early**" prototype of Sonic
 ## How the Prototype was obtained
 In late October of 2006, drx made contact with an anonymous individual from a press that said they had a prototype of Sonic the Hedgehog 2. Anon set the price for the prototype at 1,500 USD, which drx quickly followed with a community fundraiser to obtain the prototype. Originally expecting it to be a later prototype than that of the Simon Wai prototype, it turned out to be one of the earliest, which he immediately dumped and uploaded onto Hidden Palace on November 7, 2006.
 
+----
+
 See: http://info.sonicretro.org/Disassemblies
 
 DISCLAIMER: Any and all content presented in this repository is presented for informational and educational purposes only. Commercial usage is expressly prohibited. We claim no ownership of any code in these repositories. You assume any and all responsibility for using this content responsibly. We claim no responsibiliy or warranty.

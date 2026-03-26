@@ -465,7 +465,7 @@ loc_1A7C4:
 		move.l	a1,4(a2)
 
 loc_1A7D8:
-		jsr	(sub_A8DE).l
+		jsr	(CollectRing).l
 		cmpi.w	#50,(v_rings).w
 		blo.s	loc_1A7FC
 		bset	#0,(v_lifecount).w

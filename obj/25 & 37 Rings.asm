@@ -17,7 +17,8 @@ Obj25_Index:	dc.w loc_A81C-Obj25_Index
 ; ---------------------------------------------------------------------------
 ; Distances between rings (format: horizontal, vertical)
 ; ---------------------------------------------------------------------------
-		; unused table from S1
+; unused table from S1
+;Ring_PosData:
 		dc.b $10, 0		; horizontal tight
 		dc.b $18, 0		; horizontal normal
 		dc.b $20, 0		; horizontal wide
@@ -34,7 +35,6 @@ Obj25_Index:	dc.w loc_A81C-Obj25_Index
 		dc.b $18, $10
 		dc.b $F0, 8
 		dc.b $E8, $10
-		even
 ; ---------------------------------------------------------------------------
 
 loc_A81C:
@@ -81,7 +81,7 @@ loc_A8A6:
 		addq.b	#2,obRoutine(a0)
 		move.b	#0,obColType(a0)
 		move.b	#1,obPriority(a0)
-		bsr.w	sub_A8DE
+		bsr.w	CollectRing
 		lea	(v_objstate).w,a2
 		moveq	#0,d0
 		move.b	obRespawnNo(a0),d0
@@ -100,27 +100,27 @@ loc_A8DA:
 ; =============== S U B	R O U T	I N E =======================================
 
 
-sub_A8DE:
-		addq.w	#1,(v_rings).w
-		ori.b	#1,(f_ringcount).w
-		move.w	#sfx_Ring,d0
-		cmpi.w	#100,(v_rings).w
-		blo.s	loc_A918
-		bset	#1,(v_lifecount).w
-		beq.s	loc_A90C
-		cmpi.w	#200,(v_rings).w
-		blo.s	loc_A918
-		bset	#2,(v_lifecount).w
-		bne.s	loc_A918
+CollectRing:
+		addq.w	#1,(v_rings).w	; add 1 to rings
+		ori.b	#1,(f_ringcount).w ; update the rings counter
+		move.w	#sfx_Ring,d0	; play ring sound
+		cmpi.w	#100,(v_rings).w ; do you have < 100 rings?
+		blo.s	.playsnd	; if yes, branch
+		bset	#1,(v_lifecount).w ; update lives counter
+		beq.s	.got100
+		cmpi.w	#200,(v_rings).w ; do you have < 200 rings?
+		blo.s	.playsnd	; if yes, branch
+		bset	#2,(v_lifecount).w ; update lives counter
+		bne.s	.playsnd
 
-loc_A90C:
-		addq.b	#1,(v_lives).w
-		addq.b	#1,(f_lifecount).w
-		move.w	#bgm_ExtraLife,d0
+.got100:
+		addq.b	#1,(v_lives).w	; add 1 to the number of lives you have
+		addq.b	#1,(f_lifecount).w ; update the lives counter
+		move.w	#bgm_ExtraLife,d0 ; play extra life music
 
-loc_A918:
+.playsnd:
 		jmp	(QueueSound2).l
-; End of function sub_A8DE
+; End of function CollectRing
 
 ; ---------------------------------------------------------------------------
 ;----------------------------------------------------
@@ -146,7 +146,7 @@ loc_A936:
 		move.w	(v_rings).w,d5
 		moveq	#32,d0
 		cmp.w	d0,d5
-		bcs.s	loc_A946
+		blo.s	loc_A946
 		move.w	d0,d5
 
 loc_A946:
@@ -173,7 +173,12 @@ loc_A956:
 		move.b	#3,obPriority(a1)
 		move.b	#$47,obColType(a1)
 		move.b	#8,obActWid(a1)
+	if FixBugs=0
+		; This resets the timer for all spilled rings,
+		; even if they were already close to getting deleted
+		; https://info.sonicretro.org/SCHG_How-to:Fix_Ring_Timers
 		move.b	#-1,(v_ani3_time).w
+	endif
 		tst.w	d4
 		bmi.s	loc_A9CE
 		move.w	d4,d0
@@ -201,6 +206,14 @@ loc_A9DE:
 		move.w	#0,(v_rings).w
 		move.b	#$80,(f_ringcount).w
 		move.b	#0,(v_lifecount).w
+
+	if FixBugs
+		; Fix Ring Timers
+		; https://info.sonicretro.org/SCHG_How-to:Fix_Ring_Timers
+		moveq	#-1,d0			; Move 255 to d0
+		move.b	d0,obDelayAni(a0)	; Move d0 to new timer
+		move.b	d0,(v_ani3_time).w	; Move d0 to old timer (for animated purposes)
+	endif
 		move.w	#sfx_RingLoss,d0
 		jsr	(QueueSound2).l
 
@@ -223,8 +236,22 @@ loc_A9FA:
 		neg.w	obVelY(a0)
 
 loc_AA34:
+	if FixBugs
+		; Fix Ring Timers
+		; https://info.sonicretro.org/SCHG_How-to:Fix_Ring_Timers
+		subq.b	#1,obDelayAni(a0)	; Subtract 1
+		beq.w	DeleteObject		; If 0, delete
+	else
 		tst.b	(v_ani3_time).w
 		beq.s	loc_AA6E
+	endif
+
+	if FixBugs
+		; Fix Accidental Deletion of Scattered Rings
+		; https://info.sonicretro.org/SCHG_How-to:Fix_Accidental_Deletion_of_Scattered_Rings
+		tst.w	(v_limittop2).w		; is vertical wrapping enabled?
+		bmi.w	DisplaySprite		; if so, don't delete rings by boundary
+	endif
 		move.w	(Camera_Max_Y_pos).w,d0
 		addi.w	#224,d0
 		cmp.w	obY(a0),d0
@@ -236,7 +263,7 @@ loc_AA4C:
 		addq.b	#2,obRoutine(a0)
 		move.b	#0,obColType(a0)
 		move.b	#1,obPriority(a0)
-		bsr.w	sub_A8DE
+		bsr.w	CollectRing
 
 loc_AA60:
 		lea	(Ani_Obj25).l,a1

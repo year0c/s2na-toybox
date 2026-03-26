@@ -182,7 +182,6 @@ loc_12B90:
 ; End of function Sonic_Angle
 
 ; ---------------------------------------------------------------------------
-; START	OF FUNCTION CHUNK FOR AnglePos
 
 Sonic_WalkVertR:
 		move.w	obY(a0),d2
@@ -364,4 +363,3 @@ loc_12D5C:
 		bclr	#5,obStatus(a0)
 		move.b	#1,obPrevAni(a0)
 		rts
-; END OF FUNCTION CHUNK	FOR AnglePos

@@ -8250,7 +8250,7 @@ loc_DA1E:
 
 loc_DA24:
 		move.w	#$604,(a1)
-		bsr.w	sub_A8DE
+		bsr.w	CollectRing
 
 loc_DA2C:
 		lea	6(a1),a1

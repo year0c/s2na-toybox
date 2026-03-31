@@ -27,8 +27,6 @@ Obj4F_Init:
 		tst.w	d1
 		bpl.s	locret_15E0C
 		add.w	d1,obY(a0)
-
-loc_15DFC:
 		move.w	#0,obVelY(a0)
 		addq.b	#2,obRoutine(a0)
 		bchg	#0,obStatus(a0)

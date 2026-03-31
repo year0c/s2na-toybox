@@ -12221,8 +12221,6 @@ loc_19CFA:
 loc_19D16:
 		move.b	(v_ani2_frame).w,d0
 		move.b	d0,$138(a1)
-
-loc_19D1E:
 		move.b	d0,$160(a1)
 		move.b	d0,$148(a1)
 		move.b	d0,$150(a1)
@@ -13555,7 +13553,7 @@ Art_BigRing:	binclude	"art/uncompressed/Giant Ring.bin"
 ; --------------------------------------------------------------------------------------
 ; leftover level layouts from a	previous build
 ; --------------------------------------------------------------------------------------
-		binclude	"misc/leftovers/level/layout/HTZ_2.bin"
+		binclude	"leftovers/level/layout/HTZ_2.bin"
 		even
 		binclude	"level/layout/HTZ_BG.bin"
 		even
@@ -13576,13 +13574,13 @@ Art_BigRing:	binclude	"art/uncompressed/Giant Ring.bin"
 		align 4
 		; cut-off piece of uncompressed giant ring art
 		dc.w	$EEEE,$EEEE
-		binclude	"misc/leftovers/art/uncompressed/Giant Ring.bin"
+		binclude	"leftovers/art/uncompressed/Giant Ring.bin"
 
 ; --------------------------------------------------------------------------------------
 ; level mappings	(16x16 and 256x256)
 ; --------------------------------------------------------------------------------------
-		binclude	"misc/leftovers/mappings/16x16/2EB00.unc"
-		binclude	"misc/leftovers/mappings/256x256/2EC00.unc"
+		binclude	"leftovers/mappings/16x16/2EB00.unc"
+		binclude	"leftovers/mappings/256x256/2EC00.unc"
 
 ; --------------------------------------------------------------------------------------
 ; leftover art - full 128 character ASCII table
@@ -13592,11 +13590,11 @@ Art_BigRing:	binclude	"art/uncompressed/Giant Ring.bin"
 ; --------------------------------------------------------------------------------------
 ; Leftover level mappings and palettes from a previous build
 ; --------------------------------------------------------------------------------------
-		binclude	"misc/leftovers/mappings/256x256/31000.unc"
-		binclude	"misc/leftovers/32000.bin"
+		binclude	"leftovers/mappings/256x256/31000.unc"
+		binclude	"leftovers/32000.bin"
 		dc.l	0
-		binclude	"misc/leftovers/mappings/16x16/36004.unc"
-		binclude	"misc/leftovers/mappings/256x256/364D4.unc"
+		binclude	"leftovers/mappings/16x16/36004.unc"
+		binclude	"leftovers/mappings/256x256/364D4.unc"
 
 ; ---------------------------------------------------------------------------
 ; Sprite locations index
@@ -13727,15 +13725,15 @@ ObjPos_Null:	dc.w $FFFF,	0,	0
 ; https://clownacy.wordpress.com/2022/03/30/everything-that-i-know-about-sonic-the-hedgehogs-source-code/
 ; https://tcrf.net/Proto:Sonic_the_Hedgehog_2_(Genesis)/Nick_Arcade_Prototype/Symbol_Tables
 ; ---------------------------------------------------------------------------
-		binclude	"misc/leftovers/symbols/symbol1.bin"
+		binclude	"leftovers/symbols/symbol1.bin"
 		even
-		binclude	"misc/leftovers/symbols/symbol1a.bin"
+		binclude	"leftovers/symbols/symbol1a.bin"
 		even
-		binclude	"misc/leftovers/4DB08.bin"
+		binclude	"leftovers/4DB08.bin"
 		even
-		binclude	"misc/leftovers/symbols/symbol2.bin"
+		binclude	"leftovers/symbols/symbol2.bin"
 		even
-		binclude	"misc/leftovers/4FB08.bin"
+		binclude	"leftovers/4FB08.bin"
 		even
 
 ; ---------------------------------------------------------------------------
@@ -13800,72 +13798,2732 @@ RingPos_CPZ1:	binclude	"level/rings/CPZ_1.bin"
 ; Yet another symbol table that doesn't match up with the prototype
 ; There's also code strewn in here which are related with an earlier prototype
 ; than Nick Arcade.
-; It also contains the raw source code for debug mode.
 ; ---------------------------------------------------------------------------
 
 ; 0x50A9C
-		binclude	"misc/leftovers/50A9C.bin"
-		binclude	"misc/leftovers/symbols/symbol3.bin"
-		binclude	"misc/leftovers/code/code_5410c.bin"
-		binclude	"misc/leftovers/symbols/symbol4.bin"
-		binclude	"misc/leftovers/code/code_546f8.bin"
-		binclude	"misc/leftovers/symbols/symbol5.bin"
-		binclude	"misc/leftovers/code/code_557b8.bin"
-		binclude	"misc/leftovers/symbols/symbol6.bin"
-		binclude	"misc/leftovers/code/code_56424.bin"
-		binclude	"misc/leftovers/symbols/symbol7.bin"
-		binclude	"misc/leftovers/code/code_5669c.bin"
-		binclude	"misc/leftovers/symbols/symbol8.bin"
-		binclude	"misc/leftovers/code/code_56ccc.bin"
-		binclude	"misc/leftovers/symbols/symbol9.bin"
-		binclude	"misc/leftovers/code/code_57644.bin"
-		binclude	"misc/leftovers/symbols/symbol10.bin"
-		binclude	"misc/leftovers/code/code_57ff8.bin"
-		binclude	"misc/leftovers/symbols/symbol11.bin"
-		binclude	"misc/leftovers/code/code_59304.bin"
-		binclude	"misc/leftovers/symbols/symbol12.bin"
-		binclude	"misc/leftovers/code/code_5a12c.bin"
-		binclude	"misc/leftovers/symbols/symbol13.bin"
-		binclude	"misc/leftovers/code/code_5a718.bin"
-		binclude	"misc/leftovers/symbols/symbol14.bin"
-		binclude	"misc/leftovers/code/code_5b1fc.bin"
-		binclude	"misc/leftovers/symbols/symbol15.bin"
-		binclude	"misc/leftovers/code/code_5c0b0.bin"
-		binclude	"misc/leftovers/symbols/symbol16.bin"
-		binclude	"misc/leftovers/code/code_5c572.bin"
-		binclude	"misc/leftovers/symbols/symbol17.bin"
-		binclude	"misc/leftovers/code/code_5d000.bin"
-		binclude	"misc/leftovers/symbols/symbol18.bin"
+		binclude	"leftovers/50A9C.bin"
+
+		binclude	"leftovers/symbols/symbol3.bin"
+
+	phase $1412C
+		include	"leftovers/obj/14 HTZ Seesaw.asm"
+
+word_14480:
+		dc.w	 -8,  -$1C,  -$2F,  -$1C,    -8
+byte_1448A:
+		dc.b  $14, $14,	$16, $18, $1A, $1C, $1A
+		dc.b  $18, $16,	$14, $13, $12, $11, $10
+		dc.b   $F,  $E,	 $D,  $C,  $B,	$A,   9
+		dc.b	8,   7,	  6,   5,   4,	 3,   2
+		dc.b	1,   0,	 -1,  -2,  -3,	-4,  -5
+		dc.b   -6,  -7,	 -8,  -9, -$A, -$B, -$C
+		dc.b  -$D, -$E,	-$E, -$E, -$E, -$E, -$E
+byte_144BB:
+		dc.b	5,   5,	  5,   5,   5,	 5,   5
+		dc.b	5,   5,	  5,   5,   5,	 5,   5
+		dc.b	5,   5,	  5,   5,   5,	 5,   5
+		dc.b	5,   5,	  5,   5,   5,	 5,   5
+		dc.b	5,   5,	  5,   5,   5,	 5,   5
+		dc.b	5,   5,	  5,   5,   5,	 5,   5
+		dc.b	5,   5,	  5,   5,   5,	 5
+		even
+; -------------------------------------------------------------------------------
+; sprite mappings
+; -------------------------------------------------------------------------------
+Map_Obj14_PB:	binclude	"mappings/sprite/obj14_a.bin"
+; -------------------------------------------------------------------------------
+; sprite mappings
+; -------------------------------------------------------------------------------
+Map_Obj14b_PB:	binclude	"mappings/sprite/obj14_b.bin"
+
+		jmpTos	; Empty
+	dephase
+
+		binclude	"leftovers/symbols/symbol4.bin"
+
+	phase $157E0
+		include	"leftovers/obj/4B Buzzer.asm"
+; ===========================================================================
+; animation script
+; off_15A18:
+Ani_Obj4B_PB:	dc.w byte_15A20-Ani_Obj4B_PB
+		dc.w byte_15A23-Ani_Obj4B_PB
+		dc.w byte_15A27-Ani_Obj4B_PB
+		dc.w byte_15A2B-Ani_Obj4B_PB
+byte_15A20:	dc.b  $F,  0,$FF
+byte_15A23:	dc.b   2,  3,  4,$FF
+byte_15A27:	dc.b   3,  5,  6,$FF
+byte_15A2B:	dc.b   9,  1,  1,  1,  1,  1,$FD,  0
+		even
+; ---------------------------------------------------------------------------
+; Sprite mappings
+; ---------------------------------------------------------------------------
+Map_Obj4B_PB:	binclude	"mappings/sprite/obj4B.bin"
+	dephase
+
+		binclude	"leftovers/symbols/symbol5.bin"
+
+	phase $14F5C
+		include	"leftovers/obj/50 Aquis.asm"
+
+Ani_Obj50_PB:	dc.w .byte_163B0-Ani_Obj50_PB
+		dc.w .byte_163B3-Ani_Obj50_PB
+		dc.w .byte_163BB-Ani_Obj50_PB
+		dc.w .byte_163C1-Ani_Obj50_PB
+		dc.w .byte_163C5-Ani_Obj50_PB
+		dc.w .byte_163C8-Ani_Obj50_PB
+		dc.w .byte_163CB-Ani_Obj50_PB
+		dc.w .byte_163CF-Ani_Obj50_PB
+.byte_163B0:	dc.b  $E,  0,$FF
+.byte_163B3:	dc.b   5,  3,  4,  3,  4,  3,  4,$FF
+.byte_163BB:	dc.b   3,  5,  6,  7,  6,$FF
+.byte_163C1:	dc.b   3,  1,  2,$FF
+.byte_163C5:	dc.b   1,  5,$FF
+.byte_163C8:	dc.b  $E,  8,$FF
+.byte_163CB:	dc.b   1,  9, $A,$FF
+.byte_163CF:	dc.b   5, $B, $C, $B, $C, $B, $C,$FF
+		even
+Map_Obj50_PB:	dc.w .word_163F2-Map_Obj50_PB
+		dc.w .word_1640C-Map_Obj50_PB
+		dc.w .word_16416-Map_Obj50_PB
+		dc.w .word_16420-Map_Obj50_PB
+		dc.w .word_16442-Map_Obj50_PB
+		dc.w .word_16464-Map_Obj50_PB
+		dc.w .word_1646E-Map_Obj50_PB
+		dc.w .word_16478-Map_Obj50_PB
+		dc.w .word_16482-Map_Obj50_PB
+		dc.w .word_1648C-Map_Obj50_PB
+		dc.w .word_164AE-Map_Obj50_PB
+		dc.w .word_164D0-Map_Obj50_PB
+		dc.w .word_164FA-Map_Obj50_PB
+.word_163F2:	dc.w 3
+		dc.w $E80D,    0,    0,$FFF0
+		dc.w $F809,  $16,   $B,$FFF8		; 4
+		dc.w  $805,  $24,  $12,$FFF8		; 8
+.word_1640C:	dc.w 1
+		dc.w $F805,  $28,  $14,$FFF8
+.word_16416:	dc.w 1
+		dc.w $F805,  $2C,  $16,$FFF8
+.word_16420:	dc.w 4
+		dc.w $E809,    8,    4,$FFF0
+		dc.w $E801,   $E,    7,	   8		; 4
+		dc.w $F809,  $16,   $B,$FFF8		; 8
+		dc.w  $805,  $24,  $12,$FFF8		; 12
+.word_16442:	dc.w 4
+		dc.w $E809,  $10,    8,$FFF0
+		dc.w $E801,   $E,    7,	   8		; 4
+		dc.w $F809,  $16,   $B,$FFF8		; 8
+		dc.w  $805,  $24,  $12,$FFF8		; 12
+.word_16464:	dc.w 1
+		dc.w $F801,  $30,  $18,$FFFC
+.word_1646E:	dc.w 1
+		dc.w $F801,  $32,  $19,$FFFC
+.word_16478:	dc.w 1
+		dc.w $F801,  $34,  $1A,$FFFC
+.word_16482:	dc.w 1
+		dc.w $F80D,  $36,  $1B,$FFF0
+.word_1648C:	dc.w 4
+		dc.w $E80D,    0,    0,$FFF0
+		dc.w $F805,  $1C,   $E,$FFF8		; 4
+		dc.w $F801,  $20,  $10,	   8		; 8
+		dc.w  $805,  $24,  $12,$FFF8		; 12
+.word_164AE:	dc.w 4
+		dc.w $E80D,    0,    0,$FFF0
+		dc.w $F805,  $1C,   $E,$FFF8		; 4
+		dc.w $F801,  $22,  $11,	   8		; 8
+		dc.w  $805,  $24,  $12,$FFF8		; 12
+.word_164D0:	dc.w 5
+		dc.w $E809,    8,    4,$FFF0
+		dc.w $E801,   $E,    7,	   8		; 4
+		dc.w $F805,  $1C,   $E,$FFF8		; 8
+		dc.w $F801,  $20,  $10,	   8		; 12
+		dc.w  $805,  $24,  $12,$FFF8		; 16
+.word_164FA:	dc.w 5
+		dc.w $E809,  $10,    8,$FFF0
+		dc.w $E801,   $E,    7,	   8		; 4
+		dc.w $F805,  $1C,   $E,$FFF8		; 8
+		dc.w $F801,  $22,  $11,	   8		; 12
+		dc.w  $805,  $24,  $12,$FFF8		; 16
+
+		include	"leftovers/obj/51 Aquis Child.asm"
+	dephase
+
+		binclude	"leftovers/symbols/symbol6.bin"
+
+	phase $14DF8
+		include	"leftovers/obj/4F Redz.asm"
+; ===========================================================================
+; animation script
+Ani_Obj4F_PB:	dc.w .byte_15EB8-Ani_Obj4F_PB
+		dc.w .byte_15EBB-Ani_Obj4F_PB
+.byte_15EB8:	dc.b   9,  1,$FF
+.byte_15EBB:	dc.b   9,  0,  1,  2,  1,$FF
+		even
+; ---------------------------------------------------------------------------
+; Sprite mappings - Redz (dinosaur badnik) from HPZ
+; ---------------------------------------------------------------------------
+Map_Obj4F_PB:	binclude	"mappings/sprite/obj4F.bin"
+
+		jmpTos0	; Empty
+	dephase
+
+		binclude	"leftovers/symbols/symbol7.bin"
+
+	phase $164F8
+		include	"leftovers/obj/53 Masher.asm"
+; ===========================================================================
+; animation script
+Ani_Obj53_PB:	dc.w .byte_17572-Ani_Obj53_PB
+		dc.w .byte_17576-Ani_Obj53_PB
+		dc.w .byte_1757A-Ani_Obj53_PB
+.byte_17572:	dc.b   7,  0,  1,$FF
+.byte_17576:	dc.b   3,  0,  1,$FF
+.byte_1757A:	dc.b   7,  0,$FF
+		even
+; ---------------------------------------------------------------------------
+; Sprite mappings
+; ---------------------------------------------------------------------------
+Map_Obj53_PB:	binclude	"mappings/sprite/obj53.bin"
+
+		jmpTos0	; Empty
+	dephase
+
+		binclude	"leftovers/symbols/symbol8.bin"
+
+	phase $16200
+		include	"leftovers/obj/4E Gator.asm"
+
+Ani_Obj4E_PB:	dc.w .byte_172F4-Ani_Obj4E_PB
+		dc.w .byte_172FC-Ani_Obj4E_PB
+		dc.w .byte_172FF-Ani_Obj4E_PB
+.byte_172F4:	dc.b   3,  0,  4,  2,  3,  1,  5,$FF
+.byte_172FC:	dc.b  $F,  0,$FF
+.byte_172FF:	dc.b   3,  6, $A,  8,  9,  7, $B,$FF
+		even
+
+Map_Obj4E_PB:	dc.w .word_17320-Map_Obj4E_PB
+		dc.w .word_17342-Map_Obj4E_PB
+		dc.w .word_17364-Map_Obj4E_PB
+		dc.w .word_17386-Map_Obj4E_PB
+		dc.w .word_173A8-Map_Obj4E_PB
+		dc.w .word_173CA-Map_Obj4E_PB
+		dc.w .word_173EC-Map_Obj4E_PB
+		dc.w .word_1740E-Map_Obj4E_PB
+		dc.w .word_17430-Map_Obj4E_PB
+		dc.w .word_17452-Map_Obj4E_PB
+		dc.w .word_17474-Map_Obj4E_PB
+		dc.w .word_17496-Map_Obj4E_PB
+.word_17320:	dc.w 4
+		dc.w $F80E,    0,    0,$FFE4
+		dc.w $F805,  $18,   $C,	   4		; 4
+		dc.w	 1,  $1C,   $E,	   4		; 8
+		dc.w	 5,  $20,  $10,	  $C		; 12
+.word_17342:	dc.w 4
+		dc.w $F80E,    0,    0,$FFE4
+		dc.w $F805,  $18,   $C,	   4		; 4
+		dc.w	 1,  $1C,   $E,	   4		; 8
+		dc.w	 5,  $24,  $12,	  $C		; 12
+.word_17364:	dc.w 4
+		dc.w $F80E,    0,    0,$FFE4
+		dc.w $F805,  $18,   $C,	   4		; 4
+		dc.w	 1,  $1C,   $E,	   4		; 8
+		dc.w	 5,  $28,  $14,	  $C		; 12
+.word_17386:	dc.w 4
+		dc.w $F80E,    0,    0,$FFE4
+		dc.w $F805,  $18,   $C,	   4		; 4
+		dc.w	 1,  $1E,   $F,	   4		; 8
+		dc.w	 5,  $20,  $10,	  $C		; 12
+.word_173A8:	dc.w 4
+		dc.w $F80E,    0,    0,$FFE4
+		dc.w $F805,  $18,   $C,	   4		; 4
+		dc.w	 1,  $1E,   $F,	   4		; 8
+		dc.w	 5,  $24,  $12,	  $C		; 12
+.word_173CA:	dc.w 4
+		dc.w $F80E,    0,    0,$FFE4
+		dc.w $F805,  $18,   $C,	   4		; 4
+		dc.w	 1,  $1E,   $F,	   4		; 8
+		dc.w	 5,  $28,  $14,	  $C		; 12
+.word_173EC:	dc.w 4
+		dc.w $F00B,   $C,    6,$FFEC
+		dc.w $F805,  $18,   $C,	   4		; 4
+		dc.w	 1,  $1C,   $E,	   4		; 8
+		dc.w	 5,  $20,  $10,	  $C		; 12
+.word_1740E:	dc.w 4
+		dc.w $F00B,   $C,    6,$FFEC
+		dc.w $F805,  $18,   $C,	   4		; 4
+		dc.w	 1,  $1C,   $E,	   4		; 8
+		dc.w	 5,  $24,  $12,	  $C		; 12
+.word_17430:	dc.w 4
+		dc.w $F00B,   $C,    6,$FFEC
+		dc.w $F805,  $18,   $C,	   4		; 4
+		dc.w	 1,  $1C,   $E,	   4		; 8
+		dc.w	 5,  $28,  $14,	  $C		; 12
+.word_17452:	dc.w 4
+		dc.w $F00B,   $C,    6,$FFEC
+		dc.w $F805,  $18,   $C,	   4		; 4
+		dc.w	 1,  $1E,   $F,	   4		; 8
+		dc.w	 5,  $20,  $10,	  $C		; 12
+.word_17474:	dc.w 4
+		dc.w $F00B,   $C,    6,$FFEC
+		dc.w $F805,  $18,   $C,	   4		; 4
+		dc.w	 1,  $1E,   $F,	   4		; 8
+		dc.w	 5,  $24,  $12,	  $C		; 12
+.word_17496:	dc.w 4
+		dc.w $F00B,   $C,    6,$FFEC
+		dc.w $F805,  $18,   $C,	   4		; 4
+		dc.w	 1,  $1E,   $F,	   4		; 8
+		dc.w	 5,  $28,  $14,	  $C		; 12
+
+	dephase
+
+		binclude	"leftovers/symbols/symbol9.bin"
+
+	phase $15D78
+		include	"leftovers/obj/4C BBat.asm"
+
+Ani_Obj4C_PB:	dc.w .byte_16FC2-Ani_Obj4C_PB
+		dc.w .byte_16FC6-Ani_Obj4C_PB
+		dc.w .byte_16FD5-Ani_Obj4C_PB
+		dc.w .byte_16FE6-Ani_Obj4C_PB
+.byte_16FC2:	dc.b   1,  0,  5,$FF
+.byte_16FC6:	dc.b   1,  1,  6,  1,  6,  2,  7,  2,  7,  1,  6,  1,  6,$FD,  0
+.byte_16FD5:	dc.b   1,  1,  6,  1,  6,  2,  7,  3,  8,  4,  9,  4,  9,  3,  8,$FE
+		dc.b  $A
+.byte_16FE6:	dc.b   3, $A, $B, $C, $D, $E,$FF
+		even
+
+Map_Obj4C_PB:	dc.w .word_1700C-Map_Obj4C_PB
+		dc.w .word_1702E-Map_Obj4C_PB
+		dc.w .word_17050-Map_Obj4C_PB
+		dc.w .word_17072-Map_Obj4C_PB
+		dc.w .word_17094-Map_Obj4C_PB
+		dc.w .word_170AE-Map_Obj4C_PB
+		dc.w .word_170D0-Map_Obj4C_PB
+		dc.w .word_170F2-Map_Obj4C_PB
+		dc.w .word_17114-Map_Obj4C_PB
+		dc.w .word_17136-Map_Obj4C_PB
+		dc.w .word_17150-Map_Obj4C_PB
+		dc.w .word_1716A-Map_Obj4C_PB
+		dc.w .word_17184-Map_Obj4C_PB
+		dc.w .word_17196-Map_Obj4C_PB
+		dc.w .word_171A8-Map_Obj4C_PB
+.word_1700C:	dc.w 4
+		dc.w $F005,    0,    0,$FFF8
+		dc.w	 5,    4,    2,$FFF8		; 4
+		dc.w $F00B,    8,    4,	   5		; 8
+		dc.w $F00B, $808, $804,$FFE3		; 12
+.word_1702E:	dc.w 4
+		dc.w $F005,    0,    0,$FFF8
+		dc.w	 5,    4,    2,$FFF8		; 4
+		dc.w $F60D,  $14,   $A,	   5		; 8
+		dc.w $F60D, $814, $80A,$FFDB		; 12
+.word_17050:	dc.w 4
+		dc.w $F005,    0,    0,$FFF8
+		dc.w	 5,    4,    2,$FFF8		; 4
+		dc.w $F80D,  $1C,   $E,	   4		; 8
+		dc.w $F80D, $81C, $80E,$FFDC		; 12
+.word_17072:	dc.w 4
+		dc.w $F005,    0,    0,$FFF8
+		dc.w	 5,    4,    2,$FFF8		; 4
+		dc.w $F805,  $24,  $12,$FFEC		; 8
+		dc.w $F805,  $28,  $14,	   4		; 12
+.word_17094:	dc.w 3
+		dc.w $F801,  $2C,  $16,	   0
+		dc.w $F005,    0,    0,$FFF8		; 4
+		dc.w	 5,    4,    2,$FFF8		; 8
+.word_170AE:	dc.w 4
+		dc.w $F005,    0,    0,$FFF8
+		dc.w	 5,  $2E,  $17,$FFF8		; 4
+		dc.w $F00B,    8,    4,	   5		; 8
+		dc.w $F00B, $808, $804,$FFE3		; 12
+.word_170D0:	dc.w 4
+		dc.w $F005,    0,    0,$FFF8
+		dc.w	 5,  $2E,  $17,$FFF8		; 4
+		dc.w $F60D,  $14,   $A,	   5		; 8
+		dc.w $F60D, $814, $80A,$FFDB		; 12
+.word_170F2:	dc.w 4
+		dc.w $F005,    0,    0,$FFF8
+		dc.w	 5,  $2E,  $17,$FFF8		; 4
+		dc.w $F80D,  $1C,   $E,	   4		; 8
+		dc.w $F80D, $81C, $80E,$FFDC		; 12
+.word_17114:	dc.w 4
+		dc.w $F005,    0,    0,$FFF8
+		dc.w	 5,  $2E,  $17,$FFF8		; 4
+		dc.w $F805,  $28,  $14,	   4		; 8
+		dc.w $F805,  $24,  $12,$FFEC		; 12
+.word_17136:	dc.w 3
+		dc.w $F801,  $2C,  $16,	   0
+		dc.w $F005,    0,    0,$FFF8		; 4
+		dc.w	 5,  $2E,  $17,$FFF8		; 8
+.word_17150:	dc.w 3
+		dc.w $F007,  $32,  $19,$FFF8
+		dc.w $F80D,  $1C,   $E,	   4		; 4
+		dc.w $F80D, $81C, $80E,$FFDC		; 8
+.word_1716A:	dc.w 3
+		dc.w $F007,  $32,  $19,$FFF8
+		dc.w $F805,  $28,  $14,	   4		; 4
+		dc.w $F805,  $24,  $12,$FFEC		; 8
+.word_17184:	dc.w 2
+		dc.w $F801,  $2C,  $16,	   0
+		dc.w $F007,  $32,  $19,$FFF8		; 4
+.word_17196:	dc.w 2
+		dc.w $F801, $82C, $816,$FFF8
+		dc.w $F007,  $32,  $19,$FFF8		; 4
+.word_171A8:	dc.w 3
+		dc.w $F007,  $32,  $19,$FFF8
+		dc.w $F805, $828, $814,$FFEC		; 4
+		dc.w $F805, $824, $812,	   4		; 8
+
+		jmpTos0	; Empty
+	dephase
+
+		binclude	"leftovers/symbols/symbol10.bin"
+
+	phase $15AC8
+		include	"leftovers/obj/4A Octus.asm"
+
+Ani_Obj4A_PB:	dc.w .byte_16C98-Ani_Obj4A_PB
+		dc.w .byte_16C9B-Ani_Obj4A_PB
+		dc.w .byte_16CA0-Ani_Obj4A_PB
+.byte_16C98:	dc.b  $F,  0,$FF
+.byte_16C9B:	dc.b   3,  1,  2,  3,$FF
+.byte_16CA0:	dc.b   2,  5,  6,$FF
+		even
+
+Map_Obj4A_PB:	dc.w .word_16CB2-Map_Obj4A_PB
+		dc.w .word_16CC4-Map_Obj4A_PB
+		dc.w .word_16CDE-Map_Obj4A_PB
+		dc.w .word_16CF8-Map_Obj4A_PB
+		dc.w .word_16D12-Map_Obj4A_PB
+		dc.w .word_16D1C-Map_Obj4A_PB
+		dc.w .word_16D26-Map_Obj4A_PB
+.word_16CB2:	dc.w 2
+		dc.w $F00D,    0,    0,$FFF0
+		dc.w	$D,    8,    4,$FFF0
+.word_16CC4:	dc.w 3
+		dc.w $F00D,    0,    0,$FFF0
+		dc.w	 9,  $10,    8,$FFE8
+		dc.w	 9,  $16,   $B,	   0
+.word_16CDE:	dc.w 3
+		dc.w $F00D,    0,    0,$FFF0
+		dc.w	 9,  $1C,   $E,$FFE8
+		dc.w	 9,  $22,  $11,	   0
+.word_16CF8:	dc.w 3
+		dc.w $F00D,    0,    0,$FFF0
+		dc.w	 9,  $28,  $14,$FFE8
+		dc.w	 9,  $2E,  $17,	   0
+.word_16D12:	dc.w 1
+		dc.w $F001,  $34,  $1A,$FFF7
+.word_16D1C:	dc.w 1
+		dc.w $F201,  $36,  $1B,$FFF0
+.word_16D26:	dc.w 1
+		dc.w $F201,  $38,  $1C,$FFF0
+
+		jmpTos0	; Empty
+	dephase
+
+		binclude	"leftovers/symbols/symbol11.bin"
+
+	phase $16890
+		include	"leftovers/obj/57 EHZ Boss (Part 3).asm"
+		include	"leftovers/obj/58 EHZ Boss (Part 4).asm"
+
+Ani_Obj58_PB:	dc.w .byte_18000-Ani_Obj58_PB
+		dc.w .byte_18004-Ani_Obj58_PB
+		dc.w .byte_1801A-Ani_Obj58_PB
+.byte_18000:	dc.b   1,  5,  6,$FF
+.byte_18004:	dc.b   1,  1,  1,  1,  2,  2,  2,  3,  3,  3,  4,  4,  4,  0,  0,  0
+		dc.b   0,  0,  0,  0,  0,$FF
+.byte_1801A:	dc.b   1,  0,  0,  0,  0,  0,  0,  0,  0,  4,  4,  4,  3,  3,  3,  2
+		dc.b   2,  2,  1,  1,  1,  5,  6,$FE,  2
+		even
+
+Map_Obj58_PB:	dc.w .word_18042-Map_Obj58_PB
+		dc.w .word_1804C-Map_Obj58_PB
+		dc.w .word_18076-Map_Obj58_PB
+		dc.w .word_180A0-Map_Obj58_PB
+		dc.w .word_180BA-Map_Obj58_PB
+		dc.w .word_180D4-Map_Obj58_PB
+		dc.w .word_180EE-Map_Obj58_PB
+.word_18042:	dc.w 1
+		dc.w $D805,    0,    0,	   2
+.word_1804C:	dc.w 5
+		dc.w $D805,    4,    2,	   2
+		dc.w $D80D,   $C,    6,	 $12
+		dc.w $D80D,   $C,    6,	 $32
+		dc.w $D80D,   $C,    6,$FFE2
+		dc.w $D80D,   $C,    6,$FFC2
+.word_18076:	dc.w 5
+		dc.w $D805,    4,    2,	   2
+		dc.w $D80D,   $C,    6,	 $12
+		dc.w $D805,    8,    4,	 $32
+		dc.w $D80D,   $C,    6,$FFE2
+		dc.w $D805,    8,    4,$FFD2
+.word_180A0:	dc.w 3
+		dc.w $D805,    4,    2,	   2
+		dc.w $D80D,   $C,    6,	 $12
+		dc.w $D80D,   $C,    6,$FFE2
+.word_180BA:	dc.w 3
+		dc.w $D805,    4,    2,	   2
+		dc.w $D805,    8,    4,	 $12
+		dc.w $D805,    8,    4,$FFF2
+.word_180D4:	dc.w 3
+		dc.w $D805,    0,    0,	   2
+		dc.w $D80D,   $C,    6,	 $12
+		dc.w $D80D,   $C,    6,	 $32
+.word_180EE:	dc.w 3
+		dc.w $D805,    4,    2,	   2
+		dc.w $D80D,   $C,    6,$FFE2
+		dc.w $D80D,   $C,    6,$FFC2
+
+Ani_Obj58a_PB:	dc.w .byte_1810E-Ani_Obj58a_PB
+		dc.w .byte_18113-Ani_Obj58a_PB
+		dc.w .byte_18117-Ani_Obj58a_PB
+.byte_1810E:	dc.b   5,  1,  2,  3,$FF
+.byte_18113:	dc.b   1,  4,  5,$FF
+.byte_18117:	dc.b   1,  6,  7,$FF
+		even
+
+Map_Obj58a_PB:	dc.w .word_1812E-Map_Obj58a_PB
+		dc.w .word_18148-Map_Obj58a_PB
+		dc.w .word_18152-Map_Obj58a_PB
+		dc.w .word_1815C-Map_Obj58a_PB
+		dc.w .word_18166-Map_Obj58a_PB
+		dc.w .word_18170-Map_Obj58a_PB
+		dc.w .word_1817A-Map_Obj58a_PB
+		dc.w .word_18184-Map_Obj58a_PB
+.word_1812E:	dc.w 3
+		dc.w $F00F,    0,    0,$FFD0
+		dc.w $F00F,  $10,    8,$FFF0
+		dc.w $F00F,  $20,  $10,	 $10
+.word_18148:	dc.w 1
+		dc.w $F00F,  $30,  $18,$FFF0
+.word_18152:	dc.w 1
+		dc.w $F00F,  $40,  $20,$FFF0
+.word_1815C:	dc.w 1
+		dc.w $F00F,  $50,  $28,$FFF0
+.word_18166:	dc.w 1
+		dc.w $F00F,  $60,  $30,$FFF0
+.word_18170:	dc.w 1
+		dc.w $F00F,$1060,$1030,$FFF0
+.word_1817A:	dc.w 1
+		dc.w $F00F,  $70,  $38,$FFF0
+.word_18184:	dc.w 1
+		dc.w $F00F,$1070,$1038,$FFF0
+
+	dephase
+
+		binclude	"leftovers/symbols/symbol12.bin"
+
+	phase $165F8
+		include	"leftovers/obj/54 Snail.asm"
+; ---------------------------------------------------------------------------
+Ani_Obj54_PB:	dc.w .byte_17818-Ani_Obj54_PB
+		dc.w .byte_1781C-Ani_Obj54_PB
+.byte_17818:	dc.b   5,  0,  1,$FF
+.byte_1781C:	dc.b   1,  0,  1,$FF
+		even
+; ---------------------------------------------------------------------------
+; Sprite mappings
+; ---------------------------------------------------------------------------
+Map_Obj54_PB:	dc.w	.internal_0006-Map_Obj54_PB
+		dc.w	.internal_0018-Map_Obj54_PB
+		dc.w	.internal_002A-Map_Obj54_PB
+.internal_0006:	dc.w 2
+		dc.w $F00F, 0, 0, $FFF0
+		dc.w $109, $14, $A, $FFF4
+.internal_0018:	dc.w 2
+		dc.w $F00F, 0, 0, $FFF0
+		dc.w $109, $1014, $100A, $FFF4
+.internal_002A:	dc.w 1
+		dc.w $FA05, $10, 8, $FFE9
+
+	dephase
+
+		binclude	"leftovers/symbols/symbol13.bin"
+
+	phase $17CC4
+		include	"leftovers/obj/S1/3D Boss - Green Hill (part 1).asm"
+
+; =============== S U B	R O U T	I N E =======================================
+
+
+BossDefeated_PB:
+		move.b	(Vint_runcount+3).w,d0
+		andi.b	#7,d0
+		bne.s	.locret_18EA0
+		jsr	($DAA2).l	;	FindFreeObj
+		bne.s	.locret_18EA0
+		_move.b	#id_Obj3F,obID(a1)
+		move.w	obX(a0),obX(a1)
+		move.w	obY(a0),obY(a1)
+		jsr	($2AF0).l	;	RandomNumber
+		move.w	d0,d1
+		moveq	#0,d1
+		move.b	d0,d1
+		lsr.b	#2,d1
+		subi.w	#$20,d1
+		add.w	d1,obX(a1)
+		lsr.w	#8,d0
+		lsr.b	#3,d0
+		add.w	d0,obY(a1)
+
+.locret_18EA0:
+		rts
+; End of function BossDefeated_PB
+
+
+; =============== S U B	R O U T	I N E =======================================
+
+
+BossMove_PB:
+		move.l	objoff_30(a0),d2
+		move.l	objoff_38(a0),d3
+		move.w	obVelX(a0),d0
+		ext.l	d0
+		asl.l	#8,d0
+		add.l	d0,d2
+		move.w	obVelY(a0),d0
+		ext.l	d0
+		asl.l	#8,d0
+		add.l	d0,d3
+		move.l	d2,objoff_30(a0)
+		move.l	d3,objoff_38(a0)
+		rts
+; End of function BossMove_PB
+
+		include "leftovers/obj/S1/3D Boss - Green Hill (part 2).asm"
+		include "leftovers/obj/S1/48 Eggman's Swinging Ball.asm"
+
+Ani_Eggman_PB:	dc.w .byte_192E0-Ani_Eggman_PB
+		dc.w .byte_192E3-Ani_Eggman_PB
+		dc.w .byte_192E7-Ani_Eggman_PB
+		dc.w .byte_192EB-Ani_Eggman_PB
+		dc.w .byte_192EF-Ani_Eggman_PB
+		dc.w .byte_192F3-Ani_Eggman_PB
+		dc.w .byte_192F7-Ani_Eggman_PB
+		dc.w .byte_192FB-Ani_Eggman_PB
+		dc.w .byte_192FE-Ani_Eggman_PB
+		dc.w .byte_19302-Ani_Eggman_PB
+		dc.w .byte_19306-Ani_Eggman_PB
+		dc.w .byte_19309-Ani_Eggman_PB
+.byte_192E0:	dc.b  $F,  0,$FF
+.byte_192E3:	dc.b   5,  1,  2,$FF
+.byte_192E7:	dc.b   3,  1,  2,$FF
+.byte_192EB:	dc.b   1,  1,  2,$FF
+.byte_192EF:	dc.b   4,  3,  4,$FF
+.byte_192F3:	dc.b $1F,  5,  1,$FF
+.byte_192F7:	dc.b   3,  6,  1,$FF
+.byte_192FB:	dc.b  $F, $A,$FF
+.byte_192FE:	dc.b   3,  8,  9,$FF
+.byte_19302:	dc.b   1,  8,  9,$FF
+.byte_19306:	dc.b  $F,  7,$FF
+.byte_19309:	dc.b   2,  9,  8, $B, $C, $B, $C,  9,  8,$FE,  2
+		even
+
+Map_Eggman_PB:	dc.w .word_1932E-Map_Eggman_PB
+		dc.w .word_19360-Map_Eggman_PB
+		dc.w .word_19372-Map_Eggman_PB
+		dc.w .word_19384-Map_Eggman_PB
+		dc.w .word_1939E-Map_Eggman_PB
+		dc.w .word_193B8-Map_Eggman_PB
+		dc.w .word_193D2-Map_Eggman_PB
+		dc.w .word_193EC-Map_Eggman_PB
+		dc.w .word_1940E-Map_Eggman_PB
+		dc.w .word_19418-Map_Eggman_PB
+		dc.w .word_19422-Map_Eggman_PB
+		dc.w .word_19424-Map_Eggman_PB
+		dc.w .word_19436-Map_Eggman_PB
+.word_1932E:	dc.w 6
+		dc.w $EC01,   $A,    5,$FFE4
+		dc.w $EC05,   $C,    6,	  $C
+		dc.w $FC0E,$2010,$2008,$FFE4
+		dc.w $FC0E,$201C,$200E,	   4
+		dc.w $140C,$2028,$2014,$FFEC
+		dc.w $1400,$202C,$2016,	  $C
+.word_19360:	dc.w 2
+		dc.w $E404,    0,    0,$FFF4
+		dc.w $EC0D,    2,    1,$FFEC
+.word_19372:	dc.w 2
+		dc.w $E404,    0,    0,$FFF4
+		dc.w $EC0D,  $35,  $1A,$FFEC
+.word_19384:	dc.w 3
+		dc.w $E408,  $3D,  $1E,$FFF4
+		dc.w $EC09,  $40,  $20,$FFEC
+		dc.w $EC05,  $46,  $23,	   4
+.word_1939E:	dc.w 3
+		dc.w $E408,  $4A,  $25,$FFF4
+		dc.w $EC09,  $4D,  $26,$FFEC
+		dc.w $EC05,  $53,  $29,	   4
+.word_193B8:	dc.w 3
+		dc.w $E408,  $57,  $2B,$FFF4
+		dc.w $EC09,  $5A,  $2D,$FFEC
+		dc.w $EC05,  $60,  $30,	   4
+.word_193D2:	dc.w 3
+		dc.w $E404,  $64,  $32,	   4
+		dc.w $E404,    0,    0,$FFF4
+		dc.w $EC0D,  $35,  $1A,$FFEC
+.word_193EC:	dc.w 4
+		dc.w $E409,  $66,  $33,$FFF4
+		dc.w $E408,  $57,  $2B,$FFF4
+		dc.w $EC09,  $5A,  $2D,$FFEC
+		dc.w $EC05,  $60,  $30,	   4
+.word_1940E:	dc.w 1
+		dc.w  $405,  $2D,  $16,	 $22
+.word_19418:	dc.w 1
+		dc.w  $405,  $31,  $18,	 $22
+.word_19422:	dc.w 0
+.word_19424:	dc.w 2
+		dc.w	 8, $12A, $195,	 $22
+		dc.w  $808,$112A,$1995,	 $22
+.word_19436:	dc.w 2
+		dc.w $F80B, $12D, $199,	 $22
+		dc.w	 1, $139, $1AB,	 $3A
+
+Map_BossItems_PB:	dc.w .word_19458-Map_BossItems_PB
+		dc.w .word_19462-Map_BossItems_PB
+		dc.w .word_19474-Map_BossItems_PB
+		dc.w .word_1947E-Map_BossItems_PB
+		dc.w .word_19488-Map_BossItems_PB
+		dc.w .word_19492-Map_BossItems_PB
+		dc.w .word_194B4-Map_BossItems_PB
+		dc.w .word_194C6-Map_BossItems_PB
+.word_19458:	dc.w 1
+		dc.w $F805,    0,    0,$FFF8
+.word_19462:	dc.w 2
+		dc.w $FC04,    4,    2,$FFF8
+		dc.w $F805,    0,    0,$FFF8
+.word_19474:	dc.w 1
+		dc.w $FC00,    6,    3,$FFFC
+.word_1947E:	dc.w 1
+		dc.w $1409,    7,    3,$FFF4
+.word_19488:	dc.w 1
+		dc.w $1405,   $D,    6,$FFF8
+.word_19492:	dc.w 4
+		dc.w $F004,  $11,    8,$FFF8
+		dc.w $F801,  $13,    9,$FFF8
+		dc.w $F801, $813, $809,	   0
+		dc.w  $804,  $15,   $A,$FFF8
+.word_194B4:	dc.w 2
+		dc.w	 5,  $17,   $B,	   0
+		dc.w	 0,  $1B,   $D,	 $10
+.word_194C6:	dc.w 2
+		dc.w $1804,  $1C,   $E,	   0
+		dc.w	$B,  $1E,   $F,	 $10
+
+	dephase
+
+		binclude	"leftovers/symbols/symbol14.bin"
+
+	phase $175A8
+		include	"leftovers/obj/S1/8A Credits.asm"
+; ===========================================================================
+; ---------------------------------------------------------------------------
+; Sprite mappings
+; ---------------------------------------------------------------------------
+Map_Cred_PB:	dc.w	Map_Cred_PB_0016-Map_Cred_PB
+	dc.w	Map_Cred_PB_0088-Map_Cred_PB
+	dc.w	Map_Cred_PB_010A-Map_Cred_PB
+	dc.w	Map_Cred_PB_015C-Map_Cred_PB
+	dc.w	Map_Cred_PB_021E-Map_Cred_PB
+	dc.w	Map_Cred_PB_02C0-Map_Cred_PB
+	dc.w	Map_Cred_PB_0392-Map_Cred_PB
+	dc.w	Map_Cred_PB_044C-Map_Cred_PB
+	dc.w	Map_Cred_PB_0546-Map_Cred_PB
+	dc.w	Map_Cred_PB_05C0-Map_Cred_PB
+	dc.w	Map_Cred_PB_0602-Map_Cred_PB
+Map_Cred_PB_0016:	dc.w $E
+	dc.w $F805, $2E, $17, $FF88
+	dc.w $F805, $26, $13, $FF98
+	dc.w $F805, $1A, $D, $FFA8
+	dc.w $F801, $46, $23, $FFB8
+	dc.w $F805, $1E, $F, $FFC0
+	dc.w $F805, $3E, $1F, $FFD8
+	dc.w $F805, $E, 7, $FFE8
+	dc.w $F805, 4, 2, $FFF8
+	dc.w $F809, 8, 4, 8
+	dc.w $F805, $2E, $17, $28
+	dc.w $F805, $3E, $1F, $38
+	dc.w $F805, 4, 2, $48
+	dc.w $F805, $5C, $2E, $58
+	dc.w $F805, $5C, $2E, $68
+Map_Cred_PB_0088:	dc.w $10
+	dc.w $D805, 0, 0, $FF80
+	dc.w $D805, 4, 2, $FF90
+	dc.w $D809, 8, 4, $FFA0
+	dc.w $D805, $E, 7, $FFB4
+	dc.w $D805, $12, 9, $FFD0
+	dc.w $D805, $16, $B, $FFE0
+	dc.w $D805, 4, 2, $FFF0
+	dc.w $D805, $1A, $D, 0
+	dc.w $805, $1E, $F, $FFC8
+	dc.w $805, 4, 2, $FFD8
+	dc.w $805, $22, $11, $FFE8
+	dc.w $805, $26, $13, $FFF8
+	dc.w $805, $16, $B, 8
+	dc.w $805, $2A, $15, $20
+	dc.w $805, 4, 2, $30
+	dc.w $805, $2E, $17, $44
+Map_Cred_PB_010A:	dc.w $A
+	dc.w $D805, $12, 9, $FF80
+	dc.w $D805, $22, $11, $FF90
+	dc.w $D805, $26, $13, $FFA0
+	dc.w $D805, 0, 0, $FFB0
+	dc.w $D805, $22, $11, $FFC0
+	dc.w $D805, 4, 2, $FFD0
+	dc.w $D809, 8, 4, $FFE0
+	dc.w $805, $2A, $15, $FFE8
+	dc.w $805, $32, $19, $FFF8
+	dc.w $805, $36, $1B, 8
+Map_Cred_PB_015C:	dc.w $18
+	dc.w $D805, $1E, $F, $FF88
+	dc.w $D805, $3A, $1D, $FF98
+	dc.w $D805, 4, 2, $FFA8
+	dc.w $D805, $22, $11, $FFB8
+	dc.w $D805, 4, 2, $FFC8
+	dc.w $D805, $1E, $F, $FFD8
+	dc.w $D805, $3E, $1F, $FFE8
+	dc.w $D805, $E, 7, $FFF8
+	dc.w $D805, $22, $11, 8
+	dc.w $D805, $42, $21, $20
+	dc.w $D805, $E, 7, $30
+	dc.w $D805, $2E, $17, $40
+	dc.w $D801, $46, $23, $50
+	dc.w $D805, 0, 0, $58
+	dc.w $D805, $1A, $D, $68
+	dc.w $805, $48, $24, $FFC0
+	dc.w $801, $46, $23, $FFD0
+	dc.w $805, 0, 0, $FFD8
+	dc.w $801, $46, $23, $FFE8
+	dc.w $805, $2E, $17, $FFF0
+	dc.w $805, $16, $B, 0
+	dc.w $805, 4, 2, $10
+	dc.w $805, $1A, $D, $20
+	dc.w $805, $42, $21, $30
+Map_Cred_PB_021E:	dc.w $14
+	dc.w $D005, $42, $21, $FFA0
+	dc.w $D005, $E, 7, $FFB0
+	dc.w $D005, $2E, $17, $FFC0
+	dc.w $D001, $46, $23, $FFD0
+	dc.w $D005, 0, 0, $FFD8
+	dc.w $D005, $1A, $D, $FFE8
+	dc.w 5, $4C, $26, $FFE8
+	dc.w 1, $46, $23, $FFF8
+	dc.w 5, $1A, $D, 4
+	dc.w 5, $2A, $15, $14
+	dc.w 5, 4, 2, $24
+	dc.w $2005, $12, 9, $FFD0
+	dc.w $2005, $3A, $1D, $FFE0
+	dc.w $2005, $E, 7, $FFF0
+	dc.w $2005, $1A, $D, 0
+	dc.w $2001, $46, $23, $10
+	dc.w $2005, $50, $28, $18
+	dc.w $2005, $22, $11, $30
+	dc.w $2001, $46, $23, $40
+	dc.w $2005, $E, 7, $48
+Map_Cred_PB_02C0:	dc.w $1A
+	dc.w $D805, $2E, $17, $FF98
+	dc.w $D805, $26, $13, $FFA8
+	dc.w $D805, $32, $19, $FFB8
+	dc.w $D805, $1A, $D, $FFC8
+	dc.w $D805, $54, $2A, $FFD8
+	dc.w $D805, $12, 9, $FFF8
+	dc.w $D805, $22, $11, 8
+	dc.w $D805, $26, $13, $18
+	dc.w $D805, $42, $21, $28
+	dc.w $D805, $32, $19, $38
+	dc.w $D805, $1E, $F, $48
+	dc.w $D805, $E, 7, $58
+	dc.w $809, 8, 4, $FF88
+	dc.w $805, 4, 2, $FF9C
+	dc.w $805, $2E, $17, $FFAC
+	dc.w $805, 4, 2, $FFBC
+	dc.w $805, $3E, $1F, $FFCC
+	dc.w $805, $26, $13, $FFDC
+	dc.w $805, $1A, $D, $FFF8
+	dc.w $805, 4, 2, 8
+	dc.w $805, $58, $2C, $18
+	dc.w $805, 4, 2, $28
+	dc.w $809, 8, 4, $38
+	dc.w $805, $32, $19, $4C
+	dc.w $805, $22, $11, $5C
+	dc.w $805, 4, 2, $6C
+Map_Cred_PB_0392:	dc.w $17
+	dc.w $D005, $2E, $17, $FF98
+	dc.w $D005, $26, $13, $FFA8
+	dc.w $D005, $32, $19, $FFB8
+	dc.w $D005, $1A, $D, $FFC8
+	dc.w $D005, $54, $2A, $FFD8
+	dc.w $D005, $12, 9, $FFF8
+	dc.w $D005, $22, $11, 8
+	dc.w $D005, $26, $13, $18
+	dc.w $D005, 0, 0, $28
+	dc.w $D005, $22, $11, $38
+	dc.w $D005, 4, 2, $48
+	dc.w $D009, 8, 4, $58
+	dc.w 5, $4C, $26, $FFD0
+	dc.w 1, $46, $23, $FFE0
+	dc.w 9, 8, 4, $FFE8
+	dc.w 1, $46, $23, $FFFC
+	dc.w 5, $3E, $1F, 4
+	dc.w 5, 4, 2, $14
+	dc.w $2009, 8, 4, $FFD0
+	dc.w $2005, 4, 2, $FFE4
+	dc.w $2005, $1E, $F, $FFF4
+	dc.w $2005, $58, $2C, 4
+	dc.w $2005, $2A, $15, $14
+Map_Cred_PB_044C:	dc.w $1F
+	dc.w $D805, $2E, $17, $FF80
+	dc.w $D805, $12, 9, $FF90
+	dc.w $D805, $E, 7, $FFA0
+	dc.w $D805, $1E, $F, $FFB0
+	dc.w $D801, $46, $23, $FFC0
+	dc.w $D805, 4, 2, $FFC8
+	dc.w $D805, $16, $B, $FFD8
+	dc.w $D805, $3E, $1F, $FFF8
+	dc.w $D805, $3A, $1D, 8
+	dc.w $D805, 4, 2, $18
+	dc.w $D805, $1A, $D, $28
+	dc.w $D805, $58, $2C, $38
+	dc.w $D805, $2E, $17, $48
+	dc.w 5, $5C, $2E, $FFB0
+	dc.w 5, $32, $19, $FFC0
+	dc.w 5, $4C, $26, $FFD0
+	dc.w 1, $46, $23, $FFE0
+	dc.w 5, $26, $13, $FFE8
+	dc.w 9, 8, 4, 0
+	dc.w 1, $46, $23, $14
+	dc.w 5, $1A, $D, $1C
+	dc.w 5, $E, 7, $2C
+	dc.w 5, 0, 0, $3C
+	dc.w 1, $46, $23, $4C
+	dc.w 5, $2E, $17, $54
+	dc.w 5, $3A, $1D, $64
+	dc.w 1, $46, $23, $74
+	dc.w $2005, $12, 9, $FFF8
+	dc.w $2005, 4, 2, 8
+	dc.w $2005, $12, 9, $18
+	dc.w $2005, 4, 2, $28
+Map_Cred_PB_0546:	dc.w $F
+	dc.w $F805, $12, 9, $FF80
+	dc.w $F805, $22, $11, $FF90
+	dc.w $F805, $E, 7, $FFA0
+	dc.w $F805, $2E, $17, $FFB0
+	dc.w $F805, $E, 7, $FFC0
+	dc.w $F805, $1A, $D, $FFD0
+	dc.w $F805, $3E, $1F, $FFE0
+	dc.w $F805, $E, 7, $FFF0
+	dc.w $F805, $42, $21, 0
+	dc.w $F805, $48, $24, $18
+	dc.w $F805, $2A, $15, $28
+	dc.w $F805, $2E, $17, $40
+	dc.w $F805, $E, 7, $50
+	dc.w $F805, 0, 0, $60
+	dc.w $F805, 4, 2, $70
+Map_Cred_PB_05C0:	dc.w 8
+	dc.w $3005, $3E, $1F, $FFC0
+	dc.w $3005, $22, $11, $FFD0
+	dc.w $3005, $2A, $15, $FFE0
+	dc.w $3005, 4, 2, $FFF8
+	dc.w $3005, 0, 0, 8
+	dc.w $3005, 4, 2, $18
+	dc.w $3001, $46, $23, $28
+	dc.w $3005, $1A, $D, $30
+Map_Cred_PB_0602:	dc.w $11
+	dc.w $E805, $2E, $17, $FFB4
+	dc.w $E805, $26, $13, $FFC4
+	dc.w $E805, $1A, $D, $FFD4
+	dc.w $E801, $46, $23, $FFE4
+	dc.w $E805, $1E, $F, $FFEC
+	dc.w $E805, $3E, $1F, 4
+	dc.w $E805, $E, 7, $14
+	dc.w $E805, 4, 2, $24
+	dc.w $E809, 8, 4, $34
+	dc.w 5, $12, 9, $FFC0
+	dc.w 5, $22, $11, $FFD0
+	dc.w 5, $E, 7, $FFE0
+	dc.w 5, $2E, $17, $FFF0
+	dc.w 5, $E, 7, 0
+	dc.w 5, $1A, $D, $10
+	dc.w 5, $3E, $1F, $20
+	dc.w 5, $2E, $17, $30
+
+		jmpTos	; Empty
+	dephase
+
+		binclude	"leftovers/symbols/symbol15.bin"
+
+	phase $17194
+		include	"leftovers/obj/55 EHZ Boss (Part 1).asm"
+		include	"leftovers/obj/56 EHZ Boss (Part 2).asm"
+
+Map_Obj55a_PB:	dc.w .word_184C2-Map_Obj55a_PB
+		dc.w .word_184CC-Map_Obj55a_PB
+.word_184C2:	dc.w 1
+		dc.w	 5,    0,    0,	 $1C
+.word_184CC:	dc.w 1
+		dc.w	 5,    4,    2,	 $1C
+
+Map_Obj55b_PB:	dc.w .word_184DE-Map_Obj55b_PB
+		dc.w .word_184E8-Map_Obj55b_PB
+		dc.w .word_184F2-Map_Obj55b_PB
+		dc.w .word_184FC-Map_Obj55b_PB
+.word_184DE:	dc.w 1
+		dc.w $F805,    0,    0,$FFF8
+.word_184E8:	dc.w 1
+		dc.w $F805,    4,    2,$FFF8
+.word_184F2:	dc.w 1
+		dc.w $F805,    8,    4,$FFF8
+.word_184FC:	dc.w 1
+		dc.w $F805,   $C,    6,$FFF8
+
+Map_Obj56_PB:	dc.w .word_18514-Map_Obj56_PB
+		dc.w .word_1851E-Map_Obj56_PB
+		dc.w .word_18528-Map_Obj56_PB
+		dc.w .word_18532-Map_Obj56_PB
+		dc.w .word_1853C-Map_Obj56_PB
+		dc.w .word_18546-Map_Obj56_PB
+		dc.w .word_18550-Map_Obj56_PB
+.word_18514:	dc.w 1
+		dc.w $F805,    0,    0,$FFF8
+.word_1851E:	dc.w 1
+		dc.w $F00F,    4,    2,$FFF0
+.word_18528:	dc.w 1
+		dc.w $F00F,  $14,   $A,$FFF0
+.word_18532:	dc.w 1
+		dc.w $F00F,  $24,  $12,$FFF0
+.word_1853C:	dc.w 1
+		dc.w $F00F,  $34,  $1A,$FFF0
+.word_18546:	dc.w 1
+		dc.w $F00F,  $44,  $22,$FFF0
+.word_18550:	dc.w 1
+		dc.w $F00F,  $54,  $2A,$FFF0
+
+Ani_Obj55a_PB:	dc.w .byte_1855E-Ani_Obj55a_PB
+		dc.w .byte_18561-Ani_Obj55a_PB
+.byte_1855E:	dc.b  $F,  0,$FF
+.byte_18561:	dc.b   7,  1,  2,$FF
+		even
+
+Map_Obj55_PB:	dc.w .word_1856C-Map_Obj55_PB
+		dc.w .word_1858E-Map_Obj55_PB
+		dc.w .word_185B0-Map_Obj55_PB
+.word_1856C:	dc.w 4
+		dc.w $F805,    0,    0,$FFE0
+		dc.w  $805,    4,    2,$FFE0
+		dc.w $F80F,    8,    4,$FFF0
+		dc.w $F807,  $18,   $C,	 $10
+.word_1858E:	dc.w 4
+		dc.w $E805,  $28,  $14,$FFE0
+		dc.w $E80D,  $30,  $18,$FFF0
+		dc.w $E805,  $24,  $12,	 $10
+		dc.w $D805,  $20,  $10,	   2
+.word_185B0:	dc.w 4
+		dc.w $E805,  $28,  $14,$FFE0
+		dc.w $E80D,  $38,  $1C,$FFF0
+		dc.w $E805,  $24,  $12,	 $10
+		dc.w $D805,  $20,  $10,	   2
+
+		jmpTos	; Empty
+	dephase
+
+		binclude	"leftovers/symbols/symbol16.bin"
+
+		dc.w   $26,  $13,$FFA8	; 0
+		dc.w $D005,  $32,  $19,$FFB8; 0
+		dc.w $D005,  $1A,   $D,$FFC8; 4
+		dc.w $D005,  $54,  $2A,$FFD8; 8
+		dc.w $D005,  $12,    9,$FFF8; 12
+		dc.w $D005,  $22,  $11,	   8; 16
+		dc.w $D005,  $26,  $13,	 $18; 20
+		dc.w $D005,    0,    0,	 $28; 24
+		dc.w $D005,  $22,  $11,	 $38; 28
+		dc.w $D005,    4,    2,	 $48; 32
+		dc.w $D009,    8,    4,	 $58; 36
+		dc.w	 5,  $4C,  $26,$FFD0; 40
+		dc.w	 1,  $46,  $23,$FFE0; 44
+		dc.w	 9,    8,    4,$FFE8; 48
+		dc.w	 1,  $46,  $23,$FFFC; 52
+		dc.w	 5,  $3E,  $1F,	   4; 56
+		dc.w	 5,    4,    2,	 $14; 60
+		dc.w $2009,    8,    4,$FFD0; 64
+		dc.w $2005,    4,    2,$FFE4; 68
+		dc.w $2005,  $1E,   $F,$FFF4; 72
+		dc.w $2005,  $58,  $2C,	   4; 76
+		dc.w $2005,  $2A,  $15,	 $14; 80
+		dc.w $1F
+		dc.w $D805,  $2E,  $17,$FF80; 0
+		dc.w $D805,  $12,    9,$FF90; 4
+		dc.w $D805,   $E,    7,$FFA0; 8
+		dc.w $D805,  $1E,   $F,$FFB0; 12
+		dc.w $D801,  $46,  $23,$FFC0; 16
+		dc.w $D805,    4,    2,$FFC8; 20
+		dc.w $D805,  $16,   $B,$FFD8; 24
+		dc.w $D805,  $3E,  $1F,$FFF8; 28
+		dc.w $D805,  $3A,  $1D,	   8; 32
+		dc.w $D805,    4,    2,	 $18; 36
+		dc.w $D805,  $1A,   $D,	 $28; 40
+		dc.w $D805,  $58,  $2C,	 $38; 44
+		dc.w $D805,  $2E,  $17,	 $48; 48
+		dc.w	 5,  $5C,  $2E,$FFB0; 52
+		dc.w	 5,  $32,  $19,$FFC0; 56
+		dc.w	 5,  $4C,  $26,$FFD0; 60
+		dc.w	 1,  $46,  $23,$FFE0; 64
+		dc.w	 5,  $26,  $13,$FFE8; 68
+		dc.w	 9,    8,    4,	   0; 72
+		dc.w	 1,  $46,  $23,	 $14; 76
+		dc.w	 5,  $1A,   $D,	 $1C; 80
+		dc.w	 5,   $E,    7,	 $2C; 84
+		dc.w	 5,    0,    0,	 $3C; 88
+		dc.w	 1,  $46,  $23,	 $4C; 92
+		dc.w	 5,  $2E,  $17,	 $54; 96
+		dc.w	 5,  $3A,  $1D,	 $64; 100
+		dc.w	 1,  $46,  $23,	 $74; 104
+		dc.w $2005,  $12,    9,$FFF8; 108
+		dc.w $2005,    4,    2,	   8; 112
+		dc.w $2005,  $12,    9,	 $18; 116
+		dc.w $2005,    4,    2,	 $28; 120
+		dc.w $F
+		dc.w $F805,  $12,    9,$FF80; 0
+		dc.w $F805,  $22,  $11,$FF90; 4
+		dc.w $F805,   $E,    7,$FFA0; 8
+		dc.w $F805,  $2E,  $17,$FFB0; 12
+		dc.w $F805,   $E,    7,$FFC0; 16
+		dc.w $F805,  $1A,   $D,$FFD0; 20
+		dc.w $F805,  $3E,  $1F,$FFE0; 24
+		dc.w $F805,   $E,    7,$FFF0; 28
+		dc.w $F805,  $42,  $21,	   0; 32
+		dc.w $F805,  $48,  $24,	 $18; 36
+		dc.w $F805,  $2A,  $15,	 $28; 40
+		dc.w $F805,  $2E,  $17,	 $40; 44
+		dc.w $F805,   $E,    7,	 $50; 48
+		dc.w $F805,    0,    0,	 $60; 52
+		dc.w $F805,    4,    2,	 $70; 56
+		dc.w 8
+		dc.w $3005,  $3E,  $1F,$FFC0; 0
+		dc.w $3005,  $22,  $11,$FFD0; 4
+		dc.w $3005,  $2A,  $15,$FFE0; 8
+		dc.w $3005,    4,    2,$FFF8; 12
+		dc.w $3005,    0,    0,	   8; 16
+		dc.w $3005,    4,    2,	 $18; 20
+		dc.w $3001,  $46,  $23,	 $28; 24
+		dc.w $3005,  $1A,   $D,	 $30; 28
+		dc.w $11
+		dc.w $E805,  $2E,  $17,$FFB4; 0
+		dc.w $E805,  $26,  $13,$FFC4; 4
+		dc.w $E805,  $1A,   $D,$FFD4; 8
+		dc.w $E801,  $46,  $23,$FFE4; 12
+		dc.w $E805,  $1E,   $F,$FFEC; 16
+		dc.w $E805,  $3E,  $1F,	   4; 20
+		dc.w $E805,   $E,    7,	 $14; 24
+		dc.w $E805,    4,    2,	 $24; 28
+		dc.w $E809,    8,    4,	 $34; 32
+		dc.w	 5,  $12,    9,$FFC0; 36
+		dc.w	 5,  $22,  $11,$FFD0; 40
+		dc.w	 5,   $E,    7,$FFE0; 44
+		dc.w	 5,  $2E,  $17,$FFF0; 48
+		dc.w	 5,   $E,    7,	   0; 52
+		dc.w	 5,  $1A,   $D,	 $10; 56
+		dc.w	 5,  $3E,  $1F,	 $20; 60
+		dc.w	 5,  $2E,  $17,	 $30; 64
+
+		jmpTos	; Empty
+
+		binclude	"leftovers/symbols/symbol17.bin"
+
+	phase $1718C
+		include	"leftovers/obj/55 EHZ Boss (Part 1) (Earlier).asm"
+		include	"leftovers/obj/56 EHZ Boss (Part 2) (Earlier).asm"
+
+Map_Obj55a_PB2:	dc.w .word_184C2-Map_Obj55a_PB2
+		dc.w .word_184CC-Map_Obj55a_PB2
+.word_184C2:	dc.w 1
+		dc.w	 5,    0,    0,	 $1C
+.word_184CC:	dc.w 1
+		dc.w	 5,    4,    2,	 $1C
+
+Map_Obj55b_PB2:	dc.w .word_184DE-Map_Obj55b_PB2
+		dc.w .word_184E8-Map_Obj55b_PB2
+		dc.w .word_184F2-Map_Obj55b_PB2
+		dc.w .word_184FC-Map_Obj55b_PB2
+.word_184DE:	dc.w 1
+		dc.w $F805,    0,    0,$FFF8
+.word_184E8:	dc.w 1
+		dc.w $F805,    4,    2,$FFF8
+.word_184F2:	dc.w 1
+		dc.w $F805,    8,    4,$FFF8
+.word_184FC:	dc.w 1
+		dc.w $F805,   $C,    6,$FFF8
+
+Map_Obj56_PB2:	dc.w .word_18514-Map_Obj56_PB2
+		dc.w .word_1851E-Map_Obj56_PB2
+		dc.w .word_18528-Map_Obj56_PB2
+		dc.w .word_18532-Map_Obj56_PB2
+		dc.w .word_1853C-Map_Obj56_PB2
+		dc.w .word_18546-Map_Obj56_PB2
+		dc.w .word_18550-Map_Obj56_PB2
+.word_18514:	dc.w 1
+		dc.w $F805,    0,    0,$FFF8
+.word_1851E:	dc.w 1
+		dc.w $F00F,    4,    2,$FFF0
+.word_18528:	dc.w 1
+		dc.w $F00F,  $14,   $A,$FFF0
+.word_18532:	dc.w 1
+		dc.w $F00F,  $24,  $12,$FFF0
+.word_1853C:	dc.w 1
+		dc.w $F00F,  $34,  $1A,$FFF0
+.word_18546:	dc.w 1
+		dc.w $F00F,  $44,  $22,$FFF0
+.word_18550:	dc.w 1
+		dc.w $F00F,  $54,  $2A,$FFF0
+
+Ani_Obj55a_PB2:	dc.w .byte_1855E-Ani_Obj55a_PB2
+		dc.w .byte_18561-Ani_Obj55a_PB2
+.byte_1855E:	dc.b  $F,  0,$FF
+.byte_18561:	dc.b   7,  1,  2,$FF
+		even
+
+Map_Obj55_PB2:	dc.w .word_1856C-Map_Obj55_PB2
+		dc.w .word_1858E-Map_Obj55_PB2
+		dc.w .word_185B0-Map_Obj55_PB2
+.word_1856C:	dc.w 4
+		dc.w $F805,    0,    0,$FFE0
+		dc.w  $805,    4,    2,$FFE0
+		dc.w $F80F,    8,    4,$FFF0
+		dc.w $F807,  $18,   $C,	 $10
+.word_1858E:	dc.w 4
+		dc.w $E805,  $28,  $14,$FFE0
+		dc.w $E80D,  $30,  $18,$FFF0
+		dc.w $E805,  $24,  $12,	 $10
+		dc.w $D805,  $20,  $10,	   2
+.word_185B0:	dc.w 4
+		dc.w $E805,  $28,  $14,$FFE0
+		dc.w $E80D,  $38,  $1C,$FFF0
+		dc.w $E805,  $24,  $12,	 $10
+		dc.w $D805,  $20,  $10,	   2
+
+		jmpTos	; Empty
+	dephase
+
+		binclude	"leftovers/symbols/symbol18.bin"
 
 ; ---------------------------------------------------------------------------
-; Start of leftover code.
+; Leftover source code of Debug Mode
 ; ---------------------------------------------------------------------------
-		binclude	"misc/leftovers/s2proto_code.txt"
-		binclude	"misc/leftovers/tilemaps/Title Emblem.eni"
-		binclude	"misc/leftovers/tilemaps/Title Background.eni"
-		binclude	"misc/leftovers/art/nemesis/8x8 - Title.nem"
-		binclude	"misc/leftovers/symbols/symbol19.bin"
-		binclude	"misc/leftovers/code/code_62230.bin"
-		binclude	"misc/leftovers/symbols/symbol20.bin"
-		binclude	"misc/leftovers/code/code_62c48.bin"
-		binclude	"misc/leftovers/symbols/symbol21.bin"
-		binclude	"misc/leftovers/code/code_65260.bin"
-		binclude	"misc/leftovers/symbols/symbol22.bin"
-		binclude	"misc/leftovers/code/code_66548.bin"
-		binclude	"misc/leftovers/symbols/symbol23.bin"
-		binclude	"misc/leftovers/code/code_67894.bin"
-		binclude	"misc/leftovers/symbols/symbol24.bin"
-		binclude	"misc/leftovers/code/code_68464.bin"
-		binclude	"misc/leftovers/symbols/symbol25.bin"
-		binclude	"misc/leftovers/code/code_69464.bin"
-		binclude	"art/uncompressed/HUD Numbers.bin"
-		binclude	"art/uncompressed/Lives Counter Numbers.bin"
-		nop
-		binclude	"misc/leftovers/69EE8.bin"
-		binclude	"misc/leftovers/symbols/symbol26.bin"
-		binclude	"misc/leftovers/symbols/symbol26a.bin"
-		binclude	"misc/leftovers/code/left_6b5c4_mainloadblocks.bin"
-		binclude	"misc/leftovers/symbols/symbol27.bin"
+		binclude	"leftovers/source code/Debug Mode.txt"
+		binclude	"leftovers/tilemaps/Title Emblem.eni"
+		binclude	"leftovers/tilemaps/Title Background.eni"
+		binclude	"leftovers/art/nemesis/8x8 - Title.nem"
+		binclude	"leftovers/symbols/symbol19.bin"
+
+	phase $187B0
+		include	"leftovers/obj/sub TouchResponse.asm"
+
+		jmpTos	; Empty
+	dephase
+
+		binclude	"leftovers/symbols/symbol20.bin"
+
+	phase $184AC
+		include	"leftovers/obj/S1/3E Prison Capsule.asm"
+
+Ani_Pri_PB:	dc.w .byte_19730-Ani_Pri_PB
+		dc.w .byte_19730-Ani_Pri_PB
+.byte_19730:	dc.b   2,  1,  3,$FF
+		even
+
+Map_Pri_PB:	dc.w .word_19742-Map_Pri_PB
+		dc.w .word_1977C-Map_Pri_PB
+		dc.w .word_19786-Map_Pri_PB
+		dc.w .word_197B8-Map_Pri_PB
+		dc.w .word_197C2-Map_Pri_PB
+		dc.w .word_197D4-Map_Pri_PB
+		dc.w .word_197DE-Map_Pri_PB
+.word_19742:	dc.w 7
+		dc.w $E00C,$2000,$2000,$FFF0
+		dc.w $E80D,$2004,$2002,$FFE0
+		dc.w $E80D,$200C,$2006,	   0
+		dc.w $F80E,$2014,$200A,$FFE0
+		dc.w $F80E,$2020,$2010,	   0
+		dc.w $100D,$202C,$2016,$FFE0
+		dc.w $100D,$2034,$201A,	   0
+.word_1977C:	dc.w 1
+		dc.w $F809,  $3C,  $1E,$FFF4
+.word_19786:	dc.w 6
+		dc.w	 8,$2042,$2021,$FFE0
+		dc.w  $80C,$2045,$2022,$FFE0
+		dc.w	 4,$2049,$2024,	 $10
+		dc.w  $80C,$204B,$2025,	   0
+		dc.w $100D,$202C,$2016,$FFE0
+		dc.w $100D,$2034,$201A,	   0
+.word_197B8:	dc.w 1
+		dc.w $F809,  $4F,  $27,$FFF4
+.word_197C2:	dc.w 2
+		dc.w $E80E,$2055,$202A,$FFF0
+		dc.w	$E,$2061,$2030,$FFF0
+.word_197D4:	dc.w 1
+		dc.w $F007,$206D,$2036,$FFF8
+.word_197DE:	dc.w 0
+
+	dephase
+
+		binclude	"leftovers/symbols/symbol21.bin"
+
+	phase $18B48
+; =============== S U B	R O U T	I N E =======================================
+
+S1SS_ShowLayout_PB:
+		bsr.w	sub_19CC2_PB	;	sub_19CC2
+		bsr.w	sub_19F02_PB	;	sub_19F02
+		move.w	d5,-(sp)
+		lea	(v_ssbuffer3).w,a1
+		move.b	(v_ssangle).w,d0
+		andi.b	#$FC,d0
+		jsr	($2B16).l	;	CalcSine
+		move.w	d0,d4
+		move.w	d1,d5
+		muls.w	#$18,d4
+		muls.w	#$18,d5
+		moveq	#0,d2
+		move.w	(Camera_RAM).w,d2
+		divu.w	#$18,d2
+		swap	d2
+		neg.w	d2
+		addi.w	#-$B4,d2
+		moveq	#0,d3
+		move.w	(Camera_Y_pos).w,d3
+		divu.w	#$18,d3
+		swap	d3
+		neg.w	d3
+		addi.w	#-$B4,d3
+		move.w	#$10-1,d7
+
+.loc_19BD0:
+		movem.w	d0-d2,-(sp)
+		movem.w	d0-d1,-(sp)
+		neg.w	d0
+		muls.w	d2,d1
+		muls.w	d3,d0
+		move.l	d0,d6
+		add.l	d1,d6
+		movem.w	(sp)+,d0-d1
+		muls.w	d2,d0
+		muls.w	d3,d1
+		add.l	d0,d1
+		move.l	d6,d2
+		move.w	#$10-1,d6
+
+.loc_19BF2:
+		move.l	d2,d0
+		asr.l	#8,d0
+		move.w	d0,(a1)+
+		move.l	d1,d0
+		asr.l	#8,d0
+		move.w	d0,(a1)+
+		add.l	d5,d2
+		add.l	d4,d1
+		dbf	d6,.loc_19BF2
+		movem.w	(sp)+,d0-d2
+		addi.w	#$18,d3
+		dbf	d7,.loc_19BD0
+		move.w	(sp)+,d5
+		lea	(v_ssbuffer1).l,a0
+		moveq	#0,d0
+		move.w	(Camera_Y_pos).w,d0
+		divu.w	#$18,d0
+		mulu.w	#$80,d0
+		adda.l	d0,a0
+		moveq	#0,d0
+		move.w	(Camera_RAM).w,d0
+		divu.w	#$18,d0
+		adda.w	d0,a0
+		lea	(v_ssbuffer3).w,a4
+		move.w	#$10-1,d7
+
+.loc_19C3E:
+		move.w	#$10-1,d6
+
+.loc_19C42:
+		moveq	#0,d0
+		move.b	(a0)+,d0
+		beq.s	.loc_19C9A
+		cmpi.b	#$4E,d0
+		bhi.s	.loc_19C9A
+		move.w	(a4),d3
+		addi.w	#$120,d3
+		cmpi.w	#$70,d3
+		blo.s	.loc_19C9A
+		cmpi.w	#$1D0,d3
+		bhs.s	.loc_19C9A
+		move.w	2(a4),d2
+		addi.w	#$F0,d2
+		cmpi.w	#$70,d2
+		blo.s	.loc_19C9A
+		cmpi.w	#$170,d2
+		bhs.s	.loc_19C9A
+		lea	(v_ssbuffer2).l,a5
+		lsl.w	#3,d0
+		lea	(a5,d0.w),a5
+		movea.l	(a5)+,a1
+		move.w	(a5)+,d1
+		add.w	d1,d1
+		adda.w	(a1,d1.w),a1
+		movea.w	(a5)+,a3
+		moveq	#0,d1
+		move.b	(a1)+,d1
+		subq.b	#1,d1
+		bmi.s	.loc_19C9A
+		jsr	($CB26).l	;	loc_D1CE
+
+.loc_19C9A:
+		addq.w	#4,a4
+		dbf	d6,.loc_19C42
+		lea	$70(a0),a0
+		dbf	d7,.loc_19C3E
+		move.b	d5,(v_spritecount).w
+		cmpi.b	#80,d5
+		beq.s	.loc_19CBA
+		move.l	#0,(a2)
+		rts
+; ---------------------------------------------------------------------------
+
+.loc_19CBA:
+		move.b	#0,-5(a2)
+		rts
+; End of function S1SS_ShowLayout
+
+
+; =============== S U B	R O U T	I N E =======================================
+
+
+sub_19CC2_PB:
+		lea	(v_ssbuffer2+$C).l,a1
+		moveq	#0,d0
+		move.b	(v_ssangle).w,d0
+		lsr.b	#2,d0
+		andi.w	#$F,d0
+		moveq	#$23,d1
+
+.loc_19CD6:
+		move.w	d0,(a1)
+		addq.w	#8,a1
+		dbf	d1,.loc_19CD6
+		lea	(v_ssbuffer2+5).l,a1
+		subq.b	#1,(v_ani1_time).w
+		bpl.s	.loc_19CFA
+		move.b	#7,(v_ani1_time).w
+		addq.b	#1,(v_ani1_frame).w
+		andi.b	#3,(v_ani1_frame).w
+
+.loc_19CFA:
+		move.b	(v_ani1_frame).w,$1D0(a1)
+		subq.b	#1,(v_ani2_time).w
+		bpl.s	.loc_19D16
+		move.b	#7,(v_ani2_time).w
+		addq.b	#1,(v_ani2_frame).w
+		andi.b	#1,(v_ani2_frame).w
+
+.loc_19D16:
+		move.b	(v_ani2_frame).w,d0
+		move.b	d0,$138(a1)
+		move.b	d0,$160(a1)
+		move.b	d0,$148(a1)
+		move.b	d0,$150(a1)
+		move.b	d0,$1D8(a1)
+		move.b	d0,$1E0(a1)
+		move.b	d0,$1E8(a1)
+		move.b	d0,$1F0(a1)
+		move.b	d0,$1F8(a1)
+		move.b	d0,$200(a1)
+		subq.b	#1,(v_ani3_time).w
+		bpl.s	.loc_19D58
+		move.b	#4,(v_ani3_time).w
+		addq.b	#1,(v_ani3_frame).w
+		andi.b	#3,(v_ani3_frame).w
+
+.loc_19D58:
+		move.b	(v_ani3_frame).w,d0
+		move.b	d0,$168(a1)
+		move.b	d0,$170(a1)
+		move.b	d0,$178(a1)
+		move.b	d0,$180(a1)
+		subq.b	#1,(v_ani0_time).w
+		bpl.s	.loc_19D82
+		move.b	#7,(v_ani0_time).w
+		subq.b	#1,(v_ani0_frame).w
+		andi.b	#7,(v_ani0_frame).w
+
+.loc_19D82:
+		lea	(v_ssbuffer2+$16).l,a1
+		lea	(S1SS_WaRiVramSet_PB).l,a0
+		moveq	#0,d0
+		move.b	(v_ani0_frame).w,d0
+		add.w	d0,d0
+		lea	(a0,d0.w),a0
+		move.w	(a0),(a1)
+		move.w	2(a0),8(a1)
+		move.w	4(a0),$10(a1)
+		move.w	6(a0),$18(a1)
+		move.w	8(a0),$20(a1)
+		move.w	$A(a0),$28(a1)
+		move.w	$C(a0),$30(a1)
+		move.w	$E(a0),$38(a1)
+		adda.w	#$20,a0
+		adda.w	#$48,a1
+		move.w	(a0),(a1)
+		move.w	2(a0),8(a1)
+		move.w	4(a0),$10(a1)
+		move.w	6(a0),$18(a1)
+		move.w	8(a0),$20(a1)
+		move.w	$A(a0),$28(a1)
+		move.w	$C(a0),$30(a1)
+		move.w	$E(a0),$38(a1)
+		adda.w	#$20,a0
+		adda.w	#$48,a1
+		move.w	(a0),(a1)
+		move.w	2(a0),8(a1)
+		move.w	4(a0),$10(a1)
+		move.w	6(a0),$18(a1)
+		move.w	8(a0),$20(a1)
+		move.w	$A(a0),$28(a1)
+		move.w	$C(a0),$30(a1)
+		move.w	$E(a0),$38(a1)
+		adda.w	#$20,a0
+		adda.w	#$48,a1
+		move.w	(a0),(a1)
+		move.w	2(a0),8(a1)
+		move.w	4(a0),$10(a1)
+		move.w	6(a0),$18(a1)
+		move.w	8(a0),$20(a1)
+		move.w	$A(a0),$28(a1)
+		move.w	$C(a0),$30(a1)
+		move.w	$E(a0),$38(a1)
+		adda.w	#$20,a0
+		adda.w	#$48,a1
+		rts
+; End of function sub_19CC2
+
+; ---------------------------------------------------------------------------
+S1SS_WaRiVramSet_PB:
+		dc.w $142,$6142,$142,$142,$142,$142,$142,$6142
+		dc.w $142,$6142,$142,$142,$142,$142,$142,$6142
+		dc.w $2142,$142,$2142,$2142,$2142,$2142,$2142,$142
+		dc.w $2142,$142,$2142,$2142,$2142,$2142,$2142,$142
+		dc.w $4142,$2142,$4142,$4142,$4142,$4142,$4142,$2142
+		dc.w $4142,$2142,$4142,$4142,$4142,$4142,$4142,$2142
+		dc.w $6142,$4142,$6142,$6142,$6142,$6142,$6142,$4142
+		dc.w $6142,$4142,$6142,$6142,$6142,$6142,$6142,$4142
+
+; =============== S U B	R O U T	I N E =======================================
+
+
+sub_19EEC_PB:
+		lea	(v_ssitembuffer).l,a2
+		move.w	#(v_ssitembuffer_end-v_ssitembuffer)/8-1,d0
+
+.loc_19EF6:
+		tst.b	(a2)
+		beq.s	.locret_19F00
+		addq.w	#8,a2
+		dbf	d0,.loc_19EF6
+
+.locret_19F00:
+		rts
+; End of function sub_19EEC
+
+
+; =============== S U B	R O U T	I N E =======================================
+
+
+sub_19F02_PB:
+		lea	(v_ssitembuffer).l,a0
+		move.w	#(v_ssitembuffer_end-v_ssitembuffer)/8-1,d7
+
+.loc_19F0C:
+		moveq	#0,d0
+		move.b	(a0),d0
+		beq.s	.loc_19F1A
+		lsl.w	#2,d0
+		movea.l	S1SS_AniIndex_PB-4(pc,d0.w),a1
+		jsr	(a1)
+
+.loc_19F1A:
+		addq.w	#8,a0
+
+.loc_19F1C:
+		dbf	d7,.loc_19F0C
+		rts
+; End of function sub_19F02
+
+; ---------------------------------------------------------------------------
+S1SS_AniIndex_PB:
+		dc.l .loc_19F3A
+		dc.l .loc_19F6A
+		dc.l .loc_19FA0
+		dc.l .loc_19FD0
+		dc.l .loc_1A006
+		dc.l .loc_1A046
+; ---------------------------------------------------------------------------
+
+.loc_19F3A:
+		subq.b	#1,2(a0)
+		bpl.s	.locret_19F62
+		move.b	#5,2(a0)
+		moveq	#0,d0
+		move.b	3(a0),d0
+		addq.b	#1,3(a0)
+		movea.l	4(a0),a1
+		move.b	.byte_19F64(pc,d0.w),d0
+		move.b	d0,(a1)
+		bne.s	.locret_19F62
+		clr.l	(a0)
+		clr.l	4(a0)
+
+.locret_19F62:
+		rts
+; ---------------------------------------------------------------------------
+.byte_19F64:	dc.b $42,$43,$44,$45,0,0
+; ---------------------------------------------------------------------------
+
+.loc_19F6A:
+		subq.b	#1,2(a0)
+		bpl.s	.locret_19F98
+		move.b	#7,2(a0)
+		moveq	#0,d0
+		move.b	3(a0),d0
+		addq.b	#1,3(a0)
+		movea.l	4(a0),a1
+		move.b	.byte_19F9A(pc,d0.w),d0
+		bne.s	.loc_19F96
+		clr.l	(a0)
+		clr.l	4(a0)
+		move.b	#$25,(a1)
+		rts
+; ---------------------------------------------------------------------------
+
+.loc_19F96:
+		move.b	d0,(a1)
+
+.locret_19F98:
+		rts
+; ---------------------------------------------------------------------------
+.byte_19F9A:	dc.b $32,$33,$32,$33,0,0
+; ---------------------------------------------------------------------------
+
+.loc_19FA0:
+		subq.b	#1,2(a0)
+		bpl.s	.locret_19FC8
+		move.b	#5,2(a0)
+		moveq	#0,d0
+		move.b	3(a0),d0
+		addq.b	#1,3(a0)
+		movea.l	4(a0),a1
+		move.b	.byte_19FCA(pc,d0.w),d0
+		move.b	d0,(a1)
+		bne.s	.locret_19FC8
+		clr.l	(a0)
+		clr.l	4(a0)
+
+.locret_19FC8:
+		rts
+; ---------------------------------------------------------------------------
+.byte_19FCA:	dc.b $46,$47,$48,$49,0,0
+; ---------------------------------------------------------------------------
+
+.loc_19FD0:
+		subq.b	#1,2(a0)
+		bpl.s	.locret_19FFE
+		move.b	#7,2(a0)
+		moveq	#0,d0
+		move.b	3(a0),d0
+		addq.b	#1,3(a0)
+		movea.l	4(a0),a1
+		move.b	.byte_1A000(pc,d0.w),d0
+		bne.s	.loc_19FFC
+		clr.l	(a0)
+		clr.l	4(a0)
+		move.b	#$2B,(a1)
+		rts
+; ---------------------------------------------------------------------------
+
+.loc_19FFC:
+		move.b	d0,(a1)
+
+.locret_19FFE:
+		rts
+; ---------------------------------------------------------------------------
+.byte_1A000:	dc.b $2B,$31,$2B,$31,0,0
+; ---------------------------------------------------------------------------
+
+.loc_1A006:
+		subq.b	#1,2(a0)
+		bpl.s	.locret_1A03E
+		move.b	#5,2(a0)
+		moveq	#0,d0
+		move.b	3(a0),d0
+		addq.b	#1,3(a0)
+		movea.l	4(a0),a1
+		move.b	.byte_1A040(pc,d0.w),d0
+		move.b	d0,(a1)
+		bne.s	.locret_1A03E
+		clr.l	(a0)
+		clr.l	4(a0)
+		move.b	#4,(v_objspace+obRoutine).w
+		move.w	#sfx_SSGoal,d0
+		jsr	($12FC).l	;	QueueSound2
+
+.locret_1A03E:
+		rts
+; ---------------------------------------------------------------------------
+.byte_1A040:	dc.b $46,$47,$48,$49,0,0
+; ---------------------------------------------------------------------------
+
+.loc_1A046:
+		subq.b	#1,2(a0)
+		bpl.s	.locret_1A072
+		move.b	#1,2(a0)
+		moveq	#0,d0
+		move.b	3(a0),d0
+		addq.b	#1,3(a0)
+		movea.l	4(a0),a1
+		move.b	.byte_1A074(pc,d0.w),d0
+		move.b	d0,(a1)
+		bne.s	.locret_1A072
+		move.b	4(a0),(a1)
+		clr.l	(a0)
+		clr.l	4(a0)
+
+.locret_1A072:
+		rts
+; ---------------------------------------------------------------------------
+.byte_1A074:	dc.b $4B,$4C,$4D,$4E,$4B,$4C,$4D,$4E,0,0
+
+S1SS_LayoutIndex_PB:
+		dc.l S1SS_1
+		dc.l S1SS_2
+		dc.l S1SS_3
+		dc.l S1SS_4
+		dc.l S1SS_5
+		dc.l S1SS_6
+
+S1SS_StartLoc_PB:
+		dc.w  $3D0, $2E0
+		dc.w  $328, $574
+		dc.w  $4E4, $2E0
+		dc.w  $3AD, $2E0
+		dc.w  $340, $6B8
+		dc.w  $49B, $358
+
+; =============== S U B	R O U T	I N E =======================================
+
+
+S1SS_Load_PB:
+		moveq	#0,d0
+		move.b	(v_lastspecial).w,d0
+		addq.b	#1,(v_lastspecial).w
+		cmpi.b	#6,(v_lastspecial).w
+		blo.s	.loc_1A0C6
+		move.b	#0,(v_lastspecial).w
+
+.loc_1A0C6:
+		cmpi.b	#6,(v_emeralds).w
+		beq.s	.loc_1A0E8
+		moveq	#0,d1
+		move.b	(v_emeralds).w,d1
+		subq.b	#1,d1
+		blo.s	.loc_1A0E8
+		lea	(v_emldlist).w,a3
+
+.loc_1A0DC:
+		cmp.b	(a3,d1.w),d0
+		bne.s	.loc_1A0E4
+		bra.s	S1SS_Load_PB
+; ---------------------------------------------------------------------------
+
+.loc_1A0E4:
+		dbf	d1,.loc_1A0DC
+
+.loc_1A0E8:
+		lsl.w	#2,d0
+		lea	S1SS_StartLoc_PB(pc,d0.w),a1
+		move.w	(a1)+,(v_player+obX).w
+		move.w	(a1)+,(v_player+obY).w
+		movea.l	S1SS_LayoutIndex_PB(pc,d0.w),a0
+		lea	(v_ssbuffer2).l,a1
+		move.w	#make_art_tile(ArtTile_SS_Background_Clouds,0,0),d0
+		jsr	($170E).l	;	EniDec
+		lea	(v_ssbuffer1).l,a1
+		move.w	#bytesToLcnt(v_ssbuffer2-v_ssbuffer1),d0
+
+.loc_1A114:
+		clr.l	(a1)+
+		dbf	d0,.loc_1A114
+		lea	(v_ssblockbuffer).l,a1
+		lea	(v_ssbuffer2).l,a0
+		moveq	#bytesToXcnt(v_ssblockbuffer_end-v_ssblockbuffer,$80),d1
+
+.loc_1A128:
+		moveq	#$40-1,d2
+
+.loc_1A12A:
+		move.b	(a0)+,(a1)+
+		dbf	d2,.loc_1A12A
+		lea	$40(a1),a1
+		dbf	d1,.loc_1A128
+		lea	(v_ssblocktypes+8).l,a1
+		lea	(S1SS_MapIndex_PB).l,a0
+		moveq	#bytesToXcnt(S1SS_MapIndex_PB_End-S1SS_MapIndex_PB,6),d1
+
+.loc_1A146:
+		move.l	(a0)+,(a1)+
+		move.w	#0,(a1)+
+		move.b	-4(a0),-1(a1)
+		move.w	(a0)+,(a1)+
+		dbf	d1,.loc_1A146
+		lea	(v_ssitembuffer).l,a1
+		move.w	#bytesToLcnt(v_ssitembuffer_end-v_ssitembuffer),d1
+
+.loc_1A162:
+		clr.l	(a1)+
+		dbf	d1,.loc_1A162
+		rts
+; End of function S1SS_Load
+
+; ---------------------------------------------------------------------------
+S1SS_MapIndex_PB:
+		include	"leftovers/_Include/Special Stage Mappings & VRAM Pointers.asm"
+S1SS_MapIndex_PB_End:
+; ===========================================================================
+; ---------------------------------------------------------------------------
+; Sprite mappings - 'R'
+; ---------------------------------------------------------------------------
+Map_SS_R_PB:	dc.w .byte_1B912-Map_SS_R_PB
+		dc.w .byte_1B918-Map_SS_R_PB
+		dc.w .byte_1B91E-Map_SS_R_PB
+.byte_1B912:	dc.b 1
+		dc.b $F4, $A, 0, 0, $F4
+.byte_1B918:	dc.b 1
+		dc.b $F4, $A, 0, 9, $F4
+.byte_1B91E:	dc.b 0
+		even
+; ---------------------------------------------------------------------------
+; Sprite mappings - Glass
+; ---------------------------------------------------------------------------
+Map_SS_Glass_PB:	dc.w .byte_1B928-Map_SS_Glass_PB
+		dc.w .byte_1B92E-Map_SS_Glass_PB
+		dc.w .byte_1B934-Map_SS_Glass_PB
+		dc.w .byte_1B93A-Map_SS_Glass_PB
+.byte_1B928:	dc.b 1
+		dc.b $F4, $A, 0, 0, $F4
+.byte_1B92E:	dc.b 1
+		dc.b $F4, $A, 8, 0, $F4
+.byte_1B934:	dc.b 1
+		dc.b $F4, $A, $18, 0, $F4
+.byte_1B93A:	dc.b 1
+		dc.b $F4, $A, $10, 0, $F4
+		even
+; ---------------------------------------------------------------------------
+; Sprite mappings - 'Up'
+; ---------------------------------------------------------------------------
+Map_SS_Up_PB:	dc.w .byte_1B944-Map_SS_Up_PB
+		dc.w .byte_1B94A-Map_SS_Up_PB
+.byte_1B944:	dc.b 1
+		dc.b $F4, $A, 0, 0, $F4
+.byte_1B94A:	dc.b 1
+		dc.b $F4, $A, 0, $12, $F4
+		even
+; ---------------------------------------------------------------------------
+; Sprite mappings - 'Down'
+; ---------------------------------------------------------------------------
+Map_SS_Down_PB:	dc.w .byte_1B954-Map_SS_Down_PB
+		dc.w .byte_1B95A-Map_SS_Down_PB
+.byte_1B954:	dc.b 1
+		dc.b $F4, $A, 0, 9, $F4
+.byte_1B95A:	dc.b 1
+		dc.b $F4, $A, 0, $12, $F4
+		even
+; ---------------------------------------------------------------------------
+; Sprite mappings - special stage chaos	emeralds
+; ---------------------------------------------------------------------------
+Map_SS_Chaos1_PB:	dc.w byte_1B96C_PB-Map_SS_Chaos1_PB
+		dc.w byte_1B97E_PB-Map_SS_Chaos1_PB
+Map_SS_Chaos2_PB:	dc.w byte_1B972_PB-Map_SS_Chaos2_PB
+		dc.w byte_1B97E_PB-Map_SS_Chaos2_PB
+Map_SS_Chaos3_PB:	dc.w byte_1B978_PB-Map_SS_Chaos3_PB
+		dc.w byte_1B97E_PB-Map_SS_Chaos3_PB
+byte_1B96C_PB:	dc.b 1
+		dc.b $F8, 5, 0,	0, $F8
+byte_1B972_PB:	dc.b 1
+		dc.b $F8, 5, 0,	4, $F8
+byte_1B978_PB:	dc.b 1
+		dc.b $F8, 5, 0,	8, $F8
+byte_1B97E_PB:	dc.b 1
+		dc.b $F8, 5, 0,	$C, $F8
+		even
+
+		jmpTos	; Empty
+	dephase
+
+		binclude	"leftovers/symbols/symbol22.bin"
+
+	phase $19A2C
+; ===========================================================================
+; ---------------------------------------------------------------------------
+; Subroutine to animate stage art
+; ---------------------------------------------------------------------------
+
+; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
+
+; DynamicArtCues:
+AniArt_Load_PB:
+		bsr.w	ShiftCPZBackground_PB
+		moveq	#0,d0
+		move.b	(Current_Zone).w,d0
+		add.w	d0,d0
+		add.w	d0,d0
+		move.w	DynArtCue_Index_PB+2(pc,d0.w),d1
+		lea	DynArtCue_Index_PB(pc,d1.w),a2
+		move.w	DynArtCue_Index_PB(pc,d0.w),d0
+		jmp	DynArtCue_Index_PB(pc,d0.w)
+; ---------------------------------------------------------------------------
+		rts
+; End of function AniArt_Load
+
+; ---------------------------------------------------------------------------
+; ZONE ANIMATION PROCEDURES AND SCRIPTS
+;
+; Each zone gets two entries in this jump table. The first entry points to the
+; zone's animation procedure (usually Dynamic_Null, AKA none). The second points
+; to the zone's animation script.
+;
+; Seems like stage IDs were already being shifted, since listings for $07-$0F
+; can be found, alongside HPZ's art listed from $08 (its ID in the final).
+; ---------------------------------------------------------------------------
+DynArtCue_Index_PB:
+		dc.w Dynamic_NullGHZ_PB-DynArtCue_Index_PB	; GHZ
+		dc.w AnimCue_EHZ_PB-DynArtCue_Index_PB		; GHZ
+		dc.w Dynamic_Null_PB-DynArtCue_Index_PB		; LZ
+		dc.w AnimCue_CPZ_Boss_PB-DynArtCue_Index_PB	; LZ
+		dc.w Dynamic_Normal_PB-DynArtCue_Index_PB		; CPZ
+		dc.w AnimCue_CPZ_Boss_PB-DynArtCue_Index_PB	; CPZ
+		dc.w Dynamic_Normal_PB-DynArtCue_Index_PB		; EHZ
+		dc.w AnimCue_EHZ_PB-DynArtCue_Index_PB		; EHZ
+		dc.w Dynamic_Normal_PB-DynArtCue_Index_PB		; HPZ
+		dc.w AnimCue_HPZ_PB-DynArtCue_Index_PB		; HPZ
+		dc.w Dynamic_Null_PB-DynArtCue_Index_PB		; HTZ
+		dc.w AnimCue_CPZ_Boss_PB-DynArtCue_Index_PB		; HTZ
+		dc.w Dynamic_Null_PB-DynArtCue_Index_PB		; 06
+		dc.w AnimCue_CPZ_Boss_PB-DynArtCue_Index_PB	; 06
+		dc.w Dynamic_Null_PB-DynArtCue_Index_PB		; 07
+		dc.w AnimCue_CPZ_Boss_PB-DynArtCue_Index_PB	; 07
+		dc.w Dynamic_Normal_PB-DynArtCue_Index_PB		; 08
+		dc.w AnimCue_HPZ_PB-DynArtCue_Index_PB		; 08
+		dc.w Dynamic_Null_PB-DynArtCue_Index_PB		; 09
+		dc.w AnimCue_CPZ_Boss_PB-DynArtCue_Index_PB	; 09
+		dc.w Dynamic_Null_PB-DynArtCue_Index_PB		; 0A
+		dc.w AnimCue_CPZ_Boss_PB-DynArtCue_Index_PB	; 0A
+		dc.w Dynamic_Null_PB-DynArtCue_Index_PB		; 0B
+		dc.w AnimCue_CPZ_Boss_PB-DynArtCue_Index_PB	; 0B
+		dc.w Dynamic_Null_PB-DynArtCue_Index_PB		; 0C
+		dc.w AnimCue_CPZ_Boss_PB-DynArtCue_Index_PB	; 0C
+		dc.w Dynamic_Normal_PB-DynArtCue_Index_PB		; 0D
+		dc.w AnimCue_CPZ_Boss_PB-DynArtCue_Index_PB	; 0D
+		dc.w Dynamic_Null_PB-DynArtCue_Index_PB		; 0E
+		dc.w AnimCue_CPZ_Boss_PB-DynArtCue_Index_PB	; 0E
+		dc.w Dynamic_Null_PB-DynArtCue_Index_PB		; 0F
+		dc.w AnimCue_CPZ_Boss_PB-DynArtCue_Index_PB	; 0F
+; ===========================================================================
+
+Dynamic_Null_PB:
+		rts
+; ===========================================================================
+
+Dynamic_NullGHZ_PB:
+		rts
+; ===========================================================================
+
+Dynamic_Normal_PB:
+		lea	(Anim_Counters).w,a3
+		move.w	(a2)+,d6			; Get number of scripts in list
+
+.loc_1AACA:
+		subq.b	#1,(a3)				; Tick down frame duration
+		bpl.s	.loc_1AB10			; If frame isn't over, move on to next script
+
+		moveq	#0,d0
+		move.b	1(a3),d0			; Get current frame
+		cmp.b	6(a2),d0			; Have we processed the last frame in the script?
+		blo.s	.loc_1AAE0
+		moveq	#0,d0				; If so, reset to first frame
+		move.b	d0,1(a3)
+
+.loc_1AAE0:
+		addq.b	#1,1(a3)			; Consider this frame processed; set counter to next frame
+		move.b	(a2),(a3)			; Set frame duration to global duration value
+		bpl.s	.loc_1AAEE
+		; If script uses per-frame durations, use those instead
+		add.w	d0,d0
+		move.b	9(a2,d0.w),(a3)			; Set frame duration to current frame's duration value
+
+.loc_1AAEE:
+		; Prepare for DMA transfer
+		; Get relative address of frame's art
+		move.b	8(a2,d0.w),d0			; Get tile ID
+		lsl.w	#5,d0				; Turn it into an offset
+		; Get VRAM destination address
+		move.w	4(a2),d2
+		; Get ROM source address
+		move.l	(a2),d1				; Get start address of animated tile art
+		andi.l	#$FFFFFF,d1
+		add.l	d0,d1				; Offset into art, to get the address of new frame
+		; Get size of art to be transferred
+		moveq	#0,d3
+		move.b	7(a2),d3
+		lsl.w	#4,d3				; Turn it into actual size (in words)
+		; Use d1, d2 and d3 to queue art for transfer
+		jsr	($13A0).l	;	QueueDMATransfer
+
+.loc_1AB10:
+		move.b	6(a2),d0			; Get total size of frame data
+		tst.b	(a2)				; Is per-frame duration data present?
+		bpl.s	.loc_1AB1A			; If not, keep the current size; it's correct
+		add.b	d0,d0				; Double size to account for the additional frame duration data
+
+.loc_1AB1A:
+		addq.b	#1,d0
+		andi.w	#$FE,d0				; Round to next even address, if it isn't already
+		lea	8(a2,d0.w),a2			; Advance to next script in list
+		addq.w	#2,a3				; Advance to next script's slot in a3 (usually Anim_Counters)
+		dbf	d6,.loc_1AACA
+		rts
+; ===========================================================================
+AnimCue_EHZ_PB:	zoneanimstart
+		; Flowers
+		zoneanimdecl -1, $26D98, ArtTile_Art_Flowers1, 6, 2	;	Art_Flowers1
+		dc.b   0,$7F		; Start of the script proper
+		dc.b   2,$13
+		dc.b   0,  7
+		dc.b   2,  7
+		dc.b   0,  7
+		dc.b   2,  7
+		even
+		; Flowers
+		zoneanimdecl -1, $26E18, ArtTile_Art_Flowers2, 8, 2	;	Art_Flowers2
+		dc.b   2,$7F
+		dc.b   0, $B
+		dc.b   2, $B
+		dc.b   0, $B
+		dc.b   2,  5
+		dc.b   0,  5
+		dc.b   2,  5
+		dc.b   0,  5
+		even
+		; Flowers
+		zoneanimdecl 7, $26E98, ArtTile_Art_Flowers3, 2, 2	;	Art_Flowers3
+		dc.b   0
+		dc.b   2
+		even
+		; Flowers
+		zoneanimdecl -1, $26F18, ArtTile_Art_Flowers4, 8, 2	;	Art_Flowers4
+		dc.b   0,$7F
+		dc.b   2,  7
+		dc.b   0,  7
+		dc.b   2,  7
+		dc.b   0,  7
+		dc.b   2, $B
+		dc.b   0, $B
+		dc.b   2, $B
+		even
+		; Pulsing thing against checkered background
+		zoneanimdecl 1, $26F98, ArtTile_Art_EHZPulseBall, 6, 2	;	Art_EHZPulseBall
+		dc.b   0,  2
+		dc.b   4,  6
+		dc.b   4,  2
+		even
+
+		zoneanimend
+
+AnimCue_HPZ_PB:	zoneanimstart
+		; Pulsing orb from HPZ
+		zoneanimdecl 8, $27498, ArtTile_Art_HPZPulseOrb_1, 6, 8	;	Art_HPZPulseOrb
+		dc.b   0
+		dc.b   0
+		dc.b   8
+		dc.b $10
+		dc.b $10
+		dc.b   8
+		even
+		; Pulsing orb from HPZ
+		zoneanimdecl 8, $27498, ArtTile_Art_HPZPulseOrb_2, 6, 8	;	Art_HPZPulseOrb
+		dc.b   8
+		dc.b $10
+		dc.b $10
+		dc.b   8
+		dc.b   0
+		dc.b   0
+		even
+		; Pulsing orb from HPZ
+		zoneanimdecl 8, $27498, ArtTile_Art_HPZPulseOrb_3, 6, 8	;	Art_HPZPulseOrb
+		dc.b $10
+		dc.b   8
+		dc.b   0
+		dc.b   0
+		dc.b   8
+		dc.b $10
+		even
+
+		zoneanimend
+
+; According to leftover resizing code, this was meant for the
+; Chemical Plant Zone boss, which symbol tables refer to as "vaccume".
+AnimCue_CPZ_Boss_PB:	zoneanimstart
+		; ?
+		zoneanimdecl 7, $27798, ArtTile_Art_UnkZone_1, 2, 4	;	Art_UnkZone_1
+		dc.b   0
+		dc.b   4
+		even
+		; ?
+		zoneanimdecl 7, $27898, ArtTile_Art_UnkZone_2, 3, 8	;	Art_UnkZone_2
+		dc.b   0
+		dc.b   8
+		dc.b $10
+		dc.b   0
+		even
+		; ?
+		zoneanimdecl 7, $27B98, ArtTile_Art_UnkZone_3, 4, 2	;	Art_UnkZone_3
+		dc.b   0
+		dc.b   2
+		dc.b   0
+		dc.b   4
+		even
+		; ?
+		zoneanimdecl $B, $27C58, ArtTile_Art_UnkZone_4, 4, 2	;	Art_UnkZone_4
+		dc.b   0
+		dc.b   2
+		dc.b   4
+		dc.b   2
+		even
+		; ?
+		zoneanimdecl $F, $27D18, ArtTile_Art_UnkZone_5, $A, 1	;	Art_UnkZone_5
+		dc.b   0
+		dc.b   0
+		dc.b   1
+		dc.b   2
+		dc.b   3
+		dc.b   4
+		dc.b   5
+		dc.b   4
+		dc.b   5
+		dc.b   4
+		even
+		; ?
+		zoneanimdecl 3, $27DD8, ArtTile_Art_UnkZone_6, 4, 4	;	Art_UnkZone_6
+		dc.b   0
+		dc.b   4
+		dc.b   8
+		dc.b   4
+		even
+		; ?
+		zoneanimdecl 7, $27F58, ArtTile_Art_UnkZone_7, 6, 3	;	Art_UnkZone_7
+		dc.b   0
+		dc.b   3
+		dc.b   6
+		dc.b   9
+		dc.b  $C
+		dc.b  $F
+		even
+		; ?
+		zoneanimdecl 7, $28198, ArtTile_Art_UnkZone_8, 4, 1	;	Art_UnkZone_8
+		dc.b   0
+		dc.b   1
+		dc.b   2
+		dc.b   3
+		even
+
+		zoneanimend
+
+; ===========================================================================
+; ---------------------------------------------------------------------------
+; This seems to be a subroutine that would've shifted the background blocks
+; of Chemical Plant Zone once the player reached a certain X position,
+; lasting exactly two screens. This can also be found in the final at
+; $40200 in the ROM, with the only difference being its level ID, which
+; was updated to match Chemical Plant's final ID ($0D instead of 02)
+;
+; To see the effect for yourself, add a branch to it at the
+; start of LoadTilesAsYouMove and change $FFFF7500/$FFFF7D00 to
+; $FFFF0000/$FFFF0800 (to make it more visible)
+; ---------------------------------------------------------------------------
+
+; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
+
+
+; sub_1AC1E:
+ShiftCPZBackground_PB:
+		cmpi.b	#id_CPZ,(Current_Zone).w	; is this Chemical Plant Zone?
+		beq.s	.loc_1AC28			; if yes, branch
+
+.locret_1AC26:
+		rts
+; ===========================================================================
+; this shifts all blocks of the chunks $EA-$ED and $FA-$FD one block to the
+; left and the last block in each row (chunk $ED/$FD) to the beginning
+; i.e. rotates the blocks to the left by one
+
+.loc_1AC28:
+		move.w	(Camera_RAM).w,d0
+		cmpi.w	#$1940,d0
+		blo.s	.locret_1AC26
+		cmpi.w	#$1F80,d0
+		bhs.s	.locret_1AC26
+		subq.b	#1,(byte_F721).w
+		bpl.s	.locret_1AC26
+		move.b	#7,(byte_F721).w
+		move.b	#1,(byte_F720).w
+		lea	(v_ram_start+$7500).l,a1
+		bsr.s	.sub_1AC58
+		lea	(v_ram_start+$7D00).l,a1
+
+.sub_1AC58:
+		move.w	#8-1,d1
+
+.loc_1AC5C:
+		move.w	(a1),d0
+		move.w	2(a1),(a1)+
+		move.w	2(a1),(a1)+
+		move.w	2(a1),(a1)+
+		move.w	2(a1),(a1)+
+		move.w	2(a1),(a1)+
+		move.w	2(a1),(a1)+
+		move.w	2(a1),(a1)+
+		move.w	$72(a1),(a1)+
+		adda.w	#$70,a1
+		move.w	2(a1),(a1)+
+		move.w	2(a1),(a1)+
+		move.w	2(a1),(a1)+
+		move.w	2(a1),(a1)+
+		move.w	2(a1),(a1)+
+		move.w	2(a1),(a1)+
+		move.w	2(a1),(a1)+
+		move.w	$72(a1),(a1)+
+		adda.w	#$70,a1
+		move.w	2(a1),(a1)+
+		move.w	2(a1),(a1)+
+		move.w	2(a1),(a1)+
+		move.w	2(a1),(a1)+
+		move.w	2(a1),(a1)+
+		move.w	2(a1),(a1)+
+		move.w	2(a1),(a1)+
+		move.w	$72(a1),(a1)+
+		adda.w	#$70,a1
+		move.w	2(a1),(a1)+
+		move.w	2(a1),(a1)+
+		move.w	2(a1),(a1)+
+		move.w	2(a1),(a1)+
+		move.w	2(a1),(a1)+
+		move.w	2(a1),(a1)+
+		move.w	2(a1),(a1)+
+		move.w	d0,(a1)+
+		suba.w	#$180,a1
+		dbf	d1,.loc_1AC5C
+		rts
+; End of function ShiftCPZBackground
+
+; ===========================================================================
+; ---------------------------------------------------------------------------
+; Subroutine to load animated blocks
+; ---------------------------------------------------------------------------
+
+; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
+
+; LoadMap16Delta:
+LoadAnimatedBlocks_PB:
+		moveq	#0,d0
+		move.b	(Current_Zone).w,d0
+		add.w	d0,d0
+		move.w	AnimPatMaps_PB(pc,d0.w),d0
+		lea	AnimPatMaps_PB(pc,d0.w),a0
+		tst.w	(a0)
+		beq.s	LoadLevelBlocks_PB.locret_1AD1A
+		lea	(v_16x16).w,a1
+		adda.w	(a0)+,a1
+		move.w	(a0)+,d1
+		tst.w	(Two_player_mode).w
+		bne.s	LoadLevelBlocks_2P_PB
+; loc_1AD14:
+LoadLevelBlocks_PB:
+		move.w	(a0)+,(a1)+
+		dbf	d1,LoadLevelBlocks_PB
+
+.locret_1AD1A:
+		rts
+; ---------------------------------------------------------------------------
+; loc_1AD1C:
+LoadLevelBlocks_2P_PB:
+		move.w	(a0)+,d0
+		move.w	d0,d1
+		andi.w	#nontile_mask,d0	; d0 holds the preserved non-tile data
+		andi.w	#tile_mask,d1		; d1 holds the tile index (overwrites loop counter!)
+		lsr.w	#1,d1			; half tile index
+		or.w	d1,d0			; put them back together
+		move.w	d0,(a1)+
+		dbf	d1,LoadLevelBlocks_2P_PB
+		rts
+; End of function LoadAnimatedBlocks
+
+; ===========================================================================
+; like with the animated stage art, this already lists stages up to $0F and
+; includes an entry for the final HPZ level slot, and this time even lists
+; CPZ's final level slot
+; Map16Delta_Index:
+AnimPatMaps_PB:
+		dc.w APM_EHZ_PB-AnimPatMaps_PB	; GHZ
+		dc.w APM_None_PB-AnimPatMaps_PB	; LZ
+		dc.w APM_CPZ_PB-AnimPatMaps_PB	; CPZ
+		dc.w APM_EHZ_PB-AnimPatMaps_PB	; EHZ
+		dc.w APM_HPZ_PB-AnimPatMaps_PB	; HPZ
+		dc.w APM_None_PB-AnimPatMaps_PB	; HTZ
+		dc.w APM_None_PB-AnimPatMaps_PB	; 06
+		dc.w APM_None_PB-AnimPatMaps_PB	; 07
+		dc.w APM_HPZ_PB-AnimPatMaps_PB	; 08
+		dc.w APM_None_PB-AnimPatMaps_PB	; 09
+		dc.w APM_None_PB-AnimPatMaps_PB	; 0A
+		dc.w APM_None_PB-AnimPatMaps_PB	; 0B
+		dc.w APM_None_PB-AnimPatMaps_PB	; 0C
+		dc.w APM_CPZ_PB-AnimPatMaps_PB	; 0D
+		dc.w APM_None_PB-AnimPatMaps_PB	; 0E
+		dc.w APM_None_PB-AnimPatMaps_PB	; 0F
+
+APM_EHZ_PB:	begin_animpat
+		dc.w make_block_tile(ArtTile_Art_EHZPulseBall+$0,0,0,2,0),make_block_tile(ArtTile_Art_EHZPulseBall+$0,1,0,2,0)
+		dc.w make_block_tile(ArtTile_Art_EHZPulseBall+$1,0,0,2,0),make_block_tile(ArtTile_Art_EHZPulseBall+$1,1,0,2,0)
+
+		dc.w make_block_tile(ArtTile_Checkers+$0,0,0,2,0),make_block_tile(ArtTile_Art_EHZPulseBall+$0,0,0,2,0)
+		dc.w make_block_tile(ArtTile_Checkers+$1,0,0,2,0),make_block_tile(ArtTile_Art_EHZPulseBall+$1,0,0,2,0)
+
+		dc.w make_block_tile(ArtTile_Art_EHZPulseBall+$0,1,0,2,0),make_block_tile(ArtTile_Checkers+$0,1,0,2,0)
+		dc.w make_block_tile(ArtTile_Art_EHZPulseBall+$1,1,0,2,0),make_block_tile(ArtTile_Checkers+$1,1,0,2,0)
+
+		dc.w make_block_tile(ArtTile_Art_Flowers1+$0,0,0,3,0),make_block_tile(ArtTile_Art_Flowers1+$0,1,0,3,0)
+		dc.w make_block_tile(ArtTile_Art_Flowers1+$1,0,0,3,0),make_block_tile(ArtTile_Art_Flowers1+$1,1,0,3,0)
+
+		dc.w make_block_tile(ArtTile_Art_Flowers2+$0,0,0,3,1),make_block_tile(ArtTile_Art_Flowers2+$0,1,0,3,1)
+		dc.w make_block_tile(ArtTile_Art_Flowers2+$1,0,0,3,1),make_block_tile(ArtTile_Art_Flowers2+$1,1,0,3,1)
+
+		dc.w make_block_tile(ArtTile_Art_Flowers3+$0,0,0,3,0),make_block_tile(ArtTile_Art_Flowers3+$0,1,0,3,0)
+		dc.w make_block_tile(ArtTile_Art_Flowers3+$1,0,0,3,0),make_block_tile(ArtTile_Art_Flowers3+$1,1,0,3,0)
+
+		dc.w make_block_tile(ArtTile_Art_Flowers4+$0,0,0,3,1),make_block_tile(ArtTile_Art_Flowers4+$0,1,0,3,1)
+		dc.w make_block_tile(ArtTile_Art_Flowers4+$1,0,0,3,1),make_block_tile(ArtTile_Art_Flowers4+$1,1,0,3,1)
+APM_EHZ_PB_End:
+
+APM_None_PB:	dc.w 0
+APM_None_PB_End:
+
+APM_Unk_PB:
+		dc.w (Block_Table_End-Block_Table)-$B80 ; Bug: This should be (Block_Table_End-Block_Table)-$138
+		dc.w bytesToWcnt($138)
+		dc.w make_block_tile($3A0+$1,0,0,2,0),make_block_tile($3A0+$2,0,0,2,0)
+		dc.w make_block_tile($3A0+$3,0,0,2,0),make_block_tile($3A0+$4,0,0,2,0)
+
+		dc.w make_block_tile($3A0+$5,0,0,2,0),make_block_tile($3A0+$6,0,0,2,0)
+		dc.w make_block_tile($3A0+$7,0,0,2,0),make_block_tile($3A0+$8,0,0,2,0)
+
+		dc.w make_block_tile($3A0+$9,0,0,2,0),make_block_tile($3A0+$A,0,0,2,0)
+		dc.w make_block_tile($3A0+$B,0,0,2,0),make_block_tile($3A0+$C,0,0,2,0)
+
+		dc.w make_block_tile($3A0+$D,0,0,2,0),make_block_tile($3A0+$E,0,0,2,0)
+		dc.w make_block_tile($3A0+$F,0,0,2,0),make_block_tile($3A0+$10,0,0,2,0)
+
+		dc.w make_block_tile($3A0+$11,0,0,2,0),make_block_tile($3A0+$12,0,0,2,0)
+		dc.w make_block_tile($3A0+$13,0,0,2,0),make_block_tile($3A0+$14,0,0,2,0)
+
+		dc.w make_block_tile($3A0+$15,0,0,2,0),make_block_tile($3A0+$16,0,0,2,0)
+		dc.w make_block_tile($3A0+$17,0,0,2,0),make_block_tile($3A0+$18,0,0,2,0)
+
+		dc.w make_block_tile($3A0+$19,0,0,2,0),make_block_tile($3A0+$1A,0,0,2,0)
+		dc.w make_block_tile($3A0+$1B,0,0,2,0),make_block_tile($3A0+$1C,0,0,2,0)
+
+		dc.w make_block_tile($3A0+$1D,0,0,2,0),make_block_tile($3A0+$1E,0,0,2,0)
+		dc.w make_block_tile($3A0+$1F,0,0,2,0),make_block_tile($3A0+$20,0,0,2,0)
+
+		dc.w make_block_tile($3A0+$21,0,0,2,0),make_block_tile($3A0+$22,0,0,2,0)
+		dc.w make_block_tile($3A0+$23,0,0,2,0),make_block_tile($3A0+$24,0,0,2,0)
+
+		dc.w make_block_tile($3A0+$0,0,0,3,0),make_block_tile($3A0+$0,0,0,3,0)
+		dc.w make_block_tile($3A0+$0,0,0,3,0),make_block_tile($3A0+$0,0,0,3,0)
+
+		dc.w make_block_tile($3A0+$0,0,0,3,0),make_block_tile($3A0+$0,0,0,3,0)
+		dc.w make_block_tile($3A0+$0,0,0,3,0),make_block_tile($3A0+$0,0,0,3,0)
+
+		dc.w make_block_tile(ArtTile_Level+$0,0,0,0,0),make_block_tile(ArtTile_Level+$0,0,0,0,0)
+		dc.w make_block_tile($340+$0,0,0,3,0),make_block_tile($340+$4,0,0,3,0)
+
+		dc.w make_block_tile(ArtTile_Level+$0,0,0,0,0),make_block_tile(ArtTile_Level+$0,0,0,0,0)
+		dc.w make_block_tile($340+$8,0,0,3,0),make_block_tile($340+$C,0,0,3,0)
+
+		dc.w make_block_tile($340+$1,0,0,3,0),make_block_tile($340+$5,0,0,3,0)
+		dc.w make_block_tile($340+$2,0,0,3,0),make_block_tile($340+$6,0,0,3,0)
+
+		dc.w make_block_tile($340+$9,0,0,3,0),make_block_tile($340+$D,0,0,3,0)
+		dc.w make_block_tile($340+$A,0,0,3,0),make_block_tile($340+$E,0,0,3,0)
+
+		dc.w make_block_tile($340+$3,0,0,3,0),make_block_tile($340+$7,0,0,3,0)
+		dc.w make_block_tile($340+$18,0,0,2,0),make_block_tile($340+$19,0,0,2,0)
+
+		dc.w make_block_tile($340+$B,0,0,3,0),make_block_tile($340+$F,0,0,3,0)
+		dc.w make_block_tile($340+$1A,0,0,2,0),make_block_tile($340+$1B,0,0,2,0)
+
+		dc.w make_block_tile($380+$0,0,0,3,0),make_block_tile($380+$4,0,0,3,0)
+		dc.w make_block_tile($380+$1,0,0,3,0),make_block_tile($380+$5,0,0,3,0)
+
+		dc.w make_block_tile($380+$8,0,0,3,0),make_block_tile($380+$C,0,0,3,0)
+		dc.w make_block_tile($380+$9,0,0,3,0),make_block_tile($380+$D,0,0,3,0)
+
+		dc.w make_block_tile($380+$2,0,0,3,0),make_block_tile($380+$6,0,0,3,0)
+		dc.w make_block_tile($380+$3,0,0,3,0),make_block_tile($380+$7,0,0,3,0)
+
+		dc.w make_block_tile($380+$A,0,0,3,0),make_block_tile($380+$E,0,0,3,0)
+		dc.w make_block_tile($380+$B,0,0,3,0),make_block_tile($380+$F,0,0,3,0)
+
+		dc.w make_block_tile($390+$0,0,0,3,0),make_block_tile($390+$4,0,0,3,0)
+		dc.w make_block_tile($390+$1,0,0,3,0),make_block_tile($390+$5,0,0,3,0)
+
+		dc.w make_block_tile($390+$8,0,0,3,0),make_block_tile($390+$C,0,0,3,0)
+		dc.w make_block_tile($390+$9,0,0,3,0),make_block_tile($390+$D,0,0,3,0)
+
+		dc.w make_block_tile($390+$2,0,0,3,0),make_block_tile($390+$6,0,0,3,0)
+		dc.w make_block_tile($390+$3,0,0,3,0),make_block_tile($390+$7,0,0,3,0)
+
+		dc.w make_block_tile($390+$A,0,0,3,0),make_block_tile($390+$E,0,0,3,0)
+		dc.w make_block_tile($390+$B,0,0,3,0),make_block_tile($390+$F,0,0,3,0)
+
+		dc.w make_block_tile($370+$8,0,0,2,0),make_block_tile($370+$9,0,0,2,0)
+		dc.w make_block_tile($370+$A,0,0,2,0),make_block_tile($370+$B,0,0,2,0)
+
+		dc.w make_block_tile($370+$C,0,0,2,0),make_block_tile($370+$D,0,0,2,0)
+		dc.w make_block_tile($370+$E,0,0,2,0),make_block_tile($370+$F,0,0,2,0)
+
+		dc.w make_block_tile($350+$C,0,0,1,0),make_block_tile($350+$D,0,0,1,0)
+		dc.w make_block_tile($350+$E,0,0,1,0),make_block_tile($350+$F,0,0,1,0)
+
+		dc.w make_block_tile($350+$10,0,0,1,0),make_block_tile($350+$11,0,0,1,0)
+		dc.w make_block_tile($350+$12,0,0,1,0),make_block_tile($350+$13,0,0,1,0)
+
+		dc.w make_block_tile($350+$14,0,0,1,0),make_block_tile($350+$15,0,0,1,0)
+		dc.w make_block_tile($350+$16,0,0,1,0),make_block_tile($350+$17,0,0,1,0)
+
+		dc.w make_block_tile($350+$18,0,0,1,0),make_block_tile($350+$19,0,0,1,0)
+		dc.w make_block_tile($350+$1A,0,0,1,0),make_block_tile($350+$1B,0,0,1,0)
+
+		dc.w make_block_tile(ArtTile_Level+$0,0,0,0,0),make_block_tile(ArtTile_Level+$0,0,0,0,0)
+		dc.w make_block_tile($360+$C,0,0,3,0),make_block_tile($360+$D,0,0,3,0)
+
+		dc.w make_block_tile(ArtTile_Level+$0,0,0,0,0),make_block_tile(ArtTile_Level+$0,0,0,0,0)
+		dc.w make_block_tile($360+$E,0,0,3,0),make_block_tile(ArtTile_Level+$0,0,0,0,0)
+
+		dc.w make_block_tile($360+$F,0,0,3,0),make_block_tile($360+$10,0,0,3,0)
+		dc.w make_block_tile($360+$11,0,0,3,0),make_block_tile($360+$12,0,0,3,0)
+
+		dc.w make_block_tile($360+$13,0,0,3,0),make_block_tile(ArtTile_Level+$0,0,0,0,0)
+		dc.w make_block_tile($360+$14,0,0,3,0),make_block_tile(ArtTile_Level+$0,0,0,0,0)
+
+		dc.w make_block_tile($360+$15,0,0,3,0),make_block_tile($360+$16,0,0,3,0)
+		dc.w make_block_tile($350+$8,0,0,2,0),make_block_tile($350+$9,0,0,2,0)
+
+		dc.w make_block_tile($360+$17,0,0,3,0),make_block_tile(ArtTile_Level+$0,0,0,0,0)
+		dc.w make_block_tile($350+$A,0,0,2,0),make_block_tile($350+$B,0,0,2,0)
+
+		dc.w make_block_tile($370+$8,0,0,2,1),make_block_tile($370+$9,0,0,2,1)
+		dc.w make_block_tile($370+$A,0,0,2,1),make_block_tile($370+$B,0,0,2,1)
+
+		dc.w make_block_tile($370+$C,0,0,2,1),make_block_tile($370+$D,0,0,2,1)
+		dc.w make_block_tile($370+$E,0,0,2,1),make_block_tile($370+$F,0,0,2,1)
+APM_Unk_PB_End:
+
+APM_CPZ_PB:
+		dc.w (Block_Table_End-Block_Table)-$F8
+		dc.w bytesToWcnt($E0)
+		dc.w $448F,$43D2
+		dc.w $43D3,$43D2
+		dc.w $43D4,$43D5
+		dc.w $4480,$4481
+		dc.w $4BD5,$4BD4
+		dc.w $4482,$4483
+		dc.w $4484,$4485
+		dc.w $4486,$4487
+		dc.w $4488,$4489
+		dc.w $448A,$448B
+		dc.w $E48C,$E48D
+		dc.w $E3DE,$E3DF
+		dc.w $4498,$4C98
+		dc.w $4498,$4C98
+		dc.w $43E1,$448D
+		dc.w $43E1,$43DF
+		dc.w $448C,$448D
+		dc.w $43DE,$43DF
+		dc.w $E3D4,$E3D5
+		dc.w $E480,$E481
+		dc.w $EBD5,$EBD4
+		dc.w $E482,$E483
+		dc.w $E484,$E485
+		dc.w $E486,$E487
+		dc.w $E48C,$E48D
+		dc.w $E3DE,$E3DF
+		dc.w $E3E2,$E48E
+		dc.w $E3E4,$EBD3
+		dc.w $E48F,$E3D2
+		dc.w $E3D3,$E3D2
+		dc.w $E3E5,$E3E6
+		dc.w $E3E7,$E490
+		dc.w $E3E7,$F490
+		dc.w $E3E5,$E3E6
+		dc.w $E3E5,$E3E6
+		dc.w $E3E9,$E48E
+		dc.w $EBE6,$E3EA
+		dc.w $E48F,$E3E9
+		dc.w $E491,$E492
+		dc.w $E3D0,$E3ED
+		dc.w $E493,$E494
+		dc.w $EBED,$E3D0
+		dc.w $E488,$E489
+		dc.w $E48A,$E48B
+		dc.w $43E2,$448E
+		dc.w $43E4,$4BD3
+		dc.w $E495,$E496
+		dc.w $E3F2,$E3F2
+		dc.w $E497,$E3F3
+		dc.w $E3F2,$E3F4
+		dc.w $43E5,$43E6
+		dc.w $43E9,$448E
+		dc.w $4BE6,$43EA
+		dc.w $448F,$43E9
+		dc.w $E3E1,$E48D
+		dc.w $E3E1,$E3DF
+APM_CPZ_PB_End:
+
+APM_HPZ_PB:	begin_animpat
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_1+$0,0,0,3,0),make_block_tile(ArtTile_Art_HPZPulseOrb_1+$1,0,0,3,0)
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_1+$2,0,0,3,0),make_block_tile(ArtTile_Art_HPZPulseOrb_1+$3,0,0,3,0)
+
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_1+$4,0,0,3,0),make_block_tile(ArtTile_Art_HPZPulseOrb_1+$5,0,0,3,0)
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_1+$6,0,0,3,0),make_block_tile(ArtTile_Art_HPZPulseOrb_1+$7,0,0,3,0)
+
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_2+$0,0,0,3,0),make_block_tile(ArtTile_Art_HPZPulseOrb_2+$1,0,0,3,0)
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_2+$2,0,0,3,0),make_block_tile(ArtTile_Art_HPZPulseOrb_2+$3,0,0,3,0)
+
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_2+$4,0,0,3,0),make_block_tile(ArtTile_Art_HPZPulseOrb_2+$5,0,0,3,0)
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_2+$6,0,0,3,0),make_block_tile(ArtTile_Art_HPZPulseOrb_2+$7,0,0,3,0)
+
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_3+$0,0,0,3,0),make_block_tile(ArtTile_Art_HPZPulseOrb_3+$1,0,0,3,0)
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_3+$2,0,0,3,0),make_block_tile(ArtTile_Art_HPZPulseOrb_3+$3,0,0,3,0)
+
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_3+$4,0,0,3,0),make_block_tile(ArtTile_Art_HPZPulseOrb_3+$5,0,0,3,0)
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_3+$6,0,0,3,0),make_block_tile(ArtTile_Art_HPZPulseOrb_3+$7,0,0,3,0)
+
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_1+$0,0,0,2,0),make_block_tile(ArtTile_Art_HPZPulseOrb_1+$1,0,0,2,0)
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_1+$2,0,0,2,0),make_block_tile(ArtTile_Art_HPZPulseOrb_1+$3,0,0,2,0)
+
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_1+$4,0,0,2,0),make_block_tile(ArtTile_Art_HPZPulseOrb_1+$5,0,0,2,0)
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_1+$6,0,0,2,0),make_block_tile(ArtTile_Art_HPZPulseOrb_1+$7,0,0,2,0)
+
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_2+$0,0,0,2,0),make_block_tile(ArtTile_Art_HPZPulseOrb_2+$1,0,0,2,0)
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_2+$2,0,0,2,0),make_block_tile(ArtTile_Art_HPZPulseOrb_2+$3,0,0,2,0)
+
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_2+$4,0,0,2,0),make_block_tile(ArtTile_Art_HPZPulseOrb_2+$5,0,0,2,0)
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_2+$6,0,0,2,0),make_block_tile(ArtTile_Art_HPZPulseOrb_2+$7,0,0,2,0)
+
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_3+$0,0,0,2,0),make_block_tile(ArtTile_Art_HPZPulseOrb_3+$1,0,0,2,0)
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_3+$2,0,0,2,0),make_block_tile(ArtTile_Art_HPZPulseOrb_3+$3,0,0,2,0)
+
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_3+$4,0,0,2,0),make_block_tile(ArtTile_Art_HPZPulseOrb_3+$5,0,0,2,0)
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_3+$6,0,0,2,0),make_block_tile(ArtTile_Art_HPZPulseOrb_3+$7,0,0,2,0)
+
+		dc.w make_block_tile(ArtTile_Level+$0,0,0,0,0),make_block_tile(ArtTile_Art_HPZPulseOrb_1+$0,0,0,3,0)
+		dc.w make_block_tile(ArtTile_Level+$0,0,0,0,0),make_block_tile(ArtTile_Art_HPZPulseOrb_1+$2,0,0,3,0)
+
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_1+$1,0,0,3,0),make_block_tile(ArtTile_Art_HPZPulseOrb_1+$4,0,0,3,0)
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_1+$3,0,0,3,0),make_block_tile(ArtTile_Art_HPZPulseOrb_1+$6,0,0,3,0)
+
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_1+$5,0,0,3,0),make_block_tile(ArtTile_Level+$0,0,0,0,0)
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_1+$7,0,0,3,0),make_block_tile(ArtTile_Level+$0,0,0,0,0)
+
+		dc.w make_block_tile(ArtTile_Level+$0,0,0,0,0),make_block_tile(ArtTile_Art_HPZPulseOrb_2+$0,0,0,3,0)
+		dc.w make_block_tile(ArtTile_Level+$0,0,0,0,0),make_block_tile(ArtTile_Art_HPZPulseOrb_2+$2,0,0,3,0)
+
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_2+$1,0,0,3,0),make_block_tile(ArtTile_Art_HPZPulseOrb_2+$4,0,0,3,0)
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_2+$3,0,0,3,0),make_block_tile(ArtTile_Art_HPZPulseOrb_2+$6,0,0,3,0)
+
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_2+$5,0,0,3,0),make_block_tile(ArtTile_Level+$0,0,0,0,0)
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_2+$7,0,0,3,0),make_block_tile(ArtTile_Level+$0,0,0,0,0)
+
+		dc.w make_block_tile(ArtTile_Level+$0,0,0,0,0),make_block_tile(ArtTile_Art_HPZPulseOrb_3+$0,0,0,3,0)
+		dc.w make_block_tile(ArtTile_Level+$0,0,0,0,0),make_block_tile(ArtTile_Art_HPZPulseOrb_3+$2,0,0,3,0)
+
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_3+$1,0,0,3,0),make_block_tile(ArtTile_Art_HPZPulseOrb_3+$4,0,0,3,0)
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_3+$3,0,0,3,0),make_block_tile(ArtTile_Art_HPZPulseOrb_3+$6,0,0,3,0)
+
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_3+$5,0,0,3,0),make_block_tile(ArtTile_Level+$0,0,0,0,0)
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_3+$7,0,0,3,0),make_block_tile(ArtTile_Level+$0,0,0,0,0)
+
+		dc.w make_block_tile(ArtTile_Level+$0,0,0,0,0),make_block_tile(ArtTile_Art_HPZPulseOrb_1+$0,0,0,2,0)
+		dc.w make_block_tile(ArtTile_Level+$0,0,0,0,0),make_block_tile(ArtTile_Art_HPZPulseOrb_1+$2,0,0,2,0)
+
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_1+$1,0,0,2,0),make_block_tile(ArtTile_Art_HPZPulseOrb_1+$4,0,0,2,0)
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_1+$3,0,0,2,0),make_block_tile(ArtTile_Art_HPZPulseOrb_1+$6,0,0,2,0)
+
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_1+$5,0,0,2,0),make_block_tile(ArtTile_Level+$0,0,0,0,0)
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_1+$7,0,0,2,0),make_block_tile(ArtTile_Level+$0,0,0,0,0)
+
+		dc.w make_block_tile(ArtTile_Level+$0,0,0,0,0),make_block_tile(ArtTile_Art_HPZPulseOrb_2+$0,0,0,2,0)
+		dc.w make_block_tile(ArtTile_Level+$0,0,0,0,0),make_block_tile(ArtTile_Art_HPZPulseOrb_2+$2,0,0,2,0)
+
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_2+$1,0,0,2,0),make_block_tile(ArtTile_Art_HPZPulseOrb_2+$4,0,0,2,0)
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_2+$3,0,0,2,0),make_block_tile(ArtTile_Art_HPZPulseOrb_2+$6,0,0,2,0)
+
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_2+$5,0,0,2,0),make_block_tile(ArtTile_Level+$0,0,0,0,0)
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_2+$7,0,0,2,0),make_block_tile(ArtTile_Level+$0,0,0,0,0)
+
+		dc.w make_block_tile(ArtTile_Level+$0,0,0,0,0),make_block_tile(ArtTile_Art_HPZPulseOrb_3+$0,0,0,2,0)
+		dc.w make_block_tile(ArtTile_Level+$0,0,0,0,0),make_block_tile(ArtTile_Art_HPZPulseOrb_3+$2,0,0,2,0)
+
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_3+$1,0,0,2,0),make_block_tile(ArtTile_Art_HPZPulseOrb_3+$4,0,0,2,0)
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_3+$3,0,0,2,0),make_block_tile(ArtTile_Art_HPZPulseOrb_3+$6,0,0,2,0)
+
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_3+$5,0,0,2,0),make_block_tile(ArtTile_Level+$0,0,0,0,0)
+		dc.w make_block_tile(ArtTile_Art_HPZPulseOrb_3+$7,0,0,2,0),make_block_tile(ArtTile_Level+$0,0,0,0,0)
+APM_HPZ_PB_End:
+
+		jmpTos	; Empty
+	dephase
+
+		binclude	"leftovers/symbols/symbol23.bin"
+
+	phase $19A22
+		include	"leftovers/obj/S1/09 Sonic in Special Stage.asm"
+		include	"leftovers/obj/10.asm"
+
+	dephase
+
+		binclude	"leftovers/symbols/symbol24.bin"
+
+	phase $1AB00
+		include	"leftovers/obj/DebugMode.asm"
+		include	"leftovers/_Include/DebugList.asm"
+
+		jmpTos	; Empty
+	dephase
+
+		binclude	"leftovers/symbols/symbol25.bin"
+;		binclude	"leftovers/code/code_69464.bin"
+	phase $1A074
+		include	"leftovers/obj/21 HUD.asm"
+; ===========================================================================
+; ---------------------------------------------------------------------------
+; Sprite mappings - SCORE, TIME, RINGS
+; ---------------------------------------------------------------------------
+Map_Obj21_PB:	dc.w Map_Obj21_PB_internal_0008-Map_Obj21_PB
+		dc.w Map_Obj21_PB_internal_005A-Map_Obj21_PB
+		dc.w Map_Obj21_PB_internal_00AC-Map_Obj21_PB
+		dc.w Map_Obj21_PB_internal_00FE-Map_Obj21_PB
+Map_Obj21_PB_internal_0008:	dc.w $A
+		dc.w $800D, $A000, $A000, 0
+		dc.w $800D, $A018, $A00C, $20
+		dc.w $800D, $A020, $A010, $40
+		dc.w $900D, $A010, $A008, 0
+		dc.w $900D, $A028, $A014, $28
+		dc.w $A00D, $A008, $A004, 0
+		dc.w $A001, $A000, $A000, $20
+		dc.w $A009, $A030, $A018, $30
+		dc.w $4005, $810A, $8085, 0
+		dc.w $400D, $A10E, $A087, $10
+Map_Obj21_PB_internal_005A:	dc.w $A
+		dc.w $800D, $A000, $A000, 0
+		dc.w $800D, $A018, $A00C, $20
+		dc.w $800D, $A020, $A010, $40
+		dc.w $900D, $A010, $A008, 0
+		dc.w $900D, $A028, $A014, $28
+		dc.w $A00D, $8008, $8004, 0
+		dc.w $A001, $8000, $8000, $20
+		dc.w $A009, $A030, $A018, $30
+		dc.w $4005, $810A, $8085, 0
+		dc.w $400D, $A10E, $A087, $10
+Map_Obj21_PB_internal_00AC:	dc.w $A
+		dc.w $800D, $A000, $A000, 0
+		dc.w $800D, $A018, $A00C, $20
+		dc.w $800D, $A020, $A010, $40
+		dc.w $900D, $8010, $8008, 0
+		dc.w $900D, $A028, $A014, $28
+		dc.w $A00D, $A008, $A004, 0
+		dc.w $A001, $A000, $A000, $20
+		dc.w $A009, $A030, $A018, $30
+		dc.w $4005, $810A, $8085, 0
+		dc.w $400D, $A10E, $A087, $10
+Map_Obj21_PB_internal_00FE:	dc.w $A
+		dc.w $800D, $A000, $A000, 0
+		dc.w $800D, $A018, $A00C, $20
+		dc.w $800D, $A020, $A010, $40
+		dc.w $900D, $8010, $8008, 0
+		dc.w $900D, $A028, $A014, $28
+		dc.w $A00D, $8008, $8004, 0
+		dc.w $A001, $8000, $8000, $20
+		dc.w $A009, $A030, $A018, $30
+		dc.w $4005, $810A, $8085, 0
+		dc.w $400D, $A10E, $A087, $10
+
+; ===========================================================================
+; ---------------------------------------------------------------------------
+; Subroutine to add points to the score counter
+; ---------------------------------------------------------------------------
+
+; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
+
+
+AddPoints_PB:
+		move.b	#1,(f_scorecount).w
+		lea	(v_score).w,a3
+		add.l	d0,(a3)
+		move.l	#999999,d1
+		cmp.l	(a3),d1
+		bhi.s	.belowmax
+		move.l	d1,(a3)
+
+.belowmax:
+		move.l	(a3),d0
+		cmp.l	(v_scorelife).w,d0
+		blo.s	.noextralife
+		addi.l	#5000,(v_scorelife).w
+		tst.b	(v_megadrive).w			; is this a Japanese console?
+		bmi.s	.noextralife			; if not, branch
+		addq.b	#1,(v_lives).w
+		addq.b	#1,(f_lifecount).w
+		move.w	#bgm_ExtraLife,d0
+		jmp	($12F6).l	;	QueueSound1
+
+.noextralife:
+		rts
+; End of function AddPoints
+; ===========================================================================
+
+		include	"leftovers/_Include/HUD Update.asm"
+
+Art_HUD_PB:	binclude	"art/uncompressed/HUD Numbers.bin"
+Art_LivesNums_PB:	binclude	"art/uncompressed/Lives Counter Numbers.bin"
+
+		jmpTos	; Empty
+	dephase
+
+		binclude	"leftovers/symbols/symbol26.bin"
+		binclude	"leftovers/symbols/symbol26a.bin"
+
+	phase $1C056
+		include	"leftovers/_Include/LevelHeaders.asm"
+		include	"leftovers/_Include/Pattern Load Cues.asm"
+
+		binclude	"leftovers/art/uncompressed/cut-off/1C318.bin"
+	dephase
+
+		binclude	"leftovers/symbols/symbol27.bin"
 		even
 ; ===========================================================================
 ; ---------------------------------------------------------------------------
@@ -14206,7 +16864,7 @@ Nem_EndStH:	binclude	"art/nemesis/S1/Ending - StH Logo.nem"
 ; ToeJam & Earl REV00 data, likely due to it once occupying the cartridge, best
 ; just to remove it given it takes up ONE TENTH of the cartridge space
 ; --------------------------------------------------------------------------------------
-Leftover_E1670:	binclude	"misc/leftovers/E1670.bin"
+Leftover_E1670:	binclude	"leftovers/E1670.bin"
 		even
 
 		cnop	-1,2<<lastbit(*-1)

@@ -113,11 +113,11 @@ loc_C764:
 
 Spik_Display:
 		tst.w	(Two_player_mode).w
-		beq.s	loc_C770
+		beq.s	.not2P
 		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 
-loc_C770:
+.not2P:
 		out_of_range.w	DeleteObject,objoff_30(a0)
 		bra.w	DisplaySprite
 

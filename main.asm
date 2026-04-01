@@ -6799,46 +6799,46 @@ locret_CE58:
 MarkObjGone:
 RememberState:
 		tst.w	(Two_player_mode).w
-		beq.s	loc_CE64
+		beq.s	.not2P
 		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 
-loc_CE64:
-		out_of_range.w	loc_CE7C
+.not2P:
+		out_of_range.w	.offscreen
 		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 
-loc_CE7C:
+.offscreen:
 		lea	(v_objstate).w,a2
 		moveq	#0,d0
 		move.b	obRespawnNo(a0),d0
-		beq.s	loc_CE8E
+		beq.s	.delete
 		bclr	#7,2(a2,d0.w)
 
-loc_CE8E:
+.delete:
 		bra.w	DeleteObject
 ; ===========================================================================
 ; does nothing instead of calling DisplaySprite in the case of no deletion
 ; loc_CE92:
 MarkObjGone2:
 		tst.w	(Two_player_mode).w
-		beq.s	loc_CE9A
+		beq.s	.not2P
 		rts
 ; ---------------------------------------------------------------------------
 
-loc_CE9A:
-		out_of_range.w	loc_CEB0
+.not2P:
+		out_of_range.w	.offscreen
 		rts
 ; ---------------------------------------------------------------------------
 
-loc_CEB0:
+.offscreen:
 		lea	(v_objstate).w,a2
 		moveq	#0,d0
 		move.b	obRespawnNo(a0),d0
-		beq.s	loc_CEC2
+		beq.s	.delete
 		bclr	#7,2(a2,d0.w)
 
-loc_CEC2:
+.delete:
 		bra.w	DeleteObject
 ; ===========================================================================
 ; first player in two player mode
@@ -6846,47 +6846,40 @@ loc_CEC2:
 MarkObjGone_P1:
 		tst.w	(Two_player_mode).w
 		bne.s	MarkObjGone_P2
-		out_of_range.w	loc_CEE4
+		out_of_range.w	.offscreen
 		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 
-loc_CEE4:
+.offscreen:
 		lea	(v_objstate).w,a2
 		moveq	#0,d0
 		move.b	obRespawnNo(a0),d0
-		beq.s	loc_CEF6
+		beq.s	.delete
 		bclr	#7,2(a2,d0.w)
 
-loc_CEF6:
+.delete:
 		bra.w	DeleteObject
 ; ===========================================================================
 ; second player in two player mode
 ; loc_CEFA:
 MarkObjGone_P2:
-		move.w	obX(a0),d0
-		andi.w	#-$80,d0
-		move.w	d0,d1
-		sub.w	(Camera_X_pos_coarse).w,d0
-		cmpi.w	#128+320+192,d0
-		bhi.w	loc_CF14
+		out_of_range_p2.w	.offscreen
 		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 
-loc_CF14:
-		sub.w	(Camera_X_pos_coarse_P2).w,d1
-		cmpi.w	#128+320+192,d1
-		bhi.w	loc_CF24
+.offscreen:
+		out_of_range_p2_sub.w	.offscreenP2
 		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 
-loc_CF24:
+.offscreenP2:
 		lea	(v_objstate).w,a2
 		moveq	#0,d0
 		move.b	obRespawnNo(a0),d0
-		beq.s	loc_CF36
+		beq.s	.delete
 		bclr	#7,2(a2,d0.w)
 
-loc_CF36:
+.delete:
 		bra.w	DeleteObject			; useless branch...
 
 ; ---------------------------------------------------------------------------
@@ -6903,9 +6896,9 @@ DeleteChild:
 		moveq	#0,d1
 		moveq	#bytesToLcnt(object_size),d0	; we want to clear up to the next object
 		; delete the object by setting all of its bytes to 0
-loc_CF40:
+DelObj_Loop:
 		move.l	d1,(a1)+
-		dbf	d0,loc_CF40
+		dbf	d0,DelObj_Loop
 		rts
 ; End of function DeleteObject
 
@@ -12176,7 +12169,7 @@ loc_19C9A:
 		lea	$70(a0),a0
 		dbf	d7,loc_19C3E
 		move.b	d5,(v_spritecount).w
-		cmpi.b	#$50,d5
+		cmpi.b	#80,d5
 		beq.s	loc_19CBA
 		move.l	#0,(a2)
 		rts
@@ -13651,9 +13644,12 @@ ObjPos_GHZ2:	binclude	"level/objects/GHZ_2.bin"
 		even
 ObjPos_GHZ3:	binclude	"level/objects/GHZ_3.bin"
 		even
-ObjPos_LZ1:	dc.w $FFFF,	0,	0
-ObjPos_LZ2:	dc.w $FFFF,	0,	0
-ObjPos_LZ3:	dc.w $FFFF,	0,	0
+ObjPos_LZ1:	binclude	"level/objects/LZ_1.bin"
+		even
+ObjPos_LZ2:	binclude	"level/objects/LZ_2.bin"
+		even
+ObjPos_LZ3:	binclude	"level/objects/LZ_3.bin"
+		even
 ObjPos_S1LZ1pf1:
 		binclude	"level/objects/S1/lz1pf1.bin"
 		even
@@ -13674,20 +13670,26 @@ ObjPos_S1LZ3pf2:
 		even
 ObjPos_CPZ1:	binclude	"level/objects/CPZ_1.bin"
 		even
-ObjPos_CPZ2:	dc.w $FFFF,	0,	0
-ObjPos_CPZ3:	dc.w $FFFF,	0,	0
+ObjPos_CPZ2:	binclude	"level/objects/CPZ_2.bin"
+		even
+ObjPos_CPZ3:	binclude	"level/objects/CPZ_3.bin"
+		even
 ObjPos_EHZ1:	binclude	"level/objects/EHZ_1.bin"
 		even
 ObjPos_EHZ2:	binclude	"level/objects/EHZ_2.bin"
 		even
-ObjPos_EHZ3:	dc.w $FFFF,	0,	0
+ObjPos_EHZ3:	binclude	"level/objects/EHZ_3.bin"
+		even
 ObjPos_HPZ1:	binclude	"level/objects/HPZ_1.bin"
 		even
-ObjPos_HPZ2:	dc.w $FFFF,	0,	0
-ObjPos_HPZ3:	dc.w $FFFF,	0,	0
+ObjPos_HPZ2:	binclude	"level/objects/HPZ_2.bin"
+		even
+ObjPos_HPZ3:	binclude	"level/objects/HPZ_3.bin"
+		even
 ObjPos_HTZ1:	binclude	"level/objects/HTZ_1.bin"
 		even
-ObjPos_HTZ2:	dc.w $FFFF,	0,	0
+ObjPos_HTZ2:	binclude	"level/objects/HTZ_2.bin"
+		even
 ObjPos_HTZ3:	binclude	"level/objects/HTZ_3.bin"
 		even
 ObjPos_S1SBZ1pf1:

@@ -8,11 +8,11 @@ Obj41:
 		move.w	Obj41_Index(pc,d0.w),d1
 		jsr	Obj41_Index(pc,d1.w)
 		tst.w	(Two_player_mode).w
-		beq.s	loc_E1E0
+		beq.s	.not2P
 		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 
-loc_E1E0:
+.not2P:
 		out_of_range.w	DeleteObject
 		bra.w	DisplaySprite
 ; ===========================================================================

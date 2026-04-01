@@ -15,7 +15,7 @@ namespace S2ObjectDefinitions.Common
 		public override void Init(ObjectData data)
 		{
 			List<byte> tmpartfile = new List<byte>();
-			tmpartfile.AddRange(ObjectHelper.OpenArtFile("Common/pathswapper-art.bin", CompressionType.Nemesis));
+			tmpartfile.AddRange(ObjectHelper.OpenArtFile("Common/pathswapper-art.nem", CompressionType.Nemesis));
 			byte[] artfile1 = tmpartfile.ToArray();
 			img = ObjectHelper.MapASMToBmp(artfile1, "../mappings/sprite/obj03.asm", 0, 0);
 			Point off;

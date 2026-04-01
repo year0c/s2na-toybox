@@ -26,10 +26,10 @@ Obj49_Init:
 
 Obj49_Main:
 		tst.w	(Two_player_mode).w
-		bne.s	loc_156F6
+		bne.s	.is2P
 		out_of_range.w	JmpTo3_DeleteObject
 
-loc_156F6:
+.is2P:
 		move.w	obX(a0),d1
 		move.w	d1,d2
 		subi.w	#$40,d1

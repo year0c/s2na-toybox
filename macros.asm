@@ -238,6 +238,35 @@ out_of_range:	macro exit,specpos
 		endm
 
 ; ---------------------------------------------------------------------------
+; check if object moves out of range
+; input: location to jump to if out of range, x-axis pos (obX(a0) by default)
+; ---------------------------------------------------------------------------
+
+out_of_range_p2:	macro exit,specpos
+		if ("specpos"<>"")
+		move.w	specpos,d0		; get object position (if specified as not obX)
+		else
+		move.w	obX(a0),d0	; get object position
+		endif
+		andi.w	#-$80,d0	; round down to nearest $80
+		move.w	d0,d1	; save object position for player 2
+		sub.w	(Camera_X_pos_coarse).w,d0		; approx distance between object and screen
+		cmpi.w	#128+320+192,d0
+		bhi.ATTRIBUTE	exit
+		endm
+
+; ---------------------------------------------------------------------------
+; check if object moves out of range for the second player
+; works in conjunction with out_of_range_p2
+; ---------------------------------------------------------------------------
+
+out_of_range_p2_sub:	macro exit
+		sub.w	(Camera_X_pos_coarse_P2).w,d1		; approx distance between object and screen
+		cmpi.w	#128+320+192,d1
+		bhi.ATTRIBUTE	exit
+		endm
+
+; ---------------------------------------------------------------------------
 ; Copy a tilemap from 68K (ROM/RAM) to the VRAM without using DMA
 ; input: source, destination, width [cells], height [cells]
 ; ---------------------------------------------------------------------------

@@ -34,8 +34,6 @@ TouchResponse_PB:
 		lea	object_size(a1),a1
 		dbf	d6,.loc_19820
 		moveq	#0,d0
-
-.locret_19830:
 		rts
 ; ---------------------------------------------------------------------------
 Touch_Sizes_PB:

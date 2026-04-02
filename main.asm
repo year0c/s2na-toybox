@@ -37,6 +37,12 @@ PaddingOptimization = 0|AllOptimizations
 	include "Constants.asm"
 
 ; ===========================================================================
+; Expressing sprite mappings and DPLCs in a portable and human-readable form
+SonicMappingsVer = 2
+SonicDplcVer = 2
+	include	"mappings/MapMacros.asm"
+
+; ===========================================================================
 ; start of ROM
 
 StartOfRom:
@@ -6186,92 +6192,107 @@ word_B8B6:	dc.w 2
 		include	"obj/S1/7E Special Stage Results.asm"
 		include	"obj/S1/7F SS Result Chaos Emeralds.asm"
 
-Map_Obj34:	dc.w word_BFD8-Map_Obj34
-		dc.w word_C022-Map_Obj34
-		dc.w word_C06C-Map_Obj34
-		dc.w word_C09E-Map_Obj34
-		dc.w word_C0E8-Map_Obj34
-		dc.w word_C13A-Map_Obj34
-		dc.w word_C18C-Map_Obj34
-		dc.w word_C1AE-Map_Obj34
-		dc.w word_C1C0-Map_Obj34
-		dc.w word_C1D2-Map_Obj34
-		dc.w word_C1E4-Map_Obj34
-		dc.w word_C24E-Map_Obj34
-word_BFD8:	dc.w 9
-		dc.w $F805,  $18,   $C,$FFB4
-		dc.w $F805,  $3A,  $1D,$FFC4
-		dc.w $F805,  $10,    8,$FFD4
-		dc.w $F805,  $10,    8,$FFE4
-		dc.w $F805,  $2E,  $17,$FFF4
-		dc.w $F805,  $1C,   $E,	 $14
-		dc.w $F801,  $20,  $10,	 $24
-		dc.w $F805,  $26,  $13,	 $2C
-		dc.w $F805,  $26,  $13,	 $3C
-word_C022:	dc.w 9
-		dc.w $F805,  $26,  $13,$FFBC
-		dc.w $F805,    0,    0,$FFCC
-		dc.w $F805,    4,    2,$FFDC
-		dc.w $F805,  $4A,  $25,$FFEC
-		dc.w $F805,  $3A,  $1D,$FFFC
-		dc.w $F801,  $20,  $10,	  $C
-		dc.w $F805,  $2E,  $17,	 $14
-		dc.w $F805,  $42,  $21,	 $24
-		dc.w $F805,  $1C,   $E,	 $34
-word_C06C:	dc.w 6
-		dc.w $F805,  $2A,  $15,$FFCF
-		dc.w $F805,    0,    0,$FFE0
-		dc.w $F805,  $3A,  $1D,$FFF0
-		dc.w $F805,    4,    2,	   0
-		dc.w $F805,  $26,  $13,	 $10
-		dc.w $F805,  $10,    8,	 $20
-word_C09E:	dc.w 9
-		dc.w $F805,  $3E,  $1F,$FFB4
-		dc.w $F805,  $42,  $21,$FFC4
-		dc.w $F805,    0,    0,$FFD4
-		dc.w $F805,  $3A,  $1D,$FFE4
-		dc.w $F805,  $26,  $13,	   4
-		dc.w $F801,  $20,  $10,	 $14
-		dc.w $F805,  $18,   $C,	 $1C
-		dc.w $F805,  $1C,   $E,	 $2C
-		dc.w $F805,  $42,  $21,	 $3C
-word_C0E8:	dc.w $A
-		dc.w $F805,  $3E,  $1F,$FFAC
-		dc.w $F805,  $36,  $1B,$FFBC
-		dc.w $F805,  $3A,  $1D,$FFCC
-		dc.w $F801,  $20,  $10,$FFDC
-		dc.w $F805,  $2E,  $17,$FFE4
-		dc.w $F805,  $18,   $C,$FFF4
-		dc.w $F805,  $4A,  $25,	 $14
-		dc.w $F805,    0,    0,	 $24
-		dc.w $F805,  $3A,  $1D,	 $34
-		dc.w $F805,   $C,    6,	 $44
-word_C13A:	dc.w $A
-		dc.w $F805,  $3E,  $1F,$FFAC
-		dc.w $F805,    8,    4,$FFBC
-		dc.w $F805,  $3A,  $1D,$FFCC
-		dc.w $F805,    0,    0,$FFDC
-		dc.w $F805,  $36,  $1B,$FFEC
-		dc.w $F805,    4,    2,	  $C
-		dc.w $F805,  $3A,  $1D,	 $1C
-		dc.w $F805,    0,    0,	 $2C
-		dc.w $F801,  $20,  $10,	 $3C
-		dc.w $F805,  $2E,  $17,	 $44
-word_C18C:	dc.w 4
-		dc.w $F805,  $4E,  $27,$FFE0
-		dc.w $F805,  $32,  $19,$FFF0
-		dc.w $F805,  $2E,  $17,	   0
-		dc.w $F805,  $10,    8,	 $10
-word_C1AE:	dc.w 2
-		dc.w  $40C,  $53,  $29,$FFEC
-		dc.w $F402,  $57,  $2B,	  $C
-word_C1C0:	dc.w 2
-		dc.w  $40C,  $53,  $29,$FFEC
-		dc.w $F406,  $5A,  $2D,	   8
-word_C1D2:	dc.w 2
-		dc.w  $40C,  $53,  $29,$FFEC
-		dc.w $F406,  $60,  $30,	   8
-word_C1E4:	dc.w $D
+Map_Obj34:	dc.w M_Card_GHZ-Map_Obj34
+		dc.w M_Card_LZ-Map_Obj34
+		dc.w M_Card_MZ-Map_Obj34
+		dc.w M_Card_SLZ-Map_Obj34
+		dc.w M_Card_SYZ-Map_Obj34
+		dc.w M_Card_SBZ-Map_Obj34
+		dc.w M_Card_Zone-Map_Obj34
+		dc.w M_Card_Act1-Map_Obj34
+		dc.w M_Card_Act2-Map_Obj34
+		dc.w M_Card_Act3-Map_Obj34
+		dc.w M_Card_Oval-Map_Obj34
+		dc.w M_Card_FZ-Map_Obj34
+
+M_Card_GHZ:	dc.w 9	; GREEN HILL
+		dc.w $F805,  $18,   $C,$FFB4	; G
+		dc.w $F805,  $3A,  $1D,$FFC4	; R
+		dc.w $F805,  $10,    8,$FFD4	; E
+		dc.w $F805,  $10,    8,$FFE4	; E
+		dc.w $F805,  $2E,  $17,$FFF4	; N
+
+		dc.w $F805,  $1C,   $E,	 $14	; H
+		dc.w $F801,  $20,  $10,	 $24	; I
+		dc.w $F805,  $26,  $13,	 $2C	; L
+		dc.w $F805,  $26,  $13,	 $3C	; L
+
+M_Card_LZ:	dc.w 9	; LABYRINTH
+		dc.w $F805,  $26,  $13,$FFBC	; L
+		dc.w $F805,    0,    0,$FFCC	; A
+		dc.w $F805,    4,    2,$FFDC	; B
+		dc.w $F805,  $4A,  $25,$FFEC	; Y
+		dc.w $F805,  $3A,  $1D,$FFFC	; R
+		dc.w $F801,  $20,  $10,	  $C	; I
+		dc.w $F805,  $2E,  $17,	 $14	; N
+		dc.w $F805,  $42,  $21,	 $24	; T
+		dc.w $F805,  $1C,   $E,	 $34	; H
+
+M_Card_MZ:	dc.w 6	; MARBLE
+		dc.w $F805,  $2A,  $15,$FFCF	; M
+		dc.w $F805,    0,    0,$FFE0	; A
+		dc.w $F805,  $3A,  $1D,$FFF0	; R
+		dc.w $F805,    4,    2,	   0	; B
+		dc.w $F805,  $26,  $13,	 $10	; L
+		dc.w $F805,  $10,    8,	 $20	; E
+
+M_Card_SLZ:	dc.w 9	; STAR LIGHT
+		dc.w $F805,  $3E,  $1F,$FFB4	; S
+		dc.w $F805,  $42,  $21,$FFC4	; T
+		dc.w $F805,    0,    0,$FFD4	; A
+		dc.w $F805,  $3A,  $1D,$FFE4	; R
+
+		dc.w $F805,  $26,  $13,	   4	; L
+		dc.w $F801,  $20,  $10,	 $14	; I
+		dc.w $F805,  $18,   $C,	 $1C	; G
+		dc.w $F805,  $1C,   $E,	 $2C	; H
+		dc.w $F805,  $42,  $21,	 $3C	; T
+
+M_Card_SYZ:	dc.w $A	; SPRING YARD
+		dc.w $F805,  $3E,  $1F,$FFAC	; S
+		dc.w $F805,  $36,  $1B,$FFBC	; P
+		dc.w $F805,  $3A,  $1D,$FFCC	; R
+		dc.w $F801,  $20,  $10,$FFDC	; I
+		dc.w $F805,  $2E,  $17,$FFE4	; N
+		dc.w $F805,  $18,   $C,$FFF4	; G
+
+		dc.w $F805,  $4A,  $25,	 $14	; Y
+		dc.w $F805,    0,    0,	 $24	; A
+		dc.w $F805,  $3A,  $1D,	 $34	; R
+		dc.w $F805,   $C,    6,	 $44	; D
+
+M_Card_SBZ:	dc.w $A	; SCRAP BRAIN
+		dc.w $F805,  $3E,  $1F,$FFAC	; S
+		dc.w $F805,    8,    4,$FFBC	; C
+		dc.w $F805,  $3A,  $1D,$FFCC	; R
+		dc.w $F805,    0,    0,$FFDC	; A
+		dc.w $F805,  $36,  $1B,$FFEC	; P
+
+		dc.w $F805,    4,    2,	  $C	; B
+		dc.w $F805,  $3A,  $1D,	 $1C	; R
+		dc.w $F805,    0,    0,	 $2C	; A
+		dc.w $F801,  $20,  $10,	 $3C	; I
+		dc.w $F805,  $2E,  $17,	 $44	; N
+
+M_Card_Zone:	dc.w 4	; ZONE
+		dc.w $F805,  $4E,  $27,$FFE0	; Z
+		dc.w $F805,  $32,  $19,$FFF0	; O
+		dc.w $F805,  $2E,  $17,	   0	; N
+		dc.w $F805,  $10,    8,	 $10	; E
+
+M_Card_Act1:	dc.w 2	; Act number 1
+		dc.w  $40C,  $53,  $29,$FFEC	; "ACT"
+		dc.w $F402,  $57,  $2B,	  $C	; 1
+
+M_Card_Act2:	dc.w 2	; Act number 2
+		dc.w  $40C,  $53,  $29,$FFEC	; "ACT"
+		dc.w $F406,  $5A,  $2D,	   8	; 2
+
+M_Card_Act3:	dc.w 2	; Act number 3
+		dc.w  $40C,  $53,  $29,$FFEC	; "ACT"
+		dc.w $F406,  $60,  $30,	   8	; 3
+
+M_Card_Oval:	dc.w $D	; Blue oval
 		dc.w $E40C,  $70,  $38,$FFF4
 		dc.w $E402,  $74,  $3A,	 $14
 		dc.w $EC04,  $77,  $3B,$FFEC
@@ -6285,12 +6306,14 @@ word_C1E4:	dc.w $D
 		dc.w $FC08,  $7C,  $3E,$FFF4
 		dc.w  $40C,  $7C,  $3E,$FFEC
 		dc.w  $C08,  $7C,  $3E,$FFEC
-word_C24E:	dc.w 5
-		dc.w $F805,  $14,   $A,$FFDC
-		dc.w $F801,  $20,  $10,$FFEC
-		dc.w $F805,  $2E,  $17,$FFF4
-		dc.w $F805,    0,    0,	   4
-		dc.w $F805,  $26,  $13,	 $14
+
+M_Card_FZ:	dc.w 5	; FINAL
+		dc.w $F805,  $14,   $A,$FFDC	; F
+		dc.w $F801,  $20,  $10,$FFEC	; I
+		dc.w $F805,  $2E,  $17,$FFF4	; N
+		dc.w $F805,    0,    0,	   4	; A
+		dc.w $F805,  $26,  $13,	 $14	; L
+
 Map_Obj39:	dc.w word_C280-Map_Obj39
 		dc.w word_C292-Map_Obj39
 		dc.w word_C2A4-Map_Obj39
@@ -6307,15 +6330,16 @@ word_C2A4:	dc.w 2
 word_C2B6:	dc.w 2
 		dc.w $F80D,  $14,   $A,	  $C
 		dc.w $F80D,   $C,    6,	 $2C
+
 Map_Obj3A:	dc.w word_C2DA-Map_Obj3A
 		dc.w word_C31C-Map_Obj3A
 		dc.w word_C34E-Map_Obj3A
 		dc.w word_C380-Map_Obj3A
 		dc.w word_C3BA-Map_Obj3A
-		dc.w word_C1E4-Map_Obj3A
-		dc.w word_C1AE-Map_Obj3A
-		dc.w word_C1C0-Map_Obj3A
-		dc.w word_C1D2-Map_Obj3A
+		dc.w M_Card_Oval-Map_Obj3A
+		dc.w M_Card_Act1-Map_Obj3A
+		dc.w M_Card_Act2-Map_Obj3A
+		dc.w M_Card_Act3-Map_Obj3A
 word_C2DA:	dc.w 8
 		dc.w $F805,  $3E,  $1F,$FFB8
 		dc.w $F805,  $32,  $19,$FFC8
@@ -14831,8 +14855,8 @@ Map_Obj55_PB:	dc.w .word_1856C-Map_Obj55_PB
 
 		binclude	"leftovers/symbols/symbol16.bin"
 
-		dc.w   $26,  $13,$FFA8	; 0
-		dc.w $D005,  $32,  $19,$FFB8; 0
+		dc.w   $26,  $13,$FFA8
+		dc.w $D005,  $32,  $19,$FFB8
 		dc.w $D005,  $1A,   $D,$FFC8; 4
 		dc.w $D005,  $54,  $2A,$FFD8; 8
 		dc.w $D005,  $12,    9,$FFF8; 12
@@ -14854,7 +14878,7 @@ Map_Obj55_PB:	dc.w .word_1856C-Map_Obj55_PB
 		dc.w $2005,  $58,  $2C,	   4; 76
 		dc.w $2005,  $2A,  $15,	 $14; 80
 		dc.w $1F
-		dc.w $D805,  $2E,  $17,$FF80; 0
+		dc.w $D805,  $2E,  $17,$FF80
 		dc.w $D805,  $12,    9,$FF90; 4
 		dc.w $D805,   $E,    7,$FFA0; 8
 		dc.w $D805,  $1E,   $F,$FFB0; 12
@@ -14886,7 +14910,7 @@ Map_Obj55_PB:	dc.w .word_1856C-Map_Obj55_PB
 		dc.w $2005,  $12,    9,	 $18; 116
 		dc.w $2005,    4,    2,	 $28; 120
 		dc.w $F
-		dc.w $F805,  $12,    9,$FF80; 0
+		dc.w $F805,  $12,    9,$FF80
 		dc.w $F805,  $22,  $11,$FF90; 4
 		dc.w $F805,   $E,    7,$FFA0; 8
 		dc.w $F805,  $2E,  $17,$FFB0; 12
@@ -14902,7 +14926,7 @@ Map_Obj55_PB:	dc.w .word_1856C-Map_Obj55_PB
 		dc.w $F805,    0,    0,	 $60; 52
 		dc.w $F805,    4,    2,	 $70; 56
 		dc.w 8
-		dc.w $3005,  $3E,  $1F,$FFC0; 0
+		dc.w $3005,  $3E,  $1F,$FFC0
 		dc.w $3005,  $22,  $11,$FFD0; 4
 		dc.w $3005,  $2A,  $15,$FFE0; 8
 		dc.w $3005,    4,    2,$FFF8; 12
@@ -14911,7 +14935,7 @@ Map_Obj55_PB:	dc.w .word_1856C-Map_Obj55_PB
 		dc.w $3001,  $46,  $23,	 $28; 24
 		dc.w $3005,  $1A,   $D,	 $30; 28
 		dc.w $11
-		dc.w $E805,  $2E,  $17,$FFB4; 0
+		dc.w $E805,  $2E,  $17,$FFB4
 		dc.w $E805,  $26,  $13,$FFC4; 4
 		dc.w $E805,  $1A,   $D,$FFD4; 8
 		dc.w $E801,  $46,  $23,$FFE4; 12
@@ -16527,12 +16551,14 @@ Art_LivesNums_PB:	binclude	"art/uncompressed/Lives Counter Numbers.bin"
 
 		binclude	"leftovers/symbols/symbol27.bin"
 		even
+
 ; ===========================================================================
 ; ---------------------------------------------------------------------------
 ; Modified Type 1b 68000 Sound Driver
 ; Same as Sonic 1's, down to its location in the ROM
 ; ---------------------------------------------------------------------------
 		include	"s1.sounddriver.asm"
+
 ; ---------------------------------------------------------------------------
 ; Uncompressed graphics - Sonic and Tails
 ; ---------------------------------------------------------------------------
@@ -16555,6 +16581,7 @@ Nem_Stars:	binclude	"art/nemesis/Stars.nem"
 Art_SplashDust:	binclude	"art/uncompressed/Dust and water splash.bin"
 Map_Tails:	include	"mappings/sprite/Tails.asm"
 TailsDynPLC:	include	"mappings/spriteDPLC/Tails.asm"
+
 ; ---------------------------------------------------------------------------
 ; Compressed graphics - sega and title screen stuff
 ; ---------------------------------------------------------------------------

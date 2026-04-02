@@ -279,6 +279,14 @@ copyTilemap:	macro source,destination,width,height
 		bsr.w	PlaneMapToVRAM_H40
 		endm
 
+; ---------------------------------------------------------------------------
+; incbin compatibility macro for AS
+; ---------------------------------------------------------------------------
+
+incbin:		macro path
+		binclude path
+		endm
+
 ; macros to convert from tile index to art tiles, block mapping or VRAM address.
 make_art_tile function addr,pal,pri,((pri&1)<<15)|((pal&3)<<13)|(addr&tile_mask)
 make_art_tile_2p function addr,pal,pri,((pri&1)<<15)|((pal&3)<<13)|((addr&tile_mask)>>1)

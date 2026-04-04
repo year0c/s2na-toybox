@@ -139,11 +139,7 @@ Touch_Height_PB:
 		subi.w	#$10,d0
 		cmp.w	obY(a1),d0
 		blo.s	.locret_19938
-
-.loc_1990E:
 		neg.w	obVelY(a0)
-
-.loc_19912:
 		move.w	#-$180,obVelY(a1)
 		tst.b	ob2ndRout(a1)
 		bne.s	.locret_19938

@@ -310,7 +310,7 @@ GameProgram:
 		tst.w	(vdp_control_port).l
 		btst	#6,(expansion_control).l
 		beq.s	ChecksumTest
-		cmpi.l	#'init',(v_init).w
+		cmpi.l	#"init",(v_init).w
 		beq.w	GameInit
 
 ChecksumTest:
@@ -1781,8 +1781,6 @@ loc_2346:
 		bsr.s	Pal_AddColor2
 		dbf	d0,loc_2346
 		moveq	#0,d0
-
-loc_234E:
 		lea	(v_palette_water).w,a0
 		move.b	(v_pfade_start).w,d0
 		adda.w	d0,a0

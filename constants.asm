@@ -62,6 +62,9 @@ plane_size_64x32:	equ 64*32*2
 
 palette_size:	equ $80
 
+; Sonic 1 Constants
+S1_EndOfRom:	equ $80000			; Sonic 1 End of Rom size
+
 ; ===========================================================================
 ; ---------------------------------------------------------------------------
 ; Object Status Table offsets
@@ -707,10 +710,10 @@ v_plc_framepatternsleft:ds.w	1
 v_plc_buffer_end:
 
 v_levelvariables:					; variables that are reset between levels
-word_F700:		ds.w	1			; set to 0 in Tails_Control, otherwise unused
+Tails_unused1:		ds.w	1			; set to 0 in Tails_Control, otherwise unused
 Tails_control_counter:	ds.w	1
 Tails_respawn_counter:	ds.w	1
-word_F706:		ds.w	1
+Tails_unused_counter:	ds.w	1		; apart of an unused routine for Tails's CPU.
 Tails_CPU_routine:	ds.w	1
 			ds.b	6			; unused
 
@@ -722,8 +725,8 @@ Ring_start_addr_P2:	ds.w	1
 Ring_end_addr_P2:	ds.w	1
 			ds.b	6			; unused
 
-byte_F720:		ds.b	1
-byte_F721:		ds.b	1
+Screen_redraw_flag:		ds.b	1
+CPZ_UnkScroll_Timer:	ds.b	1
 			ds.b	$E			; unused
 
 Water_flag:		ds.b	1
@@ -954,10 +957,10 @@ f_creditscheat:		ds.b	1			; hidden credits & press start cheat flag
 v_title_dcount:		ds.w	1			; number of times the d-pad is pressed on title screen
 v_title_ccount:		ds.w	1			; number of times C is pressed on title screen
 Two_player_mode:	ds.w	1
-unk_FFE9	= Two_player_mode+1
+Two_player_mode_lo	= Two_player_mode+1
 word_FFEA:		ds.w	1
-v_objstate_copy:	ds.w	1			; a word copy of v_objstate
-Obj_respawn_index_P2_copy:	ds.w	1	; a word copy of Obj_respawn_index_P2
+v_objstate_debug:	ds.w	1			; a copy of v_objstate, earlier code suggests it was used for debug mode
+Obj_respawn_index_P2_debug:	ds.w	1	; a copy of Obj_respawn_index_P2, earlier code suggests it was used for debug mode
 
 f_demo:			ds.w	1			; demo mode flag (0 = no; 1 = yes; $8001 = ending)
 v_demonum:		ds.w	1			; demo level number (not the same as the level number)

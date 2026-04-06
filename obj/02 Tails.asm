@@ -145,7 +145,7 @@ Tails_Control:
 		move.b	(v_2Pjpadhold).w,d0
 		andi.b	#btnUp+btnDn+btnL+btnR+btnABC,d0
 		beq.s	TailsC_NoKeysPressed
-		move.w	#0,(word_F700).w
+		move.w	#0,(Tails_unused1).w
 		move.w	#300,(Tails_control_counter).w
 		rts
 ; ---------------------------------------------------------------------------
@@ -164,36 +164,36 @@ TailsC_DoControl:
 ; End of function Tails_Control
 
 ; ---------------------------------------------------------------------------
-TailsC_Index:	dc.w TailsC_00-TailsC_Index
-		dc.w TailsC_02-TailsC_Index
-		dc.w TailsC_04-TailsC_Index
-		dc.w TailsC_CopySonicMoves-TailsC_Index
+TailsC_Index:	dc.w TailsC_00-TailsC_Index	; $00
+		dc.w TailsC_02-TailsC_Index	; $02
+		dc.w TailsC_04-TailsC_Index	; $04
+		dc.w TailsC_CopySonicMoves-TailsC_Index	; $06
 ; ---------------------------------------------------------------------------
 
 TailsC_00:
-		move.w	#6,(Tails_CPU_routine).w
+		move.w	#6,(Tails_CPU_routine).w	; set CPU routine to TailsC_CopySonicMoves
 		rts
 ; ---------------------------------------------------------------------------
 
 TailsC_02:
-		move.w	#6,(Tails_CPU_routine).w
+		move.w	#6,(Tails_CPU_routine).w	; set CPU routine to TailsC_CopySonicMoves
 		rts
 ; ---------------------------------------------------------------------------
-		move.w	#$40,(word_F706).w
-		move.w	#4,(Tails_CPU_routine).w
+		move.w	#$40,(Tails_unused_counter).w
+		move.w	#4,(Tails_CPU_routine).w	; set CPU routine to TailsC_04
 
 TailsC_04:
-		move.w	#6,(Tails_CPU_routine).w
+		move.w	#6,(Tails_CPU_routine).w	; set CPU routine to TailsC_CopySonicMoves
 		rts
 ; ---------------------------------------------------------------------------
-		move.w	(word_F706).w,d1
+		move.w	(Tails_unused_counter).w,d1
 		subq.w	#1,d1
 		cmpi.w	#$10,d1
 		bne.s	loc_10E0C
-		move.w	#6,(Tails_CPU_routine).w
+		move.w	#6,(Tails_CPU_routine).w	; set CPU routine to TailsC_CopySonicMoves
 
 loc_10E0C:
-		move.w	d1,(word_F706).w
+		move.w	d1,(Tails_unused_counter).w
 		lea	(Tails_Pos_Record_Buf).w,a1
 		lsl.b	#2,d1
 		addq.b	#4,d1

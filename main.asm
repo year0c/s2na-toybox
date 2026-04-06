@@ -123,7 +123,7 @@ Vectors:
 Checksum:	dc.w $AFC7				; Checksum (patched later if incorrect)
 		dc.b "J               "		; I/O support
 		dc.l StartOfRom				; Start address of ROM
-ROMEndLoc:	dc.l $7FFFF				; End address of ROM (leftover from Sonic 1)
+ROMEndLoc:	dc.l S1_EndOfRom-1		; End address of ROM (leftover from Sonic 1)
 		dc.l v_ram_start&$FFFFFF	; Start address of RAM
 		dc.l (v_ram_end-1)&$FFFFFF	; End address of RAM
 		if EnableSRAM=1
@@ -317,7 +317,7 @@ ChecksumTest:
 		movea.l	#EndOfHeader,a0		; start checking bytes after header ($200)
 		movea.l	#ROMEndLoc,a1		; stop at end of ROM (but not really since it's half of the ROM, leftover from Sonic 1)
 		move.l	(a1),d0
-		move.l	#$7FFFF,d0
+		move.l	#S1_EndOfRom-1,d0
 		moveq	#0,d1
 
 ChecksumLoop:
@@ -668,7 +668,9 @@ Vint0_noWater:
 		btst	#6,(v_megadrive).w
 		beq.s	loc_C66
 		move.w	#17930/10-1,d0
-		dbf	d0,*
+
+.loop:
+		dbf	d0,.loop
 
 loc_C66:
 		move.w	#1,(f_hbla_pal).w
@@ -959,7 +961,7 @@ ReadJoypads:
 		lea	(v_jpadhold1).w,a0		; address where joypad states are written
 		lea	(port_1_data).l,a1		; first joypad port
 		bsr.s	Joypad_Read			; do the first joypad
-		addq.w	#2,a1				; do the second joypad
+		addq.w	#port_2_data-port_1_data,a1	; do the second joypad
 
 Joypad_Read:
 		move.b	#0,(a1)
@@ -3441,7 +3443,7 @@ SignpostArtLoad:
 		bne.w	locret_47E2
 		cmpi.b	#1,(Current_Act).w
 		beq.s	locret_47E2
-		move.w	(Camera_RAM).w,d0
+		move.w	(Camera_X_pos).w,d0
 		move.w	(Camera_Max_X_pos).w,d1
 		subi.w	#$100,d1
 		cmp.w	d1,d0
@@ -4248,7 +4250,7 @@ BgScroll_S1SYZ:						; leftover from Sonic 1
 ; ---------------------------------------------------------------------------
 
 BgScroll_S1Ending:
-		move.w	(Camera_RAM).w,d0
+		move.w	(Camera_X_pos).w,d0
 		asr.w	#1,d0
 		move.w	d0,(Camera_BG_X_pos).w
 		move.w	d0,(Camera_BG2_X_pos).w
@@ -4696,7 +4698,7 @@ DynResize_GHZ_Index:dc.w DynResize_GHZ1-DynResize_GHZ_Index
 
 DynResize_GHZ1:
 		move.w	#$300,(Camera_Max_Y_pos_target).w
-		cmpi.w	#$1780,(Camera_RAM).w
+		cmpi.w	#$1780,(Camera_X_pos).w
 		blo.s	locret_75CA
 		move.w	#$400,(Camera_Max_Y_pos_target).w
 
@@ -4706,13 +4708,13 @@ locret_75CA:
 
 DynResize_GHZ2:
 		move.w	#$300,(Camera_Max_Y_pos_target).w
-		cmpi.w	#$ED0,(Camera_RAM).w
+		cmpi.w	#$ED0,(Camera_X_pos).w
 		blo.s	locret_75FC
 		move.w	#$200,(Camera_Max_Y_pos_target).w
-		cmpi.w	#$1600,(Camera_RAM).w
+		cmpi.w	#$1600,(Camera_X_pos).w
 		blo.s	locret_75FC
 		move.w	#$400,(Camera_Max_Y_pos_target).w
-		cmpi.w	#$1D60,(Camera_RAM).w
+		cmpi.w	#$1D60,(Camera_X_pos).w
 		blo.s	locret_75FC
 		move.w	#$300,(Camera_Max_Y_pos_target).w
 
@@ -4733,21 +4735,21 @@ DynResize_GHZ3_Index:dc.w DynResize_GHZ3_Main-DynResize_GHZ3_Index
 
 DynResize_GHZ3_Main:
 		move.w	#$300,(Camera_Max_Y_pos_target).w
-		cmpi.w	#$380,(Camera_RAM).w
+		cmpi.w	#$380,(Camera_X_pos).w
 		blo.s	locret_7658
 		move.w	#$310,(Camera_Max_Y_pos_target).w
-		cmpi.w	#$960,(Camera_RAM).w
+		cmpi.w	#$960,(Camera_X_pos).w
 		blo.s	locret_7658
 		cmpi.w	#$280,(Camera_Y_pos).w
 		blo.s	loc_765A
 		move.w	#$400,(Camera_Max_Y_pos_target).w
-		cmpi.w	#$1380,(Camera_RAM).w
+		cmpi.w	#$1380,(Camera_X_pos).w
 		bhs.s	loc_7650
 		move.w	#$4C0,(Camera_Max_Y_pos_target).w
 		move.w	#$4C0,(Camera_Max_Y_pos).w
 
 loc_7650:
-		cmpi.w	#$1700,(Camera_RAM).w
+		cmpi.w	#$1700,(Camera_X_pos).w
 		bhs.s	loc_765A
 
 locret_7658:
@@ -4761,12 +4763,12 @@ loc_765A:
 ; ---------------------------------------------------------------------------
 
 DynResize_GHZ3_Boss:
-		cmpi.w	#$960,(Camera_RAM).w
+		cmpi.w	#$960,(Camera_X_pos).w
 		bhs.s	loc_7672
 		subq.b	#2,(Dynamic_Resize_Routine).w
 
 loc_7672:
-		cmpi.w	#$2960,(Camera_RAM).w
+		cmpi.w	#$2960,(Camera_X_pos).w
 		blo.s	locret_76AA
 		bsr.w	FindFreeObj
 		bne.s	loc_7692
@@ -4788,7 +4790,7 @@ locret_76AA:
 ; ---------------------------------------------------------------------------
 
 DynResize_GHZ3_End:
-		move.w	(Camera_RAM).w,(Camera_Min_X_pos).w
+		move.w	(Camera_X_pos).w,(Camera_Min_X_pos).w
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -4822,7 +4824,7 @@ DynResize_LZ3:
 loc_76EA:
 		tst.b	(Dynamic_Resize_Routine).w
 		bne.s	locret_7726
-		cmpi.w	#$1CA0,(Camera_RAM).w
+		cmpi.w	#$1CA0,(Camera_X_pos).w
 		blo.s	locret_7724
 		cmpi.w	#$600,(Camera_Y_pos).w
 		bhs.s	locret_7724
@@ -4848,7 +4850,7 @@ locret_7726:
 ; ---------------------------------------------------------------------------
 
 DynResize_LZ4:
-		cmpi.w	#$D00,(Camera_RAM).w
+		cmpi.w	#$D00,(Camera_X_pos).w
 		blo.s	locret_774E
 		cmpi.w	#$18,(v_player+obY).w
 		bhs.s	locret_774E
@@ -4891,10 +4893,10 @@ off_7776:	dc.w loc_777E-off_7776
 
 loc_777E:
 		move.w	#$1D0,(Camera_Max_Y_pos_target).w
-		cmpi.w	#$700,(Camera_RAM).w
+		cmpi.w	#$700,(Camera_X_pos).w
 		blo.s	locret_77AC
 		move.w	#$220,(Camera_Max_Y_pos_target).w
-		cmpi.w	#$D00,(Camera_RAM).w
+		cmpi.w	#$D00,(Camera_X_pos).w
 		blo.s	locret_77AC
 		move.w	#$340,(Camera_Max_Y_pos_target).w
 		cmpi.w	#$340,(Camera_Y_pos).w
@@ -4914,11 +4916,11 @@ loc_77AE:
 
 loc_77BC:
 		move.w	#0,(Camera_Min_Y_pos).w
-		cmpi.w	#$E00,(Camera_RAM).w
+		cmpi.w	#$E00,(Camera_X_pos).w
 		bhs.s	locret_77F0
 		move.w	#$340,(Camera_Min_Y_pos).w
 		move.w	#$340,(Camera_Max_Y_pos_target).w
-		cmpi.w	#$A90,(Camera_RAM).w
+		cmpi.w	#$A90,(Camera_X_pos).w
 		bhs.s	locret_77F0
 		move.w	#$500,(Camera_Max_Y_pos_target).w
 		cmpi.w	#$370,(Camera_Y_pos).w
@@ -4939,7 +4941,7 @@ loc_77F2:
 loc_7800:
 		cmpi.w	#$500,(Camera_Y_pos).w
 		blo.s	locret_781A
-		cmpi.w	#$B80,(Camera_RAM).w
+		cmpi.w	#$B80,(Camera_X_pos).w
 		blo.s	locret_781A
 		move.w	#$500,(Camera_Min_Y_pos).w
 		addq.b	#2,(Dynamic_Resize_Routine).w
@@ -4949,7 +4951,7 @@ locret_781A:
 ; ---------------------------------------------------------------------------
 
 loc_781C:
-		cmpi.w	#$B80,(Camera_RAM).w
+		cmpi.w	#$B80,(Camera_X_pos).w
 		bhs.s	loc_7832
 		cmpi.w	#$340,(Camera_Min_Y_pos).w
 		beq.s	locret_786A
@@ -4965,11 +4967,11 @@ loc_7832:
 		move.w	#$500,(Camera_Min_Y_pos).w
 
 loc_7848:
-		cmpi.w	#$E70,(Camera_RAM).w
+		cmpi.w	#$E70,(Camera_X_pos).w
 		blo.s	locret_786A
 		move.w	#0,(Camera_Min_Y_pos).w
 		move.w	#$500,(Camera_Max_Y_pos_target).w
-		cmpi.w	#$1430,(Camera_RAM).w
+		cmpi.w	#$1430,(Camera_X_pos).w
 		blo.s	locret_786A
 		move.w	#$210,(Camera_Max_Y_pos_target).w
 
@@ -4983,7 +4985,7 @@ DynResize_CPZ2:
 
 S1DynResize_MZ2:					; leftover from Sonic 1
 		move.w	#$520,(Camera_Max_Y_pos_target).w
-		cmpi.w	#$1700,(Camera_RAM).w
+		cmpi.w	#$1700,(Camera_X_pos).w
 		blo.s	locret_7882
 		move.w	#$200,(Camera_Max_Y_pos_target).w
 
@@ -5002,9 +5004,9 @@ off_7892:	dc.w DynResize_CPZ3_BossCheck-off_7892
 ; ===========================================================================
 
 DynResize_CPZ3_BossCheck:
-		cmpi.w	#$480,(Camera_RAM).w
+		cmpi.w	#$480,(Camera_X_pos).w
 		blt.s	DynResize_CPZ3_Null
-		cmpi.w	#$740,(Camera_RAM).w
+		cmpi.w	#$740,(Camera_X_pos).w
 		bgt.s	DynResize_CPZ3_Null
 		move.w	(Camera_Max_Y_pos).w,d0
 		cmp.w	(Camera_Y_pos).w,d0
@@ -5053,9 +5055,9 @@ DynResize_EHZ2_Index:dc.w DynResize_EHZ2_01-DynResize_EHZ2_Index
 ; ---------------------------------------------------------------------------
 
 DynResize_EHZ2_01:
-		cmpi.w	#$26E0,(Camera_RAM).w
+		cmpi.w	#$26E0,(Camera_X_pos).w
 		blo.s	locret_795A
-		move.w	(Camera_RAM).w,(Camera_Min_X_pos).w
+		move.w	(Camera_X_pos).w,(Camera_Min_X_pos).w
 		move.w	#$390,(Camera_Max_Y_pos_target).w
 		move.w	#$390,(Camera_Max_Y_pos).w
 		addq.b	#2,(Dynamic_Resize_Routine).w
@@ -5079,7 +5081,7 @@ locret_795A:
 ; ---------------------------------------------------------------------------
 
 DynResize_EHZ2_02:
-		cmpi.w	#$2880,(Camera_RAM).w
+		cmpi.w	#$2880,(Camera_X_pos).w
 		blo.s	locret_796E
 		move.w	#$2880,(Camera_Min_X_pos).w
 		addq.b	#2,(Dynamic_Resize_Routine).w
@@ -5115,7 +5117,7 @@ off_7990:	dc.w loc_7996-off_7990
 ; ---------------------------------------------------------------------------
 
 loc_7996:
-		cmpi.w	#$1E70,(Camera_RAM).w
+		cmpi.w	#$1E70,(Camera_X_pos).w
 		blo.s	locret_79A8
 		move.w	#$210,(Camera_Max_Y_pos_target).w
 		addq.b	#2,(Dynamic_Resize_Routine).w
@@ -5125,7 +5127,7 @@ locret_79A8:
 ; ---------------------------------------------------------------------------
 
 loc_79AA:
-		cmpi.w	#$2000,(Camera_RAM).w
+		cmpi.w	#$2000,(Camera_X_pos).w
 		blo.s	locret_79D4
 		bsr.w	FindFreeObj
 		bne.s	loc_79BC
@@ -5145,7 +5147,7 @@ locret_79D4:
 ; ---------------------------------------------------------------------------
 
 loc_79D6:
-		move.w	(Camera_RAM).w,(Camera_Min_X_pos).w
+		move.w	(Camera_X_pos).w,(Camera_Min_X_pos).w
 		rts
 ; ---------------------------------------------------------------------------
 		rts
@@ -5169,7 +5171,7 @@ DynResize_HPZ1:
 
 DynResize_HPZ2:
 		move.w	#$520,(Camera_Max_Y_pos_target).w
-		cmpi.w	#$25A0,(Camera_RAM).w
+		cmpi.w	#$25A0,(Camera_X_pos).w
 		blo.s	locret_7A1A
 		move.w	#$420,(Camera_Max_Y_pos_target).w
 		cmpi.w	#$4D0,(v_player+obY).w
@@ -5192,7 +5194,7 @@ DynResize_HPZ3_Index:dc.w loc_7A30-DynResize_HPZ3_Index
 ; ---------------------------------------------------------------------------
 
 loc_7A30:
-		cmpi.w	#$2AC0,(Camera_RAM).w
+		cmpi.w	#$2AC0,(Camera_X_pos).w
 		blo.s	locret_7A46
 		bsr.w	FindFreeObj
 		bne.s	locret_7A46
@@ -5204,7 +5206,7 @@ locret_7A46:
 ; ---------------------------------------------------------------------------
 
 loc_7A48:
-		cmpi.w	#$2C00,(Camera_RAM).w
+		cmpi.w	#$2C00,(Camera_X_pos).w
 		blo.s	locret_7A78
 		move.w	#$4CC,(Camera_Max_Y_pos_target).w
 		bsr.w	FindFreeObj
@@ -5225,7 +5227,7 @@ locret_7A78:
 ; ---------------------------------------------------------------------------
 
 loc_7A7A:
-		move.w	(Camera_RAM).w,(Camera_Min_X_pos).w
+		move.w	(Camera_X_pos).w,(Camera_Min_X_pos).w
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -5243,10 +5245,10 @@ DynResize_HTZ_Index:dc.w DynResize_HTZ1-DynResize_HTZ_Index
 
 DynResize_HTZ1:
 		move.w	#$720,(Camera_Max_Y_pos_target).w
-		cmpi.w	#$1880,(Camera_RAM).w
+		cmpi.w	#$1880,(Camera_X_pos).w
 		blo.s	locret_7ABA
 		move.w	#$620,(Camera_Max_Y_pos_target).w
-		cmpi.w	#$2000,(Camera_RAM).w
+		cmpi.w	#$2000,(Camera_X_pos).w
 		blo.s	locret_7ABA
 		move.w	#$2A0,(Camera_Max_Y_pos_target).w
 
@@ -5268,10 +5270,10 @@ DynResize_HTZ2_Index:dc.w loc_7AD2-DynResize_HTZ2_Index
 
 loc_7AD2:
 		move.w	#$800,(Camera_Max_Y_pos_target).w
-		cmpi.w	#$1800,(Camera_RAM).w
+		cmpi.w	#$1800,(Camera_X_pos).w
 		blo.s	locret_7AF2
 		move.w	#$510,(Camera_Max_Y_pos_target).w
-		cmpi.w	#$1E00,(Camera_RAM).w
+		cmpi.w	#$1E00,(Camera_X_pos).w
 		blo.s	locret_7AF2
 		addq.b	#2,(Dynamic_Resize_Routine).w
 
@@ -5280,7 +5282,7 @@ locret_7AF2:
 ; ---------------------------------------------------------------------------
 
 loc_7AF4:
-		cmpi.w	#$1EB0,(Camera_RAM).w
+		cmpi.w	#$1EB0,(Camera_X_pos).w
 		blo.s	locret_7B10
 		bsr.w	FindFreeObj
 		bne.s	locret_7B10
@@ -5295,7 +5297,7 @@ locret_7B10:
 ; ---------------------------------------------------------------------------
 
 loc_7B12:
-		cmpi.w	#$1F60,(Camera_RAM).w
+		cmpi.w	#$1F60,(Camera_X_pos).w
 		blo.s	loc_7B2E
 		bsr.w	FindFreeObj
 		bne.s	loc_7B28
@@ -5310,13 +5312,13 @@ loc_7B2E:
 ; ---------------------------------------------------------------------------
 
 loc_7B30:
-		cmpi.w	#$2050,(Camera_RAM).w
+		cmpi.w	#$2050,(Camera_X_pos).w
 		blo.s	loc_7B3A
 		rts
 ; ---------------------------------------------------------------------------
 
 loc_7B3A:
-		move.w	(Camera_RAM).w,(Camera_Min_X_pos).w
+		move.w	(Camera_X_pos).w,(Camera_Min_X_pos).w
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -5334,7 +5336,7 @@ DynResize_HTZ3_Index:dc.w loc_7B5A-DynResize_HTZ3_Index
 ; ---------------------------------------------------------------------------
 
 loc_7B5A:
-		cmpi.w	#$2148,(Camera_RAM).w
+		cmpi.w	#$2148,(Camera_X_pos).w
 		blo.s	loc_7B6C
 		addq.b	#2,(Dynamic_Resize_Routine).w
 		moveq	#plcid_FZBoss,d0
@@ -5345,7 +5347,7 @@ loc_7B6C:
 ; ---------------------------------------------------------------------------
 
 loc_7B6E:
-		cmpi.w	#$2300,(Camera_RAM).w
+		cmpi.w	#$2300,(Camera_X_pos).w
 		blo.s	loc_7B8A
 		bsr.w	FindFreeObj
 		bne.s	loc_7B8A
@@ -5358,7 +5360,7 @@ loc_7B8A:
 ; ---------------------------------------------------------------------------
 
 loc_7B8C:
-		cmpi.w	#$2450,(Camera_RAM).w
+		cmpi.w	#$2450,(Camera_X_pos).w
 		blo.s	loc_7B98
 		addq.b	#2,(Dynamic_Resize_Routine).w
 
@@ -7021,7 +7023,7 @@ Anim_End:
 ; ---------------------------------------------------------------------------
 BldSpr_ScrPos:
 		dc.l 0
-		dc.l Camera_RAM
+		dc.l Camera_X_pos
 		dc.l Camera_BG_X_pos
 		dc.l Camera_BG3_X_pos
 
@@ -7401,7 +7403,7 @@ byte_D2E2:	dc.b   8,  8,  8,  8
 
 BldSpr_ScrPos_2P:
 		dc.l 0
-		dc.l Camera_RAM
+		dc.l Camera_X_pos
 		dc.l Camera_BG_X_pos
 		dc.l Camera_BG3_X_pos
 ; ---------------------------------------------------------------------------
@@ -8638,13 +8640,13 @@ loc_DCF2:
 ; ===========================================================================
 ; loc_DD14:
 ObjectsManager_Main:
-		move.w	(Camera_RAM).w,d1
+		move.w	(Camera_X_pos).w,d1
 		subi.w	#$80,d1
 		andi.w	#-$80,d1
 		move.w	d1,(Camera_X_pos_coarse).w
 		lea	(v_objstate).w,a2
 		moveq	#0,d2
-		move.w	(Camera_RAM).w,d6
+		move.w	(Camera_X_pos).w,d6
 		andi.w	#-$80,d6
 		cmp.w	(Camera_X_pos_last).w,d6
 		beq.w	locret_DDDE
@@ -8794,13 +8796,13 @@ loc_DDE0:
 
 ; loc_DE5C
 ObjectsManager_2P_Main:
-		move.w	(Camera_RAM).w,d1
+		move.w	(Camera_X_pos).w,d1
 		andi.w	#-$100,d1
 		move.w	d1,(Camera_X_pos_coarse).w
 		move.w	(Camera_X_pos_P2).w,d1
 		andi.w	#-$100,d1
 		move.w	d1,(Camera_X_pos_coarse_P2).w
-		move.b	(Camera_RAM).w,d6
+		move.b	(Camera_X_pos).w,d6
 		andi.w	#$FF,d6
 		move.w	(Camera_X_pos_last).w,d0
 		cmp.w	(Camera_X_pos_last).w,d6
@@ -8826,8 +8828,8 @@ loc_DE9C:
 		bsr.s	sub_DED2
 
 loc_DEC4:
-		move.w	(v_objstate).w,(v_objstate_copy).w
-		move.w	(Obj_respawn_index_P2).w,(Obj_respawn_index_P2_copy).w
+		move.w	(v_objstate).w,(v_objstate_debug).w
+		move.w	(Obj_respawn_index_P2).w,(Obj_respawn_index_P2_debug).w
 		rts
 ; ===========================================================================
 
@@ -12095,7 +12097,7 @@ S1SS_ShowLayout:
 		muls.w	#$18,d4
 		muls.w	#$18,d5
 		moveq	#0,d2
-		move.w	(Camera_RAM).w,d2
+		move.w	(Camera_X_pos).w,d2
 		divu.w	#$18,d2
 		swap	d2
 		neg.w	d2
@@ -12144,7 +12146,7 @@ loc_19BF2:
 		mulu.w	#$80,d0
 		adda.l	d0,a0
 		moveq	#0,d0
-		move.w	(Camera_RAM).w,d0
+		move.w	(Camera_X_pos).w,d0
 		divu.w	#$18,d0
 		adda.w	d0,a0
 		lea	(v_ssbuffer3).w,a4
@@ -12936,15 +12938,15 @@ locret_1AC26:
 ; i.e. rotates the blocks to the left by one
 
 loc_1AC28:
-		move.w	(Camera_RAM).w,d0
+		move.w	(Camera_X_pos).w,d0
 		cmpi.w	#$1940,d0
 		blo.s	locret_1AC26
 		cmpi.w	#$1F80,d0
 		bhs.s	locret_1AC26
-		subq.b	#1,(byte_F721).w
+		subq.b	#1,(CPZ_UnkScroll_Timer).w
 		bpl.s	locret_1AC26
-		move.b	#7,(byte_F721).w
-		move.b	#1,(byte_F720).w
+		move.b	#7,(CPZ_UnkScroll_Timer).w
+		move.b	#1,(Screen_redraw_flag).w
 		lea	(v_ram_start+$7500).l,a1
 		bsr.s	sub_1AC58
 		lea	(v_ram_start+$7D00).l,a1
@@ -15109,7 +15111,7 @@ S1SS_ShowLayout_PB:
 		muls.w	#$18,d4
 		muls.w	#$18,d5
 		moveq	#0,d2
-		move.w	(Camera_RAM).w,d2
+		move.w	(Camera_X_pos).w,d2
 		divu.w	#$18,d2
 		swap	d2
 		neg.w	d2
@@ -15158,7 +15160,7 @@ S1SS_ShowLayout_PB:
 		mulu.w	#$80,d0
 		adda.l	d0,a0
 		moveq	#0,d0
-		move.w	(Camera_RAM).w,d0
+		move.w	(Camera_X_pos).w,d0
 		divu.w	#$18,d0
 		adda.w	d0,a0
 		lea	(v_ssbuffer3).w,a4
@@ -15995,15 +15997,15 @@ ShiftCPZBackground_PB:
 ; i.e. rotates the blocks to the left by one
 
 .loc_1AC28:
-		move.w	(Camera_RAM).w,d0
+		move.w	(Camera_X_pos).w,d0
 		cmpi.w	#$1940,d0
 		blo.s	.locret_1AC26
 		cmpi.w	#$1F80,d0
 		bhs.s	.locret_1AC26
-		subq.b	#1,(byte_F721).w
+		subq.b	#1,(CPZ_UnkScroll_Timer).w
 		bpl.s	.locret_1AC26
-		move.b	#7,(byte_F721).w
-		move.b	#1,(byte_F720).w
+		move.b	#7,(CPZ_UnkScroll_Timer).w
+		move.b	#1,(Screen_redraw_flag).w
 		lea	(v_ram_start+$7500).l,a1
 		bsr.s	.sub_1AC58
 		lea	(v_ram_start+$7D00).l,a1

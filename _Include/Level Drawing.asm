@@ -42,9 +42,9 @@ loc_689E:
 		lea	(Camera_RAM_copy).w,a3
 		lea	(v_lvllayout).w,a4
 		move.w	#$4000,d2
-		tst.b	(byte_F720).w
+		tst.b	(Screen_redraw_flag).w
 		beq.s	loc_68E6
-		move.b	#0,(byte_F720).w
+		move.b	#0,(Screen_redraw_flag).w
 		moveq	#-16,d4
 		moveq	#((224+16+16)/16)-1,d6
 

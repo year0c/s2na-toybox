@@ -32,7 +32,7 @@ Obj0F_Cycle:
 Obj0F_Toggle:
 		btst	#bitB,d0			; has B been pressed?
 		beq.s	.donothing			; if not, branch
-		bchg	#0,(unk_FFE9).w		; try turning on two player mode which will not work...
+		bchg	#0,(Two_player_mode_lo).w	; try turning on two player mode by changing bit 0
 
 .donothing:
 		rts

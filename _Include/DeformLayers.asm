@@ -68,8 +68,8 @@ Deform_Index:	dc.w Deform_GHZ-Deform_Index
 ; ---------------------------------------------------------------------------
 
 Deform_GHZ:
-		tst.w	(Two_player_mode).w
-		bne.w	loc_5C5A
+		tst.w	(Two_player_mode).w		; is two player mode enabled?
+		bne.w	Deform_GHZ_2P	; if so, branch
 		move.w	(Camera_X_pos_diff).w,d4
 		ext.l	d4
 		asl.l	#5,d4
@@ -159,7 +159,7 @@ loc_5C22:
 		asl.l	#8,d2
 		moveq	#0,d3
 		move.w	d0,d3
-		move.w	#72-1,d1
+		move.w	#72-1,d1	; 32+16+16+48+40+72 = 224
 		add.w	d4,d1
 
 loc_5C48:
@@ -173,7 +173,7 @@ loc_5C48:
 		rts
 ; ---------------------------------------------------------------------------
 
-loc_5C5A:
+Deform_GHZ_2P:
 		move.w	(Camera_X_pos_diff).w,d4
 		ext.l	d4
 		asl.l	#5,d4
@@ -197,7 +197,7 @@ loc_5C5A:
 		moveq	#0,d0
 
 loc_5C94:
-		andi.w	#-2,d0
+		andi.w	#$FFFE,d0
 		move.w	d0,d4
 		lsr.w	#1,d4
 		move.w	d0,(v_bgscrposy_vdp).w
@@ -234,6 +234,7 @@ loc_5CE8:
 loc_5CF6:
 		move.l	d0,(a1)+
 		dbf	d1,loc_5CF6
+
 		move.w	(v_bgscroll_buffer+8).w,d0
 		add.w	(Camera_BG3_X_pos).w,d0
 		neg.w	d0
@@ -242,6 +243,7 @@ loc_5CF6:
 loc_5D0A:
 		move.l	d0,(a1)+
 		dbf	d1,loc_5D0A
+
 		move.w	#24-1,d1
 		move.w	(Camera_BG3_X_pos).w,d0
 		neg.w	d0
@@ -249,13 +251,20 @@ loc_5D0A:
 loc_5D1A:
 		move.l	d0,(a1)+
 		dbf	d1,loc_5D1A
+
+	if FixBugs
+		move.w	#20-1,d1
+	else
+		; Bug: This does 24 lines, resulting in the deformation doing 4 extra lines.
 		move.w	#24-1,d1
+	endif
 		move.w	(Camera_BG2_X_pos).w,d0
 		neg.w	d0
 
 loc_5D2A:
 		move.l	d0,(a1)+
 		dbf	d1,loc_5D2A
+
 		move.w	(Camera_BG2_X_pos).w,d0
 		move.w	(Camera_RAM).w,d2
 		sub.w	d0,d2
@@ -267,7 +276,11 @@ loc_5D2A:
 		add.l	d2,d2
 		moveq	#0,d3
 		move.w	d0,d3
-		move.w	#36-1,d1
+	if FixBugs
+		move.w	#36-1,d1	; 16+8+8+24+20+36 = 112
+	else
+		move.w	#36-1,d1	; 16+8+8+24+24+36 = 116 (incorrect, should be 112)
+	endif
 		add.w	d4,d1
 
 loc_5D52:
@@ -278,6 +291,8 @@ loc_5D52:
 		add.l	d2,d3
 		swap	d3
 		dbf	d1,loc_5D52
+
+; begin second player deformation
 		move.w	(Camera_BG_Y_pos_diff).w,d4
 		ext.l	d4
 		asl.l	#5,d4
@@ -299,7 +314,7 @@ loc_5D52:
 		moveq	#0,d0
 
 loc_5D98:
-		andi.w	#-2,d0
+		andi.w	#$FFFE,d0
 		move.w	d0,d4
 		lsr.w	#1,d4
 		move.w	d0,(v_bg3scrposx_vdp).w
@@ -335,6 +350,7 @@ loc_5DE8:
 loc_5DF6:
 		move.l	d0,(a1)+
 		dbf	d1,loc_5DF6
+
 		move.w	(v_bgscroll_buffer+8).w,d0
 		add.w	(Camera_BG3_X_pos_P2).w,d0
 		neg.w	d0
@@ -343,6 +359,7 @@ loc_5DF6:
 loc_5E0A:
 		move.l	d0,(a1)+
 		dbf	d1,loc_5E0A
+
 		move.w	#24-1,d1
 		move.w	(Camera_BG3_X_pos_P2).w,d0
 		neg.w	d0
@@ -350,13 +367,20 @@ loc_5E0A:
 loc_5E1A:
 		move.l	d0,(a1)+
 		dbf	d1,loc_5E1A
+
+	if FixBugs
+		move.w	#20-1,d1
+	else
+		; Bug: This does 24 lines, resulting in the deformation doing 4 extra lines.
 		move.w	#24-1,d1
+	endif
 		move.w	(Camera_BG2_X_pos_P2).w,d0
 		neg.w	d0
 
 loc_5E2A:
 		move.l	d0,(a1)+
 		dbf	d1,loc_5E2A
+
 		move.w	(Camera_BG2_X_pos_P2).w,d0
 		move.w	(Camera_X_pos_P2).w,d2
 		sub.w	d0,d2
@@ -368,7 +392,11 @@ loc_5E2A:
 		add.l	d2,d2
 		moveq	#0,d3
 		move.w	d0,d3
-		move.w	#36-1,d1
+	if FixBugs
+		move.w	#36-1,d1	; 16+8+8+24+20+36 = 112
+	else
+		move.w	#36-1,d1	; 16+8+8+24+24+36 = 116 (incorrect, should be 112)
+	endif
 		add.w	d4,d1
 
 loc_5E52:
@@ -379,6 +407,7 @@ loc_5E52:
 		add.l	d2,d3
 		swap	d3
 		dbf	d1,loc_5E52
+
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -419,6 +448,7 @@ loc_5EC6:
 		addq.b	#1,d2
 		addq.b	#1,d3
 		dbf	d1,loc_5EC6
+
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -434,6 +464,7 @@ loc_5ED8:
 		addq.b	#1,d2
 		addq.b	#1,d3
 		dbf	d1,loc_5ED8
+
 		rts
 ; ---------------------------------------------------------------------------
 Deform_LZ_Data1:
@@ -476,6 +507,7 @@ Deform_CPZ:
 loc_6026:
 		move.l	d0,(a1)+
 		dbf	d1,loc_6026
+
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -506,6 +538,7 @@ Deform_Unk:						; unknown BG deform
 loc_6078:
 		move.w	d0,(a1)+
 		dbf	d1,loc_6078
+
 		move.w	(Camera_BG2_X_pos).w,d0
 		neg.w	d0
 		move.w	#29-1,d1
@@ -513,6 +546,7 @@ loc_6078:
 loc_6088:
 		move.w	d0,(a1)+
 		dbf	d1,loc_6088
+
 		lea	(v_bgscroll_buffer).w,a2
 		move.w	(Camera_BG_Y_pos).w,d0
 		andi.w	#$3F0,d0
@@ -541,7 +575,7 @@ loc_60B6:
 
 Deform_EHZ:
 		tst.w	(Two_player_mode).w
-		bne.w	loc_620E
+		bne.w	Deform_EHZ_2P
 		move.w	(Camera_BG_Y_pos).w,(v_bgscrposy_vdp).w
 		lea	(v_hscrolltablebuffer).w,a1
 		move.w	(Camera_RAM).w,d0
@@ -556,6 +590,7 @@ loc_60E4:
 loc_60EC:
 		move.l	d0,(a1)+
 		dbf	d1,loc_60EC
+
 		move.w	d2,d0
 		asr.w	#6,d0
 		move.w	#58-1,d1
@@ -563,6 +598,7 @@ loc_60EC:
 loc_60FA:
 		move.l	d0,(a1)+
 		dbf	d1,loc_60FA
+
 		move.w	d0,d3
 		move.b	(Vint_runcount+3).w,d1
 		andi.w	#7,d1
@@ -582,12 +618,14 @@ loc_6126:
 		add.w	d3,d0
 		move.l	d0,(a1)+
 		dbf	d1,loc_6126
+
 		move.w	#0,d0
 		move.w	#11-1,d1
 
 loc_613A:
 		move.l	d0,(a1)+
 		dbf	d1,loc_613A
+
 		move.w	d2,d0
 		asr.w	#4,d0
 		move.w	#16-1,d1
@@ -595,6 +633,7 @@ loc_613A:
 loc_6148:
 		move.l	d0,(a1)+
 		dbf	d1,loc_6148
+
 		move.w	d2,d0
 		asr.w	#4,d0
 		move.w	d0,d1
@@ -605,6 +644,7 @@ loc_6148:
 loc_615C:
 		move.l	d0,(a1)+
 		dbf	d1,loc_615C
+
 		move.l	d0,d4
 		swap	d4
 		move.w	d2,d0
@@ -630,6 +670,7 @@ loc_6188:
 		add.l	d0,d3
 		swap	d3
 		dbf	d1,loc_6188
+
 		move.w	#18/2-1,d1
 
 loc_619A:
@@ -642,7 +683,8 @@ loc_619A:
 		add.l	d0,d3
 		swap	d3
 		dbf	d1,loc_619A
-		move.w	#45/3-1,d1
+
+		move.w	#45/3-1,d1	; 22+58+21+11+16+16+15+18+45 = 222
 
 loc_61B2:
 		move.w	d4,(a1)+
@@ -663,6 +705,7 @@ loc_61B2:
 		move.w	d4,(a1)+
 		move.w	d3,(a1)+
 		endm
+		; 22+58+21+11+16+16+15+18+45+2 = 224
 	else
 		; Bug: The last 2 pixels of the screen are not covered, resulting in very weird artifacting at the bottom of the screen.
 	endif
@@ -678,7 +721,7 @@ Deform_EHZ_Data:
 		even
 ; ---------------------------------------------------------------------------
 
-loc_620E:
+Deform_EHZ_2P:
 		move.b	(Vint_runcount+3).w,d1
 		andi.w	#7,d1
 		bne.s	loc_621C
@@ -690,16 +733,28 @@ loc_621C:
 		lea	(v_hscrolltablebuffer).w,a1
 		move.w	(Camera_RAM).w,d0
 		move.w	#11-1,d1
-		bsr.s	sub_6264
+		bsr.s	sub_6264	; do first player deformation
+		; first player deformation height = 11+29+11+5+8+8+40 = 112
 		moveq	#0,d0
 		move.w	d0,(v_bg3scrposx_vdp).w
 		subi.w	#224,(v_bg3scrposx_vdp).w
 		move.w	(Camera_Y_pos_P2).w,(v_bg3scrposy_vdp).w
 		subi.w	#224,(v_bg3scrposy_vdp).w
 		andi.l	#$FFFEFFFE,(v_bg3scrposy_vdp).w
-		lea	(v_hscrolltablebuffer+$1B0).w,a1
+	if FixBugs
+		; We will optimize the deformation for the second player so that it doesn't unnecessarily deform layers that the user can't see.
+		lea	(v_hscrolltablebuffer+224*2).w,a1
+	else
+		lea	(v_hscrolltablebuffer+216*2).w,a1
+	endif
 		move.w	(Camera_X_pos_P2).w,d0
-		move.w	#15-1,d1
+	if FixBugs
+		move.w	#11-1,d1	; do second player deformation
+		; second player deformation height = 11+29+11+5+8+8+40 = 112
+	else
+		move.w	#(11+4)-1,d1	; do second player deformation
+		; second player deformation height = 11+29+11+5+8+8+40 = 112
+	endif
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -713,6 +768,7 @@ sub_6264:
 loc_626E:
 		move.l	d0,(a1)+
 		dbf	d1,loc_626E
+
 		move.w	d2,d0
 		asr.w	#6,d0
 		move.w	#29-1,d1
@@ -720,6 +776,7 @@ loc_626E:
 loc_627C:
 		move.l	d0,(a1)+
 		dbf	d1,loc_627C
+
 		move.w	d0,d3
 		move.w	(v_bgscroll_buffer).w,d1
 		andi.w	#$1F,d1
@@ -733,12 +790,14 @@ loc_6298:
 		add.w	d3,d0
 		move.l	d0,(a1)+
 		dbf	d1,loc_6298
+
 		move.w	#0,d0
 		move.w	#5-1,d1
 
 loc_62AC:
 		move.l	d0,(a1)+
 		dbf	d1,loc_62AC
+
 		move.w	d2,d0
 		asr.w	#4,d0
 		move.w	#8-1,d1
@@ -746,6 +805,7 @@ loc_62AC:
 loc_62BA:
 		move.l	d0,(a1)+
 		dbf	d1,loc_62BA
+
 		move.w	d2,d0
 		asr.w	#4,d0
 		move.w	d0,d1
@@ -756,6 +816,7 @@ loc_62BA:
 loc_62CE:
 		move.l	d0,(a1)+
 		dbf	d1,loc_62CE
+
 		move.w	d2,d0
 		asr.w	#1,d0
 		move.w	d2,d1
@@ -779,6 +840,7 @@ loc_62F6:
 		add.l	d0,d3
 		swap	d3
 		dbf	d1,loc_62F6
+
 		rts
 ; End of function sub_6264
 
@@ -853,6 +915,7 @@ Deform_HPZ:
 loc_637E:
 		move.w	d0,(a1)+
 		dbf	d1,loc_637E
+
 		move.w	d2,d0
 		asr.w	#3,d0
 		sub.w	d2,d0
@@ -913,6 +976,7 @@ loc_63E0:
 loc_63F2:
 		move.w	d0,(a1)+
 		dbf	d1,loc_63F2
+
 		lea	(v_bgscroll_buffer).w,a2
 		move.w	(Camera_BG_Y_pos).w,d0
 		move.w	d0,d2
@@ -936,6 +1000,7 @@ Deform_HTZ:
 loc_642C:
 		move.l	d0,(a1)+
 		dbf	d1,loc_642C
+
 		move.l	d0,d4
 		move.w	d2,d0
 		asr.w	#1,d0
@@ -976,6 +1041,7 @@ loc_642C:
 loc_647E:
 		move.l	d4,(a1)+
 		dbf	d1,loc_647E
+
 		swap	d3
 		add.l	d0,d3
 		add.l	d0,d3
@@ -986,6 +1052,7 @@ loc_647E:
 loc_6492:
 		move.l	d4,(a1)+
 		dbf	d1,loc_6492
+
 		swap	d3
 		add.l	d0,d3
 		add.l	d0,d3
@@ -996,6 +1063,7 @@ loc_6492:
 loc_64A6:
 		move.l	d4,(a1)+
 		dbf	d1,loc_64A6
+
 		swap	d3
 		add.l	d0,d3
 		add.l	d0,d3
@@ -1007,12 +1075,13 @@ loc_64A6:
 loc_64BC:
 		move.l	d4,(a1)+
 		dbf	d1,loc_64BC
+
 		swap	d3
 		add.l	d0,d3
 		add.l	d0,d3
 		add.l	d0,d3
 		swap	d3
-		move.w	#3-1,d2
+		move.w	#3-1,d2		; 128+1+1+1+1+1+1+1+1+7+8+10+15+(16*3) = 224
 
 loc_64D0:
 		move.w	d3,d4
@@ -1021,6 +1090,7 @@ loc_64D0:
 loc_64D6:
 		move.l	d4,(a1)+
 		dbf	d1,loc_64D6
+
 		swap	d3
 		add.l	d0,d3
 		add.l	d0,d3
@@ -1028,6 +1098,7 @@ loc_64D6:
 		add.l	d0,d3
 		swap	d3
 		dbf	d2,loc_64D0
+
 		rts
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -1061,7 +1132,22 @@ locret_6512:
 
 ;sub_6514:
 ScrollHoriz:
-	if FixBugs=0
+	if FixBugs
+		; To prevent the bug that is described above, this caps the position
+		; array index offset so that it does not access position data from
+		; before the spin dash was performed. Note that this required
+		; modifications to 'Sonic_UpdateSpindash' and 'Tails_UpdateSpindash'.
+		move.b	Horiz_scroll_delay_val-Camera_Delay(a5),d1	; should scrolling be delayed?
+		beq.s	.scrollNotDelayed				; if not, branch
+		lsl.b	#2,d1		; multiply by 4, the size of a position buffer entry
+		subq.b	#1,Horiz_scroll_delay_val-Camera_Delay(a5)	; reduce delay value
+		move.b	Sonic_Pos_Record_Index+1-Camera_Delay(a5),d0
+		sub.b	Horiz_scroll_delay_val+1-Camera_Delay(a5),d0
+		cmp.b	d0,d1
+		blo.s	.doNotCap
+		move.b	d0,d1
+.doNotCap:
+	else
 		; The intent of this code is to make the camera briefly lag behind the
 		; player right after releasing a spin dash, however it does this by
 		; simply making the camera use position data from previous frames. This
@@ -1080,21 +1166,6 @@ ScrollHoriz:
 		move.b	Horiz_scroll_delay_val-Camera_Delay(a5),d1	; get delay value
 		lsl.b	#2,d1		; multiply by 4, the size of a position buffer entry
 		addq.b	#4,d1
-	else
-		; To prevent the bug that is described above, this caps the position
-		; array index offset so that it does not access position data from
-		; before the spin dash was performed. Note that this required
-		; modifications to 'Sonic_UpdateSpindash' and 'Tails_UpdateSpindash'.
-		move.b	Horiz_scroll_delay_val-Camera_Delay(a5),d1	; should scrolling be delayed?
-		beq.s	.scrollNotDelayed				; if not, branch
-		lsl.b	#2,d1		; multiply by 4, the size of a position buffer entry
-		subq.b	#1,Horiz_scroll_delay_val-Camera_Delay(a5)	; reduce delay value
-		move.b	Sonic_Pos_Record_Index+1-Camera_Delay(a5),d0
-		sub.b	Horiz_scroll_delay_val+1-Camera_Delay(a5),d0
-		cmp.b	d0,d1
-		blo.s	.doNotCap
-		move.b	d0,d1
-.doNotCap:
 	endif
 
 		move.w	Sonic_Pos_Record_Index-Camera_Delay(a5),d0

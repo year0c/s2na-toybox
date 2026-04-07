@@ -120,7 +120,7 @@ Vectors:
 		dc.b "      HEDGEHOG 2"
 		dc.b "                "
 		dc.b "GM 00004049-01"		; Version (leftover from Sonic 1)
-Checksum:	dc.w $AFC7				; Checksum (patched later if incorrect)
+Checksum:	dc.w $AFC7				; Checksum (leftover from Sonic 1)
 		dc.b "J               "		; I/O support
 		dc.l StartOfRom				; Start address of ROM
 ROMEndLoc:	dc.l S1_EndOfRom-1		; End address of ROM (leftover from Sonic 1)

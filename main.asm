@@ -13572,22 +13572,22 @@ Art_BigRing:	binclude	"art/uncompressed/Giant Ring.bin"
 ; --------------------------------------------------------------------------------------
 		binclude	"leftovers/level/layout/HTZ_2.bin"
 		even
-		binclude	"level/layout/HTZ_BG.bin"
+Level_HTZBg_PB:	binclude	"level/layout/HTZ_BG.bin"
 		even
-		binclude	"level/layout/CPZ_1.bin"
+Level_CPZ1_PB:	binclude	"level/layout/CPZ_1.bin"
 		even
-		binclude	"level/layout/HPZ_1.bin"
+Level_HPZ1_PB:	binclude	"level/layout/HPZ_1.bin"
 		even
-		binclude	"level/layout/CPZ_BG.bin"
+Level_CPZBg_PB:	binclude	"level/layout/CPZ_BG.bin"
 		even
-		binclude	"level/layout/HPZ_BG.bin"
+Level_HPZBg_PB:	binclude	"level/layout/HPZ_BG.bin"
 		even
-		dc.l	0
+Level_Null_PB:	dc.l	0
 
 ;----------------------------------------------------
 ; A duplicate copy of the big ring art
 ;----------------------------------------------------
-		binclude	"art/uncompressed/Giant Ring.bin"
+Art_BigRing_PB:	binclude	"art/uncompressed/Giant Ring.bin"
 		align 4
 		; cut-off piece of uncompressed giant ring art
 		dc.w	$EEEE,$EEEE
@@ -13714,7 +13714,7 @@ ObjPos_HTZ1:	binclude	"level/objects/HTZ_1.bin"
 		even
 ObjPos_HTZ2:	binclude	"level/objects/HTZ_2.bin"
 		even
-ObjPos_HTZ3:	binclude	"level/objects/HTZ_3.bin"
+ObjPos_HTZ3:	binclude	"level/objects/S1/fz.bin"
 		even
 ObjPos_S1SBZ1pf1:
 		binclude	"level/objects/S1/sbz1pf1.bin"
@@ -16441,7 +16441,7 @@ APM_HPZ_PB_End:
 	dephase
 
 		binclude	"leftovers/symbols/symbol25.bin"
-;		binclude	"leftovers/code/code_69464.bin"
+
 	phase $1A074
 		include	"leftovers/obj/21 HUD.asm"
 ; ===========================================================================

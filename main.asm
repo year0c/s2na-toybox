@@ -3474,9 +3474,9 @@ Demo_CPZ:	binclude	"demodata/Intro - CPZ.bin"
 		even
 Demo_S1GHZ:	binclude	"demodata/S1/Intro - GHZ.bin"
 		even
-		binclude	"demodata/S1/Intro - MZ.bin"
+Demo_S1MZ:	binclude	"demodata/S1/Intro - MZ.bin"
 		even
-		binclude	"demodata/S1/Intro - SYZ.bin"
+Demo_S1SYZ:	binclude	"demodata/S1/Intro - SYZ.bin"
 		even
 Demo_S1SS:	binclude	"demodata/S1/Intro - Special Stage.bin"
 		even

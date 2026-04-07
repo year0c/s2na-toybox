@@ -55,20 +55,20 @@ locret_44E2:
 
 MoveDemo_On:
 		tst.b	(v_jpadhold1).w
-		bpl.s	loc_44F6
+		bpl.s	.dontquit
 		tst.w	(f_demo).w
-		bmi.s	loc_44F6
+		bmi.s	.dontquit
 		move.b	#GameModeID_TitleScreen,(v_gamemode).w
 
-loc_44F6:
+.dontquit:
 		lea	(Demo_Index).l,a1
 		moveq	#0,d0
 		move.b	(Current_Zone).w,d0
 		cmpi.b	#GameModeID_SpecialStage,(v_gamemode).w
-		bne.s	loc_450C
+		bne.s	.notspecial
 		moveq	#6,d0
 
-loc_450C:
+.notspecial:
 		lsl.w	#2,d0
 		movea.l	(a1,d0.w),a1
 		move.w	(Demo_button_index).w,d0
@@ -76,40 +76,52 @@ loc_450C:
 		move.b	(a1),d0
 		lea	(v_jpadhold1).w,a0
 		move.b	d0,d1
+	if FixBugs
+		; Fix demo playback
+		; https://info.sonicretro.org/SCHG_How-to:Fix_demo_playback
+		move.b	v_jpadhold2-v_jpadhold1(a0),d2
+	else
 		moveq	#0,d2
+	endif
 		eor.b	d2,d0
 		move.b	d1,(a0)+
 		and.b	d1,d0
 		move.b	d0,(a0)+
 		subq.b	#1,(Demo_press_counter).w
-		bhs.s	loc_453A
+		bhs.s	.demo2P
 		move.b	3(a1),(Demo_press_counter).w
 		addq.w	#2,(Demo_button_index).w
 
-loc_453A:
+.demo2P:
 		cmpi.b	#id_EHZ,(Current_Zone).w
-		bne.s	loc_4572
+		bne.s	.notEHZ
 		lea	(Demo_EHZ_2P).l,a1
 		move.w	(Demo_button_index_2P).w,d0
 		adda.w	d0,a1
 		move.b	(a1),d0
 		lea	(v_2Pjpadhold).w,a0
 		move.b	d0,d1
+	if FixBugs
+		; Fix demo playback
+		; https://info.sonicretro.org/SCHG_How-to:Fix_demo_playback
+		move.b	v_jpadhold2-v_jpadhold1(a0),d2
+	else
 		moveq	#0,d2
+	endif
 		eor.b	d2,d0
 		move.b	d1,(a0)+
 		and.b	d1,d0
 		move.b	d0,(a0)+
 		subq.b	#1,(Demo_press_counter_2P).w
-		bhs.s	locret_4570
+		bhs.s	.end
 		move.b	3(a1),(Demo_press_counter_2P).w
 		addq.w	#2,(Demo_button_index_2P).w
 
-locret_4570:
+.end:
 		rts
 ; ---------------------------------------------------------------------------
 
-loc_4572:
+.notEHZ:
 		move.w	#0,(v_2Pjpadhold).w
 		rts
 ; End of function MoveSonicInDemo
@@ -134,15 +146,21 @@ Demo_Index:
 		dc.l RAM_debug_demo_record
 
 Demo_S1EndIndex:
-		dc.l $8B0837	; garbage, leftover from Sonic 1's ending sequence demos
-		dc.l $42085C
-		dc.l $6A085F
-		dc.l $2F082C
-		dc.l $210803
-		dc.l $28300808
-		dc.l $2E0815
-		dc.l $F0846
-		dc.l $1A08FF
-		dc.l $8CA0000
-		dc.l 0
-		dc.l 0
+	if 0
+		dc.l Demo_EndGHZ1	; demos run during the credits, removed in Sonic 2 Nick Arcade
+		dc.l Demo_EndMZ
+		dc.l Demo_EndSYZ
+		dc.l Demo_EndLZ
+		dc.l Demo_EndSLZ
+		dc.l Demo_EndSBZ1
+		dc.l Demo_EndSBZ2
+		dc.l Demo_EndGHZ2
+	endif
+
+; Stray demo data is present here. It involves Sonic slowly running
+; right, jumping once, then running at full speed for a few seconds.
+; Interestingly, this lines up with our knowledge of the fabled
+; Tokyo Game Show prototype.
+; See it in action: https://youtu.be/S8_IAfQbUu0
+Demo_Unused:	binclude	"demodata/S1/Unused Demo.bin"
+		even

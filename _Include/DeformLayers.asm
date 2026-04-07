@@ -695,8 +695,6 @@ loc_621C:
 		move.w	d0,(v_bg3scrposx_vdp).w
 		subi.w	#224,(v_bg3scrposx_vdp).w
 		move.w	(Camera_Y_pos_P2).w,(v_bg3scrposy_vdp).w
-
-loc_624A:
 		subi.w	#224,(v_bg3scrposy_vdp).w
 		andi.l	#$FFFEFFFE,(v_bg3scrposy_vdp).w
 		lea	(v_hscrolltablebuffer+$1B0).w,a1

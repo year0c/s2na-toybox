@@ -11128,7 +11128,7 @@ word_142D0:	dc.w 1
 		jmpTos	; Empty
 ; ===========================================================================
 
-		include	"obj/0C.asm"
+		include	"obj/0C Small Floating Platform.asm"
 Map_Obj0C:	include	"mappings/sprite/obj0C.asm"
 
 		jmpTos	JmpTo_CalcSine
@@ -12845,34 +12845,34 @@ AnimCue_HPZ:	zoneanimstart
 ; According to leftover resizing code, this was meant for the
 ; Chemical Plant Zone boss, which symbol tables refer to as "vaccume".
 AnimCue_CPZ_Boss:	zoneanimstart
-		; ?
-		zoneanimdecl 7, Art_UnkZone_1, ArtTile_Art_UnkZone_1, 2, 4
+		; Lights
+		zoneanimdecl 7, Art_CPZ_Lights, ArtTile_CPZ_Lights, 2, 4
 		dc.b   0
 		dc.b   4
 		even
-		; ?
-		zoneanimdecl 7, Art_UnkZone_2, ArtTile_Art_UnkZone_2, 3, 8
+		; Conveyor
+		zoneanimdecl 7, Art_CPZ_Conveyor, ArtTile_CPZ_Conveyor, 3, 8
 		dc.b   0
 		dc.b   8
 		dc.b $10
 		dc.b   0
 		even
-		; ?
-		zoneanimdecl 7, Art_UnkZone_3, ArtTile_Art_UnkZone_3, 4, 2
+		; Pistons
+		zoneanimdecl 7, Art_CPZ_Pistons, ArtTile_CPZ_Pistons, 4, 2
 		dc.b   0
 		dc.b   2
 		dc.b   0
 		dc.b   4
 		even
-		; ?
-		zoneanimdecl $B, Art_UnkZone_4, ArtTile_Art_UnkZone_4, 4, 2
+		; Pressure Metre
+		zoneanimdecl $B, Art_CPZ_Metre, ArtTile_CPZ_Metre, 4, 2
 		dc.b   0
 		dc.b   2
 		dc.b   4
 		dc.b   2
 		even
-		; ?
-		zoneanimdecl $F, Art_UnkZone_5, ArtTile_Art_UnkZone_5, $A, 1
+		; Cross and Circle
+		zoneanimdecl $F, Art_CPZ_Cross_Circle, ArtTile_CPZ_Cross_Circle, $A, 1
 		dc.b   0
 		dc.b   0
 		dc.b   1
@@ -12884,15 +12884,15 @@ AnimCue_CPZ_Boss:	zoneanimstart
 		dc.b   5
 		dc.b   4
 		even
-		; ?
-		zoneanimdecl 3, Art_UnkZone_6, ArtTile_Art_UnkZone_6, 4, 4
+		; Propeller
+		zoneanimdecl 3, Art_CPZ_Propeller, ArtTile_CPZ_Propeller, 4, 4
 		dc.b   0
 		dc.b   4
 		dc.b   8
 		dc.b   4
 		even
-		; ?
-		zoneanimdecl 7, Art_UnkZone_7, ArtTile_Art_UnkZone_7, 6, 3
+		; Surface Liquid
+		zoneanimdecl 7, Art_CPZ_Liquid, ArtTile_CPZ_Liquid, 6, 3
 		dc.b   0
 		dc.b   3
 		dc.b   6
@@ -12900,8 +12900,8 @@ AnimCue_CPZ_Boss:	zoneanimstart
 		dc.b  $C
 		dc.b  $F
 		even
-		; ?
-		zoneanimdecl 7, Art_UnkZone_8, ArtTile_Art_UnkZone_8, 4, 1
+		; Conveyor
+		zoneanimdecl 7, Art_CPZ_Conveyor_2, ArtTile_CPZ_Conveyor_2, 4, 1
 		dc.b   0
 		dc.b   1
 		dc.b   2
@@ -13486,14 +13486,14 @@ Art_Flowers4:	binclude	"art/uncompressed/EHZ and HTZ flowers - 4.bin"
 Art_EHZPulseBall:	binclude	"art/uncompressed/Pulsing ball against checkered background (EHZ).bin"
 Art_HPZUnusedBg:	binclude	"art/uncompressed/HPZ unused background.bin"
 Art_HPZPulseOrb:	binclude	"art/uncompressed/Pulsing orb (HPZ).bin"
-Art_UnkZone_1:	binclude	"art/uncompressed/Unknown Zone - 1.bin"
-Art_UnkZone_2:	binclude	"art/uncompressed/Unknown Zone - 2.bin"
-Art_UnkZone_3:	binclude	"art/uncompressed/Unknown Zone - 3.bin"
-Art_UnkZone_4:	binclude	"art/uncompressed/Unknown Zone - 4.bin"
-Art_UnkZone_5:	binclude	"art/uncompressed/Unknown Zone - 5.bin"
-Art_UnkZone_6:	binclude	"art/uncompressed/Unknown Zone - 6.bin"
-Art_UnkZone_7:	binclude	"art/uncompressed/Unknown Zone - 7.bin"
-Art_UnkZone_8:	binclude	"art/uncompressed/Unknown Zone - 8.bin"
+Art_CPZ_Lights:	binclude	"art/uncompressed/CPZ Lights.bin"
+Art_CPZ_Conveyor:	binclude	"art/uncompressed/CPZ Conveyor.bin"
+Art_CPZ_Pistons:	binclude	"art/uncompressed/CPZ Pistons.bin"
+Art_CPZ_Metre:	binclude	"art/uncompressed/CPZ Metre.bin"
+Art_CPZ_Cross_Circle:	binclude	"art/uncompressed/CPZ Cross and Circle.bin"
+Art_CPZ_Propeller:	binclude	"art/uncompressed/CPZ Propeller.bin"
+Art_CPZ_Liquid:	binclude	"art/uncompressed/CPZ Liquid.bin"
+Art_CPZ_Conveyor_2:	binclude	"art/uncompressed/CPZ Conveyor 2.bin"
 
 ; ---------------------------------------------------------------------------
 ; Level layout index
@@ -15903,34 +15903,34 @@ AnimCue_HPZ_PB:	zoneanimstart
 ; According to leftover resizing code, this was meant for the
 ; Chemical Plant Zone boss, which symbol tables refer to as "vaccume".
 AnimCue_CPZ_Boss_PB:	zoneanimstart
-		; ?
-		zoneanimdecl 7, $27798, ArtTile_Art_UnkZone_1, 2, 4	;	Art_UnkZone_1
+		; Lights
+		zoneanimdecl 7, $27798, ArtTile_CPZ_Lights, 2, 4	;	Art_CPZ_Lights
 		dc.b   0
 		dc.b   4
 		even
-		; ?
-		zoneanimdecl 7, $27898, ArtTile_Art_UnkZone_2, 3, 8	;	Art_UnkZone_2
+		; Conveyor
+		zoneanimdecl 7, $27898, ArtTile_CPZ_Conveyor, 3, 8	;	Art_CPZ_Conveyor
 		dc.b   0
 		dc.b   8
 		dc.b $10
 		dc.b   0
 		even
-		; ?
-		zoneanimdecl 7, $27B98, ArtTile_Art_UnkZone_3, 4, 2	;	Art_UnkZone_3
+		; Pistons
+		zoneanimdecl 7, $27B98, ArtTile_CPZ_Pistons, 4, 2	;	Art_CPZ_Pistons
 		dc.b   0
 		dc.b   2
 		dc.b   0
 		dc.b   4
 		even
-		; ?
-		zoneanimdecl $B, $27C58, ArtTile_Art_UnkZone_4, 4, 2	;	Art_UnkZone_4
+		; Pressure Metre
+		zoneanimdecl $B, $27C58, ArtTile_CPZ_Metre, 4, 2	;	Art_CPZ_Metre
 		dc.b   0
 		dc.b   2
 		dc.b   4
 		dc.b   2
 		even
-		; ?
-		zoneanimdecl $F, $27D18, ArtTile_Art_UnkZone_5, $A, 1	;	Art_UnkZone_5
+		; Cross and Circle
+		zoneanimdecl $F, $27D18, ArtTile_CPZ_Cross_Circle, $A, 1	;	Art_CPZ_Cross_Circle
 		dc.b   0
 		dc.b   0
 		dc.b   1
@@ -15942,15 +15942,15 @@ AnimCue_CPZ_Boss_PB:	zoneanimstart
 		dc.b   5
 		dc.b   4
 		even
-		; ?
-		zoneanimdecl 3, $27DD8, ArtTile_Art_UnkZone_6, 4, 4	;	Art_UnkZone_6
+		; Propeller
+		zoneanimdecl 3, $27DD8, ArtTile_CPZ_Propeller, 4, 4	;	Art_CPZ_Propeller
 		dc.b   0
 		dc.b   4
 		dc.b   8
 		dc.b   4
 		even
-		; ?
-		zoneanimdecl 7, $27F58, ArtTile_Art_UnkZone_7, 6, 3	;	Art_UnkZone_7
+		; Surface Liquid
+		zoneanimdecl 7, $27F58, ArtTile_CPZ_Liquid, 6, 3	;	Art_CPZ_Liquid
 		dc.b   0
 		dc.b   3
 		dc.b   6
@@ -15958,8 +15958,8 @@ AnimCue_CPZ_Boss_PB:	zoneanimstart
 		dc.b  $C
 		dc.b  $F
 		even
-		; ?
-		zoneanimdecl 7, $28198, ArtTile_Art_UnkZone_8, 4, 1	;	Art_UnkZone_8
+		; Conveyor
+		zoneanimdecl 7, $28198, ArtTile_CPZ_Conveyor_2, 4, 1	;	Art_CPZ_Conveyor_2
 		dc.b   0
 		dc.b   1
 		dc.b   2

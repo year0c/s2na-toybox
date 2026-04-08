@@ -1385,18 +1385,16 @@ ArtTile_Art_Flowers4:		equ $39A
 ArtTile_HTZ:			equ ArtTile_Level+$1FC
 ArtTile_EHZ_Shield:			equ $560
 
-; Unknown
-ArtTile_Art_UnkZone_1:		equ $480
-ArtTile_Art_UnkZone_2:		equ $484
-ArtTile_Art_UnkZone_3:		equ $48C
-ArtTile_Art_UnkZone_4:		equ $48E
-ArtTile_Art_UnkZone_5:		equ $490
-ArtTile_Art_UnkZone_6:		equ $491
-ArtTile_Art_UnkZone_7:		equ $495
-ArtTile_Art_UnkZone_8:		equ $498
-
 ; CPZ
 ArtTile_CPZ_Buildings:		equ $3D0
+ArtTile_CPZ_Lights:		equ $480
+ArtTile_CPZ_Conveyor:		equ $484
+ArtTile_CPZ_Pistons:		equ $48C
+ArtTile_CPZ_Metre:		equ $48E
+ArtTile_CPZ_Cross_Circle:	equ $490
+ArtTile_CPZ_Propeller:		equ $491
+ArtTile_CPZ_Liquid:		equ $495
+ArtTile_CPZ_Conveyor_2:		equ $498
 
 ; HPZ
 ArtTile_Art_HPZPulseOrb_1:	equ $2E8

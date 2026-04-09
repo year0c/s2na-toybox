@@ -751,7 +751,7 @@ loc_10068:
 		bclr	#2,obStatus(a0)
 		move.b	#$13,obHeight(a0)
 		move.b	#9,obWidth(a0)
-		move.b	#5,obAnim(a0)
+		move.b	#AniIDSonAni_Wait,obAnim(a0)
 		subq.w	#5,obY(a0)
 
 loc_1008A:
@@ -996,7 +996,7 @@ Obj01_DoRoll:
 		bset	#2,obStatus(a0)
 		move.b	#14,obHeight(a0)
 		move.b	#7,obWidth(a0)
-		move.b	#2,obAnim(a0)
+		move.b	#AniIDSonAni_Roll,obAnim(a0)
 		addq.w	#5,obY(a0)
 		move.w	#sfx_Roll,d0
 		jsr	(QueueSound2).l
@@ -1945,25 +1945,25 @@ SonicAniData:	dc.w SonicAni_Walk-SonicAniData
 		dc.w SonicAni_Spindash-SonicAniData
 		dc.w SonicAni_WallRecoil1-SonicAniData
 		dc.w SonicAni_WallRecoil2-SonicAniData
-		dc.w SonicAni_0C-SonicAniData
+		dc.w SonicAni_WailRecoil3-SonicAniData
 		dc.w SonicAni_Stop-SonicAniData
 		dc.w SonicAni_Float1-SonicAniData
 		dc.w SonicAni_Float2-SonicAniData
 		dc.w SonicAni_Spring-SonicAniData
-		dc.w SonicAni_S1LZHang-SonicAniData
-		dc.w SonicAni_Unused12-SonicAniData
-		dc.w SonicAni_Unused13-SonicAniData
-		dc.w SonicAni_Unused14-SonicAniData
+		dc.w SonicAni_Hang-SonicAniData
+		dc.w SonicAni_S1Leap1-SonicAniData
+		dc.w SonicAni_S1Leap2-SonicAniData
+		dc.w SonicAni_S1Surf-SonicAniData
 		dc.w SonicAni_Bubble-SonicAniData
-		dc.w SonicAni_DeathBW-SonicAniData
+		dc.w SonicAni_Burnt-SonicAniData
 		dc.w SonicAni_Drown-SonicAniData
 		dc.w SonicAni_Death-SonicAniData
-		dc.w SonicAni_Unused19-SonicAniData
+		dc.w SonicAni_S1Shrink-SonicAniData
 		dc.w SonicAni_Hurt-SonicAniData
-		dc.w SonicAni_S1LZSlide-SonicAniData
+		dc.w SonicAni_WaterSlide-SonicAniData
 		dc.w SonicAni_Blank-SonicAniData
 		dc.w SonicAni_Float3-SonicAniData
-		dc.w SonicAni_1E-SonicAniData
+		dc.w SonicAni_S1Float4-SonicAniData
 SonicAni_Walk:	dc.b $FF,$10,$11,$12,$13,$14,$15,$16,$17, $C, $D, $E, $F,$FF
 SonicAni_Run:	dc.b $FF,$3C,$3D,$3E,$3F,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF
 SonicAni_Roll:	dc.b $FE,$6C,$70,$6D,$70,$6E,$70,$6F,$70,$FF
@@ -1978,25 +1978,25 @@ SonicAni_Duck:	dc.b   5,$7F,$80,$FE,  1
 SonicAni_Spindash:	dc.b	 0,$71,$72,$71,$73,$71,$74,$71,$75,$71,$76,$71,$FF
 SonicAni_WallRecoil1:	dc.b $3F,$82,$FF
 SonicAni_WallRecoil2:	dc.b   7, 8, 8, 9,$FD,	5
-SonicAni_0C:	dc.b   7,  9,$FD,  5
+SonicAni_WailRecoil3:	dc.b   7,  9,$FD,  5
 SonicAni_Stop:	dc.b   3,$81,$82,$83,$84,$85,$86,$87,$88,$FE,  2
 SonicAni_Float1:	dc.b   7,$94,$96,$FF
 SonicAni_Float2:	dc.b   7,$91,$92,$93,$94,$95,$FF
 SonicAni_Spring:	dc.b $2F,$7E,$FD,  0
-SonicAni_S1LZHang:	dc.b	 5,$8F,$90,$FF
-SonicAni_Unused12:	dc.b	$F,$43,$43,$43,$FE,  1
-SonicAni_Unused13:	dc.b	$F,$43,$44,$FE,	 1
-SonicAni_Unused14:	dc.b $3F,$49,$FF
+SonicAni_Hang:	dc.b	 5,$8F,$90,$FF
+SonicAni_S1Leap1:	dc.b	$F,$43,$43,$43,$FE,  1
+SonicAni_S1Leap2:	dc.b	$F,$43,$44,$FE,	 1
+SonicAni_S1Surf:	dc.b $3F,$49,$FF
 SonicAni_Bubble:	dc.b  $B,$97,$97,$12,$13,$FD,  0
-SonicAni_DeathBW:	dc.b $20,$9A,$FF
+SonicAni_Burnt:	dc.b $20,$9A,$FF
 SonicAni_Drown:	dc.b $20,$99,$FF
 SonicAni_Death:	dc.b $20,$98,$FF
-SonicAni_Unused19:	dc.b	 3,$4E,$4F,$50,$51,$52,	 0,$FE,	 1
+SonicAni_S1Shrink:	dc.b	 3,$4E,$4F,$50,$51,$52,	 0,$FE,	 1
 SonicAni_Hurt:	dc.b $40,$8D,$FF
-SonicAni_S1LZSlide:	dc.b	  9,$8D,$8E,$FF
+SonicAni_WaterSlide:	dc.b	  9,$8D,$8E,$FF
 SonicAni_Blank:	dc.b $77,  0,$FD,  0
 SonicAni_Float3:	dc.b   3,$91,$92,$93,$94,$95,$FF
-SonicAni_1E:	dc.b   3,$3C,$FD,  0
+SonicAni_S1Float4:	dc.b   3,$3C,$FD,  0
 		even
 
 ; ---------------------------------------------------------------------------

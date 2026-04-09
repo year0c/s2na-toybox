@@ -322,7 +322,7 @@ loc_10F48:
 		tst.w	obInertia(a0)
 		bne.w	loc_10FFA
 		bclr	#5,obStatus(a0)
-		move.b	#AniIDSonAni_Wait,obAnim(a0)
+		move.b	#AniIDTailsAni_Wait,obAnim(a0)
 		btst	#3,obStatus(a0)
 		beq.s	Tails_Balance
 		moveq	#0,d0
@@ -366,21 +366,21 @@ loc_10FCE:
 		bset	#0,obStatus(a0)
 
 loc_10FD4:
-		move.b	#AniIDSonAni_Balance,obAnim(a0)
+		move.b	#AniIDTailsAni_Balance,obAnim(a0)
 		bra.s	loc_10FFA
 ; ---------------------------------------------------------------------------
 
 Tails_LookUp:
 		btst	#bitUp,(v_2Pjpadhold).w
 		beq.s	Tails_Duck
-		move.b	#AniIDSonAni_LookUp,obAnim(a0)
+		move.b	#AniIDTailsAni_LookUp,obAnim(a0)
 		bra.s	loc_10FFA
 ; ---------------------------------------------------------------------------
 
 Tails_Duck:
 		btst	#bitDn,(v_2Pjpadhold).w
 		beq.s	loc_10FFA
-		move.b	#AniIDSonAni_Duck,obAnim(a0)
+		move.b	#AniIDTailsAni_Duck,obAnim(a0)
 
 loc_10FFA:
 		move.b	(v_2Pjpadhold).w,d0
@@ -492,7 +492,7 @@ loc_110D2:
 
 loc_110DE:
 		move.w	d0,obInertia(a0)
-		move.b	#AniIDSonAni_Walk,obAnim(a0)
+		move.b	#AniIDTailsAni_Walk,obAnim(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -520,7 +520,7 @@ loc_110F2:
 		bne.s	locret_11120
 		cmpi.w	#$400,d0
 		blt.s	locret_11120
-		move.b	#AniIDSonAni_Stop,obAnim(a0)
+		move.b	#AniIDTailsAni_Stop,obAnim(a0)
 		bclr	#0,obStatus(a0)
 		move.w	#sfx_Skid,d0
 		jsr	(QueueSound2).l
@@ -549,7 +549,7 @@ loc_1113C:
 
 loc_11144:
 		move.w	d0,obInertia(a0)
-		move.b	#AniIDSonAni_Walk,obAnim(a0)
+		move.b	#AniIDTailsAni_Walk,obAnim(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -577,7 +577,7 @@ loc_11158:
 		bne.s	locret_11186
 		cmpi.w	#-$400,d0
 		bgt.s	locret_11186
-		move.b	#AniIDSonAni_Stop,obAnim(a0)
+		move.b	#AniIDTailsAni_Stop,obAnim(a0)
 		bset	#0,obStatus(a0)
 		move.w	#sfx_Skid,d0
 		jsr	(QueueSound2).l
@@ -637,7 +637,7 @@ loc_111E2:
 		bclr	#2,obStatus(a0)
 		move.b	#$F,obHeight(a0)
 		move.b	#9,obWidth(a0)
-		move.b	#AniIDSonAni_Wait,obAnim(a0)
+		move.b	#AniIDTailsAni_Wait,obAnim(a0)
 		subq.w	#5,obY(a0)
 
 loc_11204:
@@ -673,7 +673,7 @@ Tails_RollLeft:
 
 loc_11242:
 		bset	#0,obStatus(a0)
-		move.b	#AniIDSonAni_Roll,obAnim(a0)
+		move.b	#AniIDTailsAni_Roll,obAnim(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -695,7 +695,7 @@ Tails_RollRight:
 		move.w	obInertia(a0),d0
 		bmi.s	loc_11272
 		bclr	#0,obStatus(a0)
-		move.b	#AniIDSonAni_Roll,obAnim(a0)
+		move.b	#AniIDTailsAni_Roll,obAnim(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -882,7 +882,7 @@ loc_113BE:
 		bset	#2,obStatus(a0)
 		move.b	#$E,obHeight(a0)
 		move.b	#7,obWidth(a0)
-		move.b	#AniIDSonAni_Roll,obAnim(a0)
+		move.b	#AniIDTailsAni_Roll,obAnim(a0)
 		addq.w	#5,obY(a0)
 		move.w	#sfx_Roll,d0
 		jsr	(QueueSound2).l
@@ -937,7 +937,7 @@ loc_11424:
 		bne.s	loc_11498
 		move.b	#14,obHeight(a0)
 		move.b	#7,obWidth(a0)
-		move.b	#AniIDSonAni_Roll,obAnim(a0)
+		move.b	#AniIDTailsAni_Roll,obAnim(a0)
 		bset	#2,obStatus(a0)
 		addq.w	#5,obY(a0)
 
@@ -990,12 +990,12 @@ locret_114DA:
 Tails_Spindash:
 		tst.b	spindash_flag(a0)
 		bne.s	loc_11510
-		cmpi.b	#AniIDSonAni_Duck,obAnim(a0)
+		cmpi.b	#AniIDTailsAni_Duck,obAnim(a0)
 		bne.s	locret_1150E
 		move.b	(v_2Pjpadpress).w,d0
 		andi.b	#btnABC,d0
 		beq.w	locret_1150E
-		move.b	#AniIDSonAni_Spindash,obAnim(a0)
+		move.b	#AniIDTailsAni_Spindash,obAnim(a0)
 		move.w	#sfx_Roll,d0
 		jsr	(QueueSound2).l
 		addq.l	#4,sp
@@ -1011,7 +1011,7 @@ loc_11510:
 		bne.s	loc_11556
 		move.b	#14,obHeight(a0)
 		move.b	#7,obWidth(a0)
-		move.b	#AniIDSonAni_Roll,obAnim(a0)
+		move.b	#AniIDTailsAni_Roll,obAnim(a0)
 		addq.w	#5,obY(a0)
 		move.b	#0,spindash_flag(a0)
 	if FixBugs
@@ -1259,7 +1259,7 @@ loc_116E4:
 		add.w	d1,obY(a0)
 		move.b	d3,obAngle(a0)
 		bsr.w	Tails_ResetOnFloor
-		move.b	#AniIDSonAni_Walk,obAnim(a0)
+		move.b	#AniIDTailsAni_Walk,obAnim(a0)
 		move.b	d3,d0
 		addi.b	#$20,d0
 		andi.b	#$40,d0
@@ -1326,7 +1326,7 @@ loc_1177A:
 		add.w	d1,obY(a0)
 		move.b	d3,obAngle(a0)
 		bsr.w	Tails_ResetOnFloor
-		move.b	#AniIDSonAni_Walk,obAnim(a0)
+		move.b	#AniIDTailsAni_Walk,obAnim(a0)
 		move.w	#0,obVelY(a0)
 		move.w	obVelX(a0),obInertia(a0)
 
@@ -1405,7 +1405,7 @@ loc_11838:
 		add.w	d1,obY(a0)
 		move.b	d3,obAngle(a0)
 		bsr.w	Tails_ResetOnFloor
-		move.b	#AniIDSonAni_Walk,obAnim(a0)
+		move.b	#AniIDTailsAni_Walk,obAnim(a0)
 		move.w	#0,obVelY(a0)
 		move.w	obVelX(a0),obInertia(a0)
 
@@ -1433,7 +1433,7 @@ loc_11874:
 		bclr	#2,obStatus(a0)
 		move.b	#15,obHeight(a0)
 		move.b	#9,obWidth(a0)
-		move.b	#AniIDSonAni_Walk,obAnim(a0)
+		move.b	#AniIDTailsAni_Walk,obAnim(a0)
 		subq.w	#1,obY(a0)
 
 loc_118AA:
@@ -1490,7 +1490,7 @@ Tails_HurtStop:
 		move.w	d0,obVelY(a0)
 		move.w	d0,obVelX(a0)
 		move.w	d0,obInertia(a0)
-		move.b	#AniIDSonAni_Walk,obAnim(a0)
+		move.b	#AniIDTailsAni_Walk,obAnim(a0)
 		move.b	#2,obRoutine(a0)
 		move.w	#120,flashtime(a0)
 
@@ -1825,27 +1825,27 @@ TailsAniData:	dc.w TailsAni_Walk-TailsAniData
 		dc.w TailsAni_LookUp-TailsAniData
 		dc.w TailsAni_Duck-TailsAniData
 		dc.w TailsAni_Spindash-TailsAniData
-		dc.w TailsAni_0A-TailsAniData
-		dc.w TailsAni_0B-TailsAniData
-		dc.w TailsAni_0C-TailsAniData
+		dc.w TailsAni_WailRecoil1-TailsAniData
+		dc.w TailsAni_WailRecoil2-TailsAniData
+		dc.w TailsAni_WailRecoil3-TailsAniData
 		dc.w TailsAni_Stop-TailsAniData
 		dc.w TailsAni_Fly-TailsAniData
-		dc.w TailsAni_0F-TailsAniData
-		dc.w TailsAni_Jump-TailsAniData
-		dc.w TailsAni_11-TailsAniData
-		dc.w TailsAni_12-TailsAniData
-		dc.w TailsAni_13-TailsAniData
-		dc.w TailsAni_14-TailsAniData
-		dc.w TailsAni_15-TailsAniData
-		dc.w TailsAni_Death1-TailsAniData
-		dc.w TailsAni_UnusedDrown-TailsAniData
-		dc.w TailsAni_Death2-TailsAniData
-		dc.w TailsAni_19-TailsAniData
-		dc.w TailsAni_1A-TailsAniData
-		dc.w TailsAni_1B-TailsAniData
-		dc.w TailsAni_1C-TailsAniData
-		dc.w TailsAni_1D-TailsAniData
-		dc.w TailsAni_1E-TailsAniData
+		dc.w TailsAni_Float2-TailsAniData
+		dc.w TailsAni_Spring-TailsAniData
+		dc.w TailsAni_Hang-TailsAniData
+		dc.w TailsAni_Leap1-TailsAniData
+		dc.w TailsAni_Leap2-TailsAniData
+		dc.w TailsAni_Surf-TailsAniData
+		dc.w TailsAni_Bubble-TailsAniData
+		dc.w TailsAni_Burnt-TailsAniData
+		dc.w TailsAni_Drown-TailsAniData
+		dc.w TailsAni_Death-TailsAniData
+		dc.w TailsAni_Shrink-TailsAniData
+		dc.w TailsAni_Hurt-TailsAniData
+		dc.w TailsAni_WaterSlide-TailsAniData
+		dc.w TailsAni_Blank-TailsAniData
+		dc.w TailsAni_Float3-TailsAniData
+		dc.w TailsAni_Float4-TailsAniData
 TailsAni_Walk:	dc.b $FF,$10,$11,$12,$13,$14,$15, $E, $F,$FF
 TailsAni_Run:	dc.b $FF,$2E,$2F,$30,$31,$FF,$FF,$FF,$FF,$FF
 TailsAni_Roll:	dc.b   1,$48,$47,$46,$FF
@@ -1870,9 +1870,10 @@ TailsAni_Balance:dc.b $1F,  1,  2,  3,  4,  5,  6,  7,  8,$FF
 TailsAni_LookUp:dc.b $3F,  4,$FF
 TailsAni_Duck:	dc.b $3F,$5B,$FF
 TailsAni_Spindash:dc.b	 0,$60,$61,$62,$FF
-TailsAni_0A:	dc.b $3F,$82,$FF
-TailsAni_0B:	dc.b   7,  8,  8,  9,$FD,  5
-TailsAni_0C:	dc.b   7,  9,$FD,  5
+; The following 3 animations are identical to what Sonic uses.
+TailsAni_WailRecoil1:	dc.b $3F,$82,$FF
+TailsAni_WailRecoil2:	dc.b   7,  8,  8,  9,$FD,  5
+TailsAni_WailRecoil3:	dc.b   7,  9,$FD,  5
 	if FixBugs
 TailsAni_Stop:	dc.b   7,$67,$68,$FF
 	else
@@ -1880,23 +1881,45 @@ TailsAni_Stop:	dc.b   7,$67,$68,$FF
 TailsAni_Stop:	dc.b   7,  1,  2,$FF
 	endif
 TailsAni_Fly:	dc.b   7,$5E,$5F,$FF
-TailsAni_0F:	dc.b   7,  1,  2,  3,  4,  5,$FF
-TailsAni_Jump:	dc.b   3,$59,$5A,$59,$5A,$59,$5A,$59,$5A,$59,$5A,$59,$5A,$FD,  0
-TailsAni_11:	dc.b   4,  1,  2,$FF
-TailsAni_12:	dc.b  $F,  1,  2,  3,$FE,  1
-TailsAni_13:	dc.b  $F,  1,  2,$FE,  1
-TailsAni_14:	dc.b $3F,  1,$FF
-TailsAni_15:	dc.b  $B,  1,  2,  3,  4,$FD,  0
-TailsAni_Death1:dc.b $20,$5D,$FF
-TailsAni_UnusedDrown:dc.b $2F,$5D,$FF
-TailsAni_Death2:dc.b   3,$5D,$FF
-TailsAni_19:	dc.b   3,$5D,$FF
-TailsAni_1A:	dc.b   3,$5C,$FF
-TailsAni_1B:	dc.b   7,  1,  1,$FF
-TailsAni_1C:	dc.b $77,  0,$FD,  0
-TailsAni_1D:	dc.b   3,  1,  2,  3,  4,  5,  6,  7,  8,$FF
+	if FixBugs
+TailsAni_Float2:	dc.b   7,$6E,$6F,$70,$71,$72,$FF
+	else
+; Oddly, this doesn't use Tails's floating frames.
+TailsAni_Float2:	dc.b   7,  1,  2,  3,  4,  5,$FF
+	endif
+TailsAni_Spring:	dc.b   3,$59,$5A,$59,$5A,$59,$5A,$59,$5A,$59,$5A,$59,$5A,$FD,  0
+	if FixBugs
+TailsAni_Hang:	dc.b   5,$6C,$6D,$FF
+	else
+; Oddly, this doesn't use Tails's hanging frames.
+; It also doesn't match the same speed that Sonic's animation speed is set to.
+TailsAni_Hang:	dc.b   4,  1,  2,$FF
+	endif
+TailsAni_Leap1:	dc.b  $F,  1,  2,  3,$FE,  1
+TailsAni_Leap2:	dc.b  $F,  1,  2,$FE,  1
+TailsAni_Surf:	dc.b $3F,  1,$FF
+	if FixBugs
+TailsAni_Bubble:	dc.b  $B,$74,$74,$12,$13,$FD,  0
+	else
+; Oddly, this doesn't use Tails's bubble or walking frames.
+TailsAni_Bubble:	dc.b  $B,  1,  2,  3,  4,$FD,  0
+	endif
+TailsAni_Burnt:	dc.b $20,$5D,$FF
+TailsAni_Drown:	dc.b $2F,$5D,$FF
+TailsAni_Death:	dc.b   3,$5D,$FF
+TailsAni_Shrink:	dc.b   3,$5D,$FF
+TailsAni_Hurt:	dc.b   3,$5C,$FF
+	if FixBugs
+TailsAni_WaterSlide:	dc.b   9,$5C,$6B,$FF
+	else
+; Oddly, this doesn't use Tails's water slide frames.
+; It also doesn't match the same speed that Sonic's animation speed is set to.
+TailsAni_WaterSlide:	dc.b   7,  1,  1,$FF
+	endif
+TailsAni_Blank:	dc.b $77,  0,$FD,  0
+TailsAni_Float3:	dc.b   3,  1,  2,  3,  4,  5,  6,  7,  8,$FF
 ; The animation data below does the same thing as above.
-TailsAni_1E:	dc.b   3,  1,  2,  3,  4,  5,  6,  7,  8,$FF
+TailsAni_Float4:	dc.b   3,  1,  2,  3,  4,  5,  6,  7,  8,$FF
 		even
 
 ; ===========================================================================

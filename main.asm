@@ -570,6 +570,7 @@ ErrorWaitForC:
 ; ---------------------------------------------------------------------------
 Art_Text:	binclude	"art/uncompressed/Level select and Debug Mode text.bin"
 Art_Text_End:	even
+
 ; ===========================================================================
 ; vertical and horizontal interrupt handlers
 ; VERTICAL INTERRUPT HANDLER:

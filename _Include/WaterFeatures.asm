@@ -454,7 +454,7 @@ loc_441A:
 
 loc_4430:
 		clr.b	obInertia+1(a1)
-		move.b	#AniIDSonAni_Slide,obAnim(a1)
+		move.b	#AniIDSonAni_WaterSlide,obAnim(a1)
 		move.b	#1,(f_slidemode).w
 		move.b	(Vint_runcount+3).w,d0
 		andi.b	#$1F,d0

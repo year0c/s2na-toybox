@@ -31,7 +31,7 @@ Obj09_Index_PB:	dc.w .loc_1A3DC-Obj09_Index_PB
 		bsr.w	$19A22+$6A4	;	JmpTo8_Adjust2PArtPointer
 		move.b	#4,obRender(a0)
 		move.b	#0,obPriority(a0)
-		move.b	#2,obAnim(a0)
+		move.b	#AniIDSonAni_Roll,obAnim(a0)
 		bset	#2,obStatus(a0)
 		bset	#1,obStatus(a0)
 

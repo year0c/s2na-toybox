@@ -311,7 +311,7 @@ sub_14FC4:
 		bset	#1,obStatus(a2)
 		bclr	#3,obStatus(a2)
 		clr.b	jumping(a2)
-		move.b	#$10,obAnim(a2)
+		move.b	#AniIDSonAni_Spring,obAnim(a2)
 		move.b	#2,obRoutine(a2)
 		move.w	#sfx_Spring,d0
 		jmp	(QueueSound2).l

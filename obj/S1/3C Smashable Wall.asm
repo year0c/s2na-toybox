@@ -40,7 +40,7 @@ locret_C92C:
 
 loc_C92E:
 		lea	(v_player).w,a1
-		cmpi.b	#2,obAnim(a1)
+		cmpi.b	#AniIDSonAni_Roll,obAnim(a1)
 		bne.s	locret_C92C
 		move.w	objoff_30(a0),d0
 		bpl.s	loc_C942

@@ -140,7 +140,7 @@ loc_E342:
 
 
 sub_E34E:
-		move.w	#$100,obAnim(a0)
+		move.w	#1<<8+0,obAnim(a0)	; and obPrevAni
 		addq.w	#8,obY(a1)
 		move.w	objoff_30(a0),obVelY(a1)
 		bset	#1,obStatus(a1)
@@ -240,7 +240,7 @@ loc_E464:
 
 
 sub_E474:
-		move.w	#$300,obAnim(a0)
+		move.w	#3<<8+0,obAnim(a0)	; and obPrevAni
 		move.w	objoff_30(a0),obVelX(a1)
 		addq.w	#8,obX(a1)
 		bset	#0,obStatus(a1)
@@ -408,7 +408,7 @@ loc_E642:
 
 
 sub_E64E:
-		move.w	#$100,obAnim(a0)
+		move.w	#1<<8+0,obAnim(a0)	; and obPrevAni
 		subq.w	#8,obY(a1)
 		move.w	objoff_30(a0),obVelY(a1)
 		neg.w	obVelY(a1)
@@ -507,7 +507,7 @@ loc_E754:
 ; ===========================================================================
 
 loc_E762:
-		move.w	#$500,obAnim(a0)
+		move.w	#5<<8+0,obAnim(a0)	; and obPrevAni
 		move.w	objoff_30(a0),obVelY(a1)
 		move.w	objoff_30(a0),obVelX(a1)
 		addq.w	#6,obY(a1)
@@ -594,7 +594,7 @@ loc_E864:
 
 
 sub_E870:
-		move.w	#$500,obAnim(a0)
+		move.w	#5<<8+0,obAnim(a0)	; and obPrevAni
 		move.w	objoff_30(a0),obVelY(a1)
 		neg.w	obVelY(a1)
 		move.w	objoff_30(a0),obVelX(a1)

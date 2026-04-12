@@ -117,7 +117,7 @@ PLC_GameOver_End:
 PLC_GHZ:	dc.w ((PLC_GHZ_End-PLC_GHZ)/6)-1
 		plcm	Nem_GHZ, ArtTile_Level
 		plcm	Nem_Chopper, ArtTile_Chopper
-		plcm	Nem_VSpikes, ArtTile_Spikes_GHZ
+		plcm	Nem_VSpikes, ArtTile_S1_Spikes
 		plcm	Nem_HSpring, ArtTile_S1_Spring_Horizontal
 		plcm	Nem_VSpring, ArtTile_S1_Spring_Vertical
 		plcm	Nem_GHZ_Bridge, ArtTile_GHZ_Bridge
@@ -172,7 +172,7 @@ PLC_EHZ_End:
 ; --------------------------------------------------------------------------------------
 PLC_EHZ2:	dc.w ((PLC_EHZ2_End-PLC_EHZ2)/6)-1
 		plcm	Nem_Shield, ArtTile_EHZ_Shield
-		plcm	Nem_Points, ArtTile_Points	; Redundant PLC entry
+		plcm	Nem_Points, ArtTile_Points
 		plcm	Nem_Buzzer, ArtTile_Buzzer
 		plcm	Nem_Snail, ArtTile_Snail
 		plcm	Nem_Masher, ArtTile_Masher

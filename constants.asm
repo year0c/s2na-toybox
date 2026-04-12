@@ -1286,7 +1286,7 @@ ArtTile_Bomb:			equ $400
 ArtTile_Crabmeat:		equ $400
 ArtTile_Missile_Disolve:	equ $41C ; Unused
 ArtTile_Spikes:			equ $434
-ArtTile_Spikes_GHZ:		equ ArtTile_Spikes+$6C
+ArtTile_S1_Spikes:		equ $4A0
 ArtTile_Buzz_Bomber:		equ $444
 ArtTile_Chopper:		equ $470
 ArtTile_Yadrin:			equ $47B

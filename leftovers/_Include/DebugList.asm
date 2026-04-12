@@ -13,7 +13,7 @@ Debug_GHZ_PB:	dc.w (Debug_GHZ_PB_End-Debug_GHZ_PB-2)/8
 	dbug 	$9C84,	id_Obj1F,	0,	0,	make_art_tile(ArtTile_Crabmeat,0,0)	;	Map_obj1F
 	dbug 	$9FC2,	id_Obj22,	0,	0,	make_art_tile(ArtTile_Buzz_Bomber,0,0)	;	Map_obj22
 	dbug 	$B11E,	id_Obj2B,	0,	0,	make_art_tile(ArtTile_Chopper,0,0)	;	Map_Obj2B
-	dbug 	$C17E,	id_Obj36,	0,	0,	make_art_tile(ArtTile_Spikes_GHZ,0,0)	;	Map_Obj36
+	dbug 	$C17E,	id_Obj36,	0,	0,	make_art_tile(ArtTile_S1_Spikes,0,0)	;	Map_Obj36
 	dbug 	$84AE,	id_Obj18,	0,	0,	make_art_tile(ArtTile_Level,2,0)	;	Map_Obj18_GHZ
 	dbug 	$C202,	id_Obj3B,	0,	0,	make_art_tile(ArtTile_GHZ_Purple_Rock,3,0)	;	Map_Obj3B
 	dbug 	$EA80,	id_Obj40,	0,	0,	make_art_tile(ArtTile_Moto_Bug,0,0)	;	Map_obj40

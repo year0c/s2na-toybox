@@ -126,7 +126,7 @@ PLC_CPZ_PB:	dc.w ((PLC_CPZ_PB_End-PLC_CPZ_PB)/6)-1
 		plcm	$CCD56, ArtTile_CPZ_Buildings	;	Nem_CPZ_Buildings
 		plcm	$A57E4, ArtTile_CPZ_Platform	;	Nem_CPZ_FloatingPlatform
 		plcm	$A5904, $418	;	dai0dcg
-		plcm	$A5BF0, $440	;	nami0dcg
+		plcm	$A5BF0, $440	;	Nem_WaterSurface
 PLC_CPZ_PB_End:
 ; --------------------------------------------------------------------------------------
 ; PATTERN LOAD REQUEST LIST

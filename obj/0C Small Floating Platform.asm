@@ -15,7 +15,7 @@ Obj0C_Index:	dc.w Obj0C_Init-Obj0C_Index
 Obj0C_Init:
 		addq.b	#2,obRoutine(a0)
 		move.l	#Map_Obj0C,obMap(a0)
-		move.w	#make_art_tile($418,3,1),obGfx(a0)
+		move.w	#make_art_tile(ArtTile_CPZ_Float_Platform,3,1),obGfx(a0)
 		bsr.w	Adjust2PArtPointer
 		ori.b	#4,obRender(a0)
 		move.b	#16,obActWid(a0)

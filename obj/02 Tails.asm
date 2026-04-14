@@ -1531,7 +1531,7 @@ Tails_GameOver:
 		subi.w	#$80,d0
 		move.w	d0,obY(a0)	; get respawn y position
 		move.b	#2,obRoutine(a0)	; run Obj02_Control
-		andi.w	#$7FFF,obGfx(a0)
+		andi.w	#drawing_mask,obGfx(a0)
 		move.b	#$C,top_solid_bit(a0)
 		move.b	#$D,lrb_solid_bit(a0)
 		nop

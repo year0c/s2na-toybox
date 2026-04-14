@@ -21,7 +21,7 @@ loc_8C58:
 		cmpi.b	#id_HPZ,(Current_Zone).w
 		bne.s	loc_8CB0
 		move.l	#Map_Obj1A_HPZ,obMap(a0)
-		move.w	#$434A,obGfx(a0)
+		move.w	#make_art_tile(ArtTile_HPZ_Platform,2,0),obGfx(a0)
 		bsr.w	Adjust2PArtPointer
 		move.b	#48,obActWid(a0)
 		move.l	#Obj1A_Conf_HPZ,objoff_3C(a0)

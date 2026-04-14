@@ -28,9 +28,9 @@ loc_821E:
 		move.b	#8,obHeight(a0)
 		move.w	obY(a0),objoff_38(a0)
 		move.w	obX(a0),objoff_3A(a0)
-		cmpi.b	#id_EHZ,(Current_Zone).w
+		cmpi.b	#id_SLZ,(Current_Zone).w
 		bne.s	loc_8284
-		move.l	#Map_Obj15_EHZ,obMap(a0)
+		move.l	#Map_Obj15_SLZ,obMap(a0)
 		move.w	#make_art_tile(ArtTile_SLZ_Swing,2,0),obGfx(a0)
 		bsr.w	Adjust2PArtPointer
 		move.b	#32,obActWid(a0)
@@ -41,7 +41,7 @@ loc_8284:
 		cmpi.b	#id_CPZ,(Current_Zone).w
 		bne.s	loc_82BE
 		move.l	#Map_Obj15_CPZ,obMap(a0)
-		move.w	#make_art_tile($418,1,0),obGfx(a0)
+		move.w	#make_art_tile(ArtTile_CPZ_Float_Platform,1,0),obGfx(a0)
 		bsr.w	Adjust2PArtPointer
 		move.b	#32,obActWid(a0)
 		move.b	#16,obHeight(a0)

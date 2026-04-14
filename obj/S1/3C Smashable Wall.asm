@@ -17,7 +17,7 @@ Obj3C_Index:	dc.w loc_C8DC-Obj3C_Index
 loc_C8DC:
 		addq.b	#2,obRoutine(a0)
 		move.l	#Map_Obj3C,obMap(a0)
-		move.w	#make_art_tile($590,2,0),obGfx(a0)
+		move.w	#make_art_tile(ArtTile_GHZ_Edge_Wall+$244,2,0),obGfx(a0)
 		bsr.w	Adjust2PArtPointer
 		move.b	#4,obRender(a0)
 		move.b	#16,obActWid(a0)

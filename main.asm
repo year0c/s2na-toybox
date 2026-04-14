@@ -5440,9 +5440,9 @@ Map_Obj15_CPZ:	dc.w word_855C-Map_Obj15_CPZ
 word_855C:	dc.w 2
 		dc.w $F00F,    8,    4,$FFE0
 		dc.w $F00F, $808, $804,	   0
-Map_Obj15_EHZ:	dc.w word_8574-Map_Obj15_EHZ
-		dc.w word_85B6-Map_Obj15_EHZ
-		dc.w word_85C0-Map_Obj15_EHZ
+Map_Obj15_SLZ:	dc.w word_8574-Map_Obj15_SLZ
+		dc.w word_85B6-Map_Obj15_SLZ
+		dc.w word_85C0-Map_Obj15_SLZ
 word_8574:	dc.w 8
 		dc.w $F00F,    4,    2,$FFE0
 		dc.w $F00F, $804, $802,	   0

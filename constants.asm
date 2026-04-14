@@ -1463,6 +1463,8 @@ ArtTile_ArtNem_EggChoppers:	equ $540
 
 ; CPZ
 ArtTile_CPZ_Platform:		equ $400
+ArtTile_CPZ_Float_Platform:	equ $418
+ArtTile_CPZ_Water_Surface:	equ $440
 
 ; CPZ boss
 ArtTile_ArtNem_EggpodJets_1:	equ $418

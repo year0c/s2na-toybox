@@ -47,8 +47,8 @@ Debug_CPZ:	dc.w (Debug_CPZ_End-Debug_CPZ-2)/8
 	dbug 	Map_Obj03,	id_Obj03,	0,	0,	make_art_tile(ArtTile_Ring+$100,0,0)
 	endif
 	dbug 	Map_Obj0B,	id_Obj0B,	0,	0,	make_art_tile(ArtTile_Level,3,1)
-	dbug 	Map_Obj0C,	id_Obj0C,	0,	0,	make_art_tile($418,3,1)
-	dbug 	Map_Obj15_CPZ,	id_Obj15,	8,	0,	make_art_tile($418,1,0)
+	dbug 	Map_Obj0C,	id_Obj0C,	0,	0,	make_art_tile(ArtTile_CPZ_Float_Platform,3,1)
+	dbug 	Map_Obj15_CPZ,	id_Obj15,	8,	0,	make_art_tile(ArtTile_CPZ_Float_Platform,1,0)
 	dbug 	Map_Obj03,	id_Obj03,	9,	1,	make_art_tile(ArtTile_Ring,1,0)
 	dbug 	Map_Obj03,	id_Obj03,	$D,	5,	make_art_tile(ArtTile_Ring,1,0)
 	dbug 	Map_Obj19,	id_Obj19,	1,	0,	make_art_tile(ArtTile_CPZ_Platform,3,0)

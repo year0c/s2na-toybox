@@ -31,8 +31,8 @@ Debug_CPZ_PB:	dc.w (Debug_CPZ_PB_End-Debug_CPZ_PB-2)/8
 	dbug 	$E0B4,	id_Obj41,	0,	0,	make_art_tile(ArtTile_S1_Spring_Horizontal,0,0)	;	Map_obj41_GHZ
 	dbug 	$13602,	id_Obj03,	0,	0,	make_art_tile(ArtTile_Ring+$100,0,0)	;	Map_Obj03
 	dbug 	$13736,	id_Obj0B,	0,	0,	make_art_tile(ArtTile_Level,3,1)	;	Map_Obj0B
-	dbug 	$1385E,	id_Obj0C,	0,	0,	make_art_tile($418,3,1)	;	Map_Obj0C
-	dbug 	$7EDA,	id_Obj15,	8,	0,	make_art_tile($418,1,0)	;	Map_Obj15_CPZ
+	dbug 	$1385E,	id_Obj0C,	0,	0,	make_art_tile(ArtTile_CPZ_Float_Platform,3,1)	;	Map_Obj0C
+	dbug 	$7EDA,	id_Obj15,	8,	0,	make_art_tile(ArtTile_CPZ_Float_Platform,1,0)	;	Map_Obj15_CPZ
 Debug_CPZ_PB_End:
 
 Debug_EHZ_PB:	dc.w (Debug_EHZ_PB_End-Debug_EHZ_PB-2)/8

@@ -11093,14 +11093,14 @@ word_13D58:	dc.w 1
 		dc.w $F00F,  $14,   $A,$FFF0
 word_13D62:	dc.w 4
 		dc.w $F005,  $24,  $12,$FFF0
-		dc.w $F005, $824, $812,	   0		; 4
-		dc.w	 5,$1024,$1012,$FFF0		; 8
-		dc.w	 5,$1824,$1812,	   0		; 12
+		dc.w $F005, $824, $812,	   0
+		dc.w	 5,$1024,$1012,$FFF0
+		dc.w	 5,$1824,$1812,	   0
 word_13D84:	dc.w 4
 		dc.w $F005,  $28,  $14,$FFF0
-		dc.w $F005, $828, $814,	   0		; 4
-		dc.w	 5,$1028,$1014,$FFF0		; 8
-		dc.w	 5,$1828,$1814,	   0		; 12
+		dc.w $F005, $828, $814,	   0
+		dc.w	 5,$1028,$1014,$FFF0
+		dc.w	 5,$1828,$1814,	   0
 word_13DA6:	dc.w 1
 		dc.w $F406,  $2C,  $16,$FFF8
 word_13DB0:	dc.w 1
@@ -11133,13 +11133,9 @@ word_13E28:	dc.w 0
 ; ===========================================================================
 
 		include	"obj/03 Collision Switcher.asm"
-; ===========================================================================
-; ---------------------------------------------------------------------------
-; sprite mappings
-; ---------------------------------------------------------------------------
 Map_Obj03:	include	"mappings/sprite/obj03.asm"
 
-		include	"obj/0B.asm"
+		include	"obj/0B Section of Pipe.asm"
 
 off_1428A:	dc.w byte_1428E-off_1428A
 		dc.w byte_14296-off_1428A
@@ -11147,21 +11143,7 @@ byte_1428E:	dc.b   7,  0,  1,  2,  3,  4,$FE,  1
 byte_14296:	dc.b   7,  4,  3,  2,  1,  0,$FE,  1
 		even
 
-Map_Obj0B:	dc.w word_142A8-Map_Obj0B
-		dc.w word_142B2-Map_Obj0B
-		dc.w word_142BC-Map_Obj0B
-		dc.w word_142C6-Map_Obj0B
-		dc.w word_142D0-Map_Obj0B
-word_142A8:	dc.w 1
-		dc.w $F00C,  $11,    8,$FFF0
-word_142B2:	dc.w 1
-		dc.w $E80F,  $15,   $A,$FFF0
-word_142BC:	dc.w 1
-		dc.w $F40F,  $25,  $12,$FFF0
-word_142C6:	dc.w 1
-		dc.w	$F,$1015,$100A,$FFF0
-word_142D0:	dc.w 1
-		dc.w $100C,$1011,$1008,$FFF0
+Map_Obj0B:	include	"mappings/sprite/obj0B.asm"
 
 		jmpTos	; Empty
 ; ===========================================================================
@@ -11294,37 +11276,37 @@ Map_Obj04:	dc.w word_155AC-Map_Obj04
 		dc.w word_1565E-Map_Obj04
 word_155AC:	dc.w 3
 		dc.w $F80D,    0,    0,$FFA0
-		dc.w $F80D,    0,    0,$FFE0		; 4
-		dc.w $F80D,    0,    0,	 $20		; 8
+		dc.w $F80D,    0,    0,$FFE0
+		dc.w $F80D,    0,    0,	 $20
 word_155C6:	dc.w 3
 		dc.w $F80D,    8,    4,$FFA0
-		dc.w $F80D,    8,    4,$FFE0		; 4
-		dc.w $F80D,    8,    4,	 $20		; 8
+		dc.w $F80D,    8,    4,$FFE0
+		dc.w $F80D,    8,    4,	 $20
 word_155E0:	dc.w 3
 		dc.w $F80D,  $10,    8,$FFA0
-		dc.w $F80D,  $10,    8,$FFE0		; 4
-		dc.w $F80D,  $10,    8,	 $20		; 8
+		dc.w $F80D,  $10,    8,$FFE0
+		dc.w $F80D,  $10,    8,	 $20
 word_155FA:	dc.w 6
 		dc.w $F80D,    0,    0,$FFA0
-		dc.w $F80D,    8,    4,$FFC0		; 4
-		dc.w $F80D,    0,    0,$FFE0		; 8
-		dc.w $F80D,    8,    4,	   0		; 12
-		dc.w $F80D,    0,    0,	 $20		; 16
-		dc.w $F80D,    8,    4,	 $40		; 20
+		dc.w $F80D,    8,    4,$FFC0
+		dc.w $F80D,    0,    0,$FFE0
+		dc.w $F80D,    8,    4,	   0
+		dc.w $F80D,    0,    0,	 $20
+		dc.w $F80D,    8,    4,	 $40
 word_1562C:	dc.w 6
 		dc.w $F80D,    8,    4,$FFA0
-		dc.w $F80D,  $10,    8,$FFC0		; 4
-		dc.w $F80D,    8,    4,$FFE0		; 8
-		dc.w $F80D,  $10,    8,	   0		; 12
-		dc.w $F80D,    8,    4,	 $20		; 16
-		dc.w $F80D,  $10,    8,	 $40		; 20
+		dc.w $F80D,  $10,    8,$FFC0
+		dc.w $F80D,    8,    4,$FFE0
+		dc.w $F80D,  $10,    8,	   0
+		dc.w $F80D,    8,    4,	 $20
+		dc.w $F80D,  $10,    8,	 $40
 word_1565E:	dc.w 6
 		dc.w $F80D,  $10,    8,$FFA0
-		dc.w $F80D,    8,    4,$FFC0		; 4
-		dc.w $F80D,  $10,    8,$FFE0		; 8
-		dc.w $F80D,    8,    4,	   0		; 12
-		dc.w $F80D,  $10,    8,	 $20		; 16
-		dc.w $F80D,    8,    4,	 $40		; 20
+		dc.w $F80D,    8,    4,$FFC0
+		dc.w $F80D,  $10,    8,$FFE0
+		dc.w $F80D,    8,    4,	   0
+		dc.w $F80D,  $10,    8,	 $20
+		dc.w $F80D,    8,    4,	 $40
 
 		include	"obj/49 EHZ Waterfall.asm"
 Map_Obj49:	include	"mappings/sprite/obj49.asm"
@@ -11351,50 +11333,50 @@ Map_Obj4D:	dc.w word_159F6-Map_Obj4D
 		dc.w word_15B14-Map_Obj4D
 word_159F6:	dc.w 5
 		dc.w $F005,    0,    0,$FFF0
-		dc.w $F005,    4,    2,	   0		; 4
-		dc.w $F801,    8,    4,$FFE8		; 8
-		dc.w	 5,   $A,    5,$FFF0		; 12
-		dc.w	 9,  $22,  $11,	   0		; 16
+		dc.w $F005,    4,    2,	   0
+		dc.w $F801,    8,    4,$FFE8
+		dc.w	 5,   $A,    5,$FFF0
+		dc.w	 9,  $22,  $11,	   0
 word_15A20:	dc.w 5
 		dc.w $F005,    0,    0,$FFF0
-		dc.w $F005,    4,    2,	   0		; 4
-		dc.w $F801,    8,    4,$FFE8		; 8
-		dc.w	 5,   $E,    7,$FFF0		; 12
-		dc.w	 9,  $22,  $11,	   0		; 16
+		dc.w $F005,    4,    2,	   0
+		dc.w $F801,    8,    4,$FFE8
+		dc.w	 5,   $E,    7,$FFF0
+		dc.w	 9,  $22,  $11,	   0
 word_15A4A:	dc.w 5
 		dc.w $F005,    0,    0,$FFF0
-		dc.w $F005,    4,    2,	   0		; 4
-		dc.w $F801,    8,    4,$FFE8		; 8
-		dc.w	 5,  $12,    9,$FFF0		; 12
-		dc.w	 9,  $22,  $11,	   0		; 16
+		dc.w $F005,    4,    2,	   0
+		dc.w $F801,    8,    4,$FFE8
+		dc.w	 5,  $12,    9,$FFF0
+		dc.w	 9,  $22,  $11,	   0
 word_15A74:	dc.w 5
 		dc.w $F005,    0,    0,$FFF0
-		dc.w $F005,    4,    2,	   0		; 4
-		dc.w $F801,    8,    4,$FFE8		; 8
-		dc.w	 5,   $A,    5,$FFF0		; 12
-		dc.w	 9,  $28,  $14,	   0		; 16
+		dc.w $F005,    4,    2,	   0
+		dc.w $F801,    8,    4,$FFE8
+		dc.w	 5,   $A,    5,$FFF0
+		dc.w	 9,  $28,  $14,	   0
 word_15A9E:	dc.w 5
 		dc.w $F005,    0,    0,$FFF0
-		dc.w $F005,    4,    2,	   0		; 4
-		dc.w $F801,    8,    4,$FFE8		; 8
-		dc.w	 5,   $E,    7,$FFF0		; 12
-		dc.w	 9,  $28,  $14,	   0		; 16
+		dc.w $F005,    4,    2,	   0
+		dc.w $F801,    8,    4,$FFE8
+		dc.w	 5,   $E,    7,$FFF0
+		dc.w	 9,  $28,  $14,	   0
 word_15AC8:	dc.w 5
 		dc.w $F005,    0,    0,$FFF0
-		dc.w $F005,    4,    2,	   0		; 4
-		dc.w $F801,    8,    4,$FFE8		; 8
-		dc.w	 5,  $12,    9,$FFF0		; 12
-		dc.w	 9,  $28,  $14,	   0		; 16
+		dc.w $F005,    4,    2,	   0
+		dc.w $F801,    8,    4,$FFE8
+		dc.w	 5,  $12,    9,$FFF0
+		dc.w	 9,  $28,  $14,	   0
 word_15AF2:	dc.w 4
 		dc.w $F00B,  $16,   $B,$FFE8
-		dc.w $F005,    4,    2,	   0		; 4
-		dc.w	 9,  $22,  $11,	   0		; 8
-		dc.w $FB01,  $2E,  $17,	 $1A		; 12
+		dc.w $F005,    4,    2,	   0
+		dc.w	 9,  $22,  $11,	   0
+		dc.w $FB01,  $2E,  $17,	 $1A
 word_15B14:	dc.w 4
 		dc.w $F00B,  $16,   $B,$FFE8
-		dc.w $F005,    4,    2,	   0		; 4
-		dc.w	 9,  $28,  $14,	   0		; 8
-		dc.w $FB01,  $30,  $18,	 $1A		; 12
+		dc.w $F005,    4,    2,	   0
+		dc.w	 9,  $28,  $14,	   0
+		dc.w $FB01,  $30,  $18,	 $1A
 
 		jmpTos0	JmpTo_MarkObjGone,JmpTo_AnimateSprite,JmpTo2_ObjectMoveAndFall
 ; ===========================================================================
@@ -11477,22 +11459,22 @@ Map_Obj50:	dc.w word_163F2-Map_Obj50
 		dc.w word_164FA-Map_Obj50
 word_163F2:	dc.w 3
 		dc.w $E80D,    0,    0,$FFF0
-		dc.w $F809,  $16,   $B,$FFF8		; 4
-		dc.w  $805,  $24,  $12,$FFF8		; 8
+		dc.w $F809,  $16,   $B,$FFF8
+		dc.w  $805,  $24,  $12,$FFF8
 word_1640C:	dc.w 1
 		dc.w $F805,  $28,  $14,$FFF8
 word_16416:	dc.w 1
 		dc.w $F805,  $2C,  $16,$FFF8
 word_16420:	dc.w 4
 		dc.w $E809,    8,    4,$FFF0
-		dc.w $E801,   $E,    7,	   8		; 4
-		dc.w $F809,  $16,   $B,$FFF8		; 8
-		dc.w  $805,  $24,  $12,$FFF8		; 12
+		dc.w $E801,   $E,    7,	   8
+		dc.w $F809,  $16,   $B,$FFF8
+		dc.w  $805,  $24,  $12,$FFF8
 word_16442:	dc.w 4
 		dc.w $E809,  $10,    8,$FFF0
-		dc.w $E801,   $E,    7,	   8		; 4
-		dc.w $F809,  $16,   $B,$FFF8		; 8
-		dc.w  $805,  $24,  $12,$FFF8		; 12
+		dc.w $E801,   $E,    7,	   8
+		dc.w $F809,  $16,   $B,$FFF8
+		dc.w  $805,  $24,  $12,$FFF8
 word_16464:	dc.w 1
 		dc.w $F801,  $30,  $18,$FFFC
 word_1646E:	dc.w 1
@@ -11503,26 +11485,26 @@ word_16482:	dc.w 1
 		dc.w $F80D,  $36,  $1B,$FFF0
 word_1648C:	dc.w 4
 		dc.w $E80D,    0,    0,$FFF0
-		dc.w $F805,  $1C,   $E,$FFF8		; 4
-		dc.w $F801,  $20,  $10,	   8		; 8
-		dc.w  $805,  $24,  $12,$FFF8		; 12
+		dc.w $F805,  $1C,   $E,$FFF8
+		dc.w $F801,  $20,  $10,	   8
+		dc.w  $805,  $24,  $12,$FFF8
 word_164AE:	dc.w 4
 		dc.w $E80D,    0,    0,$FFF0
-		dc.w $F805,  $1C,   $E,$FFF8		; 4
-		dc.w $F801,  $22,  $11,	   8		; 8
-		dc.w  $805,  $24,  $12,$FFF8		; 12
+		dc.w $F805,  $1C,   $E,$FFF8
+		dc.w $F801,  $22,  $11,	   8
+		dc.w  $805,  $24,  $12,$FFF8
 word_164D0:	dc.w 5
 		dc.w $E809,    8,    4,$FFF0
-		dc.w $E801,   $E,    7,	   8		; 4
-		dc.w $F805,  $1C,   $E,$FFF8		; 8
-		dc.w $F801,  $20,  $10,	   8		; 12
-		dc.w  $805,  $24,  $12,$FFF8		; 16
+		dc.w $E801,   $E,    7,	   8
+		dc.w $F805,  $1C,   $E,$FFF8
+		dc.w $F801,  $20,  $10,	   8
+		dc.w  $805,  $24,  $12,$FFF8
 word_164FA:	dc.w 5
 		dc.w $E809,  $10,    8,$FFF0
-		dc.w $E801,   $E,    7,	   8		; 4
-		dc.w $F805,  $1C,   $E,$FFF8		; 8
-		dc.w $F801,  $22,  $11,	   8		; 12
-		dc.w  $805,  $24,  $12,$FFF8		; 16
+		dc.w $E801,   $E,    7,	   8
+		dc.w $F805,  $1C,   $E,$FFF8
+		dc.w $F801,  $22,  $11,	   8
+		dc.w  $805,  $24,  $12,$FFF8
 
 		include	"obj/51 Aquis Child.asm"
 
@@ -11570,19 +11552,19 @@ Map_Obj4A:	dc.w word_16CB2-Map_Obj4A
 		dc.w word_16D26-Map_Obj4A
 word_16CB2:	dc.w 2
 		dc.w $F00D,    0,    0,$FFF0
-		dc.w	$D,    8,    4,$FFF0		; 4
+		dc.w	$D,    8,    4,$FFF0
 word_16CC4:	dc.w 3
 		dc.w $F00D,    0,    0,$FFF0
-		dc.w	 9,  $10,    8,$FFE8		; 4
-		dc.w	 9,  $16,   $B,	   0		; 8
+		dc.w	 9,  $10,    8,$FFE8
+		dc.w	 9,  $16,   $B,	   0
 word_16CDE:	dc.w 3
 		dc.w $F00D,    0,    0,$FFF0
-		dc.w	 9,  $1C,   $E,$FFE8		; 4
-		dc.w	 9,  $22,  $11,	   0		; 8
+		dc.w	 9,  $1C,   $E,$FFE8
+		dc.w	 9,  $22,  $11,	   0
 word_16CF8:	dc.w 3
 		dc.w $F00D,    0,    0,$FFF0
-		dc.w	 9,  $28,  $14,$FFE8		; 4
-		dc.w	 9,  $2E,  $17,	   0		; 8
+		dc.w	 9,  $28,  $14,$FFE8
+		dc.w	 9,  $2E,  $17,	   0
 word_16D12:	dc.w 1
 		dc.w $F001,  $34,  $1A,$FFF7
 word_16D1C:	dc.w 1
@@ -11635,64 +11617,64 @@ Map_Obj4E:	dc.w word_17320-Map_Obj4E
 		dc.w word_17496-Map_Obj4E
 word_17320:	dc.w 4
 		dc.w $F80E,    0,    0,$FFE4
-		dc.w $F805,  $18,   $C,	   4		; 4
-		dc.w	 1,  $1C,   $E,	   4		; 8
-		dc.w	 5,  $20,  $10,	  $C		; 12
+		dc.w $F805,  $18,   $C,	   4
+		dc.w	 1,  $1C,   $E,	   4
+		dc.w	 5,  $20,  $10,	  $C
 word_17342:	dc.w 4
 		dc.w $F80E,    0,    0,$FFE4
-		dc.w $F805,  $18,   $C,	   4		; 4
-		dc.w	 1,  $1C,   $E,	   4		; 8
-		dc.w	 5,  $24,  $12,	  $C		; 12
+		dc.w $F805,  $18,   $C,	   4
+		dc.w	 1,  $1C,   $E,	   4
+		dc.w	 5,  $24,  $12,	  $C
 word_17364:	dc.w 4
 		dc.w $F80E,    0,    0,$FFE4
-		dc.w $F805,  $18,   $C,	   4		; 4
-		dc.w	 1,  $1C,   $E,	   4		; 8
-		dc.w	 5,  $28,  $14,	  $C		; 12
+		dc.w $F805,  $18,   $C,	   4
+		dc.w	 1,  $1C,   $E,	   4
+		dc.w	 5,  $28,  $14,	  $C
 word_17386:	dc.w 4
 		dc.w $F80E,    0,    0,$FFE4
-		dc.w $F805,  $18,   $C,	   4		; 4
-		dc.w	 1,  $1E,   $F,	   4		; 8
-		dc.w	 5,  $20,  $10,	  $C		; 12
+		dc.w $F805,  $18,   $C,	   4
+		dc.w	 1,  $1E,   $F,	   4
+		dc.w	 5,  $20,  $10,	  $C
 word_173A8:	dc.w 4
 		dc.w $F80E,    0,    0,$FFE4
-		dc.w $F805,  $18,   $C,	   4		; 4
-		dc.w	 1,  $1E,   $F,	   4		; 8
-		dc.w	 5,  $24,  $12,	  $C		; 12
+		dc.w $F805,  $18,   $C,	   4
+		dc.w	 1,  $1E,   $F,	   4
+		dc.w	 5,  $24,  $12,	  $C
 word_173CA:	dc.w 4
 		dc.w $F80E,    0,    0,$FFE4
-		dc.w $F805,  $18,   $C,	   4		; 4
-		dc.w	 1,  $1E,   $F,	   4		; 8
-		dc.w	 5,  $28,  $14,	  $C		; 12
+		dc.w $F805,  $18,   $C,	   4
+		dc.w	 1,  $1E,   $F,	   4
+		dc.w	 5,  $28,  $14,	  $C
 word_173EC:	dc.w 4
 		dc.w $F00B,   $C,    6,$FFEC
-		dc.w $F805,  $18,   $C,	   4		; 4
-		dc.w	 1,  $1C,   $E,	   4		; 8
-		dc.w	 5,  $20,  $10,	  $C		; 12
+		dc.w $F805,  $18,   $C,	   4
+		dc.w	 1,  $1C,   $E,	   4
+		dc.w	 5,  $20,  $10,	  $C
 word_1740E:	dc.w 4
 		dc.w $F00B,   $C,    6,$FFEC
-		dc.w $F805,  $18,   $C,	   4		; 4
-		dc.w	 1,  $1C,   $E,	   4		; 8
-		dc.w	 5,  $24,  $12,	  $C		; 12
+		dc.w $F805,  $18,   $C,	   4
+		dc.w	 1,  $1C,   $E,	   4
+		dc.w	 5,  $24,  $12,	  $C
 word_17430:	dc.w 4
 		dc.w $F00B,   $C,    6,$FFEC
-		dc.w $F805,  $18,   $C,	   4		; 4
-		dc.w	 1,  $1C,   $E,	   4		; 8
-		dc.w	 5,  $28,  $14,	  $C		; 12
+		dc.w $F805,  $18,   $C,	   4
+		dc.w	 1,  $1C,   $E,	   4
+		dc.w	 5,  $28,  $14,	  $C
 word_17452:	dc.w 4
 		dc.w $F00B,   $C,    6,$FFEC
-		dc.w $F805,  $18,   $C,	   4		; 4
-		dc.w	 1,  $1E,   $F,	   4		; 8
-		dc.w	 5,  $20,  $10,	  $C		; 12
+		dc.w $F805,  $18,   $C,	   4
+		dc.w	 1,  $1E,   $F,	   4
+		dc.w	 5,  $20,  $10,	  $C
 word_17474:	dc.w 4
 		dc.w $F00B,   $C,    6,$FFEC
-		dc.w $F805,  $18,   $C,	   4		; 4
-		dc.w	 1,  $1E,   $F,	   4		; 8
-		dc.w	 5,  $24,  $12,	  $C		; 12
+		dc.w $F805,  $18,   $C,	   4
+		dc.w	 1,  $1E,   $F,	   4
+		dc.w	 5,  $24,  $12,	  $C
 word_17496:	dc.w 4
 		dc.w $F00B,   $C,    6,$FFEC
-		dc.w $F805,  $18,   $C,	   4		; 4
-		dc.w	 1,  $1E,   $F,	   4		; 8
-		dc.w	 5,  $28,  $14,	  $C		; 12
+		dc.w $F805,  $18,   $C,	   4
+		dc.w	 1,  $1E,   $F,	   4
+		dc.w	 5,  $28,  $14,	  $C
 
 		jmpTos0	JmpTo6_MarkObjGone,JmpTo8_AnimateSprite,JmpTo6_ObjectMoveAndFall,JmpTo8_ObjectMove
 ; ===========================================================================
@@ -14001,22 +13983,22 @@ Map_Obj50_PB:	dc.w .word_163F2-Map_Obj50_PB
 		dc.w .word_164FA-Map_Obj50_PB
 .word_163F2:	dc.w 3
 		dc.w $E80D,    0,    0,$FFF0
-		dc.w $F809,  $16,   $B,$FFF8		; 4
-		dc.w  $805,  $24,  $12,$FFF8		; 8
+		dc.w $F809,  $16,   $B,$FFF8
+		dc.w  $805,  $24,  $12,$FFF8
 .word_1640C:	dc.w 1
 		dc.w $F805,  $28,  $14,$FFF8
 .word_16416:	dc.w 1
 		dc.w $F805,  $2C,  $16,$FFF8
 .word_16420:	dc.w 4
 		dc.w $E809,    8,    4,$FFF0
-		dc.w $E801,   $E,    7,	   8		; 4
-		dc.w $F809,  $16,   $B,$FFF8		; 8
-		dc.w  $805,  $24,  $12,$FFF8		; 12
+		dc.w $E801,   $E,    7,	   8
+		dc.w $F809,  $16,   $B,$FFF8
+		dc.w  $805,  $24,  $12,$FFF8
 .word_16442:	dc.w 4
 		dc.w $E809,  $10,    8,$FFF0
-		dc.w $E801,   $E,    7,	   8		; 4
-		dc.w $F809,  $16,   $B,$FFF8		; 8
-		dc.w  $805,  $24,  $12,$FFF8		; 12
+		dc.w $E801,   $E,    7,	   8
+		dc.w $F809,  $16,   $B,$FFF8
+		dc.w  $805,  $24,  $12,$FFF8
 .word_16464:	dc.w 1
 		dc.w $F801,  $30,  $18,$FFFC
 .word_1646E:	dc.w 1
@@ -14027,26 +14009,26 @@ Map_Obj50_PB:	dc.w .word_163F2-Map_Obj50_PB
 		dc.w $F80D,  $36,  $1B,$FFF0
 .word_1648C:	dc.w 4
 		dc.w $E80D,    0,    0,$FFF0
-		dc.w $F805,  $1C,   $E,$FFF8		; 4
-		dc.w $F801,  $20,  $10,	   8		; 8
-		dc.w  $805,  $24,  $12,$FFF8		; 12
+		dc.w $F805,  $1C,   $E,$FFF8
+		dc.w $F801,  $20,  $10,	   8
+		dc.w  $805,  $24,  $12,$FFF8
 .word_164AE:	dc.w 4
 		dc.w $E80D,    0,    0,$FFF0
-		dc.w $F805,  $1C,   $E,$FFF8		; 4
-		dc.w $F801,  $22,  $11,	   8		; 8
-		dc.w  $805,  $24,  $12,$FFF8		; 12
+		dc.w $F805,  $1C,   $E,$FFF8
+		dc.w $F801,  $22,  $11,	   8
+		dc.w  $805,  $24,  $12,$FFF8
 .word_164D0:	dc.w 5
 		dc.w $E809,    8,    4,$FFF0
-		dc.w $E801,   $E,    7,	   8		; 4
-		dc.w $F805,  $1C,   $E,$FFF8		; 8
-		dc.w $F801,  $20,  $10,	   8		; 12
-		dc.w  $805,  $24,  $12,$FFF8		; 16
+		dc.w $E801,   $E,    7,	   8
+		dc.w $F805,  $1C,   $E,$FFF8
+		dc.w $F801,  $20,  $10,	   8
+		dc.w  $805,  $24,  $12,$FFF8
 .word_164FA:	dc.w 5
 		dc.w $E809,  $10,    8,$FFF0
-		dc.w $E801,   $E,    7,	   8		; 4
-		dc.w $F805,  $1C,   $E,$FFF8		; 8
-		dc.w $F801,  $22,  $11,	   8		; 12
-		dc.w  $805,  $24,  $12,$FFF8		; 16
+		dc.w $E801,   $E,    7,	   8
+		dc.w $F805,  $1C,   $E,$FFF8
+		dc.w $F801,  $22,  $11,	   8
+		dc.w  $805,  $24,  $12,$FFF8
 
 		include	"leftovers/obj/51 Aquis Child.asm"
 	dephase
@@ -14122,64 +14104,64 @@ Map_Obj4E_PB:	dc.w .word_17320-Map_Obj4E_PB
 		dc.w .word_17496-Map_Obj4E_PB
 .word_17320:	dc.w 4
 		dc.w $F80E,    0,    0,$FFE4
-		dc.w $F805,  $18,   $C,	   4		; 4
-		dc.w	 1,  $1C,   $E,	   4		; 8
-		dc.w	 5,  $20,  $10,	  $C		; 12
+		dc.w $F805,  $18,   $C,	   4
+		dc.w	 1,  $1C,   $E,	   4
+		dc.w	 5,  $20,  $10,	  $C
 .word_17342:	dc.w 4
 		dc.w $F80E,    0,    0,$FFE4
-		dc.w $F805,  $18,   $C,	   4		; 4
-		dc.w	 1,  $1C,   $E,	   4		; 8
-		dc.w	 5,  $24,  $12,	  $C		; 12
+		dc.w $F805,  $18,   $C,	   4
+		dc.w	 1,  $1C,   $E,	   4
+		dc.w	 5,  $24,  $12,	  $C
 .word_17364:	dc.w 4
 		dc.w $F80E,    0,    0,$FFE4
-		dc.w $F805,  $18,   $C,	   4		; 4
-		dc.w	 1,  $1C,   $E,	   4		; 8
-		dc.w	 5,  $28,  $14,	  $C		; 12
+		dc.w $F805,  $18,   $C,	   4
+		dc.w	 1,  $1C,   $E,	   4
+		dc.w	 5,  $28,  $14,	  $C
 .word_17386:	dc.w 4
 		dc.w $F80E,    0,    0,$FFE4
-		dc.w $F805,  $18,   $C,	   4		; 4
-		dc.w	 1,  $1E,   $F,	   4		; 8
-		dc.w	 5,  $20,  $10,	  $C		; 12
+		dc.w $F805,  $18,   $C,	   4
+		dc.w	 1,  $1E,   $F,	   4
+		dc.w	 5,  $20,  $10,	  $C
 .word_173A8:	dc.w 4
 		dc.w $F80E,    0,    0,$FFE4
-		dc.w $F805,  $18,   $C,	   4		; 4
-		dc.w	 1,  $1E,   $F,	   4		; 8
-		dc.w	 5,  $24,  $12,	  $C		; 12
+		dc.w $F805,  $18,   $C,	   4
+		dc.w	 1,  $1E,   $F,	   4
+		dc.w	 5,  $24,  $12,	  $C
 .word_173CA:	dc.w 4
 		dc.w $F80E,    0,    0,$FFE4
-		dc.w $F805,  $18,   $C,	   4		; 4
-		dc.w	 1,  $1E,   $F,	   4		; 8
-		dc.w	 5,  $28,  $14,	  $C		; 12
+		dc.w $F805,  $18,   $C,	   4
+		dc.w	 1,  $1E,   $F,	   4
+		dc.w	 5,  $28,  $14,	  $C
 .word_173EC:	dc.w 4
 		dc.w $F00B,   $C,    6,$FFEC
-		dc.w $F805,  $18,   $C,	   4		; 4
-		dc.w	 1,  $1C,   $E,	   4		; 8
-		dc.w	 5,  $20,  $10,	  $C		; 12
+		dc.w $F805,  $18,   $C,	   4
+		dc.w	 1,  $1C,   $E,	   4
+		dc.w	 5,  $20,  $10,	  $C
 .word_1740E:	dc.w 4
 		dc.w $F00B,   $C,    6,$FFEC
-		dc.w $F805,  $18,   $C,	   4		; 4
-		dc.w	 1,  $1C,   $E,	   4		; 8
-		dc.w	 5,  $24,  $12,	  $C		; 12
+		dc.w $F805,  $18,   $C,	   4
+		dc.w	 1,  $1C,   $E,	   4
+		dc.w	 5,  $24,  $12,	  $C
 .word_17430:	dc.w 4
 		dc.w $F00B,   $C,    6,$FFEC
-		dc.w $F805,  $18,   $C,	   4		; 4
-		dc.w	 1,  $1C,   $E,	   4		; 8
-		dc.w	 5,  $28,  $14,	  $C		; 12
+		dc.w $F805,  $18,   $C,	   4
+		dc.w	 1,  $1C,   $E,	   4
+		dc.w	 5,  $28,  $14,	  $C
 .word_17452:	dc.w 4
 		dc.w $F00B,   $C,    6,$FFEC
-		dc.w $F805,  $18,   $C,	   4		; 4
-		dc.w	 1,  $1E,   $F,	   4		; 8
-		dc.w	 5,  $20,  $10,	  $C		; 12
+		dc.w $F805,  $18,   $C,	   4
+		dc.w	 1,  $1E,   $F,	   4
+		dc.w	 5,  $20,  $10,	  $C
 .word_17474:	dc.w 4
 		dc.w $F00B,   $C,    6,$FFEC
-		dc.w $F805,  $18,   $C,	   4		; 4
-		dc.w	 1,  $1E,   $F,	   4		; 8
-		dc.w	 5,  $24,  $12,	  $C		; 12
+		dc.w $F805,  $18,   $C,	   4
+		dc.w	 1,  $1E,   $F,	   4
+		dc.w	 5,  $24,  $12,	  $C
 .word_17496:	dc.w 4
 		dc.w $F00B,   $C,    6,$FFEC
-		dc.w $F805,  $18,   $C,	   4		; 4
-		dc.w	 1,  $1E,   $F,	   4		; 8
-		dc.w	 5,  $28,  $14,	  $C		; 12
+		dc.w $F805,  $18,   $C,	   4
+		dc.w	 1,  $1E,   $F,	   4
+		dc.w	 5,  $28,  $14,	  $C
 
 	dephase
 
@@ -14217,70 +14199,70 @@ Map_Obj4C_PB:	dc.w .word_1700C-Map_Obj4C_PB
 		dc.w .word_171A8-Map_Obj4C_PB
 .word_1700C:	dc.w 4
 		dc.w $F005,    0,    0,$FFF8
-		dc.w	 5,    4,    2,$FFF8		; 4
-		dc.w $F00B,    8,    4,	   5		; 8
-		dc.w $F00B, $808, $804,$FFE3		; 12
+		dc.w	 5,    4,    2,$FFF8
+		dc.w $F00B,    8,    4,	   5
+		dc.w $F00B, $808, $804,$FFE3
 .word_1702E:	dc.w 4
 		dc.w $F005,    0,    0,$FFF8
-		dc.w	 5,    4,    2,$FFF8		; 4
-		dc.w $F60D,  $14,   $A,	   5		; 8
-		dc.w $F60D, $814, $80A,$FFDB		; 12
+		dc.w	 5,    4,    2,$FFF8
+		dc.w $F60D,  $14,   $A,	   5
+		dc.w $F60D, $814, $80A,$FFDB
 .word_17050:	dc.w 4
 		dc.w $F005,    0,    0,$FFF8
-		dc.w	 5,    4,    2,$FFF8		; 4
-		dc.w $F80D,  $1C,   $E,	   4		; 8
-		dc.w $F80D, $81C, $80E,$FFDC		; 12
+		dc.w	 5,    4,    2,$FFF8
+		dc.w $F80D,  $1C,   $E,	   4
+		dc.w $F80D, $81C, $80E,$FFDC
 .word_17072:	dc.w 4
 		dc.w $F005,    0,    0,$FFF8
-		dc.w	 5,    4,    2,$FFF8		; 4
-		dc.w $F805,  $24,  $12,$FFEC		; 8
-		dc.w $F805,  $28,  $14,	   4		; 12
+		dc.w	 5,    4,    2,$FFF8
+		dc.w $F805,  $24,  $12,$FFEC
+		dc.w $F805,  $28,  $14,	   4
 .word_17094:	dc.w 3
 		dc.w $F801,  $2C,  $16,	   0
-		dc.w $F005,    0,    0,$FFF8		; 4
-		dc.w	 5,    4,    2,$FFF8		; 8
+		dc.w $F005,    0,    0,$FFF8
+		dc.w	 5,    4,    2,$FFF8
 .word_170AE:	dc.w 4
 		dc.w $F005,    0,    0,$FFF8
-		dc.w	 5,  $2E,  $17,$FFF8		; 4
-		dc.w $F00B,    8,    4,	   5		; 8
-		dc.w $F00B, $808, $804,$FFE3		; 12
+		dc.w	 5,  $2E,  $17,$FFF8
+		dc.w $F00B,    8,    4,	   5
+		dc.w $F00B, $808, $804,$FFE3
 .word_170D0:	dc.w 4
 		dc.w $F005,    0,    0,$FFF8
-		dc.w	 5,  $2E,  $17,$FFF8		; 4
-		dc.w $F60D,  $14,   $A,	   5		; 8
-		dc.w $F60D, $814, $80A,$FFDB		; 12
+		dc.w	 5,  $2E,  $17,$FFF8
+		dc.w $F60D,  $14,   $A,	   5
+		dc.w $F60D, $814, $80A,$FFDB
 .word_170F2:	dc.w 4
 		dc.w $F005,    0,    0,$FFF8
-		dc.w	 5,  $2E,  $17,$FFF8		; 4
-		dc.w $F80D,  $1C,   $E,	   4		; 8
-		dc.w $F80D, $81C, $80E,$FFDC		; 12
+		dc.w	 5,  $2E,  $17,$FFF8
+		dc.w $F80D,  $1C,   $E,	   4
+		dc.w $F80D, $81C, $80E,$FFDC
 .word_17114:	dc.w 4
 		dc.w $F005,    0,    0,$FFF8
-		dc.w	 5,  $2E,  $17,$FFF8		; 4
-		dc.w $F805,  $28,  $14,	   4		; 8
-		dc.w $F805,  $24,  $12,$FFEC		; 12
+		dc.w	 5,  $2E,  $17,$FFF8
+		dc.w $F805,  $28,  $14,	   4
+		dc.w $F805,  $24,  $12,$FFEC
 .word_17136:	dc.w 3
 		dc.w $F801,  $2C,  $16,	   0
-		dc.w $F005,    0,    0,$FFF8		; 4
-		dc.w	 5,  $2E,  $17,$FFF8		; 8
+		dc.w $F005,    0,    0,$FFF8
+		dc.w	 5,  $2E,  $17,$FFF8
 .word_17150:	dc.w 3
 		dc.w $F007,  $32,  $19,$FFF8
-		dc.w $F80D,  $1C,   $E,	   4		; 4
-		dc.w $F80D, $81C, $80E,$FFDC		; 8
+		dc.w $F80D,  $1C,   $E,	   4
+		dc.w $F80D, $81C, $80E,$FFDC
 .word_1716A:	dc.w 3
 		dc.w $F007,  $32,  $19,$FFF8
-		dc.w $F805,  $28,  $14,	   4		; 4
-		dc.w $F805,  $24,  $12,$FFEC		; 8
+		dc.w $F805,  $28,  $14,	   4
+		dc.w $F805,  $24,  $12,$FFEC
 .word_17184:	dc.w 2
 		dc.w $F801,  $2C,  $16,	   0
-		dc.w $F007,  $32,  $19,$FFF8		; 4
+		dc.w $F007,  $32,  $19,$FFF8
 .word_17196:	dc.w 2
 		dc.w $F801, $82C, $816,$FFF8
-		dc.w $F007,  $32,  $19,$FFF8		; 4
+		dc.w $F007,  $32,  $19,$FFF8
 .word_171A8:	dc.w 3
 		dc.w $F007,  $32,  $19,$FFF8
-		dc.w $F805, $828, $814,$FFEC		; 4
-		dc.w $F805, $824, $812,	   4		; 8
+		dc.w $F805, $828, $814,$FFEC
+		dc.w $F805, $824, $812,	   4
 
 		jmpTos0	; Empty
 	dephase

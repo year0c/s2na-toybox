@@ -1,5 +1,5 @@
 ; ---------------------------------------------------------------------------
-; Object 0B -
+; Object 0B - Section of pipe that tips you off from CPZ
 ; ---------------------------------------------------------------------------
 
 Obj0B:
@@ -12,6 +12,10 @@ Obj0B_Index:	dc.w loc_141C8-Obj0B_Index
 		dc.w loc_1421C-Obj0B_Index
 		dc.w loc_1422A-Obj0B_Index
 ; ---------------------------------------------------------------------------
+
+obj0B_duration_current = objoff_30
+obj0B_duration_initial = objoff_32
+obj0B_delay = objoff_36
 
 loc_141C8:
 		addq.b	#2,obRoutine(a0)
@@ -27,28 +31,28 @@ loc_141C8:
 		addi.w	#$10,d0
 		move.w	d0,d1
 		subq.w	#1,d0
-		move.w	d0,objoff_30(a0)
-		move.w	d0,objoff_32(a0)
+		move.w	d0,obj0B_duration_current(a0)
+		move.w	d0,obj0B_duration_initial(a0)
 		moveq	#0,d0
 		move.b	obSubtype(a0),d0
 		andi.w	#$F,d0
 		addq.w	#1,d0
 		lsl.w	#4,d0
-		move.b	d0,objoff_36(a0)
+		move.b	d0,obj0B_delay(a0)
 
 loc_1421C:
 		move.b	(Vint_runcount+3).w,d0
-		add.b	objoff_36(a0),d0
+		add.b	obj0B_delay(a0),d0
 		bne.s	loc_14254
 		addq.b	#2,obRoutine(a0)
 
 loc_1422A:
-		subq.w	#1,objoff_30(a0)
+		subq.w	#1,obj0B_duration_current(a0)
 		bpl.s	loc_14248
-		move.w	#$7F,objoff_30(a0)
+		move.w	#$7F,obj0B_duration_current(a0)
 		tst.b	obAnim(a0)
 		beq.s	loc_14242
-		move.w	objoff_32(a0),objoff_30(a0)
+		move.w	obj0B_duration_initial(a0),obj0B_duration_current(a0)
 
 loc_14242:
 		bchg	#0,obAnim(a0)

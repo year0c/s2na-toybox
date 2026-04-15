@@ -12,6 +12,9 @@ Obj34_Index:	dc.w Obj34_CheckLZ4-Obj34_Index
 		dc.w Obj34_CheckPos-Obj34_Index
 		dc.w Obj34_Wait-Obj34_Index
 		dc.w Obj34_Wait-Obj34_Index
+
+card_mainX = objoff_30		; position for card to display on
+card_finalX = objoff_32		; position for card to finish on
 ; ---------------------------------------------------------------------------
 
 Obj34_CheckLZ4:
@@ -39,8 +42,8 @@ Obj34_CheckConfig:
 Obj34_Loop:
 		_move.b	#id_Obj34,obID(a1)
 		move.w	(a3),obX(a1)
-		move.w	(a3)+,objoff_32(a1)
-		move.w	(a3)+,objoff_30(a1)
+		move.w	(a3)+,card_finalX(a1)
+		move.w	(a3)+,card_mainX(a1)
 		move.w	(a2)+,obScreenY(a1)
 		move.b	(a2)+,obRoutine(a1)
 		move.b	(a2)+,d0
@@ -69,7 +72,7 @@ Obj34_MakeSprite:
 
 Obj34_CheckPos:
 		moveq	#$10,d1
-		move.w	objoff_30(a0),d0
+		move.w	card_mainX(a0),d0
 		cmp.w	obX(a0),d0
 		beq.s	loc_B98E
 		bge.s	Obj34_Move
@@ -105,7 +108,7 @@ Obj34_CheckPos2:
 		tst.b	obRender(a0)
 		bpl.s	Obj34_ChangeArt
 		moveq	#$20,d1
-		move.w	objoff_32(a0),d0
+		move.w	card_finalX(a0),d0
 		cmp.w	obX(a0),d0
 		beq.s	Obj34_ChangeArt
 		bge.s	Obj34_Move2

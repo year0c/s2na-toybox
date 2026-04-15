@@ -3103,11 +3103,38 @@ Level_TtlCardLoop:
 		jsr	(ExecuteObjects).l
 		jsr	(BuildSprites).l
 		bsr.w	RunPLC_RAM
-		move.w	(v_ttlcardact+obX).w,d0
-		cmp.w	(v_ttlcardact+objoff_30).w,d0
-		bne.s	Level_TtlCardLoop
+	if FixBugs=0
+		move.w	(v_ttlcardact+obX).w,d0		; get current position of the "ACT" element of the title cards
+		cmp.w	(v_ttlcardact+card_mainX).w,d0	; has "ACT" element reached its target position?
+		bne.s	Level_TtlCardLoop		; if not, loop until it has
+	else
+		; Check if *every* title card element has reached their target position.
+		; Decompression is normally slow enough that every element is able
+		; to reach their target position before it's finished, but if
+		; decompression is upgraded with something faster, then the risk
+		; of decompression finishing and exiting this loop before all of the title
+		; card is finished moving into place is increased.
+		lea	(v_titlecard).w,a0		; get title card elements
+		moveq	#4-1,d0				; number of title card elements
+
+Level_CheckTtlCard:
+		move.w	obX(a0),d0			; get current position of a title card element
+		cmp.w	card_mainX(a0),d0		; has this title card element reached its target position?
+		bne.s	Level_TtlCardLoop		; if not, loop until it has
+		lea	object_size(a0),a0		; next title card element
+		dbf	d0,Level_CheckTtlCard		; loop until every element has reached its target position
+	endif
 		tst.l	(v_plc_buffer).w
 		bne.s	Level_TtlCardLoop
+	if FixBugs
+		; Do Vint for one extra frame to provide enough processing time
+		; for the remaining data initialization below. Without it, it's 
+		; possible for Vint to interrupt in the middle of a transfer,
+		; resulting in visual corruption. This will also make title cards
+		; smoother should decompression get upgraded with something faster.
+		move.b	#VintID_TitleCard,(v_vbla_routine).w ; set Vint routine to $0C
+		bsr.w	WaitForVint			; wait until Vint has finished
+	endif
 		jsr	(HUD_Base).l
 
 Level_SkipTtlCard:
@@ -11878,10 +11905,6 @@ word_185B0:	dc.w 4
 ; ===========================================================================
 
 		include	"obj/S1/8A Credits.asm"
-; ===========================================================================
-; ---------------------------------------------------------------------------
-; Sprite mappings
-; ---------------------------------------------------------------------------
 Map_Cred:	include	"mappings/sprite/S1/obj8A.asm"
 ; ===========================================================================
 		jmpTos	JmpTo5_Adjust2PArtPointer

@@ -1,5 +1,5 @@
-@echo off
-if exist s2built.bin move /y s2built.bin s2built.prev.bin >NUL
-tool\windows\asw -xx -q -A -L -U -E -i . main.asm
-tool\windows\p2bin -z=0,kosinski,Size_of_DAC_driver_guess,after main.p s2built.bin
-del main.p
+@ECHO OFF
+
+REM // This file has been gutted and replaced with the Lua make script.
+REM // It has been kept around for ease-of-use for Windows users.
+"tools/Lua/lua.exe" make.lua || pause REM // Pause on Lua parse failure so that the user can read the error message.

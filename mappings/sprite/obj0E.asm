@@ -1,26 +1,32 @@
-Map_Obj0E_internal:
-	dc.w	Map_Obj0E_internal_0004-Map_Obj0E_internal
-	dc.w	Map_Obj0E_internal_005E-Map_Obj0E_internal
-Map_Obj0E_internal_0004:	dc.w $B
-	dc.w $D40D, 0, 0, $FFD8
-	dc.w $CC0E, 8, 4, $FFF8
-	dc.w $CC07, $14, $A, $18
-	dc.w $E40F, $1C, $E, $FFE0
-	dc.w $E40B, $2C, $16, 0
-	dc.w $EC07, $38, $1C, $18
-	dc.w $40F, $40, $20, $FFD8
-	dc.w $40F, $50, $28, $FFF8
-	dc.w $C06, $60, $30, $18
-	dc.w $2404, $66, $33, $FFE8
-	dc.w $240D, $68, $34, $FFF8
-Map_Obj0E_internal_005E:	dc.w $A
-	dc.w $DC06, $70, $38, $FFEC
-	dc.w $F40F, $76, $3B, $FFD4
-	dc.w $F40F, $86, $43, $FFF4
-	dc.w $E409, $96, $4B, $FFFC
-	dc.w $DC0B, $9C, $4E, $14
-	dc.w $FC08, $A8, $54, $14
-	dc.w $405, $AB, $55, $14
-	dc.w $1404, $AF, $57, $FFD4
-	dc.w $140D, $B1, $58, $FFE4
-	dc.w $140D, $B9, $5C, 4
+Map_Obj0E_internal:	mappingsTable
+	mappingsTableEntry.w	Map_Obj0E_internal_0004
+	mappingsTableEntry.w	Map_Obj0E_internal_005E
+
+Map_Obj0E_internal_0004:	spriteHeader
+	spritePiece	-$28, -$2C, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-8, -$34, 4, 3, 8, 0, 0, 0, 0
+	spritePiece	$18, -$34, 2, 4, $14, 0, 0, 0, 0
+	spritePiece	-$20, -$1C, 4, 4, $1C, 0, 0, 0, 0
+	spritePiece	0, -$1C, 3, 4, $2C, 0, 0, 0, 0
+	spritePiece	$18, -$14, 2, 4, $38, 0, 0, 0, 0
+	spritePiece	-$28, 4, 4, 4, $40, 0, 0, 0, 0
+	spritePiece	-8, 4, 4, 4, $50, 0, 0, 0, 0
+	spritePiece	$18, $C, 2, 3, $60, 0, 0, 0, 0
+	spritePiece	-$18, $24, 2, 1, $66, 0, 0, 0, 0
+	spritePiece	-8, $24, 4, 2, $68, 0, 0, 0, 0
+Map_Obj0E_internal_0004_End
+
+Map_Obj0E_internal_005E:	spriteHeader
+	spritePiece	-$14, -$24, 2, 3, $70, 0, 0, 0, 0
+	spritePiece	-$2C, -$C, 4, 4, $76, 0, 0, 0, 0
+	spritePiece	-$C, -$C, 4, 4, $86, 0, 0, 0, 0
+	spritePiece	-4, -$1C, 3, 2, $96, 0, 0, 0, 0
+	spritePiece	$14, -$24, 3, 4, $9C, 0, 0, 0, 0
+	spritePiece	$14, -4, 3, 1, $A8, 0, 0, 0, 0
+	spritePiece	$14, 4, 2, 2, $AB, 0, 0, 0, 0
+	spritePiece	-$2C, $14, 2, 1, $AF, 0, 0, 0, 0
+	spritePiece	-$1C, $14, 4, 2, $B1, 0, 0, 0, 0
+	spritePiece	4, $14, 4, 2, $B9, 0, 0, 0, 0
+Map_Obj0E_internal_005E_End
+
+	even

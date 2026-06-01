@@ -1,12 +1,20 @@
-Map_obj54_internal:
-	dc.w	Map_obj54_internal_0006-Map_obj54_internal
-	dc.w	Map_obj54_internal_0018-Map_obj54_internal
-	dc.w	Map_obj54_internal_002A-Map_obj54_internal
-Map_obj54_internal_0006:	dc.w 2
-	dc.w $F00F, 0, 0, $FFF0
-	dc.w $109, $14, $A, $FFF4
-Map_obj54_internal_0018:	dc.w 2
-	dc.w $F00F, 0, 0, $FFF0
-	dc.w $109, $1014, $100A, $FFF4
-Map_obj54_internal_002A:	dc.w 1
-	dc.w $FA05, $10, 8, $FFE9
+Map_obj54_internal:	mappingsTable
+	mappingsTableEntry.w	Map_obj54_internal_0006
+	mappingsTableEntry.w	Map_obj54_internal_0018
+	mappingsTableEntry.w	Map_obj54_internal_002A
+
+Map_obj54_internal_0006:	spriteHeader
+	spritePiece	-$10, -$10, 4, 4, 0, 0, 0, 0, 0
+	spritePiece	-$C, 1, 3, 2, $14, 0, 0, 0, 0
+Map_obj54_internal_0006_End
+
+Map_obj54_internal_0018:	spriteHeader
+	spritePiece	-$10, -$10, 4, 4, 0, 0, 0, 0, 0
+	spritePiece	-$C, 1, 3, 2, $14, 0, 1, 0, 0
+Map_obj54_internal_0018_End
+
+Map_obj54_internal_002A:	spriteHeader
+	spritePiece	-$17, -6, 2, 2, $10, 0, 0, 0, 0
+Map_obj54_internal_002A_End
+
+	even

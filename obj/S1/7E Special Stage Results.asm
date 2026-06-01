@@ -42,7 +42,7 @@ loc_BDC2:
 		move.w	(a2)+,obScreenY(a1)
 		move.b	(a2)+,obRoutine(a1)
 		move.b	(a2)+,obFrame(a1)
-		move.l	#Map_S1Obj7E,obMap(a1)
+		move.l	#Map_SSR,obMap(a1)
 		move.w	#make_art_tile(ArtTile_Title_Card,0,1),obGfx(a1)
 		bsr.w	Adjust2PArtPointer2
 		move.b	#0,obRender(a1)

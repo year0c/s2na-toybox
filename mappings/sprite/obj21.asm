@@ -1,49 +1,59 @@
-Map_Obj21_internal:
-		dc.w Map_Obj21_internal_0008-Map_Obj21_internal
-		dc.w Map_Obj21_internal_005A-Map_Obj21_internal
-		dc.w Map_Obj21_internal_00AC-Map_Obj21_internal
-		dc.w Map_Obj21_internal_00FE-Map_Obj21_internal
-Map_Obj21_internal_0008:	dc.w $A
-		dc.w $800D, $A000, $A000, 0
-		dc.w $800D, $A018, $A00C, $20
-		dc.w $800D, $A020, $A010, $40
-		dc.w $900D, $A010, $A008, 0
-		dc.w $900D, $A028, $A014, $28
-		dc.w $A00D, $A008, $A004, 0
-		dc.w $A001, $A000, $A000, $20
-		dc.w $A009, $A030, $A018, $30
-		dc.w $4005, $810A, $8085, 0
-		dc.w $400D, $A10E, $A087, $10
-Map_Obj21_internal_005A:	dc.w $A
-		dc.w $800D, $A000, $A000, 0
-		dc.w $800D, $A018, $A00C, $20
-		dc.w $800D, $A020, $A010, $40
-		dc.w $900D, $A010, $A008, 0
-		dc.w $900D, $A028, $A014, $28
-		dc.w $A00D, $8008, $8004, 0
-		dc.w $A001, $8000, $8000, $20
-		dc.w $A009, $A030, $A018, $30
-		dc.w $4005, $810A, $8085, 0
-		dc.w $400D, $A10E, $A087, $10
-Map_Obj21_internal_00AC:	dc.w $A
-		dc.w $800D, $A000, $A000, 0
-		dc.w $800D, $A018, $A00C, $20
-		dc.w $800D, $A020, $A010, $40
-		dc.w $900D, $8010, $8008, 0
-		dc.w $900D, $A028, $A014, $28
-		dc.w $A00D, $A008, $A004, 0
-		dc.w $A001, $A000, $A000, $20
-		dc.w $A009, $A030, $A018, $30
-		dc.w $4005, $810A, $8085, 0
-		dc.w $400D, $A10E, $A087, $10
-Map_Obj21_internal_00FE:	dc.w $A
-		dc.w $800D, $A000, $A000, 0
-		dc.w $800D, $A018, $A00C, $20
-		dc.w $800D, $A020, $A010, $40
-		dc.w $900D, $8010, $8008, 0
-		dc.w $900D, $A028, $A014, $28
-		dc.w $A00D, $8008, $8004, 0
-		dc.w $A001, $8000, $8000, $20
-		dc.w $A009, $A030, $A018, $30
-		dc.w $4005, $810A, $8085, 0
-		dc.w $400D, $A10E, $A087, $10
+Map_Obj21_internal:	mappingsTable
+	mappingsTableEntry.w	Map_Obj21_internal_0008
+	mappingsTableEntry.w	Map_Obj21_internal_005A
+	mappingsTableEntry.w	Map_Obj21_internal_00AC
+	mappingsTableEntry.w	afBack
+
+Map_Obj21_internal_0008:	spriteHeader
+	spritePiece	0, -$80, 4, 2, 0, 0, 0, 1, 1
+	spritePiece	$20, -$80, 4, 2, $18, 0, 0, 1, 1
+	spritePiece	$40, -$80, 4, 2, $20, 0, 0, 1, 1
+	spritePiece	0, -$70, 4, 2, $10, 0, 0, 1, 1
+	spritePiece	$28, -$70, 4, 2, $28, 0, 0, 1, 1
+	spritePiece	0, -$60, 4, 2, 8, 0, 0, 1, 1
+	spritePiece	$20, -$60, 1, 2, 0, 0, 0, 1, 1
+	spritePiece	$30, -$60, 3, 2, $30, 0, 0, 1, 1
+	spritePiece	0, $40, 2, 2, $10A, 0, 0, 0, 1
+	spritePiece	$10, $40, 4, 2, $10E, 0, 0, 1, 1
+Map_Obj21_internal_0008_End
+
+Map_Obj21_internal_005A:	spriteHeader
+	spritePiece	0, -$80, 4, 2, 0, 0, 0, 1, 1
+	spritePiece	$20, -$80, 4, 2, $18, 0, 0, 1, 1
+	spritePiece	$40, -$80, 4, 2, $20, 0, 0, 1, 1
+	spritePiece	0, -$70, 4, 2, $10, 0, 0, 1, 1
+	spritePiece	$28, -$70, 4, 2, $28, 0, 0, 1, 1
+	spritePiece	0, -$60, 4, 2, 8, 0, 0, 0, 1
+	spritePiece	$20, -$60, 1, 2, 0, 0, 0, 0, 1
+	spritePiece	$30, -$60, 3, 2, $30, 0, 0, 1, 1
+	spritePiece	0, $40, 2, 2, $10A, 0, 0, 0, 1
+	spritePiece	$10, $40, 4, 2, $10E, 0, 0, 1, 1
+Map_Obj21_internal_005A_End
+
+Map_Obj21_internal_00AC:	spriteHeader
+	spritePiece	0, -$80, 4, 2, 0, 0, 0, 1, 1
+	spritePiece	$20, -$80, 4, 2, $18, 0, 0, 1, 1
+	spritePiece	$40, -$80, 4, 2, $20, 0, 0, 1, 1
+	spritePiece	0, -$70, 4, 2, $10, 0, 0, 0, 1
+	spritePiece	$28, -$70, 4, 2, $28, 0, 0, 1, 1
+	spritePiece	0, -$60, 4, 2, 8, 0, 0, 1, 1
+	spritePiece	$20, -$60, 1, 2, 0, 0, 0, 1, 1
+	spritePiece	$30, -$60, 3, 2, $30, 0, 0, 1, 1
+	spritePiece	0, $40, 2, 2, $10A, 0, 0, 0, 1
+	spritePiece	$10, $40, 4, 2, $10E, 0, 0, 1, 1
+Map_Obj21_internal_00AC_End
+
+afBack:	spriteHeader
+	spritePiece	0, -$80, 4, 2, 0, 0, 0, 1, 1
+	spritePiece	$20, -$80, 4, 2, $18, 0, 0, 1, 1
+	spritePiece	$40, -$80, 4, 2, $20, 0, 0, 1, 1
+	spritePiece	0, -$70, 4, 2, $10, 0, 0, 0, 1
+	spritePiece	$28, -$70, 4, 2, $28, 0, 0, 1, 1
+	spritePiece	0, -$60, 4, 2, 8, 0, 0, 0, 1
+	spritePiece	$20, -$60, 1, 2, 0, 0, 0, 0, 1
+	spritePiece	$30, -$60, 3, 2, $30, 0, 0, 1, 1
+	spritePiece	0, $40, 2, 2, $10A, 0, 0, 0, 1
+	spritePiece	$10, $40, 4, 2, $10E, 0, 0, 1, 1
+afBack_End
+
+	even

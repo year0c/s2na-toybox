@@ -13,7 +13,8 @@ namespace S2ObjectDefinitions.HPZ
 		public override void Init(ObjectData data)
 		{
 			byte[] artfile = ObjectHelper.OpenArtFile("../art/nemesis/HPZ bridge.nem", CompressionType.Nemesis);
-			img = ObjectHelper.MapASMToBmp(artfile, "../mappings/sprite/obj11_HPZ.asm", 0, 2);
+			string mapfile = "../mappings/sprite/obj11 (HPZ).asm";
+			img = ObjectHelper.MapASMToBmp(artfile, mapfile, 0, 2);
 		}
 
 		public override ReadOnlyCollection<byte> Subtypes

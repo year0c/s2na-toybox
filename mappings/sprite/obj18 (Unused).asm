@@ -1,16 +1,23 @@
-Map_Obj18x_internal:	dc.w word_8ADE-Map_Obj18x_internal
-		dc.w word_8AF0-Map_Obj18x_internal
-word_8ADE:	dc.w 2
-		dc.w $F40B,  $3C,  $1E,$FFE8
-		dc.w $F40B,  $48,  $24,	   0
-word_8AF0:	dc.w $A
-		dc.w $F40F,  $CA,  $65,$FFE0
-		dc.w  $40F,  $DA,  $6D,$FFE0
-		dc.w $240F,  $DA,  $6D,$FFE0
-		dc.w $440F,  $DA,  $6D,$FFE0
-		dc.w $640F,  $DA,  $6D,$FFE0
-		dc.w $F40F, $8CA, $865,	   0
-		dc.w  $40F, $8DA, $86D,	   0
-		dc.w $240F, $8DA, $86D,	   0
-		dc.w $440F, $8DA, $86D,	   0
-		dc.w $640F, $8DA, $86D,	   0
+Map_Obj18x_internal:	mappingsTable
+	mappingsTableEntry.w	word_8ADE
+	mappingsTableEntry.w	word_8AF0
+
+word_8ADE:	spriteHeader
+	spritePiece	-$18, -$C, 3, 4, $3C, 0, 0, 0, 0
+	spritePiece	0, -$C, 3, 4, $48, 0, 0, 0, 0
+word_8ADE_End
+
+word_8AF0:	spriteHeader
+	spritePiece	-$20, -$C, 4, 4, $CA, 0, 0, 0, 0
+	spritePiece	-$20, 4, 4, 4, $DA, 0, 0, 0, 0
+	spritePiece	-$20, $24, 4, 4, $DA, 0, 0, 0, 0
+	spritePiece	-$20, $44, 4, 4, $DA, 0, 0, 0, 0
+	spritePiece	-$20, $64, 4, 4, $DA, 0, 0, 0, 0
+	spritePiece	0, -$C, 4, 4, $CA, 1, 0, 0, 0
+	spritePiece	0, 4, 4, 4, $DA, 1, 0, 0, 0
+	spritePiece	0, $24, 4, 4, $DA, 1, 0, 0, 0
+	spritePiece	0, $44, 4, 4, $DA, 1, 0, 0, 0
+	spritePiece	0, $64, 4, 4, $DA, 1, 0, 0, 0
+word_8AF0_End
+
+	even

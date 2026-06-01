@@ -1,8 +1,9 @@
-; ---------------------------------------------------------------------------
-; Sprite mappings - purple rock	(GHZ)
-; ---------------------------------------------------------------------------
-Map_PRock_internal:
-		dc.w word_C8B0-Map_PRock_internal
-word_C8B0:	dc.w 2
-		dc.w $F00B, 0, 0, $FFE8
-		dc.w $F00B, $C, 6, 0
+Map_PRock_internal:	mappingsTable
+	mappingsTableEntry.w	word_C8B0
+
+word_C8B0:	spriteHeader
+	spritePiece	-$18, -$10, 3, 4, 0, 0, 0, 0, 0
+	spritePiece	0, -$10, 3, 4, $C, 0, 0, 0, 0
+word_C8B0_End
+
+	even

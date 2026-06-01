@@ -1,47 +1,73 @@
-Map_Obj26_internal:
-		dc.w Map_Obj26_internal_0018-Map_Obj26_internal
-		dc.w Map_Obj26_internal_0022-Map_Obj26_internal
-		dc.w Map_Obj26_internal_0034-Map_Obj26_internal
-		dc.w Map_Obj26_internal_0046-Map_Obj26_internal
-		dc.w Map_Obj26_internal_0058-Map_Obj26_internal
-		dc.w Map_Obj26_internal_006A-Map_Obj26_internal
-		dc.w Map_Obj26_internal_007C-Map_Obj26_internal
-		dc.w Map_Obj26_internal_008E-Map_Obj26_internal
-		dc.w Map_Obj26_internal_00A0-Map_Obj26_internal
-		dc.w Map_Obj26_internal_00B2-Map_Obj26_internal
-		dc.w Map_Obj26_internal_00C4-Map_Obj26_internal
-		dc.w Map_Obj26_internal_00D6-Map_Obj26_internal
-Map_Obj26_internal_0018:	dc.w 1
-		dc.w $EF0F, 0, 0, $FFF0
-Map_Obj26_internal_0022:	dc.w 2
-		dc.w $F505, $18, $C, $FFF8
-		dc.w $EF0F, 0, 0, $FFF0
-Map_Obj26_internal_0034:	dc.w 2
-		dc.w $F505, $154, $AA, $FFF8
-		dc.w $EF0F, 0, 0, $FFF0
-Map_Obj26_internal_0046:	dc.w 2
-		dc.w $F505, $1C, $E, $FFF8
-		dc.w $EF0F, 0, 0, $FFF0
-Map_Obj26_internal_0058:	dc.w 2
-		dc.w $F505, $20, $10, $FFF8
-		dc.w $EF0F, 0, 0, $FFF0
-Map_Obj26_internal_006A:	dc.w 2
-		dc.w $F505, $2024, $2012, $FFF8
-		dc.w $EF0F, 0, 0, $FFF0
-Map_Obj26_internal_007C:	dc.w 2
-		dc.w $F505, $28, $14, $FFF8
-		dc.w $EF0F, 0, 0, $FFF0
-Map_Obj26_internal_008E:	dc.w 2
-		dc.w $F505, $2C, $16, $FFF8
-		dc.w $EF0F, 0, 0, $FFF0
-Map_Obj26_internal_00A0:	dc.w 2
-		dc.w $F505, $30, $18, $FFF8
-		dc.w $EF0F, 0, 0, $FFF0
-Map_Obj26_internal_00B2:	dc.w 2
-		dc.w $F505, $34, $1A, $FFF8
-		dc.w $EF0F, 0, 0, $FFF0
-Map_Obj26_internal_00C4:	dc.w 2
-		dc.w $F505, $38, $1C, $FFF8
-		dc.w $EF0F, 0, 0, $FFF0
-Map_Obj26_internal_00D6:	dc.w 1
-		dc.w $FF0D, $10, 8, $FFF0
+Map_Obj26_internal:	mappingsTable
+	mappingsTableEntry.w	Map_Obj26_internal_0018
+	mappingsTableEntry.w	Map_Obj26_internal_0022
+	mappingsTableEntry.w	Map_Obj26_internal_0034
+	mappingsTableEntry.w	Map_Obj26_internal_0046
+	mappingsTableEntry.w	Map_Obj26_internal_0058
+	mappingsTableEntry.w	Map_Obj26_internal_006A
+	mappingsTableEntry.w	Map_Obj26_internal_007C
+	mappingsTableEntry.w	Map_Obj26_internal_008E
+	mappingsTableEntry.w	Map_Obj26_internal_00A0
+	mappingsTableEntry.w	Map_Obj26_internal_00B2
+	mappingsTableEntry.w	Map_Obj26_internal_00C4
+	mappingsTableEntry.w	Map_Obj26_internal_00D6
+
+Map_Obj26_internal_0018:	spriteHeader
+	spritePiece	-$10, -$11, 4, 4, 0, 0, 0, 0, 0
+Map_Obj26_internal_0018_End
+
+Map_Obj26_internal_0022:	spriteHeader
+	spritePiece	-8, -$B, 2, 2, $18, 0, 0, 0, 0
+	spritePiece	-$10, -$11, 4, 4, 0, 0, 0, 0, 0
+Map_Obj26_internal_0022_End
+
+Map_Obj26_internal_0034:	spriteHeader
+	spritePiece	-8, -$B, 2, 2, $154, 0, 0, 0, 0
+	spritePiece	-$10, -$11, 4, 4, 0, 0, 0, 0, 0
+Map_Obj26_internal_0034_End
+
+Map_Obj26_internal_0046:	spriteHeader
+	spritePiece	-8, -$B, 2, 2, $1C, 0, 0, 0, 0
+	spritePiece	-$10, -$11, 4, 4, 0, 0, 0, 0, 0
+Map_Obj26_internal_0046_End
+
+Map_Obj26_internal_0058:	spriteHeader
+	spritePiece	-8, -$B, 2, 2, $20, 0, 0, 0, 0
+	spritePiece	-$10, -$11, 4, 4, 0, 0, 0, 0, 0
+Map_Obj26_internal_0058_End
+
+Map_Obj26_internal_006A:	spriteHeader
+	spritePiece	-8, -$B, 2, 2, $24, 0, 0, 1, 0
+	spritePiece	-$10, -$11, 4, 4, 0, 0, 0, 0, 0
+Map_Obj26_internal_006A_End
+
+Map_Obj26_internal_007C:	spriteHeader
+	spritePiece	-8, -$B, 2, 2, $28, 0, 0, 0, 0
+	spritePiece	-$10, -$11, 4, 4, 0, 0, 0, 0, 0
+Map_Obj26_internal_007C_End
+
+Map_Obj26_internal_008E:	spriteHeader
+	spritePiece	-8, -$B, 2, 2, $2C, 0, 0, 0, 0
+	spritePiece	-$10, -$11, 4, 4, 0, 0, 0, 0, 0
+Map_Obj26_internal_008E_End
+
+Map_Obj26_internal_00A0:	spriteHeader
+	spritePiece	-8, -$B, 2, 2, $30, 0, 0, 0, 0
+	spritePiece	-$10, -$11, 4, 4, 0, 0, 0, 0, 0
+Map_Obj26_internal_00A0_End
+
+Map_Obj26_internal_00B2:	spriteHeader
+	spritePiece	-8, -$B, 2, 2, $34, 0, 0, 0, 0
+	spritePiece	-$10, -$11, 4, 4, 0, 0, 0, 0, 0
+Map_Obj26_internal_00B2_End
+
+Map_Obj26_internal_00C4:	spriteHeader
+	spritePiece	-8, -$B, 2, 2, $38, 0, 0, 0, 0
+	spritePiece	-$10, -$11, 4, 4, 0, 0, 0, 0, 0
+Map_Obj26_internal_00C4_End
+
+Map_Obj26_internal_00D6:	spriteHeader
+	spritePiece	-$10, -1, 4, 2, $10, 0, 0, 0, 0
+Map_Obj26_internal_00D6_End
+
+	even

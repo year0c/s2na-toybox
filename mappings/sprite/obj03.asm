@@ -1,39 +1,53 @@
-Map_Obj03_internal:
-		dc.w Map_Obj03_internal_0010-Map_Obj03_internal
-		dc.w Map_Obj03_internal_0032-Map_Obj03_internal
-		dc.w Map_Obj03_internal_0054-Map_Obj03_internal
-		dc.w Map_Obj03_internal_0054-Map_Obj03_internal
-		dc.w Map_Obj03_internal_0076-Map_Obj03_internal
-		dc.w Map_Obj03_internal_0098-Map_Obj03_internal
-		dc.w Map_Obj03_internal_00BA-Map_Obj03_internal
-		dc.w Map_Obj03_internal_00BA-Map_Obj03_internal
-Map_Obj03_internal_0010:	dc.w 4
-		dc.w $E005, 0, 0, $FFF8
-		dc.w $F005, 0, 0, $FFF8
-		dc.w 5, 0, 0, $FFF8
-		dc.w $1005, 0, 0, $FFF8
-Map_Obj03_internal_0032:	dc.w 4
-		dc.w $C005, 0, 0, $FFF8
-		dc.w $E005, 0, 0, $FFF8
-		dc.w 5, 0, 0, $FFF8
-		dc.w $3005, 0, 0, $FFF8
-Map_Obj03_internal_0054:	dc.w 4
-		dc.w $8005, 0, 0, $FFF8
-		dc.w $E005, 0, 0, $FFF8
-		dc.w 5, 0, 0, $FFF8
-		dc.w $7005, 0, 0, $FFF8
-Map_Obj03_internal_0076:	dc.w 4
-		dc.w $F805, 0, 0, $FFE0
-		dc.w $F805, 0, 0, $FFF0
-		dc.w $F805, 0, 0, 0
-		dc.w $F805, 0, 0, $10
-Map_Obj03_internal_0098:	dc.w 4
-		dc.w $F805, 0, 0, $FFC0
-		dc.w $F805, 0, 0, $FFE0
-		dc.w $F805, 0, 0, 0
-		dc.w $F805, 0, 0, $30
-Map_Obj03_internal_00BA:	dc.w 4
-		dc.w $F805, 0, 0, $FF80
-		dc.w $F805, 0, 0, $FFE0
-		dc.w $F805, 0, 0, 0
-		dc.w $F805, 0, 0, $70
+Map_Obj03_internal:	mappingsTable
+	mappingsTableEntry.w	Map_Obj03_internal_0010
+	mappingsTableEntry.w	Map_Obj03_internal_0032
+	mappingsTableEntry.w	Map_Obj03_internal_0054
+	mappingsTableEntry.w	Map_Obj03_internal_0054
+	mappingsTableEntry.w	Map_Obj03_internal_0076
+	mappingsTableEntry.w	Map_Obj03_internal_0098
+	mappingsTableEntry.w	Map_Obj03_internal_00BA
+	mappingsTableEntry.w	Map_Obj03_internal_00BA
+
+Map_Obj03_internal_0010:	spriteHeader
+	spritePiece	-8, -$20, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-8, -$10, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-8, 0, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-8, $10, 2, 2, 0, 0, 0, 0, 0
+Map_Obj03_internal_0010_End
+
+Map_Obj03_internal_0032:	spriteHeader
+	spritePiece	-8, -$40, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-8, -$20, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-8, 0, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-8, $30, 2, 2, 0, 0, 0, 0, 0
+Map_Obj03_internal_0032_End
+
+Map_Obj03_internal_0054:	spriteHeader
+	spritePiece	-8, -$80, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-8, -$20, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-8, 0, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-8, $70, 2, 2, 0, 0, 0, 0, 0
+Map_Obj03_internal_0054_End
+
+Map_Obj03_internal_0076:	spriteHeader
+	spritePiece	-$20, -8, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-$10, -8, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	0, -8, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	$10, -8, 2, 2, 0, 0, 0, 0, 0
+Map_Obj03_internal_0076_End
+
+Map_Obj03_internal_0098:	spriteHeader
+	spritePiece	-$40, -8, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-$20, -8, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	0, -8, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	$30, -8, 2, 2, 0, 0, 0, 0, 0
+Map_Obj03_internal_0098_End
+
+Map_Obj03_internal_00BA:	spriteHeader
+	spritePiece	-$80, -8, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-$20, -8, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	0, -8, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	$70, -8, 2, 2, 0, 0, 0, 0, 0
+Map_Obj03_internal_00BA_End
+
+	even

@@ -60,7 +60,7 @@ Obj34_ActNumber:
 
 Obj34_MakeSprite:
 		move.b	d0,obFrame(a1)
-		move.l	#Map_Obj34,obMap(a1)
+		move.l	#Map_Card,obMap(a1)
 		move.w	#make_art_tile(ArtTile_Title_Card,0,1),obGfx(a1)
 		bsr.w	Adjust2PArtPointer2
 		move.b	#120,obActWid(a1)

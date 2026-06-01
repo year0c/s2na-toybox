@@ -1,81 +1,114 @@
-Map_Obj4C_internal:	dc.w word_1700C-Map_Obj4C_internal
-		dc.w word_1702E-Map_Obj4C_internal
-		dc.w word_17050-Map_Obj4C_internal
-		dc.w word_17072-Map_Obj4C_internal
-		dc.w word_17094-Map_Obj4C_internal
-		dc.w word_170AE-Map_Obj4C_internal
-		dc.w word_170D0-Map_Obj4C_internal
-		dc.w word_170F2-Map_Obj4C_internal
-		dc.w word_17114-Map_Obj4C_internal
-		dc.w word_17136-Map_Obj4C_internal
-		dc.w word_17150-Map_Obj4C_internal
-		dc.w word_1716A-Map_Obj4C_internal
-		dc.w word_17184-Map_Obj4C_internal
-		dc.w word_17196-Map_Obj4C_internal
-		dc.w word_171A8-Map_Obj4C_internal
-word_1700C:	dc.w 4
-		dc.w $F005,    0,    0,$FFF8
-		dc.w	 5,    4,    2,$FFF8
-		dc.w $F00B,    8,    4,	   5
-		dc.w $F00B, $808, $804,$FFE3
-word_1702E:	dc.w 4
-		dc.w $F005,    0,    0,$FFF8
-		dc.w	 5,    4,    2,$FFF8
-		dc.w $F60D,  $14,   $A,	   5
-		dc.w $F60D, $814, $80A,$FFDB
-word_17050:	dc.w 4
-		dc.w $F005,    0,    0,$FFF8
-		dc.w	 5,    4,    2,$FFF8
-		dc.w $F80D,  $1C,   $E,	   4
-		dc.w $F80D, $81C, $80E,$FFDC
-word_17072:	dc.w 4
-		dc.w $F005,    0,    0,$FFF8
-		dc.w	 5,    4,    2,$FFF8
-		dc.w $F805,  $24,  $12,$FFEC
-		dc.w $F805,  $28,  $14,	   4
-word_17094:	dc.w 3
-		dc.w $F801,  $2C,  $16,	   0
-		dc.w $F005,    0,    0,$FFF8
-		dc.w	 5,    4,    2,$FFF8
-word_170AE:	dc.w 4
-		dc.w $F005,    0,    0,$FFF8
-		dc.w	 5,  $2E,  $17,$FFF8
-		dc.w $F00B,    8,    4,	   5
-		dc.w $F00B, $808, $804,$FFE3
-word_170D0:	dc.w 4
-		dc.w $F005,    0,    0,$FFF8
-		dc.w	 5,  $2E,  $17,$FFF8
-		dc.w $F60D,  $14,   $A,	   5
-		dc.w $F60D, $814, $80A,$FFDB
-word_170F2:	dc.w 4
-		dc.w $F005,    0,    0,$FFF8
-		dc.w	 5,  $2E,  $17,$FFF8
-		dc.w $F80D,  $1C,   $E,	   4
-		dc.w $F80D, $81C, $80E,$FFDC
-word_17114:	dc.w 4
-		dc.w $F005,    0,    0,$FFF8
-		dc.w	 5,  $2E,  $17,$FFF8
-		dc.w $F805,  $28,  $14,	   4
-		dc.w $F805,  $24,  $12,$FFEC
-word_17136:	dc.w 3
-		dc.w $F801,  $2C,  $16,	   0
-		dc.w $F005,    0,    0,$FFF8
-		dc.w	 5,  $2E,  $17,$FFF8
-word_17150:	dc.w 3
-		dc.w $F007,  $32,  $19,$FFF8
-		dc.w $F80D,  $1C,   $E,	   4
-		dc.w $F80D, $81C, $80E,$FFDC
-word_1716A:	dc.w 3
-		dc.w $F007,  $32,  $19,$FFF8
-		dc.w $F805,  $28,  $14,	   4
-		dc.w $F805,  $24,  $12,$FFEC
-word_17184:	dc.w 2
-		dc.w $F801,  $2C,  $16,	   0
-		dc.w $F007,  $32,  $19,$FFF8
-word_17196:	dc.w 2
-		dc.w $F801, $82C, $816,$FFF8
-		dc.w $F007,  $32,  $19,$FFF8
-word_171A8:	dc.w 3
-		dc.w $F007,  $32,  $19,$FFF8
-		dc.w $F805, $828, $814,$FFEC
-		dc.w $F805, $824, $812,	   4
+Map_Obj4C_internal:	mappingsTable
+	mappingsTableEntry.w	word_1700C
+	mappingsTableEntry.w	word_1702E
+	mappingsTableEntry.w	word_17050
+	mappingsTableEntry.w	word_17072
+	mappingsTableEntry.w	word_17094
+	mappingsTableEntry.w	word_170AE
+	mappingsTableEntry.w	word_170D0
+	mappingsTableEntry.w	word_170F2
+	mappingsTableEntry.w	word_17114
+	mappingsTableEntry.w	word_17136
+	mappingsTableEntry.w	word_17150
+	mappingsTableEntry.w	word_1716A
+	mappingsTableEntry.w	word_17184
+	mappingsTableEntry.w	word_17196
+	mappingsTableEntry.w	word_171A8
+
+word_1700C:	spriteHeader
+	spritePiece	-8, -$10, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-8, 0, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	5, -$10, 3, 4, 8, 0, 0, 0, 0
+	spritePiece	-$1D, -$10, 3, 4, 8, 1, 0, 0, 0
+word_1700C_End
+
+word_1702E:	spriteHeader
+	spritePiece	-8, -$10, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-8, 0, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	5, -$A, 4, 2, $14, 0, 0, 0, 0
+	spritePiece	-$25, -$A, 4, 2, $14, 1, 0, 0, 0
+word_1702E_End
+
+word_17050:	spriteHeader
+	spritePiece	-8, -$10, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-8, 0, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	4, -8, 4, 2, $1C, 0, 0, 0, 0
+	spritePiece	-$24, -8, 4, 2, $1C, 1, 0, 0, 0
+word_17050_End
+
+word_17072:	spriteHeader
+	spritePiece	-8, -$10, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-8, 0, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	-$14, -8, 2, 2, $24, 0, 0, 0, 0
+	spritePiece	4, -8, 2, 2, $28, 0, 0, 0, 0
+word_17072_End
+
+word_17094:	spriteHeader
+	spritePiece	0, -8, 1, 2, $2C, 0, 0, 0, 0
+	spritePiece	-8, -$10, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-8, 0, 2, 2, 4, 0, 0, 0, 0
+word_17094_End
+
+word_170AE:	spriteHeader
+	spritePiece	-8, -$10, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-8, 0, 2, 2, $2E, 0, 0, 0, 0
+	spritePiece	5, -$10, 3, 4, 8, 0, 0, 0, 0
+	spritePiece	-$1D, -$10, 3, 4, 8, 1, 0, 0, 0
+word_170AE_End
+
+word_170D0:	spriteHeader
+	spritePiece	-8, -$10, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-8, 0, 2, 2, $2E, 0, 0, 0, 0
+	spritePiece	5, -$A, 4, 2, $14, 0, 0, 0, 0
+	spritePiece	-$25, -$A, 4, 2, $14, 1, 0, 0, 0
+word_170D0_End
+
+word_170F2:	spriteHeader
+	spritePiece	-8, -$10, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-8, 0, 2, 2, $2E, 0, 0, 0, 0
+	spritePiece	4, -8, 4, 2, $1C, 0, 0, 0, 0
+	spritePiece	-$24, -8, 4, 2, $1C, 1, 0, 0, 0
+word_170F2_End
+
+word_17114:	spriteHeader
+	spritePiece	-8, -$10, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-8, 0, 2, 2, $2E, 0, 0, 0, 0
+	spritePiece	4, -8, 2, 2, $28, 0, 0, 0, 0
+	spritePiece	-$14, -8, 2, 2, $24, 0, 0, 0, 0
+word_17114_End
+
+word_17136:	spriteHeader
+	spritePiece	0, -8, 1, 2, $2C, 0, 0, 0, 0
+	spritePiece	-8, -$10, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-8, 0, 2, 2, $2E, 0, 0, 0, 0
+word_17136_End
+
+word_17150:	spriteHeader
+	spritePiece	-8, -$10, 2, 4, $32, 0, 0, 0, 0
+	spritePiece	4, -8, 4, 2, $1C, 0, 0, 0, 0
+	spritePiece	-$24, -8, 4, 2, $1C, 1, 0, 0, 0
+word_17150_End
+
+word_1716A:	spriteHeader
+	spritePiece	-8, -$10, 2, 4, $32, 0, 0, 0, 0
+	spritePiece	4, -8, 2, 2, $28, 0, 0, 0, 0
+	spritePiece	-$14, -8, 2, 2, $24, 0, 0, 0, 0
+word_1716A_End
+
+word_17184:	spriteHeader
+	spritePiece	0, -8, 1, 2, $2C, 0, 0, 0, 0
+	spritePiece	-8, -$10, 2, 4, $32, 0, 0, 0, 0
+word_17184_End
+
+word_17196:	spriteHeader
+	spritePiece	-8, -8, 1, 2, $2C, 1, 0, 0, 0
+	spritePiece	-8, -$10, 2, 4, $32, 0, 0, 0, 0
+word_17196_End
+
+word_171A8:	spriteHeader
+	spritePiece	-8, -$10, 2, 4, $32, 0, 0, 0, 0
+	spritePiece	-$14, -8, 2, 2, $28, 1, 0, 0, 0
+	spritePiece	4, -8, 2, 2, $24, 1, 0, 0, 0
+word_171A8_End
+
+	even

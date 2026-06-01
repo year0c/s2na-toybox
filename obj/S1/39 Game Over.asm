@@ -28,7 +28,7 @@ loc_BAA0:
 
 loc_BAB8:
 		move.w	#$F0,obScreenY(a0)
-		move.l	#Map_Obj39,obMap(a0)
+		move.l	#Map_Over,obMap(a0)
 		move.w	#make_art_tile(ArtTile_Game_Over,0,1),obGfx(a0)
 		bsr.w	Adjust2PArtPointer
 		move.b	#0,obRender(a0)

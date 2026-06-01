@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Drawing;
 using SonicRetro.SonLVL.API;
 
@@ -13,7 +12,8 @@ namespace S2ObjectDefinitions.EHZ
 		public override void Init(ObjectData data)
 		{
 			byte[] artfile = ObjectHelper.OpenArtFile("../art/nemesis/EHZ bridge.nem", CompressionType.Nemesis);
-			img = ObjectHelper.MapASMToBmp(artfile, "../mappings/sprite/obj11_EHZ.asm", 0, 2);
+			string mapfile = "../mappings/sprite/obj11 (EHZ).asm";
+			img = ObjectHelper.MapASMToBmp(artfile, mapfile, 0, 2);
 		}
 
 		public override ReadOnlyCollection<byte> Subtypes

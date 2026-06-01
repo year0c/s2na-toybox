@@ -1,782 +1,1117 @@
-Map_Sonic_internal:
-		dc.w Map_Sonic_internal_014E-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0150-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0172-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0184-Map_Sonic_internal
-		dc.w Map_Sonic_internal_01AE-Map_Sonic_internal
-		dc.w Map_Sonic_internal_01D8-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0202-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0224-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0246-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0258-Map_Sonic_internal
-		dc.w Map_Sonic_internal_026A-Map_Sonic_internal
-		dc.w Map_Sonic_internal_027C-Map_Sonic_internal
-		dc.w Map_Sonic_internal_029E-Map_Sonic_internal
-		dc.w Map_Sonic_internal_02C0-Map_Sonic_internal
-		dc.w Map_Sonic_internal_02D2-Map_Sonic_internal
-		dc.w Map_Sonic_internal_02E4-Map_Sonic_internal
-		dc.w Map_Sonic_internal_02FE-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0318-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0332-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0354-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0376-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0390-Map_Sonic_internal
-		dc.w Map_Sonic_internal_03AA-Map_Sonic_internal
-		dc.w Map_Sonic_internal_03C4-Map_Sonic_internal
-		dc.w Map_Sonic_internal_03DE-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0400-Map_Sonic_internal
-		dc.w Map_Sonic_internal_042A-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0454-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0476-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0498-Map_Sonic_internal
-		dc.w Map_Sonic_internal_04BA-Map_Sonic_internal
-		dc.w Map_Sonic_internal_04DC-Map_Sonic_internal
-		dc.w Map_Sonic_internal_04FE-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0528-Map_Sonic_internal
-		dc.w Map_Sonic_internal_054A-Map_Sonic_internal
-		dc.w Map_Sonic_internal_056C-Map_Sonic_internal
-		dc.w Map_Sonic_internal_058E-Map_Sonic_internal
-		dc.w Map_Sonic_internal_05A8-Map_Sonic_internal
-		dc.w Map_Sonic_internal_05BA-Map_Sonic_internal
-		dc.w Map_Sonic_internal_05CC-Map_Sonic_internal
-		dc.w Map_Sonic_internal_05DE-Map_Sonic_internal
-		dc.w Map_Sonic_internal_05F8-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0612-Map_Sonic_internal
-		dc.w Map_Sonic_internal_062C-Map_Sonic_internal
-		dc.w Map_Sonic_internal_063E-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0650-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0662-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0674-Map_Sonic_internal
-		dc.w Map_Sonic_internal_068E-Map_Sonic_internal
-		dc.w Map_Sonic_internal_06B0-Map_Sonic_internal
-		dc.w Map_Sonic_internal_06D2-Map_Sonic_internal
-		dc.w Map_Sonic_internal_06FC-Map_Sonic_internal
-		dc.w Map_Sonic_internal_071E-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0740-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0762-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0784-Map_Sonic_internal
-		dc.w Map_Sonic_internal_07A6-Map_Sonic_internal
-		dc.w Map_Sonic_internal_07C8-Map_Sonic_internal
-		dc.w Map_Sonic_internal_07EA-Map_Sonic_internal
-		dc.w Map_Sonic_internal_080C-Map_Sonic_internal
-		dc.w Map_Sonic_internal_082E-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0840-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0852-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0864-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0876-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0888-Map_Sonic_internal
-		dc.w Map_Sonic_internal_089A-Map_Sonic_internal
-		dc.w Map_Sonic_internal_08AC-Map_Sonic_internal
-		dc.w Map_Sonic_internal_08BE-Map_Sonic_internal
-		dc.w Map_Sonic_internal_08D0-Map_Sonic_internal
-		dc.w Map_Sonic_internal_08E2-Map_Sonic_internal
-		dc.w Map_Sonic_internal_08F4-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0906-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0918-Map_Sonic_internal
-		dc.w Map_Sonic_internal_092A-Map_Sonic_internal
-		dc.w Map_Sonic_internal_093C-Map_Sonic_internal
-		dc.w Map_Sonic_internal_094E-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0960-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0972-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0984-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0996-Map_Sonic_internal
-		dc.w Map_Sonic_internal_09A8-Map_Sonic_internal
-		dc.w Map_Sonic_internal_09BA-Map_Sonic_internal
-		dc.w Map_Sonic_internal_09CC-Map_Sonic_internal
-		dc.w Map_Sonic_internal_09DE-Map_Sonic_internal
-		dc.w Map_Sonic_internal_09F0-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0A02-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0A14-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0A26-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0A38-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0A4A-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0A5C-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0A6E-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0A80-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0A92-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0AA4-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0AB6-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0AC8-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0ADA-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0AEC-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0AFE-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0B10-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0B22-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0B34-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0B46-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0B58-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0B6A-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0B7C-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0B8E-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0B98-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0BA2-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0BAC-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0BB6-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0BC0-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0BCA-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0BD4-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0BDE-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0BE8-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0BF2-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0BFC-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0C16-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0C30-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0C4A-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0C64-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0C86-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0CA8-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0CCA-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0CE4-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0CEE-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0CF8-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0D12-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0D2C-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0D46-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0D60-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0D72-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0D84-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0D96-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0DA8-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0DCA-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0DDC-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0DF6-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0E10-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0E22-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0E34-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0E46-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0E58-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0E7A-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0E9C-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0EBE-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0ED8-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0EF2-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0F14-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0F2E-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0F50-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0F72-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0F8C-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0FA6-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0FC0-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0FD2-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0FDC-Map_Sonic_internal
-		dc.w Map_Sonic_internal_0FEE-Map_Sonic_internal
-		dc.w Map_Sonic_internal_1008-Map_Sonic_internal
-		dc.w Map_Sonic_internal_1022-Map_Sonic_internal
-		dc.w Map_Sonic_internal_103C-Map_Sonic_internal
-		dc.w Map_Sonic_internal_104E-Map_Sonic_internal
-		dc.w Map_Sonic_internal_1060-Map_Sonic_internal
-		dc.w Map_Sonic_internal_107A-Map_Sonic_internal
-Map_Sonic_internal_014E:	dc.w 0
-Map_Sonic_internal_0150:	dc.w 4
-		dc.w $E405, 0, 0, $FFF8
-		dc.w $EC03, 4, 2, $FFF0
-		dc.w $F409, 8, 4, $FFF8
-		dc.w $409, $E, 7, $FFF8
-Map_Sonic_internal_0172:	dc.w 2
-		dc.w $EC0B, 0, 0, $FFF0
-		dc.w $C09, $C, 6, $FFF8
-Map_Sonic_internal_0184:	dc.w 5
-		dc.w $EC01, 0, 0, $FFF0
-		dc.w $EC05, 2, 1, $FFF8
-		dc.w $FC09, 6, 3, $FFF0
-		dc.w $C01, $C, 6, $FFF8
-		dc.w $C05, $E, 7, 0
-Map_Sonic_internal_01AE:	dc.w 5
-		dc.w $EC01, 0, 0, $FFF0
-		dc.w $EC05, 2, 1, $FFF8
-		dc.w $FC09, 6, 3, $FFF0
-		dc.w $C01, $C, 6, $FFF8
-		dc.w $C05, $E, 7, 0
-Map_Sonic_internal_01D8:	dc.w 5
-		dc.w $EC01, 0, 0, $FFF0
-		dc.w $EC05, 2, 1, $FFF8
-		dc.w $FC09, 6, 3, $FFF0
-		dc.w $C01, $C, 6, $FFF8
-		dc.w $C05, $E, 7, 0
-Map_Sonic_internal_0202:	dc.w 4
-		dc.w $E405, 0, 0, $FFF8
-		dc.w $EC03, 4, 2, $FFF0
-		dc.w $F409, 8, 4, $FFF8
-		dc.w $409, $E, 7, $FFF8
+Map_Sonic_internal:	mappingsTable
+	mappingsTableEntry.w	Map_Sonic_internal_014E
+	mappingsTableEntry.w	Map_Sonic_internal_0150
+	mappingsTableEntry.w	Map_Sonic_internal_0172
+	mappingsTableEntry.w	Map_Sonic_internal_0184
+	mappingsTableEntry.w	Map_Sonic_internal_01AE
+	mappingsTableEntry.w	Map_Sonic_internal_01D8
+	mappingsTableEntry.w	Map_Sonic_internal_0202
+	mappingsTableEntry.w	Map_Sonic_internal_0224
+	mappingsTableEntry.w	Map_Sonic_internal_0246
+	mappingsTableEntry.w	Map_Sonic_internal_0258
+	mappingsTableEntry.w	Map_Sonic_internal_026A
+	mappingsTableEntry.w	Map_Sonic_internal_027C
+	mappingsTableEntry.w	Map_Sonic_internal_029E
+	mappingsTableEntry.w	Map_Sonic_internal_02C0
+	mappingsTableEntry.w	Map_Sonic_internal_02D2
+	mappingsTableEntry.w	Map_Sonic_internal_02E4
+	mappingsTableEntry.w	Map_Sonic_internal_02FE
+	mappingsTableEntry.w	Map_Sonic_internal_0318
+	mappingsTableEntry.w	Map_Sonic_internal_0332
+	mappingsTableEntry.w	Map_Sonic_internal_0354
+	mappingsTableEntry.w	Map_Sonic_internal_0376
+	mappingsTableEntry.w	Map_Sonic_internal_0390
+	mappingsTableEntry.w	Map_Sonic_internal_03AA
+	mappingsTableEntry.w	Map_Sonic_internal_03C4
+	mappingsTableEntry.w	Map_Sonic_internal_03DE
+	mappingsTableEntry.w	Map_Sonic_internal_0400
+	mappingsTableEntry.w	Map_Sonic_internal_042A
+	mappingsTableEntry.w	Map_Sonic_internal_0454
+	mappingsTableEntry.w	Map_Sonic_internal_0476
+	mappingsTableEntry.w	Map_Sonic_internal_0498
+	mappingsTableEntry.w	Map_Sonic_internal_04BA
+	mappingsTableEntry.w	Map_Sonic_internal_04DC
+	mappingsTableEntry.w	Map_Sonic_internal_04FE
+	mappingsTableEntry.w	Map_Sonic_internal_0528
+	mappingsTableEntry.w	Map_Sonic_internal_054A
+	mappingsTableEntry.w	Map_Sonic_internal_056C
+	mappingsTableEntry.w	Map_Sonic_internal_058E
+	mappingsTableEntry.w	Map_Sonic_internal_05A8
+	mappingsTableEntry.w	Map_Sonic_internal_05BA
+	mappingsTableEntry.w	Map_Sonic_internal_05CC
+	mappingsTableEntry.w	Map_Sonic_internal_05DE
+	mappingsTableEntry.w	Map_Sonic_internal_05F8
+	mappingsTableEntry.w	Map_Sonic_internal_0612
+	mappingsTableEntry.w	Map_Sonic_internal_062C
+	mappingsTableEntry.w	Map_Sonic_internal_063E
+	mappingsTableEntry.w	Map_Sonic_internal_0650
+	mappingsTableEntry.w	Map_Sonic_internal_0662
+	mappingsTableEntry.w	Map_Sonic_internal_0674
+	mappingsTableEntry.w	Map_Sonic_internal_068E
+	mappingsTableEntry.w	Map_Sonic_internal_06B0
+	mappingsTableEntry.w	Map_Sonic_internal_06D2
+	mappingsTableEntry.w	Map_Sonic_internal_06FC
+	mappingsTableEntry.w	Map_Sonic_internal_071E
+	mappingsTableEntry.w	Map_Sonic_internal_0740
+	mappingsTableEntry.w	Map_Sonic_internal_0762
+	mappingsTableEntry.w	Map_Sonic_internal_0784
+	mappingsTableEntry.w	Map_Sonic_internal_07A6
+	mappingsTableEntry.w	Map_Sonic_internal_07C8
+	mappingsTableEntry.w	Map_Sonic_internal_07EA
+	mappingsTableEntry.w	Map_Sonic_internal_080C
+	mappingsTableEntry.w	Map_Sonic_internal_082E
+	mappingsTableEntry.w	Map_Sonic_internal_0840
+	mappingsTableEntry.w	Map_Sonic_internal_0852
+	mappingsTableEntry.w	Map_Sonic_internal_0864
+	mappingsTableEntry.w	Map_Sonic_internal_0876
+	mappingsTableEntry.w	Map_Sonic_internal_0888
+	mappingsTableEntry.w	Map_Sonic_internal_089A
+	mappingsTableEntry.w	Map_Sonic_internal_08AC
+	mappingsTableEntry.w	Map_Sonic_internal_08BE
+	mappingsTableEntry.w	Map_Sonic_internal_08D0
+	mappingsTableEntry.w	Map_Sonic_internal_08E2
+	mappingsTableEntry.w	Map_Sonic_internal_08F4
+	mappingsTableEntry.w	Map_Sonic_internal_0906
+	mappingsTableEntry.w	Map_Sonic_internal_0918
+	mappingsTableEntry.w	Map_Sonic_internal_092A
+	mappingsTableEntry.w	Map_Sonic_internal_093C
+	mappingsTableEntry.w	Map_Sonic_internal_094E
+	mappingsTableEntry.w	Map_Sonic_internal_0960
+	mappingsTableEntry.w	Map_Sonic_internal_0972
+	mappingsTableEntry.w	Map_Sonic_internal_0984
+	mappingsTableEntry.w	Map_Sonic_internal_0996
+	mappingsTableEntry.w	Map_Sonic_internal_09A8
+	mappingsTableEntry.w	Map_Sonic_internal_09BA
+	mappingsTableEntry.w	Map_Sonic_internal_09CC
+	mappingsTableEntry.w	Map_Sonic_internal_09DE
+	mappingsTableEntry.w	Map_Sonic_internal_09F0
+	mappingsTableEntry.w	Map_Sonic_internal_0A02
+	mappingsTableEntry.w	Map_Sonic_internal_0A14
+	mappingsTableEntry.w	Map_Sonic_internal_0A26
+	mappingsTableEntry.w	Map_Sonic_internal_0A38
+	mappingsTableEntry.w	Map_Sonic_internal_0A4A
+	mappingsTableEntry.w	Map_Sonic_internal_0A5C
+	mappingsTableEntry.w	Map_Sonic_internal_0A6E
+	mappingsTableEntry.w	Map_Sonic_internal_0A80
+	mappingsTableEntry.w	Map_Sonic_internal_0A92
+	mappingsTableEntry.w	Map_Sonic_internal_0AA4
+	mappingsTableEntry.w	Map_Sonic_internal_0AB6
+	mappingsTableEntry.w	Map_Sonic_internal_0AC8
+	mappingsTableEntry.w	Map_Sonic_internal_0ADA
+	mappingsTableEntry.w	Map_Sonic_internal_0AEC
+	mappingsTableEntry.w	Map_Sonic_internal_0AFE
+	mappingsTableEntry.w	Map_Sonic_internal_0B10
+	mappingsTableEntry.w	Map_Sonic_internal_0B22
+	mappingsTableEntry.w	Map_Sonic_internal_0B34
+	mappingsTableEntry.w	Map_Sonic_internal_0B46
+	mappingsTableEntry.w	Map_Sonic_internal_0B58
+	mappingsTableEntry.w	Map_Sonic_internal_0B6A
+	mappingsTableEntry.w	Map_Sonic_internal_0B7C
+	mappingsTableEntry.w	Map_Sonic_internal_0B8E
+	mappingsTableEntry.w	Map_Sonic_internal_0B98
+	mappingsTableEntry.w	Map_Sonic_internal_0BA2
+	mappingsTableEntry.w	Map_Sonic_internal_0BAC
+	mappingsTableEntry.w	Map_Sonic_internal_0BB6
+	mappingsTableEntry.w	Map_Sonic_internal_0BC0
+	mappingsTableEntry.w	Map_Sonic_internal_0BCA
+	mappingsTableEntry.w	Map_Sonic_internal_0BD4
+	mappingsTableEntry.w	Map_Sonic_internal_0BDE
+	mappingsTableEntry.w	Map_Sonic_internal_0BE8
+	mappingsTableEntry.w	Map_Sonic_internal_0BF2
+	mappingsTableEntry.w	Map_Sonic_internal_0BFC
+	mappingsTableEntry.w	Map_Sonic_internal_0C16
+	mappingsTableEntry.w	Map_Sonic_internal_0C30
+	mappingsTableEntry.w	Map_Sonic_internal_0C4A
+	mappingsTableEntry.w	Map_Sonic_internal_0C64
+	mappingsTableEntry.w	Map_Sonic_internal_0C86
+	mappingsTableEntry.w	Map_Sonic_internal_0CA8
+	mappingsTableEntry.w	Map_Sonic_internal_0CCA
+	mappingsTableEntry.w	Map_Sonic_internal_0CE4
+	mappingsTableEntry.w	Map_Sonic_internal_0CEE
+	mappingsTableEntry.w	Map_Sonic_internal_0CF8
+	mappingsTableEntry.w	Map_Sonic_internal_0D12
+	mappingsTableEntry.w	Map_Sonic_internal_0D2C
+	mappingsTableEntry.w	Map_Sonic_internal_0D46
+	mappingsTableEntry.w	Map_Sonic_internal_0D60
+	mappingsTableEntry.w	Map_Sonic_internal_0D72
+	mappingsTableEntry.w	Map_Sonic_internal_0D84
+	mappingsTableEntry.w	Map_Sonic_internal_0D96
+	mappingsTableEntry.w	Map_Sonic_internal_0DA8
+	mappingsTableEntry.w	Map_Sonic_internal_0DCA
+	mappingsTableEntry.w	Map_Sonic_internal_0DDC
+	mappingsTableEntry.w	Map_Sonic_internal_0DF6
+	mappingsTableEntry.w	Map_Sonic_internal_0E10
+	mappingsTableEntry.w	Map_Sonic_internal_0E22
+	mappingsTableEntry.w	Map_Sonic_internal_0E34
+	mappingsTableEntry.w	Map_Sonic_internal_0E46
+	mappingsTableEntry.w	Map_Sonic_internal_0E58
+	mappingsTableEntry.w	Map_Sonic_internal_0E7A
+	mappingsTableEntry.w	Map_Sonic_internal_0E9C
+	mappingsTableEntry.w	Map_Sonic_internal_0EBE
+	mappingsTableEntry.w	Map_Sonic_internal_0ED8
+	mappingsTableEntry.w	Map_Sonic_internal_0EF2
+	mappingsTableEntry.w	Map_Sonic_internal_0F14
+	mappingsTableEntry.w	Map_Sonic_internal_0F2E
+	mappingsTableEntry.w	Map_Sonic_internal_0F50
+	mappingsTableEntry.w	Map_Sonic_internal_0F72
+	mappingsTableEntry.w	Map_Sonic_internal_0F8C
+	mappingsTableEntry.w	Map_Sonic_internal_0FA6
+	mappingsTableEntry.w	Map_Sonic_internal_0FC0
+	mappingsTableEntry.w	Map_Sonic_internal_0FD2
+	mappingsTableEntry.w	Map_Sonic_internal_0FDC
+	mappingsTableEntry.w	Map_Sonic_internal_0FEE
+	mappingsTableEntry.w	Map_Sonic_internal_1008
+	mappingsTableEntry.w	Map_Sonic_internal_1022
+	mappingsTableEntry.w	Map_Sonic_internal_103C
+	mappingsTableEntry.w	Map_Sonic_internal_104E
+	mappingsTableEntry.w	Map_Sonic_internal_1060
+	mappingsTableEntry.w	Map_Sonic_internal_107A
 
-Map_Sonic_internal_0224:	dc.w 4
-		dc.w $E405, 0, 0, $FFF8
-		dc.w $EC03, 4, 2, $FFF0
-		dc.w $F405, 8, 4, $FFF8
-		dc.w $409, $C, 6, $FFF8
-Map_Sonic_internal_0246:	dc.w 2
-		dc.w $F40B, 0, 0, $FFE1
-		dc.w $405, $C, 6, $FFF9
-Map_Sonic_internal_0258:	dc.w 2
-		dc.w $E40B, 0, 0, $FFEE
-		dc.w $40D, $C, 6, $FFEE
-Map_Sonic_internal_026A:	dc.w 2
-		dc.w $E40B, 0, 0, $FFF0
-		dc.w $405, $C, 6, $FFF8
-Map_Sonic_internal_027C:	dc.w 4
-		dc.w $E407, 0, 0, $FFF0
-		dc.w $405, 8, 4, $FFF0
-		dc.w $E407, $800, $800, 0
-		dc.w $405, $808, $804, 0
-Map_Sonic_internal_029E:	dc.w 4
-		dc.w $EA0D, 0, 0, $FFEC
-		dc.w $FA09, 8, 4, $FFEC
-		dc.w $FA07, $E, 7, 4
-		dc.w $A05, $16, $B, $FFEC
-Map_Sonic_internal_02C0:	dc.w 2
-		dc.w $EB0D, 0, 0, $FFEC
-		dc.w $FB0F, 8, 4, $FFF2
-Map_Sonic_internal_02D2:	dc.w 2
-		dc.w $EC0D, 0, 0, $FFEC
-		dc.w $FC0F, 8, 4, $FFF3
-Map_Sonic_internal_02E4:	dc.w 3
-		dc.w $EC0D, 0, 0, $FFEC
-		dc.w $FC0D, 8, 4, $FFF3
-		dc.w $C05, $10, 8, $FFF8
-Map_Sonic_internal_02FE:	dc.w 3
-		dc.w $EC0D, 0, 0, $FFEC
-		dc.w $FC0D, 8, 4, $FFF3
-		dc.w $C05, $10, 8, $FFF5
-Map_Sonic_internal_0318:	dc.w 3
-		dc.w $EC0D, 0, 0, $FFED
-		dc.w $FC0D, 8, 4, $FFED
-		dc.w $C05, $10, 8, $FFF5
-Map_Sonic_internal_0332:	dc.w 4
-		dc.w $EC09, 0, 0, $FFF4
-		dc.w $FC0D, 6, 3, $FFEC
-		dc.w $FC01, $E, 7, $C
-		dc.w $C05, $10, 8, $FFEC
-Map_Sonic_internal_0354:	dc.w 4
-		dc.w $EC09, 0, 0, $FFF4
-		dc.w $FC0D, 6, 3, $FFF3
-		dc.w $C01, $E, 7, $FFF3
-		dc.w $C05, $10, 8, 3
-Map_Sonic_internal_0376:	dc.w 3
-		dc.w $ED09, 0, 0, $FFF4
-		dc.w $FD09, 6, 3, $FFF4
-		dc.w $D0D, $C, 6, $FFF4
-Map_Sonic_internal_0390:	dc.w 3
-		dc.w $ED0D, 0, 0, $FFED
-		dc.w $FD0D, 8, 4, $FFED
-		dc.w $D05, $10, 8, $FFFA
-Map_Sonic_internal_03AA:	dc.w 3
-		dc.w $EC0D, 0, 0, $FFEC
-		dc.w $FC0D, 8, 4, $FFF3
-		dc.w $C05, $10, 8, $FFFA
-Map_Sonic_internal_03C4:	dc.w 3
-		dc.w $EC0D, 0, 0, $FFEC
-		dc.w $FC0D, 8, 4, $FFF3
-		dc.w $C05, $10, 8, $FFF3
-Map_Sonic_internal_03DE:	dc.w 4
-		dc.w $EB09, 0, 0, $FFEB
-		dc.w $FB0D, 6, 3, $FFEB
-		dc.w $F305, $E, 7, 3
-		dc.w $B01, $12, 9, $FFFB
-Map_Sonic_internal_0400:	dc.w 5
-		dc.w $EC09, 0, 0, $FFEC
-		dc.w $FC0D, 6, 3, $FFEC
-		dc.w $EC01, $E, 7, 4
-		dc.w $FC01, $10, 8, $C
-		dc.w $C01, $12, 9, $FFFF
-Map_Sonic_internal_042A:	dc.w 5
-		dc.w $ED09, 0, 0, $FFED
-		dc.w $FD0D, 6, 3, $FFED
-		dc.w $ED01, $E, 7, 5
-		dc.w $FD01, $10, 8, $D
-		dc.w $D01, $12, 9, 0
-Map_Sonic_internal_0454:	dc.w 4
-		dc.w $EE09, 0, 0, $FFED
-		dc.w $EE01, 6, 3, 5
-		dc.w $FE0D, 8, 4, $FFED
-		dc.w $609, $10, 8, $FFFD
-Map_Sonic_internal_0476:	dc.w 4
-		dc.w $EE09, 0, 0, $FFED
-		dc.w $EE01, 6, 3, 5
-		dc.w $FE0D, 8, 4, $FFED
-		dc.w $605, $10, 8, 5
-Map_Sonic_internal_0498:	dc.w 4
-		dc.w $EE09, 0, 0, $FFED
-		dc.w $FE09, 6, 3, $FFED
-		dc.w $F603, $C, 6, 5
-		dc.w $E01, $10, 8, $FFFD
-Map_Sonic_internal_04BA:	dc.w 4
-		dc.w $EC09, 0, 0, $FFED
-		dc.w $F405, 6, 3, 5
-		dc.w $FC09, $A, 5, $FFED
-		dc.w $C01, $10, 8, $FFFD
-Map_Sonic_internal_04DC:	dc.w 4
-		dc.w $EC09, 0, 0, $FFED
-		dc.w $F705, 6, 3, 5
-		dc.w $FC09, $A, 5, $FFED
-		dc.w $C01, $10, 8, $FFFD
-Map_Sonic_internal_04FE:	dc.w 5
-		dc.w $ED09, 0, 0, $FFEE
-		dc.w $ED01, 6, 3, 6
-		dc.w $FD09, 8, 4, $FFEF
-		dc.w $FD05, $E, 7, 7
-		dc.w $D01, $12, 9, $FFFF
-Map_Sonic_internal_0528:	dc.w 4
-		dc.w $EE09, 0, 0, $FFEE
-		dc.w $FE09, 6, 3, $FFEE
-		dc.w $F601, $C, 6, 6
-		dc.w $605, $E, 7, 6
-Map_Sonic_internal_054A:	dc.w 4
-		dc.w $EE09, 0, 0, $FFED
-		dc.w $FE09, 6, 3, $FFED
-		dc.w $F601, $C, 6, 5
-		dc.w $605, $E, 7, 5
-Map_Sonic_internal_056C:	dc.w 4
-		dc.w $ED09, 0, 0, $FFED
-		dc.w $FD09, 6, 3, $FFED
-		dc.w $ED03, $C, 6, 5
-		dc.w $D05, $10, 8, $FFFF
-Map_Sonic_internal_058E:	dc.w 3
-		dc.w $F507, 0, 0, $FFEA
-		dc.w $ED0B, 8, 4, $FFFA
-		dc.w $D05, $14, $A, 2
-Map_Sonic_internal_05A8:	dc.w 2
-		dc.w $F507, 0, 0, $FFEB
-		dc.w $EF0B, 8, 4, $FFFB
-Map_Sonic_internal_05BA:	dc.w 2
-		dc.w $F507, 0, 0, $FFEC
-		dc.w $EE0B, 8, 4, $FFFC
-Map_Sonic_internal_05CC:	dc.w 2
-		dc.w $F507, 0, 0, $FFEC
-		dc.w $EE0B, 8, 4, $FFFC
-Map_Sonic_internal_05DE:	dc.w 3
-		dc.w $F507, 0, 0, $FFEC
-		dc.w $EF05, 8, 4, $FFFC
-		dc.w $FF09, $C, 6, $FFFC
-Map_Sonic_internal_05F8:	dc.w 3
-		dc.w $F407, 0, 0, $FFEC
-		dc.w $EC05, 8, 4, $FFFC
-		dc.w $FC09, $C, 6, $FFFC
-Map_Sonic_internal_0612:	dc.w 3
-		dc.w $F507, 0, 0, $FFEC
-		dc.w $ED05, 8, 4, $FFFC
-		dc.w $FD0B, $C, 6, $FFFC
-Map_Sonic_internal_062C:	dc.w 2
-		dc.w $F507, 0, 0, $FFEC
-		dc.w $ED0B, 8, 4, $FFFC
-Map_Sonic_internal_063E:	dc.w 2
-		dc.w $F507, 0, 0, $FFED
-		dc.w $ED0B, 8, 4, $FFFD
-Map_Sonic_internal_0650:	dc.w 2
-		dc.w $F407, 0, 0, $FFED
-		dc.w $F40B, 8, 4, $FFFD
-Map_Sonic_internal_0662:	dc.w 2
-		dc.w $F507, 0, 0, $FFEC
-		dc.w $EE0B, 8, 4, $FFFC
-Map_Sonic_internal_0674:	dc.w 3
-		dc.w $F507, 0, 0, $FFEC
-		dc.w $EE05, 8, 4, $FFFC
-		dc.w $FE09, $C, 6, $FFFC
-Map_Sonic_internal_068E:	dc.w 4
-		dc.w $EE09, 0, 0, $FFF3
-		dc.w $FE07, 6, 3, $FFEB
-		dc.w $FE0D, $E, 7, $FFFB
-		dc.w $E01, $16, $B, $FFFB
-Map_Sonic_internal_06B0:	dc.w 4
-		dc.w $ED0D, 0, 0, $FFF4
-		dc.w $FD07, 8, 4, $FFEC
-		dc.w $FD0D, $10, 8, $FFFC
-		dc.w $D01, $18, $C, $FFFC
-Map_Sonic_internal_06D2:	dc.w 5
-		dc.w $EC0D, 0, 0, $FFF5
-		dc.w $EC01, 8, 4, $15
-		dc.w $FC07, $A, 5, $FFED
-		dc.w $FC09, $12, 9, $FFFD
-		dc.w $C01, $18, $C, $FFFD
-Map_Sonic_internal_06FC:	dc.w 4
-		dc.w $EC0D, 0, 0, $FFF6
-		dc.w $FC07, 8, 4, $FFEE
-		dc.w $FC09, $10, 8, $FFFE
-		dc.w $C01, $16, $B, $FFFE
-Map_Sonic_internal_071E:	dc.w 4
-		dc.w $EC0D, 0, 0, $FFF6
-		dc.w $FC07, 8, 4, $FFEE
-		dc.w $FC05, $10, 8, $FFFE
-		dc.w $C01, $14, $A, $FFFE
-Map_Sonic_internal_0740:	dc.w 4
-		dc.w $EC01, 0, 0, $FFF6
-		dc.w $F409, 2, 1, $FFFE
-		dc.w $FC07, 8, 4, $FFEE
-		dc.w $405, $10, 8, $FFFE
-Map_Sonic_internal_0762:	dc.w 4
-		dc.w $EC05, 0, 0, $FFF4
-		dc.w $FC07, 4, 2, $FFEC
-		dc.w $FC0D, $C, 6, $FFFC
-		dc.w $C05, $14, $A, $FFFC
-Map_Sonic_internal_0784:	dc.w 4
-		dc.w $EC05, 0, 0, $FFF4
-		dc.w $FC07, 4, 2, $FFEC
-		dc.w $FC09, $C, 6, $FFFC
-		dc.w $C01, $12, 9, $FFFC
-Map_Sonic_internal_07A6:	dc.w 4
-		dc.w $EB09, 0, 0, $FFF5
-		dc.w $FB07, 6, 3, $FFED
-		dc.w $FB09, $E, 7, $FFFD
-		dc.w $B01, $14, $A, $FFFD
-Map_Sonic_internal_07C8:	dc.w 4
-		dc.w $EB0D, 0, 0, $FFF6
-		dc.w $FB07, 8, 4, $FFEE
-		dc.w $FB05, $10, 8, $FFFE
-		dc.w $B01, $14, $A, $FFFE
-Map_Sonic_internal_07EA:	dc.w 4
-		dc.w $EC0D, 0, 0, $FFF6
-		dc.w $FC07, 8, 4, $FFEE
-		dc.w $FC05, $10, 8, $FFFE
-		dc.w $C01, $14, $A, $FFFE
-Map_Sonic_internal_080C:	dc.w 4
-		dc.w $EC0D, 0, 0, $FFF5
-		dc.w $FC07, 8, 4, $FFED
-		dc.w $FC09, $10, 8, $FFFD
-		dc.w $C01, $16, $B, $FFFD
-Map_Sonic_internal_082E:	dc.w 2
-		dc.w $F40F, $10, 8, $FFF0
-		dc.w $F00F, 0, 0, $FFF0
-Map_Sonic_internal_0840:	dc.w 2
-		dc.w $F40F, $10, 8, $FFF0
-		dc.w $F00F, 0, 0, $FFF0
-Map_Sonic_internal_0852:	dc.w 2
-		dc.w $F40F, $10, 8, $FFF0
-		dc.w $F00F, 0, 0, $FFF0
-Map_Sonic_internal_0864:	dc.w 2
-		dc.w $F40F, $10, 8, $FFF0
-		dc.w $F00F, 0, 0, $FFF0
-Map_Sonic_internal_0876:	dc.w 2
-		dc.w $F40F, $10, 8, $FFED
-		dc.w $F10F, 0, 0, $FFF1
-Map_Sonic_internal_0888:	dc.w 2
-		dc.w $F40F, $10, 8, $FFED
-		dc.w $F10F, 0, 0, $FFF1
-Map_Sonic_internal_089A:	dc.w 2
-		dc.w $F40F, $10, 8, $FFED
-		dc.w $F10F, 0, 0, $FFF1
-Map_Sonic_internal_08AC:	dc.w 2
-		dc.w $F40F, $10, 8, $FFED
-		dc.w $F10F, 0, 0, $FFF1
-Map_Sonic_internal_08BE:	dc.w 2
-		dc.w $F40F, $10, 8, $FFEA
-		dc.w $F20F, 0, 0, $FFF2
-Map_Sonic_internal_08D0:	dc.w 2
-		dc.w $F40F, $10, 8, $FFEA
-		dc.w $F20F, 0, 0, $FFF2
-Map_Sonic_internal_08E2:	dc.w 2
-		dc.w $F40F, $10, 8, $FFEA
-		dc.w $F20F, 0, 0, $FFF2
-Map_Sonic_internal_08F4:	dc.w 2
-		dc.w $F40F, $10, 8, $FFEA
-		dc.w $F20F, 0, 0, $FFF2
-Map_Sonic_internal_0906:	dc.w 2
-		dc.w $F60F, $10, 8, $FFF9
-		dc.w $EA0F, 0, 0, $FFED
-Map_Sonic_internal_0918:	dc.w 2
-		dc.w $F60F, $10, 8, $FFF9
-		dc.w $EA0F, 0, 0, $FFED
-Map_Sonic_internal_092A:	dc.w 2
-		dc.w $F60F, $10, 8, $FFF9
-		dc.w $EA0F, 0, 0, $FFED
-Map_Sonic_internal_093C:	dc.w 2
-		dc.w $F60F, $10, 8, $FFF9
-		dc.w $EA0F, 0, 0, $FFED
-Map_Sonic_internal_094E:	dc.w 2
-		dc.w $F80F, $10, 8, $FFF7
-		dc.w $EA0F, 0, 0, $FFEE
-Map_Sonic_internal_0960:	dc.w 2
-		dc.w $F80F, $10, 8, $FFF7
-		dc.w $EA0F, 0, 0, $FFEE
-Map_Sonic_internal_0972:	dc.w 2
-		dc.w $F80F, $10, 8, $FFF7
-		dc.w $EA0F, 0, 0, $FFEE
-Map_Sonic_internal_0984:	dc.w 2
-		dc.w $F80F, $10, 8, $FFF7
-		dc.w $EA0F, 0, 0, $FFEE
-Map_Sonic_internal_0996:	dc.w 2
-		dc.w $FA0F, $10, 8, $FFF5
-		dc.w $EA0F, 0, 0, $FFEF
-Map_Sonic_internal_09A8:	dc.w 2
-		dc.w $FA0F, $10, 8, $FFF5
-		dc.w $EA0F, 0, 0, $FFEF
-Map_Sonic_internal_09BA:	dc.w 2
-		dc.w $FA0F, $10, 8, $FFF5
-		dc.w $EA0F, 0, 0, $FFEF
-Map_Sonic_internal_09CC:	dc.w 2
-		dc.w $FA0F, $10, 8, $FFF5
-		dc.w $EA0F, 0, 0, $FFEF
-Map_Sonic_internal_09DE:	dc.w 2
-		dc.w $F00B, $C, 6, $FFFC
-		dc.w $F00B, 0, 0, $FFF0
-Map_Sonic_internal_09F0:	dc.w 2
-		dc.w $F00B, $C, 6, $FFFC
-		dc.w $F00B, 0, 0, $FFF0
-Map_Sonic_internal_0A02:	dc.w 2
-		dc.w $F00B, $C, 6, $FFFC
-		dc.w $F00B, 0, 0, $FFF0
-Map_Sonic_internal_0A14:	dc.w 2
-		dc.w $F00B, $C, 6, $FFFC
-		dc.w $F00B, 0, 0, $FFF0
-Map_Sonic_internal_0A26:	dc.w 2
-		dc.w $F30B, $C, 6, $FFFC
-		dc.w $EF0B, 0, 0, $FFF1
-Map_Sonic_internal_0A38:	dc.w 2
-		dc.w $F30B, $C, 6, $FFFC
-		dc.w $EF0B, 0, 0, $FFF1
-Map_Sonic_internal_0A4A:	dc.w 2
-		dc.w $F30B, $C, 6, $FFFC
-		dc.w $EF0B, 0, 0, $FFF1
-Map_Sonic_internal_0A5C:	dc.w 2
-		dc.w $F30B, $C, 6, $FFFC
-		dc.w $EF0B, 0, 0, $FFF1
-Map_Sonic_internal_0A6E:	dc.w 2
-		dc.w $F60B, $C, 6, $FFFC
-		dc.w $EE0B, 0, 0, $FFF2
-Map_Sonic_internal_0A80:	dc.w 2
-		dc.w $F60B, $C, 6, $FFFC
-		dc.w $EE0B, 0, 0, $FFF2
-Map_Sonic_internal_0A92:	dc.w 2
-		dc.w $F60B, $C, 6, $FFFC
-		dc.w $EE0B, 0, 0, $FFF2
-Map_Sonic_internal_0AA4:	dc.w 2
-		dc.w $F60B, $C, 6, $FFFC
-		dc.w $EE0B, 0, 0, $FFF2
-Map_Sonic_internal_0AB6:	dc.w 2
-		dc.w $E70F, $10, 8, $FFF6
-		dc.w $F30F, 0, 0, $FFEA
-Map_Sonic_internal_0AC8:	dc.w 2
-		dc.w $E70B, $10, 8, $FFFE
-		dc.w $F30F, 0, 0, $FFEA
-Map_Sonic_internal_0ADA:	dc.w 2
-		dc.w $E70F, $10, 8, $FFF6
-		dc.w $F30F, 0, 0, $FFEA
-Map_Sonic_internal_0AEC:	dc.w 2
-		dc.w $E70B, $10, 8, $FFFE
-		dc.w $F30F, 0, 0, $FFEA
-Map_Sonic_internal_0AFE:	dc.w 2
-		dc.w $E90F, $10, 8, $FFF8
-		dc.w $F20F, 0, 0, $FFEA
-Map_Sonic_internal_0B10:	dc.w 2
-		dc.w $E90B, $10, 8, 0
-		dc.w $F20F, 0, 0, $FFEA
-Map_Sonic_internal_0B22:	dc.w 2
-		dc.w $E90F, $10, 8, $FFF8
-		dc.w $F20F, 0, 0, $FFEA
-Map_Sonic_internal_0B34:	dc.w 2
-		dc.w $E90B, $10, 8, 0
-		dc.w $F20F, 0, 0, $FFEA
-Map_Sonic_internal_0B46:	dc.w 2
-		dc.w $EB0F, $10, 8, $FFFA
-		dc.w $F10F, 0, 0, $FFEA
-Map_Sonic_internal_0B58:	dc.w 2
-		dc.w $EB0B, $10, 8, 2
-		dc.w $F10F, 0, 0, $FFEA
-Map_Sonic_internal_0B6A:	dc.w 2
-		dc.w $EB0F, $10, 8, $FFFA
-		dc.w $F10F, 0, 0, $FFEA
-Map_Sonic_internal_0B7C:	dc.w 2
-		dc.w $EB0B, $10, 8, 2
-		dc.w $F10F, 0, 0, $FFEA
-Map_Sonic_internal_0B8E:	dc.w 1
-		dc.w $F00F, 0, 0, $FFF0
-Map_Sonic_internal_0B98:	dc.w 1
-		dc.w $F00F, 0, 0, $FFF0
-Map_Sonic_internal_0BA2:	dc.w 1
-		dc.w $F00F, 0, 0, $FFF0
-Map_Sonic_internal_0BAC:	dc.w 1
-		dc.w $F00F, 0, 0, $FFF0
-Map_Sonic_internal_0BB6:	dc.w 1
-		dc.w $F00F, 0, 0, $FFF0
-Map_Sonic_internal_0BC0:	dc.w 1
-		dc.w $F80F, 0, 0, $FFF4
-Map_Sonic_internal_0BCA:	dc.w 1
-		dc.w $F80F, 0, 0, $FFF4
-Map_Sonic_internal_0BD4:	dc.w 1
-		dc.w $F80F, 0, 0, $FFF4
-Map_Sonic_internal_0BDE:	dc.w 1
-		dc.w $F80F, 0, 0, $FFF4
-Map_Sonic_internal_0BE8:	dc.w 1
-		dc.w $F80F, 0, 0, $FFF4
-Map_Sonic_internal_0BF2:	dc.w 1
-		dc.w $F80F, 0, 0, $FFF4
-Map_Sonic_internal_0BFC:	dc.w 3
-		dc.w $E509, 0, 0, $FFF8
-		dc.w $F509, 6, 3, $FFF8
-		dc.w $50D, $C, 6, $FFF0
-Map_Sonic_internal_0C16:	dc.w 3
-		dc.w $E509, 0, 0, $FFF8
-		dc.w $F509, 6, 3, $FFF8
-		dc.w $509, $C, 6, $FFF8
-Map_Sonic_internal_0C30:	dc.w 3
-		dc.w $E509, 0, 0, $FFF8
-		dc.w $F509, 6, 3, $FFF8
-		dc.w $50D, $C, 6, $FFF0
-Map_Sonic_internal_0C4A:	dc.w 3
-		dc.w $E509, 0, 0, $FFF8
-		dc.w $F509, 6, 3, $FFF8
-		dc.w $509, $C, 6, $FFF8
-Map_Sonic_internal_0C64:	dc.w 4
-		dc.w $E40B, 0, 0, $FFE8
-		dc.w $F405, $C, 6, 0
-		dc.w $401, $1010, $1008, $FFE8
-		dc.w $40D, $12, 9, $FFF0
-Map_Sonic_internal_0C86:	dc.w 4
-		dc.w $E40B, 0, 0, $FFE8
-		dc.w $F405, $C, 6, 0
-		dc.w $401, $1010, $1008, $FFE8
-		dc.w $40D, $12, 9, $FFF0
-Map_Sonic_internal_0CA8:	dc.w 4
-		dc.w $E40B, 0, 0, $FFE8
-		dc.w $F405, $C, 6, 0
-		dc.w $401, $1010, $1008, $FFE8
-		dc.w $40D, $12, 9, $FFF0
-Map_Sonic_internal_0CCA:	dc.w 3
-		dc.w $E503, 0, 0, $FFF0
-		dc.w $E507, 4, 2, $FFF8
-		dc.w $505, $C, 6, $FFF8
-Map_Sonic_internal_0CE4:	dc.w 1
-		dc.w $F40B, 0, 0, $FFF6
-Map_Sonic_internal_0CEE:	dc.w 1
-		dc.w $F40F, 0, 0, $FFF2
-Map_Sonic_internal_0CF8:	dc.w 3
-		dc.w $F007, 0, 0, $FFF0
-		dc.w $E803, 8, 4, 0
-		dc.w $805, $C, 6, 0
-Map_Sonic_internal_0D12:	dc.w 3
-		dc.w $ED07, 0, 0, $FFF0
-		dc.w $E503, 8, 4, 0
-		dc.w $505, $C, 6, 0
-Map_Sonic_internal_0D2C:	dc.w 3
-		dc.w $EE0B, 0, 0, $FFF0
-		dc.w $FE01, $C, 6, 8
-		dc.w $E05, $E, 7, 0
-Map_Sonic_internal_0D46:	dc.w 3
-		dc.w $ED0B, 0, 0, $FFF0
-		dc.w $FD01, $C, 6, 8
-		dc.w $D05, $E, 7, 0
-Map_Sonic_internal_0D60:	dc.w 2
-		dc.w $E40B, 0, 0, $FFF4
-		dc.w $40D, $C, 6, $FFF4
-Map_Sonic_internal_0D72:	dc.w 2
-		dc.w $E40B, 0, 0, $FFF8
-		dc.w $409, $C, 6, $FFF8
-Map_Sonic_internal_0D84:	dc.w 2
-		dc.w $E40B, 0, 0, $FFF0
-		dc.w $40D, $C, 6, $FFF0
-Map_Sonic_internal_0D96:	dc.w 2
-		dc.w $F40F, 0, 0, $FFE8
-		dc.w $401, $10, 8, 8
-Map_Sonic_internal_0DA8:	dc.w 4
-		dc.w $E409, 0, 0, $FFF6
-		dc.w $F40D, 6, 3, $FFF2
-		dc.w $40D, $E, 7, $FFEE
-		dc.w $401, $16, $B, $E
-Map_Sonic_internal_0DCA:	dc.w 2
-		dc.w $E40B, 0, 0, $FFF9
-		dc.w $40D, $C, 6, $FFEF
-Map_Sonic_internal_0DDC:	dc.w 3
-		dc.w $E409, 0, 0, $FFFD
-		dc.w $F40D, 6, 3, $FFFB
-		dc.w $405, $E, 7, 2
-Map_Sonic_internal_0DF6:	dc.w 3
-		dc.w $E409, 0, 0, $FFFC
-		dc.w $F40D, 6, 3, $FFFA
-		dc.w $405, $E, 7, 2
-Map_Sonic_internal_0E10:	dc.w 2
-		dc.w $F801, 0, 0, $FFEC
-		dc.w $F00F, 2, 1, $FFF4
-Map_Sonic_internal_0E22:	dc.w 2
-		dc.w $F003, 0, 0, $FFEC
-		dc.w $F00F, 4, 2, $FFF4
-Map_Sonic_internal_0E34:	dc.w 2
-		dc.w $EC0F, 0, 0, $FFE8
-		dc.w $EC07, $10, 8, 8
-Map_Sonic_internal_0E46:	dc.w 2
-		dc.w $EC0F, 0, 0, $FFE8
-		dc.w $EC07, $10, 8, 8
-Map_Sonic_internal_0E58:	dc.w 4
-		dc.w $FC05, 0, 0, $FFEC
-		dc.w $F40D, 4, 2, $FFFC
-		dc.w $401, $C, 6, $FFFC
-		dc.w $405, $E, 7, 4
-Map_Sonic_internal_0E7A:	dc.w 4
-		dc.w $F409, 0, 0, $FFE8
-		dc.w $405, 6, 3, $FFF0
-		dc.w $F409, $800, $800, 0
-		dc.w $405, $806, $803, 0
-Map_Sonic_internal_0E9C:	dc.w 4
-		dc.w $FC05, $800, $800, 4
-		dc.w $F40D, $804, $802, $FFE4
-		dc.w $401, $80C, $806, $FFFC
-		dc.w $405, $80E, $807, $FFEC
-Map_Sonic_internal_0EBE:	dc.w 3
-		dc.w $F40D, 0, 0, $FFE4
-		dc.w $409, 8, 4, $FFEC
-		dc.w $FC01, $E, 7, 4
-Map_Sonic_internal_0ED8:	dc.w 3
-		dc.w $F40D, $800, $800, $FFFC
-		dc.w $409, $808, $804, $FFFC
-		dc.w $FC01, $80E, $807, $FFF4
-Map_Sonic_internal_0EF2:	dc.w 4
-		dc.w $F40D, 0, 0, $FFFC
-		dc.w $FC05, 8, 4, $FFEC
-		dc.w $401, $C, 6, $FFFC
-		dc.w $405, $E, 7, 4
-Map_Sonic_internal_0F14:	dc.w 3
-		dc.w $E409, 0, 0, $FFF4
-		dc.w $F40F, 6, 3, $FFEC
-		dc.w $401, $16, $B, $C
-Map_Sonic_internal_0F2E:	dc.w 4
-		dc.w $EC0D, 0, 0, $FFEA
-		dc.w $EC01, 8, 4, $A
-		dc.w $FC09, $A, 5, $FFF2
-		dc.w $C0D, $10, 8, $FFF2
-Map_Sonic_internal_0F50:	dc.w 4
-		dc.w $EC0D, 0, 0, $FFEA
-		dc.w $EC01, 8, 4, $A
-		dc.w $FC09, $A, 5, $FFF2
-		dc.w $C0D, $10, 8, $FFF2
-Map_Sonic_internal_0F72:	dc.w 3
-		dc.w $EC0D, 0, 0, $FFEA
-		dc.w $EC01, 8, 4, $A
-		dc.w $FC0B, $A, 5, $FFF2
-Map_Sonic_internal_0F8C:	dc.w 3
-		dc.w $E409, 0, 0, $FFF0
-		dc.w $F40B, 6, 3, $FFF0
-		dc.w $F401, $12, 9, 8
-Map_Sonic_internal_0FA6:	dc.w 3
-		dc.w $E50B, 0, 0, $FFF0
-		dc.w $F401, $C, 6, 8
-		dc.w $505, $E, 7, $FFF8
-Map_Sonic_internal_0FC0:	dc.w 2
-		dc.w $EC0B, 0, 0, $FFF1
-		dc.w $FC01, $C, 6, 9
-Map_Sonic_internal_0FD2:	dc.w 1
-		dc.w $EE0F, 0, 0, $FFF0
-Map_Sonic_internal_0FDC:	dc.w 2
-		dc.w $F20B, 0, 0, $FFF0
-		dc.w $FA01, $C, 6, 8
-Map_Sonic_internal_0FEE:	dc.w 3
-		dc.w $E401, 0, 0, 0
-		dc.w $F40B, 2, 1, $FFF0
-		dc.w $F401, $E, 7, 8
-Map_Sonic_internal_1008:	dc.w 3
-		dc.w $E509, 0, 0, $FFF0
-		dc.w $F50B, 6, 3, $FFF0
-		dc.w $ED03, $12, 9, 8
-Map_Sonic_internal_1022:	dc.w 3
-		dc.w $E405, 0, 0, $FFF8
-		dc.w $F40B, 4, 2, $FFF0
-		dc.w $F401, $10, 8, 8
-Map_Sonic_internal_103C:	dc.w 2
-		dc.w $ED0B, 0, 0, $FFF0
-		dc.w $F501, $C, 6, 8
-Map_Sonic_internal_104E:	dc.w 2
-		dc.w $F401, 0, 0, $FFF0
-		dc.w $F10B, 2, 1, $FFF8
-Map_Sonic_internal_1060:	dc.w 3
-		dc.w $E405, 0, 0, $FFF1
-		dc.w $F40B, 4, 2, $FFF0
-		dc.w $F401, $10, 8, 8
-Map_Sonic_internal_107A:	dc.w 2
-		dc.w $E105, 0, 0, $FFF0
-		dc.w $F10F, 4, 2, $FFF0
+Map_Sonic_internal_014E:	spriteHeader
+Map_Sonic_internal_014E_End
+
+Map_Sonic_internal_0150:	spriteHeader
+	spritePiece	-8, -$1C, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-$10, -$14, 1, 4, 4, 0, 0, 0, 0
+	spritePiece	-8, -$C, 3, 2, 8, 0, 0, 0, 0
+	spritePiece	-8, 4, 3, 2, $E, 0, 0, 0, 0
+Map_Sonic_internal_0150_End
+
+Map_Sonic_internal_0172:	spriteHeader
+	spritePiece	-$10, -$14, 3, 4, 0, 0, 0, 0, 0
+	spritePiece	-8, $C, 3, 2, $C, 0, 0, 0, 0
+Map_Sonic_internal_0172_End
+
+Map_Sonic_internal_0184:	spriteHeader
+	spritePiece	-$10, -$14, 1, 2, 0, 0, 0, 0, 0
+	spritePiece	-8, -$14, 2, 2, 2, 0, 0, 0, 0
+	spritePiece	-$10, -4, 3, 2, 6, 0, 0, 0, 0
+	spritePiece	-8, $C, 1, 2, $C, 0, 0, 0, 0
+	spritePiece	0, $C, 2, 2, $E, 0, 0, 0, 0
+Map_Sonic_internal_0184_End
+
+Map_Sonic_internal_01AE:	spriteHeader
+	spritePiece	-$10, -$14, 1, 2, 0, 0, 0, 0, 0
+	spritePiece	-8, -$14, 2, 2, 2, 0, 0, 0, 0
+	spritePiece	-$10, -4, 3, 2, 6, 0, 0, 0, 0
+	spritePiece	-8, $C, 1, 2, $C, 0, 0, 0, 0
+	spritePiece	0, $C, 2, 2, $E, 0, 0, 0, 0
+Map_Sonic_internal_01AE_End
+
+Map_Sonic_internal_01D8:	spriteHeader
+	spritePiece	-$10, -$14, 1, 2, 0, 0, 0, 0, 0
+	spritePiece	-8, -$14, 2, 2, 2, 0, 0, 0, 0
+	spritePiece	-$10, -4, 3, 2, 6, 0, 0, 0, 0
+	spritePiece	-8, $C, 1, 2, $C, 0, 0, 0, 0
+	spritePiece	0, $C, 2, 2, $E, 0, 0, 0, 0
+Map_Sonic_internal_01D8_End
+
+Map_Sonic_internal_0202:	spriteHeader
+	spritePiece	-8, -$1C, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-$10, -$14, 1, 4, 4, 0, 0, 0, 0
+	spritePiece	-8, -$C, 3, 2, 8, 0, 0, 0, 0
+	spritePiece	-8, 4, 3, 2, $E, 0, 0, 0, 0
+Map_Sonic_internal_0202_End
+
+Map_Sonic_internal_0224:	spriteHeader
+	spritePiece	-8, -$1C, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-$10, -$14, 1, 4, 4, 0, 0, 0, 0
+	spritePiece	-8, -$C, 2, 2, 8, 0, 0, 0, 0
+	spritePiece	-8, 4, 3, 2, $C, 0, 0, 0, 0
+Map_Sonic_internal_0224_End
+
+Map_Sonic_internal_0246:	spriteHeader
+	spritePiece	-$1F, -$C, 3, 4, 0, 0, 0, 0, 0
+	spritePiece	-7, 4, 2, 2, $C, 0, 0, 0, 0
+Map_Sonic_internal_0246_End
+
+Map_Sonic_internal_0258:	spriteHeader
+	spritePiece	-$12, -$1C, 3, 4, 0, 0, 0, 0, 0
+	spritePiece	-$12, 4, 4, 2, $C, 0, 0, 0, 0
+Map_Sonic_internal_0258_End
+
+Map_Sonic_internal_026A:	spriteHeader
+	spritePiece	-$10, -$1C, 3, 4, 0, 0, 0, 0, 0
+	spritePiece	-8, 4, 2, 2, $C, 0, 0, 0, 0
+Map_Sonic_internal_026A_End
+
+Map_Sonic_internal_027C:	spriteHeader
+	spritePiece	-$10, -$1C, 2, 4, 0, 0, 0, 0, 0
+	spritePiece	-$10, 4, 2, 2, 8, 0, 0, 0, 0
+	spritePiece	0, -$1C, 2, 4, 0, 1, 0, 0, 0
+	spritePiece	0, 4, 2, 2, 8, 1, 0, 0, 0
+Map_Sonic_internal_027C_End
+
+Map_Sonic_internal_029E:	spriteHeader
+	spritePiece	-$14, -$16, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$14, -6, 3, 2, 8, 0, 0, 0, 0
+	spritePiece	4, -6, 2, 4, $E, 0, 0, 0, 0
+	spritePiece	-$14, $A, 2, 2, $16, 0, 0, 0, 0
+Map_Sonic_internal_029E_End
+
+Map_Sonic_internal_02C0:	spriteHeader
+	spritePiece	-$14, -$15, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$E, -5, 4, 4, 8, 0, 0, 0, 0
+Map_Sonic_internal_02C0_End
+
+Map_Sonic_internal_02D2:	spriteHeader
+	spritePiece	-$14, -$14, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$D, -4, 4, 4, 8, 0, 0, 0, 0
+Map_Sonic_internal_02D2_End
+
+Map_Sonic_internal_02E4:	spriteHeader
+	spritePiece	-$14, -$14, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$D, -4, 4, 2, 8, 0, 0, 0, 0
+	spritePiece	-8, $C, 2, 2, $10, 0, 0, 0, 0
+Map_Sonic_internal_02E4_End
+
+Map_Sonic_internal_02FE:	spriteHeader
+	spritePiece	-$14, -$14, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$D, -4, 4, 2, 8, 0, 0, 0, 0
+	spritePiece	-$B, $C, 2, 2, $10, 0, 0, 0, 0
+Map_Sonic_internal_02FE_End
+
+Map_Sonic_internal_0318:	spriteHeader
+	spritePiece	-$13, -$14, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$13, -4, 4, 2, 8, 0, 0, 0, 0
+	spritePiece	-$B, $C, 2, 2, $10, 0, 0, 0, 0
+Map_Sonic_internal_0318_End
+
+Map_Sonic_internal_0332:	spriteHeader
+	spritePiece	-$C, -$14, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	-$14, -4, 4, 2, 6, 0, 0, 0, 0
+	spritePiece	$C, -4, 1, 2, $E, 0, 0, 0, 0
+	spritePiece	-$14, $C, 2, 2, $10, 0, 0, 0, 0
+Map_Sonic_internal_0332_End
+
+Map_Sonic_internal_0354:	spriteHeader
+	spritePiece	-$C, -$14, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	-$D, -4, 4, 2, 6, 0, 0, 0, 0
+	spritePiece	-$D, $C, 1, 2, $E, 0, 0, 0, 0
+	spritePiece	3, $C, 2, 2, $10, 0, 0, 0, 0
+Map_Sonic_internal_0354_End
+
+Map_Sonic_internal_0376:	spriteHeader
+	spritePiece	-$C, -$13, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	-$C, -3, 3, 2, 6, 0, 0, 0, 0
+	spritePiece	-$C, $D, 4, 2, $C, 0, 0, 0, 0
+Map_Sonic_internal_0376_End
+
+Map_Sonic_internal_0390:	spriteHeader
+	spritePiece	-$13, -$13, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$13, -3, 4, 2, 8, 0, 0, 0, 0
+	spritePiece	-6, $D, 2, 2, $10, 0, 0, 0, 0
+Map_Sonic_internal_0390_End
+
+Map_Sonic_internal_03AA:	spriteHeader
+	spritePiece	-$14, -$14, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$D, -4, 4, 2, 8, 0, 0, 0, 0
+	spritePiece	-6, $C, 2, 2, $10, 0, 0, 0, 0
+Map_Sonic_internal_03AA_End
+
+Map_Sonic_internal_03C4:	spriteHeader
+	spritePiece	-$14, -$14, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$D, -4, 4, 2, 8, 0, 0, 0, 0
+	spritePiece	-$D, $C, 2, 2, $10, 0, 0, 0, 0
+Map_Sonic_internal_03C4_End
+
+Map_Sonic_internal_03DE:	spriteHeader
+	spritePiece	-$15, -$15, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	-$15, -5, 4, 2, 6, 0, 0, 0, 0
+	spritePiece	3, -$D, 2, 2, $E, 0, 0, 0, 0
+	spritePiece	-5, $B, 1, 2, $12, 0, 0, 0, 0
+Map_Sonic_internal_03DE_End
+
+Map_Sonic_internal_0400:	spriteHeader
+	spritePiece	-$14, -$14, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	-$14, -4, 4, 2, 6, 0, 0, 0, 0
+	spritePiece	4, -$14, 1, 2, $E, 0, 0, 0, 0
+	spritePiece	$C, -4, 1, 2, $10, 0, 0, 0, 0
+	spritePiece	-1, $C, 1, 2, $12, 0, 0, 0, 0
+Map_Sonic_internal_0400_End
+
+Map_Sonic_internal_042A:	spriteHeader
+	spritePiece	-$13, -$13, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	-$13, -3, 4, 2, 6, 0, 0, 0, 0
+	spritePiece	5, -$13, 1, 2, $E, 0, 0, 0, 0
+	spritePiece	$D, -3, 1, 2, $10, 0, 0, 0, 0
+	spritePiece	0, $D, 1, 2, $12, 0, 0, 0, 0
+Map_Sonic_internal_042A_End
+
+Map_Sonic_internal_0454:	spriteHeader
+	spritePiece	-$13, -$12, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	5, -$12, 1, 2, 6, 0, 0, 0, 0
+	spritePiece	-$13, -2, 4, 2, 8, 0, 0, 0, 0
+	spritePiece	-3, 6, 3, 2, $10, 0, 0, 0, 0
+Map_Sonic_internal_0454_End
+
+Map_Sonic_internal_0476:	spriteHeader
+	spritePiece	-$13, -$12, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	5, -$12, 1, 2, 6, 0, 0, 0, 0
+	spritePiece	-$13, -2, 4, 2, 8, 0, 0, 0, 0
+	spritePiece	5, 6, 2, 2, $10, 0, 0, 0, 0
+Map_Sonic_internal_0476_End
+
+Map_Sonic_internal_0498:	spriteHeader
+	spritePiece	-$13, -$12, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	-$13, -2, 3, 2, 6, 0, 0, 0, 0
+	spritePiece	5, -$A, 1, 4, $C, 0, 0, 0, 0
+	spritePiece	-3, $E, 1, 2, $10, 0, 0, 0, 0
+Map_Sonic_internal_0498_End
+
+Map_Sonic_internal_04BA:	spriteHeader
+	spritePiece	-$13, -$14, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	5, -$C, 2, 2, 6, 0, 0, 0, 0
+	spritePiece	-$13, -4, 3, 2, $A, 0, 0, 0, 0
+	spritePiece	-3, $C, 1, 2, $10, 0, 0, 0, 0
+Map_Sonic_internal_04BA_End
+
+Map_Sonic_internal_04DC:	spriteHeader
+	spritePiece	-$13, -$14, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	5, -9, 2, 2, 6, 0, 0, 0, 0
+	spritePiece	-$13, -4, 3, 2, $A, 0, 0, 0, 0
+	spritePiece	-3, $C, 1, 2, $10, 0, 0, 0, 0
+Map_Sonic_internal_04DC_End
+
+Map_Sonic_internal_04FE:	spriteHeader
+	spritePiece	-$12, -$13, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	6, -$13, 1, 2, 6, 0, 0, 0, 0
+	spritePiece	-$11, -3, 3, 2, 8, 0, 0, 0, 0
+	spritePiece	7, -3, 2, 2, $E, 0, 0, 0, 0
+	spritePiece	-1, $D, 1, 2, $12, 0, 0, 0, 0
+Map_Sonic_internal_04FE_End
+
+Map_Sonic_internal_0528:	spriteHeader
+	spritePiece	-$12, -$12, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	-$12, -2, 3, 2, 6, 0, 0, 0, 0
+	spritePiece	6, -$A, 1, 2, $C, 0, 0, 0, 0
+	spritePiece	6, 6, 2, 2, $E, 0, 0, 0, 0
+Map_Sonic_internal_0528_End
+
+Map_Sonic_internal_054A:	spriteHeader
+	spritePiece	-$13, -$12, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	-$13, -2, 3, 2, 6, 0, 0, 0, 0
+	spritePiece	5, -$A, 1, 2, $C, 0, 0, 0, 0
+	spritePiece	5, 6, 2, 2, $E, 0, 0, 0, 0
+Map_Sonic_internal_054A_End
+
+Map_Sonic_internal_056C:	spriteHeader
+	spritePiece	-$13, -$13, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	-$13, -3, 3, 2, 6, 0, 0, 0, 0
+	spritePiece	5, -$13, 1, 4, $C, 0, 0, 0, 0
+	spritePiece	-1, $D, 2, 2, $10, 0, 0, 0, 0
+Map_Sonic_internal_056C_End
+
+Map_Sonic_internal_058E:	spriteHeader
+	spritePiece	-$16, -$B, 2, 4, 0, 0, 0, 0, 0
+	spritePiece	-6, -$13, 3, 4, 8, 0, 0, 0, 0
+	spritePiece	2, $D, 2, 2, $14, 0, 0, 0, 0
+Map_Sonic_internal_058E_End
+
+Map_Sonic_internal_05A8:	spriteHeader
+	spritePiece	-$15, -$B, 2, 4, 0, 0, 0, 0, 0
+	spritePiece	-5, -$11, 3, 4, 8, 0, 0, 0, 0
+Map_Sonic_internal_05A8_End
+
+Map_Sonic_internal_05BA:	spriteHeader
+	spritePiece	-$14, -$B, 2, 4, 0, 0, 0, 0, 0
+	spritePiece	-4, -$12, 3, 4, 8, 0, 0, 0, 0
+Map_Sonic_internal_05BA_End
+
+Map_Sonic_internal_05CC:	spriteHeader
+	spritePiece	-$14, -$B, 2, 4, 0, 0, 0, 0, 0
+	spritePiece	-4, -$12, 3, 4, 8, 0, 0, 0, 0
+Map_Sonic_internal_05CC_End
+
+Map_Sonic_internal_05DE:	spriteHeader
+	spritePiece	-$14, -$B, 2, 4, 0, 0, 0, 0, 0
+	spritePiece	-4, -$11, 2, 2, 8, 0, 0, 0, 0
+	spritePiece	-4, -1, 3, 2, $C, 0, 0, 0, 0
+Map_Sonic_internal_05DE_End
+
+Map_Sonic_internal_05F8:	spriteHeader
+	spritePiece	-$14, -$C, 2, 4, 0, 0, 0, 0, 0
+	spritePiece	-4, -$14, 2, 2, 8, 0, 0, 0, 0
+	spritePiece	-4, -4, 3, 2, $C, 0, 0, 0, 0
+Map_Sonic_internal_05F8_End
+
+Map_Sonic_internal_0612:	spriteHeader
+	spritePiece	-$14, -$B, 2, 4, 0, 0, 0, 0, 0
+	spritePiece	-4, -$13, 2, 2, 8, 0, 0, 0, 0
+	spritePiece	-4, -3, 3, 4, $C, 0, 0, 0, 0
+Map_Sonic_internal_0612_End
+
+Map_Sonic_internal_062C:	spriteHeader
+	spritePiece	-$14, -$B, 2, 4, 0, 0, 0, 0, 0
+	spritePiece	-4, -$13, 3, 4, 8, 0, 0, 0, 0
+Map_Sonic_internal_062C_End
+
+Map_Sonic_internal_063E:	spriteHeader
+	spritePiece	-$13, -$B, 2, 4, 0, 0, 0, 0, 0
+	spritePiece	-3, -$13, 3, 4, 8, 0, 0, 0, 0
+Map_Sonic_internal_063E_End
+
+Map_Sonic_internal_0650:	spriteHeader
+	spritePiece	-$13, -$C, 2, 4, 0, 0, 0, 0, 0
+	spritePiece	-3, -$C, 3, 4, 8, 0, 0, 0, 0
+Map_Sonic_internal_0650_End
+
+Map_Sonic_internal_0662:	spriteHeader
+	spritePiece	-$14, -$B, 2, 4, 0, 0, 0, 0, 0
+	spritePiece	-4, -$12, 3, 4, 8, 0, 0, 0, 0
+Map_Sonic_internal_0662_End
+
+Map_Sonic_internal_0674:	spriteHeader
+	spritePiece	-$14, -$B, 2, 4, 0, 0, 0, 0, 0
+	spritePiece	-4, -$12, 2, 2, 8, 0, 0, 0, 0
+	spritePiece	-4, -2, 3, 2, $C, 0, 0, 0, 0
+Map_Sonic_internal_0674_End
+
+Map_Sonic_internal_068E:	spriteHeader
+	spritePiece	-$D, -$12, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	-$15, -2, 2, 4, 6, 0, 0, 0, 0
+	spritePiece	-5, -2, 4, 2, $E, 0, 0, 0, 0
+	spritePiece	-5, $E, 1, 2, $16, 0, 0, 0, 0
+Map_Sonic_internal_068E_End
+
+Map_Sonic_internal_06B0:	spriteHeader
+	spritePiece	-$C, -$13, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$14, -3, 2, 4, 8, 0, 0, 0, 0
+	spritePiece	-4, -3, 4, 2, $10, 0, 0, 0, 0
+	spritePiece	-4, $D, 1, 2, $18, 0, 0, 0, 0
+Map_Sonic_internal_06B0_End
+
+Map_Sonic_internal_06D2:	spriteHeader
+	spritePiece	-$B, -$14, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	$15, -$14, 1, 2, 8, 0, 0, 0, 0
+	spritePiece	-$13, -4, 2, 4, $A, 0, 0, 0, 0
+	spritePiece	-3, -4, 3, 2, $12, 0, 0, 0, 0
+	spritePiece	-3, $C, 1, 2, $18, 0, 0, 0, 0
+Map_Sonic_internal_06D2_End
+
+Map_Sonic_internal_06FC:	spriteHeader
+	spritePiece	-$A, -$14, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$12, -4, 2, 4, 8, 0, 0, 0, 0
+	spritePiece	-2, -4, 3, 2, $10, 0, 0, 0, 0
+	spritePiece	-2, $C, 1, 2, $16, 0, 0, 0, 0
+Map_Sonic_internal_06FC_End
+
+Map_Sonic_internal_071E:	spriteHeader
+	spritePiece	-$A, -$14, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$12, -4, 2, 4, 8, 0, 0, 0, 0
+	spritePiece	-2, -4, 2, 2, $10, 0, 0, 0, 0
+	spritePiece	-2, $C, 1, 2, $14, 0, 0, 0, 0
+Map_Sonic_internal_071E_End
+
+Map_Sonic_internal_0740:	spriteHeader
+	spritePiece	-$A, -$14, 1, 2, 0, 0, 0, 0, 0
+	spritePiece	-2, -$C, 3, 2, 2, 0, 0, 0, 0
+	spritePiece	-$12, -4, 2, 4, 8, 0, 0, 0, 0
+	spritePiece	-2, 4, 2, 2, $10, 0, 0, 0, 0
+Map_Sonic_internal_0740_End
+
+Map_Sonic_internal_0762:	spriteHeader
+	spritePiece	-$C, -$14, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-$14, -4, 2, 4, 4, 0, 0, 0, 0
+	spritePiece	-4, -4, 4, 2, $C, 0, 0, 0, 0
+	spritePiece	-4, $C, 2, 2, $14, 0, 0, 0, 0
+Map_Sonic_internal_0762_End
+
+Map_Sonic_internal_0784:	spriteHeader
+	spritePiece	-$C, -$14, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-$14, -4, 2, 4, 4, 0, 0, 0, 0
+	spritePiece	-4, -4, 3, 2, $C, 0, 0, 0, 0
+	spritePiece	-4, $C, 1, 2, $12, 0, 0, 0, 0
+Map_Sonic_internal_0784_End
+
+Map_Sonic_internal_07A6:	spriteHeader
+	spritePiece	-$B, -$15, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	-$13, -5, 2, 4, 6, 0, 0, 0, 0
+	spritePiece	-3, -5, 3, 2, $E, 0, 0, 0, 0
+	spritePiece	-3, $B, 1, 2, $14, 0, 0, 0, 0
+Map_Sonic_internal_07A6_End
+
+Map_Sonic_internal_07C8:	spriteHeader
+	spritePiece	-$A, -$15, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$12, -5, 2, 4, 8, 0, 0, 0, 0
+	spritePiece	-2, -5, 2, 2, $10, 0, 0, 0, 0
+	spritePiece	-2, $B, 1, 2, $14, 0, 0, 0, 0
+Map_Sonic_internal_07C8_End
+
+Map_Sonic_internal_07EA:	spriteHeader
+	spritePiece	-$A, -$14, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$12, -4, 2, 4, 8, 0, 0, 0, 0
+	spritePiece	-2, -4, 2, 2, $10, 0, 0, 0, 0
+	spritePiece	-2, $C, 1, 2, $14, 0, 0, 0, 0
+Map_Sonic_internal_07EA_End
+
+Map_Sonic_internal_080C:	spriteHeader
+	spritePiece	-$B, -$14, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$13, -4, 2, 4, 8, 0, 0, 0, 0
+	spritePiece	-3, -4, 3, 2, $10, 0, 0, 0, 0
+	spritePiece	-3, $C, 1, 2, $16, 0, 0, 0, 0
+Map_Sonic_internal_080C_End
+
+Map_Sonic_internal_082E:	spriteHeader
+	spritePiece	-$10, -$C, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$10, -$10, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_082E_End
+
+Map_Sonic_internal_0840:	spriteHeader
+	spritePiece	-$10, -$C, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$10, -$10, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0840_End
+
+Map_Sonic_internal_0852:	spriteHeader
+	spritePiece	-$10, -$C, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$10, -$10, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0852_End
+
+Map_Sonic_internal_0864:	spriteHeader
+	spritePiece	-$10, -$C, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$10, -$10, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0864_End
+
+Map_Sonic_internal_0876:	spriteHeader
+	spritePiece	-$13, -$C, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$F, -$F, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0876_End
+
+Map_Sonic_internal_0888:	spriteHeader
+	spritePiece	-$13, -$C, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$F, -$F, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0888_End
+
+Map_Sonic_internal_089A:	spriteHeader
+	spritePiece	-$13, -$C, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$F, -$F, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_089A_End
+
+Map_Sonic_internal_08AC:	spriteHeader
+	spritePiece	-$13, -$C, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$F, -$F, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_08AC_End
+
+Map_Sonic_internal_08BE:	spriteHeader
+	spritePiece	-$16, -$C, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$E, -$E, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_08BE_End
+
+Map_Sonic_internal_08D0:	spriteHeader
+	spritePiece	-$16, -$C, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$E, -$E, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_08D0_End
+
+Map_Sonic_internal_08E2:	spriteHeader
+	spritePiece	-$16, -$C, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$E, -$E, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_08E2_End
+
+Map_Sonic_internal_08F4:	spriteHeader
+	spritePiece	-$16, -$C, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$E, -$E, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_08F4_End
+
+Map_Sonic_internal_0906:	spriteHeader
+	spritePiece	-7, -$A, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$13, -$16, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0906_End
+
+Map_Sonic_internal_0918:	spriteHeader
+	spritePiece	-7, -$A, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$13, -$16, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0918_End
+
+Map_Sonic_internal_092A:	spriteHeader
+	spritePiece	-7, -$A, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$13, -$16, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_092A_End
+
+Map_Sonic_internal_093C:	spriteHeader
+	spritePiece	-7, -$A, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$13, -$16, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_093C_End
+
+Map_Sonic_internal_094E:	spriteHeader
+	spritePiece	-9, -8, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$12, -$16, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_094E_End
+
+Map_Sonic_internal_0960:	spriteHeader
+	spritePiece	-9, -8, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$12, -$16, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0960_End
+
+Map_Sonic_internal_0972:	spriteHeader
+	spritePiece	-9, -8, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$12, -$16, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0972_End
+
+Map_Sonic_internal_0984:	spriteHeader
+	spritePiece	-9, -8, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$12, -$16, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0984_End
+
+Map_Sonic_internal_0996:	spriteHeader
+	spritePiece	-$B, -6, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$11, -$16, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0996_End
+
+Map_Sonic_internal_09A8:	spriteHeader
+	spritePiece	-$B, -6, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$11, -$16, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_09A8_End
+
+Map_Sonic_internal_09BA:	spriteHeader
+	spritePiece	-$B, -6, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$11, -$16, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_09BA_End
+
+Map_Sonic_internal_09CC:	spriteHeader
+	spritePiece	-$B, -6, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$11, -$16, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_09CC_End
+
+Map_Sonic_internal_09DE:	spriteHeader
+	spritePiece	-4, -$10, 3, 4, $C, 0, 0, 0, 0
+	spritePiece	-$10, -$10, 3, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_09DE_End
+
+Map_Sonic_internal_09F0:	spriteHeader
+	spritePiece	-4, -$10, 3, 4, $C, 0, 0, 0, 0
+	spritePiece	-$10, -$10, 3, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_09F0_End
+
+Map_Sonic_internal_0A02:	spriteHeader
+	spritePiece	-4, -$10, 3, 4, $C, 0, 0, 0, 0
+	spritePiece	-$10, -$10, 3, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0A02_End
+
+Map_Sonic_internal_0A14:	spriteHeader
+	spritePiece	-4, -$10, 3, 4, $C, 0, 0, 0, 0
+	spritePiece	-$10, -$10, 3, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0A14_End
+
+Map_Sonic_internal_0A26:	spriteHeader
+	spritePiece	-4, -$D, 3, 4, $C, 0, 0, 0, 0
+	spritePiece	-$F, -$11, 3, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0A26_End
+
+Map_Sonic_internal_0A38:	spriteHeader
+	spritePiece	-4, -$D, 3, 4, $C, 0, 0, 0, 0
+	spritePiece	-$F, -$11, 3, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0A38_End
+
+Map_Sonic_internal_0A4A:	spriteHeader
+	spritePiece	-4, -$D, 3, 4, $C, 0, 0, 0, 0
+	spritePiece	-$F, -$11, 3, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0A4A_End
+
+Map_Sonic_internal_0A5C:	spriteHeader
+	spritePiece	-4, -$D, 3, 4, $C, 0, 0, 0, 0
+	spritePiece	-$F, -$11, 3, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0A5C_End
+
+Map_Sonic_internal_0A6E:	spriteHeader
+	spritePiece	-4, -$A, 3, 4, $C, 0, 0, 0, 0
+	spritePiece	-$E, -$12, 3, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0A6E_End
+
+Map_Sonic_internal_0A80:	spriteHeader
+	spritePiece	-4, -$A, 3, 4, $C, 0, 0, 0, 0
+	spritePiece	-$E, -$12, 3, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0A80_End
+
+Map_Sonic_internal_0A92:	spriteHeader
+	spritePiece	-4, -$A, 3, 4, $C, 0, 0, 0, 0
+	spritePiece	-$E, -$12, 3, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0A92_End
+
+Map_Sonic_internal_0AA4:	spriteHeader
+	spritePiece	-4, -$A, 3, 4, $C, 0, 0, 0, 0
+	spritePiece	-$E, -$12, 3, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0AA4_End
+
+Map_Sonic_internal_0AB6:	spriteHeader
+	spritePiece	-$A, -$19, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$16, -$D, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0AB6_End
+
+Map_Sonic_internal_0AC8:	spriteHeader
+	spritePiece	-2, -$19, 3, 4, $10, 0, 0, 0, 0
+	spritePiece	-$16, -$D, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0AC8_End
+
+Map_Sonic_internal_0ADA:	spriteHeader
+	spritePiece	-$A, -$19, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$16, -$D, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0ADA_End
+
+Map_Sonic_internal_0AEC:	spriteHeader
+	spritePiece	-2, -$19, 3, 4, $10, 0, 0, 0, 0
+	spritePiece	-$16, -$D, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0AEC_End
+
+Map_Sonic_internal_0AFE:	spriteHeader
+	spritePiece	-8, -$17, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$16, -$E, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0AFE_End
+
+Map_Sonic_internal_0B10:	spriteHeader
+	spritePiece	0, -$17, 3, 4, $10, 0, 0, 0, 0
+	spritePiece	-$16, -$E, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0B10_End
+
+Map_Sonic_internal_0B22:	spriteHeader
+	spritePiece	-8, -$17, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$16, -$E, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0B22_End
+
+Map_Sonic_internal_0B34:	spriteHeader
+	spritePiece	0, -$17, 3, 4, $10, 0, 0, 0, 0
+	spritePiece	-$16, -$E, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0B34_End
+
+Map_Sonic_internal_0B46:	spriteHeader
+	spritePiece	-6, -$15, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$16, -$F, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0B46_End
+
+Map_Sonic_internal_0B58:	spriteHeader
+	spritePiece	2, -$15, 3, 4, $10, 0, 0, 0, 0
+	spritePiece	-$16, -$F, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0B58_End
+
+Map_Sonic_internal_0B6A:	spriteHeader
+	spritePiece	-6, -$15, 4, 4, $10, 0, 0, 0, 0
+	spritePiece	-$16, -$F, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0B6A_End
+
+Map_Sonic_internal_0B7C:	spriteHeader
+	spritePiece	2, -$15, 3, 4, $10, 0, 0, 0, 0
+	spritePiece	-$16, -$F, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0B7C_End
+
+Map_Sonic_internal_0B8E:	spriteHeader
+	spritePiece	-$10, -$10, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0B8E_End
+
+Map_Sonic_internal_0B98:	spriteHeader
+	spritePiece	-$10, -$10, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0B98_End
+
+Map_Sonic_internal_0BA2:	spriteHeader
+	spritePiece	-$10, -$10, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0BA2_End
+
+Map_Sonic_internal_0BAC:	spriteHeader
+	spritePiece	-$10, -$10, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0BAC_End
+
+Map_Sonic_internal_0BB6:	spriteHeader
+	spritePiece	-$10, -$10, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0BB6_End
+
+Map_Sonic_internal_0BC0:	spriteHeader
+	spritePiece	-$C, -8, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0BC0_End
+
+Map_Sonic_internal_0BCA:	spriteHeader
+	spritePiece	-$C, -8, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0BCA_End
+
+Map_Sonic_internal_0BD4:	spriteHeader
+	spritePiece	-$C, -8, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0BD4_End
+
+Map_Sonic_internal_0BDE:	spriteHeader
+	spritePiece	-$C, -8, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0BDE_End
+
+Map_Sonic_internal_0BE8:	spriteHeader
+	spritePiece	-$C, -8, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0BE8_End
+
+Map_Sonic_internal_0BF2:	spriteHeader
+	spritePiece	-$C, -8, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0BF2_End
+
+Map_Sonic_internal_0BFC:	spriteHeader
+	spritePiece	-8, -$1B, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	-8, -$B, 3, 2, 6, 0, 0, 0, 0
+	spritePiece	-$10, 5, 4, 2, $C, 0, 0, 0, 0
+Map_Sonic_internal_0BFC_End
+
+Map_Sonic_internal_0C16:	spriteHeader
+	spritePiece	-8, -$1B, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	-8, -$B, 3, 2, 6, 0, 0, 0, 0
+	spritePiece	-8, 5, 3, 2, $C, 0, 0, 0, 0
+Map_Sonic_internal_0C16_End
+
+Map_Sonic_internal_0C30:	spriteHeader
+	spritePiece	-8, -$1B, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	-8, -$B, 3, 2, 6, 0, 0, 0, 0
+	spritePiece	-$10, 5, 4, 2, $C, 0, 0, 0, 0
+Map_Sonic_internal_0C30_End
+
+Map_Sonic_internal_0C4A:	spriteHeader
+	spritePiece	-8, -$1B, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	-8, -$B, 3, 2, 6, 0, 0, 0, 0
+	spritePiece	-8, 5, 3, 2, $C, 0, 0, 0, 0
+Map_Sonic_internal_0C4A_End
+
+Map_Sonic_internal_0C64:	spriteHeader
+	spritePiece	-$18, -$1C, 3, 4, 0, 0, 0, 0, 0
+	spritePiece	0, -$C, 2, 2, $C, 0, 0, 0, 0
+	spritePiece	-$18, 4, 1, 2, $10, 0, 1, 0, 0
+	spritePiece	-$10, 4, 4, 2, $12, 0, 0, 0, 0
+Map_Sonic_internal_0C64_End
+
+Map_Sonic_internal_0C86:	spriteHeader
+	spritePiece	-$18, -$1C, 3, 4, 0, 0, 0, 0, 0
+	spritePiece	0, -$C, 2, 2, $C, 0, 0, 0, 0
+	spritePiece	-$18, 4, 1, 2, $10, 0, 1, 0, 0
+	spritePiece	-$10, 4, 4, 2, $12, 0, 0, 0, 0
+Map_Sonic_internal_0C86_End
+
+Map_Sonic_internal_0CA8:	spriteHeader
+	spritePiece	-$18, -$1C, 3, 4, 0, 0, 0, 0, 0
+	spritePiece	0, -$C, 2, 2, $C, 0, 0, 0, 0
+	spritePiece	-$18, 4, 1, 2, $10, 0, 1, 0, 0
+	spritePiece	-$10, 4, 4, 2, $12, 0, 0, 0, 0
+Map_Sonic_internal_0CA8_End
+
+Map_Sonic_internal_0CCA:	spriteHeader
+	spritePiece	-$10, -$1B, 1, 4, 0, 0, 0, 0, 0
+	spritePiece	-8, -$1B, 2, 4, 4, 0, 0, 0, 0
+	spritePiece	-8, 5, 2, 2, $C, 0, 0, 0, 0
+Map_Sonic_internal_0CCA_End
+
+Map_Sonic_internal_0CE4:	spriteHeader
+	spritePiece	-$A, -$C, 3, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0CE4_End
+
+Map_Sonic_internal_0CEE:	spriteHeader
+	spritePiece	-$E, -$C, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0CEE_End
+
+Map_Sonic_internal_0CF8:	spriteHeader
+	spritePiece	-$10, -$10, 2, 4, 0, 0, 0, 0, 0
+	spritePiece	0, -$18, 1, 4, 8, 0, 0, 0, 0
+	spritePiece	0, 8, 2, 2, $C, 0, 0, 0, 0
+Map_Sonic_internal_0CF8_End
+
+Map_Sonic_internal_0D12:	spriteHeader
+	spritePiece	-$10, -$13, 2, 4, 0, 0, 0, 0, 0
+	spritePiece	0, -$1B, 1, 4, 8, 0, 0, 0, 0
+	spritePiece	0, 5, 2, 2, $C, 0, 0, 0, 0
+Map_Sonic_internal_0D12_End
+
+Map_Sonic_internal_0D2C:	spriteHeader
+	spritePiece	-$10, -$12, 3, 4, 0, 0, 0, 0, 0
+	spritePiece	8, -2, 1, 2, $C, 0, 0, 0, 0
+	spritePiece	0, $E, 2, 2, $E, 0, 0, 0, 0
+Map_Sonic_internal_0D2C_End
+
+Map_Sonic_internal_0D46:	spriteHeader
+	spritePiece	-$10, -$13, 3, 4, 0, 0, 0, 0, 0
+	spritePiece	8, -3, 1, 2, $C, 0, 0, 0, 0
+	spritePiece	0, $D, 2, 2, $E, 0, 0, 0, 0
+Map_Sonic_internal_0D46_End
+
+Map_Sonic_internal_0D60:	spriteHeader
+	spritePiece	-$C, -$1C, 3, 4, 0, 0, 0, 0, 0
+	spritePiece	-$C, 4, 4, 2, $C, 0, 0, 0, 0
+Map_Sonic_internal_0D60_End
+
+Map_Sonic_internal_0D72:	spriteHeader
+	spritePiece	-8, -$1C, 3, 4, 0, 0, 0, 0, 0
+	spritePiece	-8, 4, 3, 2, $C, 0, 0, 0, 0
+Map_Sonic_internal_0D72_End
+
+Map_Sonic_internal_0D84:	spriteHeader
+	spritePiece	-$10, -$1C, 3, 4, 0, 0, 0, 0, 0
+	spritePiece	-$10, 4, 4, 2, $C, 0, 0, 0, 0
+Map_Sonic_internal_0D84_End
+
+Map_Sonic_internal_0D96:	spriteHeader
+	spritePiece	-$18, -$C, 4, 4, 0, 0, 0, 0, 0
+	spritePiece	8, 4, 1, 2, $10, 0, 0, 0, 0
+Map_Sonic_internal_0D96_End
+
+Map_Sonic_internal_0DA8:	spriteHeader
+	spritePiece	-$A, -$1C, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	-$E, -$C, 4, 2, 6, 0, 0, 0, 0
+	spritePiece	-$12, 4, 4, 2, $E, 0, 0, 0, 0
+	spritePiece	$E, 4, 1, 2, $16, 0, 0, 0, 0
+Map_Sonic_internal_0DA8_End
+
+Map_Sonic_internal_0DCA:	spriteHeader
+	spritePiece	-7, -$1C, 3, 4, 0, 0, 0, 0, 0
+	spritePiece	-$11, 4, 4, 2, $C, 0, 0, 0, 0
+Map_Sonic_internal_0DCA_End
+
+Map_Sonic_internal_0DDC:	spriteHeader
+	spritePiece	-3, -$1C, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	-5, -$C, 4, 2, 6, 0, 0, 0, 0
+	spritePiece	2, 4, 2, 2, $E, 0, 0, 0, 0
+Map_Sonic_internal_0DDC_End
+
+Map_Sonic_internal_0DF6:	spriteHeader
+	spritePiece	-4, -$1C, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	-6, -$C, 4, 2, 6, 0, 0, 0, 0
+	spritePiece	2, 4, 2, 2, $E, 0, 0, 0, 0
+Map_Sonic_internal_0DF6_End
+
+Map_Sonic_internal_0E10:	spriteHeader
+	spritePiece	-$14, -8, 1, 2, 0, 0, 0, 0, 0
+	spritePiece	-$C, -$10, 4, 4, 2, 0, 0, 0, 0
+Map_Sonic_internal_0E10_End
+
+Map_Sonic_internal_0E22:	spriteHeader
+	spritePiece	-$14, -$10, 1, 4, 0, 0, 0, 0, 0
+	spritePiece	-$C, -$10, 4, 4, 4, 0, 0, 0, 0
+Map_Sonic_internal_0E22_End
+
+Map_Sonic_internal_0E34:	spriteHeader
+	spritePiece	-$18, -$14, 4, 4, 0, 0, 0, 0, 0
+	spritePiece	8, -$14, 2, 4, $10, 0, 0, 0, 0
+Map_Sonic_internal_0E34_End
+
+Map_Sonic_internal_0E46:	spriteHeader
+	spritePiece	-$18, -$14, 4, 4, 0, 0, 0, 0, 0
+	spritePiece	8, -$14, 2, 4, $10, 0, 0, 0, 0
+Map_Sonic_internal_0E46_End
+
+Map_Sonic_internal_0E58:	spriteHeader
+	spritePiece	-$14, -4, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-4, -$C, 4, 2, 4, 0, 0, 0, 0
+	spritePiece	-4, 4, 1, 2, $C, 0, 0, 0, 0
+	spritePiece	4, 4, 2, 2, $E, 0, 0, 0, 0
+Map_Sonic_internal_0E58_End
+
+Map_Sonic_internal_0E7A:	spriteHeader
+	spritePiece	-$18, -$C, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	-$10, 4, 2, 2, 6, 0, 0, 0, 0
+	spritePiece	0, -$C, 3, 2, 0, 1, 0, 0, 0
+	spritePiece	0, 4, 2, 2, 6, 1, 0, 0, 0
+Map_Sonic_internal_0E7A_End
+
+Map_Sonic_internal_0E9C:	spriteHeader
+	spritePiece	4, -4, 2, 2, 0, 1, 0, 0, 0
+	spritePiece	-$1C, -$C, 4, 2, 4, 1, 0, 0, 0
+	spritePiece	-4, 4, 1, 2, $C, 1, 0, 0, 0
+	spritePiece	-$14, 4, 2, 2, $E, 1, 0, 0, 0
+Map_Sonic_internal_0E9C_End
+
+Map_Sonic_internal_0EBE:	spriteHeader
+	spritePiece	-$1C, -$C, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$14, 4, 3, 2, 8, 0, 0, 0, 0
+	spritePiece	4, -4, 1, 2, $E, 0, 0, 0, 0
+Map_Sonic_internal_0EBE_End
+
+Map_Sonic_internal_0ED8:	spriteHeader
+	spritePiece	-4, -$C, 4, 2, 0, 1, 0, 0, 0
+	spritePiece	-4, 4, 3, 2, 8, 1, 0, 0, 0
+	spritePiece	-$C, -4, 1, 2, $E, 1, 0, 0, 0
+Map_Sonic_internal_0ED8_End
+
+Map_Sonic_internal_0EF2:	spriteHeader
+	spritePiece	-4, -$C, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	-$14, -4, 2, 2, 8, 0, 0, 0, 0
+	spritePiece	-4, 4, 1, 2, $C, 0, 0, 0, 0
+	spritePiece	4, 4, 2, 2, $E, 0, 0, 0, 0
+Map_Sonic_internal_0EF2_End
+
+Map_Sonic_internal_0F14:	spriteHeader
+	spritePiece	-$C, -$1C, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	-$14, -$C, 4, 4, 6, 0, 0, 0, 0
+	spritePiece	$C, 4, 1, 2, $16, 0, 0, 0, 0
+Map_Sonic_internal_0F14_End
+
+Map_Sonic_internal_0F2E:	spriteHeader
+	spritePiece	-$16, -$14, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	$A, -$14, 1, 2, 8, 0, 0, 0, 0
+	spritePiece	-$E, -4, 3, 2, $A, 0, 0, 0, 0
+	spritePiece	-$E, $C, 4, 2, $10, 0, 0, 0, 0
+Map_Sonic_internal_0F2E_End
+
+Map_Sonic_internal_0F50:	spriteHeader
+	spritePiece	-$16, -$14, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	$A, -$14, 1, 2, 8, 0, 0, 0, 0
+	spritePiece	-$E, -4, 3, 2, $A, 0, 0, 0, 0
+	spritePiece	-$E, $C, 4, 2, $10, 0, 0, 0, 0
+Map_Sonic_internal_0F50_End
+
+Map_Sonic_internal_0F72:	spriteHeader
+	spritePiece	-$16, -$14, 4, 2, 0, 0, 0, 0, 0
+	spritePiece	$A, -$14, 1, 2, 8, 0, 0, 0, 0
+	spritePiece	-$E, -4, 3, 4, $A, 0, 0, 0, 0
+Map_Sonic_internal_0F72_End
+
+Map_Sonic_internal_0F8C:	spriteHeader
+	spritePiece	-$10, -$1C, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	-$10, -$C, 3, 4, 6, 0, 0, 0, 0
+	spritePiece	8, -$C, 1, 2, $12, 0, 0, 0, 0
+Map_Sonic_internal_0F8C_End
+
+Map_Sonic_internal_0FA6:	spriteHeader
+	spritePiece	-$10, -$1B, 3, 4, 0, 0, 0, 0, 0
+	spritePiece	8, -$C, 1, 2, $C, 0, 0, 0, 0
+	spritePiece	-8, 5, 2, 2, $E, 0, 0, 0, 0
+Map_Sonic_internal_0FA6_End
+
+Map_Sonic_internal_0FC0:	spriteHeader
+	spritePiece	-$F, -$14, 3, 4, 0, 0, 0, 0, 0
+	spritePiece	9, -4, 1, 2, $C, 0, 0, 0, 0
+Map_Sonic_internal_0FC0_End
+
+Map_Sonic_internal_0FD2:	spriteHeader
+	spritePiece	-$10, -$12, 4, 4, 0, 0, 0, 0, 0
+Map_Sonic_internal_0FD2_End
+
+Map_Sonic_internal_0FDC:	spriteHeader
+	spritePiece	-$10, -$E, 3, 4, 0, 0, 0, 0, 0
+	spritePiece	8, -6, 1, 2, $C, 0, 0, 0, 0
+Map_Sonic_internal_0FDC_End
+
+Map_Sonic_internal_0FEE:	spriteHeader
+	spritePiece	0, -$1C, 1, 2, 0, 0, 0, 0, 0
+	spritePiece	-$10, -$C, 3, 4, 2, 0, 0, 0, 0
+	spritePiece	8, -$C, 1, 2, $E, 0, 0, 0, 0
+Map_Sonic_internal_0FEE_End
+
+Map_Sonic_internal_1008:	spriteHeader
+	spritePiece	-$10, -$1B, 3, 2, 0, 0, 0, 0, 0
+	spritePiece	-$10, -$B, 3, 4, 6, 0, 0, 0, 0
+	spritePiece	8, -$13, 1, 4, $12, 0, 0, 0, 0
+Map_Sonic_internal_1008_End
+
+Map_Sonic_internal_1022:	spriteHeader
+	spritePiece	-8, -$1C, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-$10, -$C, 3, 4, 4, 0, 0, 0, 0
+	spritePiece	8, -$C, 1, 2, $10, 0, 0, 0, 0
+Map_Sonic_internal_1022_End
+
+Map_Sonic_internal_103C:	spriteHeader
+	spritePiece	-$10, -$13, 3, 4, 0, 0, 0, 0, 0
+	spritePiece	8, -$B, 1, 2, $C, 0, 0, 0, 0
+Map_Sonic_internal_103C_End
+
+Map_Sonic_internal_104E:	spriteHeader
+	spritePiece	-$10, -$C, 1, 2, 0, 0, 0, 0, 0
+	spritePiece	-8, -$F, 3, 4, 2, 0, 0, 0, 0
+Map_Sonic_internal_104E_End
+
+Map_Sonic_internal_1060:	spriteHeader
+	spritePiece	-$F, -$1C, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-$10, -$C, 3, 4, 4, 0, 0, 0, 0
+	spritePiece	8, -$C, 1, 2, $10, 0, 0, 0, 0
+Map_Sonic_internal_1060_End
+
+Map_Sonic_internal_107A:	spriteHeader
+	spritePiece	-$10, -$1F, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	-$10, -$F, 4, 4, 4, 0, 0, 0, 0
+Map_Sonic_internal_107A_End
+
+	even

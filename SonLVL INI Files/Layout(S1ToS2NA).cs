@@ -32,7 +32,7 @@ namespace SonicRetro.SonLVL.API.S2NA
 			rawdata = new byte[w * h + 2];
 			rawdata[0] = (byte)(w - 1);
 			rawdata[1] = (byte)(h - 1);
-			int c = 2;
+			int c = 4;
 			for (int lr = 0; lr < h; lr++)
 				for (int lc = 0; lc < w; lc++)
 					rawdata[c++] = (byte)layout[lc, lr];
@@ -50,6 +50,6 @@ namespace SonicRetro.SonLVL.API.S2NA
 
 		public override bool IsResizable { get { return true; } }
 
-		public override System.Drawing.Size MaxSize { get { return new System.Drawing.Size(64, 8); } }
+		public override System.Drawing.Size MaxSize { get { return new System.Drawing.Size(128, 16); } }
 	}
 }

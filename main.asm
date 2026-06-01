@@ -15016,9 +15016,9 @@ TailsDynPLC:	include	"mappings/spriteDPLC/Tails.asm"
 ; ---------------------------------------------------------------------------
 ; Compressed graphics - sega and title screen stuff
 ; ---------------------------------------------------------------------------
-Nem_SegaLogo:	binclude	"art/nemesis/S1/Sega Logo (JP1).nem"
+Nem_SegaLogo:	binclude	"art/nemesis/S1/Sega Logo (REV01).nem"
 		even
-Eni_SegaLogo:	binclude	"tilemaps/S1/Sega Logo (JP1).eni"
+Eni_SegaLogo:	binclude	"tilemaps/S1/Sega Logo (REV01).eni"
 		even
 Eni_TitleMap:	binclude	"tilemaps/Title Emblem.eni"
 		even

@@ -1,18 +1,21 @@
-Map_Cred_internal:	mappingsTable
-	mappingsTableEntry.w	Map_Cred_internal_0016
-	mappingsTableEntry.w	Map_Cred_internal_0088
-	mappingsTableEntry.w	Map_Cred_internal_010A
-	mappingsTableEntry.w	Map_Cred_internal_015C
-	mappingsTableEntry.w	Map_Cred_internal_021E
-	mappingsTableEntry.w	Map_Cred_internal_02C0
-	mappingsTableEntry.w	Map_Cred_internal_0392
-	mappingsTableEntry.w	Map_Cred_internal_044C
-	mappingsTableEntry.w	Map_Cred_internal_0546
-	mappingsTableEntry.w	Map_Cred_internal_05C0
-	mappingsTableEntry.w	Map_Cred_internal_0602
+; ---------------------------------------------------------------------------
+; Sprite mappings - "SONIC TEAM PRESENTS" and credits
+; ---------------------------------------------------------------------------
+.internal:	mappingsTable
+	mappingsTableEntry.w	.staff
+	mappingsTableEntry.w	.gameplan
+	mappingsTableEntry.w	.program
+	mappingsTableEntry.w	.character
+	mappingsTableEntry.w	.design
+	mappingsTableEntry.w	.soundproduce
+	mappingsTableEntry.w	.soundprogram
+	mappingsTableEntry.w	.thanks
+	mappingsTableEntry.w	.presentedby
+	mappingsTableEntry.w	.tryagain
+	mappingsTableEntry.w	.sonicteam
 
-Map_Cred_internal_0016:	spriteHeader
-	spritePiece	-$78, -8, 2, 2, $2E, 0, 0, 0, 0
+.staff:	spriteHeader
+	spritePiece	-$78, -8, 2, 2, $2E, 0, 0, 0, 0 ; SONIC TEAM STAFF
 	spritePiece	-$68, -8, 2, 2, $26, 0, 0, 0, 0
 	spritePiece	-$58, -8, 2, 2, $1A, 0, 0, 0, 0
 	spritePiece	-$48, -8, 1, 2, $46, 0, 0, 0, 0
@@ -26,10 +29,10 @@ Map_Cred_internal_0016:	spriteHeader
 	spritePiece	$48, -8, 2, 2, 4, 0, 0, 0, 0
 	spritePiece	$58, -8, 2, 2, $5C, 0, 0, 0, 0
 	spritePiece	$68, -8, 2, 2, $5C, 0, 0, 0, 0
-Map_Cred_internal_0016_End
+.staff_End
 
-Map_Cred_internal_0088:	spriteHeader
-	spritePiece	-$80, -$28, 2, 2, 0, 0, 0, 0, 0
+.gameplan:	spriteHeader
+	spritePiece	-$80, -$28, 2, 2, 0, 0, 0, 0, 0	; GAME PLAN CAROL YAS
 	spritePiece	-$70, -$28, 2, 2, 4, 0, 0, 0, 0
 	spritePiece	-$60, -$28, 3, 2, 8, 0, 0, 0, 0
 	spritePiece	-$4C, -$28, 2, 2, $E, 0, 0, 0, 0
@@ -45,10 +48,10 @@ Map_Cred_internal_0088:	spriteHeader
 	spritePiece	$20, 8, 2, 2, $2A, 0, 0, 0, 0
 	spritePiece	$30, 8, 2, 2, 4, 0, 0, 0, 0
 	spritePiece	$44, 8, 2, 2, $2E, 0, 0, 0, 0
-Map_Cred_internal_0088_End
+.gameplan_End
 
-Map_Cred_internal_010A:	spriteHeader
-	spritePiece	-$80, -$28, 2, 2, $12, 0, 0, 0, 0
+.program:	spriteHeader
+	spritePiece	-$80, -$28, 2, 2, $12, 0, 0, 0, 0 ; PROGRAM YU 2
 	spritePiece	-$70, -$28, 2, 2, $22, 0, 0, 0, 0
 	spritePiece	-$60, -$28, 2, 2, $26, 0, 0, 0, 0
 	spritePiece	-$50, -$28, 2, 2, 0, 0, 0, 0, 0
@@ -58,10 +61,10 @@ Map_Cred_internal_010A:	spriteHeader
 	spritePiece	-$18, 8, 2, 2, $2A, 0, 0, 0, 0
 	spritePiece	-8, 8, 2, 2, $32, 0, 0, 0, 0
 	spritePiece	8, 8, 2, 2, $36, 0, 0, 0, 0
-Map_Cred_internal_010A_End
+.program_End
 
-Map_Cred_internal_015C:	spriteHeader
-	spritePiece	-$78, -$28, 2, 2, $1E, 0, 0, 0, 0
+.character:	spriteHeader
+	spritePiece	-$78, -$28, 2, 2, $1E, 0, 0, 0, 0 ; CHARACTER DESIGN BIGISLAND
 	spritePiece	-$68, -$28, 2, 2, $3A, 0, 0, 0, 0
 	spritePiece	-$58, -$28, 2, 2, 4, 0, 0, 0, 0
 	spritePiece	-$48, -$28, 2, 2, $22, 0, 0, 0, 0
@@ -85,10 +88,10 @@ Map_Cred_internal_015C:	spriteHeader
 	spritePiece	$10, 8, 2, 2, 4, 0, 0, 0, 0
 	spritePiece	$20, 8, 2, 2, $1A, 0, 0, 0, 0
 	spritePiece	$30, 8, 2, 2, $42, 0, 0, 0, 0
-Map_Cred_internal_015C_End
+.character_End
 
-Map_Cred_internal_021E:	spriteHeader
-	spritePiece	-$60, -$30, 2, 2, $42, 0, 0, 0, 0
+.design:	spriteHeader
+	spritePiece	-$60, -$30, 2, 2, $42, 0, 0, 0, 0 ; DESIGN JINYA PHENIX RIE
 	spritePiece	-$50, -$30, 2, 2, $E, 0, 0, 0, 0
 	spritePiece	-$40, -$30, 2, 2, $2E, 0, 0, 0, 0
 	spritePiece	-$30, -$30, 1, 2, $46, 0, 0, 0, 0
@@ -108,10 +111,10 @@ Map_Cred_internal_021E:	spriteHeader
 	spritePiece	$30, $20, 2, 2, $22, 0, 0, 0, 0
 	spritePiece	$40, $20, 1, 2, $46, 0, 0, 0, 0
 	spritePiece	$48, $20, 2, 2, $E, 0, 0, 0, 0
-Map_Cred_internal_021E_End
+.design_End
 
-Map_Cred_internal_02C0:	spriteHeader
-	spritePiece	-$68, -$28, 2, 2, $2E, 0, 0, 0, 0
+.soundproduce:	spriteHeader
+	spritePiece	-$68, -$28, 2, 2, $2E, 0, 0, 0, 0 ; SOUND PRODUCE MASATO NAKAMURA
 	spritePiece	-$58, -$28, 2, 2, $26, 0, 0, 0, 0
 	spritePiece	-$48, -$28, 2, 2, $32, 0, 0, 0, 0
 	spritePiece	-$38, -$28, 2, 2, $1A, 0, 0, 0, 0
@@ -137,10 +140,10 @@ Map_Cred_internal_02C0:	spriteHeader
 	spritePiece	$4C, 8, 2, 2, $32, 0, 0, 0, 0
 	spritePiece	$5C, 8, 2, 2, $22, 0, 0, 0, 0
 	spritePiece	$6C, 8, 2, 2, 4, 0, 0, 0, 0
-Map_Cred_internal_02C0_End
+.soundproduce_End
 
-Map_Cred_internal_0392:	spriteHeader
-	spritePiece	-$68, -$30, 2, 2, $2E, 0, 0, 0, 0
+.soundprogram:	spriteHeader
+	spritePiece	-$68, -$30, 2, 2, $2E, 0, 0, 0, 0 ; SOUND PROGRAM JIMITA MACKY
 	spritePiece	-$58, -$30, 2, 2, $26, 0, 0, 0, 0
 	spritePiece	-$48, -$30, 2, 2, $32, 0, 0, 0, 0
 	spritePiece	-$38, -$30, 2, 2, $1A, 0, 0, 0, 0
@@ -163,10 +166,10 @@ Map_Cred_internal_0392:	spriteHeader
 	spritePiece	-$C, $20, 2, 2, $1E, 0, 0, 0, 0
 	spritePiece	4, $20, 2, 2, $58, 0, 0, 0, 0
 	spritePiece	$14, $20, 2, 2, $2A, 0, 0, 0, 0
-Map_Cred_internal_0392_End
+.soundprogram_End
 
-Map_Cred_internal_044C:	spriteHeader
-	spritePiece	-$80, -$28, 2, 2, $2E, 0, 0, 0, 0
+.thanks:	spriteHeader
+	spritePiece	-$80, -$28, 2, 2, $2E, 0, 0, 0, 0 ; SPECIAL THANKS FUJIO MINEGISHI PAPA
 	spritePiece	-$70, -$28, 2, 2, $12, 0, 0, 0, 0
 	spritePiece	-$60, -$28, 2, 2, $E, 0, 0, 0, 0
 	spritePiece	-$50, -$28, 2, 2, $1E, 0, 0, 0, 0
@@ -197,10 +200,10 @@ Map_Cred_internal_044C:	spriteHeader
 	spritePiece	8, $20, 2, 2, 4, 0, 0, 0, 0
 	spritePiece	$18, $20, 2, 2, $12, 0, 0, 0, 0
 	spritePiece	$28, $20, 2, 2, 4, 0, 0, 0, 0
-Map_Cred_internal_044C_End
+.thanks_End
 
-Map_Cred_internal_0546:	spriteHeader
-	spritePiece	-$80, -8, 2, 2, $12, 0, 0, 0, 0
+.presentedby:	spriteHeader
+	spritePiece	-$80, -8, 2, 2, $12, 0, 0, 0, 0 ; PRESENTED BY SEGA
 	spritePiece	-$70, -8, 2, 2, $22, 0, 0, 0, 0
 	spritePiece	-$60, -8, 2, 2, $E, 0, 0, 0, 0
 	spritePiece	-$50, -8, 2, 2, $2E, 0, 0, 0, 0
@@ -215,10 +218,10 @@ Map_Cred_internal_0546:	spriteHeader
 	spritePiece	$50, -8, 2, 2, $E, 0, 0, 0, 0
 	spritePiece	$60, -8, 2, 2, 0, 0, 0, 0, 0
 	spritePiece	$70, -8, 2, 2, 4, 0, 0, 0, 0
-Map_Cred_internal_0546_End
+.presentedby_End
 
-Map_Cred_internal_05C0:	spriteHeader
-	spritePiece	-$40, $30, 2, 2, $3E, 0, 0, 0, 0
+.tryagain:	spriteHeader
+	spritePiece	-$40, $30, 2, 2, $3E, 0, 0, 0, 0 ; TRY AGAIN
 	spritePiece	-$30, $30, 2, 2, $22, 0, 0, 0, 0
 	spritePiece	-$20, $30, 2, 2, $2A, 0, 0, 0, 0
 	spritePiece	-8, $30, 2, 2, 4, 0, 0, 0, 0
@@ -226,10 +229,10 @@ Map_Cred_internal_05C0:	spriteHeader
 	spritePiece	$18, $30, 2, 2, 4, 0, 0, 0, 0
 	spritePiece	$28, $30, 1, 2, $46, 0, 0, 0, 0
 	spritePiece	$30, $30, 2, 2, $1A, 0, 0, 0, 0
-Map_Cred_internal_05C0_End
+.tryagain_End
 
-Map_Cred_internal_0602:	spriteHeader
-	spritePiece	-$4C, -$18, 2, 2, $2E, 0, 0, 0, 0
+.sonicteam:	spriteHeader
+	spritePiece	-$4C, -$18, 2, 2, $2E, 0, 0, 0, 0 ; SONIC TEAM PRESENTS
 	spritePiece	-$3C, -$18, 2, 2, $26, 0, 0, 0, 0
 	spritePiece	-$2C, -$18, 2, 2, $1A, 0, 0, 0, 0
 	spritePiece	-$1C, -$18, 1, 2, $46, 0, 0, 0, 0
@@ -246,6 +249,6 @@ Map_Cred_internal_0602:	spriteHeader
 	spritePiece	$10, 0, 2, 2, $1A, 0, 0, 0, 0
 	spritePiece	$20, 0, 2, 2, $3E, 0, 0, 0, 0
 	spritePiece	$30, 0, 2, 2, $2E, 0, 0, 0, 0
-Map_Cred_internal_0602_End
+.sonicteam_End
 
 	even

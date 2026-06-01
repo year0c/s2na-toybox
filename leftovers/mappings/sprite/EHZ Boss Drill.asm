@@ -1,4 +1,4 @@
-.internal:	mappingsTable
+Map_Obj58a_PB_internal:	mappingsTable
 	mappingsTableEntry.w	.word_1812E
 	mappingsTableEntry.w	.word_18148
 	mappingsTableEntry.w	.word_18152
@@ -7,7 +7,6 @@
 	mappingsTableEntry.w	.word_18170
 	mappingsTableEntry.w	.word_1817A
 	mappingsTableEntry.w	.word_18184
-	mappingsTableEntry.w	.word_1818E
 
 .word_1812E:	spriteHeader
 	spritePiece	-$30, -$10, 4, 4, 0, 0, 0, 0, 0
@@ -42,11 +41,5 @@
 .word_18184:	spriteHeader
 	spritePiece	-$10, -$10, 4, 4, $70, 0, 1, 0, 0
 .word_18184_End
-
-.word_1818E:	spriteHeader
-	spritePiece	-$30, -$10, 4, 4, 0, 0, 0, 0, 1
-	spritePiece	-$10, -$10, 4, 4, $10, 0, 0, 0, 1
-	spritePiece	$10, -$10, 4, 4, $20, 0, 0, 0, 1
-.word_1818E_End
 
 	even

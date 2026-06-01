@@ -10812,7 +10812,7 @@ Map_Obj55:	include	"mappings/sprite/EHZ Boss Ship.asm"
 ; ===========================================================================
 
 		include	"obj/S1/8A Credits.asm"
-Map_Cred:	include	"mappings/sprite/S1/obj8A.asm"
+Map_Cred:	include	"mappings/sprite/S1/Credits.asm"
 ; ===========================================================================
 		jmpTos	JmpTo5_Adjust2PArtPointer
 ; ===========================================================================
@@ -12918,43 +12918,7 @@ Ani_Obj58_PB:	dc.w .byte_18000-Ani_Obj58_PB
 		dc.b   2,  2,  1,  1,  1,  5,  6,$FE,  2
 		even
 
-Map_Obj58_PB:	dc.w .word_18042-Map_Obj58_PB
-		dc.w .word_1804C-Map_Obj58_PB
-		dc.w .word_18076-Map_Obj58_PB
-		dc.w .word_180A0-Map_Obj58_PB
-		dc.w .word_180BA-Map_Obj58_PB
-		dc.w .word_180D4-Map_Obj58_PB
-		dc.w .word_180EE-Map_Obj58_PB
-.word_18042:	dc.w 1
-		dc.w $D805,    0,    0,	   2
-.word_1804C:	dc.w 5
-		dc.w $D805,    4,    2,	   2
-		dc.w $D80D,   $C,    6,	 $12
-		dc.w $D80D,   $C,    6,	 $32
-		dc.w $D80D,   $C,    6,$FFE2
-		dc.w $D80D,   $C,    6,$FFC2
-.word_18076:	dc.w 5
-		dc.w $D805,    4,    2,	   2
-		dc.w $D80D,   $C,    6,	 $12
-		dc.w $D805,    8,    4,	 $32
-		dc.w $D80D,   $C,    6,$FFE2
-		dc.w $D805,    8,    4,$FFD2
-.word_180A0:	dc.w 3
-		dc.w $D805,    4,    2,	   2
-		dc.w $D80D,   $C,    6,	 $12
-		dc.w $D80D,   $C,    6,$FFE2
-.word_180BA:	dc.w 3
-		dc.w $D805,    4,    2,	   2
-		dc.w $D805,    8,    4,	 $12
-		dc.w $D805,    8,    4,$FFF2
-.word_180D4:	dc.w 3
-		dc.w $D805,    0,    0,	   2
-		dc.w $D80D,   $C,    6,	 $12
-		dc.w $D80D,   $C,    6,	 $32
-.word_180EE:	dc.w 3
-		dc.w $D805,    4,    2,	   2
-		dc.w $D80D,   $C,    6,$FFE2
-		dc.w $D80D,   $C,    6,$FFC2
+Map_Obj58_PB:	include	"mappings/sprite/EHZ Boss Blades.asm"
 
 Ani_Obj58a_PB:	dc.w .byte_1810E-Ani_Obj58a_PB
 		dc.w .byte_18113-Ani_Obj58a_PB
@@ -12964,32 +12928,7 @@ Ani_Obj58a_PB:	dc.w .byte_1810E-Ani_Obj58a_PB
 .byte_18117:	dc.b   1,  6,  7,$FF
 		even
 
-Map_Obj58a_PB:	dc.w .word_1812E-Map_Obj58a_PB
-		dc.w .word_18148-Map_Obj58a_PB
-		dc.w .word_18152-Map_Obj58a_PB
-		dc.w .word_1815C-Map_Obj58a_PB
-		dc.w .word_18166-Map_Obj58a_PB
-		dc.w .word_18170-Map_Obj58a_PB
-		dc.w .word_1817A-Map_Obj58a_PB
-		dc.w .word_18184-Map_Obj58a_PB
-.word_1812E:	dc.w 3
-		dc.w $F00F,    0,    0,$FFD0
-		dc.w $F00F,  $10,    8,$FFF0
-		dc.w $F00F,  $20,  $10,	 $10
-.word_18148:	dc.w 1
-		dc.w $F00F,  $30,  $18,$FFF0
-.word_18152:	dc.w 1
-		dc.w $F00F,  $40,  $20,$FFF0
-.word_1815C:	dc.w 1
-		dc.w $F00F,  $50,  $28,$FFF0
-.word_18166:	dc.w 1
-		dc.w $F00F,  $60,  $30,$FFF0
-.word_18170:	dc.w 1
-		dc.w $F00F,$1060,$1030,$FFF0
-.word_1817A:	dc.w 1
-		dc.w $F00F,  $70,  $38,$FFF0
-.word_18184:	dc.w 1
-		dc.w $F00F,$1070,$1038,$FFF0
+Map_Obj58a_PB:	include	"leftovers/mappings/sprite/EHZ Boss Drill.asm"
 
 	dephase
 
@@ -13108,232 +13047,7 @@ Map_BossItems_PB:	include	"mappings/sprite/S1/Boss Items.asm"
 ; ---------------------------------------------------------------------------
 ; Sprite mappings
 ; ---------------------------------------------------------------------------
-Map_Cred_PB:	dc.w	Map_Cred_PB_0016-Map_Cred_PB
-	dc.w	Map_Cred_PB_0088-Map_Cred_PB
-	dc.w	Map_Cred_PB_010A-Map_Cred_PB
-	dc.w	Map_Cred_PB_015C-Map_Cred_PB
-	dc.w	Map_Cred_PB_021E-Map_Cred_PB
-	dc.w	Map_Cred_PB_02C0-Map_Cred_PB
-	dc.w	Map_Cred_PB_0392-Map_Cred_PB
-	dc.w	Map_Cred_PB_044C-Map_Cred_PB
-	dc.w	Map_Cred_PB_0546-Map_Cred_PB
-	dc.w	Map_Cred_PB_05C0-Map_Cred_PB
-	dc.w	Map_Cred_PB_0602-Map_Cred_PB
-Map_Cred_PB_0016:	dc.w $E
-	dc.w $F805, $2E, $17, $FF88
-	dc.w $F805, $26, $13, $FF98
-	dc.w $F805, $1A, $D, $FFA8
-	dc.w $F801, $46, $23, $FFB8
-	dc.w $F805, $1E, $F, $FFC0
-	dc.w $F805, $3E, $1F, $FFD8
-	dc.w $F805, $E, 7, $FFE8
-	dc.w $F805, 4, 2, $FFF8
-	dc.w $F809, 8, 4, 8
-	dc.w $F805, $2E, $17, $28
-	dc.w $F805, $3E, $1F, $38
-	dc.w $F805, 4, 2, $48
-	dc.w $F805, $5C, $2E, $58
-	dc.w $F805, $5C, $2E, $68
-Map_Cred_PB_0088:	dc.w $10
-	dc.w $D805, 0, 0, $FF80
-	dc.w $D805, 4, 2, $FF90
-	dc.w $D809, 8, 4, $FFA0
-	dc.w $D805, $E, 7, $FFB4
-	dc.w $D805, $12, 9, $FFD0
-	dc.w $D805, $16, $B, $FFE0
-	dc.w $D805, 4, 2, $FFF0
-	dc.w $D805, $1A, $D, 0
-	dc.w $805, $1E, $F, $FFC8
-	dc.w $805, 4, 2, $FFD8
-	dc.w $805, $22, $11, $FFE8
-	dc.w $805, $26, $13, $FFF8
-	dc.w $805, $16, $B, 8
-	dc.w $805, $2A, $15, $20
-	dc.w $805, 4, 2, $30
-	dc.w $805, $2E, $17, $44
-Map_Cred_PB_010A:	dc.w $A
-	dc.w $D805, $12, 9, $FF80
-	dc.w $D805, $22, $11, $FF90
-	dc.w $D805, $26, $13, $FFA0
-	dc.w $D805, 0, 0, $FFB0
-	dc.w $D805, $22, $11, $FFC0
-	dc.w $D805, 4, 2, $FFD0
-	dc.w $D809, 8, 4, $FFE0
-	dc.w $805, $2A, $15, $FFE8
-	dc.w $805, $32, $19, $FFF8
-	dc.w $805, $36, $1B, 8
-Map_Cred_PB_015C:	dc.w $18
-	dc.w $D805, $1E, $F, $FF88
-	dc.w $D805, $3A, $1D, $FF98
-	dc.w $D805, 4, 2, $FFA8
-	dc.w $D805, $22, $11, $FFB8
-	dc.w $D805, 4, 2, $FFC8
-	dc.w $D805, $1E, $F, $FFD8
-	dc.w $D805, $3E, $1F, $FFE8
-	dc.w $D805, $E, 7, $FFF8
-	dc.w $D805, $22, $11, 8
-	dc.w $D805, $42, $21, $20
-	dc.w $D805, $E, 7, $30
-	dc.w $D805, $2E, $17, $40
-	dc.w $D801, $46, $23, $50
-	dc.w $D805, 0, 0, $58
-	dc.w $D805, $1A, $D, $68
-	dc.w $805, $48, $24, $FFC0
-	dc.w $801, $46, $23, $FFD0
-	dc.w $805, 0, 0, $FFD8
-	dc.w $801, $46, $23, $FFE8
-	dc.w $805, $2E, $17, $FFF0
-	dc.w $805, $16, $B, 0
-	dc.w $805, 4, 2, $10
-	dc.w $805, $1A, $D, $20
-	dc.w $805, $42, $21, $30
-Map_Cred_PB_021E:	dc.w $14
-	dc.w $D005, $42, $21, $FFA0
-	dc.w $D005, $E, 7, $FFB0
-	dc.w $D005, $2E, $17, $FFC0
-	dc.w $D001, $46, $23, $FFD0
-	dc.w $D005, 0, 0, $FFD8
-	dc.w $D005, $1A, $D, $FFE8
-	dc.w 5, $4C, $26, $FFE8
-	dc.w 1, $46, $23, $FFF8
-	dc.w 5, $1A, $D, 4
-	dc.w 5, $2A, $15, $14
-	dc.w 5, 4, 2, $24
-	dc.w $2005, $12, 9, $FFD0
-	dc.w $2005, $3A, $1D, $FFE0
-	dc.w $2005, $E, 7, $FFF0
-	dc.w $2005, $1A, $D, 0
-	dc.w $2001, $46, $23, $10
-	dc.w $2005, $50, $28, $18
-	dc.w $2005, $22, $11, $30
-	dc.w $2001, $46, $23, $40
-	dc.w $2005, $E, 7, $48
-Map_Cred_PB_02C0:	dc.w $1A
-	dc.w $D805, $2E, $17, $FF98
-	dc.w $D805, $26, $13, $FFA8
-	dc.w $D805, $32, $19, $FFB8
-	dc.w $D805, $1A, $D, $FFC8
-	dc.w $D805, $54, $2A, $FFD8
-	dc.w $D805, $12, 9, $FFF8
-	dc.w $D805, $22, $11, 8
-	dc.w $D805, $26, $13, $18
-	dc.w $D805, $42, $21, $28
-	dc.w $D805, $32, $19, $38
-	dc.w $D805, $1E, $F, $48
-	dc.w $D805, $E, 7, $58
-	dc.w $809, 8, 4, $FF88
-	dc.w $805, 4, 2, $FF9C
-	dc.w $805, $2E, $17, $FFAC
-	dc.w $805, 4, 2, $FFBC
-	dc.w $805, $3E, $1F, $FFCC
-	dc.w $805, $26, $13, $FFDC
-	dc.w $805, $1A, $D, $FFF8
-	dc.w $805, 4, 2, 8
-	dc.w $805, $58, $2C, $18
-	dc.w $805, 4, 2, $28
-	dc.w $809, 8, 4, $38
-	dc.w $805, $32, $19, $4C
-	dc.w $805, $22, $11, $5C
-	dc.w $805, 4, 2, $6C
-Map_Cred_PB_0392:	dc.w $17
-	dc.w $D005, $2E, $17, $FF98
-	dc.w $D005, $26, $13, $FFA8
-	dc.w $D005, $32, $19, $FFB8
-	dc.w $D005, $1A, $D, $FFC8
-	dc.w $D005, $54, $2A, $FFD8
-	dc.w $D005, $12, 9, $FFF8
-	dc.w $D005, $22, $11, 8
-	dc.w $D005, $26, $13, $18
-	dc.w $D005, 0, 0, $28
-	dc.w $D005, $22, $11, $38
-	dc.w $D005, 4, 2, $48
-	dc.w $D009, 8, 4, $58
-	dc.w 5, $4C, $26, $FFD0
-	dc.w 1, $46, $23, $FFE0
-	dc.w 9, 8, 4, $FFE8
-	dc.w 1, $46, $23, $FFFC
-	dc.w 5, $3E, $1F, 4
-	dc.w 5, 4, 2, $14
-	dc.w $2009, 8, 4, $FFD0
-	dc.w $2005, 4, 2, $FFE4
-	dc.w $2005, $1E, $F, $FFF4
-	dc.w $2005, $58, $2C, 4
-	dc.w $2005, $2A, $15, $14
-Map_Cred_PB_044C:	dc.w $1F
-	dc.w $D805, $2E, $17, $FF80
-	dc.w $D805, $12, 9, $FF90
-	dc.w $D805, $E, 7, $FFA0
-	dc.w $D805, $1E, $F, $FFB0
-	dc.w $D801, $46, $23, $FFC0
-	dc.w $D805, 4, 2, $FFC8
-	dc.w $D805, $16, $B, $FFD8
-	dc.w $D805, $3E, $1F, $FFF8
-	dc.w $D805, $3A, $1D, 8
-	dc.w $D805, 4, 2, $18
-	dc.w $D805, $1A, $D, $28
-	dc.w $D805, $58, $2C, $38
-	dc.w $D805, $2E, $17, $48
-	dc.w 5, $5C, $2E, $FFB0
-	dc.w 5, $32, $19, $FFC0
-	dc.w 5, $4C, $26, $FFD0
-	dc.w 1, $46, $23, $FFE0
-	dc.w 5, $26, $13, $FFE8
-	dc.w 9, 8, 4, 0
-	dc.w 1, $46, $23, $14
-	dc.w 5, $1A, $D, $1C
-	dc.w 5, $E, 7, $2C
-	dc.w 5, 0, 0, $3C
-	dc.w 1, $46, $23, $4C
-	dc.w 5, $2E, $17, $54
-	dc.w 5, $3A, $1D, $64
-	dc.w 1, $46, $23, $74
-	dc.w $2005, $12, 9, $FFF8
-	dc.w $2005, 4, 2, 8
-	dc.w $2005, $12, 9, $18
-	dc.w $2005, 4, 2, $28
-Map_Cred_PB_0546:	dc.w $F
-	dc.w $F805, $12, 9, $FF80
-	dc.w $F805, $22, $11, $FF90
-	dc.w $F805, $E, 7, $FFA0
-	dc.w $F805, $2E, $17, $FFB0
-	dc.w $F805, $E, 7, $FFC0
-	dc.w $F805, $1A, $D, $FFD0
-	dc.w $F805, $3E, $1F, $FFE0
-	dc.w $F805, $E, 7, $FFF0
-	dc.w $F805, $42, $21, 0
-	dc.w $F805, $48, $24, $18
-	dc.w $F805, $2A, $15, $28
-	dc.w $F805, $2E, $17, $40
-	dc.w $F805, $E, 7, $50
-	dc.w $F805, 0, 0, $60
-	dc.w $F805, 4, 2, $70
-Map_Cred_PB_05C0:	dc.w 8
-	dc.w $3005, $3E, $1F, $FFC0
-	dc.w $3005, $22, $11, $FFD0
-	dc.w $3005, $2A, $15, $FFE0
-	dc.w $3005, 4, 2, $FFF8
-	dc.w $3005, 0, 0, 8
-	dc.w $3005, 4, 2, $18
-	dc.w $3001, $46, $23, $28
-	dc.w $3005, $1A, $D, $30
-Map_Cred_PB_0602:	dc.w $11
-	dc.w $E805, $2E, $17, $FFB4
-	dc.w $E805, $26, $13, $FFC4
-	dc.w $E805, $1A, $D, $FFD4
-	dc.w $E801, $46, $23, $FFE4
-	dc.w $E805, $1E, $F, $FFEC
-	dc.w $E805, $3E, $1F, 4
-	dc.w $E805, $E, 7, $14
-	dc.w $E805, 4, 2, $24
-	dc.w $E809, 8, 4, $34
-	dc.w 5, $12, 9, $FFC0
-	dc.w 5, $22, $11, $FFD0
-	dc.w 5, $E, 7, $FFE0
-	dc.w 5, $2E, $17, $FFF0
-	dc.w 5, $E, 7, 0
-	dc.w 5, $1A, $D, $10
-	dc.w 5, $3E, $1F, $20
-	dc.w 5, $2E, $17, $30
+Map_Cred_PB:	include	"mappings/sprite/S1/Credits.asm"
 
 		jmpTos	; Empty
 	dephase
@@ -13345,47 +13059,10 @@ Map_Cred_PB_0602:	dc.w $11
 		include	"leftovers/obj/55 EHZ Boss (Part 1).asm"
 		include	"leftovers/obj/56 EHZ Boss (Part 2).asm"
 
-Map_Obj55a_PB:	dc.w .word_184C2-Map_Obj55a_PB
-		dc.w .word_184CC-Map_Obj55a_PB
-.word_184C2:	dc.w 1
-		dc.w	 5,    0,    0,	 $1C
-.word_184CC:	dc.w 1
-		dc.w	 5,    4,    2,	 $1C
+Map_Obj55a_PB:	include	"mappings/sprite/EHZ Boss Exhaust.asm"
+Map_Obj55b_PB:	include	"mappings/sprite/EHZ Boss Unknown.asm"
 
-Map_Obj55b_PB:	dc.w .word_184DE-Map_Obj55b_PB
-		dc.w .word_184E8-Map_Obj55b_PB
-		dc.w .word_184F2-Map_Obj55b_PB
-		dc.w .word_184FC-Map_Obj55b_PB
-.word_184DE:	dc.w 1
-		dc.w $F805,    0,    0,$FFF8
-.word_184E8:	dc.w 1
-		dc.w $F805,    4,    2,$FFF8
-.word_184F2:	dc.w 1
-		dc.w $F805,    8,    4,$FFF8
-.word_184FC:	dc.w 1
-		dc.w $F805,   $C,    6,$FFF8
-
-Map_Obj56_PB:	dc.w .word_18514-Map_Obj56_PB
-		dc.w .word_1851E-Map_Obj56_PB
-		dc.w .word_18528-Map_Obj56_PB
-		dc.w .word_18532-Map_Obj56_PB
-		dc.w .word_1853C-Map_Obj56_PB
-		dc.w .word_18546-Map_Obj56_PB
-		dc.w .word_18550-Map_Obj56_PB
-.word_18514:	dc.w 1
-		dc.w $F805,    0,    0,$FFF8
-.word_1851E:	dc.w 1
-		dc.w $F00F,    4,    2,$FFF0
-.word_18528:	dc.w 1
-		dc.w $F00F,  $14,   $A,$FFF0
-.word_18532:	dc.w 1
-		dc.w $F00F,  $24,  $12,$FFF0
-.word_1853C:	dc.w 1
-		dc.w $F00F,  $34,  $1A,$FFF0
-.word_18546:	dc.w 1
-		dc.w $F00F,  $44,  $22,$FFF0
-.word_18550:	dc.w 1
-		dc.w $F00F,  $54,  $2A,$FFF0
+Map_Obj56_PB:	include	"mappings/sprite/EHZ Boss Unknown 2.asm"
 
 Ani_Obj55a_PB:	dc.w .byte_1855E-Ani_Obj55a_PB
 		dc.w .byte_18561-Ani_Obj55a_PB
@@ -13401,103 +13078,119 @@ Map_Obj55_PB:	include	"mappings/sprite/EHZ Boss Ship.asm"
 		binclude	"leftovers/symbols/symbol16.bin"
 		even
 
-		dc.w   $26,  $13,$FFA8
-		dc.w $D005,  $32,  $19,$FFB8
-		dc.w $D005,  $1A,   $D,$FFC8; 4
-		dc.w $D005,  $54,  $2A,$FFD8; 8
-		dc.w $D005,  $12,    9,$FFF8; 12
-		dc.w $D005,  $22,  $11,	   8; 16
-		dc.w $D005,  $26,  $13,	 $18; 20
-		dc.w $D005,    0,    0,	 $28; 24
-		dc.w $D005,  $22,  $11,	 $38; 28
-		dc.w $D005,    4,    2,	 $48; 32
-		dc.w $D009,    8,    4,	 $58; 36
-		dc.w	 5,  $4C,  $26,$FFD0; 40
-		dc.w	 1,  $46,  $23,$FFE0; 44
-		dc.w	 9,    8,    4,$FFE8; 48
-		dc.w	 1,  $46,  $23,$FFFC; 52
-		dc.w	 5,  $3E,  $1F,	   4; 56
-		dc.w	 5,    4,    2,	 $14; 60
-		dc.w $2009,    8,    4,$FFD0; 64
-		dc.w $2005,    4,    2,$FFE4; 68
-		dc.w $2005,  $1E,   $F,$FFF4; 72
-		dc.w $2005,  $58,  $2C,	   4; 76
-		dc.w $2005,  $2A,  $15,	 $14; 80
-		dc.w $1F
-		dc.w $D805,  $2E,  $17,$FF80
-		dc.w $D805,  $12,    9,$FF90; 4
-		dc.w $D805,   $E,    7,$FFA0; 8
-		dc.w $D805,  $1E,   $F,$FFB0; 12
-		dc.w $D801,  $46,  $23,$FFC0; 16
-		dc.w $D805,    4,    2,$FFC8; 20
-		dc.w $D805,  $16,   $B,$FFD8; 24
-		dc.w $D805,  $3E,  $1F,$FFF8; 28
-		dc.w $D805,  $3A,  $1D,	   8; 32
-		dc.w $D805,    4,    2,	 $18; 36
-		dc.w $D805,  $1A,   $D,	 $28; 40
-		dc.w $D805,  $58,  $2C,	 $38; 44
-		dc.w $D805,  $2E,  $17,	 $48; 48
-		dc.w	 5,  $5C,  $2E,$FFB0; 52
-		dc.w	 5,  $32,  $19,$FFC0; 56
-		dc.w	 5,  $4C,  $26,$FFD0; 60
-		dc.w	 1,  $46,  $23,$FFE0; 64
-		dc.w	 5,  $26,  $13,$FFE8; 68
-		dc.w	 9,    8,    4,	   0; 72
-		dc.w	 1,  $46,  $23,	 $14; 76
-		dc.w	 5,  $1A,   $D,	 $1C; 80
-		dc.w	 5,   $E,    7,	 $2C; 84
-		dc.w	 5,    0,    0,	 $3C; 88
-		dc.w	 1,  $46,  $23,	 $4C; 92
-		dc.w	 5,  $2E,  $17,	 $54; 96
-		dc.w	 5,  $3A,  $1D,	 $64; 100
-		dc.w	 1,  $46,  $23,	 $74; 104
-		dc.w $2005,  $12,    9,$FFF8; 108
-		dc.w $2005,    4,    2,	   8; 112
-		dc.w $2005,  $12,    9,	 $18; 116
-		dc.w $2005,    4,    2,	 $28; 120
-		dc.w $F
-		dc.w $F805,  $12,    9,$FF80
-		dc.w $F805,  $22,  $11,$FF90; 4
-		dc.w $F805,   $E,    7,$FFA0; 8
-		dc.w $F805,  $2E,  $17,$FFB0; 12
-		dc.w $F805,   $E,    7,$FFC0; 16
-		dc.w $F805,  $1A,   $D,$FFD0; 20
-		dc.w $F805,  $3E,  $1F,$FFE0; 24
-		dc.w $F805,   $E,    7,$FFF0; 28
-		dc.w $F805,  $42,  $21,	   0; 32
-		dc.w $F805,  $48,  $24,	 $18; 36
-		dc.w $F805,  $2A,  $15,	 $28; 40
-		dc.w $F805,  $2E,  $17,	 $40; 44
-		dc.w $F805,   $E,    7,	 $50; 48
-		dc.w $F805,    0,    0,	 $60; 52
-		dc.w $F805,    4,    2,	 $70; 56
-		dc.w 8
-		dc.w $3005,  $3E,  $1F,$FFC0
-		dc.w $3005,  $22,  $11,$FFD0; 4
-		dc.w $3005,  $2A,  $15,$FFE0; 8
-		dc.w $3005,    4,    2,$FFF8; 12
-		dc.w $3005,    0,    0,	   8; 16
-		dc.w $3005,    4,    2,	 $18; 20
-		dc.w $3001,  $46,  $23,	 $28; 24
-		dc.w $3005,  $1A,   $D,	 $30; 28
-		dc.w $11
-		dc.w $E805,  $2E,  $17,$FFB4
-		dc.w $E805,  $26,  $13,$FFC4; 4
-		dc.w $E805,  $1A,   $D,$FFD4; 8
-		dc.w $E801,  $46,  $23,$FFE4; 12
-		dc.w $E805,  $1E,   $F,$FFEC; 16
-		dc.w $E805,  $3E,  $1F,	   4; 20
-		dc.w $E805,   $E,    7,	 $14; 24
-		dc.w $E805,    4,    2,	 $24; 28
-		dc.w $E809,    8,    4,	 $34; 32
-		dc.w	 5,  $12,    9,$FFC0; 36
-		dc.w	 5,  $22,  $11,$FFD0; 40
-		dc.w	 5,   $E,    7,$FFE0; 44
-		dc.w	 5,  $2E,  $17,$FFF0; 48
-		dc.w	 5,   $E,    7,	   0; 52
-		dc.w	 5,  $1A,   $D,	 $10; 56
-		dc.w	 5,  $3E,  $1F,	 $20; 60
-		dc.w	 5,  $2E,  $17,	 $30; 64
+Map_Cred_PB_Cut_Off:
+
+.soundprogram:
+;	spritePiece	-$68, -$30, 2, 2, $2E, 0, 0, 0, 0 ; SOUND PROGRAM JIMITA MACKY
+;	spritePiece	-$58, -$30, 2, 2, $26, 0, 0, 0, 0
+	dc.w		$26, $13, -$58
+	spritePiece	-$48, -$30, 2, 2, $32, 0, 0, 0, 0
+	spritePiece	-$38, -$30, 2, 2, $1A, 0, 0, 0, 0
+	spritePiece	-$28, -$30, 2, 2, $54, 0, 0, 0, 0
+	spritePiece	-8, -$30, 2, 2, $12, 0, 0, 0, 0
+	spritePiece	8, -$30, 2, 2, $22, 0, 0, 0, 0
+	spritePiece	$18, -$30, 2, 2, $26, 0, 0, 0, 0
+	spritePiece	$28, -$30, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	$38, -$30, 2, 2, $22, 0, 0, 0, 0
+	spritePiece	$48, -$30, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	$58, -$30, 3, 2, 8, 0, 0, 0, 0
+	spritePiece	-$30, 0, 2, 2, $4C, 0, 0, 0, 0
+	spritePiece	-$20, 0, 1, 2, $46, 0, 0, 0, 0
+	spritePiece	-$18, 0, 3, 2, 8, 0, 0, 0, 0
+	spritePiece	-4, 0, 1, 2, $46, 0, 0, 0, 0
+	spritePiece	4, 0, 2, 2, $3E, 0, 0, 0, 0
+	spritePiece	$14, 0, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	-$30, $20, 3, 2, 8, 0, 0, 0, 0
+	spritePiece	-$1C, $20, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	-$C, $20, 2, 2, $1E, 0, 0, 0, 0
+	spritePiece	4, $20, 2, 2, $58, 0, 0, 0, 0
+	spritePiece	$14, $20, 2, 2, $2A, 0, 0, 0, 0
+.soundprogram_End
+
+.thanks:	spriteHeader
+	spritePiece	-$80, -$28, 2, 2, $2E, 0, 0, 0, 0 ; SPECIAL THANKS FUJIO MINEGISHI PAPA
+	spritePiece	-$70, -$28, 2, 2, $12, 0, 0, 0, 0
+	spritePiece	-$60, -$28, 2, 2, $E, 0, 0, 0, 0
+	spritePiece	-$50, -$28, 2, 2, $1E, 0, 0, 0, 0
+	spritePiece	-$40, -$28, 1, 2, $46, 0, 0, 0, 0
+	spritePiece	-$38, -$28, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	-$28, -$28, 2, 2, $16, 0, 0, 0, 0
+	spritePiece	-8, -$28, 2, 2, $3E, 0, 0, 0, 0
+	spritePiece	8, -$28, 2, 2, $3A, 0, 0, 0, 0
+	spritePiece	$18, -$28, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	$28, -$28, 2, 2, $1A, 0, 0, 0, 0
+	spritePiece	$38, -$28, 2, 2, $58, 0, 0, 0, 0
+	spritePiece	$48, -$28, 2, 2, $2E, 0, 0, 0, 0
+	spritePiece	-$50, 0, 2, 2, $5C, 0, 0, 0, 0
+	spritePiece	-$40, 0, 2, 2, $32, 0, 0, 0, 0
+	spritePiece	-$30, 0, 2, 2, $4C, 0, 0, 0, 0
+	spritePiece	-$20, 0, 1, 2, $46, 0, 0, 0, 0
+	spritePiece	-$18, 0, 2, 2, $26, 0, 0, 0, 0
+	spritePiece	0, 0, 3, 2, 8, 0, 0, 0, 0
+	spritePiece	$14, 0, 1, 2, $46, 0, 0, 0, 0
+	spritePiece	$1C, 0, 2, 2, $1A, 0, 0, 0, 0
+	spritePiece	$2C, 0, 2, 2, $E, 0, 0, 0, 0
+	spritePiece	$3C, 0, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	$4C, 0, 1, 2, $46, 0, 0, 0, 0
+	spritePiece	$54, 0, 2, 2, $2E, 0, 0, 0, 0
+	spritePiece	$64, 0, 2, 2, $3A, 0, 0, 0, 0
+	spritePiece	$74, 0, 1, 2, $46, 0, 0, 0, 0
+	spritePiece	-8, $20, 2, 2, $12, 0, 0, 0, 0
+	spritePiece	8, $20, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	$18, $20, 2, 2, $12, 0, 0, 0, 0
+	spritePiece	$28, $20, 2, 2, 4, 0, 0, 0, 0
+.thanks_End
+
+.presentedby:	spriteHeader
+	spritePiece	-$80, -8, 2, 2, $12, 0, 0, 0, 0 ; PRESENTED BY SEGA
+	spritePiece	-$70, -8, 2, 2, $22, 0, 0, 0, 0
+	spritePiece	-$60, -8, 2, 2, $E, 0, 0, 0, 0
+	spritePiece	-$50, -8, 2, 2, $2E, 0, 0, 0, 0
+	spritePiece	-$40, -8, 2, 2, $E, 0, 0, 0, 0
+	spritePiece	-$30, -8, 2, 2, $1A, 0, 0, 0, 0
+	spritePiece	-$20, -8, 2, 2, $3E, 0, 0, 0, 0
+	spritePiece	-$10, -8, 2, 2, $E, 0, 0, 0, 0
+	spritePiece	0, -8, 2, 2, $42, 0, 0, 0, 0
+	spritePiece	$18, -8, 2, 2, $48, 0, 0, 0, 0
+	spritePiece	$28, -8, 2, 2, $2A, 0, 0, 0, 0
+	spritePiece	$40, -8, 2, 2, $2E, 0, 0, 0, 0
+	spritePiece	$50, -8, 2, 2, $E, 0, 0, 0, 0
+	spritePiece	$60, -8, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	$70, -8, 2, 2, 4, 0, 0, 0, 0
+.presentedby_End
+
+.tryagain:	spriteHeader
+	spritePiece	-$40, $30, 2, 2, $3E, 0, 0, 0, 0 ; TRY AGAIN
+	spritePiece	-$30, $30, 2, 2, $22, 0, 0, 0, 0
+	spritePiece	-$20, $30, 2, 2, $2A, 0, 0, 0, 0
+	spritePiece	-8, $30, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	8, $30, 2, 2, 0, 0, 0, 0, 0
+	spritePiece	$18, $30, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	$28, $30, 1, 2, $46, 0, 0, 0, 0
+	spritePiece	$30, $30, 2, 2, $1A, 0, 0, 0, 0
+.tryagain_End
+
+.sonicteam:	spriteHeader
+	spritePiece	-$4C, -$18, 2, 2, $2E, 0, 0, 0, 0 ; SONIC TEAM PRESENTS
+	spritePiece	-$3C, -$18, 2, 2, $26, 0, 0, 0, 0
+	spritePiece	-$2C, -$18, 2, 2, $1A, 0, 0, 0, 0
+	spritePiece	-$1C, -$18, 1, 2, $46, 0, 0, 0, 0
+	spritePiece	-$14, -$18, 2, 2, $1E, 0, 0, 0, 0
+	spritePiece	4, -$18, 2, 2, $3E, 0, 0, 0, 0
+	spritePiece	$14, -$18, 2, 2, $E, 0, 0, 0, 0
+	spritePiece	$24, -$18, 2, 2, 4, 0, 0, 0, 0
+	spritePiece	$34, -$18, 3, 2, 8, 0, 0, 0, 0
+	spritePiece	-$40, 0, 2, 2, $12, 0, 0, 0, 0
+	spritePiece	-$30, 0, 2, 2, $22, 0, 0, 0, 0
+	spritePiece	-$20, 0, 2, 2, $E, 0, 0, 0, 0
+	spritePiece	-$10, 0, 2, 2, $2E, 0, 0, 0, 0
+	spritePiece	0, 0, 2, 2, $E, 0, 0, 0, 0
+	spritePiece	$10, 0, 2, 2, $1A, 0, 0, 0, 0
+	spritePiece	$20, 0, 2, 2, $3E, 0, 0, 0, 0
+	spritePiece	$30, 0, 2, 2, $2E, 0, 0, 0, 0
+.sonicteam_End
+
+	even
 
 		jmpTos	; Empty
 
@@ -13508,47 +13201,10 @@ Map_Obj55_PB:	include	"mappings/sprite/EHZ Boss Ship.asm"
 		include	"leftovers/obj/55 EHZ Boss (Part 1) (Earlier).asm"
 		include	"leftovers/obj/56 EHZ Boss (Part 2) (Earlier).asm"
 
-Map_Obj55a_PB2:	dc.w .word_184C2-Map_Obj55a_PB2
-		dc.w .word_184CC-Map_Obj55a_PB2
-.word_184C2:	dc.w 1
-		dc.w	 5,    0,    0,	 $1C
-.word_184CC:	dc.w 1
-		dc.w	 5,    4,    2,	 $1C
+Map_Obj55a_PB2:	include	"mappings/sprite/EHZ Boss Exhaust.asm"
+Map_Obj55b_PB2:	include	"mappings/sprite/EHZ Boss Unknown.asm"
 
-Map_Obj55b_PB2:	dc.w .word_184DE-Map_Obj55b_PB2
-		dc.w .word_184E8-Map_Obj55b_PB2
-		dc.w .word_184F2-Map_Obj55b_PB2
-		dc.w .word_184FC-Map_Obj55b_PB2
-.word_184DE:	dc.w 1
-		dc.w $F805,    0,    0,$FFF8
-.word_184E8:	dc.w 1
-		dc.w $F805,    4,    2,$FFF8
-.word_184F2:	dc.w 1
-		dc.w $F805,    8,    4,$FFF8
-.word_184FC:	dc.w 1
-		dc.w $F805,   $C,    6,$FFF8
-
-Map_Obj56_PB2:	dc.w .word_18514-Map_Obj56_PB2
-		dc.w .word_1851E-Map_Obj56_PB2
-		dc.w .word_18528-Map_Obj56_PB2
-		dc.w .word_18532-Map_Obj56_PB2
-		dc.w .word_1853C-Map_Obj56_PB2
-		dc.w .word_18546-Map_Obj56_PB2
-		dc.w .word_18550-Map_Obj56_PB2
-.word_18514:	dc.w 1
-		dc.w $F805,    0,    0,$FFF8
-.word_1851E:	dc.w 1
-		dc.w $F00F,    4,    2,$FFF0
-.word_18528:	dc.w 1
-		dc.w $F00F,  $14,   $A,$FFF0
-.word_18532:	dc.w 1
-		dc.w $F00F,  $24,  $12,$FFF0
-.word_1853C:	dc.w 1
-		dc.w $F00F,  $34,  $1A,$FFF0
-.word_18546:	dc.w 1
-		dc.w $F00F,  $44,  $22,$FFF0
-.word_18550:	dc.w 1
-		dc.w $F00F,  $54,  $2A,$FFF0
+Map_Obj56_PB2:	include	"mappings/sprite/EHZ Boss Unknown 2.asm"
 
 Ani_Obj55a_PB2:	dc.w .byte_1855E-Ani_Obj55a_PB2
 		dc.w .byte_18561-Ani_Obj55a_PB2

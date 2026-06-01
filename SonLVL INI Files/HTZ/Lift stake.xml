@@ -3,11 +3,11 @@
   <Images>
     <ImageFromMappings id="stakeleft">
       <ArtFile filename="../art/nemesis/HTZ zip-line platform.nem" />
-      <MapFile type="ASM" filename="../mappings/sprite/obj16.asm" frame="1" startpal="2" />
+      <MapFile type="ASM" filename="../mappings/sprite/HTZ Platform.asm" frame="1" startpal="2" />
     </ImageFromMappings>
     <ImageFromMappings id="stakeright">
       <ArtFile filename="../art/nemesis/HTZ zip-line platform.nem" />
-      <MapFile type="ASM" filename="../mappings/sprite/obj16.asm" frame="2" startpal="2" />
+      <MapFile type="ASM" filename="../mappings/sprite/HTZ Platform.asm" frame="2" startpal="2" />
     </ImageFromMappings>
   </Images>
   <Subtypes>

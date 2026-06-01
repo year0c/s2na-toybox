@@ -12,7 +12,7 @@ namespace S2ObjectDefinitions.EHZ
 		public override void Init(ObjectData data)
 		{
 			byte[] artfile = ObjectHelper.OpenArtFile("../art/nemesis/EHZ bridge.nem", CompressionType.Nemesis);
-			string mapfile = "../mappings/sprite/obj11 (EHZ).asm";
+			string mapfile = "../mappings/sprite/Bridge (EHZ).asm";
 			img = ObjectHelper.MapASMToBmp(artfile, mapfile, 0, 2);
 		}
 

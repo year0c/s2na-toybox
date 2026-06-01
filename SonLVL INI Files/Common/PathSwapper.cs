@@ -16,7 +16,7 @@ namespace S2ObjectDefinitions.Common
 		{
 			List<byte> tmpartfile = new List<byte>();
 			tmpartfile.AddRange(ObjectHelper.OpenArtFile("Common/pathswapper-art.nem", CompressionType.Nemesis));
-			string mapfile = "../mappings/sprite/obj03.asm";
+			string mapfile = "../mappings/sprite/Collision Switcher.asm";
 			byte[] artfile1 = tmpartfile.ToArray();
 			img = ObjectHelper.MapASMToBmp(artfile1, mapfile, 0, 0);
 			Point off;

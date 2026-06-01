@@ -3,7 +3,7 @@
   <Images>
     <ImageFromMappings id="bridgestake">
       <ArtFile filename="../art/nemesis/HPZ bridge.nem" />
-      <MapFile type="ASM" filename="../mappings/sprite/obj11_HPZ.asm" frame="3" startpal="3" />
+      <MapFile type="ASM" filename="../mappings/sprite/Bridge (HPZ).asm" frame="3" startpal="3" />
     </ImageFromMappings>
     <ImageFromMappings id="pulsingorb">
       <ArtFile filename="../art/nemesis/HPZ Pulsing Ball.nem" />

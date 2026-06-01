@@ -5444,9 +5444,9 @@ DynResize_S1Ending:
 		rts
 ; ---------------------------------------------------------------------------
 		include	"obj/11 Bridge.asm"
-Map_obj11_GHZ:	include	"mappings/sprite/obj11 (GHZ).asm"
-Map_obj11_HPZ:	include	"mappings/sprite/obj11 (HPZ).asm"
-Map_obj11_EHZ:	include	"mappings/sprite/obj11 (EHZ).asm"
+Map_obj11_GHZ:	include	"mappings/sprite/Bridge (GHZ).asm"
+Map_obj11_HPZ:	include	"mappings/sprite/Bridge (HPZ).asm"
+Map_obj11_EHZ:	include	"mappings/sprite/Bridge (EHZ).asm"
 
 		jmpTos	; Empty
 ; ===========================================================================
@@ -5465,11 +5465,11 @@ Map_Obj48:	include	"mappings/sprite/S1/GHZ Ball.asm"
 Map_Obj17:	include	"mappings/sprite/S1/Spiked Pole Helix.asm"
 
 		include	"obj/18 Platforms.asm"
-Map_Obj18x:	include	"mappings/sprite/obj18 (Unused).asm"
-Map_Obj18_GHZ:	include	"mappings/sprite/obj18 (GHZ).asm"
-Map_Obj18_SYZ:	include	"mappings/sprite/S1/obj18 (SYZ).asm"
-Map_Obj18_SLZ:	include	"mappings/sprite/S1/obj18 (SLZ).asm"
-Map_Obj18_EHZ:	include	"mappings/sprite/obj18 (EHZ).asm"
+Map_Obj18x:	include	"mappings/sprite/Platforms (Unused).asm"
+Map_Obj18_GHZ:	include	"mappings/sprite/Platforms (GHZ).asm"
+Map_Obj18_SYZ:	include	"mappings/sprite/S1/Platforms (SYZ).asm"
+Map_Obj18_SLZ:	include	"mappings/sprite/S1/Platforms (SLZ).asm"
+Map_Obj18_EHZ:	include	"mappings/sprite/Platforms (EHZ).asm"
 
 		jmpTos	; Empty
 ; ===========================================================================
@@ -5579,7 +5579,7 @@ Obj1A_Conf_HPZ:	dc.b $10,$10,$10,$10
 		dc.b $10,$10,$10,$10
 		even
 
-Map_Obj1A_HPZ:	include	"mappings/sprite/obj1A (HPZ).asm"
+Map_Obj1A_HPZ:	include	"mappings/sprite/Collapsing Ledge (HPZ).asm"
 
 		jmpTos	; Empty
 ; ===========================================================================
@@ -5808,7 +5808,8 @@ byte_B292:	dc.b   2,  0,  1, $B,$FE,  1
 ; ---------------------------------------------------------------------------
 ; sprite mappings
 ; ---------------------------------------------------------------------------
-Map_Obj26:	include	"mappings/sprite/obj26.asm"
+Map_Obj26:	include	"mappings/sprite/Monitor.asm"
+
 		include	"obj/0E Title Sonic And Tails.asm"
 
 		include	"obj/0F.asm"
@@ -5826,7 +5827,7 @@ byte_B52A:	dc.b $1F,  0,  1,$FF
 
 Map_S1Obj0F:	include "mappings/sprite/S1/obj0F.asm"
 
-Map_Obj0E:	include "mappings/sprite/obj0E.asm"
+Map_Obj0E:	include "mappings/sprite/Title Sonic And Tails.asm"
 
 		jmpTos	; Empty
 ; ===========================================================================
@@ -5864,7 +5865,7 @@ Map_S1Obj7F:	include	"mappings/sprite/S1/SS Result Chaos Emeralds.asm"
 ; ===========================================================================
 
 		include	"obj/36 Spikes.asm"
-Map_Obj36:	include	"mappings/sprite/obj36.asm"
+Map_Obj36:	include	"mappings/sprite/Spikes.asm"
 
 
 		include	"obj/S1/3B Purple Rock.asm"
@@ -8952,7 +8953,7 @@ byte_F1B3:	dc.b  $F,  0,$FF
 ; ---------------------------------------------------------------------------
 ; sprite mappings
 ; ---------------------------------------------------------------------------
-Map_obj0D:	include	"mappings/sprite/obj0D.asm"
+Map_obj0D:	include	"mappings/sprite/Signpost.asm"
 ; ===========================================================================
 		jmpTos	; Empty
 ; ===========================================================================
@@ -9888,7 +9889,7 @@ byte_12608:	dc.b   0,  4,  0,  0,  4,  0,  0,  5,  0,  0,  5,  0,  0,  6,  0,  0
 ; ---------------------------------------------------------------------------
 ; sprite mappings
 ; ---------------------------------------------------------------------------
-Map_obj38:	include	"mappings/sprite/obj38.asm"
+Map_obj38:	include	"mappings/sprite/Shield and Invincibility.asm"
 
 ; animation script
 Ani_S1obj4A:	dc.w byte_1278C-Ani_S1obj4A
@@ -9906,7 +9907,7 @@ byte_129C2:	dc.b   4,  0,  1,  2,$FC
 ; ---------------------------------------------------------------------------
 ; sprite mappings
 ; ---------------------------------------------------------------------------
-Map_obj08:	include	"mappings/sprite/obj08.asm"
+Map_obj08:	include	"mappings/sprite/Water Splash.asm"
 
 		include	"obj/Sonic AnglePos.asm"
 		include	"obj/sub FindNearestTile.asm"
@@ -10444,7 +10445,7 @@ Map_Bub:	include	"mappings/sprite/S1/Bubbles.asm"
 ; ===========================================================================
 
 		include	"obj/03 Collision Switcher.asm"
-Map_Obj03:	include	"mappings/sprite/obj03.asm"
+Map_Obj03:	include	"mappings/sprite/Collision Switcher.asm"
 
 		include	"obj/0B Section of Pipe.asm"
 
@@ -10454,25 +10455,25 @@ byte_1428E:	dc.b   7,  0,  1,  2,  3,  4,$FE,  1
 byte_14296:	dc.b   7,  4,  3,  2,  1,  0,$FE,  1
 		even
 
-Map_Obj0B:	include	"mappings/sprite/obj0B.asm"
+Map_Obj0B:	include	"mappings/sprite/Section of Pipe.asm"
 
 		jmpTos	; Empty
 ; ===========================================================================
 
 		include	"obj/0C Small Floating Platform.asm"
-Map_Obj0C:	include	"mappings/sprite/obj0C.asm"
+Map_Obj0C:	include	"mappings/sprite/Small Floating Platform.asm"
 
 		jmpTos	JmpTo_CalcSine
 ; ===========================================================================
 
 		include	"obj/12 HPZ Emerald.asm"
-Map_Obj12:	include	"mappings/sprite/obj12.asm"
+Map_Obj12:	include	"mappings/sprite/HPZ Emerald.asm"
 
 		jmpTos	; Empty
 ; ===========================================================================
 
 		include	"obj/13 HPZ Waterfall.asm"
-Map_Obj13:	include	"mappings/sprite/obj13.asm"
+Map_Obj13:	include	"mappings/sprite/HPZ Waterfall.asm"
 
 		include	"obj/06 EHZ Spiral.asm"
 ; ---------------------------------------------------------------------------
@@ -10558,13 +10559,13 @@ Map_obj14b:	include	"mappings/sprite/obj14_b.asm"
 ; ===========================================================================
 
 		include	"obj/16 HTZ Platform.asm"
-Map_Obj16:	include	"mappings/sprite/obj16.asm"
+Map_Obj16:	include	"mappings/sprite/HTZ Platform.asm"
 
 		jmpTos	JmpTo_DisplaySprite,JmpTo_DeleteObject,JmpTo_ObjectMove
 ; ===========================================================================
 
 		include	"obj/19 CPZ Platform.asm"
-Map_Obj19:	include	"mappings/sprite/obj19.asm"
+Map_Obj19:	include	"mappings/sprite/CPZ Platform.asm"
 
 		jmpTos0	JmpTo2_DisplaySprite,JmpTo2_DeleteObject,JmpTo2_ObjectMove
 ; ===========================================================================
@@ -10581,7 +10582,7 @@ Obj04_FrameData:
 Map_Obj04:	include	"mappings/sprite/Water Surface.asm"
 
 		include	"obj/49 EHZ Waterfall.asm"
-Map_Obj49:	include	"mappings/sprite/obj49.asm"
+Map_Obj49:	include	"mappings/sprite/EHZ Waterfall.asm"
 
 		jmpTos0	JmpTo3_DisplaySprite,JmpTo3_DeleteObject,JmpTo_Adjust2PArtPointer
 ; ===========================================================================
@@ -10612,18 +10613,8 @@ byte_15D52:	dc.b   3,  0,  1,$FF
 byte_15D56:	dc.b  $E,  2,  3,$FF
 byte_15D5A:	dc.b   3,  2,  3,$FF
 		even
-Map_Obj52:	dc.w word_15D66-Map_Obj52
-		dc.w word_15D70-Map_Obj52
-		dc.w word_15D7A-Map_Obj52
-		dc.w word_15D84-Map_Obj52
-word_15D66:	dc.w 1
-		dc.w $F00F,    0,    0,$FFF0
-word_15D70:	dc.w 1
-		dc.w $F00F,  $10,    8,$FFF0
-word_15D7A:	dc.w 1
-		dc.w $F00F,  $20,  $10,$FFF0
-word_15D84:	dc.w 1
-		dc.w $F00F,  $30,  $18,$FFF0
+
+Map_Obj52:	include	"mappings/sprite/Piranha.asm"
 
 		jmpTos0	JmpTo2_MarkObjGone,JmpTo2_AnimateSprite,JmpTo3_ObjectMove
 ; ===========================================================================
@@ -10639,7 +10630,7 @@ byte_15EBB:	dc.b   9,  0,  1,  2,  1,$FF
 ; ---------------------------------------------------------------------------
 ; Sprite mappings - Redz (dinosaur badnik) from HPZ
 ; ---------------------------------------------------------------------------
-Map_obj4F:	include	"mappings/sprite/obj4F.asm"
+Map_obj4F:	include	"mappings/sprite/Redz.asm"
 
 		jmpTos0	JmpTo4_DisplaySprite,JmpTo4_DeleteObject,JmpTo3_AnimateSprite,JmpTo3_ObjectMoveAndFall,JmpTo4_ObjectMove
 ; ===========================================================================
@@ -10687,7 +10678,7 @@ byte_169ED:	dc.b   9,  1,  1,  1,  1,  1,$FD,  0
 ; ---------------------------------------------------------------------------
 ; Sprite mappings
 ; ---------------------------------------------------------------------------
-Map_obj4B:	include	"mappings/sprite/obj4B.asm"
+Map_obj4B:	include	"mappings/sprite/Buzzer.asm"
 
 		jmpTos0	JmpTo6_DeleteObject,JmpTo_FindNextFreeObj,JmpTo5_AnimateSprite,JmpTo_Adjust2PArtPointer2,JmpTo_MarkObjGone_P1,JmpTo2_Adjust2PArtPointer,JmpTo6_ObjectMove
 ; ===========================================================================
@@ -10720,7 +10711,7 @@ byte_16FD5:	dc.b   1,  1,  6,  1,  6,  2,  7,  3,  8,  4,  9,  4,  9,  3,  8,$FE
 byte_16FE6:	dc.b   3, $A, $B, $C, $D, $E,$FF
 		even
 
-Map_Obj4C:	include	"mappings/sprite/obj4C.asm"
+Map_Obj4C:	include	"mappings/sprite/BBat.asm"
 
 		jmpTos0	JmpTo5_MarkObjGone,JmpTo7_AnimateSprite,JmpTo7_ObjectMove
 ; ===========================================================================
@@ -10753,7 +10744,7 @@ byte_1757A:	dc.b   7,  0,$FF
 ; ---------------------------------------------------------------------------
 ; Sprite mappings
 ; ---------------------------------------------------------------------------
-Map_obj53:	include	"mappings/sprite/obj53.asm"
+Map_obj53:	include	"mappings/sprite/Masher.asm"
 
 		jmpTos0	JmpTo7_MarkObjGone,JmpTo9_AnimateSprite,JmpTo3_Adjust2PArtPointer,JmpTo9_ObjectMove
 ; ===========================================================================
@@ -10768,7 +10759,7 @@ byte_1781C:	dc.b   1,  0,  1,$FF
 ; ---------------------------------------------------------------------------
 ; Sprite mappings
 ; ---------------------------------------------------------------------------
-Map_obj54:	include	"mappings/sprite/obj54.asm"
+Map_obj54:	include	"mappings/sprite/Snail.asm"
 
 		jmpTos0	JmpTo8_DeleteObject,JmpTo2_FindNextFreeObj,JmpTo10_AnimateSprite,JmpTo2_Adjust2PArtPointer2,JmpTo2_MarkObjGone_P1,JmpTo4_Adjust2PArtPointer,JmpTo7_ObjectMoveAndFall,JmpTo10_ObjectMove
 ; ===========================================================================
@@ -12895,7 +12886,7 @@ byte_15A2B:	dc.b   9,  1,  1,  1,  1,  1,$FD,  0
 ; ---------------------------------------------------------------------------
 ; Sprite mappings
 ; ---------------------------------------------------------------------------
-Map_Obj4B_PB:	include	"mappings/sprite/obj4B.asm"
+Map_Obj4B_PB:	include	"mappings/sprite/Buzzer.asm"
 	dephase
 
 		binclude	"leftovers/symbols/symbol5.bin"
@@ -12921,6 +12912,7 @@ Ani_Obj50_PB:	dc.w .byte_163B0-Ani_Obj50_PB
 .byte_163CB:	dc.b   1,  9, $A,$FF
 .byte_163CF:	dc.b   5, $B, $C, $B, $C, $B, $C,$FF
 		even
+
 Map_Obj50_PB:	dc.w .word_163F2-Map_Obj50_PB
 		dc.w .word_1640C-Map_Obj50_PB
 		dc.w .word_16416-Map_Obj50_PB
@@ -13001,7 +12993,7 @@ Ani_Obj4F_PB:	dc.w .byte_15EB8-Ani_Obj4F_PB
 ; ---------------------------------------------------------------------------
 ; Sprite mappings - Redz (dinosaur badnik) from HPZ
 ; ---------------------------------------------------------------------------
-Map_Obj4F_PB:	include	"mappings/sprite/obj4F.asm"
+Map_Obj4F_PB:	include	"mappings/sprite/Redz.asm"
 
 		jmpTos0	; Empty
 	dephase
@@ -13022,7 +13014,7 @@ Ani_Obj53_PB:	dc.w .byte_17572-Ani_Obj53_PB
 ; ---------------------------------------------------------------------------
 ; Sprite mappings
 ; ---------------------------------------------------------------------------
-Map_Obj53_PB:	include	"mappings/sprite/obj53.asm"
+Map_Obj53_PB:	include	"mappings/sprite/Masher.asm"
 
 		jmpTos0	; Empty
 	dephase

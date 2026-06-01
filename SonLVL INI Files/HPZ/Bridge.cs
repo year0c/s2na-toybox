@@ -13,7 +13,7 @@ namespace S2ObjectDefinitions.HPZ
 		public override void Init(ObjectData data)
 		{
 			byte[] artfile = ObjectHelper.OpenArtFile("../art/nemesis/HPZ bridge.nem", CompressionType.Nemesis);
-			string mapfile = "../mappings/sprite/obj11 (HPZ).asm";
+			string mapfile = "../mappings/sprite/Bridge (HPZ).asm";
 			img = ObjectHelper.MapASMToBmp(artfile, mapfile, 0, 2);
 		}
 

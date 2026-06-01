@@ -1,7 +1,7 @@
 {
     "Flex": 2,
     "name": "Sonic 2 Nick Arcade",
-    "node": "1acd2fc6-8e48-4170-a567-ecb2661fdb83",
+    "node": "5fb1ac1a-8426-4474-9f3e-823315616291",
     "objects": [
         {
             "name": "Common",
@@ -58,7 +58,7 @@
                 },
                 {
                     "format": "Sonic 2.js",
-                    "name": "Collision Swapper",
+                    "name": "Collision Switcher",
                     "palettes": [
                         {
                             "path": "palette\\EHZ.bin",
@@ -71,7 +71,7 @@
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "mappings\\sprite\\obj03.asm",
+                        "path": "mappings\\sprite\\Collision Switcher.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -96,7 +96,7 @@
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "mappings\\sprite\\obj36.asm",
+                        "path": "mappings\\sprite\\Spikes.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -121,7 +121,7 @@
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "mappings\\sprite\\obj0D.asm",
+                        "path": "mappings\\sprite\\Signpost.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -150,7 +150,7 @@
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "mappings\\sprite\\obj26.asm",
+                        "path": "mappings\\sprite\\Monitor.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -183,7 +183,7 @@
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "mappings\\sprite\\obj54.asm",
+                        "path": "mappings\\sprite\\Snail.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -191,7 +191,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "2fc68e48-4170-4567-acb2-661fdb837f61"
+                    "uuid": "89ebf181-3e5a-484f-aa2c-35e0799e85fa"
                 }
             ],
             "isDirectory": true,

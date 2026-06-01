@@ -1,10 +1,10 @@
-Map_Obj21_internal:	mappingsTable
-	mappingsTableEntry.w	Map_Obj21_internal_0008
-	mappingsTableEntry.w	Map_Obj21_internal_005A
-	mappingsTableEntry.w	Map_Obj21_internal_00AC
-	mappingsTableEntry.w	afBack
+.internal:	mappingsTable
+	mappingsTableEntry.w	.internal_0008
+	mappingsTableEntry.w	.internal_005A
+	mappingsTableEntry.w	.internal_00AC
+	mappingsTableEntry.w	.internal_00FE
 
-Map_Obj21_internal_0008:	spriteHeader
+.internal_0008:	spriteHeader
 	spritePiece	0, -$80, 4, 2, 0, 0, 0, 1, 1
 	spritePiece	$20, -$80, 4, 2, $18, 0, 0, 1, 1
 	spritePiece	$40, -$80, 4, 2, $20, 0, 0, 1, 1
@@ -15,9 +15,9 @@ Map_Obj21_internal_0008:	spriteHeader
 	spritePiece	$30, -$60, 3, 2, $30, 0, 0, 1, 1
 	spritePiece	0, $40, 2, 2, $10A, 0, 0, 0, 1
 	spritePiece	$10, $40, 4, 2, $10E, 0, 0, 1, 1
-Map_Obj21_internal_0008_End
+.internal_0008_End
 
-Map_Obj21_internal_005A:	spriteHeader
+.internal_005A:	spriteHeader
 	spritePiece	0, -$80, 4, 2, 0, 0, 0, 1, 1
 	spritePiece	$20, -$80, 4, 2, $18, 0, 0, 1, 1
 	spritePiece	$40, -$80, 4, 2, $20, 0, 0, 1, 1
@@ -28,9 +28,9 @@ Map_Obj21_internal_005A:	spriteHeader
 	spritePiece	$30, -$60, 3, 2, $30, 0, 0, 1, 1
 	spritePiece	0, $40, 2, 2, $10A, 0, 0, 0, 1
 	spritePiece	$10, $40, 4, 2, $10E, 0, 0, 1, 1
-Map_Obj21_internal_005A_End
+.internal_005A_End
 
-Map_Obj21_internal_00AC:	spriteHeader
+.internal_00AC:	spriteHeader
 	spritePiece	0, -$80, 4, 2, 0, 0, 0, 1, 1
 	spritePiece	$20, -$80, 4, 2, $18, 0, 0, 1, 1
 	spritePiece	$40, -$80, 4, 2, $20, 0, 0, 1, 1
@@ -41,9 +41,9 @@ Map_Obj21_internal_00AC:	spriteHeader
 	spritePiece	$30, -$60, 3, 2, $30, 0, 0, 1, 1
 	spritePiece	0, $40, 2, 2, $10A, 0, 0, 0, 1
 	spritePiece	$10, $40, 4, 2, $10E, 0, 0, 1, 1
-Map_Obj21_internal_00AC_End
+.internal_00AC_End
 
-afBack:	spriteHeader
+.internal_00FE:	spriteHeader
 	spritePiece	0, -$80, 4, 2, 0, 0, 0, 1, 1
 	spritePiece	$20, -$80, 4, 2, $18, 0, 0, 1, 1
 	spritePiece	$40, -$80, 4, 2, $20, 0, 0, 1, 1
@@ -54,6 +54,6 @@ afBack:	spriteHeader
 	spritePiece	$30, -$60, 3, 2, $30, 0, 0, 1, 1
 	spritePiece	0, $40, 2, 2, $10A, 0, 0, 0, 1
 	spritePiece	$10, $40, 4, 2, $10E, 0, 0, 1, 1
-afBack_End
+.internal_00FE_End
 
 	even

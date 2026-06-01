@@ -1,7 +1,7 @@
 ; ---------------------------------------------------------------------------
 ; Sprite mappings - special stage "R" block
 ; ---------------------------------------------------------------------------
-Map_SS_R_internal:	mappingsTable
+.internal:	mappingsTable
 	mappingsTableEntry.w	.r0
 	mappingsTableEntry.w	.r1
 	mappingsTableEntry.w	.ghost_switch ; blank

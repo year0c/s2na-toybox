@@ -1,7 +1,7 @@
 ; ---------------------------------------------------------------------------
 ; Sprite mappings - prison capsule
 ; ---------------------------------------------------------------------------
-Map_Pri_internal:	mappingsTable
+.internal:	mappingsTable
 	mappingsTableEntry.w	.capsule
 	mappingsTableEntry.w	.switch1
 	mappingsTableEntry.w	.broken

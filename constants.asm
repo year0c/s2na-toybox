@@ -359,9 +359,8 @@ GameModeFlag_TitleCard:		equ 7			; flag bit
 GameModeID_TitleCard:		equ 1<<GameModeFlag_TitleCard ; $80 ; flag mask
 
 ; ---------------------------------------------------------------------------
-	include "s1.sounddriver.ram.asm"
 
-; Main RAM
+; Developer RAM
 	phase	($FE0000)
 RAM_debug_start:	ds.b	$8000
 
@@ -371,7 +370,11 @@ RAM_debug_demo_record_2P:	ds.w	$2000
 
 RAM_debug_end:
 	dephase
+; ---------------------------------------------------------------------------
 
+	include "s1.sounddriver.ram.asm"
+
+; Main RAM
 	phase	ramaddr($FFFF0000)
 v_ram_start:
 RAM_Start:

@@ -5662,7 +5662,7 @@ byte_A327:	dc.b   1,  5,  6,$FF
 ; ---------------------------------------------------------------------------
 ; Sprite mappings
 ; ---------------------------------------------------------------------------
-Map_obj1F:	include	"mappings/sprite/S1/obj1F.asm"
+Map_obj1F:	include	"mappings/sprite/S1/Crabmeat.asm"
 
 		include	"obj/S1/22 Buzz Bomber.asm"
 		include	"obj/S1/23 Buzz Bomber Missile.asm"

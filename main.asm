@@ -9899,7 +9899,7 @@ byte_1278C:	dc.b   5,  0,  1,  0,  1,  0,  7,  1,  7,  2,  7,  3,  7,  4,  7,  5
 ; ---------------------------------------------------------------------------
 ; sprite mappings
 ; ---------------------------------------------------------------------------
-Map_S1obj4A:	include	"mappings/sprite/S1/obj4A.asm"
+Map_S1obj4A:	include	"mappings/sprite/S1/Special Stage Entry (Unused).asm"
 ; animation script
 Ani_obj08:	dc.w byte_129C2-Ani_obj08
 byte_129C2:	dc.b   4,  0,  1,  2,$FC

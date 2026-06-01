@@ -14730,8 +14730,7 @@ Nem_EHZ_Bridge:	binclude	"art/nemesis/EHZ bridge.nem"
 ; ---------------------------------------------------------------------------
 Nem_HTZ_Lift:	binclude	"art/nemesis/HTZ zip-line platform.nem"
 		even
-Nem_HTZ_AutomaticDoor:
-		binclude	"art/nemesis/HTZ Autodoor.nem"
+Nem_HTZ_AutomaticDoor:	binclude	"art/nemesis/HTZ Autodoor.nem"
 		even
 Nem_HTZ_Seesaw:	binclude	"art/nemesis/See-saw in HTZ.nem"
 		even
@@ -14926,7 +14925,7 @@ Nem_Squirrel:	binclude	"art/nemesis/S1/Animal Squirrel.nem"
 Map16_EHZ:	binclude	"mappings/16x16/EHZ.unc"
 Map16_EHZ_End:
 		even
-Nem_EHZ:binclude	"art/nemesis/8x8 - EHZ.nem"
+Nem_EHZ:	binclude	"art/nemesis/8x8 - EHZ.nem"
 		even
 Map16_HTZ:	binclude	"mappings/16x16/HTZ.unc"
 Map16_HTZ_End:
@@ -14940,7 +14939,7 @@ Map128_EHZ:	binclude	"mappings/128x128/EHZ_HTZ.unc"
 Map16_HPZ:	binclude	"mappings/16x16/HPZ.unc"
 Map16_HPZ_End:
 		even
-Nem_HPZ:binclude	"art/nemesis/8x8 - HPZ.nem"
+Nem_HPZ:	binclude	"art/nemesis/8x8 - HPZ.nem"
 		even
 Map128_HPZ:	binclude	"mappings/128x128/HPZ.unc"
 		even

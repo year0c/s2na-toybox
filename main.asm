@@ -12328,9 +12328,9 @@ S1SS_3:	binclude	"sslayout/3.eni"
 		even
 S1SS_4:	binclude	"sslayout/4.eni"
 		even
-S1SS_5:	binclude	"sslayout/5 (JP1).eni"
+S1SS_5:	binclude	"sslayout/5 (REV01).eni"
 		even
-S1SS_6:	binclude	"sslayout/6 (JP1).eni"
+S1SS_6:	binclude	"sslayout/6 (REV01).eni"
 		even
 
 ; ---------------------------------------------------------------------------

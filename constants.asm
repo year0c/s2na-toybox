@@ -186,7 +186,7 @@ sub9_x_pos	= subspr_data+next_subspr*7+0
 sub9_y_pos	= subspr_data+next_subspr*7+2
 sub9_mapframe	= subspr_data+next_subspr*7+5
 
-; Levels
+; Levels (zones)
 id_GHZ:	equ 0
 id_LZ:	equ 1
 id_CPZ:	equ 2
@@ -199,6 +199,57 @@ id_HTZ:	equ 5
 id_SBZ:	equ 5
 id_EndZ:	equ 6
 id_SS:	equ 7
+
+; Levels (zone/act word combos)
+act1:		equ 0
+act2:		equ 1
+act3:		equ 2
+act4:		equ 3	; only used for SBZ3/LZ4
+
+id_GHZ_act1:	equ (id_GHZ<<8)+act1	; $0000
+id_GHZ_act2:	equ (id_GHZ<<8)+act2	; $0001
+id_GHZ_act3:	equ (id_GHZ<<8)+act3	; $0002
+
+id_LZ_act1:	equ (id_LZ<<8)+act1	; $0100
+id_LZ_act2:	equ (id_LZ<<8)+act2	; $0101
+id_LZ_act3:	equ (id_LZ<<8)+act3	; $0102
+
+id_MZ_act1:	equ (id_MZ<<8)+act1	; $0200
+id_MZ_act2:	equ (id_MZ<<8)+act2	; $0201
+id_MZ_act3:	equ (id_MZ<<8)+act3	; $0202
+
+id_CPZ_act1:	equ (id_CPZ<<8)+act1	; $0200
+id_CPZ_act2:	equ (id_CPZ<<8)+act2	; $0201
+id_CPZ_act3:	equ (id_CPZ<<8)+act3	; $0202
+
+id_SLZ_act1:	equ (id_SLZ<<8)+act1	; $0300
+id_SLZ_act2:	equ (id_SLZ<<8)+act2	; $0301
+id_SLZ_act3:	equ (id_SLZ<<8)+act3	; $0302
+
+id_EHZ_act1:	equ (id_EHZ<<8)+act1	; $0300
+id_EHZ_act2:	equ (id_EHZ<<8)+act2	; $0301
+id_EHZ_act3:	equ (id_EHZ<<8)+act3	; $0302
+
+id_SYZ_act1:	equ (id_SYZ<<8)+act1	; $0400
+id_SYZ_act2:	equ (id_SYZ<<8)+act2	; $0401
+id_SYZ_act3:	equ (id_SYZ<<8)+act3	; $0402
+
+id_HPZ_act1:	equ (id_HPZ<<8)+act1	; $0400
+id_HPZ_act2:	equ (id_HPZ<<8)+act2	; $0401
+id_HPZ_act3:	equ (id_HPZ<<8)+act3	; $0402
+
+id_SBZ_act1:	equ (id_SBZ<<8)+act1	; $0500
+id_SBZ_act2:	equ (id_SBZ<<8)+act2	; $0501
+
+id_HTZ_act1:	equ (id_HTZ<<8)+act1	; $0500
+id_HTZ_act2:	equ (id_HTZ<<8)+act2	; $0501
+
+;id_SBZ_act3 is ambiguous, could mean LZ4 or FZ
+id_LZ_act4:	equ (id_LZ<<8)+act4	; $0103 (SBZ3)
+id_FZ:		equ (id_SBZ<<8)+act3	; $0502 (real SBZ3)
+
+id_EndZ_good:	equ (id_EndZ<<8)+act1	; $0600 (good ending, all emeralds)
+id_EndZ_bad:	equ (id_EndZ<<8)+act2	; $0601 (bad ending, not all emeralds)
 
 ; Colours
 cBlack:	equ $000				; colour black

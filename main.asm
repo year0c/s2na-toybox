@@ -2232,10 +2232,13 @@ SegaScreen:
 		lea	(Eni_SegaLogo).l,a0
 		move.w	#make_art_tile(ArtTile_Sega_Tiles,0,0),d0
 		bsr.w	EniDec
+
 		copyTilemap	v_ram_start,vram_bg+$510,24,8
 		copyTilemap	v_ram_start+$180,vram_fg,40,28
+
 		tst.b	(v_megadrive).w			; is console Japanese?
 		bmi.s	loc_316A			; if not, branch
+
 		copyTilemap	v_ram_start+$A40,vram_fg+$53A,3,2 ; hide "TM" with a white rectangle
 
 loc_316A:
@@ -2325,7 +2328,7 @@ loc_32C4:
 		move.w	#0,(Debug_placement_mode).w
 		move.w	#0,(f_demo).w
 		move.w	#0,(word_FFEA).w
-		move.w	#id_GHZ<<8,(Current_ZoneAndAct).w	; leftover from Sonic 1, this gets overwritten with id_EHZ
+		move.w	#id_GHZ_act1,(Current_ZoneAndAct).w	; leftover from Sonic 1, this gets overwritten with id_EHZ_act1
 		move.w	#0,(v_pcyc_time).w
 		bsr.w	Pal_FadeToBlack
 		disable_ints
@@ -2369,7 +2372,7 @@ loc_32C4:
 		bsr.w	NewPLC
 		move.w	#0,(v_title_dcount).w
 		move.w	#0,(v_title_ccount).w
-		move.w	#id_EHZ<<8,(Current_ZoneAndAct).w
+		move.w	#id_EHZ_act1,(Current_ZoneAndAct).w
 		move.w	#4,(Sonic_Pos_Record_Index).w
 		move.w	#0,(Sonic_Pos_Record_Buf).w
 		enable_display
@@ -2510,7 +2513,7 @@ loc_3546:
 
 loc_354C:
 		move.b	#GameModeID_S1Ending,(v_gamemode).w
-		move.w	#id_EndZ<<8,(Current_ZoneAndAct).w
+		move.w	#id_EndZ_good,(Current_ZoneAndAct).w
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -2539,26 +2542,26 @@ loc_3570:
 		rts
 ; ---------------------------------------------------------------------------
 LevSel_Ptrs:
-		dc.b id_GHZ,0
-		dc.b id_GHZ,1
-		dc.b id_GHZ,2
-		dc.b id_MZ,0
-		dc.b id_MZ,1
-		dc.b id_MZ,2
-		dc.b id_HPZ,0
-		dc.b id_HPZ,1
-		dc.b id_HPZ,2
-		dc.b id_LZ,0
-		dc.b id_LZ,1
-		dc.b id_LZ,2
-		dc.b id_EHZ,0
-		dc.b id_EHZ,1
-		dc.b id_EHZ,2
-		dc.b id_HTZ,0
-		dc.b id_HTZ,1
-		dc.b id_LZ,3
-		dc.b id_HTZ,2
-		dc.b id_SS,0
+		dc.w id_GHZ_act1
+		dc.w id_GHZ_act2
+		dc.w id_GHZ_act3
+		dc.w id_CPZ_act1
+		dc.w id_CPZ_act2
+		dc.w id_CPZ_act3
+		dc.w id_HPZ_act1
+		dc.w id_HPZ_act2
+		dc.w id_HPZ_act3
+		dc.w id_LZ_act1
+		dc.w id_LZ_act2
+		dc.w id_LZ_act3
+		dc.w id_EHZ_act1
+		dc.w id_EHZ_act2
+		dc.w id_EHZ_act3
+		dc.w id_HTZ_act1
+		dc.w id_HTZ_act2
+		dc.w id_LZ_act4
+		dc.w id_FZ
+		dc.w id_SS<<8
 		dc.w $8000
 ; ---------------------------------------------------------------------------
 
@@ -2623,7 +2626,7 @@ RunDemo:
 loc_3694:
 		move.w	#1,(f_demo).w
 		move.b	#GameModeID_Demo,(v_gamemode).w
-		cmpi.w	#id_EHZ<<8,d0
+		cmpi.w	#id_EHZ_act1,d0
 		bne.s	loc_36AC
 		move.w	#1,(Two_player_mode).w
 
@@ -2644,18 +2647,18 @@ loc_36C0:
 		rts
 ; ---------------------------------------------------------------------------
 Demo_Levels:
-		dc.b id_CPZ,0
-		dc.b id_EHZ,0
-		dc.b id_HPZ,0
-		dc.b id_HTZ,0
-		dc.b id_HTZ,0
-		dc.b id_HTZ,0
-		dc.b id_HTZ,0
-		dc.b id_HTZ,0
-		dc.b id_HPZ,0
-		dc.b id_HPZ,0
-		dc.b id_HPZ,0
-		dc.b id_HPZ,0
+		dc.w id_CPZ_act1
+		dc.w id_EHZ_act1
+		dc.w id_HPZ_act1
+		dc.w id_HTZ_act1
+		dc.w id_HTZ_act1
+		dc.w id_HTZ_act1
+		dc.w id_HTZ_act1
+		dc.w id_HTZ_act1
+		dc.w id_HPZ_act1
+		dc.w id_HPZ_act1
+		dc.w id_HPZ_act1
+		dc.w id_HPZ_act1
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -2998,7 +3001,9 @@ Level_NoMusicFade:
 		lea	(Nem_TitleCard).l,a0
 		bsr.w	NemDec
 		bsr.w	ClearScreen
+
 		fillVRAM	0, vram_fg_2p, vram_fg_2p+plane_size_64x32 ; clear 2 player foreground namespace
+
 		enable_ints
 		moveq	#0,d0
 		move.b	(Current_Zone).w,d0
@@ -3020,6 +3025,7 @@ loc_3BB6:
 		clearRAM v_misc_variables,v_misc_variables_end
 		clearRAM v_levelvariables,v_levelvariables_end
 		clearRAM v_timingvariables,v_timingvariables_end
+
 		cmpi.b	#id_HPZ,(Current_Zone).w	; are we on Hidden Palace Zone?
 		bne.s	.skipwater		; if not, skip
 		move.b	#1,(Water_flag).w
@@ -3066,7 +3072,7 @@ LevelInit_NoWater:
 		tst.b	(Water_flag).w
 		beq.s	Level_GetBgm
 		moveq	#palid_LZSonWater,d0
-		cmpi.b	#3,(Current_Act).w
+		cmpi.b	#act4,(Current_Act).w
 		bne.s	Level_WaterPal
 		moveq	#palid_SBZ3SonWat,d0
 
@@ -3081,12 +3087,12 @@ Level_GetBgm:
 		bmi.s	Level_SkipTtlCard	; if so, branch
 		moveq	#0,d0
 		move.b	(Current_Zone).w,d0
-		cmpi.w	#(id_LZ<<8)+3,(Current_ZoneAndAct).w
+		cmpi.w	#id_LZ_act4,(Current_ZoneAndAct).w
 		bne.s	Level_BgmNotLZ4
 		moveq	#5,d0
 
 Level_BgmNotLZ4:
-		cmpi.w	#(id_SBZ<<8)+2,(Current_ZoneAndAct).w
+		cmpi.w	#id_FZ,(Current_ZoneAndAct).w
 		bne.s	Level_PlayBgm
 		moveq	#6,d0
 
@@ -3244,7 +3250,7 @@ Level_ChkWaterPal:
 		tst.b	(Water_flag).w
 		beq.s	Level_Delay
 		moveq	#palid_HPZWater,d0
-		cmpi.b	#3,(Current_Act).w
+		cmpi.b	#act4,(Current_Act).w
 		bne.s	Level_WtrNotHtz
 		moveq	#palid_SBZ3Water,d0
 
@@ -3469,8 +3475,8 @@ locret_47AA:
 SignpostArtLoad:
 		tst.w	(Debug_placement_mode).w
 		bne.w	locret_47E2
-		cmpi.b	#1,(Current_Act).w
-		beq.s	locret_47E2
+		cmpi.b	#act2,(Current_Act).w	; Is the current act 2?
+		beq.s	locret_47E2		; If so, return
 		move.w	(Camera_X_pos).w,d0
 		move.w	(Camera_Max_X_pos).w,d1
 		subi.w	#$100,d1
@@ -3603,7 +3609,7 @@ loc_51A6:
 		tst.w	(f_demo).w
 		bne.w	loc_52DC
 		move.b	#GameModeID_Level,(v_gamemode).w
-		cmpi.w	#(id_SBZ<<8)+3,(Current_ZoneAndAct).w
+		cmpi.w	#id_FZ+1,(Current_ZoneAndAct).w
 		blo.s	loc_51CA
 		clr.w	(Current_ZoneAndAct).w
 
@@ -3653,7 +3659,9 @@ loc_5214:
 		move.w	d0,(v_ringbonus).w
 		move.w	#bgm_GotThrough,d0
 		jsr	(QueueSound2).l
+
 		clearRAM v_objspace,v_objend
+
 		move.b	#id_Obj7E,(v_endcard).w
 
 loc_529C:
@@ -4043,6 +4051,7 @@ LevelSizeLoad:
 		move.w	#$60,(Camera_Y_pos_bias).w
 		bra.w	LevelSize_CheckLamp
 ; ===========================================================================
+
 LevelSizeArray:
 		dc.w	 0,  $24BF,     0,	$300	; GHZ1
 		dc.w	 0,  $1EBF,     0,	$300	; GHZ2
@@ -4073,6 +4082,7 @@ LevelSizeArray:
 		dc.w	 0,  $2FFF,     0,	$320	; S1 Ending 3
 		dc.w	 0,  $2FFF,     0,	$320	; S1 Ending 4
 ; ===========================================================================
+
 S1EndingStartLoc:
 		binclude	"startpos/S1/ghz1 (Credits demo 1).bin"
 		even
@@ -4352,7 +4362,7 @@ MainLevelLoadBlock:
 	else
 		cmpi.b	#id_GHZ,(Current_Zone).w
 	endif
-		beq.s	.PrimaryBlocks	; This might've originally branched to .Decompress16
+		beq.s	.PrimaryBlocks	; This might've originally branched to .DecompressBlocks
 		bra.s	.PrimaryBlocks
 ; ---------------------------------------------------------------------------
 
@@ -4382,9 +4392,10 @@ MainLevelLoadBlock:
 		dbf	d2,.PrimaryBlocks_Loop
 
 .SecondaryBlocks:
-		cmpi.b	#id_HTZ,(Current_Zone).w
-		bne.s	.NotHTZ
-		lea	(v_16x16+$980).w,a1
+		cmpi.b	#id_HTZ,(Current_Zone).w	; Is current zone Hill Top?
+		bne.s	.NotHTZ		; If not, branch
+
+		lea	(v_16x16+(4*2)*$130).w,a1	; $980
 		lea	(Map16_HTZ).l,a0
 	if FixBugs
 		move.w	#bytesToWcnt(Map16_HTZ_End-Map16_HTZ),d2
@@ -4421,16 +4432,16 @@ MainLevelLoadBlock:
 	if FixBugs
 		; Fixes the bug described above, resulting in a graphical mess for LZ.
 		cmpi.b	#id_LZ,(Current_Zone).w
-		beq.s	.CopyChunksToRAM
+		beq.s	.Chunks
 	endif
 		cmpi.b	#id_CPZ,(Current_Zone).w
-		beq.s	.CopyChunksToRAM
+		beq.s	.Chunks
 		cmpi.b	#id_EHZ,(Current_Zone).w
-		beq.s	.CopyChunksToRAM
+		beq.s	.Chunks
 		cmpi.b	#id_HPZ,(Current_Zone).w
-		beq.s	.CopyChunksToRAM
+		beq.s	.Chunks
 		cmpi.b	#id_HTZ,(Current_Zone).w
-		beq.s	.CopyChunksToRAM
+		beq.s	.Chunks
 		move.l	a2,-(sp)
 		moveq	#0,d1
 		moveq	#0,d2
@@ -4444,10 +4455,10 @@ MainLevelLoadBlock:
 		tst.w	d0
 		bmi.s	.DecompressChunks_Loop
 		movea.l	(sp)+,a2
-		bra.s	loc_7348
+		bra.s	.DoneChunks
 ; ---------------------------------------------------------------------------
 
-.CopyChunksToRAM:
+.Chunks:
 		lea	(v_128x128).l,a1
 		move.w	#bytesToWcnt(v_128x128_end-v_128x128),d0
 
@@ -4455,34 +4466,34 @@ MainLevelLoadBlock:
 		move.w	(a0)+,(a1)+
 		dbf	d0,.CopyChunksToRAM_Loop
 
-loc_7348:
+.DoneChunks:
 		bsr.w	LevelLayoutLoad
 		move.w	(a2)+,d0
 		move.w	(a2),d0
 		andi.w	#$FF,d0
-		cmpi.w	#(id_LZ<<8)+3,(Current_ZoneAndAct).w
-		bne.s	loc_735E
+		cmpi.w	#id_LZ_act4,(Current_ZoneAndAct).w
+		bne.s	.NotSBZ3
 		moveq	#palid_SBZ3,d0
 
-loc_735E:
-		cmpi.w	#(id_SBZ<<8)+1,(Current_ZoneAndAct).w
-		beq.s	loc_736E
-		cmpi.w	#(id_SBZ<<8)+2,(Current_ZoneAndAct).w
-		bne.s	loc_7370
+.NotSBZ3:
+		cmpi.w	#id_SBZ_act2,(Current_ZoneAndAct).w
+		beq.s	.IsSBZorFZ
+		cmpi.w	#id_FZ,(Current_ZoneAndAct).w
+		bne.s	.NormalPal
 
-loc_736E:
-		moveq	#palid_HTZ2,d0
+.IsSBZorFZ:
+		moveq	#palid_SBZ2,d0
 
-loc_7370:
+.NormalPal:
 		bsr.w	PalLoad1
 		movea.l	(sp)+,a2
 		addq.w	#4,a2
 		moveq	#0,d0
 		move.b	(a2),d0
-		beq.s	locret_7382
+		beq.s	.SkipPLC
 		bsr.w	LoadPLC
 
-locret_7382:
+.SkipPLC:
 		rts
 ; End of function MainLevelLoadBlock
 
@@ -4490,9 +4501,6 @@ locret_7382:
 ; ---------------------------------------------------------------------------
 ; Subroutine to load a level layout from RAM
 ; ---------------------------------------------------------------------------
-
-; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
-
 
 LevelLayoutLoad:
 		lea	(v_lvllayout).w,a3
@@ -4928,7 +4936,7 @@ DynResize_LZ4:
 		bhs.s	locret_774E
 		clr.b	(v_lastlamp).w
 		move.w	#1,(Level_Inactive_flag).w
-		move.w	#(id_SBZ<<8)+2,(Current_ZoneAndAct).w
+		move.w	#id_FZ,(Current_ZoneAndAct).w
 		move.b	#1,(f_playerctrl).w
 
 locret_774E:
@@ -9824,7 +9832,7 @@ ResumeMusic:
 		cmpi.w	#12,(v_air).w
 		bhi.s	loc_12310
 		move.w	#bgm_LZ,d0
-		cmpi.w	#(id_LZ<<8)+3,(Current_ZoneAndAct).w
+		cmpi.w	#id_LZ_act4,(Current_ZoneAndAct).w
 		bne.s	loc_122F6
 		move.w	#bgm_SBZ,d0
 
@@ -9937,7 +9945,11 @@ ApplySonic1Collision:
 		rts
 ; ---------------------------------------------------------------------------
 		lea	(CollArray1_S1).l,a1
+	if id_GHZ=0
 		tst.b	(Current_Zone).w
+	else
+		cmpi.b	#id_GHZ,(Current_Zone).w
+	endif
 		beq.s	loc_13038
 		lea	(CollArray1).l,a1
 
@@ -9948,14 +9960,20 @@ loc_13038:
 loc_13042:
 		move.w	(a1)+,(a2)+
 		dbf	d1,loc_13042
+
 		lea	(CollArray2).l,a2
 		move.w	#bytesToWcnt(CollArray2_End-CollArray2),d1
 
 loc_13052:
 		move.w	(a1)+,(a2)+
 		dbf	d1,loc_13052
+
 		lea	(AngleMap_S1).l,a1
+	if id_GHZ=0
 		tst.b	(Current_Zone).w
+	else
+		cmpi.b	#id_GHZ,(Current_Zone).w
+	endif
 		beq.s	loc_1306A
 		lea	(AngleMap).l,a1
 
@@ -9966,6 +9984,7 @@ loc_1306A:
 loc_13074:
 		move.w	(a1)+,(a2)+
 		dbf	d1,loc_13074
+
 		rts
 ; End of function ApplySonic1Collision
 

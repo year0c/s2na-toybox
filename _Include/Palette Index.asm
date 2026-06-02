@@ -31,7 +31,7 @@ palid_HPZWater:		makePalEntry	Pal_HPZWater,		v_palette_line_1,	16*4
 ; the following are leftover Sonic 1 entries
 palid_SBZ3:		makePalEntry	Pal_LZ4,		v_palette_line_2,	16*3
 palid_SBZ3Water:	makePalEntry	Pal_LZ4Water,		v_palette_line_1,	16*4
-palid_HTZ2:		makePalEntry	Pal_HTZ,		v_palette_line_2,	16*3
+palid_SBZ2:		makePalEntry	Pal_HTZ,		v_palette_line_2,	16*3
 palid_LZSonWater:	makePalEntry	Pal_LZSonicWater,	v_palette_line_1,	16
 palid_SBZ3SonWat:	makePalEntry	Pal_LZ4SonicWater,	v_palette_line_1,	16
 palid_SSResult:		makePalEntry	Pal_S1SpeResults,	v_palette_line_1,	16*4

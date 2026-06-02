@@ -1066,7 +1066,11 @@ loc_711E:
 		lea	(Camera_BG_X_pos).w,a3
 		lea	(v_lvllayoutbg).w,a4
 		move.w	#$6000,d2
+	if id_GHZ=0
 		tst.b	(Current_Zone).w
+	else
+		cmpi.b	#id_GHZ,(Current_Zone).w
+	endif
 		beq.w	Draw_GHz_Bg
 ; End of function LoadTilesFromStart
 

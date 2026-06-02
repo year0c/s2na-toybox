@@ -888,7 +888,7 @@ loc_110E:
 		andi.b	#$BF,d0
 		move.w	d0,(vdp_control_port).l
 		move.w	#$8200+(vram_fg_2p>>10),(vdp_control_port).l
-		move.l	#$40000010,(vdp_control_port).l
+		move.l	#$40000010,(vdp_control_port).l	; write to VRAM port
 		move.l	(Camera_X_pos_copy).w,(vdp_data_port).l
 		writeVRAM	Sprite_Table_2P,vram_sprites
 
@@ -2325,7 +2325,7 @@ loc_32C4:
 		move.w	#0,(Debug_placement_mode).w
 		move.w	#0,(f_demo).w
 		move.w	#0,(word_FFEA).w
-		move.w	#id_GHZ<<8,(Current_ZoneAndAct).w
+		move.w	#id_GHZ<<8,(Current_ZoneAndAct).w	; leftover from Sonic 1, this gets overwritten with id_EHZ
 		move.w	#0,(v_pcyc_time).w
 		bsr.w	Pal_FadeToBlack
 		disable_ints
@@ -2477,10 +2477,10 @@ LevelSelect:
 		beq.s	LevelSelect
 		move.w	#0,(Two_player_mode).w	; disable 2P mode
 		btst	#bitB,(v_jpadhold1).w	; is button B held?
-		beq.s	loc_3516	; if not, branch
+		beq.s	.NotHeld	; if not, branch
 		move.w	#1,(Two_player_mode).w	; enable 2P mode
 
-loc_3516:
+.NotHeld:
 		move.w	(v_levselitem).w,d0
 		cmpi.w	#$14,d0
 		bne.s	loc_3570
@@ -4347,39 +4347,43 @@ MainLevelLoadBlock:
 		move.l	a2,-(sp)
 		addq.l	#4,a2
 		movea.l	(a2)+,a0
+	if id_GHZ=0
 		tst.b	(Current_Zone).w
-		beq.s	MainLevelLoadBlock_Convert16
-		bra.s	MainLevelLoadBlock_Convert16
+	else
+		cmpi.b	#id_GHZ,(Current_Zone).w
+	endif
+		beq.s	.PrimaryBlocks	; This might've originally branched to .Decompress16
+		bra.s	.PrimaryBlocks
 ; ---------------------------------------------------------------------------
 
-MainLevelLoadBlock_Skip16Convert:			; leftover from a previous build
+.DecompressBlocks:
 		lea	(v_16x16).w,a1
 		move.w	#make_art_tile(ArtTile_Level,0,0),d0
 		bsr.w	EniDec
-		bra.s	loc_72C2
+		bra.s	.SecondaryBlocks
 ; ---------------------------------------------------------------------------
 
-MainLevelLoadBlock_Convert16:
+.PrimaryBlocks:
 		lea	(v_16x16).w,a1
 		move.w	#bytesToWcnt(v_16x16_end-v_16x16),d2
 
-MainLevelLoadBlock_ConvertLoop:
+.PrimaryBlocks_Loop:
 		move.w	(a0)+,d0
 		tst.w	(Two_player_mode).w
-		beq.s	MainLevelLoadBlock_Not2p
+		beq.s	.Not2P_PrimaryBlocks
 		move.w	d0,d1
 		andi.w	#nontile_mask,d0
 		andi.w	#tile_mask,d1
 		lsr.w	#1,d1
 		or.w	d1,d0
 
-MainLevelLoadBlock_Not2p:
+.Not2P_PrimaryBlocks:
 		move.w	d0,(a1)+
-		dbf	d2,MainLevelLoadBlock_ConvertLoop
+		dbf	d2,.PrimaryBlocks_Loop
 
-loc_72C2:
+.SecondaryBlocks:
 		cmpi.b	#id_HTZ,(Current_Zone).w
-		bne.s	loc_72F4
+		bne.s	.NotHTZ
 		lea	(v_16x16+$980).w,a1
 		lea	(Map16_HTZ).l,a0
 	if FixBugs
@@ -4389,21 +4393,21 @@ loc_72C2:
 		move.w	#bytesToWcnt(Map16_HTZ_End+$50-Map16_HTZ),d2
 	endif
 
-loc_72D8:
+.SecondaryBlocks_Loop:
 		move.w	(a0)+,d0
 		tst.w	(Two_player_mode).w
-		beq.s	loc_72EE
+		beq.s	.Not2P_SecondaryBlocks
 		move.w	d0,d1
 		andi.w	#nontile_mask,d0
 		andi.w	#tile_mask,d1
 		lsr.w	#1,d1
 		or.w	d1,d0
 
-loc_72EE:
+.Not2P_SecondaryBlocks:
 		move.w	d0,(a1)+
-		dbf	d2,loc_72D8
+		dbf	d2,.SecondaryBlocks_Loop
 
-loc_72F4:
+.NotHTZ:
 		movea.l	(a2)+,a0
 		; What follows is a very C style compare code for zones that aren't GHZ, LZ, or EndZ.
 		; This works well in-game, except for LZ which uses the same data as CPZ.
@@ -4417,16 +4421,16 @@ loc_72F4:
 	if FixBugs
 		; Fixes the bug described above, resulting in a graphical mess for LZ.
 		cmpi.b	#id_LZ,(Current_Zone).w
-		beq.s	loc_7338
+		beq.s	.CopyChunksToRAM
 	endif
 		cmpi.b	#id_CPZ,(Current_Zone).w
-		beq.s	loc_7338
+		beq.s	.CopyChunksToRAM
 		cmpi.b	#id_EHZ,(Current_Zone).w
-		beq.s	loc_7338
+		beq.s	.CopyChunksToRAM
 		cmpi.b	#id_HPZ,(Current_Zone).w
-		beq.s	loc_7338
+		beq.s	.CopyChunksToRAM
 		cmpi.b	#id_HTZ,(Current_Zone).w
-		beq.s	loc_7338
+		beq.s	.CopyChunksToRAM
 		move.l	a2,-(sp)
 		moveq	#0,d1
 		moveq	#0,d2
@@ -4435,21 +4439,21 @@ loc_72F4:
 		lea	(v_128x128).l,a2
 		lea	(v_128x128_end).w,a3
 
-loc_732C:
+.DecompressChunks_Loop:
 		bsr.w	KC_Dec
 		tst.w	d0
-		bmi.s	loc_732C
+		bmi.s	.DecompressChunks_Loop
 		movea.l	(sp)+,a2
 		bra.s	loc_7348
 ; ---------------------------------------------------------------------------
 
-loc_7338:
+.CopyChunksToRAM:
 		lea	(v_128x128).l,a1
 		move.w	#bytesToWcnt(v_128x128_end-v_128x128),d0
 
-loc_7342:
+.CopyChunksToRAM_Loop:
 		move.w	(a0)+,(a1)+
-		dbf	d0,loc_7342
+		dbf	d0,.CopyChunksToRAM_Loop
 
 loc_7348:
 		bsr.w	LevelLayoutLoad
@@ -4506,8 +4510,12 @@ loc_738E:
 		moveq	#2,d1
 
 LevelLayoutLoad2:
-		tst.b	(Current_Zone).w		; test zone bit
-		beq.s	LevelLayoutLoad_GHZ		; if zero (GHZ), branch
+	if id_GHZ=0
+		tst.b	(Current_Zone).w
+	else
+		cmpi.b	#id_GHZ,(Current_Zone).w
+	endif
+		beq.s	LevelLayoutLoad_GHZ
 		move.w	(Current_ZoneAndAct).w,d0
 		lsl.b	#6,d0
 		lsr.w	#5,d0

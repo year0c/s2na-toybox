@@ -732,6 +732,31 @@
                         "label": ""
                     },
                     "uuid": "ea569253-2069-43b8-9cb5-acf13d045429"
+                },
+                {
+                    "format": "Sonic 2.js",
+                    "name": "Object 0F",
+                    "palettes": [
+                        {
+                            "path": "..\\palette\\Sonic and Tails.bin",
+                            "length": 1
+                        }
+                    ],
+                    "art": {
+                        "path": "..\\art\\nemesis\\Monitor and contents.nem",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "..\\mappings\\sprite\\obj0F.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "3017042a-b51c-402a-a10c-5abce80396ef"
                 }
             ],
             "isDirectory": true,

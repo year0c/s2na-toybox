@@ -57,8 +57,8 @@ loc_13EB4:
 		move.w	objoff_32(a0),d4
 		sub.w	d4,d2
 		add.w	d4,d3
-		lea	(dword_140B8).l,a2
-		moveq	#7,d6
+		lea	(Collision_Switch_Players).l,a2
+		moveq	#(Collision_Switch_Players_End-Collision_Switch_Players)/4-1,d6
 
 loc_13EE0:
 		move.l	(a2)+,d4
@@ -153,8 +153,8 @@ loc_13FB6:
 		move.w	d2,d3
 		subq.w	#8,d2
 		addq.w	#8,d3
-		lea	(dword_140B8).l,a2
-		moveq	#7,d6
+		lea	(Collision_Switch_Players).l,a2
+		moveq	#(Collision_Switch_Players_End-Collision_Switch_Players)/4-1,d6
 
 loc_13FE2:
 		move.l	(a2)+,d4
@@ -235,7 +235,7 @@ loc_140AA:
 locret_140B6:
 		rts
 ; ---------------------------------------------------------------------------
-dword_140B8:
+Collision_Switch_Players:
 		dc.l v_player
 		dc.l v_player2
 		dc.l 0
@@ -244,3 +244,4 @@ dword_140B8:
 		dc.l 0
 		dc.l 0
 		dc.l 0
+Collision_Switch_Players_End:

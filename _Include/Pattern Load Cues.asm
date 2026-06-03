@@ -56,11 +56,11 @@ ptr_PLC_HPZAnimals:	dc.w PLC_HPZAnimals-ArtLoadCues
 ptr_PLC_HTZAnimals:	dc.w PLC_HTZAnimals-ArtLoadCues
 
 	if FixBugs
-ptr_PLC_SSResult:	dc.w PLC_S1SpecialStage-ArtLoadCues
-ptr_PLC_Ending:		dc.w PLC_S1SpecialStage-ArtLoadCues
-ptr_PLC_TryAgain:	dc.w PLC_S1SpecialStage-ArtLoadCues
-ptr_PLC_EggmanSBZ2:	dc.w PLC_S1SpecialStage-ArtLoadCues
-ptr_PLC_FZBoss:		dc.w PLC_S1SpecialStage-ArtLoadCues
+ptr_PLC_SSResult:	dc.w PLC_S1SSResult-ArtLoadCues
+ptr_PLC_Ending:		dc.w PLC_S1Ending-ArtLoadCues
+ptr_PLC_TryAgain:	dc.w PLC_S1TryAgain-ArtLoadCues
+ptr_PLC_EggmanSBZ2:	dc.w PLC_S1EggmanSBZ2-ArtLoadCues
+ptr_PLC_FZBoss:		dc.w PLC_S1FZBoss-ArtLoadCues
 	else
 ; Bug: These are pointing to an invalid location.
 ; To fix this, you can restore the original PLCs or make these use PLC_S1SpecialStage.
@@ -329,6 +329,39 @@ PLC_HTZAnimals:	dc.w ((PLC_HTZAnimals_End-PLC_HTZAnimals)/6)-1
 		plcm	Nem_Bunny, ArtTile_Animal_1
 		plcm	Nem_Chicken, ArtTile_Animal_2
 PLC_HTZAnimals_End:
+
+	if FixBugs
+; --------------------------------------------------------------------------------------
+; PATTERN LOAD REQUEST LIST
+; Special Stage results
+; --------------------------------------------------------------------------------------
+PLC_S1SSResult:	dc.w ((PLC_S1SSResult_End-PLC_S1SSResult)/6)-1
+PLC_S1SSResult_End:
+; --------------------------------------------------------------------------------------
+; PATTERN LOAD REQUEST LIST
+; Special Stage results
+; --------------------------------------------------------------------------------------
+PLC_S1Ending:	dc.w ((PLC_S1Ending_End-PLC_S1Ending)/6)-1
+PLC_S1Ending_End:
+; --------------------------------------------------------------------------------------
+; PATTERN LOAD REQUEST LIST
+; Special Stage results
+; --------------------------------------------------------------------------------------
+PLC_S1TryAgain:	dc.w ((PLC_S1TryAgain_End-PLC_S1TryAgain)/6)-1
+PLC_S1TryAgain_End:
+; --------------------------------------------------------------------------------------
+; PATTERN LOAD REQUEST LIST
+; Special Stage results
+; --------------------------------------------------------------------------------------
+PLC_S1EggmanSBZ2:	dc.w ((PLC_S1EggmanSBZ2_End-PLC_S1EggmanSBZ2)/6)-1
+PLC_S1EggmanSBZ2_End:
+; --------------------------------------------------------------------------------------
+; PATTERN LOAD REQUEST LIST
+; Special Stage results
+; --------------------------------------------------------------------------------------
+PLC_S1FZBoss:	dc.w ((PLC_S1FZBoss_End-PLC_S1FZBoss)/6)-1
+PLC_S1FZBoss_End:
+	endif
 
 ; ---------------------------------------------------------------------------
 ; Pattern load cue IDs

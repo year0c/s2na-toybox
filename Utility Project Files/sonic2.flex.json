@@ -33,7 +33,8 @@
                 }
             ],
             "isDirectory": true,
-            "expanded": false
+            "expanded": false,
+            "uuid": "f6e9e4b0-3b63-4989-aa56-92532069b3b8"
         },
         {
             "name": "Common",
@@ -190,7 +191,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "1acd2fc6-8e48-4170-a567-ecb2661fdb83"
+                    "uuid": "e61a6398-cc49-46c1-a5d3-0504ee59d287"
                 }
             ],
             "isDirectory": true,
@@ -360,7 +361,8 @@
                 }
             ],
             "isDirectory": true,
-            "expanded": false
+            "expanded": false,
+            "uuid": "e9e4b03b-6349-49ea-9692-532069b3b85c"
         },
         {
             "name": "Hidden Palace Zone",
@@ -517,7 +519,224 @@
                 }
             ],
             "isDirectory": true,
-            "expanded": false
+            "expanded": false,
+            "uuid": "e4b03b63-4989-4a56-9253-2069b3b85cb5"
+        },
+        {
+            "name": "Hill Top Zone",
+            "children": [
+                {
+                    "format": "Sonic 2.js",
+                    "name": "Zip-line Platform",
+                    "palettes": [
+                        {
+                            "path": "..\\palette\\HTZ.bin",
+                            "length": 3
+                        }
+                    ],
+                    "art": {
+                        "path": "..\\art\\nemesis\\HTZ zip-line platform.nem",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "..\\mappings\\sprite\\HTZ Platform.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "532069b3-b85c-45ac-b13d-04542976a3fc"
+                },
+                {
+                    "format": "Sonic 2.js",
+                    "name": "Seesaw",
+                    "palettes": [
+                        {
+                            "path": "..\\palette\\HTZ.bin",
+                            "length": 3
+                        }
+                    ],
+                    "art": {
+                        "path": "..\\art\\nemesis\\See-saw in HTZ.nem",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "..\\mappings\\sprite\\Seesaw.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "66e61a63-98cc-4946-8165-d30504ee59d2"
+                },
+                {
+                    "format": "Sonic 2.js",
+                    "name": "Seesaw Ball",
+                    "palettes": [
+                        {
+                            "path": "..\\palette\\HTZ.bin",
+                            "length": 3
+                        }
+                    ],
+                    "art": {
+                        "path": "..\\art\\nemesis\\See-saw in HTZ.nem",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "..\\mappings\\sprite\\Seesaw Ball.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "92532069-b3b8-4cb5-acf1-3d04542976a3"
+                }
+            ],
+            "isDirectory": true,
+            "expanded": false,
+            "uuid": "36ac66e6-1a63-48cc-8946-c165d30504ee"
+        },
+        {
+            "name": "Unused",
+            "children": [
+                {
+                    "format": "Sonic 2.js",
+                    "name": "Aquis",
+                    "palettes": [
+                        {
+                            "path": "..\\palette\\HPZ.bin",
+                            "length": 3
+                        }
+                    ],
+                    "art": {
+                        "path": "..\\art\\nemesis\\Aquis.nem",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "..\\mappings\\sprite\\Aquis.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "3b634989-ea56-4253-a069-b3b85cb5acf1"
+                },
+                {
+                    "format": "Sonic 2.js",
+                    "name": "BFish",
+                    "palettes": [
+                        {
+                            "path": "..\\palette\\HPZ.bin",
+                            "length": 3
+                        }
+                    ],
+                    "art": {
+                        "path": "..\\art\\nemesis\\BFish.nem",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "..\\mappings\\sprite\\Piranha.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "634989ea-5692-4320-a9b3-b85cb5acf13d"
+                },
+                {
+                    "format": "Sonic 2.js",
+                    "name": "Gator",
+                    "palettes": [
+                        {
+                            "path": "..\\palette\\HPZ.bin",
+                            "length": 3
+                        }
+                    ],
+                    "art": {
+                        "path": "..\\art\\nemesis\\Gator.nem",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "..\\mappings\\sprite\\Gator.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "4989ea56-9253-4069-b3b8-5cb5acf13d04"
+                },
+                {
+                    "format": "Sonic 2.js",
+                    "name": "Octus",
+                    "palettes": [
+                        {
+                            "path": "..\\palette\\HPZ.bin",
+                            "length": 3
+                        }
+                    ],
+                    "art": {
+                        "path": "..\\art\\nemesis\\Octus.nem",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "..\\mappings\\sprite\\Octus.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "b03b6349-89ea-4692-9320-69b3b85cb5ac"
+                },
+                {
+                    "format": "Sonic 2.js",
+                    "name": "Stegway",
+                    "palettes": [
+                        {
+                            "path": "..\\palette\\HPZ.bin",
+                            "length": 3
+                        }
+                    ],
+                    "art": {
+                        "path": "..\\art\\nemesis\\Stegway.nem",
+                        "compression": "Nemesis",
+                        "offset": 0
+                    },
+                    "mappings": {
+                        "path": "..\\mappings\\sprite\\Stegway.asm",
+                        "label": ""
+                    },
+                    "dplcs": {
+                        "enabled": false,
+                        "path": "",
+                        "label": ""
+                    },
+                    "uuid": "ea569253-2069-43b8-9cb5-acf13d045429"
+                }
+            ],
+            "isDirectory": true,
+            "expanded": false,
+            "uuid": "ac66e61a-6398-4c49-86c1-65d30504ee59"
         }
     ]
 }

@@ -10576,11 +10576,11 @@ byte_1502F:
 ; -------------------------------------------------------------------------------
 ; sprite mappings
 ; -------------------------------------------------------------------------------
-Map_obj14:	include	"mappings/sprite/obj14_a.asm"
+Map_obj14:	include	"mappings/sprite/Seesaw.asm"
 ; -------------------------------------------------------------------------------
 ; sprite mappings
 ; -------------------------------------------------------------------------------
-Map_obj14b:	include	"mappings/sprite/obj14_b.asm"
+Map_obj14b:	include	"mappings/sprite/Seesaw Ball.asm"
 
 		jmpTos	JmpTo_ObjectMoveAndFall
 ; ===========================================================================
@@ -12767,11 +12767,11 @@ byte_144BB:
 ; -------------------------------------------------------------------------------
 ; sprite mappings
 ; -------------------------------------------------------------------------------
-Map_Obj14_PB:	include	"mappings/sprite/obj14_a.asm"
+Map_Obj14_PB:	include	"mappings/sprite/Seesaw.asm"
 ; -------------------------------------------------------------------------------
 ; sprite mappings
 ; -------------------------------------------------------------------------------
-Map_Obj14b_PB:	include	"mappings/sprite/obj14_b.asm"
+Map_Obj14b_PB:	include	"mappings/sprite/Seesaw Ball.asm"
 
 		jmpTos	; Empty
 	dephase

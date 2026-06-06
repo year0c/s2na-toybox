@@ -12735,6 +12735,8 @@ RingPos_CPZ1:	binclude	"level/rings/CPZ_1.bin"
 ; than Nick Arcade.
 ; ---------------------------------------------------------------------------
 
+		include	"leftovers/Constants.asm"
+
 ; 0x50A9C
 		binclude	"leftovers/50A9C.bin"
 		even

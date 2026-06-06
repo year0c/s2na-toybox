@@ -147,7 +147,7 @@ Obj51_PB:
 ; ---------------------------------------------------------------------------
 
 .loc_1669E:
-		bsr.w	$DAA2	;	FindFreeObj
+		bsr.w	FindFreeObj_PB
 		bne.s	.locret_16706
 		_move.b	#id_Obj51,obID(a1)
 		move.b	#4,obRoutine(a1)

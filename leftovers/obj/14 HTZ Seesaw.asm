@@ -7,8 +7,8 @@ Obj14_PB:
 		move.b	obRoutine(a0),d0
 		move.w	Obj14_PB_Index(pc,d0.w),d1
 		jsr	Obj14_PB_Index(pc,d1.w)
-		out_of_range.w	$C88E,objoff_30(a0)	;	DeleteObject
-		bra.w	$C758	;	DisplaySprite
+		out_of_range.w	DeleteObject_PB,objoff_30(a0)
+		bra.w	DisplaySprite_PB
 ; ---------------------------------------------------------------------------
 Obj14_PB_Index:	dc.w .loc_14CD2-Obj14_PB_Index
 		dc.w .loc_14D40-Obj14_PB_Index
@@ -22,14 +22,14 @@ Obj14_PB_Index:	dc.w .loc_14CD2-Obj14_PB_Index
 		addq.b	#2,obRoutine(a0)
 		move.l	#Map_Obj14_PB,obMap(a0)
 		move.w	#make_art_tile(ArtTile_HTZ_Seesaw,0,0),obGfx(a0)
-		bsr.w	$CFC2	;	Adjust2PArtPointer
+		bsr.w	Adjust2PArtPointer_PB
 		ori.b	#4,obRender(a0)
 		move.b	#4,obPriority(a0)
 		move.b	#48,obActWid(a0)
 		move.w	obX(a0),objoff_30(a0)
 		tst.b	obSubtype(a0)
 		bne.s	.loc_14D2C
-		bsr.w	$DAB8	;	FindNextFreeObj
+		bsr.w	FindNextFreeObj_PB
 		bne.s	.loc_14D2C
 		_move.b	#id_Obj14,obID(a1)
 		addq.b	#6,obRoutine(a1)
@@ -121,7 +121,7 @@ Obj14_PB_Index:	dc.w .loc_14CD2-Obj14_PB_Index
 		move.b	obActWid(a0),d1
 		moveq	#8,d3
 		move.w	(sp)+,d4
-		bra.w	$EEC0	;	sub_F7DC
+		bra.w	sub_F7DC_PB
 ; ---------------------------------------------------------------------------
 
 .locret_14DF2:
@@ -169,7 +169,7 @@ Obj14_PB_Index:	dc.w .loc_14CD2-Obj14_PB_Index
 		addq.b	#2,obRoutine(a0)
 		move.l	#Map_Obj14b_PB,obMap(a0)
 		move.w	#make_art_tile(ArtTile_HTZ_Seesaw,0,0),obGfx(a0)
-		bsr.w	$CFC2	;	Adjust2PArtPointer
+		bsr.w	Adjust2PArtPointer_PB
 		ori.b	#4,obRender(a0)
 		move.b	#4,obPriority(a0)
 		move.b	#$8B,obColType(a0)
@@ -244,19 +244,19 @@ Obj14_PB_Index:	dc.w .loc_14CD2-Obj14_PB_Index
 .loc_14F30:
 		tst.w	obVelY(a0)
 		bpl.s	.loc_14F4E
-		bsr.w	$C706	;	ObjectMoveAndFall
+		bsr.w	ObjectMoveAndFall_PB
 		move.w	objoff_34(a0),d0
 		subi.w	#$2F,d0
 		cmp.w	obY(a0),d0
 		bgt.s	.locret_14F4C
-		bsr.w	$C706	;	ObjectMoveAndFall
+		bsr.w	ObjectMoveAndFall_PB
 
 .locret_14F4C:
 		rts
 ; ---------------------------------------------------------------------------
 
 .loc_14F4E:
-		bsr.w	$C706	;	ObjectMoveAndFall
+		bsr.w	ObjectMoveAndFall_PB
 		movea.l	objoff_3C(a0),a1
 		lea	(word_14480).l,a2
 		moveq	#0,d0
@@ -314,5 +314,5 @@ Obj14_PB_Index:	dc.w .loc_14CD2-Obj14_PB_Index
 		move.b	#AniIDSonAni_Spring,obAnim(a2)
 		move.b	#2,obRoutine(a2)
 		move.w	#sfx_Spring,d0
-		jmp	($12FC).l	;	QueueSound2
+		jmp	(QueueSound2_PB).l
 ; End of function sub_14FC4

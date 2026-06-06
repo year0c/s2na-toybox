@@ -36,8 +36,8 @@ Cred_PB_Main:	; Routine 0
 		bne.s	Cred_PB_Display	; if not, branch
 		move.w	#cWhite,(v_palette_fading_line_3).w ; 3rd palette, 1st entry = white
 		move.w	#$880,(v_palette_fading_line_3+2).w ; 3rd palette, 2nd entry = cyan
-		jmp	($C88E).l	;	DeleteObject
+		jmp	(DeleteObject_PB).l
 ; ===========================================================================
 
 Cred_PB_Display:	; Routine 2
-		jmp	($C758).l	;	DisplaySprite
+		jmp	(DisplaySprite_PB).l

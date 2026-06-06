@@ -55,7 +55,7 @@ Obj54_PB_Init:
 Obj54_PB_Move:
 		bsr.w	Obj54_PB_Display.sub_176D0
 		bsr.w	$165F8+$292	;	JmpTo10_ObjectMove
-		jsr	($128C6).l	;	ObjHitFloor
+		jsr	(ObjHitFloor_PB).l
 		cmpi.w	#-8,d1
 		blt.s	Obj54_PB_Display
 		cmpi.w	#$C,d1

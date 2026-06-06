@@ -90,7 +90,7 @@ Obj57_PB:
 
 .loc_17952:
 		subq.w	#1,objoff_3C(a0)
-		bpl.w	$17E26	;	BossDefeated
+		bpl.w	BossDefeated_PB
 		bset	#0,obStatus(a0)
 		bclr	#7,obStatus(a0)
 		clr.w	obVelX(a0)
@@ -205,7 +205,7 @@ Obj57_PB:
 		bne.s	.loc_17AB6
 		move.b	#$20,objoff_3E(a0)
 		move.w	#sfx_HitBoss,d0
-		jsr	($12FC).l	;	QueueSound2
+		jsr	(QueueSound2_PB).l
 
 .loc_17AB6:
 		lea	(v_palette_line_2+2).w,a1

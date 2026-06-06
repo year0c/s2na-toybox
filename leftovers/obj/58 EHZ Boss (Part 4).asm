@@ -143,7 +143,7 @@ Obj58_PB:
 		subq.w	#1,objoff_2A(a0)
 		bpl.w	$16890+$8D4	;	JmpTo7_DisplaySprite
 		bsr.w	$16890+$8F8	;	JmpTo8_ObjectMoveAndFall
-		bsr.w	$128C6	;	ObjHitFloor
+		bsr.w	ObjHitFloor_PB
 		tst.w	d1
 		bpl.s	.loc_17CE0
 		move.w	#-$200,obVelY(a0)
@@ -225,7 +225,7 @@ Obj58_PB:
 
 
 .sub_17D9A:
-		jsr	($DAB8).l	;	FindNextFreeObj
+		jsr	(FindNextFreeObj_PB).l
 		bne.s	.loc_17E0E
 		_move.b	#id_Obj58,obID(a1)
 		move.l	a0,objoff_34(a1)
@@ -247,7 +247,7 @@ Obj58_PB:
 		move.w	#$28,objoff_2A(a1)
 
 .loc_17E0E:
-		jsr	($DAB8).l	;	FindNextFreeObj
+		jsr	(FindNextFreeObj_PB).l
 		bne.s	.loc_17E82
 		_move.b	#id_Obj58,obID(a1)
 		move.l	a0,objoff_34(a1)
@@ -269,7 +269,7 @@ Obj58_PB:
 		move.w	#$14,objoff_2A(a1)
 
 .loc_17E82:
-		jsr	($DAB8).l	;	FindNextFreeObj
+		jsr	(FindNextFreeObj_PB).l
 		bne.s	.loc_17EF6
 		_move.b	#id_Obj58,obID(a1)
 		move.l	a0,objoff_34(a1)
@@ -291,7 +291,7 @@ Obj58_PB:
 		move.w	#$1E,objoff_2A(a1)
 
 .loc_17EF6:
-		jsr	($DAB8).l	;	FindNextFreeObj
+		jsr	(FindNextFreeObj_PB).l
 		bne.s	.locret_17F52
 		_move.b	#id_Obj58,obID(a1)
 		move.l	a0,objoff_34(a1)
@@ -315,7 +315,7 @@ Obj58_PB:
 ; ---------------------------------------------------------------------------
 
 .loc_17F54:
-		jsr	($DAB8).l	;	FindNextFreeObj
+		jsr	(FindNextFreeObj_PB).l
 		bne.s	.loc_17F98
 		_move.b	#id_Obj58,obID(a1)
 		move.l	a0,objoff_34(a1)
@@ -333,7 +333,7 @@ Obj58_PB:
 		subi.w	#8,objoff_38(a0)
 		move.w	#$2A00,obX(a0)
 		move.w	#$2C0,obY(a0)
-		jsr	($DAB8).l	;	FindNextFreeObj
+		jsr	(FindNextFreeObj_PB).l
 		bne.s	.locret_17FF8
 		_move.b	#id_Obj58,obID(a1)
 		move.l	a0,objoff_34(a1)

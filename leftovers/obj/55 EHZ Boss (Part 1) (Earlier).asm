@@ -32,7 +32,7 @@ Obj55_PB2_Init:
 		addi.w	#$60,obGfx(a0)
 
 .loc_18230:
-		jsr	($DAB0).l	;	FindNextFreeObj
+		jsr	(FindNextFreeObj_PB_Earlier).l
 		bne.w	.loc_182E8
 		_move.b	#id_Obj55,obID(a1)
 		move.l	a0,objoff_34(a1)
@@ -55,7 +55,7 @@ Obj55_PB2_Init:
 .loc_18294:
 		tst.b	obSubtype(a0)
 		bmi.s	.loc_182E8
-		jsr	($DAB0).l	;	FindNextFreeObj
+		jsr	(FindNextFreeObj_PB_Earlier).l
 		bne.s	.loc_182E8
 		_move.b	#id_Obj55,obID(a1)
 		move.l	a0,objoff_34(a1)
@@ -90,12 +90,12 @@ Obj55_PB2_Init:
 		movea.l	.dword_18338(pc,d0.w),a1
 		jsr	(a1)
 		lea	(Ani_Obj55a_PB2).l,a1
-		jsr	($C89C).l	;	AnimateSprite
+		jsr	(AnimateSprite_PB).l
 		move.b	obStatus(a0),d0
 		andi.b	#3,d0
 		andi.b	#$FC,obRender(a0)
 		or.b	d0,obRender(a0)
-		jmp	($C758).l	;	DisplaySprite
+		jmp	(DisplaySprite_PB).l
 ; ===========================================================================
 .dword_18338:	dc.l 0
 		dc.l Obj57_PB-8
@@ -108,8 +108,8 @@ Obj55_PB2_Init:
 		move.b	obStatus(a1),obStatus(a0)
 		move.b	obRender(a1),obRender(a0)
 		movea.l	#Ani_Obj55a_PB2,a1
-		jsr	($C89C).l	;	AnimateSprite
-		jmp	($C758).l	;	DisplaySprite
+		jsr	(AnimateSprite_PB).l
+		jmp	(DisplaySprite_PB).l
 ; ===========================================================================
 .byte_1836E:	dc.b   0,$FF,  1,  0
 ; ===========================================================================

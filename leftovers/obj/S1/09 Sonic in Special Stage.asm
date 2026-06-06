@@ -7,7 +7,7 @@ Obj09_PB:
 		tst.w	(Debug_placement_mode).w
 		beq.s	Obj09_Normal_PB
 		bsr.w	S1SS_FixCamera_PB
-		bra.w	$1B1A2	;	DebugMode
+		bra.w	DebugMode_PB_2
 ; ---------------------------------------------------------------------------
 
 Obj09_Normal_PB:
@@ -26,7 +26,7 @@ Obj09_Index_PB:	dc.w .loc_1A3DC-Obj09_Index_PB
 		addq.b	#2,obRoutine(a0)
 		move.b	#14,obHeight(a0)
 		move.b	#7,obWidth(a0)
-		move.l	#$914C0,obMap(a0)	;	Map_Sonic
+		move.l	#Map_Sonic_PB,obMap(a0)
 		move.w	#make_art_tile(ArtTile_Sonic,0,0),obGfx(a0)
 		bsr.w	$19A22+$6A4	;	JmpTo8_Adjust2PArtPointer
 		move.b	#4,obRender(a0)
@@ -49,8 +49,8 @@ Obj09_Index_PB:	dc.w .loc_1A3DC-Obj09_Index_PB
 		andi.w	#2,d0
 		move.w	Obj09_Modes_PB(pc,d0.w),d1
 		jsr	Obj09_Modes_PB(pc,d1.w)
-		jsr	($1029A).l	;	LoadSonicDynPLC
-		jmp	($C758).l	;	DisplaySprite
+		jsr	(LoadSonicDynPLC_PB).l
+		jmp	(DisplaySprite_PB).l
 ; ---------------------------------------------------------------------------
 Obj09_Modes_PB:	dc.w Obj09_OnWall_PB-Obj09_Modes_PB
 		dc.w Obj09_InAir_PB-Obj09_Modes_PB
@@ -71,12 +71,12 @@ Obj09_InAir_PB:
 Obj09_Display_PB:
 		bsr.w	Obj09_ChkItems_PB
 		bsr.w	Obj09_ChkItems2_PB
-		jsr	($C732).l	;	ObjectMove
+		jsr	(ObjectMove_PB).l
 		bsr.w	S1SS_FixCamera_PB
 		move.w	(v_ssangle).w,d0
 		add.w	(v_ssrotate).w,d0
 		move.w	d0,(v_ssangle).w
-		jsr	($FF82).l	;	Sonic_Animate
+		jsr	(Sonic_Animate_PB).l
 		rts
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -121,7 +121,7 @@ Obj09_Move_PB:
 		addi.b	#$20,d0
 		andi.b	#$C0,d0
 		neg.b	d0
-		jsr	($2B16).l	;	CalcSine
+		jsr	(CalcSine_PB).l
 		muls.w	obInertia(a0),d1
 		add.l	d1,obX(a0)
 		muls.w	obInertia(a0),d0
@@ -216,7 +216,7 @@ Obj09_Jump_PB:
 		andi.b	#$FC,d0
 		neg.b	d0
 		subi.b	#$40,d0
-		jsr	($2B16).l	;	CalcSine
+		jsr	(CalcSine_PB).l
 		muls.w	#$680,d1
 		asr.l	#8,d1
 		move.w	d1,obVelX(a0)
@@ -225,7 +225,7 @@ Obj09_Jump_PB:
 		move.w	d0,obVelY(a0)
 		bset	#1,obStatus(a0)
 		move.w	#sfx_Jump,d0
-		jsr	($12FC).l	;	QueueSound2
+		jsr	(QueueSound2_PB).l
 
 .locret_1A5D0:
 		rts
@@ -294,10 +294,10 @@ S1SS_FixCamera_PB:
 		move.w	(v_ssangle).w,d0
 		add.w	(v_ssrotate).w,d0
 		move.w	d0,(v_ssangle).w
-		jsr	($FF82).l	;	Sonic_Animate
-		jsr	($1029A).l	;	LoadSonicDynPLC
+		jsr	(Sonic_Animate_PB).l
+		jsr	(LoadSonicDynPLC_PB).l
 		bsr.w	S1SS_FixCamera_PB
-		jmp	($C758).l	;	DisplaySprite
+		jmp	(DisplaySprite_PB).l
 ; ---------------------------------------------------------------------------
 
 .loc_1A66C:
@@ -306,10 +306,10 @@ S1SS_FixCamera_PB:
 		move.b	#GameModeID_Level,(v_gamemode).w
 
 .loc_1A678:
-		jsr	($FF82).l	;	Sonic_Animate
-		jsr	($1029A).l	;	LoadSonicDynPLC
+		jsr	(Sonic_Animate_PB).l
+		jsr	(LoadSonicDynPLC_PB).l
 		bsr.w	S1SS_FixCamera_PB
-		jmp	($C758).l	;	DisplaySprite
+		jmp	(DisplaySprite_PB).l
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -319,7 +319,7 @@ Obj09_Fall_PB:
 		move.l	obX(a0),d3
 		move.b	(v_ssangle).w,d0
 		andi.b	#$FC,d0
-		jsr	($2B16).l	;	CalcSine
+		jsr	(CalcSine_PB).l
 		move.w	obVelX(a0),d4
 		ext.l	d4
 		asl.l	#8,d4
@@ -459,20 +459,20 @@ Obj09_ChkItems_PB:
 .loc_1A7C4:
 		cmpi.b	#$3A,d4
 		bne.s	.loc_1A800
-		bsr.w	$19556	;	sub_19EEC
+		bsr.w	sub_19EEC_PB_2
 		bne.s	.loc_1A7D8
 		move.b	#1,(a2)
 		move.l	a1,4(a2)
 
 .loc_1A7D8:
-		jsr	($A236).l	;	CollectRing
+		jsr	(CollectRing_PB).l
 		cmpi.w	#50,(v_rings).w
 		blo.s	.loc_1A7FC
 		bset	#0,(v_lifecount).w
 		bne.s	.loc_1A7FC
 		addq.b	#1,(v_continues).w
 		move.w	#sfx_Continue,d0
-		jsr	($12F6).l	;	QueueSound1
+		jsr	(QueueSound1_PB).l
 
 .loc_1A7FC:
 		moveq	#0,d4
@@ -482,7 +482,7 @@ Obj09_ChkItems_PB:
 .loc_1A800:
 		cmpi.b	#$28,d4
 		bne.s	.loc_1A82A
-		bsr.w	$19556	;	sub_19EEC
+		bsr.w	sub_19EEC_PB_2
 		bne.s	.loc_1A814
 		move.b	#3,(a2)
 		move.l	a1,4(a2)
@@ -491,7 +491,7 @@ Obj09_ChkItems_PB:
 		addq.b	#1,(v_lives).w
 		addq.b	#1,(f_lifecount).w
 		move.w	#bgm_ExtraLife,d0
-		jsr	($12F6).l	;	QueueSound1
+		jsr	(QueueSound1_PB).l
 		moveq	#0,d4
 		rts
 ; ---------------------------------------------------------------------------
@@ -501,7 +501,7 @@ Obj09_ChkItems_PB:
 		blo.s	.loc_1A870
 		cmpi.b	#$40,d4
 		bhi.s	.loc_1A870
-		bsr.w	$19556	;	sub_19EEC
+		bsr.w	sub_19EEC_PB_2
 		bne.s	.loc_1A844
 		move.b	#5,(a2)
 		move.l	a1,4(a2)
@@ -518,7 +518,7 @@ Obj09_ChkItems_PB:
 
 .loc_1A862:
 		move.w	#bgm_Emerald,d0
-		jsr	($12FC).l	;	QueueSound2
+		jsr	(QueueSound2_PB).l
 		moveq	#0,d4
 		rts
 ; ---------------------------------------------------------------------------
@@ -601,8 +601,8 @@ Obj09_ChkItems2_PB:
 		subi.w	#$44,d2
 		sub.w	obX(a0),d1
 		sub.w	obY(a0),d2
-		jsr	($2DAE).l	;	CalcAngle
-		jsr	($2B16).l	;	CalcSine
+		jsr	(CalcAngle_PB).l
+		jsr	(CalcSine_PB).l
 		muls.w	#-$700,d1
 		asr.l	#8,d1
 		move.w	d1,obVelX(a0)
@@ -610,7 +610,7 @@ Obj09_ChkItems2_PB:
 		asr.l	#8,d0
 		move.w	d0,obVelY(a0)
 		bset	#1,obStatus(a0)
-		bsr.w	$19556	;	sub_19EEC
+		bsr.w	sub_19EEC_PB_2
 		bne.s	.loc_1A954
 		move.b	#2,(a2)
 		move.l	objoff_32(a0),d0
@@ -619,7 +619,7 @@ Obj09_ChkItems2_PB:
 
 .loc_1A954:
 		move.w	#sfx_Bumper,d0
-		jmp	($12FC).l	;	QueueSound2
+		jmp	(QueueSound2_PB).l
 ; ---------------------------------------------------------------------------
 
 .loc_1A95E:
@@ -627,7 +627,7 @@ Obj09_ChkItems2_PB:
 		bne.s	.loc_1A974
 		addq.b	#2,obRoutine(a0)
 		move.w	#sfx_SSGoal,d0
-		jsr	($12FC).l	;	QueueSound2
+		jsr	(QueueSound2_PB).l
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -646,7 +646,7 @@ Obj09_ChkItems2_PB:
 
 .loc_1A99E:
 		move.w	#sfx_SSItem,d0
-		jmp	($12FC).l	;	QueueSound2
+		jmp	(QueueSound2_PB).l
 ; ---------------------------------------------------------------------------
 
 .loc_1A9A8:
@@ -664,7 +664,7 @@ Obj09_ChkItems2_PB:
 
 .loc_1A9D2:
 		move.w	#sfx_SSItem,d0
-		jmp	($12FC).l	;	QueueSound2
+		jmp	(QueueSound2_PB).l
 ; ---------------------------------------------------------------------------
 
 .loc_1A9DC:
@@ -673,7 +673,7 @@ Obj09_ChkItems2_PB:
 		tst.b	objoff_37(a0)
 		bne.w	.locret_1AA58
 		move.b	#$1E,objoff_37(a0)
-		bsr.w	$19556	;	sub_19EEC
+		bsr.w	sub_19EEC_PB_2
 		bne.s	.loc_1AA04
 		move.b	#4,(a2)
 		move.l	objoff_32(a0),d0
@@ -683,7 +683,7 @@ Obj09_ChkItems2_PB:
 .loc_1AA04:
 		neg.w	(v_ssrotate).w
 		move.w	#sfx_SSItem,d0
-		jmp	($12FC).l	;	QueueSound2
+		jmp	(QueueSound2_PB).l
 ; ---------------------------------------------------------------------------
 
 .loc_1AA12:
@@ -697,7 +697,7 @@ Obj09_ChkItems2_PB:
 		bne.s	.locret_1AA58
 
 .loc_1AA2A:
-		bsr.w	$19556	;	sub_19EEC
+		bsr.w	sub_19EEC_PB_2
 		bne.s	.loc_1AA4E
 		move.b	#6,(a2)
 		movea.l	objoff_32(a0),a1
@@ -714,7 +714,7 @@ Obj09_ChkItems2_PB:
 
 .loc_1AA4E:
 		move.w	#sfx_SSGlass,d0
-		jmp	($12FC).l	;	QueueSound2
+		jmp	(QueueSound2_PB).l
 ; ---------------------------------------------------------------------------
 
 .locret_1AA58:

@@ -8,10 +8,10 @@ Obj3E_PB:
 		move.w	Pri_Index_PB(pc,d0.w),d1
 		jsr	Pri_Index_PB(pc,d1.w)
 		out_of_range.s	.delete
-		jmp	($C758).l	;	DisplaySprite
+		jmp	(DisplaySprite_PB).l
 
 .delete:
-		jmp	($C88E).l	;	DeleteObject
+		jmp	(DeleteObject_PB).l
 ; ===========================================================================
 Pri_Index_PB:	dc.w Pri_Main_PB-Pri_Index_PB
 		dc.w Pri_BodyMain_PB-Pri_Index_PB
@@ -60,7 +60,7 @@ Pri_BodyMain_PB:	; Routine 2
 		move.w	#24,d2
 		move.w	#24,d3
 		move.w	obX(a0),d4
-		jmp	($EB1C).l	;	SolidObject
+		jmp	(SolidObject_PB).l
 ; ===========================================================================
 
 .chkopened:
@@ -80,9 +80,9 @@ Pri_Switched_PB:	; Routine 4
 		move.w	#8,d2
 		move.w	#8,d3
 		move.w	obX(a0),d4
-		jsr	($EB1C).l	;	SolidObject
+		jsr	(SolidObject_PB).l
 		lea	(Ani_Pri_PB).l,a1
-		jsr	($C89C).l	;	AnimateSprite
+		jsr	(AnimateSprite_PB).l
 		move.w	pri_origY(a0),obY(a0)
 		move.b	obStatus(a0),d0	; has prison already been opened?
 		andi.b	#$18,d0
@@ -107,12 +107,12 @@ Pri_Explosion_PB:	; Routine 6, 8, $A
 		moveq	#7,d0
 		and.b	(Vint_runcount+3).w,d0
 		bne.s	.noexplosion
-		jsr	($DAA2).l	;	FindFreeObj
+		jsr	(FindFreeObj_PB).l
 		bne.s	.noexplosion
 		_move.b	#id_Obj3F,obID(a1) ; load explosion object
 		move.w	obX(a0),obX(a1)
 		move.w	obY(a0),obY(a1)
-		jsr	($2AF0).l	;	RandomNumber
+		jsr	(RandomNumber_PB).l
 		moveq	#0,d1
 		move.b	d0,d1
 		lsr.b	#2,d1
@@ -139,7 +139,7 @@ Pri_Explosion_PB:	; Routine 6, 8, $A
 		moveq	#-$1C,d4
 
 .loop:
-		jsr	($DAA2).l	;	FindFreeObj
+		jsr	(FindFreeObj_PB).l
 		bne.s	.fail
 		_move.b	#id_Obj28,obID(a1) ; load animal object
 		move.w	obX(a0),obX(a1)
@@ -158,12 +158,12 @@ Pri_Animals_PB:	; Routine $C
 		moveq	#7,d0
 		and.b	(Vint_runcount+3).w,d0
 		bne.s	.noanimal
-		jsr	($DAA2).l	;	FindFreeObj
+		jsr	(FindFreeObj_PB).l
 		bne.s	.noanimal
 		_move.b	#id_Obj28,obID(a1) ; load animal object
 		move.w	obX(a0),obX(a1)
 		move.w	obY(a0),obY(a1)
-		jsr	($2AF0).l	;	RandomNumber
+		jsr	(RandomNumber_PB).l
 		andi.w	#$1F,d0
 		subq.w	#6,d0
 		tst.w	d1
@@ -196,8 +196,8 @@ Pri_EndAct_PB:	; Routine $E
 		adda.w	d2,a1		; next object RAM
 		dbf	d0,.findanimal	; repeat $3E times
 
-		jsr	($E80A).l	;	GotThroughAct
-		jmp	($C88E).l	;	DeleteObject
+		jsr	(GotThroughAct_PB).l
+		jmp	(DeleteObject_PB).l
 
 .found:
 		rts

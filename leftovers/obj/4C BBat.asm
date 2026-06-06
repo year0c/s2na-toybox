@@ -46,7 +46,7 @@ Obj4C_PB_SubIndex:	dc.w .loc_16F2E-Obj4C_PB_SubIndex
 
 .sub_16DC8:
 		move.b	objoff_3F(a0),d0
-		jsr	($2B16).l	;	CalcSine
+		jsr	(CalcSine_PB).l
 		asr.w	#6,d0
 		add.w	objoff_2E(a0),d0
 		move.w	d0,obY(a0)
@@ -115,7 +115,7 @@ Obj4C_PB_SubIndex:	dc.w .loc_16F2E-Obj4C_PB_SubIndex
 		blt.s	.loc_16E90
 		tst.w	d0
 		bpl.s	.loc_16E68
-		st	objoff_3D(a0)
+		st.b	objoff_3D(a0)
 
 .loc_16E68:
 		move.b	#$40,objoff_3F(a0)
@@ -170,7 +170,7 @@ Obj4C_PB_SubIndex:	dc.w .loc_16F2E-Obj4C_PB_SubIndex
 ; ---------------------------------------------------------------------------
 
 .loc_16EDE:
-		sf	objoff_3D(a0)
+		sf.b	objoff_3D(a0)
 		move.b	#0,obAnim(a0)
 		move.b	#2,obRoutine(a0)
 		move.b	#0,ob2ndRout(a0)
@@ -187,7 +187,7 @@ Obj4C_PB_SubIndex:	dc.w .loc_16F2E-Obj4C_PB_SubIndex
 
 .sub_16F0E:
 		move.b	objoff_3F(a0),d0
-		jsr	($2B16).l	;	CalcSine
+		jsr	(CalcSine_PB).l
 		muls.w	obInertia(a0),d1
 		asr.l	#8,d1
 		move.w	d1,obVelX(a0)
@@ -204,7 +204,7 @@ Obj4C_PB_SubIndex:	dc.w .loc_16F2E-Obj4C_PB_SubIndex
 		bpl.s	.locret_16F64
 		bsr.w	.sub_16DE2
 		beq.s	.locret_16F64
-		jsr	($2AF0).l	;	RandomNumber
+		jsr	(RandomNumber_PB).l
 		andi.b	#$FF,d0
 		bne.s	.locret_16F64
 		move.w	#$18,objoff_2A(a0)

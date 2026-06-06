@@ -199,7 +199,7 @@ Touch_KillEnemy_PB:
 		move.w	#10,objoff_3E(a1)
 
 .loc_199AE:
-		bsr.w	$1A248	;	AddPoints
+		bsr.w	AddPoints_PB
 		_move.b	#id_Obj27,obID(a1)
 		move.b	#0,obRoutine(a1)
 		tst.w	obVelY(a0)
@@ -256,7 +256,7 @@ HurtSonic_PB:
 		tst.w	(v_rings).w
 		beq.w	.norings
 
-		jsr	($DAA2).l	;	FindFreeObj
+		jsr	(FindFreeObj_PB).l
 		bne.s	.hasshield
 		_move.b	#id_Obj37,obID(a1)
 		move.w	obX(a0),obX(a1)
@@ -293,7 +293,7 @@ HurtSonic_PB:
 		move.w	#sfx_HitSpikes,d0
 
 .sound:
-		jsr	($12FC).l	;	QueueSound2
+		jsr	(QueueSound2_PB).l
 		moveq	#-1,d0
 		rts
 ; ---------------------------------------------------------------------------
@@ -326,7 +326,7 @@ KillCharacter_PB:
 		move.w	#sfx_HitSpikes,d0
 
 .loc_19AF8:
-		jsr	($12FC).l	;	QueueSound2
+		jsr	(QueueSound2_PB).l
 
 Kill_NoDeath_PB:
 		moveq	#-1,d0

@@ -23,7 +23,7 @@ Obj4F_PB_Init:
 		move.b	#6,obWidth(a0)
 		move.b	#$C,obColType(a0)
 		bsr.w	$14DF8+$156	;	JmpTo3_ObjectMoveAndFall
-		jsr	($128C6).l	; ObjHitFloor
+		jsr	(ObjHitFloor_PB).l
 		tst.w	d1
 		bpl.s	.locret_15E0C
 		add.w	d1,obY(a0)
@@ -76,7 +76,7 @@ Obj4F_PB_MoveLeft:
 ; loc_15E7C:
 Obj4F_PB_ChkFloor:
 		bsr.w	$14DF8+$15C	;	JmpTo4_ObjectMove
-		jsr	($128C6).l	; ObjHitFloor
+		jsr	(ObjHitFloor_PB).l
 		cmpi.w	#-8,d1
 		blt.s	Obj4F_PB_StopMoving
 		cmpi.w	#$C,d1

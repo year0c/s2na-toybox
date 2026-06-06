@@ -64,7 +64,7 @@ Debug_Main_PB:
 		adda.w	(a2,d0.w),a2
 		move.w	(a2)+,d6
 		bsr.w	Debug_Control_PB
-		jmp	($C758).l	;	DisplaySprite
+		jmp	(DisplaySprite_PB).l
 
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
 
@@ -165,7 +165,7 @@ Debug_SpawnObject_PB:
 		btst	#bitC,(v_jpadpress1).w
 		beq.s	Debug_ExitDebugMode_PB
 		; spawn object
-		jsr	($DAA2).l	;	FindFreeObj
+		jsr	(FindFreeObj_PB).l
 		bne.s	Debug_ExitDebugMode_PB
 		move.w	obX(a0),obX(a1)
 		move.w	obY(a0),obY(a1)
@@ -186,7 +186,7 @@ Debug_ExitDebugMode_PB:
 		; exit Debug Mode
 		moveq	#0,d0
 		move.w	d0,(Debug_placement_mode).w
-		move.l	#$914C0,(v_player+obMap).w	;	Map_Sonic
+		move.l	#Map_Sonic_PB,(v_player+obMap).w
 		move.w	#make_art_tile(ArtTile_Sonic,0,0),(v_player+obGfx).w
 		tst.w	(Two_player_mode).w
 		beq.s	.loc_1BC98

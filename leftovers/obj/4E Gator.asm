@@ -22,7 +22,7 @@ Obj4E_PB_Init:
 		move.b	#16,obHeight(a0)
 		move.b	#8,obWidth(a0)
 		bsr.w	$16200+$2EC	;	JmpTo6_ObjectMoveAndFall
-		jsr	($128C6).l	; ObjHitFloor
+		jsr	(ObjHitFloor_PB).l
 		tst.w	d1
 		bpl.s	.locret_17238
 		add.w	d1,obY(a0)
@@ -63,7 +63,7 @@ Obj4E_PB_SubIndex:	dc.w .loc_1725A-Obj4E_PB_SubIndex
 .loc_1727E:
 		bsr.w	.sub_172B6
 		bsr.w	$16200+$2F2	;	JmpTo8_ObjectMove
-		jsr	($128C6).l	; ObjHitFloor
+		jsr	(ObjHitFloor_PB).l
 		cmpi.w	#-8,d1
 		blt.s	.loc_1729E
 		cmpi.w	#$C,d1

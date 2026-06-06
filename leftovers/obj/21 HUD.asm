@@ -35,7 +35,7 @@ Obj21_Main_PB:
 ; loc_1B082:
 Obj21_Display_PB:
 		move.b	d0,obFrame(a0)
-		jmp	($C758).l	;	DisplaySprite
+		jmp	(DisplaySprite_PB).l
 ; ---------------------------------------------------------------------------
 ; loc_1B08C:
 Obj21_NoRings_PB:
@@ -49,4 +49,4 @@ Obj21_NoRings_PB:
 ; loc_1B0A2:
 Obj21_Display2_PB:
 		move.b	d0,obFrame(a0)
-		jmp	($C758).l	;	DisplaySprite
+		jmp	(DisplaySprite_PB).l

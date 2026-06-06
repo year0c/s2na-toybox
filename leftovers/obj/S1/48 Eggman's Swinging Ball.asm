@@ -30,13 +30,13 @@ GBall_PB_Main:	; Routine 0
 ; ===========================================================================
 
 GBall_PB_MakeLinks:
-		jsr	($DAB8).l	;	FindNextFreeObj
+		jsr	(FindNextFreeObj_PB).l
 		bne.s	GBall_PB_MakeBall
 		move.w	obX(a0),obX(a1)
 		move.w	obY(a0),obY(a1)
 		_move.b	#id_Obj48,obID(a1) ; load chain link object
 		move.b	#6,obRoutine(a1)
-		move.l	#$7EAE,obMap(a1)	;	Map_Obj15
+		move.l	#Map_Obj15_PB,obMap(a1)
 		move.w	#make_art_tile(ArtTile_GHZ_MZ_Swing,0,0),obGfx(a1)
 		bsr.w	$17CC4+$7DC	;	JmpTo3_Adjust2PArtPointer2
 		move.b	#1,obFrame(a1)
@@ -56,7 +56,7 @@ GBall_PB_MakeLinks:
 
 GBall_PB_MakeBall:
 		move.b	#8,obRoutine(a1)
-		move.l	#$7F4A,obMap(a1)	;	Map_Obj48 ; load different mappings for final link
+		move.l	#Map_Obj48_PB,obMap(a1)	; load different mappings for final link
 		move.w	#make_art_tile(ArtTile_GHZ_Giant_Ball,2,0),obGfx(a1) ; use different graphics
 		bsr.w	$17CC4+$7DC	;	JmpTo3_Adjust2PArtPointer2
 		move.b	#1,obFrame(a1)
@@ -104,14 +104,14 @@ GBall_PB_Base:	; Routine 2
 GBall_PB_Display:
 		bsr.w	GBall_PB_Display2.sub_19236
 		move.b	obAngle(a0),d0
-		jsr	($7DAE).l	;	Swing_Move2
-		jmp	($C758).l	;	DisplaySprite
+		jsr	(Swing_Move2_PB).l
+		jmp	(DisplaySprite_PB).l
 ; ===========================================================================
 
 GBall_PB_Display2:	; Routine 4
 		bsr.w	.sub_19236
-		jsr	($7D6A).l	;	Obj48_Move
-		jmp	($C758).l	;	DisplaySprite
+		jsr	(Obj48_Move_PB).l
+		jmp	(DisplaySprite_PB).l
 
 ; ||||||||||||||| S U B	R O U T	I N E |||||||||||||||||||||||||||||||||||||||
 
@@ -147,7 +147,7 @@ GBall_PB_Display2:	; Routine 4
 		move.b	#0,obRoutine(a0)
 
 GBall_PB_Display3:
-		jmp	($C758).l	;	DisplaySprite
+		jmp	(DisplaySprite_PB).l
 ; ===========================================================================
 
 GBall_PB_ChkVanish:; Routine 8
@@ -169,4 +169,4 @@ GBall_PB_Vanish:
 		move.b	#0,obRoutine(a0)
 
 GBall_PB_Display4:
-		jmp	($C758).l	;	DisplaySprite
+		jmp	(DisplaySprite_PB).l

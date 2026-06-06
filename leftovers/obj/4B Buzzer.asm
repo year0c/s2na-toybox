@@ -54,7 +54,7 @@ Obj4B_PB_Init:
 		addq.b	#2,obRoutine(a0)		; => Obj4B_PB_Main
 
 		; load exhaust flame object
-		bsr.w	$DAB8	;	FindNextFreeObj
+		bsr.w	FindNextFreeObj_PB
 		bne.s	.locret_1689E
 
 		_move.b	#id_Obj4B,obID(a1)			; load obj4B
@@ -109,7 +109,7 @@ Obj4B_PB_Roaming:
 ; ---------------------------------------------------------------------------
 ; loc_168E6:
 Obj4B_PB_TurnAround:
-		sf	Obj4B_shooting_flag(a0)			; reenable shooting
+		sf.b	Obj4B_shooting_flag(a0)			; reenable shooting
 		neg.w	obVelX(a0)			; reverse movement direction
 		bchg	#0,obRender(a0)
 		bchg	#0,obStatus(a0)
@@ -147,7 +147,7 @@ Obj4B_PB_PlayerIsLeft:
 		bne.s	Obj4B_PB_ReadyToShoot.locret_1694E			; branch, if object is facing left
 ; loc_1693A:
 Obj4B_PB_ReadyToShoot:
-		st	Obj4B_shooting_flag(a0)			; disable shooting
+		st.b	Obj4B_shooting_flag(a0)			; disable shooting
 		addq.b	#2,ob2ndRout(a0)		; => Obj4B_Shooting
 		move.b	#3,obAnim(a0)			; play shooting animation
 		move.w	#50,Obj4B_shot_timer(a0)
@@ -174,7 +174,7 @@ Obj4B_PB_DoneShooting:
 ; ===========================================================================
 ; loc_1696A:
 Obj4B_PB_ShootProjectile:
-		jsr	($DAB8).l	; FindNextFreeObj
+		jsr	(FindNextFreeObj_PB).l
 		bne.s	.locret_169D8
 
 		_move.b	#id_Obj4B,obID(a1)			; load obj4B

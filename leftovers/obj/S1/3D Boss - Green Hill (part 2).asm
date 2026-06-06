@@ -8,7 +8,7 @@ BGHZ_PB_MakeBall:
 		move.w	#0,obVelX(a0)
 		move.w	#0,obVelY(a0)
 		addq.b	#2,ob2ndRout(a0)
-		jsr	($DAB8).l	;	FindNextFreeObj
+		jsr	(FindNextFreeObj_PB).l
 		bne.s	.loc_17910
 		_move.b	#id_Obj48,obID(a1) ; load swinging ball object
 		move.w	objoff_30(a0),obX(a1)
@@ -110,7 +110,7 @@ BGHZ_PB_Reverse:
 .loc_179E0:
 		clr.w	obVelY(a0)
 		move.w	#bgm_GHZ,d0
-		jsr	($12F6).l	;	QueueSound1		; play GHZ music
+		jsr	(QueueSound1_PB).l		; play GHZ music
 
 .loc_179EE:
 		bsr.w	BossMove_PB
@@ -137,7 +137,7 @@ BGHZ_PB_Reverse:
 
 BGHZ_PB_ShipDel:
 		addq.l	#4,sp
-		jmp	($C88E).l	;	DeleteObject
+		jmp	(DeleteObject_PB).l
 ; ===========================================================================
 
 BGHZ_PB_FaceMain:	; Routine 4
@@ -183,7 +183,7 @@ BGHZ_PB_FaceDisp:
 ; ===========================================================================
 
 BGHZ_PB_FaceDel:
-		jmp	($C88E).l	;	DeleteObject
+		jmp	(DeleteObject_PB).l
 ; ===========================================================================
 
 BGHZ_PB_FlameMain:	; Routine 6
@@ -207,7 +207,7 @@ BGHZ_PB_FlameDisp:
 ; ===========================================================================
 
 BGHZ_PB_FlameDel:
-		jmp	($C88E).l	;	DeleteObject
+		jmp	(DeleteObject_PB).l
 ; ===========================================================================
 
 BGHZ_PB_Display:
@@ -216,9 +216,9 @@ BGHZ_PB_Display:
 		move.w	obY(a1),obY(a0)
 		move.b	obStatus(a1),obStatus(a0)
 		lea	(Ani_Eggman_PB).l,a1
-		jsr	($C89C).l	;	AnimateSprite
+		jsr	(AnimateSprite_PB).l
 		move.b	obStatus(a0),d0
 		andi.b	#3,d0
 		andi.b	#$FC,obRender(a0)
 		or.b	d0,obRender(a0)
-		jmp	($C758).l	;	DisplaySprite
+		jmp	(DisplaySprite_PB).l

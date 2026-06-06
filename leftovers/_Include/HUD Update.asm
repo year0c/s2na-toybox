@@ -88,7 +88,7 @@ S1TimeOver_PB:
 		clr.b	(f_timecount).w
 		lea	(v_player).w,a0
 		movea.l	a0,a2
-		bsr.w	KillCharacter_PB	;	KillCharacter
+		bsr.w	KillCharacter_PB
 		move.b	#1,(f_timeover).w
 		rts
 ; ---------------------------------------------------------------------------
@@ -228,7 +228,7 @@ HUDDebug_XY_PB:
 
 HUDDebug_XY2_PB:
 		moveq	#8-1,d6
-		lea	($4E8).l,a1	;	Art_Text
+		lea	(Art_Text_PB).l,a1
 
 .loc_1B430:
 		rol.w	#4,d1

@@ -43,7 +43,7 @@ Obj4A_PB_Index:	dc.w .loc_16ADE-Obj4A_PB_Index
 		move.b	#16,obHeight(a0)
 		move.b	#8,obWidth(a0)
 		bsr.w	$15AC8+$2A8	;	JmpTo5_ObjectMoveAndFall
-		jsr	($128C6).l	;	ObjHitFloor
+		jsr	(ObjHitFloor_PB).l
 		tst.w	d1
 		bpl.s	.loc_16B3C
 		add.w	d1,obY(a0)
@@ -106,7 +106,7 @@ Obj4A_PB_Main:
 		beq.w	.loc_16C76
 		bpl.w	.locret_16C74
 		move.w	#30,objoff_2C(a0)
-		jsr	($DAA2).l	;	FindFreeObj
+		jsr	(FindFreeObj_PB).l
 		bne.s	.loc_16C10
 		_move.b	#id_Obj4A,obID(a1)
 		move.b	#4,obRoutine(a1)
@@ -122,7 +122,7 @@ Obj4A_PB_Main:
 		move.b	obStatus(a0),obStatus(a1)
 
 .loc_16C10:
-		jsr	($DAA2).l	;	FindFreeObj
+		jsr	(FindFreeObj_PB).l
 		bne.s	.locret_16C74
 		_move.b	#id_Obj4A,obID(a1)
 		move.b	#6,obRoutine(a1)

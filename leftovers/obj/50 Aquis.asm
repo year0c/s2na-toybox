@@ -37,7 +37,7 @@ Obj50_PB_Init:
 		move.w	d0,objoff_32(a0)
 		move.w	d0,objoff_34(a0)
 		move.w	obY(a0),objoff_2A(a0)
-		bsr.w	$DAA2	;	FindFreeObj
+		bsr.w	FindFreeObj_PB
 		bne.s	loc_1502E
 		_move.b	#id_Obj50,obID(a1)
 		move.b	#4,obRoutine(a1)
@@ -129,8 +129,8 @@ Obj50_PB_SubIndex:	dc.w .loc_16046-Obj50_PB_SubIndex
 ; ---------------------------------------------------------------------------
 
 .loc_16086:
-		st	objoff_2D(a0)
-		bsr.w	$DAA2	;	FindFreeObj
+		st.b	objoff_2D(a0)
+		bsr.w	FindFreeObj_PB
 		bne.s	.locret_160F2
 		_move.b	#id_Obj50,obID(a1)
 		move.b	#6,obRoutine(a1)
@@ -171,7 +171,7 @@ Obj50_PB_SubIndex:	dc.w .loc_16046-Obj50_PB_SubIndex
 		move.b	#0,obAnim(a0)
 		move.w	objoff_30(a0),objoff_2E(a0)
 		move.w	#$40,obVelY(a0)
-		sf	objoff_2D(a0)
+		sf.b	objoff_2D(a0)
 
 .locret_1611A:
 		rts
@@ -254,7 +254,7 @@ Obj50_PB_SubIndex:	dc.w .loc_16046-Obj50_PB_SubIndex
 		cmp.w	(v_waterpos1).w,d0
 		bgt.s	.locret_161C2
 		subq.b	#2,ob2ndRout(a0)
-		st	objoff_2C(a0)
+		st.b	objoff_2C(a0)
 		clr.w	obVelY(a0)
 
 .locret_161C2:
@@ -265,7 +265,7 @@ Obj50_PB_SubIndex:	dc.w .loc_16046-Obj50_PB_SubIndex
 		cmp.w	objoff_2A(a0),d0
 		blt.s	.locret_161C2
 		subq.b	#2,ob2ndRout(a0)
-		sf	objoff_2C(a0)
+		sf.b	objoff_2C(a0)
 		clr.w	obVelY(a0)
 		rts
 ; End of function sub_161A6
@@ -306,7 +306,7 @@ Obj50_PB_Routine08:
 
 
 .sub_16228:
-		jsr	($128C6).l	; ObjHitFloor
+		jsr	(ObjHitFloor_PB).l
 		tst.w	d1
 		bpl.s	.loc_16242
 		add.w	d1,obY(a0)
@@ -361,7 +361,7 @@ Obj50_PB_Routine0A:
 		ori.b	#4,obRender(a0)
 		move.b	#1,obPriority(a0)
 		move.b	#5,obAnim(a0)
-		st	ob2ndRout(a0)
+		st.b	ob2ndRout(a0)
 		move.w	#300,objoff_2C(a0)
 		move.b	#3,objoff_2A(a0)
 
@@ -393,7 +393,7 @@ Obj50_PB_Routine0A:
 		moveq	#2,d3
 
 .loc_16306:
-		bsr.w	$DAA2	;	FindFreeObj
+		bsr.w	FindFreeObj_PB
 		bne.s	.loc_16378
 		_move.b	obID(a0),obID(a1)
 		move.b	#8,obRoutine(a1)
@@ -425,7 +425,7 @@ Obj50_PB_Routine0A:
 
 .loc_16378:
 		dbf	d3,.loc_16306
-		bsr.w	$DAA2	;	FindFreeObj
+		bsr.w	FindFreeObj_PB
 		bne.s	.loc_1639A
 		_move.b	obID(a0),obID(a1)
 		move.b	#$A,obRoutine(a1)

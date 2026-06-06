@@ -95,7 +95,7 @@ loc_15C48:
 		asl.w	#1,d0
 		move.w	d0,obVelX(a0)
 		addq.w	#1,objoff_3E(a0)
-		st	objoff_2A(a0)
+		st.b	objoff_2A(a0)
 		jmpto	JmpTo2_MarkObjGone
 ; ---------------------------------------------------------------------------
 
@@ -126,7 +126,7 @@ loc_15CCE:
 		move.w	obVelX(a0),d0
 		asr.w	#1,d0
 		move.w	d0,obVelX(a0)
-		sf	objoff_2A(a0)
+		sf.b	objoff_2A(a0)
 		jmpto	JmpTo2_MarkObjGone
 
 ; =============== S U B	R O U T	I N E =======================================

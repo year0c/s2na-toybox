@@ -94,9 +94,9 @@ loc_16614:
 ; ---------------------------------------------------------------------------
 
 loc_16626:
-		sf	objoff_2D(a0)
-		sf	objoff_2C(a0)
-		sf	objoff_36(a0)
+		sf.b	objoff_2D(a0)
+		sf.b	objoff_2C(a0)
+		sf.b	objoff_36(a0)
 		move.w	(v_player+obX).w,d0
 		sub.w	obX(a0),d0
 		bpl.s	loc_16646
@@ -110,7 +110,7 @@ loc_16646:
 		bne.s	loc_16652
 
 loc_1664E:
-		st	objoff_2C(a0)
+		st.b	objoff_2C(a0)
 
 loc_16652:
 		move.w	(v_player+obY).w,d0
@@ -119,13 +119,13 @@ loc_16652:
 		blt.s	locret_16676
 		cmpi.w	#4,d0
 		bgt.s	loc_16672
-		st	objoff_2D(a0)
+		st.b	objoff_2D(a0)
 		move.w	#0,obVelY(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
 loc_16672:
-		st	objoff_36(a0)
+		st.b	objoff_36(a0)
 
 locret_16676:
 		rts

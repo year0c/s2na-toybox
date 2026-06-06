@@ -171,7 +171,7 @@ sub_160F4:
 		move.b	#0,obAnim(a0)
 		move.w	objoff_30(a0),objoff_2E(a0)
 		move.w	#$40,obVelY(a0)
-		sf	objoff_2D(a0)
+		sf.b	objoff_2D(a0)
 
 locret_1611A:
 		rts
@@ -254,7 +254,7 @@ sub_161A6:
 		cmp.w	(v_waterpos1).w,d0
 		bgt.s	locret_161C2
 		subq.b	#2,ob2ndRout(a0)
-		st	objoff_2C(a0)
+		st.b	objoff_2C(a0)
 		clr.w	obVelY(a0)
 
 locret_161C2:
@@ -265,7 +265,7 @@ loc_161C4:
 		cmp.w	objoff_2A(a0),d0
 		blt.s	locret_161C2
 		subq.b	#2,ob2ndRout(a0)
-		sf	objoff_2C(a0)
+		sf.b	objoff_2C(a0)
 		clr.w	obVelY(a0)
 		rts
 ; End of function sub_161A6
@@ -361,7 +361,7 @@ sub_1629E:
 		ori.b	#4,obRender(a0)
 		move.b	#1,obPriority(a0)
 		move.b	#5,obAnim(a0)
-		st	ob2ndRout(a0)
+		st.b	ob2ndRout(a0)
 		move.w	#300,objoff_2C(a0)
 		move.b	#3,objoff_2A(a0)
 

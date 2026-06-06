@@ -120,7 +120,7 @@ sub_16E44:
 		blt.s	loc_16E90
 		tst.w	d0
 		bpl.s	loc_16E68
-		st	objoff_3D(a0)
+		st.b	objoff_3D(a0)
 
 loc_16E68:
 		move.b	#$40,objoff_3F(a0)
@@ -175,7 +175,7 @@ loc_16ECA:
 ; ---------------------------------------------------------------------------
 
 loc_16EDE:
-		sf	objoff_3D(a0)
+		sf.b	objoff_3D(a0)
 		move.b	#0,obAnim(a0)
 		move.b	#2,obRoutine(a0)
 		move.b	#0,ob2ndRout(a0)

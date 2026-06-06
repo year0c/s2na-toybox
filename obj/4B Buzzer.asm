@@ -175,7 +175,7 @@ Obj4B_PlayerIsLeft:
 		bne.s	locret_1694E			; branch, if object is facing left
 ; loc_1693A:
 Obj4B_ReadyToShoot:
-		st	Obj4B_shooting_flag(a0)			; disable shooting
+		st.b	Obj4B_shooting_flag(a0)			; disable shooting
 		addq.b	#2,ob2ndRout(a0)		; => Obj4B_Shooting
 		move.b	#3,obAnim(a0)			; play shooting animation
 		move.w	#50,Obj4B_shot_timer(a0)

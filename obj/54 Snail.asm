@@ -102,7 +102,7 @@ loc_17700:
 		move.w	obVelX(a0),d0
 		asl.w	#2,d0
 		move.w	d0,obVelX(a0)
-		st	objoff_35(a0)
+		st.b	objoff_35(a0)
 		bsr.w	sub_17714
 
 locret_17712:
@@ -175,8 +175,8 @@ loc_177B4:
 		bchg	#0,obStatus(a0)
 		bchg	#0,obRender(a0)
 		subq.b	#2,obRoutine(a0)
-		sf	objoff_34(a0)
-		sf	objoff_35(a0)
+		sf.b	objoff_34(a0)
+		sf.b	objoff_35(a0)
 	if RemoveJmpTos
 JmpTo2_MarkObjGone_P1	; JmpTo
 	endif

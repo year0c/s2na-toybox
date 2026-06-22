@@ -3,29 +3,30 @@
 ; ---------------------------------------------------------------------------
 
 LevelDataLoad:
+	; --- Load Level Header ---
 		moveq	#0,d0
-		move.b	(Current_Zone).w,d0
-		lsl.w	#4,d0
+		move.b	(Current_Zone).w,d0		; get zone ID to load
+		lsl.w	#4,d0				; multiply by $10 (size per level header entry)
 		lea	(LevelArtPointers).l,a2
-		lea	(a2,d0.w),a2
-		move.l	a2,-(sp)
-		addq.l	#4,a2
-		movea.l	(a2)+,a0
+		lea	(a2,d0.w),a2			; advance to level header for current zone
+		move.l	a2,-(sp)			; remember header address for later
+		addq.l	#4,a2				; skip 1st PLC and level gfx entry (handled in GM_Level)
+
+	; --- 16x16 Block Mappings ---
+		movea.l	(a2)+,a0			; get 16x16 data pointer from level header
 		bra.s	.PrimaryBlocks
-; ---------------------------------------------------------------------------
 
-.DecompressBlocks:
-		lea	(v_16x16).w,a1
-		move.w	#make_art_tile(ArtTile_Level,0,0),d0
-		bsr.w	EniDec
+	.DecompressBlocks:
+		lea	(v_16x16).w,a1			; set target RAM buffer for 16x16 mappings
+		move.w	#make_art_tile(ArtTile_Level,0,0),d0	; set base art tile (0)
+		bsr.w	EniDec				; decompress Enigma-compresseed block data to buffer
 		bra.s	.SecondaryBlocks
-; ---------------------------------------------------------------------------
 
-.PrimaryBlocks:
+	.PrimaryBlocks:
 		lea	(v_16x16).w,a1
 		move.w	#bytesToWcnt(v_16x16_end-v_16x16),d2
 
-.PrimaryBlocks_Loop:
+	.PrimaryBlocks_Loop:
 		move.w	(a0)+,d0
 		move.w	d0,(a1)+
 		andi.w	#nontile_mask,d0
@@ -34,54 +35,54 @@ LevelDataLoad:
 		or.w	d1,d0
 		dbf	d2,.PrimaryBlocks_Loop
 
-.SecondaryBlocks:
-		movea.l	(a2)+,a0
+	; --- 128x128 Chunk Mappings ---
+	.SecondaryBlocks:
+		movea.l	(a2)+,a0			; get 128x128 chunk data pointer from level header
 		bra.s	.Chunks
 		move.l	a2,-(sp)
 		moveq	#0,d1
 		moveq	#0,d2
 		move.w	(a0)+,d0
 		lea	(a0,d0.w),a1
-		lea	(v_128x128).l,a2
+		lea	(v_128x128).l,a2		; set target RAM buffer for 128x128 mappings
 		lea	(v_128x128_end).w,a3
-; ---------------------------------------------------------------------------
 
-.Chunks:
+	.Chunks:
 		lea	(v_128x128).l,a1
 		move.w	#bytesToWcnt(v_128x128_end-v_128x128),d0
 
-.CopyChunksToRAM_Loop:
+	.CopyChunksToRAM_Loop:
 		move.w	(a0)+,(a1)+
 		dbf	d0,.CopyChunksToRAM_Loop
 
-.DoneChunks:
-		bsr.w	LevelLayoutLoad
-		move.w	(a2)+,d0
-		move.w	(a2),d0
-		andi.w	#$FF,d0
-		cmpi.w	#id_LZ_act4,(Current_ZoneAndAct).w
-		bne.s	.NotSBZ3
-		moveq	#palid_SBZ3,d0
+	; --- Level Layout (FG/BG) ---
+		bsr.w	LevelLayoutLoad			; load FG and BG layout
 
-.NotSBZ3:
-		cmpi.w	#id_SBZ_act2,(Current_ZoneAndAct).w
-		beq.s	.IsSBZorFZ
-		cmpi.w	#id_FZ,(Current_ZoneAndAct).w
-		bne.s	.NormalPal
+	; --- Palette ---
+		move.l	(a2),d0				; load palette ID
+		andi.w	#$FF,d0				; only use lower byte (palette ID is duplicated in headers)
 
-.IsSBZorFZ:
-		moveq	#palid_SBZ2,d0
+		cmpi.w	#id_LZ_act4,(Current_ZoneAndAct).w	; is level SBZ3 (LZ4)?
+		bne.s	.notSBZ3			; if not, branch
+		moveq	#palid_SBZ3,d0			; use SB3 palette instead
+	.notSBZ3:
+		cmpi.w	#id_SBZ_act2,(Current_ZoneAndAct).w	; is level SBZ2?
+		beq.s	.isSBZorFZ			; if yes, branch
+		cmpi.w	#id_FZ,(Current_ZoneAndAct).w	; is level FZ?
+		bne.s	.normalpal			; if not, branch
+	.isSBZorFZ:
+		moveq	#palid_SBZ2,d0			; use SBZ2/FZ palette instead
+	.normalpal:
+		bsr.w	PalLoad1			; load specified palette into fade-in buffer
 
-.NormalPal:
-		bsr.w	PalLoad1
-		movea.l	(sp)+,a2
-		addq.w	#4,a2
+	; --- 2nd PLC ---
+		movea.l	(sp)+,a2			; restore base level header pointer
+		addq.w	#4,a2				; advance to 2nd PLC entry
 		moveq	#0,d0
-		move.b	(a2),d0
-		beq.s	.SkipPLC
-		bsr.w	LoadPLC
-
-.SkipPLC:
+		move.b	(a2),d0				; load 2nd PLC entry from level headers
+		beq.s	.skipPLC			; if 2nd PLC is 0 (i.e. the ending sequence), branch
+		bsr.w	LoadPLC				; load secondary pattern load cues
+	.skipPLC:
 		rts
 ; End of function LevelDataLoad
 
@@ -108,7 +109,7 @@ LevelLayoutLoad:
 
 ; "LevelLayoutLoad2" is run twice for (once for the FG and BG layouts each)
 LevelLayoutLoad2:
-		move.w	(Current_ZoneAndAct).w,d0		; get current zone and act
+		move.w	(Current_ZoneAndAct).w,d0	; get current zone and act
 		lsl.b	#6,d0
 		lsr.w	#5,d0
 		move.w	d0,d2

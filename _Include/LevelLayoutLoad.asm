@@ -47,10 +47,10 @@ LevelDataLoad:
 
 	.Chunks:
 		lea	(v_128x128).l,a1
-		move.w	#bytesToWcnt(v_128x128_end-v_128x128),d0
+		move.l	#bytesToWcnt(v_128x128_end-v_128x128),d0
 
 	.CopyChunksToRAM_Loop:
-		move.w	(a0)+,(a1)+
+		move.l	(a0)+,(a1)+
 		dbf	d0,.CopyChunksToRAM_Loop
 
 	; --- Level Layout (FG/BG) ---

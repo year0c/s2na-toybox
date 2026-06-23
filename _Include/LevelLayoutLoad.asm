@@ -47,7 +47,7 @@ LevelDataLoad:
 
 	.Chunks:
 		lea	(v_128x128).l,a1
-		move.l	#bytesToWcnt(v_128x128_end-v_128x128),d0
+		move.w	#bytesToLcnt(v_128x128_end-v_128x128),d0
 
 	.CopyChunksToRAM_Loop:
 		move.l	(a0)+,(a1)+

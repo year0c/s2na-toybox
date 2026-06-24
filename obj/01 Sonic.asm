@@ -606,7 +606,7 @@ loc_FF58:
 
 loc_FF64:
 		move.w	d0,obInertia(a0)
-		move.b	#AniIDSonAni_Walk,obAnim(a0)
+		move.b	#id_Walk,obAnim(a0)
 		rts
 ; ---------------------------------------------------------------------------
 ; loc_FF70:
@@ -663,7 +663,7 @@ loc_FFC2:
 
 loc_FFCA:
 		move.w	d0,obInertia(a0)
-		move.b	#AniIDSonAni_Walk,obAnim(a0)
+		move.b	#id_Walk,obAnim(a0)
 		rts
 ; ---------------------------------------------------------------------------
 ; loc_FFD6:
@@ -1374,7 +1374,7 @@ loc_10582:
 		add.w	d1,obY(a0)
 		move.b	d3,obAngle(a0)
 		bsr.w	Sonic_ResetOnFloor
-		move.b	#AniIDSonAni_Walk,obAnim(a0)
+		move.b	#id_Walk,obAnim(a0)
 		move.b	d3,d0
 		addi.b	#$20,d0
 		andi.b	#$40,d0
@@ -1441,7 +1441,7 @@ loc_10618:
 		add.w	d1,obY(a0)
 		move.b	d3,obAngle(a0)
 		bsr.w	Sonic_ResetOnFloor
-		move.b	#AniIDSonAni_Walk,obAnim(a0)
+		move.b	#id_Walk,obAnim(a0)
 		move.w	#0,obVelY(a0)
 		move.w	obVelX(a0),obInertia(a0)
 
@@ -1520,7 +1520,7 @@ loc_106D6:
 		add.w	d1,obY(a0)
 		move.b	d3,obAngle(a0)
 		bsr.w	Sonic_ResetOnFloor
-		move.b	#AniIDSonAni_Walk,obAnim(a0)
+		move.b	#id_Walk,obAnim(a0)
 		move.w	#0,obVelY(a0)
 		move.w	obVelX(a0),obInertia(a0)
 
@@ -1548,7 +1548,7 @@ loc_10712:
 		bclr	#2,obStatus(a0)
 		move.b	#19,obHeight(a0)
 		move.b	#9,obWidth(a0)
-		move.b	#AniIDSonAni_Walk,obAnim(a0)
+		move.b	#id_Walk,obAnim(a0)
 		subq.w	#5,obY(a0)
 
 loc_10748:
@@ -1616,7 +1616,7 @@ Sonic_HurtStop:
 ; ---------------------------------------------------------------------------
 
 loc_107D6:
-		move.b	#AniIDSonAni_Walk,obAnim(a0)
+		move.b	#id_Walk,obAnim(a0)
 		subq.b	#2,obRoutine(a0)
 		move.w	#120,flashtime(a0)
 
@@ -1720,7 +1720,7 @@ locret_108C8:
 
 
 Sonic_Animate:
-		lea	(SonicAniData).l,a1
+		lea	(Ani_Sonic).l,a1
 		moveq	#0,d0
 		move.b	obAnim(a0),d0
 		cmp.b	obPrevAni(a0),d0
@@ -1751,7 +1751,7 @@ sub_10912:
 		moveq	#0,d1
 		move.b	obAniFrame(a0),d1
 		move.b	1(a1,d1.w),d0
-		cmpi.b	#$F0,d0
+		cmpi.b	#afChange,d0
 		bhs.s	loc_1092C
 
 loc_10922:
@@ -1827,7 +1827,7 @@ loc_109B0:
 		lea	(SonicAni_Run).l,a1
 		cmpi.w	#$600,d2
 		bhs.s	loc_109C2
-		lea	(SonicAni_Walk).l,a1
+		lea	(id_Walk).l,a1
 
 loc_109C2:
 		move.b	d0,d1
@@ -1998,6 +1998,8 @@ SonicAni_Blank:	dc.b $77,  0,$FD,  0
 SonicAni_Float3:	dc.b   3,$91,$92,$93,$94,$95,$FF
 SonicAni_S1Float4:	dc.b   3,$3C,$FD,  0
 		even
+
+	include "_anim/Sonic.asm"
 
 ; ---------------------------------------------------------------------------
 ; Sonic pattern loading subroutine

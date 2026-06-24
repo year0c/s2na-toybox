@@ -153,6 +153,17 @@ objoff_3F:	equ $3F
 object_size_bits:	equ 6
 object_size:	equ 1<<object_size_bits
 
+; Animation flags
+afEnd:		equ $FF	; return to beginning of animation
+afBack:		equ $FE	; go back (specified number) bytes
+afChange:	equ $FD	; run specified animation
+afRoutine:	equ $FC	; increment routine counter
+afReset:	equ $FB	; reset animation and 2nd object routine counter
+af2ndRoutine:	equ $FA	; increment 2nd routine counter
+
+aniXFlip:	equ $20 ; horizontally mirrors the current frame
+aniYFlip:	equ $40 ; vertically mirrors the current frame
+
 ; ---------------------------------------------------------------------------
 ; when childsprites are activated (i.e. bit #6 of render_flags set)
 next_subspr	= 6

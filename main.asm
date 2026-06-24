@@ -352,6 +352,7 @@ GameInit:
 .clrRAM:
 		move.l	d7,(a6)+
 		dbf	d6,.clrRAM
+		jsr	(InitDMAQueue).l
 		bsr.w	VDPSetupGame
 		bsr.w	DACDriverLoad
 		bsr.w	JoypadInit
@@ -732,8 +733,9 @@ loc_D48:
 		move.w	(v_hbla_hreg).w,(a5)
 		move.w	#$8200+(vram_fg>>10),(vdp_control_port).l
 		writeVRAM	v_hscrolltablebuffer,vram_hscroll
+		jsr	ProcessDMAQueue(pc)
 		writeVRAM	Sprite_Table,vram_sprites
-		bsr.w	ProcessDMAQueue
+		jsr	ProcessDMAQueue(pc)
 		startZ80
 		movem.l	(Camera_RAM).w,d0-d7
 		movem.l	d0-d7,(Camera_RAM_copy).w
@@ -775,8 +777,9 @@ Vint_S1SS:
 		bsr.w	ReadJoypads
 		writeCRAM	v_palette,0
 		writeVRAM	Sprite_Table,vram_sprites
+		jsr	ProcessDMAQueue(pc)
 		writeVRAM	v_hscrolltablebuffer,vram_hscroll
-		bsr.w	ProcessDMAQueue
+		jsr	ProcessDMAQueue(pc)
 		startZ80
 		bsr.w	PalCycle_S1SS
 		tst.w	(v_generictimer).w
@@ -803,8 +806,9 @@ loc_EE4:
 loc_F08:
 		move.w	(v_hbla_hreg).w,(a5)
 		writeVRAM	v_hscrolltablebuffer,vram_hscroll
+		jsr	ProcessDMAQueue(pc)
 		writeVRAM	Sprite_Table,vram_sprites
-		bsr.w	ProcessDMAQueue
+		jsr	ProcessDMAQueue(pc)
 		startZ80
 		movem.l	(Camera_RAM).w,d0-d7
 		movem.l	d0-d7,(Camera_RAM_copy).w
@@ -835,7 +839,9 @@ Vint_SSResults:
 		bsr.w	ReadJoypads
 		writeCRAM	v_palette,0
 		writeVRAM	Sprite_Table,vram_sprites
+		jsr	ProcessDMAQueue(pc)
 		writeVRAM	v_hscrolltablebuffer,vram_hscroll
+		jsr	ProcessDMAQueue(pc)
 		startZ80
 		tst.w	(v_generictimer).w
 		beq.w	.end
@@ -862,7 +868,9 @@ loc_107E:
 
 loc_10A2:
 		writeVRAM	Sprite_Table,vram_sprites
+		jsr	ProcessDMAQueue(pc)
 		writeVRAM	v_hscrolltablebuffer,vram_hscroll
+		jsr	ProcessDMAQueue(pc)
 		startZ80
 		rts
 ; End of function Do_ControllerPal
@@ -1043,6 +1051,8 @@ VDPSetupArray:
 		dc.w $9200				; Disable window
 VDPSetupArray_End:
 
+	include "_Include/DMA Queue.asm"
+
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
 
 
@@ -1059,6 +1069,7 @@ ClearScreen:
 		clearRAM Sprite_Table,Sprite_Table_end+4 ; Clears too much RAM, clearing the first 4 bytes of v_palette_water.
 		clearRAM v_hscrolltablebuffer,v_hscrolltablebuffer_end_padded+4 ; Clears too much RAM, clearing the first 4 bytes of v_objspace.
 	endif
+		ResetDMAQueue
 		rts
 ; End of function ClearScreen
 
@@ -1166,7 +1177,6 @@ PlaneMapToVRAM_H40_TileLoop:
 		rts
 ; End of function PlaneMapToVRAM_H40
 
-		include "_Include/DMA Queue.asm"
 		include "_Include/Nemesis Decompression.asm"
 
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||

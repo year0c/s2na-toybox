@@ -8,9 +8,9 @@ fr_Wait1:	equ 2
 fr_Wait2:	equ 3
 fr_Wait3:	equ 4
 fr_LookUp:	equ 5
-fr_Walk11:	equ $D
-fr_Walk12:	equ $E
-fr_Walk13:	equ $F
+fr_Walk11:	equ $0D
+fr_Walk12:	equ $0E
+fr_Walk13:	equ $0F
 fr_Walk14:	equ $10
 fr_Walk15:	equ $11
 fr_Walk16:	equ $12
@@ -24,43 +24,27 @@ fr_Walk25:	equ $19
 fr_Walk26:	equ $2A
 fr_Walk27:	equ $2B
 fr_Walk28:	equ $2C
-fr_Walk31:	equ $2D
-fr_Walk32:	equ $2E
-fr_Walk33:	equ $2F
-fr_Walk34:	equ $30
-fr_Walk35:	equ $31
-fr_Walk36:	equ $32
-fr_Walk37:	equ $33
-fr_Walk38:	equ $34
-fr_Walk41:	equ $35
-fr_Walk42:	equ $36
-fr_Walk43:	equ $37
-fr_Walk44:	equ $38
-fr_Walk45:	equ $39
-fr_Walk46:	equ $3A
-fr_Walk47:	equ $3B
-fr_Walk48:	equ $3C
-fr_Run11:	equ $1E
-fr_Run12:	equ $1F
-fr_Run13:	equ $20
-fr_Run14:	equ $21
-fr_Run21:	equ $22
-fr_Run22:	equ $23
-fr_Run23:	equ $24
-fr_Run24:	equ $25
-fr_Run31:	equ $26
-fr_Run32:	equ $27
-fr_Run33:	equ $28
-fr_Run34:	equ $29
-fr_Run41:	equ $2A
-fr_Run42:	equ $2B
-fr_Run43:	equ $2C
-fr_Run44:	equ $2D
-fr_Roll1:	equ $2E
-fr_Roll2:	equ $2F
-fr_Roll3:	equ $30
-fr_Roll4:	equ $31
-fr_Roll5:	equ $32
+fr_Run11:	equ $2D
+fr_Run12:	equ $2E
+fr_Run13:	equ $2F
+fr_Run14:	equ $30
+fr_Run21:	equ $31
+fr_Run22:	equ $32
+fr_Run23:	equ $33
+fr_Run24:	equ $34
+fr_Run31:	equ $35
+fr_Run32:	equ $36
+fr_Run33:	equ $37
+fr_Run34:	equ $38
+fr_Run41:	equ $39
+fr_Run42:	equ $3A
+fr_Run43:	equ $3B
+fr_Run44:	equ $3C
+fr_Roll1:	equ $3D
+fr_Roll2:	equ $3E
+fr_Roll3:	equ $3F
+fr_Roll4:	equ $40
+fr_Roll5:	equ $41
 fr_Warp1:	equ $33
 fr_Warp2:	equ $34
 fr_Warp3:	equ $35
@@ -79,10 +63,10 @@ fr_Hang1:	equ $41
 fr_Hang2:	equ $42
 fr_Leap1:	equ $43
 fr_Leap2:	equ $44
-fr_Push1:	equ $45
-fr_Push2:	equ $46
-fr_Push3:	equ $47
-fr_Push4:	equ $48
+fr_Push1:	equ $48
+fr_Push2:	equ $49
+fr_Push3:	equ $4A
+fr_Push4:	equ $4B
 fr_Surf:	equ $49
 fr_BubStand:	equ $4A
 fr_Burnt:	equ $4B
@@ -98,6 +82,12 @@ fr_Float6:	equ $54
 fr_Injury:	equ $55
 fr_GetAir:	equ $56
 fr_Slide:	equ $57 ; formerly named fr_WaterSlide (was too long...)
+fr_SpinDash1:	equ $42
+fr_SpinDash2:	equ fr_SpinDash1+1
+fr_SpinDash3:	equ fr_SpinDash2+1
+fr_SpinDash4:	equ fr_SpinDash3+1
+fr_SpinDash5:	equ fr_SpinDash4+1
+fr_SpinDash6:	equ fr_SpinDash5+1
 
 
 ; ---------------------------------------------------------------------------
@@ -141,9 +131,10 @@ id_Death:	sonani	SonAni_Death	; $18
 id_Shrink:	sonani	SonAni_Shrink	; $19
 id_Hurt:	sonani	SonAni_Hurt	; $1A
 id_Slide:	sonani	SonAni_Slide	; $1B
-id_Null:	sonani	SonAni_Null	; $1C
-id_Float3:	sonani	SonAni_Float3	; $1D
-id_Float4:	sonani	SonAni_Float4	; $1E
+id_SpindAsh:	sonani	SonAni_SpinDash ; $1C
+id_Null:	sonani	SonAni_Null	; $1D
+id_Float3:	sonani	SonAni_Float3	; $1E
+id_Float4:	sonani	SonAni_Float4	; $1F
 
 ; ---------------------------------------------------------------------------
 ; --- Special animations (walk/run/roll/push) ---
@@ -153,30 +144,20 @@ id_Float4:	sonani	SonAni_Float4	; $1E
 ; This is because the special animation handler switches between these
 ; animations without resetting the animation positon.
 
-SonAni_Walk:	dc.b $FF
-		dc.b fr_Walk11, fr_Walk12, fr_Walk13, fr_Walk14, fr_Walk15, fr_Walk16, fr_Walk17, fr_Walk18
-		dc.b afEnd
-		even
+SonAni_Walk:	dc.b	$FF, $0F, $10, $11, $12, $13, $14, $0D
+		dc.b	$0E, $FF
 
-SonAni_Run:	dc.b $FF
-		dc.b fr_Run11,  fr_Run12,  fr_Run13,  fr_Run14,  afEnd,     afEnd
-		dc.b afEnd 
-		even
+SonAni_Run:	dc.b	$FF, $2D, $2E, $2F, $30, $FF, $FF, $FF
+		dc.b	$FF, $FF
 
-SonAni_Roll:	dc.b $FE
-		dc.b fr_Roll1,  fr_Roll2,  fr_Roll3,  fr_Roll4,  fr_Roll5,  afEnd
-		dc.b afEnd
-		even
+SonAni_Roll:	dc.b	$FE, $3D, $41, $3E, $41, $3F, $41, $40
+		dc.b	$41, $FF
 
-SonAni_Roll2:	dc.b $FE
-		dc.b fr_Roll1,  fr_Roll2,  fr_Roll5,  fr_Roll3,  fr_Roll4,  fr_Roll5
-		dc.b afEnd
-		even
+SonAni_Roll2:	dc.b	$FE, $3D, $41, $3E, $41, $3F, $41, $40
+		dc.b	$41, $FF
 
-SonAni_Push:	dc.b $FD
-		dc.b fr_Push1,  fr_Push2,  fr_Push3,  fr_Push4,  afEnd,     afEnd
-		dc.b afEnd
-		even
+SonAni_Push:	dc.b	$FD, $48, $49, $4A, $4B, $FF, $FF, $FF
+		dc.b	$FF, $FF
 
 ; ---------------------------------------------------------------------------
 ; --- Normal animations ---
@@ -304,6 +285,13 @@ SonAni_Hurt:	dc.b 3
 
 SonAni_Slide:	dc.b 7
 		dc.b fr_Injury, fr_Slide
+		dc.b afEnd
+		even
+
+SonAni_SpinDash:
+		dc.b 0
+		dc.b fr_SpinDash1, fr_SpinDash2, fr_SpinDash1, fr_SpinDash3, fr_SpinDash1
+		dc.b fr_SpinDash4, fr_SpinDash1, fr_SpinDash5, fr_SpinDash1, fr_SpinDash6
 		dc.b afEnd
 		even
 

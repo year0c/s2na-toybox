@@ -787,7 +787,7 @@ Sonic_RollLeft:
 
 loc_100C8:
 		bset	#0,obStatus(a0)
-		move.b	#AniIDSonAni_Roll,obAnim(a0)
+		move.b	#id_Roll,obAnim(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -809,7 +809,7 @@ Sonic_RollRight:
 		move.w	obInertia(a0),d0
 		bmi.s	loc_100F8
 		bclr	#0,obStatus(a0)
-		move.b	#AniIDSonAni_Roll,obAnim(a0)
+		move.b	#id_Roll,obAnim(a0)
 		rts
 ; ---------------------------------------------------------------------------
 
@@ -996,7 +996,7 @@ Obj01_DoRoll:
 		bset	#2,obStatus(a0)
 		move.b	#14,obHeight(a0)
 		move.b	#7,obWidth(a0)
-		move.b	#AniIDSonAni_Roll,obAnim(a0)
+		move.b	#id_Roll,obAnim(a0)
 		addq.w	#5,obY(a0)
 		move.w	#sfx_Roll,d0
 		jsr	(QueueSound2).l
@@ -1051,7 +1051,7 @@ loc_102AA:
 		bne.s	loc_1031E
 		move.b	#14,obHeight(a0)
 		move.b	#7,obWidth(a0)
-		move.b	#AniIDSonAni_Roll,obAnim(a0)
+		move.b	#id_Roll,obAnim(a0)
 		bset	#2,obStatus(a0)
 		addq.w	#5,obY(a0)
 
@@ -1112,7 +1112,7 @@ Sonic_CheckSpindash:
 		move.b	(v_jpadpress2).w,d0
 		andi.b	#btnABC,d0
 		beq.w	locret_10394
-		move.b	#AniIDSonAni_Spindash,obAnim(a0)
+		move.b	#id_SpindAsh,obAnim(a0)
 		move.w	#sfx_Roll,d0
 		jsr	(QueueSound2).l
 		addq.l	#4,sp
@@ -1130,7 +1130,7 @@ Sonic_UpdateSpindash:
 		; unleash the charged spindash and start rolling quickly:
 		move.b	#14,obHeight(a0)
 		move.b	#7,obWidth(a0)
-		move.b	#AniIDSonAni_Roll,obAnim(a0)
+		move.b	#id_Roll,obAnim(a0)
 		addq.w	#5,obY(a0)			; add the difference between Sonic's rolling and standing heights
 		move.b	#0,spindash_flag(a0)
 	if FixBugs
@@ -1824,10 +1824,10 @@ loc_1098C:
 		neg.w	d2
 
 loc_109B0:
-		lea	(SonicAni_Run).l,a1
+		lea	(SonAni_Run).l,a1
 		cmpi.w	#$600,d2
 		bhs.s	loc_109C2
-		lea	(id_Walk).l,a1
+		lea	(SonAni_Walk).l,a1
 
 loc_109C2:
 		move.b	d0,d1
@@ -1843,7 +1843,6 @@ loc_109C2:
 
 loc_109D8:
 		lsr.w	#8,d2
-		lsr.w	#1,d2	; divide by 512
 		move.b	d2,obTimeFrame(a0)
 		bsr.w	sub_10912
 		add.b	d3,obFrame(a0)
@@ -1888,10 +1887,10 @@ loc_10A44:
 		neg.w	d2
 
 loc_10A50:
-		lea	(SonicAni_Roll2).l,a1
+		lea	(SonAni_Roll2).l,a1
 		cmpi.w	#$600,d2
 		bhs.s	loc_10A62
-		lea	(SonicAni_Roll).l,a1
+		lea	(SonAni_Roll).l,a1
 
 loc_10A62:
 		neg.w	d2
@@ -1922,7 +1921,7 @@ loc_10A90:
 loc_10A98:
 		lsr.w	#6,d2
 		move.b	d2,obTimeFrame(a0)
-		lea	(SonicAni_Push).l,a1
+		lea	(SonAni_Push).l,a1
 		move.b	obStatus(a0),d1
 		andi.b	#1,d1
 		andi.b	#$FC,obRender(a0)
@@ -2007,37 +2006,18 @@ SonicAni_S1Float4:	dc.b   3,$3C,$FD,  0
 
 ; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
 
-
+; loc_1B848:
 LoadSonicDynPLC:
-		moveq	#0,d0
-		move.b	obFrame(a0),d0
-		cmp.b	(Sonic_LastLoadedDPLC).w,d0
-		beq.s	locret_10C34
-		move.b	d0,(Sonic_LastLoadedDPLC).w
-		lea	(SonicDynPLC).l,a2
-		add.w	d0,d0
-		adda.w	(a2,d0.w),a2
-		move.w	(a2)+,d5
-		subq.w	#1,d5
-		bmi.s	locret_10C34
-		move.w	#tiles_to_bytes(ArtTile_Sonic),d4
-; loc_10C08:
-SPLC_ReadEntry:
-		moveq	#0,d1
-		move.w	(a2)+,d1
-		move.w	d1,d3
-		lsr.w	#8,d3
-		andi.w	#$F0,d3
-		addi.w	#$10,d3
-		andi.w	#$FFF,d1
-		lsl.l	#5,d1
-		addi.l	#Art_Sonic,d1
-		move.w	d4,d2
-		add.w	d3,d4
-		add.w	d3,d4
-		jsr	(QueueDMATransfer).l
-		dbf	d5,SPLC_ReadEntry
+	move.b	obFrame(a0),d0		; get Sonic's current frame
+; loc_1B84E:
+LoadSonicDynPLC_Part2:
+	cmp.b	(Sonic_LastLoadedDPLC).w,d0	; has the frame changed?
+	beq.s	return_1B89A			; if not, nothing to do
+	move.b	d0,(Sonic_LastLoadedDPLC).w	; update cached frame number
+	lea	(SonicDynPLC).l,a2		; load Sonic DPLC table
+	move.w	#tiles_to_bytes(ArtTile_Sonic),d4	; starting VRAM tile
+	move.l	#Art_Sonic,d6		; base Sonic art pointer
+	jmp	(LoadDynPLC).l			; load DPLC
 
-locret_10C34:
-		rts
-; End of function LoadSonicDynPLC
+return_1B89A:
+	rts					; return

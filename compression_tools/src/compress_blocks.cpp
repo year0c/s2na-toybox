@@ -119,13 +119,13 @@ void compress_blocks(std::vector< std::vector < std::array<unsigned char, 5> > >
                         // Write the captured blocks
                         if ((id & 0x9F) == 0x84) {
                             // telepad
-                            //printf("telepad: %02X %02X %02X %02X\n", blocks[y][x][1], blocks[y][x][2], blocks[y][x][3], blocks[y][x][4]);
+                            //printf("telepad: %02X %02X %02X %02X/n", blocks[y][x][1], blocks[y][x][2], blocks[y][x][3], blocks[y][x][4]);
                             bits.write(blocks[y][x][1], 8); // map
                             bits.write(blocks[y][x][2], 8); // y coord
                             bits.write((blocks[y][x][4] << 8) + blocks[y][x][3], 9); // x coord
                         } else if ((id & 0x9F) == 0x83) {
                             // Ghost block
-                            //printf("Ghost: %d %d %02X %02X %02X %02X %d\n", x, y, blocks[y][x][1], blocks[y][x][2], blocks[y][x][3], blocks[y][x][4], chain_length);
+                            //printf("Ghost: %d %d %02X %02X %02X %02X %d/n", x, y, blocks[y][x][1], blocks[y][x][2], blocks[y][x][3], blocks[y][x][4], chain_length);
                             bits.write(chain_length-1, reptbits);
                             bits.write(direction, 1);
                             bits.write(blocks[y][x][1], 8);
@@ -156,9 +156,9 @@ void compress_blocks(std::vector< std::vector < std::array<unsigned char, 5> > >
 
 int main(int argc, char* argv[]) {
     if(argc < 3) {
-        printf("Usage: compress_blocks.exe inputfile outputfile\n");
-        printf("Version: %s\n", version);
-        printf("Compresses blocks from expanded kcm format into the game's format.\n");
+        printf("Usage: compress_blocks.exe inputfile outputfile/n");
+        printf("Version: %s/n", version);
+        printf("Compresses blocks from expanded kcm format into the game's format./n");
         return 0;
     }
 

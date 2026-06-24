@@ -159,7 +159,7 @@ int main(int argc, char* argv[]) {
     std::cout << "Version: " << version << std::endl;
     std::ifstream infile("level/level_files.txt");
     if (infile.fail()) {
-        std::cout << "Can't open \"level/level_files.txt\"" << std::endl;
+        std::cout << "Can't open /"level/level_files.txt/"" << std::endl;
         return -1;
     }
 
@@ -200,7 +200,7 @@ int main(int argc, char* argv[]) {
     bool all = false;
     if (argc == 1) {
         std::string in;
-        std::cout << "Enter MapIDs in hexadecimal, separated by spaces, or \"all\": ";
+        std::cout << "Enter MapIDs in hexadecimal, separated by spaces, or /"all/": ";
         std::getline(std::cin, in);
         std::istringstream iss(in);
         while (iss) {
@@ -229,7 +229,7 @@ int main(int argc, char* argv[]) {
             if (filemap.find(map_id) != filemap.end()) {
                 merge_kcm(map_id, filemap[map_id]);
             } else {
-                printf("Map %02X is not a valid map.\n", map_id);
+                printf("Map %02X is not a valid map./n", map_id);
             }
         }
     }
@@ -351,7 +351,7 @@ int merge_kcm(int map_id, std::vector<std::string> filenames) {
     
     free(output_data);
     fclose(dump);
-    printf("Successfully created %s\n", dump_filename);
+    printf("Successfully created %s/n", dump_filename);
     output_data = 0;
     dump = 0;
 
@@ -418,8 +418,8 @@ void WriteData(unsigned char var){
     }
     output_data[output_pos] = var;
     output_pos++;
-    //printf("\n----%04X\n", output_size);
-    //printf("\n----%04X\n", output_pos);
+    //printf("/n----%04X/n", output_size);
+    //printf("/n----%04X/n", output_pos);
 }
 
 
@@ -438,7 +438,7 @@ int SeekData(int pos, signed char seek){
         default:
             return 1;
     };
-    //printf("\n    %04X", output_size);
+    //printf("/n    %04X", output_size);
     
     return 0;
 }
@@ -485,9 +485,9 @@ void ExpandBlockLayout(FILE* rom)
     x_bits = (y_bits >> 4);
     y_bits &= 0xF;
     i = 0;
-    //printf("x_bits = %i\ny_bits = %i\n\n", x_bits, y_bits);
+    //printf("x_bits = %i/ny_bits = %i/n/n", x_bits, y_bits);
     fread(&data1, 1, 1, rom);
-    //printf("data1 = %02X\n", data1);
+    //printf("data1 = %02X/n", data1);
     
     
     
@@ -499,14 +499,14 @@ void ExpandBlockLayout(FILE* rom)
             if(bitpos > 7){
                 bitpos = 0;
                 fread(&data1, 1, 1, rom);
-                //printf("data1 = %02X\n", data1);
+                //printf("data1 = %02X/n", data1);
             }
             data_bits[i+n] = (data1 >> (7-bitpos)) & 1;
             bitpos++;
         }
         block_type = (data_bits[i] << 5) + (data_bits[i+1] << 4) + (data_bits[i+2] << 3)
                     + (data_bits[i+3] << 2) + (data_bits[i+4] << 1) + data_bits[i+5];
-        //printf("block_type = %02X  %i%i%i%i%i%i\n", block_type, data_bits[i], data_bits[i+1], data_bits[i+2], data_bits[i+3], data_bits[i+4], data_bits[i+5]);
+        //printf("block_type = %02X  %i%i%i%i%i%i/n", block_type, data_bits[i], data_bits[i+1], data_bits[i+2], data_bits[i+3], data_bits[i+4], data_bits[i+5]);
         i += 6;
         if(block_type != 0x3F){
             block_type += 0x80; // avoids conflict with 0x00 blocks mistaken for nothing
@@ -518,7 +518,7 @@ void ExpandBlockLayout(FILE* rom)
                 if(bitpos > 7){
                     bitpos = 0;
                     fread(&data1, 1, 1, rom);
-                    //printf("data1 = %02X\n", data1);
+                    //printf("data1 = %02X/n", data1);
                 }
                 data_bits[i+n] = (data1 >> (7-bitpos)) & 1;
                 x_pos += (data_bits[i+n] << x_bits-n-1);
@@ -532,14 +532,14 @@ void ExpandBlockLayout(FILE* rom)
                     if(bitpos > 7){
                         bitpos = 0;
                         fread(&data1, 1, 1, rom);
-                        //printf("data1 = %02X\n", data1);
+                        //printf("data1 = %02X/n", data1);
                     }
                     data_bits[i+n] = (data1 >> (7-bitpos)) & 1;
                     y_pos += (data_bits[i+n] << y_bits-n-1);
                     bitpos++;
                 }
                 i += y_bits;
-                //printf("    x_pos = %02X\n    y_pos = %02X\n", x_pos, y_pos);
+                //printf("    x_pos = %02X/n    y_pos = %02X/n", x_pos, y_pos);
                 
                 switch(block_type & 0x1F){
                     case 0x0:   // rock
@@ -559,14 +559,14 @@ void ExpandBlockLayout(FILE* rom)
                             if(bitpos > 7){
                                 bitpos = 0;
                                 fread(&data1, 1, 1, rom);
-                                //printf("data1 = %02X\n", data1);
+                                //printf("data1 = %02X/n", data1);
                             }
                             data_bits[i+n] = (data1 >> (7-bitpos)) & 1;
                             data2 += (data_bits[i+n] << 4-n);
                             bitpos++;
                         }
                         i += 5;
-                        //printf("    quantity = %X\n    direction = %X\n", data2 >> 1, data2 & 1);
+                        //printf("    quantity = %X/n    direction = %X/n", data2 >> 1, data2 & 1);
                         
                         if((data2 & 1) == 0){
                             for(n=0; n < (data2 >> 1); n++){
@@ -580,7 +580,7 @@ void ExpandBlockLayout(FILE* rom)
                                     block_data[((x_pos + ((y_pos + n+1) * 20 * map_size_x)) * 6)] = block_type;
                             }
                         }
-                        //printf("\n");
+                        //printf("/n");
                         break;
                     case 0x1:   // prize
                         data_size += 5;
@@ -591,14 +591,14 @@ void ExpandBlockLayout(FILE* rom)
                             if(bitpos > 7){
                                 bitpos = 0;
                                 fread(&data1, 1, 1, rom);
-                                //printf("data1 = %02X\n", data1);
+                                //printf("data1 = %02X/n", data1);
                             }
                             data_bits[i+n] = (data1 >> (7-bitpos)) & 1;
                             data2 += (data_bits[i+n] << 4-n);
                             bitpos++;
                         }
                         i += 5;
-                        //printf("    quantity = %X\n    direction = %X\n", data2 >> 1, data2 & 1);
+                        //printf("    quantity = %X/n    direction = %X/n", data2 >> 1, data2 & 1);
                         
                         if((data2 & 1) == 0){
                             for(n=0; n <= (data2 >> 1); n++){
@@ -609,7 +609,7 @@ void ExpandBlockLayout(FILE* rom)
                                     if(bitpos > 7){
                                         bitpos = 0;
                                         fread(&data1, 1, 1, rom);
-                                        //printf("data1 = %02X\n", data1);
+                                        //printf("data1 = %02X/n", data1);
                                     }
                                     data_bits[i+c] = (data1 >> (7-bitpos)) & 1;
                                     data3 += (data_bits[i+c] << 4-c);
@@ -620,7 +620,7 @@ void ExpandBlockLayout(FILE* rom)
                                     block_data[((x_pos + n + (y_pos * 20 * map_size_x)) * 6)] = block_type;
                                     block_data[((x_pos + n + (y_pos * 20 * map_size_x)) * 6) + 1] = data3;
                                 }
-                                //printf("    prize = %02X\n", data3);
+                                //printf("    prize = %02X/n", data3);
                             }
                         }
                         else{
@@ -632,7 +632,7 @@ void ExpandBlockLayout(FILE* rom)
                                     if(bitpos > 7){
                                         bitpos = 0;
                                         fread(&data1, 1, 1, rom);
-                                        //printf("data1 = %02X\n", data1);
+                                        //printf("data1 = %02X/n", data1);
                                     }
                                     data_bits[i+c] = (data1 >> (7-bitpos)) & 1;
                                     data3 += (data_bits[i+c] << 4-c);
@@ -643,10 +643,10 @@ void ExpandBlockLayout(FILE* rom)
                                     block_data[((x_pos + ((y_pos + n) * 20 * map_size_x)) * 6)] = block_type;
                                     block_data[((x_pos + ((y_pos + n) * 20 * map_size_x)) * 6) + 1] = data3;
                                 }
-                                //printf("    prize = %02X\n", data3);
+                                //printf("    prize = %02X/n", data3);
                             }
                         }
-                        //printf("\n");
+                        //printf("/n");
                         break;
                     case 0x3:   // ghost
                         data_size += 31;
@@ -657,14 +657,14 @@ void ExpandBlockLayout(FILE* rom)
                             if(bitpos > 7){
                                 bitpos = 0;
                                 fread(&data1, 1, 1, rom);
-                                //printf("data1 = %02X\n", data1);
+                                //printf("data1 = %02X/n", data1);
                             }
                             data_bits[i+n] = (data1 >> (7-bitpos)) & 1;
                             data2 += (data_bits[i+n] << 30-n);
                             bitpos++;
                         }
                         i += 31;
-                        //printf("    quantity = %X\n    direction = %X\n", data2 >> 28, (data2 >> 27) & 1);
+                        //printf("    quantity = %X/n    direction = %X/n", data2 >> 28, (data2 >> 27) & 1);
                         
                         if(block_data[(x_pos + (y_pos * 20 * map_size_x)) * 6] != 0x83){
                             block_data[((x_pos + (y_pos * 20 * map_size_x)) * 6)] = block_type;
@@ -697,7 +697,7 @@ void ExpandBlockLayout(FILE* rom)
                             }
                         }
                         
-                        //printf("\n");
+                        //printf("/n");
                         break;
                     case 0x4:   // telepad
                         data_size += 25;
@@ -711,7 +711,7 @@ void ExpandBlockLayout(FILE* rom)
                             if(bitpos > 7){
                                 bitpos = 0;
                                 fread(&data1, 1, 1, rom);
-                                //printf("data1 = %02X\n", data1);
+                                //printf("data1 = %02X/n", data1);
                             }
                             data_bits[i+n] = (data1 >> (7-bitpos)) & 1;
                             data2 += (data_bits[i+n] << 24-n);
@@ -725,7 +725,7 @@ void ExpandBlockLayout(FILE* rom)
                             block_data[((x_pos + (y_pos * 20 * map_size_x)) * 6) + 3] = data2 & 0xFF;
                             block_data[((x_pos + (y_pos * 20 * map_size_x)) * 6) + 4] = (data2 >> 8) & 1;
                         }
-                        //printf("\n");
+                        //printf("/n");
                         break;
                     case 0xA:   // cannon/vanishing
                     case 0xC:   // drill
@@ -737,14 +737,14 @@ void ExpandBlockLayout(FILE* rom)
                             if(bitpos > 7){
                                 bitpos = 0;
                                 fread(&data1, 1, 1, rom);
-                                //printf("data1 = %02X\n", data1);
+                                //printf("data1 = %02X/n", data1);
                             }
                             data_bits[i+n] = (data1 >> (7-bitpos)) & 1;
                             data2 += (data_bits[i+n] << 4-n);
                             bitpos++;
                         }
                         i += 5;
-                        //printf("    quantity = %X\n    direction = %X\n", data2 >> 1, data2 & 1);
+                        //printf("    quantity = %X/n    direction = %X/n", data2 >> 1, data2 & 1);
                         
                         if((data2 & 1) == 0){
                             for(n=0; n <= (data2 >> 1); n++){
@@ -755,7 +755,7 @@ void ExpandBlockLayout(FILE* rom)
                                     if(bitpos > 7){
                                         bitpos = 0;
                                         fread(&data1, 1, 1, rom);
-                                        //printf("data1 = %02X\n", data1);
+                                        //printf("data1 = %02X/n", data1);
                                     }
                                     data_bits[i+c] = (data1 >> (7-bitpos)) & 1;
                                     data3 += (data_bits[i+c] << 3-c);
@@ -777,7 +777,7 @@ void ExpandBlockLayout(FILE* rom)
                                     if(bitpos > 7){
                                         bitpos = 0;
                                         fread(&data1, 1, 1, rom);
-                                        //printf("data1 = %02X\n", data1);
+                                        //printf("data1 = %02X/n", data1);
                                     }
                                     data_bits[i+c] = (data1 >> (7-bitpos)) & 1;
                                     data3 += (data_bits[i+c] << 3-c);
@@ -790,12 +790,12 @@ void ExpandBlockLayout(FILE* rom)
                                 }
                             }
                         }
-                        //printf("\n");
+                        //printf("/n");
                         break;
                     case 0xB:   // lift
                         if(block_data[(x_pos + (y_pos * 20 * map_size_x)) * 6] != 0x83)
                             block_data[(x_pos + (y_pos * 20 * map_size_x)) * 6] = block_type;
-                        //printf("\n");
+                        //printf("/n");
                         break;
                     case 0x10:  // hidden passage
                         data_size += 5;
@@ -806,14 +806,14 @@ void ExpandBlockLayout(FILE* rom)
                             if(bitpos > 7){
                                 bitpos = 0;
                                 fread(&data1, 1, 1, rom);
-                                //printf("data1 = %02X\n", data1);
+                                //printf("data1 = %02X/n", data1);
                             }
                             data_bits[i+n] = (data1 >> (7-bitpos)) & 1;
                             data2 += (data_bits[i+n] << 4-n);
                             bitpos++;
                         }
                         i += 5;
-                        //printf("    quantity = %X\n    direction = %X\n", data2 >> 1, data2 & 1);
+                        //printf("    quantity = %X/n    direction = %X/n", data2 >> 1, data2 & 1);
                         
                         if((data2 & 1) == 0){
                             for(n=0; n <= (data2 >> 1); n++){
@@ -824,7 +824,7 @@ void ExpandBlockLayout(FILE* rom)
                                     if(bitpos > 7){
                                         bitpos = 0;
                                         fread(&data1, 1, 1, rom);
-                                        //printf("data1 = %02X\n", data1);
+                                        //printf("data1 = %02X/n", data1);
                                     }
                                     data_bits[i+c] = (data1 >> (7-bitpos)) & 1;
                                     data3 += (data_bits[i+c] << 2-c);
@@ -846,7 +846,7 @@ void ExpandBlockLayout(FILE* rom)
                                     if(bitpos > 7){
                                         bitpos = 0;
                                         fread(&data1, 1, 1, rom);
-                                        //printf("data1 = %02X\n", data1);
+                                        //printf("data1 = %02X/n", data1);
                                     }
                                     data_bits[i+c] = (data1 >> (7-bitpos)) & 1;
                                     data3 += (data_bits[i+c] << 2-c);
@@ -859,14 +859,14 @@ void ExpandBlockLayout(FILE* rom)
                                 }
                             }
                         }
-                        //printf("\n");
+                        //printf("/n");
                         break;
                     case 0x8:   // WTF?!
                     case 0xD:   // freezes game
                     case 0xE:   // freezes game
                     case 0xF:   // freezes game
                     default:
-                        printf("\nFound block-type 0x%02X at 0x%06X\n", block_type-0x80, (unsigned int) ftell(rom));
+                        printf("/nFound block-type 0x%02X at 0x%06X/n", block_type-0x80, (unsigned int) ftell(rom));
                         system("PAUSE");
                 }
                 
@@ -963,7 +963,7 @@ void Decompress(FILE* rom, unsigned short size)
         switch(keybit){
             case 1:     // direct copy
                 #ifdef DEBUG
-                printf("%05X %05X %X  direct          u-%04X-%04X\n", address_key_data, address_input_data, bitpos, unit, ftell(dump));// system("PAUSE");
+                printf("%05X %05X %X  direct          u-%04X-%04X/n", address_key_data, address_input_data, bitpos, unit, ftell(dump));// system("PAUSE");
                 #endif
                 unit++; // increase block count
                 address_key_data = ftell(rom);
@@ -988,7 +988,7 @@ void Decompress(FILE* rom, unsigned short size)
                         fseek(rom, address_input_data, SEEK_SET);
                         fread(&in1, 1, 1, rom); // get source
                         #ifdef DEBUG
-                        printf("%05X %05X %X  ref-short       u-%04X-%04X  s-%04X  c-%04X\n", address_key_data, address_input_data, bitpos, unit, ftell(dump), in1, keybit+2);// system("PAUSE");
+                        printf("%05X %05X %X  ref-short       u-%04X-%04X  s-%04X  c-%04X/n", address_key_data, address_input_data, bitpos, unit, ftell(dump), in1, keybit+2);// system("PAUSE");
                         #endif
                         if(in1 != 0){
                             for(count=keybit+2; count > 0; count--){
@@ -1032,7 +1032,7 @@ void Decompress(FILE* rom, unsigned short size)
                                 count=in2;
                                 in3=0;
                                 #ifdef DEBUG
-                                printf("%05X %05X %X  ref-long-large  u-%04X-%04X  s-%04X  c-%04X\n", address_key_data, address_input_data, bitpos, unit, ftell(dump), in1+(keybit<<8), in2);// system("PAUSE");
+                                printf("%05X %05X %X  ref-long-large  u-%04X-%04X  s-%04X  c-%04X/n", address_key_data, address_input_data, bitpos, unit, ftell(dump), in1+(keybit<<8), in2);// system("PAUSE");
                                 #endif
                                 if(in1+(keybit<<8) != 0){
                                     for(; count > 0; count--){
@@ -1067,7 +1067,7 @@ void Decompress(FILE* rom, unsigned short size)
                                 in2 = count;        // keeping a backup for later use
                                 in3=0;
                                 #ifdef DEBUG
-                                printf("%05X %05X %X  ref-long-small  u-%04X-%04X  s-%04X  c-%04X\n", address_key_data, address_input_data, bitpos, unit, ftell(dump), in1+(keybit<<8), in2);// system("PAUSE");
+                                printf("%05X %05X %X  ref-long-small  u-%04X-%04X  s-%04X  c-%04X/n", address_key_data, address_input_data, bitpos, unit, ftell(dump), in1+(keybit<<8), in2);// system("PAUSE");
                                 #endif
                                 if(in1+(keybit<<8) != 0){
                                     for(; count > 0; count--){
@@ -1105,7 +1105,7 @@ void Decompress(FILE* rom, unsigned short size)
         in3 = 0;
         keybit = 0;
         count = 0;
-        //printf("\n");
+        //printf("/n");
     }
     
     // Fill in the rest with zeros
@@ -1120,10 +1120,10 @@ void Decompress(FILE* rom, unsigned short size)
     //output_size = size;
     
     compressed_data_size = address_input_data - compressed_data_start;
-    // printf("COMPRESSED DATA SIZE:   %i bytes\n", compressed_data_size);
-    // printf("DECOMPRESSED DATA SIZE: %i bytes\n", size);
-    // printf("RATIO:                  %3.01f %c\n", (float)size / (float)compressed_data_size * 100, '%');
-    // printf("\n\n");
+    // printf("COMPRESSED DATA SIZE:   %i bytes/n", compressed_data_size);
+    // printf("DECOMPRESSED DATA SIZE: %i bytes/n", size);
+    // printf("RATIO:                  %3.01f %c/n", (float)size / (float)compressed_data_size * 100, '%');
+    // printf("/n/n");
     //system("PAUSE");
     //free(key_data);
 }

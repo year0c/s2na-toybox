@@ -19,7 +19,7 @@ FILE* rom;
 
 int main(int argc, char* argv[]) {
     if(argc < 3) {
-        printf("Usage: decompress.exe inputfile outputfile [offset]\n");
+        printf("Usage: decompress.exe inputfile outputfile [offset]/n");
 		printf("Version: %s", version);
         return 0;
     }
@@ -91,7 +91,7 @@ int Decompress(int address_data, unsigned short size)
 		switch(keybit){
 			case 1:		// direct copy
 				#ifdef DEBUG
-				printf("%05X %05X %X  direct          u-%04X-%04X\n", address_key_data, address_input_data, bitpos, unit, ftell(dump));// system("PAUSE");
+				printf("%05X %05X %X  direct          u-%04X-%04X/n", address_key_data, address_input_data, bitpos, unit, ftell(dump));// system("PAUSE");
 				#endif
 				unit++;	// increase block count
 				address_key_data = ftell(rom);
@@ -116,7 +116,7 @@ int Decompress(int address_data, unsigned short size)
 						fseek(rom, address_input_data, SEEK_SET);
 						fread(&in1, 1, 1, rom);	// get source
 						#ifdef DEBUG
-						printf("%05X %05X %X  ref-short       u-%04X-%04X  s-%04X  c-%04X\n", address_key_data, address_input_data, bitpos, unit, ftell(dump), in1, keybit+2);// system("PAUSE");
+						printf("%05X %05X %X  ref-short       u-%04X-%04X  s-%04X  c-%04X/n", address_key_data, address_input_data, bitpos, unit, ftell(dump), in1, keybit+2);// system("PAUSE");
 						#endif
 						if(in1 != 0){
 							for(count=keybit+2; count > 0; count--){
@@ -160,7 +160,7 @@ int Decompress(int address_data, unsigned short size)
 								count=in2;
 								in3=0;
 								#ifdef DEBUG
-								printf("%05X %05X %X  ref-long-large  u-%04X-%04X  s-%04X  c-%04X\n", address_key_data, address_input_data, bitpos, unit, ftell(dump), in1+(keybit<<8), in2); //system("PAUSE");
+								printf("%05X %05X %X  ref-long-large  u-%04X-%04X  s-%04X  c-%04X/n", address_key_data, address_input_data, bitpos, unit, ftell(dump), in1+(keybit<<8), in2); //system("PAUSE");
 								#endif
 								if(count < 6) {
                                     if(count == 0) terminate = true;
@@ -201,7 +201,7 @@ int Decompress(int address_data, unsigned short size)
 								in2 = count;		// keeping a backup for later use
 								in3=0;
 								#ifdef DEBUG
-								printf("%05X %05X %X  ref-long-small  u-%04X-%04X  s-%04X  c-%04X\n", address_key_data, address_input_data, bitpos, unit, ftell(dump), in1+(keybit<<8), in2);// system("PAUSE");
+								printf("%05X %05X %X  ref-long-small  u-%04X-%04X  s-%04X  c-%04X/n", address_key_data, address_input_data, bitpos, unit, ftell(dump), in1+(keybit<<8), in2);// system("PAUSE");
 								#endif
 								if(in1+(keybit<<8) != 0){
 									for(; count > 0; count--){
@@ -239,7 +239,7 @@ int Decompress(int address_data, unsigned short size)
 		in3 = 0;
 		keybit = 0;
 		count = 0;
-		//printf("\n");
+		//printf("/n");
 	}
 	
 	// Fill in the rest with zeros
@@ -254,10 +254,10 @@ int Decompress(int address_data, unsigned short size)
 	//output_size = size;
 	
 	compressed_data_size = address_input_data - compressed_data_start;
-	printf("  COMPRESSED DATA SIZE:   %i bytes\n", compressed_data_size);
-	printf("  DECOMPRESSED DATA SIZE: %i bytes\n", unit);
-	printf("  RATIO:                  %3.01f %c\n", (1 - (float)compressed_data_size/(float)unit) * 100, '%');
-	printf("\n");
+	printf("  COMPRESSED DATA SIZE:   %i bytes/n", compressed_data_size);
+	printf("  DECOMPRESSED DATA SIZE: %i bytes/n", unit);
+	printf("  RATIO:                  %3.01f %c/n", (1 - (float)compressed_data_size/(float)unit) * 100, '%');
+	printf("/n");
 	//system("PAUSE");
 	free(key_data);
 	

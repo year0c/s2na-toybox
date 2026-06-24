@@ -1061,7 +1061,7 @@ Debug_mode_flag:	ds.w	1
 v_init:			ds.l	1			; 'init' text string
 v_ram_end:
     if * > 0	; Don't declare more space than the RAM can contain!
-	fatal "The RAM variable declarations are too large by $\{*} bytes."
+	fatal "The RAM variable declarations are too large by $/{*} bytes."
     endif
 	dephase
 

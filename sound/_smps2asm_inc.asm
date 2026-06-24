@@ -257,7 +257,7 @@ songStart set *
 
 	if MOMPASS=1
 		if SMPS2ASMVer < SourceSMPS2ASM
-			message "Song at 0x\{songStart} was made for a newer version of SMPS2ASM (this is version \{SMPS2ASMVer}, but song wants at least version \{SourceSMPS2ASM})."
+			message "Song at 0x/{songStart} was made for a newer version of SMPS2ASM (this is version /{SMPS2ASMVer}, but song wants at least version /{SourceSMPS2ASM})."
 		endif
 	endif
 
@@ -945,7 +945,7 @@ smpsVcTotalLevel macro op1,op2,op3,op4
 		eval vcTL4,vcTL4&127
 	elseif (SonicDriverVer<3)&&(SourceDriver>=3)&&((((vcTL1|vcTLMask1)&128)<>128)||(((vcTL2|vcTLMask2)&128)<>((vcAlgorithm>=5)<<7))||(((vcTL3|vcTLMask3)&128)<>((vcAlgorithm>=4)<<7))||(((vcTL4|vcTLMask4)&128)<>((vcAlgorithm==7)<<7)))
 		if MOMPASS=1
-			message "Voice at 0x\{*} has TL bits that do not match its algorithm setting. This voice will not work in S1/S2 drivers."
+			message "Voice at 0x/{*} has TL bits that do not match its algorithm setting. This voice will not work in S1/S2 drivers."
 		endif
 	endif
 

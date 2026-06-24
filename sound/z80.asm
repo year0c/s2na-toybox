@@ -33,7 +33,7 @@ startpad := $
 endpad := $
 		if endpad-startpad>=1h
 							; warn because otherwise you'd have no clue why you're running out of space so fast
-			message "had to insert \{endpad-startpad}h   bytes of padding before improperly located data at 0\{startpad}h in Z80 code"
+			message "had to insert /{endpad-startpad}h   bytes of padding before improperly located data at 0/{startpad}h in Z80 code"
 		endif
 	    endif
 	endif
@@ -235,9 +235,9 @@ zDAC_Timpani_End:
 
 	if MOMPASS==2
 		if $ > z80_stack
-			fatal "The driver is too big	; the maximum size it can take is \{z80_stack}h. It currently takes \{$}h bytes. You won't be able to use this thing."
+			fatal "The driver is too big	; the maximum size it can take is /{z80_stack}h. It currently takes /{$}h bytes. You won't be able to use this thing."
 		else
-			message "Uncompressed driver size: \{$}h bytes."
+			message "Uncompressed driver size: /{$}h bytes."
 		endif
 	endif
 

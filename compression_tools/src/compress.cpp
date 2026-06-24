@@ -9,7 +9,7 @@ char version[11] = "2018-03-04";
 
 int main(int argc, char* argv[]) {
     if(argc < 3) {
-        printf("Usage: compress.exe inputfile outputfile\n");
+        printf("Usage: compress.exe inputfile outputfile/n");
         printf("Version: %s", version);
         return 0;
     }

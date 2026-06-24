@@ -1,3 +1,4 @@
+; >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 ; ---------------------------------------------------------------------------
 ; Subroutine to load basic level data
 ; ---------------------------------------------------------------------------
@@ -14,11 +15,11 @@ LevelDataLoad:
 
 	; --- 16x16 Block Mappings ---
 		movea.l	(a2)+,a0			; get 16x16 data pointer from level header
-		bra.s	.PrimaryBlocks
-		lea	(v_16x16).w,a1			; set target RAM buffer for 16x16 mappings
+		bra.s	.PrimaryBlocks			; assign 16x16 value to (1)
+		lea	(v_16x16).w,a1			; to then set it as RAM buffer for block mappings
 		move.w	#make_art_tile(ArtTile_Level,0,0),d0	; set base art tile (0)
 		bsr.w	EniDec				; decompress Enigma-compresseed block data to buffer
-		bra.s	.SecondaryBlocks
+		bra.s	.SecondaryBlocks		; set 16x16 tile mask
 
 	.PrimaryBlocks:
 		lea	(v_16x16).w,a1
@@ -36,18 +37,19 @@ LevelDataLoad:
 	; --- 128x128 Chunk Mappings ---
 	.SecondaryBlocks:
 		movea.l	(a2)+,a0			; get 128x128 chunk data pointer from level header
-		bra.s	.Chunks
+		bra.s	.Chunks				; assign 128x128 value to (1)
 		move.l	a2,-(sp)
 		moveq	#0,d1
 		moveq	#0,d2
 		move.w	(a0)+,d0
 		lea	(a0,d0.w),a1
-		lea	(v_128x128).l,a2		; set target RAM buffer for 128x128 mappings
+		lea	(v_128x128).l,a2		; to then set it as RAM buffer for chunk mappings
 		lea	(v_128x128_end).w,a3
 
 	.Chunks:
 		lea	(v_128x128).l,a1
 		move.w	#bytesToLcnt(v_128x128_end-v_128x128),d0
+		; unlike blocks, chunks do not require a tilemask in S2NA
 
 	.CopyChunksToRAM_Loop:
 		move.l	(a0)+,(a1)+
@@ -84,7 +86,7 @@ LevelDataLoad:
 		rts
 ; End of function LevelDataLoad
 
-; ===========================================================================
+; >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 ; ---------------------------------------------------------------------------
 ; Level layout loading subroutine
 ; ---------------------------------------------------------------------------

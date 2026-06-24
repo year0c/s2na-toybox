@@ -17,7 +17,7 @@ local improved_dac_driver_compression = false
 -- Actual build script begins here --
 -------------------------------------
 
-local common = require "tools.lua.common"
+local common = require "build_tools.lua.common"
 
 -- Build the ROM.
 local compression = improved_dac_driver_compression and "kosinski-optimised" or "kosinski"

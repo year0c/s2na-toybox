@@ -37,7 +37,7 @@ int compress(unsigned char* data, int size, const char* outfilename, bool print_
             }
         }
         #ifdef DEBUG
-        printf("%04x: %04x - %d\n", i, infoarray[i].position, infoarray[i].length);
+        printf("%04x: %04x - %d/n", i, infoarray[i].position, infoarray[i].length);
         #endif
     }
 
@@ -128,7 +128,7 @@ int compress(unsigned char* data, int size, const char* outfilename, bool print_
         if(it->length == 0) {
             /* buffer flush */
             #ifdef DEBUG
-            printf("bf\n");
+            printf("bf/n");
             #endif
             cmdarray[bitcount>>3] |= (0x23<<1) >> (bitcount&0x07);
             cmdarray[(bitcount>>3) + 1] |= ((0x23<<9) >> (bitcount&0x07)) & 0xFF;
@@ -139,7 +139,7 @@ int compress(unsigned char* data, int size, const char* outfilename, bool print_
         } else if(it->length == 1) {
             /* direct copy */
             #ifdef DEBUG
-            printf("dr 01\n");
+            printf("dr 01/n");
             #endif
             cmdarray[bitcount>>3] |= 0x80>>(bitcount&0x07);
             inputarray[bytecount] = data[position];
@@ -149,7 +149,7 @@ int compress(unsigned char* data, int size, const char* outfilename, bool print_
             /* short reference */
             unsigned char bitcode = it->length - 2;
             #ifdef DEBUG
-            printf("sh %02x\n", bitcode);
+            printf("sh %02x/n", bitcode);
             #endif
             cmdarray[bitcount>>3] |= (bitcode<<5) >> (bitcount&0x07);
             cmdarray[(bitcount>>3) + 1] |= ((bitcode<<13) >> (bitcount&0x07)) & 0xFF;
@@ -160,7 +160,7 @@ int compress(unsigned char* data, int size, const char* outfilename, bool print_
             /* long reference 1 */
             unsigned char bitcode = 0x20 + ((offset&0x700)>>6) + it->length - 3;
             #ifdef DEBUG
-            printf("l1 %02x\n", bitcode);
+            printf("l1 %02x/n", bitcode);
             #endif
             cmdarray[bitcount>>3] |= (bitcode<<1) >> (bitcount&0x07);
             cmdarray[(bitcount>>3) + 1] |= ((bitcode<<9) >> (bitcount&0x07)) & 0xFF;
@@ -171,7 +171,7 @@ int compress(unsigned char* data, int size, const char* outfilename, bool print_
             /* long reference 2 */
             unsigned char bitcode = 0x20 + ((offset&0x700)>>6) + 0x03;
             #ifdef DEBUG
-            printf("l2 %02x, %02x\n", bitcode);
+            printf("l2 %02x, %02x/n", bitcode);
             #endif
             cmdarray[bitcount>>3] |= (bitcode<<1) >> (bitcount&0x07);
             cmdarray[(bitcount>>3) + 1] |= ((bitcode<<9) >> (bitcount&0x07)) & 0xFF;
@@ -191,7 +191,7 @@ int compress(unsigned char* data, int size, const char* outfilename, bool print_
     inputarray[bytecount+1] = 0x00;
 
     #ifdef DEBUG
-    printf("command_size: %04x\ninput_size: %04x\n", command_size, input_size);
+    printf("command_size: %04x/ninput_size: %04x/n", command_size, input_size);
     #endif
 
     FILE* comp = fopen(outfilename, "wb");
@@ -208,9 +208,9 @@ int compress(unsigned char* data, int size, const char* outfilename, bool print_
     fclose(comp);
 
     if (print_result) {
-        printf("\nUncompressed size: %5d bytes", size);
-        printf("\nCompressed size:   %5d bytes", 2 + command_size + input_size);
-        printf("\nCompression ratio:  %.2f%%", (1 - (float)(2 + command_size + input_size)/(float)size) * 100);        
+        printf("/nUncompressed size: %5d bytes", size);
+        printf("/nCompressed size:   %5d bytes", 2 + command_size + input_size);
+        printf("/nCompression ratio:  %.2f%%", (1 - (float)(2 + command_size + input_size)/(float)size) * 100);        
     }
 }
 

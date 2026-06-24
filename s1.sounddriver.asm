@@ -2856,9 +2856,9 @@ SegaPCM_End
 		even
 
 		if SegaPCM_End-SegaPCM>$8000
-			fatal "Sega sound must fit within $8000 bytes, but you have a $\{SegaPCM_End-SegaPCM} byte Sega sound."
+			fatal "Sega sound must fit within $8000 bytes, but you have a $/{SegaPCM_End-SegaPCM} byte Sega sound."
 		endif
 		if SegaPCM_End-SegaPCM>Size_of_SegaPCM
-			fatal "Size_of_SegaPCM = $\{Size_of_SegaPCM}, but you have a $\{SegaPCM_End-SegaPCM} byte Sega sound."
+			fatal "Size_of_SegaPCM = $/{Size_of_SegaPCM}, but you have a $/{SegaPCM_End-SegaPCM} byte Sega sound."
 		endif
 

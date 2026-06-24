@@ -102,7 +102,7 @@ zoneanimcount := zoneanimcount + 1
 ; fills a region of 68k RAM with 0
 clearRAM macro startaddr,endaddr
 	if startaddr>endaddr
-		fatal "Starting address of clearRAM \{startaddr} is after ending address \{endaddr}."
+		fatal "Starting address of clearRAM /{startaddr} is after ending address /{endaddr}."
 	elseif startaddr==endaddr
 		warning "clearRAM is clearing zero bytes. Turning this into a nop instead."
 		exitm

@@ -25,7 +25,7 @@ char version[11] = "2018-03-04";
 void compress_blocks(unsigned char* kcm, int length, int xsize, int ysize, const char* block_name) {
     int xbits = slog2(xsize)+1;
     int ybits = slog2(ysize)+1;
-    //printf("%02x %02x %d %d\n", xsize, ysize, xbits, ybits);
+    //printf("%02x %02x %d %d/n", xsize, ysize, xbits, ybits);
 
     // expand block layout into a matrix
     std::vector< std::vector < std::array<unsigned char, 5> > > blocks(ysize, std::vector<std::array<unsigned char, 5> >(xsize));
@@ -54,7 +54,7 @@ void compress_blocks(unsigned char* kcm, int length, int xsize, int ysize, const
     //             printf(".");
     //         }
     //     }
-    //     printf("\n");
+    //     printf("/n");
     // }
 
     std::ofstream out;
@@ -135,13 +135,13 @@ void compress_blocks(unsigned char* kcm, int length, int xsize, int ysize, const
                         // Write the captured blocks
                         if ((id & 0x9F) == 0x84) {
                             // telepad
-                            //printf("telepad: %02X %02X %02X %02X\n", blocks[y][x][1], blocks[y][x][2], blocks[y][x][3], blocks[y][x][4]);
+                            //printf("telepad: %02X %02X %02X %02X/n", blocks[y][x][1], blocks[y][x][2], blocks[y][x][3], blocks[y][x][4]);
                             bits.write(blocks[y][x][1], 8); // map
                             bits.write(blocks[y][x][2], 8); // y coord
                             bits.write((blocks[y][x][4] << 8) + blocks[y][x][3], 9); // x coord
                         } else if ((id & 0x9F) == 0x83) {
                             // Ghost block
-                            //printf("Ghost: %d %d %02X %02X %02X %02X %d\n", x, y, blocks[y][x][1], blocks[y][x][2], blocks[y][x][3], blocks[y][x][4], chain_length);
+                            //printf("Ghost: %d %d %02X %02X %02X %02X %d/n", x, y, blocks[y][x][1], blocks[y][x][2], blocks[y][x][3], blocks[y][x][4], chain_length);
                             bits.write(chain_length-1, reptbits);
                             bits.write(direction, 1);
                             bits.write(blocks[y][x][1], 8);
@@ -257,7 +257,7 @@ int main(int argc, char* argv[]) {
     std::cout << "Version: " << version << std::endl;
     std::ifstream infile("level/level_files.txt");
     if (infile.fail()) {
-        std::cout << "Can't open \"level/level_files.txt\"" << std::endl;
+        std::cout << "Can't open /"level/level_files.txt/"" << std::endl;
         return -1;
     }
 
@@ -298,7 +298,7 @@ int main(int argc, char* argv[]) {
     bool all = false;
     if (argc == 1) {
         std::string in;
-        std::cout << "Enter MapIDs in hexadecimal, separated by spaces, or \"all\": ";
+        std::cout << "Enter MapIDs in hexadecimal, separated by spaces, or /"all/": ";
         std::getline(std::cin, in);
         std::istringstream iss(in);
         while (iss) {
@@ -327,7 +327,7 @@ int main(int argc, char* argv[]) {
             if (filemap.find(map_id) != filemap.end()) {
                 split_kcm(map_id, filemap[map_id]);
             } else {
-                printf("Map %02X is not a valid map.\n", map_id);
+                printf("Map %02X is not a valid map./n", map_id);
             }
         }
     }

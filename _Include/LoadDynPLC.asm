@@ -12,10 +12,9 @@ LoadDynPLC:
 		andi.w	#$FF,d0			; mask out anything except the input frame
 		add.w	d0,d0			; double ID (for word-based indexing)
 		adda.w	(a2,d0.w),a2		; find current DPLC entry
-		moveq	#0,d5			; clear d5
-		move.b	(a2)+,d5		; get number of tasks in this DPLC entry
+		move.w	(a2)+,d5		; get number of tasks in this DPLC entry
 		subq.w	#1,d5			; subtract 1 from number of tasks (will be the loop count)
-		bmi.w	.end			; if it underflowed, this is an empty entry, nothing to do
+		bmi.s	.end			; if it underflowed, this is an empty entry, nothing to do
 		
 	.loop:
 		move.b	(a2)+,d3		; get first byte of DPLC task

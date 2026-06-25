@@ -3059,7 +3059,7 @@ loc_3BB6:
 
 .not2P:
 		move.w	(v_hbla_hreg).w,(a6)
-		move.l	#VDP_Command_Buffer,(VDP_Command_Buffer_Slot).w	; reset the DMA Queue
+		ResetDMAQueue
 		tst.b	(Water_flag).w
 		beq.s	LevelInit_NoWater
 		move.w	#$8000+%00010100,(a6)	; enable h-int

@@ -20,7 +20,7 @@ FindNearestTile:
 		lsr.w	#7,d1
 		andi.w	#$7F,d1
 		add.w	d1,d0
-		moveq	#-1,d1
+		moveq	#0,d1
 		lea	(v_lvllayout).w,a1
 		move.b	(a1,d0.w),d1
 		andi.w	#$FF,d1
@@ -32,6 +32,7 @@ FindNearestTile:
 		lsr.w	#3,d0
 		andi.w	#$E,d0
 		add.w	d0,d1
+		add.l	(v_rom_chunks).w,d1
 		movea.l	d1,a1
 		rts
 ; End of function FindNearestTile

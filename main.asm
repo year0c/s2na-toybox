@@ -1087,7 +1087,7 @@ DACDriverLoad:
 		resetZ80
 		lea	(DACDriver).l,a0
 		lea	(z80_ram).l,a1
-		bsr.w	KosDec
+		bsr.w	KosPlusDec
 		resetZ80a
 		nop
 		nop
@@ -1440,7 +1440,7 @@ loc_17EE:
 ; End of function QuickPLC
 
 		include "_Include/Enigma Decompression.asm"
-		include "_Include/Kosinski Decompression.asm"
+		include "_Include/KosinskiPlus.asm"
 		include "_Include/Kid Chameleon Decompression.asm"
 
 		include	"_Include/PaletteCycle.asm"
@@ -14597,12 +14597,12 @@ Nem_Squirrel:	binclude	"art/nemesis/S1/Animal Squirrel.nem"
 ; ---------------------------------------------------------------------------
 ; Level Data
 ; ---------------------------------------------------------------------------
-Map16_EHZ:	binclude	"mappings/16x16/EHZ.unc"
+Map16_EHZ:	binclude	"mappings/16x16/EHZ.kosp"
 Map16_EHZ_End:
 		even
 Nem_EHZ:	binclude	"art/nemesis/8x8 - EHZ.nem"
 		even
-Map16_HTZ:	binclude	"mappings/16x16/HTZ.unc"
+Map16_HTZ:	binclude	"mappings/16x16/HTZ.kosp"
 Map16_HTZ_End:
 		even
 Nem_HTZ:	binclude	"art/nemesis/8x8 - HTZ.nem"
@@ -14611,14 +14611,14 @@ Nem_HTZ_AniPlaceholders:	binclude	"art/nemesis/HTZ Ani Placeholders.nem"
 		even
 Map128_EHZ:	binclude	"mappings/128x128/EHZ_HTZ.unc"
 		even
-Map16_HPZ:	binclude	"mappings/16x16/HPZ.unc"
+Map16_HPZ:	binclude	"mappings/16x16/HPZ.kosp"
 Map16_HPZ_End:
 		even
 Nem_HPZ:	binclude	"art/nemesis/8x8 - HPZ.nem"
 		even
 Map128_HPZ:	binclude	"mappings/128x128/HPZ.unc"
 		even
-Map16_CPZ:	binclude	"mappings/16x16/CPZ.unc"
+Map16_CPZ:	binclude	"mappings/16x16/CPZ.kosp"
 Map16_CPZ_End:
 		even
 Nem_CPZ:	binclude	"art/nemesis/8x8 - CPZ.nem"
@@ -14627,16 +14627,14 @@ Nem_CPZ_Buildings:	binclude	"art/nemesis/CPZ Buildings.nem"
 		even
 Map128_CPZ:	binclude	"mappings/128x128/CPZ.unc"
 		even
-Map16_GHZ:	binclude	"mappings/16x16/GHZ.unc"
+Map16_GHZ:	binclude	"mappings/16x16/GHZ.kosp"
 Map16_GHZ_End:
 		even
 Nem_GHZ:	binclude	"art/nemesis/8x8 - GHZ.nem"
 		even
 Nem_GHZ2:	binclude	"art/nemesis/8x8 - GHZ2.nem"
 		even
-; Comparatively to the source compressors for KCC, this is one is better in size by 0.06%
-; Maybe this could be from slightly after KCC was finalized? Who knows!
-Map128_GHZ:	binclude	"mappings/128x128/GHZ.kcc"
+Map128_GHZ:	binclude	"mappings/128x128/GHZ.unc"
 		even
 	if PaddingOptimization=0
 ; duplicate chunk end data from the above

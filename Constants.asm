@@ -894,7 +894,8 @@ f_lockscreen:		ds.b	1
 			ds.b	$13			; unused
 
 v_gfxbigring:		ds.w	1			; settings for giant ring graphics loading
-			ds.b	7			; unused
+v_rom_chunks:		ds.l	1
+			ds.b	3			; unused
 
 f_wtunnelmode:		ds.b	1			; LZ water tunnel mode
 f_playerctrl:		ds.b	1			; Player control override flags (object ineraction, control enable)

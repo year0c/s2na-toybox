@@ -731,7 +731,7 @@ sub_6E98:
 		lsr.w	#4,d0
 		andi.w	#$7F,d0
 		add.w	d3,d0
-		moveq	#-1,d3
+		moveq	#0,d3
 		move.b	(a4,d0.w),d3
 		andi.w	#$FF,d3
 		lsl.w	#7,d3
@@ -739,6 +739,7 @@ sub_6E98:
 		andi.w	#$E,d5
 		add.w	d4,d3
 		add.w	d5,d3
+		add.l	(v_rom_chunks).w,d3
 		movea.l	d3,a0
 		movem.l	(sp)+,d4-d5
 		rts
@@ -960,7 +961,7 @@ GetBlockData:
 		lsr.w	#4,d0
 		andi.w	#$7F,d0
 		add.w	d3,d0
-		moveq	#-1,d3
+		moveq	#0,d3
 		move.b	(a4,d0.w),d3
 		andi.w	#$FF,d3
 		lsl.w	#7,d3
@@ -968,6 +969,7 @@ GetBlockData:
 		andi.w	#$E,d5
 		add.w	d4,d3
 		add.w	d5,d3
+		add.l	(v_rom_chunks).w,d3
 		movea.l	d3,a0
 		move.w	(a0),d3
 		andi.w	#$3FF,d3

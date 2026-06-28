@@ -15,45 +15,26 @@ LevelDataLoad:
 
 	; --- 16x16 Block Mappings ---
 		movea.l	(a2)+,a0			; get 16x16 data pointer from level header
-		bra.s	.PrimaryBlocks			; assign 16x16 value to (1)
-		lea	(v_16x16).w,a1			; to then set it as RAM buffer for block mappings
-		move.w	#make_art_tile(ArtTile_Level,0,0),d0	; set base art tile (0)
-		bsr.w	EniDec				; decompress Enigma-compresseed block data to buffer
-		bra.s	.SecondaryBlocks		; set 16x16 tile mask
-
-	.PrimaryBlocks:
+		lea	(v_16x16).w,a1
+		bsr.w	KosPlusDec
+		tst.w	(Two_player_mode).w
+		beq.s	.SecondaryBlocks
 		lea	(v_16x16).w,a1
 		move.w	#bytesToWcnt(v_16x16_end-v_16x16),d2
 
 	.PrimaryBlocks_Loop:
-		move.w	(a0)+,d0
-		move.w	d0,(a1)+
+		move.w	(a1),d0
+		move.w	d0,d1
 		andi.w	#nontile_mask,d0
 		andi.w	#tile_mask,d1
 		lsr.w	#1,d1
 		or.w	d1,d0
+		move.w	d0,(a1)+
 		dbf	d2,.PrimaryBlocks_Loop
 
 	; --- 128x128 Chunk Mappings ---
 	.SecondaryBlocks:
-		movea.l	(a2)+,a0			; get 128x128 chunk data pointer from level header
-		bra.s	.Chunks				; assign 128x128 value to (1)
-		move.l	a2,-(sp)
-		moveq	#0,d1
-		moveq	#0,d2
-		move.w	(a0)+,d0
-		lea	(a0,d0.w),a1
-		lea	(v_128x128).l,a2		; to then set it as RAM buffer for chunk mappings
-		lea	(v_128x128_end).w,a3
-
-	.Chunks:
-		lea	(v_128x128).l,a1
-		move.w	#bytesToLcnt(v_128x128_end-v_128x128),d0
-		; unlike blocks, chunks do not require a tilemask in S2NA
-
-	.CopyChunksToRAM_Loop:
-		move.l	(a0)+,(a1)+
-		dbf	d0,.CopyChunksToRAM_Loop
+		move.l	(a2)+,(v_rom_chunks).w			; get 128x128 chunk data pointer from level header
 
 	; --- Level Layout (FG/BG) ---
 		bsr.w	LevelLayoutLoad			; load FG and BG layout

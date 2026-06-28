@@ -1751,8 +1751,7 @@ sub_10912:
 		moveq	#0,d1
 		move.b	obAniFrame(a0),d1
 		move.b	1(a1,d1.w),d0
-		cmpi.b	#afChange,d0
-		bhs.s	loc_1092C
+		bmi.s	loc_1092C
 
 loc_10922:
 		move.b	d0,obFrame(a0)
@@ -1827,13 +1826,11 @@ loc_109B0:
 		lea	(SonAni_Run).l,a1
 		cmpi.w	#$600,d2
 		bhs.s	loc_109C2
+		
 		lea	(SonAni_Walk).l,a1
+		add.b	d0,d0
 
 loc_109C2:
-		move.b	d0,d1
-		lsr.b	#1,d1
-		add.b	d1,d0
-		add.b	d0,d0
 		add.b	d0,d0
 		move.b	d0,d3
 		neg.w	d2

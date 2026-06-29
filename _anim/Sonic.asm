@@ -89,7 +89,6 @@ fr_SpinDash4:	equ fr_SpinDash3+1
 fr_SpinDash5:	equ fr_SpinDash4+1
 fr_SpinDash6:	equ fr_SpinDash5+1
 
-
 ; ---------------------------------------------------------------------------
 ; Animation script - Sonic
 ; ---------------------------------------------------------------------------
@@ -144,20 +143,30 @@ id_Float4:	sonani	SonAni_Float4	; $1F
 ; This is because the special animation handler switches between these
 ; animations without resetting the animation positon.
 
-SonAni_Walk:	dc.b	$FF, $0F, $10, $11, $12, $13, $14, $0D
-		dc.b	$0E, $FF
+SonAni_Walk:	dc.b $FF
+		dc.b fr_Walk11, fr_Walk12, fr_Walk13, fr_Walk14, fr_Walk15, fr_Walk16, fr_Walk17, fr_Walk18
+		dc.b afEnd
+		even
 
-SonAni_Run:	dc.b	$FF, $2D, $2E, $2F, $30, $FF, $FF, $FF
-		dc.b	$FF, $FF
+SonAni_Run:	dc.b $FF
+		dc.b fr_Run11, fr_Run12, fr_Run13, fr_Run14
+		dc.b afEnd
+		even
 
-SonAni_Roll:	dc.b	$FE, $3D, $41, $3E, $41, $3F, $41, $40
-		dc.b	$41, $FF
+SonAni_Roll:	dc.b $FE
+		dc.b fr_Roll1, fr_Roll5, fr_Roll2, fr_Roll5, fr_Roll3, fr_Roll5, fr_Roll4, fr_Roll5
+		dc.b afEnd
+		even
 
-SonAni_Roll2:	dc.b	$FE, $3D, $41, $3E, $41, $3F, $41, $40
-		dc.b	$41, $FF
+SonAni_Roll2:	dc.b $FE
+		dc.b fr_Roll1, fr_Roll5, fr_Roll2, fr_Roll5, fr_Roll3, fr_Roll5, fr_Roll4, fr_Roll5
+		dc.b afEnd
+		even
 
-SonAni_Push:	dc.b	$FD, $48, $49, $4A, $4B, $FF, $FF, $FF
-		dc.b	$FF, $FF
+SonAni_Push:	dc.b $FD
+		dc.b fr_Push1, fr_Push2, fr_Push3, fr_Push4
+		dc.b afEnd
+		even
 
 ; ---------------------------------------------------------------------------
 ; --- Normal animations ---
